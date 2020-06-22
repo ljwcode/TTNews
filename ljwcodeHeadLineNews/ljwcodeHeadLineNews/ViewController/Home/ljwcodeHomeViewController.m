@@ -1,11 +1,10 @@
 //
-//  LLHomeViewController.m
-//  LLRiseTabBarDemo
+//  ljwcodeHomeViewController.m
 //
-//  Created by Meilbn on 10/18/15.
-//  Copyright © 2015 meilbn. All rights reserved.
 //
-
+//  Created by ljwcode on 2020/6/18.
+//  Copyright © 2020 ljwcode. All rights reserved.
+//
 #import "ljwcodeHomeViewController.h"
 #import "ljwcodeTabBarController.h"
 

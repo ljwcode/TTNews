@@ -480,13 +480,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PREFIX_HEADER = /Users/a1/Documents/github/Archive2/ljwcodeHeadLineNews/ljwcodeHeadLineNews/ljwcodeHeadLineNews/ljwcodeHeadLineNews.pch;
+				GCC_PREFIX_HEADER = ljwcodeHeadLineNews/ljwcodeHeadLineNews.pch;
 				INFOPLIST_FILE = ljwcodeHeadLineNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = gmail.com.ljwcodeHeadLineNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -500,13 +501,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PREFIX_HEADER = /Users/a1/Documents/github/Archive2/ljwcodeHeadLineNews/ljwcodeHeadLineNews/ljwcodeHeadLineNews/ljwcodeHeadLineNews.pch;
+				GCC_PREFIX_HEADER = ljwcodeHeadLineNews/ljwcodeHeadLineNews.pch;
 				INFOPLIST_FILE = ljwcodeHeadLineNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = gmail.com.ljwcodeHeadLineNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -1,9 +1,9 @@
 //
-//  LLTabBar.m
-//  LLRiseTabBarDemo
+//  ljwcodeTabBarController.m
 //
-//  Created by Meilbn on 10/18/15.
-//  Copyright © 2015 meilbn. All rights reserved.
+//
+//  Created by ljwcode on 2020/6/18.
+//  Copyright © 2020 ljwcode. All rights reserved.
 //
 
 #import "ljwcodeTabBarController.h"
@@ -65,9 +65,9 @@
     [[UITabBar appearance]setBarTintColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1]];
     [[UITabBar appearance]setBackgroundColor:[UIColor blueColor]];
     
-    //normal
+//    normal
     UITabBarItem *item = [UITabBarItem appearance];
-    
+
     item.titlePositionAdjustment = UIOffsetMake(0, -5);//titile 和 image的位置
     NSMutableDictionary *normalDic = [NSMutableDictionary dictionary];
     normalDic[NSFontAttributeName] = [UIFont systemFontOfSize:10.f];
@@ -79,11 +79,7 @@
     selectedDic[NSFontAttributeName] = [UIFont systemFontOfSize:10.f];
     selectedDic[NSForegroundColorAttributeName] = [UIColor colorWithRed:0.97 green:0.35 blue:0.35 alpha:1];
     [item setTitleTextAttributes:selectedDic forState:UIControlStateSelected];
-    
-    UITabBarAppearance *appearance = [[UITabBarAppearance alloc]init];
-    appearance.stackedLayoutAppearance.normal.titlePositionAdjustment = UIOffsetMake(0, -5);
-    appearance.stackedLayoutAppearance.selected.titlePositionAdjustment = UIOffsetMake(0, -5);
-    
+
 }
 
 -(ljwcodeNavigationController *)addChildViewController:(Class)class normalImage:(NSString *)normalImage selectedImage:(NSString *)selectedImage title:(NSString *)title
@@ -113,10 +109,10 @@
     }
     if(self.selectedViewController == viewController)
     {
-        ljwcodeNavigationController *lNavi = (ljwcodeNavigationController *)viewController;
-        if([lNavi.viewControllers.firstObject respondsToSelector:@selector(needRefreshTableViewData)])
+        ljwcodeNavigationController *Navi = (ljwcodeNavigationController *)viewController;
+        if([Navi.viewControllers.firstObject respondsToSelector:@selector(needRefreshTableViewData)])
         {
-//            [lNavi.viewControllers.firstObject needRefreshTableViewData];
+//            [Navi.viewControllers.firstObject needRefreshTableViewData];
         }
     }
     
