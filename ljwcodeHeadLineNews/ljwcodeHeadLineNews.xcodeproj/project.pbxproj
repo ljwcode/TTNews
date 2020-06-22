@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		631BAEE8249B63D700639CD2 /* UITabBar+LLTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BAEE7249B63D700639CD2 /* UITabBar+LLTabBarItem.m */; };
+		631BAEEB249B751D00639CD2 /* ljwcodeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BAEEA249B751D00639CD2 /* ljwcodeNavigationController.m */; };
+		63231B8E24A089C90059FD5F /* ljwcodePageMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63231B8D24A089C90059FD5F /* ljwcodePageMenuView.m */; };
+		63231B9124A08F110059FD5F /* ljwcodeNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63231B9024A08F110059FD5F /* ljwcodeNavigationBar.m */; };
+		6328F611249DEA8C00C767A8 /* ljwcodeEmitterHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F610249DEA8C00C767A8 /* ljwcodeEmitterHelper.m */; };
+		6328F614249E111F00C767A8 /* ljwcodeHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F613249E111F00C767A8 /* ljwcodeHeader.m */; };
+		6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 820978F21BD3A37700CF9D0C /* Assets.xcassets */; };
+		820978E81BD3A37600CF9D0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 820978E71BD3A37600CF9D0C /* main.m */; };
+		820978EB1BD3A37700CF9D0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 820978EA1BD3A37700CF9D0C /* AppDelegate.m */; };
+		820979071BD3AA9400CF9D0C /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979061BD3AA9400CF9D0C /* LLBaseViewController.m */; };
+		820979101BD3AB2800CF9D0C /* ljwcodeHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8209790E1BD3AB2800CF9D0C /* ljwcodeHomeViewController.m */; };
+		820979151BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979131BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m */; };
+		8209791A1BD3AFAC00CF9D0C /* ljwcodeMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979181BD3AFAC00CF9D0C /* ljwcodeMineViewController.m */; };
+		8209791F1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8209791D1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m */; };
+		820979281BD3B28700CF9D0C /* ljwcodeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979271BD3B28700CF9D0C /* ljwcodeTabBarController.m */; };
+		C4AFB7D1D396726EDB50A5DB /* Pods_ljwcodeHeadLineNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		293C19CEC52458542FCA55CC /* Pods-ljwcodeHeadLineNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.release.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.release.xcconfig"; sourceTree = "<group>"; };
+		631BAEE6249B63D700639CD2 /* UITabBar+LLTabBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+LLTabBarItem.h"; sourceTree = "<group>"; };
+		631BAEE7249B63D700639CD2 /* UITabBar+LLTabBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+LLTabBarItem.m"; sourceTree = "<group>"; };
+		631BAEE9249B751D00639CD2 /* ljwcodeNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeNavigationController.h; sourceTree = "<group>"; };
+		631BAEEA249B751D00639CD2 /* ljwcodeNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeNavigationController.m; sourceTree = "<group>"; };
+		63231B8C24A089C90059FD5F /* ljwcodePageMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodePageMenuView.h; sourceTree = "<group>"; };
+		63231B8D24A089C90059FD5F /* ljwcodePageMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodePageMenuView.m; sourceTree = "<group>"; };
+		63231B8F24A08F110059FD5F /* ljwcodeNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeNavigationBar.h; sourceTree = "<group>"; };
+		63231B9024A08F110059FD5F /* ljwcodeNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeNavigationBar.m; sourceTree = "<group>"; };
+		6328F60F249DEA8C00C767A8 /* ljwcodeEmitterHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeEmitterHelper.h; sourceTree = "<group>"; };
+		6328F610249DEA8C00C767A8 /* ljwcodeEmitterHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeEmitterHelper.m; sourceTree = "<group>"; };
+		6328F612249E111F00C767A8 /* ljwcodeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeHeader.h; sourceTree = "<group>"; };
+		6328F613249E111F00C767A8 /* ljwcodeHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeHeader.m; sourceTree = "<group>"; };
+		820978E31BD3A37600CF9D0C /* ljwcodeHeadLineNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ljwcodeHeadLineNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		820978E71BD3A37600CF9D0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		820978E91BD3A37700CF9D0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		820978EA1BD3A37700CF9D0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		820978F21BD3A37700CF9D0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		820978F71BD3A37700CF9D0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		820979051BD3AA9400CF9D0C /* LLBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBaseViewController.h; sourceTree = "<group>"; };
+		820979061BD3AA9400CF9D0C /* LLBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBaseViewController.m; sourceTree = "<group>"; };
+		8209790D1BD3AB2800CF9D0C /* ljwcodeHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeHomeViewController.h; sourceTree = "<group>"; };
+		8209790E1BD3AB2800CF9D0C /* ljwcodeHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodeHomeViewController.m; sourceTree = "<group>"; };
+		820979121BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeWeiTouTiaoViewController.h; sourceTree = "<group>"; };
+		820979131BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodeWeiTouTiaoViewController.m; sourceTree = "<group>"; };
+		820979171BD3AFAC00CF9D0C /* ljwcodeMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeMineViewController.h; sourceTree = "<group>"; };
+		820979181BD3AFAC00CF9D0C /* ljwcodeMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodeMineViewController.m; sourceTree = "<group>"; };
+		8209791C1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeVideoViewController.h; sourceTree = "<group>"; };
+		8209791D1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodeVideoViewController.m; sourceTree = "<group>"; };
+		820979261BD3B28700CF9D0C /* ljwcodeTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeTabBarController.h; sourceTree = "<group>"; };
+		820979271BD3B28700CF9D0C /* ljwcodeTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodeTabBarController.m; sourceTree = "<group>"; };
+		827809371BD3CB7B0096F95C /* ljwcodeHeadLineNews.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeHeadLineNews.pch; sourceTree = "<group>"; };
+		A2C008BF83355F08C3B5A22B /* Pods-ljwcodeHeadLineNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.debug.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.debug.xcconfig"; sourceTree = "<group>"; };
+		C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ljwcodeHeadLineNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		820978E01BD3A37600CF9D0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4AFB7D1D396726EDB50A5DB /* Pods_ljwcodeHeadLineNews.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3FB1808D7FA9F1803F155581 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2C008BF83355F08C3B5A22B /* Pods-ljwcodeHeadLineNews.debug.xcconfig */,
+				293C19CEC52458542FCA55CC /* Pods-ljwcodeHeadLineNews.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6328F60B249DABDA00C767A8 /* ljwcodeTools */ = {
+			isa = PBXGroup;
+			children = (
+				63231B8C24A089C90059FD5F /* ljwcodePageMenuView.h */,
+				63231B8D24A089C90059FD5F /* ljwcodePageMenuView.m */,
+				6328F60F249DEA8C00C767A8 /* ljwcodeEmitterHelper.h */,
+				6328F610249DEA8C00C767A8 /* ljwcodeEmitterHelper.m */,
+			);
+			path = ljwcodeTools;
+			sourceTree = "<group>";
+		};
+		820978DA1BD3A37600CF9D0C = {
+			isa = PBXGroup;
+			children = (
+				820978E51BD3A37600CF9D0C /* ljwcodeHeadLineNews */,
+				820979211BD3B0FE00CF9D0C /* Frameworks */,
+				820978E41BD3A37600CF9D0C /* Products */,
+				3FB1808D7FA9F1803F155581 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		820978E41BD3A37600CF9D0C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				820978E31BD3A37600CF9D0C /* ljwcodeHeadLineNews.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		820978E51BD3A37600CF9D0C /* ljwcodeHeadLineNews */ = {
+			isa = PBXGroup;
+			children = (
+				6328F60B249DABDA00C767A8 /* ljwcodeTools */,
+				820979241BD3B1CC00CF9D0C /* CustomView */,
+				820978FD1BD3A94100CF9D0C /* ViewController */,
+				820978E91BD3A37700CF9D0C /* AppDelegate.h */,
+				820978EA1BD3A37700CF9D0C /* AppDelegate.m */,
+				820978F21BD3A37700CF9D0C /* Assets.xcassets */,
+				820978E61BD3A37600CF9D0C /* Supporting Files */,
+			);
+			path = ljwcodeHeadLineNews;
+			sourceTree = "<group>";
+		};
+		820978E61BD3A37600CF9D0C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				820978E71BD3A37600CF9D0C /* main.m */,
+				820978F71BD3A37700CF9D0C /* Info.plist */,
+				827809371BD3CB7B0096F95C /* ljwcodeHeadLineNews.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		820978FD1BD3A94100CF9D0C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				820979041BD3AA9400CF9D0C /* Base */,
+				820979081BD3AB0600CF9D0C /* Home */,
+				820979091BD3AB0600CF9D0C /* weitoutiao */,
+				8209790A1BD3AB0600CF9D0C /* mine */,
+				8209790B1BD3AB0600CF9D0C /* Publish */,
+				8209790C1BD3AB0600CF9D0C /* Video */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		820979041BD3AA9400CF9D0C /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				820979051BD3AA9400CF9D0C /* LLBaseViewController.h */,
+				820979061BD3AA9400CF9D0C /* LLBaseViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		820979081BD3AB0600CF9D0C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8209790D1BD3AB2800CF9D0C /* ljwcodeHomeViewController.h */,
+				8209790E1BD3AB2800CF9D0C /* ljwcodeHomeViewController.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		820979091BD3AB0600CF9D0C /* weitoutiao */ = {
+			isa = PBXGroup;
+			children = (
+				820979121BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.h */,
+				820979131BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m */,
+			);
+			path = weitoutiao;
+			sourceTree = "<group>";
+		};
+		8209790A1BD3AB0600CF9D0C /* mine */ = {
+			isa = PBXGroup;
+			children = (
+				820979171BD3AFAC00CF9D0C /* ljwcodeMineViewController.h */,
+				820979181BD3AFAC00CF9D0C /* ljwcodeMineViewController.m */,
+			);
+			path = mine;
+			sourceTree = "<group>";
+		};
+		8209790B1BD3AB0600CF9D0C /* Publish */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Publish;
+			sourceTree = "<group>";
+		};
+		8209790C1BD3AB0600CF9D0C /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				8209791C1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.h */,
+				8209791D1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		820979211BD3B0FE00CF9D0C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		820979241BD3B1CC00CF9D0C /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				820979251BD3B1CC00CF9D0C /* ljwcodeMain */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		820979251BD3B1CC00CF9D0C /* ljwcodeMain */ = {
+			isa = PBXGroup;
+			children = (
+				820979261BD3B28700CF9D0C /* ljwcodeTabBarController.h */,
+				820979271BD3B28700CF9D0C /* ljwcodeTabBarController.m */,
+				631BAEE6249B63D700639CD2 /* UITabBar+LLTabBarItem.h */,
+				631BAEE7249B63D700639CD2 /* UITabBar+LLTabBarItem.m */,
+				631BAEE9249B751D00639CD2 /* ljwcodeNavigationController.h */,
+				631BAEEA249B751D00639CD2 /* ljwcodeNavigationController.m */,
+				6328F612249E111F00C767A8 /* ljwcodeHeader.h */,
+				6328F613249E111F00C767A8 /* ljwcodeHeader.m */,
+				63231B8F24A08F110059FD5F /* ljwcodeNavigationBar.h */,
+				63231B9024A08F110059FD5F /* ljwcodeNavigationBar.m */,
+			);
+			path = ljwcodeMain;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		820978E21BD3A37600CF9D0C /* ljwcodeHeadLineNews */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 820978FA1BD3A37700CF9D0C /* Build configuration list for PBXNativeTarget "ljwcodeHeadLineNews" */;
+			buildPhases = (
+				1C5E7AA71FA3183FF9F3E28E /* [CP] Check Pods Manifest.lock */,
+				820978DF1BD3A37600CF9D0C /* Sources */,
+				820978E01BD3A37600CF9D0C /* Frameworks */,
+				820978E11BD3A37600CF9D0C /* Resources */,
+				51B1AFBB7C3E2341CF1762F0 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ljwcodeHeadLineNews;
+			productName = LLRiseTabBarDemo;
+			productReference = 820978E31BD3A37600CF9D0C /* ljwcodeHeadLineNews.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		820978DB1BD3A37600CF9D0C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = melody;
+				TargetAttributes = {
+					820978E21BD3A37600CF9D0C = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 820978DE1BD3A37600CF9D0C /* Build configuration list for PBXProject "ljwcodeHeadLineNews" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+				Base,
+			);
+			mainGroup = 820978DA1BD3A37600CF9D0C;
+			productRefGroup = 820978E41BD3A37600CF9D0C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				820978E21BD3A37600CF9D0C /* ljwcodeHeadLineNews */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		820978E11BD3A37600CF9D0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1C5E7AA71FA3183FF9F3E28E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ljwcodeHeadLineNews-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51B1AFBB7C3E2341CF1762F0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/KMCGeigerCounter/KMCGeigerCounter.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
+				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMCGeigerCounter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		820978DF1BD3A37600CF9D0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				631BAEE8249B63D700639CD2 /* UITabBar+LLTabBarItem.m in Sources */,
+				8209791F1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m in Sources */,
+				6328F611249DEA8C00C767A8 /* ljwcodeEmitterHelper.m in Sources */,
+				820979281BD3B28700CF9D0C /* ljwcodeTabBarController.m in Sources */,
+				820979071BD3AA9400CF9D0C /* LLBaseViewController.m in Sources */,
+				820979101BD3AB2800CF9D0C /* ljwcodeHomeViewController.m in Sources */,
+				820978EB1BD3A37700CF9D0C /* AppDelegate.m in Sources */,
+				631BAEEB249B751D00639CD2 /* ljwcodeNavigationController.m in Sources */,
+				63231B9124A08F110059FD5F /* ljwcodeNavigationBar.m in Sources */,
+				6328F614249E111F00C767A8 /* ljwcodeHeader.m in Sources */,
+				820979151BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m in Sources */,
+				820978E81BD3A37600CF9D0C /* main.m in Sources */,
+				8209791A1BD3AFAC00CF9D0C /* ljwcodeMineViewController.m in Sources */,
+				63231B8E24A089C90059FD5F /* ljwcodePageMenuView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		820978F81BD3A37700CF9D0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		820978F91BD3A37700CF9D0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		820978FB1BD3A37700CF9D0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2C008BF83355F08C3B5A22B /* Pods-ljwcodeHeadLineNews.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PREFIX_HEADER = /Users/a1/Documents/github/Archive2/ljwcodeHeadLineNews/ljwcodeHeadLineNews/ljwcodeHeadLineNews/ljwcodeHeadLineNews.pch;
+				INFOPLIST_FILE = ljwcodeHeadLineNews/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = gmail.com.ljwcodeHeadLineNews;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		820978FC1BD3A37700CF9D0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 293C19CEC52458542FCA55CC /* Pods-ljwcodeHeadLineNews.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PREFIX_HEADER = /Users/a1/Documents/github/Archive2/ljwcodeHeadLineNews/ljwcodeHeadLineNews/ljwcodeHeadLineNews/ljwcodeHeadLineNews.pch;
+				INFOPLIST_FILE = ljwcodeHeadLineNews/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = gmail.com.ljwcodeHeadLineNews;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		820978DE1BD3A37600CF9D0C /* Build configuration list for PBXProject "ljwcodeHeadLineNews" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				820978F81BD3A37700CF9D0C /* Debug */,
+				820978F91BD3A37700CF9D0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		820978FA1BD3A37700CF9D0C /* Build configuration list for PBXNativeTarget "ljwcodeHeadLineNews" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				820978FB1BD3A37700CF9D0C /* Debug */,
+				820978FC1BD3A37700CF9D0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 820978DB1BD3A37600CF9D0C /* Project object */;
+}

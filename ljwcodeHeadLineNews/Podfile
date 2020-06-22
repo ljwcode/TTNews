@@ -1,0 +1,24 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'ljwcodeHeadLineNews' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for ljwcodeHeadLineNews
+pod 'SDWebImage’
+pod 'AFNetworking'
+pod 'YYCache'
+pod 'DZNEmptyDataSet'
+pod 'MJExtension'
+pod 'MBProgressHUD'
+pod 'ReactiveObjC'
+pod 'MJRefresh'
+pod 'ZFPlayer'
+pod 'Masonry'
+pod 'YYText'
+pod 'SDWebImage'
+pod 'KMCGeigerCounter'
+pod 'FMDB'
+
+end
