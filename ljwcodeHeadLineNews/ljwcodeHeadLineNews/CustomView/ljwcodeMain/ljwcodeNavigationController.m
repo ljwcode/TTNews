@@ -30,6 +30,7 @@
     
     UIBarButtonItem *item = [UIBarButtonItem appearance];
     [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:13.f],NSFontAttributeName, nil] forState:UIControlStateNormal];
+    
     [[UINavigationBar appearance]setBackgroundImage:[self drawImageContext:[UIColor colorWithRed:0.83 green:0.24 blue:0.24 alpha:1.0]] forBarMetrics:UIBarMetricsDefault];
     
 }

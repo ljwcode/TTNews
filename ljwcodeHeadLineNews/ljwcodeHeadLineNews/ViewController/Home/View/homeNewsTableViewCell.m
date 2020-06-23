@@ -7,6 +7,20 @@
 //
 
 #import "homeNewsTableViewCell.h"
+#import "ljwcodeHeader.h"
+
+@interface homeNewsTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *leftImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *middleImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *rightImageView;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+
+@property(nonatomic,strong)NSArray *imageViews;
+
+
+@end
 
 @implementation homeNewsTableViewCell
 

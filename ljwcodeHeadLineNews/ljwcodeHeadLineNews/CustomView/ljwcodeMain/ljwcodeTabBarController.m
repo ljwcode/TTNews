@@ -29,7 +29,6 @@
 
 -(void)viewDidLoad
 {
-    self.automaticallyAdjustsScrollViewInsets = NO;
     _homeNavi = [self addChildViewController:[ljwcodeHomeViewController class] normalImage:@"home_tabbar_32x32_" selectedImage:@"home_tabbar_press_32x32_" title:@"首页"];
     [self addChildViewController:[ljwcodeVideoViewController class] normalImage:@"video_tabbar_32x32_" selectedImage:@"video_tabbar_press_32x32_" title:@"西瓜视频"];
     [self addChildViewController:[ljwcodeWeiTouTiaoViewController class] normalImage:@"weitoutiao_tabbar_32x32_" selectedImage:@"weitoutiao_tabbar_press_32x32" title:@"微头条"];
@@ -70,7 +69,6 @@
     
     [[UITabBar appearance]setTranslucent:NO];
     [[UITabBar appearance]setBarTintColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1]];
-    [[UITabBar appearance]setBackgroundColor:[UIColor blueColor]];
     
 //    normal
     UITabBarItem *item = [UITabBarItem appearance];

@@ -19,6 +19,8 @@ PODS:
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - KMCGeigerCounter (0.3.0)
+  - LBPhotoBrowser (2.2.2):
+    - SDWebImage
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJExtension (3.2.1)
@@ -39,6 +41,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - FMDB
   - KMCGeigerCounter
+  - LBPhotoBrowser (~> 2.2.2)
   - Masonry
   - MBProgressHUD
   - MJExtension
@@ -56,6 +59,7 @@ SPEC REPOS:
     - DZNEmptyDataSet
     - FMDB
     - KMCGeigerCounter
+    - LBPhotoBrowser
     - Masonry
     - MBProgressHUD
     - MJExtension
@@ -72,6 +76,7 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   KMCGeigerCounter: a06cfeed4a96e8f9a49028abb3ba7e53604d3219
+  LBPhotoBrowser: e924dea551c494815fde9185bad85ab6331c45da
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
@@ -83,6 +88,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZFPlayer: 1310252c253b9958e4fcd411e706b99c31834eaf
 
-PODFILE CHECKSUM: 42326f790ab53fdb4b490dd4054bb5a726074a38
+PODFILE CHECKSUM: 6481b7e849ac0da0d8b33ac63582d66cb9c387e4
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.9.1

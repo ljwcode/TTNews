@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,12 +20,12 @@
 		63B07BFC24A20EB200C7CD6F /* ljwcodePageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BFB24A20EB200C7CD6F /* ljwcodePageContentView.m */; };
 		820978E81BD3A37600CF9D0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 820978E71BD3A37600CF9D0C /* main.m */; };
 		820978EB1BD3A37700CF9D0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 820978EA1BD3A37700CF9D0C /* AppDelegate.m */; };
-		820979071BD3AA9400CF9D0C /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979061BD3AA9400CF9D0C /* LLBaseViewController.m */; };
 		820979101BD3AB2800CF9D0C /* ljwcodeHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8209790E1BD3AB2800CF9D0C /* ljwcodeHomeViewController.m */; };
 		820979151BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979131BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m */; };
 		8209791A1BD3AFAC00CF9D0C /* ljwcodeMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979181BD3AFAC00CF9D0C /* ljwcodeMineViewController.m */; };
 		8209791F1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8209791D1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m */; };
 		820979281BD3B28700CF9D0C /* ljwcodeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979271BD3B28700CF9D0C /* ljwcodeTabBarController.m */; };
+		94A4A6EA24A25331002A6CA3 /* ljwcodeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A4A6E924A25331002A6CA3 /* ljwcodeBaseViewController.m */; };
 		C4AFB7D1D396726EDB50A5DB /* Pods_ljwcodeHeadLineNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,14 +50,12 @@
 		63B07BF824A1E8A000C7CD6F /* ljwcodePageMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodePageMenuView.h; sourceTree = "<group>"; };
 		63B07BFA24A20EB100C7CD6F /* ljwcodePageContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodePageContentView.h; sourceTree = "<group>"; };
 		63B07BFB24A20EB200C7CD6F /* ljwcodePageContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodePageContentView.m; sourceTree = "<group>"; };
-		820978E31BD3A37600CF9D0C /* ljwcodeHeadLineNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ljwcodeHeadLineNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		820978E31BD3A37600CF9D0C /* 今日头条.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "今日头条.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		820978E71BD3A37600CF9D0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		820978E91BD3A37700CF9D0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		820978EA1BD3A37700CF9D0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		820978F21BD3A37700CF9D0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		820978F71BD3A37700CF9D0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		820979051BD3AA9400CF9D0C /* LLBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBaseViewController.h; sourceTree = "<group>"; };
-		820979061BD3AA9400CF9D0C /* LLBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBaseViewController.m; sourceTree = "<group>"; };
 		8209790D1BD3AB2800CF9D0C /* ljwcodeHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeHomeViewController.h; sourceTree = "<group>"; };
 		8209790E1BD3AB2800CF9D0C /* ljwcodeHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodeHomeViewController.m; sourceTree = "<group>"; };
 		820979121BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeWeiTouTiaoViewController.h; sourceTree = "<group>"; };
@@ -69,6 +67,8 @@
 		820979261BD3B28700CF9D0C /* ljwcodeTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeTabBarController.h; sourceTree = "<group>"; };
 		820979271BD3B28700CF9D0C /* ljwcodeTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodeTabBarController.m; sourceTree = "<group>"; };
 		827809371BD3CB7B0096F95C /* ljwcodeHeadLineNews.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeHeadLineNews.pch; sourceTree = "<group>"; };
+		94A4A6E824A25331002A6CA3 /* ljwcodeBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeBaseViewController.h; sourceTree = "<group>"; };
+		94A4A6E924A25331002A6CA3 /* ljwcodeBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeBaseViewController.m; sourceTree = "<group>"; };
 		A2C008BF83355F08C3B5A22B /* Pods-ljwcodeHeadLineNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.debug.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.debug.xcconfig"; sourceTree = "<group>"; };
 		C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ljwcodeHeadLineNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -162,7 +162,7 @@
 		820978E41BD3A37600CF9D0C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				820978E31BD3A37600CF9D0C /* ljwcodeHeadLineNews.app */,
+				820978E31BD3A37600CF9D0C /* 今日头条.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,8 +208,7 @@
 		820979041BD3AA9400CF9D0C /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				820979051BD3AA9400CF9D0C /* LLBaseViewController.h */,
-				820979061BD3AA9400CF9D0C /* LLBaseViewController.m */,
+				94A4A6E724A252CF002A6CA3 /* viewController */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -292,6 +291,15 @@
 			path = ljwcodeMain;
 			sourceTree = "<group>";
 		};
+		94A4A6E724A252CF002A6CA3 /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+				94A4A6E824A25331002A6CA3 /* ljwcodeBaseViewController.h */,
+				94A4A6E924A25331002A6CA3 /* ljwcodeBaseViewController.m */,
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -311,7 +319,7 @@
 			);
 			name = ljwcodeHeadLineNews;
 			productName = LLRiseTabBarDemo;
-			productReference = 820978E31BD3A37600CF9D0C /* ljwcodeHeadLineNews.app */;
+			productReference = 820978E31BD3A37600CF9D0C /* 今日头条.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -321,7 +329,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = melody;
+				ORGANIZATIONNAME = ljwcode;
 				TargetAttributes = {
 					820978E21BD3A37600CF9D0C = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -329,7 +337,7 @@
 				};
 			};
 			buildConfigurationList = 820978DE1BD3A37600CF9D0C /* Build configuration list for PBXProject "ljwcodeHeadLineNews" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 11.4";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -393,6 +401,7 @@
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/KMCGeigerCounter/KMCGeigerCounter.framework",
+				"${BUILT_PRODUCTS_DIR}/LBPhotoBrowser/LBPhotoBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -409,6 +418,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMCGeigerCounter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBPhotoBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
@@ -437,10 +447,10 @@
 				820979281BD3B28700CF9D0C /* ljwcodeTabBarController.m in Sources */,
 				63B07BF924A1E8A100C7CD6F /* ljwcodePageMenuView.m in Sources */,
 				63B07BFC24A20EB200C7CD6F /* ljwcodePageContentView.m in Sources */,
-				820979071BD3AA9400CF9D0C /* LLBaseViewController.m in Sources */,
 				63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */,
 				820979101BD3AB2800CF9D0C /* ljwcodeHomeViewController.m in Sources */,
 				820978EB1BD3A37700CF9D0C /* AppDelegate.m in Sources */,
+				94A4A6EA24A25331002A6CA3 /* ljwcodeBaseViewController.m in Sources */,
 				63B07BF624A1E41200C7CD6F /* UIView+frame.m in Sources */,
 				631BAEEB249B751D00639CD2 /* ljwcodeNavigationController.m in Sources */,
 				63231B9124A08F110059FD5F /* ljwcodeNavigationBar.m in Sources */,
@@ -547,10 +557,13 @@
 				GCC_PREFIX_HEADER = ljwcodeHeadLineNews/ljwcodeHeadLineNews.pch;
 				INFOPLIST_FILE = ljwcodeHeadLineNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = gmail.com.ljwcodeHeadLineNews;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "今日头条";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -568,10 +581,13 @@
 				GCC_PREFIX_HEADER = ljwcodeHeadLineNews/ljwcodeHeadLineNews.pch;
 				INFOPLIST_FILE = ljwcodeHeadLineNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = gmail.com.ljwcodeHeadLineNews;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "今日头条";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
