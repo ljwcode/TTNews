@@ -59,8 +59,15 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+}
+
 +(void)initialize
 {
+    
     [[UITabBar appearance]setTranslucent:NO];
     [[UITabBar appearance]setBarTintColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1]];
     [[UITabBar appearance]setBackgroundColor:[UIColor blueColor]];
