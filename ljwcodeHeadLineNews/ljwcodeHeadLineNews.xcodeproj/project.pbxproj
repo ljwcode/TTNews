@@ -26,6 +26,10 @@
 		8209791A1BD3AFAC00CF9D0C /* ljwcodeMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979181BD3AFAC00CF9D0C /* ljwcodeMineViewController.m */; };
 		8209791F1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8209791D1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m */; };
 		820979281BD3B28700CF9D0C /* ljwcodeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979271BD3B28700CF9D0C /* ljwcodeTabBarController.m */; };
+		949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E779224A39605000C446E /* homejokeTableViewCell.m */; };
+		949E779524A39605000C446E /* homejokeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949E779324A39605000C446E /* homejokeTableViewCell.xib */; };
+		949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E779724A39FDE000C446E /* homeContentNewsTableViewCell.m */; };
+		949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949E779824A39FDE000C446E /* homeContentNewsTableViewCell.xib */; };
 		94A4A6EA24A25331002A6CA3 /* ljwcodeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A4A6E924A25331002A6CA3 /* ljwcodeBaseViewController.m */; };
 		C4AFB7D1D396726EDB50A5DB /* Pods_ljwcodeHeadLineNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */; };
 /* End PBXBuildFile section */
@@ -70,6 +74,12 @@
 		820979261BD3B28700CF9D0C /* ljwcodeTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeTabBarController.h; sourceTree = "<group>"; };
 		820979271BD3B28700CF9D0C /* ljwcodeTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodeTabBarController.m; sourceTree = "<group>"; };
 		827809371BD3CB7B0096F95C /* ljwcodeHeadLineNews.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeHeadLineNews.pch; sourceTree = "<group>"; };
+		949E779124A39605000C446E /* homejokeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homejokeTableViewCell.h; sourceTree = "<group>"; };
+		949E779224A39605000C446E /* homejokeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homejokeTableViewCell.m; sourceTree = "<group>"; };
+		949E779324A39605000C446E /* homejokeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homejokeTableViewCell.xib; sourceTree = "<group>"; };
+		949E779624A39FDE000C446E /* homeContentNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeContentNewsTableViewCell.h; sourceTree = "<group>"; };
+		949E779724A39FDE000C446E /* homeContentNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeContentNewsTableViewCell.m; sourceTree = "<group>"; };
+		949E779824A39FDE000C446E /* homeContentNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homeContentNewsTableViewCell.xib; sourceTree = "<group>"; };
 		94A4A6E824A25331002A6CA3 /* ljwcodeBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeBaseViewController.h; sourceTree = "<group>"; };
 		94A4A6E924A25331002A6CA3 /* ljwcodeBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeBaseViewController.m; sourceTree = "<group>"; };
 		A2C008BF83355F08C3B5A22B /* Pods-ljwcodeHeadLineNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.debug.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.debug.xcconfig"; sourceTree = "<group>"; };
@@ -157,6 +167,12 @@
 				63B07BEF24A1DD5600C7CD6F /* homeNewsTableViewCell.h */,
 				63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */,
 				63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */,
+				949E779124A39605000C446E /* homejokeTableViewCell.h */,
+				949E779224A39605000C446E /* homejokeTableViewCell.m */,
+				949E779324A39605000C446E /* homejokeTableViewCell.xib */,
+				949E779624A39FDE000C446E /* homeContentNewsTableViewCell.h */,
+				949E779724A39FDE000C446E /* homeContentNewsTableViewCell.m */,
+				949E779824A39FDE000C446E /* homeContentNewsTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -389,7 +405,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				949E779524A39605000C446E /* homejokeTableViewCell.xib in Resources */,
 				6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */,
+				949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */,
 				63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +466,7 @@
 				8209791F1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m in Sources */,
 				6328F611249DEA8C00C767A8 /* ljwcodeEmitterHelper.m in Sources */,
 				820979281BD3B28700CF9D0C /* ljwcodeTabBarController.m in Sources */,
+				949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */,
 				63B07BF924A1E8A100C7CD6F /* ljwcodePageMenuView.m in Sources */,
 				63B07BFC24A20EB200C7CD6F /* ljwcodePageContentView.m in Sources */,
 				63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */,
@@ -460,6 +479,7 @@
 				6328F614249E111F00C767A8 /* ljwcodeHeader.m in Sources */,
 				820979151BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m in Sources */,
 				820978E81BD3A37600CF9D0C /* main.m in Sources */,
+				949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */,
 				8209791A1BD3AFAC00CF9D0C /* ljwcodeMineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
