@@ -44,11 +44,20 @@ static ljwcodeMenuPageDataSourceKey const ljwcodePageMenuViewLineWidth = @"ljwco
 
 @end
 
+@class ljwcodePageItem;
 @interface ljwcodePageMenuView : UIScrollView
+
+@property(nonatomic,copy)id<ljwcodePageMenuDelegate> pageMenuDelegate;
+
+@property(nonatomic,copy)void(^pageMenuItemClick)(NSInteger currentIndex,NSInteger beforeIndex,ljwcodePageMenuView *menuView);
 
 -(instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)title dataSources:(NSDictionary<ljwcodeMenuPageDataSourceKey,id>*)dataSource;
 
 -(instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titles;
+
+- (void)scrollToPageItem:(ljwcodePageItem*)pageItem;
+
+- (void)updateMenuViewWithNewItemArray:(NSArray *)items selectedIndex:(NSInteger)selectedIndex;
 
 @property(nonatomic,assign)CGFloat leftMargin;
 
@@ -86,6 +95,9 @@ static ljwcodeMenuPageDataSourceKey const ljwcodePageMenuViewLineWidth = @"ljwco
 
 @property(nonatomic,assign)CGFloat LineWidth;
 
+@property(nonatomic,assign)NSInteger pageScrollViewIndex;
+
+
 @end
 
 //设置item样式
@@ -93,7 +105,7 @@ static ljwcodeMenuPageDataSourceKey const ljwcodePageMenuViewLineWidth = @"ljwco
 
 @property (nonatomic,strong)UIButton *button;
 
-@property (nonatomic,assign)BOOL selected;
+@property (nonatomic,assign)BOOL itemSelected;
 /**
  文字两边的间距
  */
@@ -125,6 +137,7 @@ static ljwcodeMenuPageDataSourceKey const ljwcodePageMenuViewLineWidth = @"ljwco
  选中Item的字体
  */
 @property (nonatomic,strong)UIFont *selectedTitleFont;
+
 
 //固定的宽度
 -(instancetype)initWithFrame:(CGRect)frame widthAutoResizing:(BOOL)autoResizing title:(NSString*)title padding:(CGFloat)padding clicked:(void(^)(UIButton*button))itemClicked;

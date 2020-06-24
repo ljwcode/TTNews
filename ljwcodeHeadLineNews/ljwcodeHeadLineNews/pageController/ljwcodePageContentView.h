@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ljwcodePageContentView : UIView<UIPageViewControllerDataSource,UIScrollViewDelegate,ljwcodePageContentViewDelegate>
+@interface ljwcodePageContentView : UIView
 
 
 @property(nonatomic,strong)UIPageViewController *pageViewController;

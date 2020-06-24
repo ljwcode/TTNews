@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		631BAEE8249B63D700639CD2 /* UITabBar+LLTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BAEE7249B63D700639CD2 /* UITabBar+LLTabBarItem.m */; };
+		631BAEE8249B63D700639CD2 /* UITabBar+ljwcodeTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BAEE7249B63D700639CD2 /* UITabBar+ljwcodeTabBarItem.m */; };
 		631BAEEB249B751D00639CD2 /* ljwcodeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BAEEA249B751D00639CD2 /* ljwcodeNavigationController.m */; };
 		63231B9124A08F110059FD5F /* ljwcodeNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63231B9024A08F110059FD5F /* ljwcodeNavigationBar.m */; };
 		6328F611249DEA8C00C767A8 /* ljwcodeEmitterHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F610249DEA8C00C767A8 /* ljwcodeEmitterHelper.m */; };
 		6328F614249E111F00C767A8 /* ljwcodeHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F613249E111F00C767A8 /* ljwcodeHeader.m */; };
 		6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 820978F21BD3A37700CF9D0C /* Assets.xcassets */; };
+		637C5C0A24A35C0800D7C0E0 /* ljwcodeBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */; };
 		63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */; };
 		63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */; };
 		63B07BF624A1E41200C7CD6F /* UIView+frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF424A1E41200C7CD6F /* UIView+frame.m */; };
@@ -31,8 +32,8 @@
 
 /* Begin PBXFileReference section */
 		293C19CEC52458542FCA55CC /* Pods-ljwcodeHeadLineNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.release.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.release.xcconfig"; sourceTree = "<group>"; };
-		631BAEE6249B63D700639CD2 /* UITabBar+LLTabBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+LLTabBarItem.h"; sourceTree = "<group>"; };
-		631BAEE7249B63D700639CD2 /* UITabBar+LLTabBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+LLTabBarItem.m"; sourceTree = "<group>"; };
+		631BAEE6249B63D700639CD2 /* UITabBar+ljwcodeTabBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+ljwcodeTabBarItem.h"; sourceTree = "<group>"; };
+		631BAEE7249B63D700639CD2 /* UITabBar+ljwcodeTabBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+ljwcodeTabBarItem.m"; sourceTree = "<group>"; };
 		631BAEE9249B751D00639CD2 /* ljwcodeNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeNavigationController.h; sourceTree = "<group>"; };
 		631BAEEA249B751D00639CD2 /* ljwcodeNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeNavigationController.m; sourceTree = "<group>"; };
 		63231B8F24A08F110059FD5F /* ljwcodeNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeNavigationBar.h; sourceTree = "<group>"; };
@@ -41,6 +42,8 @@
 		6328F610249DEA8C00C767A8 /* ljwcodeEmitterHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeEmitterHelper.m; sourceTree = "<group>"; };
 		6328F612249E111F00C767A8 /* ljwcodeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeHeader.h; sourceTree = "<group>"; };
 		6328F613249E111F00C767A8 /* ljwcodeHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeHeader.m; sourceTree = "<group>"; };
+		637C5C0824A35C0800D7C0E0 /* ljwcodeBaseViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeBaseViewModel.h; sourceTree = "<group>"; };
+		637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeBaseViewModel.m; sourceTree = "<group>"; };
 		63B07BEF24A1DD5600C7CD6F /* homeNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsTableViewCell.h; sourceTree = "<group>"; };
 		63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsTableViewCell.m; sourceTree = "<group>"; };
 		63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homeNewsTableViewCell.xib; sourceTree = "<group>"; };
@@ -101,6 +104,29 @@
 				6328F610249DEA8C00C767A8 /* ljwcodeEmitterHelper.m */,
 			);
 			path = ljwcodeTools;
+			sourceTree = "<group>";
+		};
+		637C5C0524A35B6500D7C0E0 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		637C5C0624A35B6C00D7C0E0 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		637C5C0724A35B7B00D7C0E0 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				637C5C0824A35C0800D7C0E0 /* ljwcodeBaseViewModel.h */,
+				637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */,
+			);
+			path = viewModel;
 			sourceTree = "<group>";
 		};
 		63B07BE424A1DB0200C7CD6F /* pageController */ = {
@@ -173,7 +199,7 @@
 				63B07BE424A1DB0200C7CD6F /* pageController */,
 				6328F60B249DABDA00C767A8 /* ljwcodeTools */,
 				820979241BD3B1CC00CF9D0C /* CustomView */,
-				820978FD1BD3A94100CF9D0C /* ViewController */,
+				820978FD1BD3A94100CF9D0C /* Class */,
 				820978E91BD3A37700CF9D0C /* AppDelegate.h */,
 				820978EA1BD3A37700CF9D0C /* AppDelegate.m */,
 				820978F21BD3A37700CF9D0C /* Assets.xcassets */,
@@ -192,7 +218,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		820978FD1BD3A94100CF9D0C /* ViewController */ = {
+		820978FD1BD3A94100CF9D0C /* Class */ = {
 			isa = PBXGroup;
 			children = (
 				820979041BD3AA9400CF9D0C /* Base */,
@@ -202,12 +228,15 @@
 				8209790B1BD3AB0600CF9D0C /* Publish */,
 				8209790C1BD3AB0600CF9D0C /* Video */,
 			);
-			path = ViewController;
+			path = Class;
 			sourceTree = "<group>";
 		};
 		820979041BD3AA9400CF9D0C /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				637C5C0724A35B7B00D7C0E0 /* viewModel */,
+				637C5C0624A35B6C00D7C0E0 /* view */,
+				637C5C0524A35B6500D7C0E0 /* model */,
 				94A4A6E724A252CF002A6CA3 /* viewController */,
 			);
 			path = Base;
@@ -279,8 +308,8 @@
 			children = (
 				820979261BD3B28700CF9D0C /* ljwcodeTabBarController.h */,
 				820979271BD3B28700CF9D0C /* ljwcodeTabBarController.m */,
-				631BAEE6249B63D700639CD2 /* UITabBar+LLTabBarItem.h */,
-				631BAEE7249B63D700639CD2 /* UITabBar+LLTabBarItem.m */,
+				631BAEE6249B63D700639CD2 /* UITabBar+ljwcodeTabBarItem.h */,
+				631BAEE7249B63D700639CD2 /* UITabBar+ljwcodeTabBarItem.m */,
 				631BAEE9249B751D00639CD2 /* ljwcodeNavigationController.h */,
 				631BAEEA249B751D00639CD2 /* ljwcodeNavigationController.m */,
 				6328F612249E111F00C767A8 /* ljwcodeHeader.h */,
@@ -395,39 +424,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
-				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
-				"${BUILT_PRODUCTS_DIR}/KMCGeigerCounter/KMCGeigerCounter.framework",
-				"${BUILT_PRODUCTS_DIR}/LBPhotoBrowser/LBPhotoBrowser.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/WMPageController/WMPageController.framework",
-				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
-				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMCGeigerCounter.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBPhotoBrowser.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WMPageController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -441,7 +443,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				631BAEE8249B63D700639CD2 /* UITabBar+LLTabBarItem.m in Sources */,
+				637C5C0A24A35C0800D7C0E0 /* ljwcodeBaseViewModel.m in Sources */,
+				631BAEE8249B63D700639CD2 /* UITabBar+ljwcodeTabBarItem.m in Sources */,
 				8209791F1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m in Sources */,
 				6328F611249DEA8C00C767A8 /* ljwcodeEmitterHelper.m in Sources */,
 				820979281BD3B28700CF9D0C /* ljwcodeTabBarController.m in Sources */,

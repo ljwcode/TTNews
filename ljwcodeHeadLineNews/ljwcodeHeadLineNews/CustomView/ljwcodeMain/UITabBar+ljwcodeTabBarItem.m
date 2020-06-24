@@ -1,15 +1,15 @@
 //
-//  UITabBar+LLTabBarItem.m
+//  UITabBar+ljwcodeTabBarItem.m
 //
 //
 //  Created by ljwcode on 2020/6/18.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "UITabBar+LLTabBarItem.h"
+#import "UITabBar+ljwcodeTabBarItem.h"
 
 //显示提示消息红点
-@implementation UITabBar (LLTabBarItem)
+@implementation UITabBar (ljwcodeTabBarItem)
 
 -(UILabel *)badgeLabelWithStr:(NSString *)numStr
 {

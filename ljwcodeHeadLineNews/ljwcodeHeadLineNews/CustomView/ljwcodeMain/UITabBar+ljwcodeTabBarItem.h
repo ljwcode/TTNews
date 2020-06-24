@@ -1,5 +1,5 @@
 //
-//  UITabBar+LLTabBarItem.h
+//  UITabBar+ljwcodeTabBarItem.h
 //
 //
 //  Created by ljwcode on 2020/6/18.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UITabBar (LLTabBarItem)
+@interface UITabBar (ljwcodeTabBarItem)
 
 -(void)showBadgeWithItemIndex:(NSInteger)index bageNumber:(NSInteger)number;
 

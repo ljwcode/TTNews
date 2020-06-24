@@ -22,7 +22,9 @@ PODS:
   - LBPhotoBrowser (2.2.2):
     - SDWebImage
   - Masonry (1.1.0)
-  - MBProgressHUD (1.2.0)
+  - MBProgressHUD (1.0.0)
+  - "MBProgressHUD+Add (0.0.2)":
+    - MBProgressHUD (~> 1.0.0)
   - MJExtension (3.2.1)
   - MJRefresh (3.4.3)
   - ReactiveObjC (3.1.1)
@@ -44,6 +46,7 @@ DEPENDENCIES:
   - LBPhotoBrowser (~> 2.2.2)
   - Masonry
   - MBProgressHUD
+  - "MBProgressHUD+Add (~> 0.0.2)"
   - MJExtension
   - MJRefresh
   - ReactiveObjC
@@ -62,6 +65,7 @@ SPEC REPOS:
     - LBPhotoBrowser
     - Masonry
     - MBProgressHUD
+    - "MBProgressHUD+Add"
     - MJExtension
     - MJRefresh
     - ReactiveObjC
@@ -78,7 +82,8 @@ SPEC CHECKSUMS:
   KMCGeigerCounter: a06cfeed4a96e8f9a49028abb3ba7e53604d3219
   LBPhotoBrowser: e924dea551c494815fde9185bad85ab6331c45da
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  "MBProgressHUD+Add": 65c4d170c083a2a800ad4470d424ad5978f324c3
   MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
@@ -88,6 +93,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZFPlayer: 1310252c253b9958e4fcd411e706b99c31834eaf
 
-PODFILE CHECKSUM: 6481b7e849ac0da0d8b33ac63582d66cb9c387e4
+PODFILE CHECKSUM: 3d4190fe7a8345c9c5fe9d721106e7b189ef742a
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

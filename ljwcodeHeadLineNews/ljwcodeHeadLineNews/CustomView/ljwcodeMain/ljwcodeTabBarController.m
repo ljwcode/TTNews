@@ -9,7 +9,7 @@
 #import "ljwcodeTabBarController.h"
 #import "ljwcodeNavigationController.h"
 #import <ReactiveObjC/ReactiveObjC.h>
-#import "UITabBar+LLTabBarItem.h"
+#import "UITabBar+ljwcodeTabBarItem.h"
 #import "ljwcodeHeader.h"
 #import "ljwcodeHomeViewController.h"
 #import "ljwcodeWeiTouTiaoViewController.h"
