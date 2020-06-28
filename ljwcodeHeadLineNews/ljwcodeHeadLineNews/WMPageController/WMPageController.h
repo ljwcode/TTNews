@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 yq. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ljwcodeBaseViewController.h"
 #import "WMMenuView.h"
 #import "WMScrollView.h"
 
@@ -21,8 +21,8 @@
     If recieved too much times, the cache policy will stay at 'LowMemory' and don't grow back any more.
  */
 typedef NS_ENUM(NSInteger, WMPageControllerCachePolicy) {
-    WMPageControllerCachePolicyDisabled   = -1,  // Disable Cache
-    WMPageControllerCachePolicyNoLimit    = 0,   // No limit
+    WMPageControllerCachePolicyDisabled   = -1,  // Disable Cache//关闭缓存
+    WMPageControllerCachePolicyNoLimit    = 0,   // No limit //不限制缓存上限
     WMPageControllerCachePolicyLowMemory  = 1,   // Low Memory but may block when scroll
     WMPageControllerCachePolicyBalanced   = 3,   // Balanced ↑ and ↓
     WMPageControllerCachePolicyHigh       = 5    // High
@@ -69,25 +69,6 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
  */
 - (NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index;
 
-@required
-/**
- Implement this datasource method, in order to customize your own contentView's frame
-
- @param pageController The container controller
- @param contentView The contentView, each is the superview of the child controllers
- @return The frame of the contentView
- */
-- (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView;
-
-/**
- Implement this datasource method, in order to customize your own menuView's frame
- 
- @param pageController The container controller
- @param menuView The menuView
- @return The frame of the menuView
- */
-- (CGRect)pageController:(WMPageController *)pageController preferredFrameForMenuView:(WMMenuView *)menuView;
-
 @end
 
 @protocol WMPageControllerDelegate <NSObject>
@@ -131,7 +112,7 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
 
 @end
 
-@interface WMPageController : UIViewController <WMMenuViewDelegate, WMMenuViewDataSource, UIScrollViewDelegate, WMPageControllerDataSource, WMPageControllerDelegate>
+@interface WMPageController : ljwcodeBaseViewController <WMMenuViewDelegate, WMMenuViewDataSource, UIScrollViewDelegate, WMPageControllerDataSource, WMPageControllerDelegate>
 
 @property (nonatomic, weak) id<WMPageControllerDelegate> delegate;
 @property (nonatomic, weak) id<WMPageControllerDataSource> dataSource;
@@ -207,6 +188,12 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
 @property (nonatomic, nullable, copy) NSString *titleFontName;
 
 /**
+ *  导航栏高度
+ *  The menu view's height
+ */
+@property (nonatomic, assign) CGFloat menuHeight;
+
+/**
  *  每个 MenuItem 的宽度
  *  The item width,when all are same,use this property
  */
@@ -217,6 +204,12 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
  *  Each item's width, when they are not all the same, use this property, Put `NSNumber` in this array.
  */
 @property (nonatomic, nullable, copy) NSArray<NSNumber *> *itemsWidths;
+
+/**
+ *  导航栏背景色
+ *  The background color of menu view
+ */
+@property (nonatomic, strong) UIColor *menuBGColor;
 
 /**
  *  Menu view 的样式，默认为无下划线
@@ -281,6 +274,9 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
 /** 下划线进度条的高度 */
 @property (nonatomic, assign) CGFloat progressHeight;
 
+/** WMPageController View' frame */
+@property (nonatomic, assign) CGRect viewFrame;
+
 /**
  *  Menu view items' margin / make sure it's count is equal to (controllers' count + 1),default is 0
     顶部菜单栏各个 item 的间隙，因为包括头尾两端，所以确保它的数量等于控制器数量 + 1, 默认间隙为 0
@@ -292,6 +288,9 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
     如果各个间隙都想同，设置该属性，默认为 0
  */
 @property (nonatomic, assign) CGFloat itemMargin;
+
+/** 顶部 menuView 和 scrollView 之间的间隙 */
+@property (nonatomic, assign) CGFloat menuViewBottomSpace;
 
 /** progressView 到 menuView 底部的距离 */
 @property (nonatomic, assign) CGFloat progressViewBottomSpace;
@@ -307,6 +306,11 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
 /** MenuView 内部视图与左右的间距 */
 @property (nonatomic, assign) CGFloat menuViewContentMargin;
 
+/**
+ *  左滑时同时启用其他手势，比如系统左滑、sidemenu左滑。默认 NO
+    (会引起一个小问题，第一个和最后一个控制器会变得可以斜滑, 还未解决)
+ */
+@property (assign, nonatomic) BOOL otherGestureRecognizerSimultaneously;
 /**
  *  构造方法，请使用该方法创建控制器. 或者实现数据源方法. /
  *  Init method，recommend to use this instead of `-init`. Or you can implement datasource by yourself.
@@ -324,10 +328,7 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
  */
 - (void)reloadData;
 
-/**
- Layout all views in WMPageController
- @discussion This method will recall `-pageController:preferredFrameForContentView:` and `-pageContoller:preferredFrameForMenuView:`
- */
+/** 强制重新布局 */
 - (void)forceLayoutSubviews;
 /**
  *  Update designated item's title

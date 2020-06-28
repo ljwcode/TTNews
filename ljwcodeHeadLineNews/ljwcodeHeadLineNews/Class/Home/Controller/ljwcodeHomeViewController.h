@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <WMPageController/WMPageController.h>
+#import "WMPageController.h"
 
 @interface ljwcodeHomeViewController : WMPageController
 

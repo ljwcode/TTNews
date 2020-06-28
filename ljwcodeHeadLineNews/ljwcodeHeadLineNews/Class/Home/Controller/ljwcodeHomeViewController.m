@@ -9,6 +9,7 @@
 #import "ljwcodeTabBarController.h"
 #import "ljwcodePageContentView.h"
 #import "ljwcodePageMenuView.h"
+#import "ljwcodeBaseViewController.h"
 
 @interface ljwcodeHomeViewController ()
 
@@ -19,6 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [self configurePageMenuView];
+    ljwcodeNavigationBar *navBar = [self showNaviBar];
+    [navBar.navigationBarActionSubject subscribeNext:^(id  _Nullable x) {
+        NSLog(@"%@",x);
+    }];
+    
     self.view.backgroundColor = [UIColor whiteColor];
         // Do any additional setup after loading the view from its nib.
 }

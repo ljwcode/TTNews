@@ -20,6 +20,15 @@
     // Do any additional setup after loading the view.
 }
 
+-(ljwcodeNavigationBar *)showNaviBar
+{
+    self.navigationController.navigationBar.hidden = YES;
+    ljwcodeNavigationBar *navBar = [ljwcodeNavigationBar ljwcodeNavigationBar];
+    [self.view addSubview:navBar];
+    
+    return navBar;
+}
+
 /*
 #pragma mark - Navigation
 

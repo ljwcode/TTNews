@@ -31,7 +31,6 @@ PODS:
   - SDWebImage (5.8.1):
     - SDWebImage/Core (= 5.8.1)
   - SDWebImage/Core (5.8.1)
-  - WMPageController (2.5.2)
   - YYCache (1.0.4)
   - YYText (1.0.7)
   - ZFPlayer (3.3.3):
@@ -51,7 +50,6 @@ DEPENDENCIES:
   - MJRefresh
   - ReactiveObjC
   - SDWebImage
-  - WMPageController (~> 2.5.2)
   - YYCache
   - YYText
   - ZFPlayer
@@ -70,7 +68,6 @@ SPEC REPOS:
     - MJRefresh
     - ReactiveObjC
     - SDWebImage
-    - WMPageController
     - YYCache
     - YYText
     - ZFPlayer
@@ -88,11 +85,10 @@ SPEC CHECKSUMS:
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
-  WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZFPlayer: 1310252c253b9958e4fcd411e706b99c31834eaf
 
-PODFILE CHECKSUM: 3d4190fe7a8345c9c5fe9d721106e7b189ef742a
+PODFILE CHECKSUM: b994886affd460569d3dcf3e9db4f3793ec79e0b
 
 COCOAPODS: 1.9.3

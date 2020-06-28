@@ -49,11 +49,7 @@
             }
         }];
         
-        [loginHeadImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.mas_equalTo(30);
-            make.bottom.mas_equalTo(self).offset(-9);
-            make.left.mas_equalTo(self).offset(15);
-        }];
+        
         
         ljwcodeSearchBar *searchBar = [[ljwcodeSearchBar alloc]init];
         UIImageView *leftView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
@@ -78,6 +74,11 @@
                 self.ljwcodeActionCallBack(ljwcodeNavigationBarActionSend);
             }
         }];
+        [loginHeadImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_equalTo(30);
+            make.bottom.mas_equalTo(self).offset(-9);
+            make.left.mas_equalTo(self).offset(15);
+        }];
         
         [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(26);
@@ -91,6 +92,7 @@
             make.bottom.mas_equalTo(self).offset(-9);
             make.right.mas_equalTo(self).offset(-15);
         }];
+        
         _navigationBarActionSubject = [RACSubject subject];
         
     }
@@ -108,12 +110,12 @@
     return CGSizeMake([UIScreen mainScreen].bounds.size.width-24, 44);
 }
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end
 

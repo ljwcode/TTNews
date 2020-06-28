@@ -13,6 +13,11 @@
 		6328F611249DEA8C00C767A8 /* ljwcodeEmitterHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F610249DEA8C00C767A8 /* ljwcodeEmitterHelper.m */; };
 		6328F614249E111F00C767A8 /* ljwcodeHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F613249E111F00C767A8 /* ljwcodeHeader.m */; };
 		6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 820978F21BD3A37700CF9D0C /* Assets.xcassets */; };
+		63422BDF24A839960091FEE1 /* WMPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422BD624A839960091FEE1 /* WMPageController.m */; };
+		63422BE024A839960091FEE1 /* WMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422BDA24A839960091FEE1 /* WMMenuItem.m */; };
+		63422BE124A839960091FEE1 /* WMScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422BDC24A839960091FEE1 /* WMScrollView.m */; };
+		63422BE224A839960091FEE1 /* WMMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422BDD24A839960091FEE1 /* WMMenuView.m */; };
+		63422BE324A839960091FEE1 /* WMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422BDE24A839960091FEE1 /* WMProgressView.m */; };
 		637C5C0A24A35C0800D7C0E0 /* ljwcodeBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */; };
 		63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */; };
 		63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */; };
@@ -46,6 +51,16 @@
 		6328F610249DEA8C00C767A8 /* ljwcodeEmitterHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeEmitterHelper.m; sourceTree = "<group>"; };
 		6328F612249E111F00C767A8 /* ljwcodeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeHeader.h; sourceTree = "<group>"; };
 		6328F613249E111F00C767A8 /* ljwcodeHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeHeader.m; sourceTree = "<group>"; };
+		63422BD524A839960091FEE1 /* WMScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollView.h; sourceTree = "<group>"; };
+		63422BD624A839960091FEE1 /* WMPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPageController.m; sourceTree = "<group>"; };
+		63422BD724A839960091FEE1 /* WMMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMenuItem.h; sourceTree = "<group>"; };
+		63422BD824A839960091FEE1 /* WMMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMenuView.h; sourceTree = "<group>"; };
+		63422BD924A839960091FEE1 /* WMProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMProgressView.h; sourceTree = "<group>"; };
+		63422BDA24A839960091FEE1 /* WMMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMenuItem.m; sourceTree = "<group>"; };
+		63422BDB24A839960091FEE1 /* WMPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPageController.h; sourceTree = "<group>"; };
+		63422BDC24A839960091FEE1 /* WMScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollView.m; sourceTree = "<group>"; };
+		63422BDD24A839960091FEE1 /* WMMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMenuView.m; sourceTree = "<group>"; };
+		63422BDE24A839960091FEE1 /* WMProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMProgressView.m; sourceTree = "<group>"; };
 		637C5C0824A35C0800D7C0E0 /* ljwcodeBaseViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeBaseViewModel.h; sourceTree = "<group>"; };
 		637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeBaseViewModel.m; sourceTree = "<group>"; };
 		63B07BEF24A1DD5600C7CD6F /* homeNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsTableViewCell.h; sourceTree = "<group>"; };
@@ -114,6 +129,31 @@
 				6328F610249DEA8C00C767A8 /* ljwcodeEmitterHelper.m */,
 			);
 			path = ljwcodeTools;
+			sourceTree = "<group>";
+		};
+		63422BBA24A838720091FEE1 /* 3rd */ = {
+			isa = PBXGroup;
+			children = (
+				63422BD424A839960091FEE1 /* WMPageController */,
+			);
+			name = 3rd;
+			sourceTree = "<group>";
+		};
+		63422BD424A839960091FEE1 /* WMPageController */ = {
+			isa = PBXGroup;
+			children = (
+				63422BD524A839960091FEE1 /* WMScrollView.h */,
+				63422BD624A839960091FEE1 /* WMPageController.m */,
+				63422BD724A839960091FEE1 /* WMMenuItem.h */,
+				63422BD824A839960091FEE1 /* WMMenuView.h */,
+				63422BD924A839960091FEE1 /* WMProgressView.h */,
+				63422BDA24A839960091FEE1 /* WMMenuItem.m */,
+				63422BDB24A839960091FEE1 /* WMPageController.h */,
+				63422BDC24A839960091FEE1 /* WMScrollView.m */,
+				63422BDD24A839960091FEE1 /* WMMenuView.m */,
+				63422BDE24A839960091FEE1 /* WMProgressView.m */,
+			);
+			path = WMPageController;
 			sourceTree = "<group>";
 		};
 		637C5C0524A35B6500D7C0E0 /* model */ = {
@@ -212,6 +252,7 @@
 		820978E51BD3A37600CF9D0C /* ljwcodeHeadLineNews */ = {
 			isa = PBXGroup;
 			children = (
+				63422BBA24A838720091FEE1 /* 3rd */,
 				63B07BE424A1DB0200C7CD6F /* pageController */,
 				6328F60B249DABDA00C767A8 /* ljwcodeTools */,
 				820979241BD3B1CC00CF9D0C /* CustomView */,
@@ -466,17 +507,22 @@
 				8209791F1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m in Sources */,
 				6328F611249DEA8C00C767A8 /* ljwcodeEmitterHelper.m in Sources */,
 				820979281BD3B28700CF9D0C /* ljwcodeTabBarController.m in Sources */,
+				63422BE024A839960091FEE1 /* WMMenuItem.m in Sources */,
 				949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */,
+				63422BE324A839960091FEE1 /* WMProgressView.m in Sources */,
 				63B07BF924A1E8A100C7CD6F /* ljwcodePageMenuView.m in Sources */,
 				63B07BFC24A20EB200C7CD6F /* ljwcodePageContentView.m in Sources */,
 				63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */,
 				820979101BD3AB2800CF9D0C /* ljwcodeHomeViewController.m in Sources */,
+				63422BE124A839960091FEE1 /* WMScrollView.m in Sources */,
 				820978EB1BD3A37700CF9D0C /* AppDelegate.m in Sources */,
 				94A4A6EA24A25331002A6CA3 /* ljwcodeBaseViewController.m in Sources */,
 				63B07BF624A1E41200C7CD6F /* UIView+frame.m in Sources */,
 				631BAEEB249B751D00639CD2 /* ljwcodeNavigationController.m in Sources */,
 				63231B9124A08F110059FD5F /* ljwcodeNavigationBar.m in Sources */,
 				6328F614249E111F00C767A8 /* ljwcodeHeader.m in Sources */,
+				63422BDF24A839960091FEE1 /* WMPageController.m in Sources */,
+				63422BE224A839960091FEE1 /* WMMenuView.m in Sources */,
 				820979151BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m in Sources */,
 				820978E81BD3A37600CF9D0C /* main.m in Sources */,
 				949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */,

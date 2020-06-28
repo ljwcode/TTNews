@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ljwcodeBaseViewController : UIViewController<ljwcodeBaseViewControllerDelegate>
 
+-(ljwcodeNavigationBar *)showNaviBar;
+
 
 @end
 
