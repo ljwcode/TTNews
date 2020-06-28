@@ -12,7 +12,6 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <MBProgressHUD_Add/UIView+MBPHUD.h>
 #import "ljwcodeHeader.h"
-#import "ljwcodeHeadLineNews.pch"
 
 NS_ASSUME_NONNULL_BEGIN
 

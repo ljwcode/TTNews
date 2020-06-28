@@ -7,7 +7,7 @@
 //
 
 #import "ljwcodeNavigationBar.h"
-#import <Masonry/Masonry.h>
+#import "ljwcodeHeader.h"
 
 @interface ljwcodeSearchBar : UITextField
 
@@ -48,17 +48,15 @@
                 self.ljwcodeActionCallBack(ljwcodeNavigationBarActonMind);
             }
         }];
-        
-        
-        
+                
         ljwcodeSearchBar *searchBar = [[ljwcodeSearchBar alloc]init];
-        UIImageView *leftView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
+        UIImageView *leftView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
         leftView.image = [UIImage imageNamed:@"searchicon_search_20x20_"];
-        searchBar.leftView =leftView;
+        searchBar.leftView = leftView;
         searchBar.text = @"搜一搜";
         searchBar.delegate = self;
         searchBar.backgroundColor = [UIColor lightGrayColor];
-        searchBar.textColor = [UIColor blueColor];
+        searchBar.textColor = [UIColor blackColor];
         searchBar.leftViewMode = UITextFieldViewModeAlways;
         searchBar.font = [UIFont systemFontOfSize:12.f];
         [self addSubview:searchBar];
@@ -79,14 +77,14 @@
             make.bottom.mas_equalTo(self).offset(-9);
             make.left.mas_equalTo(self).offset(15);
         }];
-        
+
         [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(26);
             make.left.mas_equalTo(loginHeadImgView.mas_right).offset(15);
             make.bottom.mas_equalTo(self).offset(-9);
             make.right.mas_equalTo(cameraImgView.mas_left).offset(-15);
         }];
-        
+
         [cameraImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.mas_equalTo(30);
             make.bottom.mas_equalTo(self).offset(-9);

@@ -7,11 +7,12 @@
 //
 #import "ljwcodeHomeViewController.h"
 #import "ljwcodeTabBarController.h"
-#import "ljwcodePageContentView.h"
-#import "ljwcodePageMenuView.h"
+#import "QiPageMenuView.h"
+#import "QiPageContentView.h"
 #import "ljwcodeBaseViewController.h"
+#import "UIView+frame.h"
 
-@interface ljwcodeHomeViewController ()
+@interface ljwcodeHomeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
 @end
 
@@ -19,74 +20,87 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self configurePageMenuView];
+    
+    [self configurePageMenuView];
     ljwcodeNavigationBar *navBar = [self showNaviBar];
     [navBar.navigationBarActionSubject subscribeNext:^(id  _Nullable x) {
         NSLog(@"%@",x);
     }];
-    
+        
     self.view.backgroundColor = [UIColor whiteColor];
         // Do any additional setup after loading the view from its nib.
 }
 
+#pragma mark - setup pageMenuView1
 -(void)configurePageMenuView{
     NSDictionary *dataSource = @{
-                                 ljwcodePageMenuViewNormalTitleColor : [UIColor blackColor],
-                                 ljwcodePageMenuViewSelectedTitleColor : [UIColor redColor],
-                                 ljwcodePageMenuViewTitleFont : [UIFont systemFontOfSize:14],
-                                 ljwcodePageMenuViewSelectedTitleFont : [UIFont systemFontOfSize:18],
-                                 ljwcodecodeMenuItemVerticalCenter : @(YES),
-                                 ljwcodePageMenuViewItemTitlePadding : @(10.0),
-                                 ljwcodePageMenuViewItemTopPadding : @(10.0),
-                                 ljwcodePageMenuViewItemPadding : @(10.0),
-                                 ljwcodeMenuPageLeftMargin : @(20.0),
-                                 ljwcodeMenuPageRightMargin : @(20.0),
-                                 ljwcodePageMenuViewItemWidth : @(0.0),
-                                 ljwcodeMenuPageItemIsAutoResizing : @(YES),
-                                 ljwcodePageMenuViewItemHeight : @(40.0),
-                                 ljwcodePageMenuViewHasUnderLine :@(YES),
-                                 ljwcodePageMenuViewLineColor : [UIColor blackColor],
-                                 ljwcodePageMenuViewLineWidth : @(30.0),
-                                 ljwcodePageMenuViewLineHeight : @(4.0),
-                                 ljwcodePageMenuViewLineTopPadding : @(10.0)
+                                 QiPageMenuViewNormalTitleColor : [UIColor blackColor],
+                                 QiPageMenuViewSelectedTitleColor : [UIColor redColor],
+                                 QiPageMenuViewTitleFont : [UIFont systemFontOfSize:14],
+                                 QiPageMenuViewSelectedTitleFont : [UIFont systemFontOfSize:18],
+                                 QiPageMenuViewItemIsVerticalCentred : @(YES),
+                                 QiPageMenuViewItemTitlePadding : @(10.0),
+                                 QiPageMenuViewItemTopPadding : @(10.0),
+                                 QiPageMenuViewItemPadding : @(10.0),
+                                 QiPageMenuViewLeftMargin : @(20.0),
+                                 QiPageMenuViewRightMargin : @(20.0),
+                                 QiPageMenuViewItemWidth : @(0.0),
+                                 QiPageMenuViewItemsAutoResizing : @(YES),
+                                 QiPageMenuViewItemHeight : @(40.0),
+                                 QiPageMenuViewHasUnderLine :@(YES),
+                                 QiPageMenuViewLineColor : [UIColor blackColor],
+                                 QiPageMenuViewLineWidth : @(30.0),
+                                 QiPageMenuViewLineHeight : @(4.0),
+                                 QiPageMenuViewLineTopPadding : @(10.0)
                                  };
-    UIViewController *viewControllerl = [UIViewController new];
-    viewControllerl.view.backgroundColor = [UIColor blueColor];
-    viewControllerl.edgesForExtendedLayout = UIRectEdgeNone;
-    UIViewController *viewControllerl1 = [UIViewController new];
-    viewControllerl1.view.backgroundColor = [UIColor purpleColor];
+    UIViewController *ctrl = [UIViewController new];
+    ctrl.view.backgroundColor = [UIColor blueColor];
+    ctrl.edgesForExtendedLayout = UIRectEdgeNone;
+    UIViewController *ctrl1 = [UIViewController new];
+    ctrl1.view.backgroundColor = [UIColor purpleColor];
     
-    UIViewController *viewControllerl2 = [UIViewController new];
-    viewControllerl2.view.backgroundColor = [UIColor brownColor];
+    UIViewController *ctrl2 = [UIViewController new];
+    ctrl2.view.backgroundColor = [UIColor brownColor];
     
-    UIViewController *viewControllerl3 = [UIViewController new];
-    viewControllerl3.view.backgroundColor = [UIColor redColor];
+    UIViewController *ctrl3 = [UIViewController new];
+    ctrl3.view.backgroundColor = [UIColor redColor];
     
-    UIViewController *viewControllerl4 = [UIViewController new];
-    viewControllerl4.view.backgroundColor = [UIColor greenColor];
-    UIViewController *viewControllerl5 = [UIViewController new];
-    viewControllerl3.view.backgroundColor = [UIColor redColor];
+    UIViewController *ctrl4 = [UIViewController new];
+    ctrl4.view.backgroundColor = [UIColor greenColor];
+    UIViewController *ctrl5 = [UIViewController new];
+    ctrl3.view.backgroundColor = [UIColor redColor];
     
-    UIViewController *viewControllerl6 = [UIViewController new];
-    viewControllerl4.view.backgroundColor = [UIColor greenColor];
+    UIViewController *ctrl6 = [UIViewController new];
+    ctrl4.view.backgroundColor = [UIColor greenColor];
     
-    ljwcodePageMenuView *menuView = [[ljwcodePageMenuView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50) titles:@[@"系统消息",@"节日消息",@"广播通知",@"最新",@"最热",@"你好",@"你好呀"] dataSources:dataSource];
-    menuView.backgroundColor = [UIColor whiteColor];
+    QiPageMenuView *menuView = [[QiPageMenuView alloc]initWithFrame:CGRectMake(0, 80, self.view.width, 50) titles:@[@"系统消息",@"节日消息",@"广播通知",@"最新",@"最热",@"你好",@"你好呀"] dataSource:dataSource];
+    menuView.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:menuView];
     
-    ljwcodePageContentView *contenView = [[ljwcodePageContentView alloc]initWithFrame:CGRectMake(0, menuView.bottom+10, self.view.width, self.view.height - menuView.bottom - 10 - 88-10) childViewController:@[viewControllerl,viewControllerl1,viewControllerl2,viewControllerl3,viewControllerl4,viewControllerl5,viewControllerl6]];
+    QiPageContentView *contenView = [[QiPageContentView alloc]initWithFrame:CGRectMake(0, menuView.bottom+10, self.view.width, self.view.height - menuView.bottom - 10 - 88-10) childViewController:@[ctrl,ctrl1,ctrl2,ctrl3,ctrl4,ctrl5,ctrl6]];
     [self.view addSubview:contenView];
     
-    menuView.pageMenuItemClick = ^(NSInteger currentIndex, NSInteger beforeIndex, ljwcodePageMenuView * _Nonnull menuView) {
-        NSLog(@"点击了：之前：%ld 现在：%ld",beforeIndex,currentIndex);
-        [contenView pageContentViewScrollerToIndex:currentIndex beforeIndex:beforeIndex];
+    menuView.pageItemClicked = ^(NSInteger clickedIndex, NSInteger beforeIndex, QiPageMenuView *menu) {
+        NSLog(@"点击了：之前：%ld 现在：%ld",beforeIndex,clickedIndex);
+        [contenView setPageContentShouldScrollToIndex:clickedIndex beforIndex:beforeIndex];
     };
-    contenView.pageContentViewDidScroll = ^(NSInteger currentIndex, NSInteger beforeIndex, ljwcodePageContentView * _Nonnull contentView) {
-        menuView.pageScrollViewIndex = currentIndex;
+    
+    contenView.pageContentViewDidScroll = ^(NSInteger currentIndex, NSInteger beforeIndex, QiPageContentView * _Nonnull pageView) {
+        menuView.pageScrolledIndex = currentIndex;
         NSLog(@"滚动了：之前：%ld 现在：%ld",beforeIndex,currentIndex);
     };
     
 }
+
+-(void)configureUI{
+    self.delegate = self;
+    self.dataSource = self;
+    self.automaticallyCalculatesItemWidths = YES;
+    self.itemMargin = 10;
+}
+#pragma mark - setup pageMenuViewStyle2
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <Masonry.h>
 
 UIKIT_EXTERN NSString const *HN_BASE_URL;
 
