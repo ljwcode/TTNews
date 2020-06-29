@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)longPressGestureWithChannelBeginBlock:(void(^)(channelButton *))channelBeginBlock channelMoveBlock:(void(^)(channelButton *,UILongPressGestureRecognizer *longPreGes))channelMoveBlock channelEndBlock:(void(^)(channelButton *))channelEndBlock;
 
+-(void)reloadData;
+
 @end
 
 NS_ASSUME_NONNULL_END

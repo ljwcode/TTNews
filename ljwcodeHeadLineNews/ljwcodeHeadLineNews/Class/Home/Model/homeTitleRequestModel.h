@@ -6,11 +6,17 @@
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "ljwcodeBaseViewModel.h"
+#import "networkBaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface homeTitleRequestModel : ljwcodeBaseViewModel
+@interface homeTitleRequestModel : networkBaseModel
+
+@property(nonatomic,copy)NSString *iid;
+
+@property(nonatomic,copy)NSString *device_id;
+
+@property(nonatomic,assign)int aid;
 
 @end
 

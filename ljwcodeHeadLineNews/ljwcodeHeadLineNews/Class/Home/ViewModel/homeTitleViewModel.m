@@ -7,7 +7,48 @@
 //
 
 #import "homeTitleViewModel.h"
+#import "homeTitleModel.h"
+#import "homeTitleRequestModel.h"
+#import "ljwcodeHeader.h"
+
 
 @implementation homeTitleViewModel
+
+-(instancetype)init{
+    if(self = [super init]){
+        _titleCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                homeTitleRequestModel *request = [homeTitleRequestModel initWithNetworkModelWithUrlString:networkManager.homeTitleUrlString isPost:NO];
+                request.iid = LJWCODE_IID;
+                request.device_id = LJWCODE_DEVICE_ID;
+                request.aid = [input intValue];
+                [request sendRequestWithSuccess:^(id response) {
+                    NSDictionary *responseDic = (NSDictionary *)response;
+                    responseDic = responseDic[@"data"];
+                    NSMutableArray *models = [NSMutableArray array];
+                    if (responseDic.count > 0) {
+                        NSArray *dicArr = responseDic[@"data"];
+                        for (int i = 0; i < [dicArr count]; i++) {
+                            homeTitleModel *model = [[homeTitleModel new] mj_setKeyValues:dicArr[i]];
+                            [models addObject:model];
+                        }
+                        [subscriber sendNext:models];
+                        [subscriber sendCompleted];
+                        //dealloc
+//                        [RACDisposable disposableWithBlock:^{
+//                            NSLog(@"销毁了rac");
+//                        }];
+                    }else {
+                        [MBProgressHUD showError: server_error toView:nil];
+                    }
+                } failHandle:^(NSError *error) {
+                    // do something
+                }];
+                return nil;
+            }];
+        }];
+    }
+    return self;
+}
 
 @end

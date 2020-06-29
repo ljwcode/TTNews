@@ -10,9 +10,21 @@
 #import "QiPageMenuView.h"
 #import "QiPageContentView.h"
 #import "ljwcodeBaseViewController.h"
-#import "UIView+frame.h"
+#import "ljwcodeHeader.h"
+#import "channelButton.h"
+#import "NewsChannelView.h"
+#import "newsChannelModel.h"
+#import "homeTitleModel.h"
+#import <RACSubject.h>
+#import "homeTitleViewModel.h"
 
 @interface ljwcodeHomeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
+
+@property(nonatomic,strong)NSArray *titleArray;
+
+@property(nonatomic,strong)homeTitleViewModel *titleViewModle;
+
+
 
 @end
 
@@ -21,14 +33,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self configurePageMenuView];
+//    [self configurePageMenuView];
     ljwcodeNavigationBar *navBar = [self showNaviBar];
+    
     [navBar.navigationBarActionSubject subscribeNext:^(id  _Nullable x) {
         NSLog(@"%@",x);
     }];
-        
+    [self configureUI];
+    @weakify(self)
+    
+    [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        self.titleArray = x;
+        [self reloadData];
+        [self setPageMenuView];
+    }];
+    [navBar setLjwcodeActionCallBack:^(ljwcodeNavigationBarAction action) {
+        @strongify(self);
+        if(action != ljwcodeNavigationBarActionSend){
+            
+        }else{
+            NSLog(@"send");
+        }
+    }];
+    
     self.view.backgroundColor = [UIColor whiteColor];
         // Do any additional setup after loading the view from its nib.
+}
+
+-(homeTitleViewModel *)titleViewModle{
+    if(!_titleViewModle){
+        _titleViewModle = [[homeTitleViewModel alloc]init];
+    }
+    return _titleViewModle;
 }
 
 #pragma mark - setup pageMenuView1
@@ -99,7 +136,53 @@
     self.itemMargin = 10;
 }
 #pragma mark - setup pageMenuViewStyle2
+-(void)setPageMenuView{
+    
+    UIButton *addChannelBtn = UIButton.buttonType(UIButtonTypeCustom).showImage([UIImage imageNamed:@"add_channel_titlbar_thin_new_16x16_"],UIControlStateNormal).bgImage([UIImage imageNamed:@"shadow_add_titlebar_new3_52x36_"],UIControlStateNormal);
+    addChannelBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-52, 0, 52, 35);
+    addChannelBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    [self.menuView addSubview:addChannelBtn];
+    
+    [[addChannelBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(__kindof UIControl * _Nullable x) {
+        NewsChannelView *channelView = [[NewsChannelView alloc]initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width,kScreenHeight-kScreenStatusBarHeight )];
+        [[UIApplication sharedApplication].keyWindow addSubview:channelView];
+        [channelView channelShow];
+    }];
+    
+    @weakify(self)
+    [RACObserve(self.scrollView, contentOffset) subscribeNext:^(id x) {
+        @strongify(self);
+        CGPoint offset = [x CGPointValue];
+        if (offset.x > kScreenWidth * (self.titleArray.count - 1)) {
+            self.scrollView.contentOffset = CGPointMake(kScreenWidth * (self.titleArray.count - 1), 0);
+        }
+    }];
+    
+    
+    
+}
 
+
+#pragma mark - WMPageController delelgate && datasource
+-(NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController{
+    if(self.titleArray.count == 0||!_titleArray){
+        return 0;
+    }
+    return self.titleArray.count+1;
+}
+//- (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index{
+//    newsChannelModel *model = self.titleArray[index];
+//
+//}
+
+-(NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index{
+    if (index > self.titleArray.count - 1) {
+        return @"       ";
+    }else {
+        homeTitleModel *model = self.titleArray[index];
+        return model.name;
+    }
+}
 
 
 - (void)didReceiveMemoryWarning {

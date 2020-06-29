@@ -9,9 +9,11 @@
 #import "NewsChannelView.h"
 #import "newsChannelTitleView.h"
 #import "newsChannelModel.h"
+#import "ljwcodeHeader.h"
+#import "channelButton.h"
 
-#define channelFrame(i) CGRectMake(itemSpace + (i % columns)* (_labelWidth + itemSpace), CGRectGetMaxY(wself.header1_frame) + lineSpace + (i / columns)*(labelHeight + lineSpace), _labelWidth, labelHeight)
-#define recommendChannelFrame(i)  CGRectMake(itemSpace + ((i) % columns)* (_labelWidth + itemSpace),CGRectGetMaxY(wself.divisionModel.frame) + wself.header1_frame.size.height + lineSpace + ((i) / columns)*(labelHeight + lineSpace), _labelWidth, labelHeight)
+#define channelFrame(i) CGRectMake(itemSpace + (i % columns)* (_labelWidth + itemSpace), CGRectGetMaxY(self.headerViewOne_frame) + lineSpace + (i / columns)*(labelHeight + lineSpace), _labelWidth, labelHeight)
+#define recommendChannelFrame(i)  CGRectMake(itemSpace + ((i) % columns)* (_labelWidth + itemSpace),CGRectGetMaxY(self.newsModel.frame) + self.headerViewOne_frame.size.height + lineSpace + ((i) / columns)*(labelHeight + lineSpace), _labelWidth, labelHeight)
 
 static CGFloat lineSpace = 10;
 static CGFloat itemSpace = 10;
@@ -71,6 +73,8 @@ static CGFloat labelHeight = 40;
         _datas = [[NSMutableArray alloc]init];
         _queue = dispatch_queue_create("newsChannelHeader", DISPATCH_QUEUE_SERIAL);
         self.delegate = self;
+        [self configureData];
+        [self setupUI];
     }
     return self;
 }
@@ -116,7 +120,7 @@ static CGFloat labelHeight = 40;
             newsChannelModel *newsModel2 = [[newsChannelModel alloc]init];
             newsModel2.name = _channelArray[i];
             newsModel2.isMyChannel = NO;
-            [self.datas addObject:newsModel2];
+            [self.datas addObject:newsModel2];//datas数组保存model里面的数据
         }
         
     });
@@ -125,8 +129,139 @@ static CGFloat labelHeight = 40;
 
 -(void)refreshFrame{
     
+    for(int i = 0;i < _datas.count;i++){
+        newsChannelModel *model = _datas[i];
+        model.tag = i;
+        if(model.isMyChannel){
+            model.frame = channelFrame(i);
+            self.newsModel = model;
+        }
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.channelHeaderViewTwo.top = CGRectGetMaxY(self.newsModel.frame)+lineSpace;
+        self.channelHeaderViewTwo.hidden = NO;
+    });
+    
+    for(int i = 0;i < self.datas.count;i++)
+    {
+        newsChannelModel *model = self.datas[i];
+        if(!model.isMyChannel){
+            int index = i - self.newsModel.tag - 1;
+            model.frame = recommendChannelFrame(index);
+        }
+    }
     
 }
+
+#pragma mark - 添加，删除，移动channel Button
+
+-(void)addChannelBtn:(channelButton *)btn{
+    [self.datas removeObject:btn.channelModel];
+    [self.datas insertObject:btn.channelModel atIndex:self.newsModel.tag+1];
+    
+    btn.channelModel.isMyChannel = YES;
+    NSInteger newsModelIndex = self.newsModel.tag + 1;
+    BOOL isEditSelected = self.channelHeaderViewOne.editButton.hidden;
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        for(int i = 0;i<self.datas.count;i++){
+            newsChannelModel *model = self.datas[i];
+            model.tag = i;
+            if(model.isMyChannel){
+                model.Btn.frame = channelFrame(i);
+                model.hideDeleteBtn = isEditSelected?NO:YES;
+            }else {
+                NSInteger index = i - self.newsModel.tag -1;
+                model.Btn.frame = recommendChannelFrame(index);
+                model.hideDeleteBtn = YES;
+            }
+            if(i == newsModelIndex){
+                _newsModel = model;
+            }
+        }
+        [self refreshData];
+    });
+     
+}
+//移除channelbutton
+-(void)removeChannelBtn:(channelButton *)btn{
+    
+    [self.datas removeObject:btn.channelModel];
+    [self.datas insertObject:btn.channelModel atIndex:self.newsModel.tag];
+    
+    btn.channelModel.isMyChannel = NO;
+    NSInteger newsModelIndex = self.newsModel.tag - 1;
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        for (int i = 0; i < self.datas.count; i++) {
+            newsChannelModel *model = self.datas[i];
+            model.tag = i;
+            if(model.isMyChannel){
+                model.Btn.frame = channelFrame(i);
+                model.hideDeleteBtn = NO;
+            }else {
+                NSInteger index = i - self.newsModel.tag - 1;
+                model.Btn.frame = recommendChannelFrame(index);
+                model.hideDeleteBtn = YES;
+            }
+            if(i == newsModelIndex){
+                _newsModel = model;
+            }
+        }
+        [self refreshData];
+    });
+}
+
+
+//刷新数据
+-(void)refreshData{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for (newsChannelModel *model in _datas) {
+            model.Btn.frame = model.frame;
+            model.Btn.channelImageView.hidden = model.hideDeleteBtn;
+            [model.Btn reloadData];
+        }
+    });
+}
+
+//刷新headerViewTwo的frame
+-(void)refreshChannelHeaderViewTwoFrame{
+    if(self.channelHeaderViewTwo.hidden){
+        return;
+    }
+    [UIView animateWithDuration:0.25 animations:^{
+        self.channelHeaderViewTwo.frame = CGRectMake(0, CGRectGetMaxY(self.newsModel.frame), self.frame.size.width, 54);
+    }];
+    
+}
+
+-(void)setNewsModel:(newsChannelModel *)newsModel{
+    _newsModel = newsModel;
+    dispatch_main_async_safe(^{
+        [self refreshChannelHeaderViewTwoFrame];
+    });
+}
+
+#pragma mark - show && hide
+
+- (void)channelShow {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.frame = CGRectMake(0, kScreenStatusBarHeight, self.width, self.height);
+    }];
+}
+
+- (void)channelHide {
+    [UIView animateWithDuration:0.25 animations:^{
+        self.frame = CGRectMake(0, self.height, self.width, self.height);
+    }completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
+
+#pragma mark - channel button 交换位置
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

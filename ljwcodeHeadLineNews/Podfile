@@ -21,5 +21,4 @@ pod 'SDWebImage'
 pod 'KMCGeigerCounter'
 pod 'FMDB'
 pod 'LBPhotoBrowser', '~> 2.2.2'
-pod 'MBProgressHUD+Add', '~> 0.0.2'
 end

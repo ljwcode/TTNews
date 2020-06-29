@@ -3,4 +3,86 @@
    uuid = "0ED2FEB3-7A9B-4B1F-A5E9-3819E547C7A4"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F1C25558-AD9C-42DB-928D-3CDB5F185961"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ljwcodeHeadLineNews/Class/Home/Controller/ljwcodeHomeViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F1C25558-AD9C-42DB-928D-3CDB5F185961 - b3fcb9582a016ac0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ljwcodeHomeViewController viewDidLoad]"
+                  moduleName = "&#x4eca;&#x65e5;&#x5934;&#x6761;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a1/Documents/gitbucket/ljwcodeHeadLineNews/ljwcodeHeadLineNews/Class/Home/Controller/ljwcodeHomeViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "235">
+               </Location>
+               <Location
+                  uuid = "F1C25558-AD9C-42DB-928D-3CDB5F185961 - 4b88683bca2536ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[ljwcodeHomeViewController viewDidLoad]_block_invoke_2"
+                  moduleName = "&#x4eca;&#x65e5;&#x5934;&#x6761;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a1/Documents/gitbucket/ljwcodeHeadLineNews/ljwcodeHeadLineNews/Class/Home/Controller/ljwcodeHomeViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EF0B296F-FC85-4EF6-B3D4-A335A453BE01"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ljwcodeHeadLineNews/Class/Home/Controller/ljwcodeHomeViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DCA2CD7A-230B-4E17-AC2A-62E401D61AA0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ljwcodeHeadLineNews/Class/Home/ViewModel/homeTitleViewModel.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "-init"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

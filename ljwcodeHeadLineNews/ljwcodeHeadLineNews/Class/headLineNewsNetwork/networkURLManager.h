@@ -1,5 +1,5 @@
 //
-//  networkManager.h
+//  networkURLManager.h
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/6/29.

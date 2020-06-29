@@ -12,6 +12,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface homeTitleModel : NSObject
 
+@property(nonatomic,copy)NSString *name;
+
+@property(nonatomic,copy)NSString *category;
+
+@property(nonatomic,copy)NSString *concern_id;
+
+@property(nonatomic,assign)int flage;
+
+@property(nonatomic,assign)int default_add;
+
+@property(nonatomic,copy)NSString *icon_url;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

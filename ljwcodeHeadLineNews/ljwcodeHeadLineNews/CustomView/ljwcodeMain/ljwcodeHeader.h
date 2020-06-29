@@ -9,8 +9,21 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <Masonry.h>
+#import "UIView+frame.h"
+#import <UIView+LBFrame.h>
+#import "UIButton+extend.h"
+#import "MBProgressHUD+Add.h"
 
-UIKIT_EXTERN NSString const *HN_BASE_URL;
+
+UIKIT_EXTERN NSString const *ljwcode_Base_url;
 
 UIKIT_EXTERN NSString *KHomeStopRefreshNot;
 
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+
+#define kScreenStatusBarHeight [UIScreen mainScreen].bounds.size.height == 812?44:20
+
+#define LJWCODE_IID @"17769976909"
+#define LJWCODE_DEVICE_ID @"41312231473"

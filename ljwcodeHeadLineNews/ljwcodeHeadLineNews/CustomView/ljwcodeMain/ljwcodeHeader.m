@@ -8,6 +8,6 @@
 
 #import "ljwcodeHeader.h"
 
-NSString *HN_BASE_URL = @"https://is.snssdk.com/";
+NSString *ljwcode_Base_url = @"https://is.snssdk.com/";
 NSString *KHomeStopRefreshNot = @"homeStopRefreshNot";
 
