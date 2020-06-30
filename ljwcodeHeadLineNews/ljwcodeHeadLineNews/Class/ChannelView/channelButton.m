@@ -12,41 +12,43 @@
 
 static UIBezierPath *drawBezierPath(channelButton *Btn){
     UIBezierPath *BezierPath = [UIBezierPath bezierPath];
-    
+
     CGFloat width = Btn.frame.size.width;
     CGFloat height = Btn.frame.size.height;
     CGFloat x = Btn.frame.origin.x;
     CGFloat y = Btn.frame.origin.y;
     CGFloat halfWH = 2;
-    
+
     CGPoint topLeft = Btn.frame.origin;
     CGPoint topMiddle = CGPointMake((x+width)/2, y-halfWH);
     CGPoint topRight =  CGPointMake(x+width, y);
-    
+
     CGPoint rightMiddle = CGPointMake(x+width+halfWH, (y+height)/2);
     CGPoint rightBottom = CGPointMake(x+width, y+height);
-    
+
     CGPoint bottomMiddle = CGPointMake((x+width)/2, y+height+halfWH);
     CGPoint bottomLeft = CGPointMake(x, y+height);
-    
+
     CGPoint leftMiddle = CGPointMake(x-halfWH, (y+height)/2);
     [BezierPath moveToPoint:topLeft];
     [BezierPath addQuadCurveToPoint:topRight controlPoint:topMiddle];
     [BezierPath addQuadCurveToPoint:rightBottom controlPoint:rightMiddle];
     [BezierPath addQuadCurveToPoint:bottomLeft controlPoint:bottomMiddle];
     [BezierPath addQuadCurveToPoint:topLeft controlPoint:leftMiddle];
-    
+
     return BezierPath;
 }
 
 static inline void configureChannelBtn(channelButton *Btn){
-    Btn.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.96 alpha:1];
+    Btn.backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.97 alpha:1];
     Btn.layer.shadowColor = nil;
     Btn.layer.shadowOffset = CGSizeMake(0, 0);
     Btn.layer.shadowPath = nil;
+    [Btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 }
 
 static inline void configureRecommendChannelBtn(channelButton *Btn){
+    
     Btn.backgroundColor = [UIColor whiteColor];
     Btn.layer.shadowOffset = CGSizeMake(1, 1);
     Btn.layer.shadowOpacity = 0.2; //透明度
@@ -81,7 +83,7 @@ static inline void configureRecommendChannelBtn(channelButton *Btn){
         [self addSubview:_channelImageView];
         [_channelImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.mas_equalTo(18);
-            make.top.left.mas_equalTo(self);
+            make.top.right.mas_equalTo(self);
         }];
         delImageView.hidden = YES;
         [self addTarget:self action:@selector(delBtnHandle:) forControlEvents:UIControlEventTouchUpInside];
@@ -91,7 +93,7 @@ static inline void configureRecommendChannelBtn(channelButton *Btn){
         
         UILongPressGestureRecognizer *longPreGes = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPresHandle:)];
         [self addGestureRecognizer:longPreGes];
-        
+        [self reloadData];
     }
     return self;
 }
@@ -164,9 +166,10 @@ static inline void configureRecommendChannelBtn(channelButton *Btn){
     }
 }
 
+
 -(void)setChannelModel:(newsChannelModel *)channelModel{
     _channelModel = channelModel;
-    channelModel.frame = self.frame;
+    self.frame = channelModel.frame;
     channelModel.Btn = self;
     if(channelModel.isMyChannel){
         [self setTitle:channelModel.name forState:UIControlStateNormal];

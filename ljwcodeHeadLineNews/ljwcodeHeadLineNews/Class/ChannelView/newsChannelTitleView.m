@@ -47,6 +47,7 @@
     sender.selected = !sender.selected;
     if(sender.selected){
         sender.titleLabel.text = @"拖拽进行排序";
+        
     }else{
         sender.titleLabel.text = @"点击进入频道";
     }

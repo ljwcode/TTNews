@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *concern_id;
 
-@property(nonatomic,assign)int flage;
+@property(nonatomic,assign)int flags;
 
 @property(nonatomic,assign)int default_add;
 

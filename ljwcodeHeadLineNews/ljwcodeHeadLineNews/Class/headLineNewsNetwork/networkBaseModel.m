@@ -19,15 +19,17 @@
     if(self = [super init]){
         _isPost = YES;
         _showErrorHud = YES;
+        _parameter = [[NSMutableDictionary alloc]init];
     }
     return self;
 }
 
 +(instancetype)initWithNetworkModelWithUrlString:(NSString *)urlString isPost:(BOOL)isPost
 {
-    networkBaseModel *model = [[networkBaseModel alloc]init];
+    networkBaseModel *model = [[[self class] alloc]init];
     model.isPost = isPost;
     model.urlString = urlString;
+    
     return model;
 }
 
@@ -65,7 +67,7 @@
     }
     
 }
-
+//参数拼接
 - (NSMutableDictionary *)params {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
@@ -103,7 +105,6 @@
         [MBProgressHUD showError:errMsg toView:nil];
     }
 }
-
 
 
 @end

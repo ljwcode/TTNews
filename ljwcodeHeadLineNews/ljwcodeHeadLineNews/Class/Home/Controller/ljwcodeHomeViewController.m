@@ -17,6 +17,7 @@
 #import "homeTitleModel.h"
 #import <RACSubject.h>
 #import "homeTitleViewModel.h"
+#import "homeDetailViewController.h"
 
 @interface ljwcodeHomeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
@@ -33,7 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [self configurePageMenuView];
     ljwcodeNavigationBar *navBar = [self showNaviBar];
     
     [navBar.navigationBarActionSubject subscribeNext:^(id  _Nullable x) {
@@ -48,6 +48,8 @@
         [self reloadData];
         [self setPageMenuView];
     }];
+    
+    //channel title 从网络中获取得到
     [navBar setLjwcodeActionCallBack:^(ljwcodeNavigationBarAction action) {
         @strongify(self);
         if(action != ljwcodeNavigationBarActionSend){
@@ -68,67 +70,6 @@
     return _titleViewModle;
 }
 
-#pragma mark - setup pageMenuView1
--(void)configurePageMenuView{
-    NSDictionary *dataSource = @{
-                                 QiPageMenuViewNormalTitleColor : [UIColor blackColor],
-                                 QiPageMenuViewSelectedTitleColor : [UIColor redColor],
-                                 QiPageMenuViewTitleFont : [UIFont systemFontOfSize:14],
-                                 QiPageMenuViewSelectedTitleFont : [UIFont systemFontOfSize:18],
-                                 QiPageMenuViewItemIsVerticalCentred : @(YES),
-                                 QiPageMenuViewItemTitlePadding : @(10.0),
-                                 QiPageMenuViewItemTopPadding : @(10.0),
-                                 QiPageMenuViewItemPadding : @(10.0),
-                                 QiPageMenuViewLeftMargin : @(20.0),
-                                 QiPageMenuViewRightMargin : @(20.0),
-                                 QiPageMenuViewItemWidth : @(0.0),
-                                 QiPageMenuViewItemsAutoResizing : @(YES),
-                                 QiPageMenuViewItemHeight : @(40.0),
-                                 QiPageMenuViewHasUnderLine :@(YES),
-                                 QiPageMenuViewLineColor : [UIColor blackColor],
-                                 QiPageMenuViewLineWidth : @(30.0),
-                                 QiPageMenuViewLineHeight : @(4.0),
-                                 QiPageMenuViewLineTopPadding : @(10.0)
-                                 };
-    UIViewController *ctrl = [UIViewController new];
-    ctrl.view.backgroundColor = [UIColor blueColor];
-    ctrl.edgesForExtendedLayout = UIRectEdgeNone;
-    UIViewController *ctrl1 = [UIViewController new];
-    ctrl1.view.backgroundColor = [UIColor purpleColor];
-    
-    UIViewController *ctrl2 = [UIViewController new];
-    ctrl2.view.backgroundColor = [UIColor brownColor];
-    
-    UIViewController *ctrl3 = [UIViewController new];
-    ctrl3.view.backgroundColor = [UIColor redColor];
-    
-    UIViewController *ctrl4 = [UIViewController new];
-    ctrl4.view.backgroundColor = [UIColor greenColor];
-    UIViewController *ctrl5 = [UIViewController new];
-    ctrl3.view.backgroundColor = [UIColor redColor];
-    
-    UIViewController *ctrl6 = [UIViewController new];
-    ctrl4.view.backgroundColor = [UIColor greenColor];
-    
-    QiPageMenuView *menuView = [[QiPageMenuView alloc]initWithFrame:CGRectMake(0, 80, self.view.width, 50) titles:@[@"系统消息",@"节日消息",@"广播通知",@"最新",@"最热",@"你好",@"你好呀"] dataSource:dataSource];
-    menuView.backgroundColor = [UIColor orangeColor];
-    [self.view addSubview:menuView];
-    
-    QiPageContentView *contenView = [[QiPageContentView alloc]initWithFrame:CGRectMake(0, menuView.bottom+10, self.view.width, self.view.height - menuView.bottom - 10 - 88-10) childViewController:@[ctrl,ctrl1,ctrl2,ctrl3,ctrl4,ctrl5,ctrl6]];
-    [self.view addSubview:contenView];
-    
-    menuView.pageItemClicked = ^(NSInteger clickedIndex, NSInteger beforeIndex, QiPageMenuView *menu) {
-        NSLog(@"点击了：之前：%ld 现在：%ld",beforeIndex,clickedIndex);
-        [contenView setPageContentShouldScrollToIndex:clickedIndex beforIndex:beforeIndex];
-    };
-    
-    contenView.pageContentViewDidScroll = ^(NSInteger currentIndex, NSInteger beforeIndex, QiPageContentView * _Nonnull pageView) {
-        menuView.pageScrolledIndex = currentIndex;
-        NSLog(@"滚动了：之前：%ld 现在：%ld",beforeIndex,currentIndex);
-    };
-    
-}
-
 -(void)configureUI{
     self.delegate = self;
     self.dataSource = self;
@@ -139,12 +80,12 @@
 -(void)setPageMenuView{
     
     UIButton *addChannelBtn = UIButton.buttonType(UIButtonTypeCustom).showImage([UIImage imageNamed:@"add_channel_titlbar_thin_new_16x16_"],UIControlStateNormal).bgImage([UIImage imageNamed:@"shadow_add_titlebar_new3_52x36_"],UIControlStateNormal);
-    addChannelBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-52, 0, 52, 35);
-    addChannelBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+
+    addChannelBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-52, 0, 52, 35);    addChannelBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
     [self.menuView addSubview:addChannelBtn];
     
     [[addChannelBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(__kindof UIControl * _Nullable x) {
-        NewsChannelView *channelView = [[NewsChannelView alloc]initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width,kScreenHeight-kScreenStatusBarHeight )];
+        NewsChannelView *channelView = [[NewsChannelView alloc]initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height == 812?44:20, [UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height)];
         [[UIApplication sharedApplication].keyWindow addSubview:channelView];
         [channelView channelShow];
     }];
@@ -153,12 +94,10 @@
     [RACObserve(self.scrollView, contentOffset) subscribeNext:^(id x) {
         @strongify(self);
         CGPoint offset = [x CGPointValue];
-        if (offset.x > kScreenWidth * (self.titleArray.count - 1)) {
-            self.scrollView.contentOffset = CGPointMake(kScreenWidth * (self.titleArray.count - 1), 0);
+        if (offset.x > [UIScreen mainScreen].bounds.size.width * (self.titleArray.count - 1)) {
+            self.scrollView.contentOffset = CGPointMake([UIScreen mainScreen].bounds.size.width * (self.titleArray.count - 1), 0);
         }
     }];
-    
-    
     
 }
 
@@ -170,10 +109,18 @@
     }
     return self.titleArray.count+1;
 }
-//- (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index{
-//    newsChannelModel *model = self.titleArray[index];
-//
-//}
+//设置每一个分页栏展示的控制器及内容
+- (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index{
+    
+    if (index > self.titleArray.count - 1) {
+        return  [[homeDetailViewController alloc]init];
+    }
+    homeTitleModel *model = self.titleArray[index];
+    homeDetailViewController *detial = [[homeDetailViewController alloc]init];
+    detial.titleModel = model;
+    return detial;
+
+}
 
 -(NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index{
     if (index > self.titleArray.count - 1) {
@@ -184,7 +131,11 @@
     }
 }
 
+#pragma mark - MenuViewDelegate
 
+-(void)menuView:(WMMenuView *)menu didSelesctedIndex:(NSInteger)index currentIndex:(NSInteger)currentIndex{
+    [super menuView:menu didSelesctedIndex:index currentIndex:currentIndex];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

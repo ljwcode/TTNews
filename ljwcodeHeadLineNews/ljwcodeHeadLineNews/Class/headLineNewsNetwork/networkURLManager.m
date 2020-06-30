@@ -15,4 +15,8 @@
     return [NSString stringWithFormat:@"%@article/category/get_subscribed/v1/?",ljwcode_Base_url];
 }
 
++(NSString *)homeListUrlString{
+    return [NSString stringWithFormat:@"%@api/news/feed/v58/?",ljwcode_Base_url];
+}
+
 @end

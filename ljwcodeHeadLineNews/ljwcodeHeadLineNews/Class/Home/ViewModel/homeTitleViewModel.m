@@ -9,8 +9,6 @@
 #import "homeTitleViewModel.h"
 #import "homeTitleModel.h"
 #import "homeTitleRequestModel.h"
-#import "ljwcodeHeader.h"
-
 
 @implementation homeTitleViewModel
 
@@ -23,6 +21,7 @@
                 request.device_id = LJWCODE_DEVICE_ID;
                 request.aid = [input intValue];
                 [request sendRequestWithSuccess:^(id response) {
+                    
                     NSDictionary *responseDic = (NSDictionary *)response;
                     responseDic = responseDic[@"data"];
                     NSMutableArray *models = [NSMutableArray array];
@@ -34,10 +33,10 @@
                         }
                         [subscriber sendNext:models];
                         [subscriber sendCompleted];
-                        //dealloc
-//                        [RACDisposable disposableWithBlock:^{
-//                            NSLog(@"销毁了rac");
-//                        }];
+//                        dealloc
+                        [RACDisposable disposableWithBlock:^{
+                            NSLog(@"销毁了rac");
+                        }];
                     }else {
                         [MBProgressHUD showError: server_error toView:nil];
                     }
