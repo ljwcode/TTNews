@@ -1,5 +1,5 @@
 //
-//  ljwcodeHomeViewController.m
+//  homeViewController.m
 //
 //
 //  Created by ljwcode on 2020/6/18.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "WMPageController.h"
 
-@interface ljwcodeHomeViewController : WMPageController
+@interface homeViewController : WMPageController
 
 @end

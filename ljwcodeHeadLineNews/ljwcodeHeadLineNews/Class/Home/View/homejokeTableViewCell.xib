@@ -36,6 +36,9 @@
                         <state key="normal" title="2" image="digdown_video_20x20_">
                             <color key="titleColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
+                        <connections>
+                            <action selector="disLikeHandle:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1gd-Mq-0H4"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDT-j0-TCV" userLabel="collectionButton">
                         <rect key="frame" x="184" y="40" width="20" height="25"/>
@@ -44,6 +47,9 @@
                             <constraint firstAttribute="height" constant="25" id="ujZ-vq-NkU"/>
                         </constraints>
                         <state key="normal" image="love_video_20x20_"/>
+                        <connections>
+                            <action selector="collectionBtnHandle:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xMF-fX-Ohl"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqD-tz-r5G" userLabel="shareButton">
                         <rect key="frame" x="260" y="44" width="24" height="24"/>
@@ -80,6 +86,9 @@
                         <state key="normal" title="1" image="details_like_icon_20x20_">
                             <color key="titleColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
+                        <connections>
+                            <action selector="likeBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Mku-i2-FmU"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

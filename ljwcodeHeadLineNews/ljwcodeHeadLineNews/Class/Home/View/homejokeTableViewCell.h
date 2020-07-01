@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "homeJokeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface homejokeTableViewCell : UITableViewCell
+
+@property(nonatomic,strong)homeJokeSummarymodel *jokeSummaryModel;
 
 @end
 

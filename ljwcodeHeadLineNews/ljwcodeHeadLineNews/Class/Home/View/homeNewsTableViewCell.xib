@@ -71,8 +71,15 @@
             <connections>
                 <outlet property="infoLabel" destination="2cv-u6-ixP" id="jKM-Zp-LOe"/>
                 <outlet property="leftImageView" destination="IpM-x1-QCV" id="bNf-3W-LRr"/>
+                <outlet property="leftImageViewConstraintHeight" destination="7oY-GC-iBE" id="d61-cI-BSL"/>
+                <outlet property="leftImageViewConstraintWidth" destination="5Cr-SM-imF" id="i3x-6U-HoO"/>
+                <outlet property="leftToMiddleConstraintMargin" destination="BKg-ei-eu5" id="QaB-Oq-oLZ"/>
                 <outlet property="middleImageView" destination="0iY-cg-L7i" id="Rje-uB-ZQS"/>
+                <outlet property="middleImageViewConstraintHeight" destination="By1-1c-opC" id="Zd3-Wq-g2H"/>
+                <outlet property="middleImageViewConstraintWidth" destination="pR0-HM-ucA" id="b8A-Jt-LDf"/>
                 <outlet property="rightImageView" destination="hwv-Vc-y34" id="B7v-1V-okt"/>
+                <outlet property="rightImageViewConstraintHeight" destination="HJh-kd-yNw" id="be0-3a-qeg"/>
+                <outlet property="rightImageViewConstraintWidth" destination="KOa-zH-mJG" id="Eeg-rB-0PZ"/>
                 <outlet property="titleLabel" destination="qCe-Im-ByO" id="6Vt-dJ-qQk"/>
             </connections>
             <point key="canvasLocation" x="143.47826086956522" y="179.46428571428569"/>

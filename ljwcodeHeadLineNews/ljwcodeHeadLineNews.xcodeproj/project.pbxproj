@@ -31,6 +31,7 @@
 		63422C5824A87EC20091FEE1 /* newsChannelTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63422C5724A87EC20091FEE1 /* newsChannelTitleView.xib */; };
 		63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5A24A88BB40091FEE1 /* newsChannelModel.m */; };
 		63422C5E24A88F020091FEE1 /* channelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5D24A88F020091FEE1 /* channelButton.m */; };
+		6365C9C024ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6365C9BF24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m */; };
 		637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2524A9C1E60009274C /* UIButton+extend.m */; };
 		637C2D2924A9CDE30009274C /* homeTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2824A9CDE30009274C /* homeTitleModel.m */; };
 		637C2D2C24A9CF630009274C /* homeTitleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2B24A9CF630009274C /* homeTitleViewModel.m */; };
@@ -40,12 +41,13 @@
 		637C2D3924A9DDA10009274C /* homeTitleRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3824A9DDA10009274C /* homeTitleRequestModel.m */; };
 		637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3A24A9F1BA0009274C /* MBProgressHUD+Add.m */; };
 		637C5C0A24A35C0800D7C0E0 /* ljwcodeBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */; };
+		63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AD1AB924AC61D1007EC745 /* homeJokeModel.m */; };
 		63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */; };
 		63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */; };
 		63B07BF624A1E41200C7CD6F /* UIView+frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF424A1E41200C7CD6F /* UIView+frame.m */; };
 		820978E81BD3A37600CF9D0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 820978E71BD3A37600CF9D0C /* main.m */; };
 		820978EB1BD3A37700CF9D0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 820978EA1BD3A37700CF9D0C /* AppDelegate.m */; };
-		820979101BD3AB2800CF9D0C /* ljwcodeHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8209790E1BD3AB2800CF9D0C /* ljwcodeHomeViewController.m */; };
+		820979101BD3AB2800CF9D0C /* homeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8209790E1BD3AB2800CF9D0C /* homeViewController.m */; };
 		820979151BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979131BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m */; };
 		8209791A1BD3AFAC00CF9D0C /* ljwcodeMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979181BD3AFAC00CF9D0C /* ljwcodeMineViewController.m */; };
 		8209791F1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8209791D1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m */; };
@@ -103,6 +105,8 @@
 		63422C5A24A88BB40091FEE1 /* newsChannelModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newsChannelModel.m; sourceTree = "<group>"; };
 		63422C5C24A88F020091FEE1 /* channelButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = channelButton.h; sourceTree = "<group>"; };
 		63422C5D24A88F020091FEE1 /* channelButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = channelButton.m; sourceTree = "<group>"; };
+		6365C9BE24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeRefreshGifHeader.h; sourceTree = "<group>"; };
+		6365C9BF24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeRefreshGifHeader.m; sourceTree = "<group>"; };
 		637C2D2224A995F70009274C /* ljwcodeHeadLineNews.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeHeadLineNews.pch; sourceTree = "<group>"; };
 		637C2D2424A9C1E60009274C /* UIButton+extend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+extend.h"; sourceTree = "<group>"; };
 		637C2D2524A9C1E60009274C /* UIButton+extend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+extend.m"; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 		637C2D3B24A9F1BA0009274C /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		637C5C0824A35C0800D7C0E0 /* ljwcodeBaseViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeBaseViewModel.h; sourceTree = "<group>"; };
 		637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeBaseViewModel.m; sourceTree = "<group>"; };
+		63AD1AB824AC61D1007EC745 /* homeJokeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeJokeModel.h; sourceTree = "<group>"; };
+		63AD1AB924AC61D1007EC745 /* homeJokeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeJokeModel.m; sourceTree = "<group>"; };
 		63B07BEF24A1DD5600C7CD6F /* homeNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsTableViewCell.h; sourceTree = "<group>"; };
 		63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsTableViewCell.m; sourceTree = "<group>"; };
 		63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homeNewsTableViewCell.xib; sourceTree = "<group>"; };
@@ -133,8 +139,8 @@
 		820978EA1BD3A37700CF9D0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		820978F21BD3A37700CF9D0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		820978F71BD3A37700CF9D0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8209790D1BD3AB2800CF9D0C /* ljwcodeHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeHomeViewController.h; sourceTree = "<group>"; };
-		8209790E1BD3AB2800CF9D0C /* ljwcodeHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodeHomeViewController.m; sourceTree = "<group>"; };
+		8209790D1BD3AB2800CF9D0C /* homeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = homeViewController.h; sourceTree = "<group>"; };
+		8209790E1BD3AB2800CF9D0C /* homeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = homeViewController.m; sourceTree = "<group>"; };
 		820979121BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeWeiTouTiaoViewController.h; sourceTree = "<group>"; };
 		820979131BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodeWeiTouTiaoViewController.m; sourceTree = "<group>"; };
 		820979171BD3AFAC00CF9D0C /* ljwcodeMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeMineViewController.h; sourceTree = "<group>"; };
@@ -185,6 +191,8 @@
 				6328F610249DEA8C00C767A8 /* ljwcodeEmitterHelper.m */,
 				637C2D2424A9C1E60009274C /* UIButton+extend.h */,
 				637C2D2524A9C1E60009274C /* UIButton+extend.m */,
+				6365C9BE24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.h */,
+				6365C9BF24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m */,
 			);
 			path = ljwcodeTools;
 			sourceTree = "<group>";
@@ -282,8 +290,8 @@
 		63B07BEB24A1DCD300C7CD6F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8209790D1BD3AB2800CF9D0C /* ljwcodeHomeViewController.h */,
-				8209790E1BD3AB2800CF9D0C /* ljwcodeHomeViewController.m */,
+				8209790D1BD3AB2800CF9D0C /* homeViewController.h */,
+				8209790E1BD3AB2800CF9D0C /* homeViewController.m */,
 				63167AAB24AAE3C2002CB4EF /* homeDetailViewController.h */,
 				63167AAC24AAE3C2002CB4EF /* homeDetailViewController.m */,
 			);
@@ -319,6 +327,8 @@
 				63167AB524AB6182002CB4EF /* homeNewsModel.m */,
 				63167AB724AB6380002CB4EF /* homeListModel */,
 				63167AB924AB63E2002CB4EF /* homeTitleChannelModel */,
+				63AD1AB824AC61D1007EC745 /* homeJokeModel.h */,
+				63AD1AB924AC61D1007EC745 /* homeJokeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -618,6 +628,7 @@
 				6328F611249DEA8C00C767A8 /* ljwcodeEmitterHelper.m in Sources */,
 				820979281BD3B28700CF9D0C /* ljwcodeTabBarController.m in Sources */,
 				63422C5E24A88F020091FEE1 /* channelButton.m in Sources */,
+				6365C9C024ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m in Sources */,
 				637C2D2C24A9CF630009274C /* homeTitleViewModel.m in Sources */,
 				637C2D3924A9DDA10009274C /* homeTitleRequestModel.m in Sources */,
 				63422BE024A839960091FEE1 /* WMMenuItem.m in Sources */,
@@ -627,10 +638,11 @@
 				637C2D3024A9D1600009274C /* networkBaseModel.m in Sources */,
 				63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */,
 				637C2D2924A9CDE30009274C /* homeTitleModel.m in Sources */,
-				820979101BD3AB2800CF9D0C /* ljwcodeHomeViewController.m in Sources */,
+				820979101BD3AB2800CF9D0C /* homeViewController.m in Sources */,
 				63422BE124A839960091FEE1 /* WMScrollView.m in Sources */,
 				637C2D3324A9D1930009274C /* networkURLManager.m in Sources */,
 				820978EB1BD3A37700CF9D0C /* AppDelegate.m in Sources */,
+				63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */,
 				63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */,
 				637C2D3624A9D3EA0009274C /* networkManagerCenter.m in Sources */,
 				94A4A6EA24A25331002A6CA3 /* ljwcodeBaseViewController.m in Sources */,

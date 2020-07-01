@@ -41,7 +41,7 @@
                         [MBProgressHUD showError: server_error toView:nil];
                     }
                 } failHandle:^(NSError *error) {
-                    // do something
+                    
                 }];
                 return nil;
             }];

@@ -82,8 +82,11 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="delBtn" destination="T2m-ek-Xl7" id="LSL-Ev-Jft"/>
+                <outlet property="detailImgSpace" destination="ZQ0-mN-VlM" id="b7q-Xb-SRH"/>
                 <outlet property="detailImgView" destination="tVj-QD-eSe" id="XoH-S4-cff"/>
+                <outlet property="detailImgViewWidth" destination="7uF-pU-ZHm" id="Ufr-GT-ryr"/>
                 <outlet property="detailLabel" destination="dT0-Jz-0ki" id="LMF-Ee-Ak6"/>
+                <outlet property="detailLabelSpace" destination="27m-k6-ouq" id="Xoo-VK-9rA"/>
                 <outlet property="lineView" destination="qhi-Il-GnX" id="zB6-Y6-0Wa"/>
                 <outlet property="titleLabel" destination="IDw-sV-CeK" id="Gc5-Lk-H2T"/>
             </connections>

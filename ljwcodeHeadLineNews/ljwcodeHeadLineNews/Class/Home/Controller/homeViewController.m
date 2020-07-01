@@ -1,11 +1,11 @@
 //
-//  ljwcodeHomeViewController.m
+//  homeViewController.m
 //
 //
 //  Created by ljwcode on 2020/6/18.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
-#import "ljwcodeHomeViewController.h"
+#import "homeViewController.h"
 #import "ljwcodeTabBarController.h"
 #import "QiPageMenuView.h"
 #import "QiPageContentView.h"
@@ -19,17 +19,15 @@
 #import "homeTitleViewModel.h"
 #import "homeDetailViewController.h"
 
-@interface ljwcodeHomeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
+@interface homeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
 @property(nonatomic,strong)NSArray *titleArray;
 
 @property(nonatomic,strong)homeTitleViewModel *titleViewModle;
 
-
-
 @end
 
-@implementation ljwcodeHomeViewController
+@implementation homeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
