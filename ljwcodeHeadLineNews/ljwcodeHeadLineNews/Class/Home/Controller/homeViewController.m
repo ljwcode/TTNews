@@ -18,6 +18,7 @@
 #import <RACSubject.h>
 #import "homeTitleViewModel.h"
 #import "homeDetailViewController.h"
+#import "homeDetailViewController.h"
 
 @interface homeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
@@ -61,6 +62,11 @@
         // Do any additional setup after loading the view from its nib.
 }
 
+-(void)needRefreshTableViewData{
+    homeDetailViewController *detailVC = (homeDetailViewController *)self.currentViewController;
+    [detailVC needRefreshTableViewData];
+}
+
 -(homeTitleViewModel *)titleViewModle{
     if(!_titleViewModle){
         _titleViewModle = [[homeTitleViewModel alloc]init];
@@ -74,12 +80,13 @@
     self.automaticallyCalculatesItemWidths = YES;
     self.itemMargin = 10;
 }
-#pragma mark - setup pageMenuViewStyle2
+#pragma mark - setup "add" pageMenuView
 -(void)setPageMenuView{
     
     UIButton *addChannelBtn = UIButton.buttonType(UIButtonTypeCustom).showImage([UIImage imageNamed:@"add_channel_titlbar_thin_new_16x16_"],UIControlStateNormal).bgImage([UIImage imageNamed:@"shadow_add_titlebar_new3_52x36_"],UIControlStateNormal);
 
-    addChannelBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-52, 0, 52, 35);    addChannelBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    addChannelBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-52, 0, 52, 35);
+    addChannelBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
     [self.menuView addSubview:addChannelBtn];
     
     [[addChannelBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(__kindof UIControl * _Nullable x) {
@@ -98,7 +105,6 @@
     }];
     
 }
-
 
 #pragma mark - WMPageController delelgate && datasource
 -(NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController{
@@ -119,7 +125,7 @@
     return detial;
 
 }
-
+//设置每一个channel的title
 -(NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index{
     if (index > self.titleArray.count - 1) {
         return @"       ";
@@ -132,7 +138,12 @@
 #pragma mark - MenuViewDelegate
 
 -(void)menuView:(WMMenuView *)menu didSelesctedIndex:(NSInteger)index currentIndex:(NSInteger)currentIndex{
-    [super menuView:menu didSelesctedIndex:index currentIndex:currentIndex];
+    if(index == -1){
+        [self needRefreshTableViewData];
+    }else{
+        [super menuView:menu didSelesctedIndex:index currentIndex:currentIndex];
+    }
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

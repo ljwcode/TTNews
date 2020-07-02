@@ -22,12 +22,13 @@
                 homeNewsRequestModel *request = [homeNewsRequestModel initWithNetworkModelWithUrlString:networkManager.homeListUrlString isPost:NO];
                 request.device_id = LJWCODE_DEVICE_ID;
                 request.iid = LJWCODE_IID;
-                request.device_platform = @"iPhone 11 Pro";
+                request.device_platform = @"iphone 11 Pro";
                 request.version_code = @"7.7.0";
                 request.category = input;
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
+                    
                     NSDictionary *responseDic = (NSDictionary *)response;
-                    responseDic = [responseDic objectForKey:@"data"];
+                    
                     if([input isEqualToString:@"essay_joke"]){
                         homeJokeModel *jokeModel = [[homeJokeModel alloc]init];
                         [jokeModel mj_setKeyValues:responseDic];
@@ -37,7 +38,7 @@
                     }else{
                         homeNewsModel *newsModel = [[homeNewsModel alloc]init];
                         [newsModel mj_setKeyValues:responseDic];
-                        [newsModel.data_array makeObjectsPerformSelector:@selector(infoModel)];
+                        [newsModel.data makeObjectsPerformSelector:@selector(infoModel)];
                         [subscriber sendNext:newsModel];
                         [subscriber sendCompleted];
                     }

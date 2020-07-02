@@ -15,6 +15,7 @@
 #import "MBProgressHUD+Add.h"
 #import <SDWebImage/SDWebImage.h>
 #import <MJRefresh/MJRefresh.h>
+#import "ljwcodeRefreshGifHeader.h"
 
 
 UIKIT_EXTERN NSString const *ljwcode_Base_url;

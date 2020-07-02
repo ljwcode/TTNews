@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 -(void)needRefreshTableViewData;
+
 -(void)rightItemAction;
 
 @end
@@ -25,6 +26,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ljwcodeBaseViewController : UIViewController<ljwcodeBaseViewControllerDelegate>
 
 -(ljwcodeNavigationBar *)showNaviBar;
+
+-(UIBarButtonItem *)configureLeftBarButtonItemWithImage:(NSString *)imageName;
+
+-(UIBarButtonItem *)configureRightBarButtonItemWithImage:(NSString *)imageName;
+
+-(UIBarButtonItem *)configureLeftBarButtonItemWithText:(NSString *)text;
+
+-(UIBarButtonItem *)configureRightBarButtonItemWithText:(NSString *)text;
 
 
 @end

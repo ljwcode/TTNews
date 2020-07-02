@@ -10,9 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*
+ api接口和json转字典模型
+ */
 @interface homeNewsModel : NSObject
 
-@property(nonatomic,strong)NSArray *data_array;
+@property(nonatomic,strong)NSArray *data;
 
 @property(nonatomic,copy)NSString *message;
 

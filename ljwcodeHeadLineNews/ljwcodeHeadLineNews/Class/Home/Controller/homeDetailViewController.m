@@ -14,6 +14,7 @@
 #import "homeNewsCellViewModel.h"
 #import "homeJokeModel.h"
 #import "ljwcodeHeader.h"
+#import "homeNewsBrowserViewController.h"
 
 @interface homeDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -30,7 +31,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    @weakify(self);
+    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        @strongify(self);
+        [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
+            [self.datasArray removeAllObjects];
+            NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
+            [self.datasArray addObjectsFromArray:datasArray];
+            [self.detailTableView reloadData];
+            [self.detailTableView.mj_header endRefreshing];
+            [self.detailTableView.mj_footer endRefreshing];
+        }];
+    }];
+    [self.detailTableView.mj_header beginRefreshing];
     // Do any additional setup after loading the view.
+}
+
+-(NSArray *)modelArrayWithCategory:(NSString *)category fromModel:(id)model{
+    if([category isEqualToString:@"essay_joke"]){
+        homeJokeModel *jokeModel = (homeJokeModel *)model;
+        return jokeModel.data_array;
+    }else if([category isEqualToString:@"组图"]){
+        homeNewsModel *newsModel = (homeNewsModel *)model;
+        return newsModel.data;;
+    }else{
+        homeNewsModel *newsModel = (homeNewsModel *)model;
+        return newsModel.data;
+    }
 }
 
 -(NSMutableArray *)datasArray{
@@ -48,6 +75,7 @@
 }
 
 -(UITableView *)detailTableView{
+    
     if(!_detailTableView){
         
         UITableView *tableView = [[UITableView alloc]init];
@@ -96,28 +124,36 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *resultCell = nil;
     if([self.titleModel.category isEqualToString:@"essay_joke"]){
-        homejokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homejokeTableViewCell class]) forIndexPath:indexPath];
+        homejokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homejokeTableViewCell class])];
         homeJokeSummarymodel *model = self.datasArray[indexPath.row];
         cell.jokeSummaryModel = model;
         resultCell = cell;
     }else if([self.titleModel.category isEqualToString:@"组图"]){
-        homeNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeNewsTableViewCell class]) forIndexPath:indexPath];
+        homeNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeNewsTableViewCell class])];
         homeNewsSummaryModel *model = self.datasArray[indexPath.row];
         cell.summaryModel = model;
         resultCell = cell;
     }else{
         homeNewsSummaryModel *model = self.datasArray[indexPath.row];
         if(model.infoModel.image_list){
-            homeNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeNewsTableViewCell class]) forIndexPath:indexPath];
+            homeNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeNewsTableViewCell class])];
             cell.summaryModel = model;
             resultCell = cell;
         }else{
-            homeContentNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeContentNewsTableViewCell class]) forIndexPath:indexPath];
+            homeContentNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeContentNewsTableViewCell class])];
             cell.newsSummaryModel = model;
             resultCell = cell;
         }
     }
     return resultCell;
+}
+
+//点击news cell跳转到新闻显示界面
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    homeNewsSummaryModel *model = [[homeNewsSummaryModel alloc]init];
+    homeNewsBrowserViewController *webVC = [[homeNewsBrowserViewController alloc]init];
+    webVC.urlString = model.infoModel.article_url;
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 /*

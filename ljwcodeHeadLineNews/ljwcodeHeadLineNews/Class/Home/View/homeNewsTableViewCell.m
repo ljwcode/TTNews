@@ -74,18 +74,17 @@ static CGFloat itemSpace = 5;
         _middleImageView.hidden = YES;
         _rightImageView.hidden = YES;
     }
-    _infoLabel.text = [NSString stringWithFormat:@"%@   %d阅读 0 分钟前",_summaryModel.infoModel.media_name,_summaryModel.infoModel.read_count];
+    _infoLabel.text = [NSString stringWithFormat:@"%@   %d阅读了 0 分钟前",_summaryModel.infoModel.media_name,_summaryModel.infoModel.read_count];
 }
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
+    return;
     // Configure the view for the selected state
 }
 
 -(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
-    [super setHighlighted:highlighted animated:animated];
+    return;
 }
 
 @end
