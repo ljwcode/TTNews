@@ -19,4 +19,19 @@
     return [NSString stringWithFormat:@"%@api/news/feed/v58/?",ljwcode_Base_url];
 }
 
++ (NSString *)videoTitlesURLString {
+    return [NSString stringWithFormat:@"%@video_api/get_category/v1/?",ljwcode_Base_url];
+}
++ (NSString *)videoListURLString {
+    return [NSString stringWithFormat:@"%@api/news/feed/v58/?",ljwcode_Base_url];
+}
+
++ (NSString *)microHeadlineURLString {
+    return [NSString stringWithFormat:@"%@api/news/feed/v54/?",ljwcode_Base_url];
+}
+
++ (NSString *)microVideoURLString {
+    return [NSString stringWithFormat:@"%@api/news/feed/v75/?",ljwcode_Base_url];
+}
+
 @end

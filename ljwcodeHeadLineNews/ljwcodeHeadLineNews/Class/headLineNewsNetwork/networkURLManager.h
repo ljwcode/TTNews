@@ -16,6 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSString *)homeListUrlString;
 
++(NSString *)videoTitlesURLString;
+
++(NSString *)videoListURLString;
+
++(NSString *)microHeadlineURLString;
+
++(NSString *)microVideoURLString;
+
 @end
 
 NS_ASSUME_NONNULL_END
