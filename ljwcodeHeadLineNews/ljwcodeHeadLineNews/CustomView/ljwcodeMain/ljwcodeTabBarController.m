@@ -29,6 +29,7 @@
 
 -(void)viewDidLoad
 {
+    [super viewDidLoad];
     _homeNavi = [self addChildViewController:[homeViewController class] normalImage:@"home_tabbar_32x32_" selectedImage:@"home_tabbar_press_32x32_" title:@"首页"];
     [self addChildViewController:[ljwcodeVideoViewController class] normalImage:@"video_tabbar_32x32_" selectedImage:@"video_tabbar_press_32x32_" title:@"西瓜视频"];
     [self addChildViewController:[ljwcodeWeiTouTiaoViewController class] normalImage:@"weitoutiao_tabbar_32x32_" selectedImage:@"weitoutiao_tabbar_press_32x32" title:@"微头条"];
@@ -55,7 +56,7 @@
         self.homeNavi.tabBarItem.image = [[UIImage imageNamed:@"home_tabbar_32x32_"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         self.homeNavi.tabBarItem.selectedImage = [[UIImage imageNamed:@"home_tabbar_press_32x32_"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }];
-    
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
