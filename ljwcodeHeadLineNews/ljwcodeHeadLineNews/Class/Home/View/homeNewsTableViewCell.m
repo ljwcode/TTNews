@@ -7,7 +7,7 @@
 //
 
 #import "homeNewsTableViewCell.h"
-#import "ljwcodeHeader.h"
+#import <UIImageView+WebCache.h>
 
 @interface homeNewsTableViewCell()
 

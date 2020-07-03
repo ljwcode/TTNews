@@ -13,7 +13,6 @@
 #import <UIView+LBFrame.h>
 #import "UIButton+extend.h"
 #import "MBProgressHUD+Add.h"
-#import <SDWebImage/SDWebImage.h>
 #import <MJRefresh/MJRefresh.h>
 #import "ljwcodeRefreshGifHeader.h"
 

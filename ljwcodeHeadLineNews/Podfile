@@ -6,7 +6,6 @@ target 'ljwcodeHeadLineNews' do
   use_frameworks!
 
   # Pods for ljwcodeHeadLineNews
-pod 'SDWebImage’
 pod 'AFNetworking'
 pod 'YYCache'
 pod 'DZNEmptyDataSet'
@@ -14,11 +13,10 @@ pod 'MJExtension'
 pod 'MBProgressHUD'
 pod 'ReactiveObjC'
 pod 'MJRefresh'
-pod 'ZFPlayer'
 pod 'Masonry'
 pod 'YYText'
-pod 'SDWebImage'
-pod 'KMCGeigerCounter'
 pod 'FMDB'
 pod 'LBPhotoBrowser', '~> 2.2.2'
+pod 'SDWebImage/WebP'
+pod 'SDWebImage’,’~> 4.0.0’
 end

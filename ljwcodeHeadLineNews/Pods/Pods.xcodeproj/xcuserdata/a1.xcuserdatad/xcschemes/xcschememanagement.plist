@@ -19,11 +19,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>KMCGeigerCounter.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>LBPhotoBrowser.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -74,7 +69,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ZFPlayer.xcscheme</key>
+		<key>libwebp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

@@ -2,7 +2,6 @@ ${PODS_ROOT}/Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineN
 ${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
 ${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework
 ${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework
-${BUILT_PRODUCTS_DIR}/KMCGeigerCounter/KMCGeigerCounter.framework
 ${BUILT_PRODUCTS_DIR}/LBPhotoBrowser/LBPhotoBrowser.framework
 ${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework
@@ -12,3 +11,4 @@ ${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework
 ${BUILT_PRODUCTS_DIR}/YYText/YYText.framework
+${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework

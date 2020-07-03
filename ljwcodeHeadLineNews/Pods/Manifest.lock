@@ -18,46 +18,53 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - KMCGeigerCounter (0.3.0)
   - LBPhotoBrowser (2.2.2):
     - SDWebImage
+  - libwebp (1.1.0):
+    - libwebp/demux (= 1.1.0)
+    - libwebp/mux (= 1.1.0)
+    - libwebp/webp (= 1.1.0)
+  - libwebp/demux (1.1.0):
+    - libwebp/webp
+  - libwebp/mux (1.1.0):
+    - libwebp/demux
+  - libwebp/webp (1.1.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJExtension (3.2.2)
   - MJRefresh (3.4.3)
   - ReactiveObjC (3.1.1)
-  - SDWebImage (5.8.1):
-    - SDWebImage/Core (= 5.8.1)
-  - SDWebImage/Core (5.8.1)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - SDWebImage/WebP (4.0.0):
+    - libwebp
+    - SDWebImage/Core
   - YYCache (1.0.4)
   - YYText (1.0.7)
-  - ZFPlayer (3.3.3):
-    - ZFPlayer/Core (= 3.3.3)
-  - ZFPlayer/Core (3.3.3)
 
 DEPENDENCIES:
   - AFNetworking
   - DZNEmptyDataSet
   - FMDB
-  - KMCGeigerCounter
   - LBPhotoBrowser (~> 2.2.2)
   - Masonry
   - MBProgressHUD
   - MJExtension
   - MJRefresh
   - ReactiveObjC
-  - SDWebImage
+  - SDWebImage (~> 4.0.0)
+  - SDWebImage/WebP
   - YYCache
   - YYText
-  - ZFPlayer
 
 SPEC REPOS:
   trunk:
     - AFNetworking
     - DZNEmptyDataSet
     - FMDB
-    - KMCGeigerCounter
     - LBPhotoBrowser
+    - libwebp
     - Masonry
     - MBProgressHUD
     - MJExtension
@@ -66,24 +73,22 @@ SPEC REPOS:
     - SDWebImage
     - YYCache
     - YYText
-    - ZFPlayer
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  KMCGeigerCounter: a06cfeed4a96e8f9a49028abb3ba7e53604d3219
   LBPhotoBrowser: e924dea551c494815fde9185bad85ab6331c45da
+  libwebp: 04242ef451672185c1fe41b285a034d2fbda483c
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
-  ZFPlayer: 1310252c253b9958e4fcd411e706b99c31834eaf
 
-PODFILE CHECKSUM: 5c121dcf693120488469ed5abad1d01164504020
+PODFILE CHECKSUM: bf96244390a9c1b5deb741ebdaa8faf54b584e6d
 
 COCOAPODS: 1.9.3
