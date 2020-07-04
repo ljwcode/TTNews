@@ -46,6 +46,8 @@
 		63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */; };
 		63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */; };
 		63B07BF624A1E41200C7CD6F /* UIView+frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF424A1E41200C7CD6F /* UIView+frame.m */; };
+		63C4729E24B0250B0030C84B /* videoPlayerToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4729D24B0250B0030C84B /* videoPlayerToolView.m */; };
+		63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */; };
 		63F1F8D024AF219400D687ED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F1F8CF24AF219400D687ED /* AVFoundation.framework */; };
 		63F1F8D324AF223200D687ED /* videoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8D224AF223200D687ED /* videoPlayerView.m */; };
 		63F1F8D924AF28CA00D687ED /* videoPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63F1F8D824AF28CA00D687ED /* videoPlayer.xib */; };
@@ -146,6 +148,10 @@
 		63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homeNewsTableViewCell.xib; sourceTree = "<group>"; };
 		63B07BF424A1E41200C7CD6F /* UIView+frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+frame.m"; sourceTree = "<group>"; };
 		63B07BF524A1E41200C7CD6F /* UIView+frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+frame.h"; sourceTree = "<group>"; };
+		63C4729C24B0250B0030C84B /* videoPlayerToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoPlayerToolView.h; sourceTree = "<group>"; };
+		63C4729D24B0250B0030C84B /* videoPlayerToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoPlayerToolView.m; sourceTree = "<group>"; };
+		63C4729F24B0566D0030C84B /* NetworkSpeedMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkSpeedMonitor.h; sourceTree = "<group>"; };
+		63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkSpeedMonitor.m; sourceTree = "<group>"; };
 		63F1F8CF24AF219400D687ED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		63F1F8D124AF223200D687ED /* videoPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoPlayerView.h; sourceTree = "<group>"; };
 		63F1F8D224AF223200D687ED /* videoPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoPlayerView.m; sourceTree = "<group>"; };
@@ -224,6 +230,8 @@
 				637C2D2524A9C1E60009274C /* UIButton+extend.m */,
 				6365C9BE24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.h */,
 				6365C9BF24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m */,
+				63C4729F24B0566D0030C84B /* NetworkSpeedMonitor.h */,
+				63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */,
 			);
 			path = ljwcodeTools;
 			sourceTree = "<group>";
@@ -390,6 +398,8 @@
 				63F1F8D124AF223200D687ED /* videoPlayerView.h */,
 				63F1F8D224AF223200D687ED /* videoPlayerView.m */,
 				63F1F8D824AF28CA00D687ED /* videoPlayer.xib */,
+				63C4729C24B0250B0030C84B /* videoPlayerToolView.h */,
+				63C4729D24B0250B0030C84B /* videoPlayerToolView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -709,6 +719,7 @@
 				63167AB324AB6091002CB4EF /* homeNewsRequestModel.m in Sources */,
 				631BAEE8249B63D700639CD2 /* UITabBar+ljwcodeTabBarItem.m in Sources */,
 				63796B1024ADD83B00FB1421 /* homeNewsBrowserViewController.m in Sources */,
+				63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */,
 				63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */,
 				8209791F1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m in Sources */,
 				6328F611249DEA8C00C767A8 /* ljwcodeEmitterHelper.m in Sources */,
@@ -738,6 +749,7 @@
 				637C2D3624A9D3EA0009274C /* networkManagerCenter.m in Sources */,
 				94A4A6EA24A25331002A6CA3 /* ljwcodeBaseViewController.m in Sources */,
 				63167AB024AB5FEE002CB4EF /* homeNewsCellViewModel.m in Sources */,
+				63C4729E24B0250B0030C84B /* videoPlayerToolView.m in Sources */,
 				63B07BF624A1E41200C7CD6F /* UIView+frame.m in Sources */,
 				631BAEEB249B751D00639CD2 /* ljwcodeNavigationController.m in Sources */,
 				63231B9124A08F110059FD5F /* ljwcodeNavigationBar.m in Sources */,

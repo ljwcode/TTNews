@@ -21,5 +21,7 @@ UIKIT_EXTERN NSString const *ljwcode_Base_url;
 
 UIKIT_EXTERN NSString *KHomeStopRefreshNot;
 
+UIKIT_EXTERN NSString const *ljwcode_VideoBase_url;
+
 #define LJWCODE_IID @"17769976909"
 #define LJWCODE_DEVICE_ID @"41312231473"

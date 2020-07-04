@@ -7,13 +7,19 @@
 //
 
 #import "videoPlayerView.h"
+#import "NetworkSpeedMonitor.h"
+#import "videoPlayerToolView.h"
 
 @interface videoPlayerView()
 
+@property(nonatomic,strong)videoPlayerToolView *playerToolView;
+
+@property(nonatomic,strong)NetworkSpeedMonitor *speedMonitor;
 
 @end
 
 static CGFloat itemSpace = 10;
+
 @implementation videoPlayerView
 //设置新闻视频播放器
 -(instancetype)initWithFrame:(CGRect)frame{
