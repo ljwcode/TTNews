@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSString *)microVideoURLString;
 
++(NSString *)playVideoURLString;
+
 @end
 
 NS_ASSUME_NONNULL_END
