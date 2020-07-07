@@ -83,7 +83,7 @@
         tableView.dataSource = self;
         tableView.rowHeight = 152;
         tableView.estimatedRowHeight = UITableViewAutomaticDimension;
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
        
         [self.view addSubview:tableView];
         [tableView mas_makeConstraints:^(MASConstraintMaker *make) {

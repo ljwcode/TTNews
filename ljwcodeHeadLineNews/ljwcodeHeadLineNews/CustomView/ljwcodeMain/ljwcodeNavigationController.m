@@ -26,21 +26,15 @@
 {
     
     [[UINavigationBar appearance]setTranslucent:NO];//不透明
-    [[UINavigationBar appearance]setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blueColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:13.f],NSFontAttributeName, nil]];
+    [[UINavigationBar appearance]setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:16.f],NSFontAttributeName, nil]];
     
     UIBarButtonItem *item = [UIBarButtonItem appearance];
-    [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:13.f],NSFontAttributeName, nil] forState:UIControlStateNormal];
+    [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15.f],NSFontAttributeName, nil] forState:UIControlStateNormal];
     
     [[UINavigationBar appearance]setBackgroundImage:[self drawImageContext:[UIColor colorWithRed:0.83 green:0.24 blue:0.24 alpha:1.0]] forBarMetrics:UIBarMetricsDefault];
     
 }
 
--(UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
-{
-    //设置NavigationBar通顶
-    return UIBarPositionTopAttached;
-    
-}
 
 +(UIImage *)drawImageContext:(UIColor *)color
 {
@@ -73,6 +67,7 @@
 {
     id target = self.interactivePopGestureRecognizer.delegate;
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
+    _pan = pan;
     pan.delegate = self;
     [self.view addGestureRecognizer:pan];
     self.interactivePopGestureRecognizer.enabled = NO;
