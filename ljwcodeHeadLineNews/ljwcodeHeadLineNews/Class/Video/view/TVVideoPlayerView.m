@@ -1,16 +1,16 @@
 //
-//  videoPlayerView.m
+//  TVVideoPlayerView.m
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/7/3.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "videoPlayerView.h"
+#import "TVVideoPlayerView.h"
 #import "NetworkSpeedMonitor.h"
 #import "videoPlayerToolView.h"
 
-@interface videoPlayerView()
+@interface TVVideoPlayerView()
 
 @property(nonatomic,strong)videoPlayerToolView *playerToolView;
 
@@ -19,9 +19,9 @@
 @end
 
 static CGFloat itemSpace = 10;
+//点击播放 在表页面播放 点击全屏，进入全屏播放
+@implementation TVVideoPlayerView
 
-@implementation videoPlayerView
-//设置新闻视频播放器
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
         self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:@""]];
@@ -32,6 +32,7 @@ static CGFloat itemSpace = 10;
     }
     return self;
 }
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

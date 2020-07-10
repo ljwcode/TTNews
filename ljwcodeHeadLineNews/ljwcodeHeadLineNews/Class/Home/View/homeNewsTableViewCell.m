@@ -19,10 +19,6 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftImageViewConstraintWidth;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftImageViewConstraintHeight;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleImageViewConstraintHeight;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleImageViewConstraintWidth;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightImageViewConstraintHeight;
@@ -43,7 +39,7 @@ static CGFloat itemSpace = 5;
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    NSArray *constraintArray = @[_leftImageViewConstraintWidth,_leftImageViewConstraintHeight,_middleImageViewConstraintWidth,_middleImageViewConstraintHeight,_rightImageViewConstraintWidth,_rightImageViewConstraintHeight];
+    NSArray *constraintArray = @[_leftImageViewConstraintWidth,_middleImageViewConstraintWidth,_rightImageViewConstraintWidth,_rightImageViewConstraintHeight];
     CGFloat width = ([UIScreen mainScreen].bounds.size.width - 20 - 2 * itemSpace)/3;
     for(NSLayoutConstraint *constraint in constraintArray){
         constraint.constant = width;

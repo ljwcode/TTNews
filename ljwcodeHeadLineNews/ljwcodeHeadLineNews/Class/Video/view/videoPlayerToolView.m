@@ -13,6 +13,11 @@
 
 @end
 
+/*
+ 1:普通短视频
+ 2:电视剧
+ */
+
 @implementation videoPlayerToolView
 
 -(instancetype)initWithFrame:(CGRect)frame{

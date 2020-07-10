@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <Masonry.h>
-#import "UIView+frame.h"
 #import <UIView+LBFrame.h>
 #import "UIButton+extend.h"
 #import "MBProgressHUD+Add.h"

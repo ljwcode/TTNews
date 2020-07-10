@@ -7,8 +7,6 @@
 //
 #import "homeViewController.h"
 #import "ljwcodeTabBarController.h"
-#import "QiPageMenuView.h"
-#import "QiPageContentView.h"
 #import "ljwcodeBaseViewController.h"
 #import "ljwcodeHeader.h"
 #import "channelButton.h"
@@ -50,7 +48,7 @@
     
     //channel title 从网络中获取得到
     [navBar setLjwcodeActionCallBack:^(ljwcodeNavigationBarAction action) {
-        @strongify(self);
+//        @strongify(self);
         if(action != ljwcodeNavigationBarActionSend){
             
         }else{
