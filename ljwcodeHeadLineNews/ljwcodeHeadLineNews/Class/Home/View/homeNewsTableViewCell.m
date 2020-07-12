@@ -17,15 +17,21 @@
 @property (weak, nonatomic) IBOutlet UIImageView *rightImageView;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftImageViewConstraintHeight;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftImageViewConstraintWidth;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleImageViewConstraintWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftImgToMiddleImgMargin;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightImageViewConstraintHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleImgConstraintWidth;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightImageViewConstraintWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleImgConstraintHeight;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftToMiddleConstraintMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightImgConstraintWidth;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightImgConstraintHeight;
+
+
 
 @property(nonatomic,strong)NSArray *imageViews;
 
@@ -39,12 +45,12 @@ static CGFloat itemSpace = 5;
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    NSArray *constraintArray = @[_leftImageViewConstraintWidth,_middleImageViewConstraintWidth,_rightImageViewConstraintWidth,_rightImageViewConstraintHeight];
+    NSArray *constraintArray = @[_leftImageViewConstraintWidth,_middleImgConstraintWidth,_rightImgConstraintWidth,_rightImgConstraintHeight,_rightImgConstraintWidth,_rightImgConstraintHeight];
     CGFloat width = ([UIScreen mainScreen].bounds.size.width - 20 - 2 * itemSpace)/3;
     for(NSLayoutConstraint *constraint in constraintArray){
         constraint.constant = width;
     }
-    _leftToMiddleConstraintMargin.constant = itemSpace;
+    _leftImgToMiddleImgMargin.constant = itemSpace;
     _titleLabel.numberOfLines = 2;
     _infoLabel.font = [UIFont systemFontOfSize:10];
     _imageViews = @[_leftImageView,_middleImageView,_rightImageView];
