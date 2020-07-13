@@ -17,9 +17,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *rightImageView;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftImageViewConstraintHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftImgConstraintHeight;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftImageViewConstraintWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftImgConstraintWidth;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftImgToMiddleImgMargin;
 
@@ -45,7 +45,7 @@ static CGFloat itemSpace = 5;
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    NSArray *constraintArray = @[_leftImageViewConstraintWidth,_middleImgConstraintWidth,_rightImgConstraintWidth,_rightImgConstraintHeight,_rightImgConstraintWidth,_rightImgConstraintHeight];
+    NSArray *constraintArray = @[_leftImgConstraintHeight,_leftImgConstraintWidth,_middleImgConstraintWidth,_middleImgConstraintHeight,_rightImgConstraintWidth,_rightImgConstraintHeight];
     CGFloat width = ([UIScreen mainScreen].bounds.size.width - 20 - 2 * itemSpace)/3;
     for(NSLayoutConstraint *constraint in constraintArray){
         constraint.constant = width;
