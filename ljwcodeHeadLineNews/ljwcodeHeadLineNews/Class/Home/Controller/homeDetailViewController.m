@@ -81,7 +81,6 @@
         UITableView *tableView = [[UITableView alloc]init];
         tableView.delegate = self;
         tableView.dataSource = self;
-        tableView.rowHeight = 152;
         tableView.estimatedRowHeight = UITableViewAutomaticDimension;
         tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
        

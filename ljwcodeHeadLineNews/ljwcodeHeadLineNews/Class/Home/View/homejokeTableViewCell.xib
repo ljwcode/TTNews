@@ -36,6 +36,7 @@
                             <color key="titleColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <connections>
+                            <action selector="disLikeBtnHandle:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WIa-Eo-pSS"/>
                             <action selector="disLikeHandle:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1gd-Mq-0H4"/>
                         </connections>
                     </button>
@@ -47,7 +48,7 @@
                         </constraints>
                         <state key="normal" image="love_video_20x20_"/>
                         <connections>
-                            <action selector="collectionBtnHandle:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xMF-fX-Ohl"/>
+                            <action selector="collectionBtnHandle:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ukn-oz-IDa"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AGT-Q6-uix">
@@ -78,6 +79,7 @@
                         </state>
                         <connections>
                             <action selector="likeBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Mku-i2-FmU"/>
+                            <action selector="likeBtnHandle:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9JX-q2-uEH"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqD-tz-r5G" userLabel="shareButton">

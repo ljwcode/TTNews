@@ -44,7 +44,6 @@ static inline void configureChannelBtn(channelButton *Btn){
     Btn.layer.shadowColor = nil;
     Btn.layer.shadowOffset = CGSizeMake(0, 0);
     Btn.layer.shadowPath = nil;
-    [Btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 }
 
 static inline void configureRecommendChannelBtn(channelButton *Btn){
@@ -78,10 +77,12 @@ static inline void configureRecommendChannelBtn(channelButton *Btn){
     if(self = [super initWithFrame:frame])
     {
         self.titleLabel.font = [UIFont systemFontOfSize:14.f];
+        [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
         UIImageView *delImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"closeicon_repost_18x18_"]];
-        _channelImageView = delImageView;
-        [self addSubview:_channelImageView];
-        [_channelImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        _deleteImageView = delImageView;
+        [self addSubview:_deleteImageView];
+        [_deleteImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.mas_equalTo(18);
             make.top.right.mas_equalTo(self);
         }];
@@ -112,7 +113,7 @@ static inline void configureRecommendChannelBtn(channelButton *Btn){
 }
 
 -(void)longPresHandle:(UILongPressGestureRecognizer *)longGes{
-    if(self.channelModel.isMyChannel == NO || self.channelImageView.hidden == NO){
+    if(self.channelModel.isMyChannel == NO || self.deleteImageView.hidden == NO){
         return;
     }
     switch(longGes.state){
@@ -165,7 +166,6 @@ static inline void configureRecommendChannelBtn(channelButton *Btn){
         configureRecommendChannelBtn(self);
     }
 }
-
 
 -(void)setChannelModel:(newsChannelModel *)channelModel{
     _channelModel = channelModel;

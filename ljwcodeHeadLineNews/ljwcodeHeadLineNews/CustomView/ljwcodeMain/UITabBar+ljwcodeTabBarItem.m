@@ -8,23 +8,19 @@
 
 #import "UITabBar+ljwcodeTabBarItem.h"
 #import <UIView+LBFrame.h>
+#import "baseBadgeLabel.h"
 //显示提示消息红点
 @implementation UITabBar (ljwcodeTabBarItem)
 
 -(UILabel *)badgeLabelWithStr:(NSString *)numStr
 {
-    UILabel *label = [[UILabel alloc]init];
+    baseBadgeLabel *label = [[baseBadgeLabel alloc]init];
     label.text = [NSString stringWithFormat:@"%@",numStr];
-    label.textColor = [UIColor whiteColor];
-    label.backgroundColor = [UIColor colorWithRed:0.97 green:0.35 blue:0.35 alpha:1.0];
+    label.textColor = [UIColor redColor];
     label.font = [UIFont systemFontOfSize:13.f];
     label.adjustsFontSizeToFitWidth = YES;
-    label.layer.borderColor = [UIColor whiteColor].CGColor;
-    label.layer.borderWidth = 1.f;
     [label sizeToFit];
-    label.height = label.height+4;
-    label.layer.cornerRadius = label.height/4;
-    label.width = label.width+10;
+
     [self addSubview:label];
     
     return label;

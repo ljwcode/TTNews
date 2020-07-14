@@ -23,4 +23,8 @@
         dispatch_async(dispatch_get_main_queue(), block);\
     }
 
+#define isMyChannelFrame(i) CGRectMake(itemSpace+(i%columns)*(itemSpace+_labelWidth), CGRectGetMaxY(_headerViewOne_frame)+lineSpace+(i/columns)*(lineSpace+labelHeight), _labelWidth, labelHeight)
+
+#define isRecomChannelFrame(index) CGRectMake(itemSpace+(index%columns)*(itemSpace+_labelWidth), _headerViewOne_frame.size.height+CGRectGetMaxY(_headerViewOne_frame)+lineSpace+(index/columns)*(lineSpace+labelHeight), _labelWidth, labelHeight)
+
 #endif /* ljwcodeHeadLineNews_h */

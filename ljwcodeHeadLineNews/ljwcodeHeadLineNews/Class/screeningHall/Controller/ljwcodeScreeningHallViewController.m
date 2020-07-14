@@ -1,22 +1,22 @@
 //
-//  ljwcodeWeiTouTiaoViewController.m
+//  ljwcodeScreeningHallViewController.m
 //
 //
 //  Created by ljwcode on 2020/6/18.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "ljwcodeWeiTouTiaoViewController.h"
+#import "ljwcodeScreeningHallViewController.h"
 
-@interface ljwcodeWeiTouTiaoViewController ()
+@interface ljwcodeScreeningHallViewController ()
 
 @end
 
-@implementation ljwcodeWeiTouTiaoViewController
+@implementation ljwcodeScreeningHallViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor orangeColor];
+    self.view.backgroundColor = [UIColor blueColor];
     // Do any additional setup after loading the view from its nib.
 }
 

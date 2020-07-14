@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface channelButton : UIButton
 
-@property(nonatomic,strong)UIImageView *channelImageView;
+@property(nonatomic,strong)UIImageView *deleteImageView;//删除状态图片
 
 @property(nonatomic,strong)newsChannelModel *channelModel;
 

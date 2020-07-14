@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)CGRect frame;
 
-@property(nonatomic,assign)CGFloat tag;
+@property(nonatomic,assign)int tag;
 
 @property(nonatomic,assign)BOOL isMyChannel;
 

@@ -18,9 +18,25 @@
 
 @end
 
-//#define channelFrame(i) CGRectMake(itemSpace + (i % columns) * (_labelWidth + itemSpace), CGRectGetMaxY(self.headerViewOne_frame) + lineSpace + (i / columns)*(labelHeight + lineSpace), _labelWidth, labelHeight)
-//
-//#define recommendChannelFrame(i)  CGRectMake(itemSpace + ((i) % columns)* (_labelWidth + itemSpace),CGRectGetMaxY(self.newsModel.frame) + self.headerViewOne_frame.size.height + lineSpace + ((i) / columns)*(labelHeight + lineSpace), _labelWidth, labelHeight)
+@implementation channelHeaderView
+
+-(instancetype)initWithFrame:(CGRect)frame{
+    if(self = [super initWithFrame:frame]){
+        UIButton *closeBtn = UIButton.buttonType(UIButtonTypeCustom).showImage([UIImage imageNamed:@"close_sdk_login_14x14_"],UIControlStateNormal);
+        closeBtn.frame = CGRectMake(15, 0, 40, 40);
+        [closeBtn addTarget:self action:@selector(closeHandle:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:closeBtn];
+    }
+    return self;
+}
+
+-(void)closeHandle:(UIButton *)sender{
+    if(self.callBack){
+        self.callBack();
+    }
+}
+
+@end
 
 static CGFloat lineSpace = 10;//纵向间距
 static CGFloat itemSpace = 10;//横向间距
@@ -32,8 +48,6 @@ static CGFloat labelHeight = 40;
 @property (nonatomic,strong)NSMutableArray *channelArray;
 
 @property (nonatomic,strong)NSMutableArray *recommendChannelArray;
-
-@property (nonatomic,strong)dispatch_queue_t queue;
 
 @property (nonatomic,strong)NSMutableArray *dataArray;
 
@@ -73,10 +87,9 @@ static CGFloat labelHeight = 40;
         [self setupUI];
         _labelWidth = (self.frame.size.width - itemSpace * (columns + 1)) / columns;
         _dataArray = [[NSMutableArray alloc]init];
-        _queue = dispatch_queue_create("newsChannelHeader", DISPATCH_QUEUE_SERIAL);
         self.delegate = self;
         [self configureData];
-        
+       
     }
     return self;
 }
@@ -88,16 +101,16 @@ static CGFloat labelHeight = 40;
     _channelHeaderViewOne = channelHeaderOneView;
     
     [channelHeaderOneView setCallBack:^(BOOL selected) {
-        
+        [self refreshEditBtnStatus:selected];
     }];
     _headerViewOne_frame = channelHeaderOneView.frame;
-    [self addSubview:channelHeaderOneView];
+    [self addSubview:_channelHeaderViewOne];
     
     newsChannelTitleView *channelHeaderTwoView = [[newsChannelTitleView alloc]initWithTitle:@"推荐频道" subTitle:@"点击进入频道" needEdit:NO];
-    channelHeaderTwoView.hidden = YES;
     _channelHeaderViewTwo = channelHeaderTwoView;
-    _channelHeaderViewTwo.frame = channelHeaderTwoView.frame;
-    [self addSubview:channelHeaderTwoView];
+    _channelHeaderViewTwo.frame = _channelHeaderViewTwo.bounds;
+    _channelHeaderViewTwo.hidden = YES;
+    [self addSubview:_channelHeaderViewTwo];
     
     newsChannelTitleView *headerTitleView = [[newsChannelTitleView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40)];
     [headerTitleView setCallBack:^(BOOL selected) {
@@ -110,7 +123,7 @@ static CGFloat labelHeight = 40;
 
 //设置数据源
 -(void)configureData{
-    dispatch_async(_queue, ^{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
         for(int i = 0;i < _channelArray.count;i++){
             newsChannelModel *newsModel1 = [[newsChannelModel alloc]init];
             newsModel1.name = _channelArray[i];
@@ -134,7 +147,7 @@ static CGFloat labelHeight = 40;
         newsChannelModel *model = _dataArray[i];
         model.tag = i;
         if(model.isMyChannel){
-            model.frame = CGRectMake(itemSpace+(i%columns)*(itemSpace+_labelWidth), CGRectGetMaxY(_headerViewOne_frame)+lineSpace+(i/columns)*(lineSpace+labelHeight), _labelWidth, labelHeight);
+            model.frame = isMyChannelFrame(i);
             self.newsModel = model;
         }
     }
@@ -149,7 +162,7 @@ static CGFloat labelHeight = 40;
         newsChannelModel *model = self.dataArray[i];
         if(!model.isMyChannel){
             int index = i - self.newsModel.tag - 1;
-            model.frame = CGRectMake(itemSpace+(index%columns)*(itemSpace+_labelWidth), _headerViewOne_frame.size.height+CGRectGetMaxY(_headerViewOne_frame)+lineSpace+(index/columns)*(lineSpace+labelHeight), _labelWidth, labelHeight);
+            model.frame = isRecomChannelFrame(index);
         }
     }
     
@@ -157,8 +170,8 @@ static CGFloat labelHeight = 40;
         
         for(newsChannelModel *model in self.dataArray){
             
-            __block channelButton *channelBtn = [[channelButton alloc]initWithMyChannelBlock:^(channelButton * _Nonnull Btn) {
-                if(!channelBtn.channelImageView.hidden){
+           __block channelButton *channelBtn = [[channelButton alloc]initWithMyChannelBlock:^(channelButton * _Nonnull Btn) {
+                if(!channelBtn.deleteImageView.hidden){
                     [self removeChannelBtn:Btn]; //在我的频道那里进行删除操作
                 }
             } recommendChannelBlock:^(channelButton * _Nonnull Btn) {
@@ -167,11 +180,11 @@ static CGFloat labelHeight = 40;
             
             [channelBtn longPressGestureWithChannelBeginBlock:^(channelButton * _Nonnull Btn) {
                 [self addSubview:Btn];
-                
+
             } channelMoveBlock:^(channelButton * _Nonnull Btn, UILongPressGestureRecognizer * _Nonnull longPreGes) {
-                
+                [self adjustCenterForBtn:Btn withGes:longPreGes];
             } channelEndBlock:^(channelButton * _Nonnull Btn) {
-                
+                [self resetFrame:Btn];
             }];
             channelBtn.channelModel = model;
             if (channelBtn.channelModel.name.length > 2) {
@@ -200,11 +213,11 @@ static CGFloat labelHeight = 40;
             newsChannelModel *model = self.dataArray[i];
             model.tag = i;
             if(model.isMyChannel){
-                model.Btn.frame = CGRectMake(itemSpace+(i%columns)*(itemSpace+_labelWidth), CGRectGetMaxY(_headerViewOne_frame)+lineSpace+(i/columns)*(lineSpace+labelHeight), _labelWidth, labelHeight);;
+                model.Btn.frame = isMyChannelFrame(i);
                 model.hideDeleteBtn = isEditSelected?NO:YES;
             }else {
                 NSInteger index = i - self.newsModel.tag -1;
-                model.Btn.frame = CGRectMake(itemSpace+(index%columns)*(itemSpace+_labelWidth), _headerViewOne_frame.size.height+CGRectGetMaxY(_headerViewOne_frame)+lineSpace+(index/columns)*(lineSpace+labelHeight), _labelWidth, labelHeight);;
+                model.Btn.frame = isRecomChannelFrame(index);
                 model.hideDeleteBtn = YES;
             }
             if(i == newsModelIndex){
@@ -224,16 +237,16 @@ static CGFloat labelHeight = 40;
     btn.channelModel.isMyChannel = NO;
     NSInteger newsModelIndex = self.newsModel.tag - 1;
     
-    dispatch_async(_queue, ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         for (int i = 0; i < self.dataArray.count; i++) {
             newsChannelModel *model = self.dataArray[i];
             model.tag = i;
             if(model.isMyChannel){
-                model.Btn.frame = CGRectMake(itemSpace+(i%columns)*(itemSpace+_labelWidth), CGRectGetMaxY(_headerViewOne_frame)+lineSpace+(i/columns)*(lineSpace+labelHeight), _labelWidth, labelHeight);;
+                model.Btn.frame = isMyChannelFrame(i);
                 model.hideDeleteBtn = NO;
             }else {
                 NSInteger index = i - self.newsModel.tag - 1;
-                model.Btn.frame = CGRectMake(itemSpace+(index%columns)*(itemSpace+_labelWidth), _headerViewOne_frame.size.height+CGRectGetMaxY(_headerViewOne_frame)+lineSpace+(index/columns)*(lineSpace+labelHeight), _labelWidth, labelHeight);;
+                model.Btn.frame = isRecomChannelFrame(index);
                 model.hideDeleteBtn = YES;
             }
             if(i == newsModelIndex){
@@ -250,7 +263,7 @@ static CGFloat labelHeight = 40;
     dispatch_async(dispatch_get_main_queue(), ^{
         for (newsChannelModel *model in _dataArray) {
             model.Btn.frame = model.frame;
-            model.Btn.channelImageView.hidden = model.hideDeleteBtn;
+            model.Btn.deleteImageView.hidden = model.hideDeleteBtn;
             [model.Btn reloadData];
         }
     });
@@ -262,7 +275,7 @@ static CGFloat labelHeight = 40;
         return;
     }
     [UIView animateWithDuration:0.25 animations:^{
-        self.channelHeaderViewTwo.frame = CGRectMake(0, CGRectGetMaxY(self.newsModel.frame), self.frame.size.width, 54);
+        self.channelHeaderViewTwo.frame = CGRectMake(0, CGRectGetMaxY(self.newsModel.frame)+lineSpace, self.frame.size.width, 54);
     }];
     
 }
@@ -278,7 +291,7 @@ static CGFloat labelHeight = 40;
 
 - (void)channelShow {
     [UIView animateWithDuration:0.25 animations:^{
-        self.frame = CGRectMake(0, 44, self.width, self.height);
+        self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height == 812?44:20, self.width, self.height);
     }];
 }
 
@@ -290,7 +303,111 @@ static CGFloat labelHeight = 40;
     }];
 }
 
+#pragma mark - 刷新编辑按钮状态
+
+-(void)refreshEditBtnStatus:(BOOL)show{
+    if(!show){
+        for(channelButton *btn in self.subviews){
+            if(![btn isKindOfClass:[channelButton class]])continue;
+            if(!btn.channelModel.isMyChannel){
+                btn.deleteImageView.hidden = YES;
+            }else{
+                btn.deleteImageView.hidden = YES;
+            }
+        }
+    }else{
+        for(channelButton *btn in self.subviews){
+            if(![btn isKindOfClass:[channelButton class]])continue;
+            if(!btn.channelModel.isMyChannel){
+                btn.deleteImageView.hidden = NO;
+            }else{
+                btn.deleteImageView.hidden = YES;
+            }
+        }
+    }
+}
+
 #pragma mark - channel button 交换位置
+
+/*
+ 重置位置
+ */
+-(void)resetFrame:(channelButton *)Btn{
+    
+    newsChannelModel *model = Btn.channelModel;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        model.frame = isMyChannelFrame(Btn.channelModel.tag);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.25 animations:^{
+                Btn.frame = model.frame;
+            }];
+        });
+    });
+}
+
+-(void)newLocationTapWithBtn:(channelButton *)Btn locationBlock:(void(^)(newsChannelModel *model))localtionBlock{
+    newsChannelModel *channelModel = Btn.channelModel;
+    CGPoint moveBtnCenter = Btn.center;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSMutableArray *models = [[NSMutableArray alloc]initWithArray:self.dataArray];
+        for (newsChannelModel *model in models) {
+            if (model == channelModel) {
+                continue;
+            }
+            if (!model.isMyChannel) {
+                continue;
+            }
+            if (CGRectContainsPoint(model.frame,moveBtnCenter)) {
+                localtionBlock(model);
+            }
+        }
+    });
+}
+
+/*
+ 交换两个按钮位置
+ */
+- (void)adjustCenterForBtn:(channelButton *)Btn withGes:(UILongPressGestureRecognizer *)longPreGes{
+    CGPoint newPoint = [longPreGes locationInView:self];
+    Btn.center = newPoint;
+    [self newLocationTapWithBtn:Btn locationBlock:^(newsChannelModel* targetModel) {
+        if (self.newsModel == Btn.channelModel) {
+            newsChannelModel *model = self.dataArray[Btn.channelModel.tag - 1];
+            _newsModel = model;
+        }else if(_newsModel == targetModel){
+            _newsModel = Btn.channelModel;
+        }
+        [_dataArray removeObject:Btn.channelModel];
+        [_dataArray insertObject:Btn.channelModel atIndex:targetModel.tag];
+        for(int i = 0;i < _dataArray.count;i++){
+            newsChannelModel *model = _dataArray[i];
+            model.tag = i;
+            if(model.isMyChannel && model != Btn.channelModel){
+                model.frame = isMyChannelFrame(i);
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            for(int i = 0;i < _dataArray.count;i++){
+                newsChannelModel *model = _dataArray[i];
+                if(model.isMyChannel && model != Btn.channelModel){
+                    [UIView animateWithDuration:0.25 animations:^{
+                        Btn.channelModel.frame = model.frame;
+                    }];
+                }
+            }
+        });
+    }];
+    
+    
+}
+
+#pragma mark - scrollerVIew delegate
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(scrollView.contentOffset.y < -50){
+        [self channelHide];
+    }
+}
 
 
 

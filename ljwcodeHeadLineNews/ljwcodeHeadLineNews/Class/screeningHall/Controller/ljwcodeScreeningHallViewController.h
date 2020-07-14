@@ -1,5 +1,5 @@
 //
-//  ljwcodeWeiTouTiaoViewController.m
+//  ljwcodeScreeningHallViewController.h
 //
 //
 //  Created by ljwcode on 2020/6/18.
@@ -7,6 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface ljwcodeWeiTouTiaoViewController : UIViewController
+@interface ljwcodeScreeningHallViewController : UIViewController
 
 @end

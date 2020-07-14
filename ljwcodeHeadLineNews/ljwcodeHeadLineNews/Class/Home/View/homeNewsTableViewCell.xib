@@ -29,8 +29,8 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IpM-x1-QCV" userLabel="oneImgView">
                         <rect key="frame" x="10" y="58" width="86" height="66"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="66" id="ebO-LN-IxC"/>
-                            <constraint firstAttribute="width" constant="86" id="mff-cb-kKe"/>
+                            <constraint firstAttribute="height" constant="66" id="ebO-LN-IxC" userLabel="Left Img Constraint Height"/>
+                            <constraint firstAttribute="width" constant="86" id="mff-cb-kKe" userLabel="Left Img Constraint Width"/>
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0iY-cg-L7i" userLabel="twoImgView">
@@ -67,6 +67,7 @@
                     <constraint firstAttribute="trailing" secondItem="qCe-Im-ByO" secondAttribute="trailing" constant="16" id="Fg0-e3-WJs"/>
                     <constraint firstItem="IpM-x1-QCV" firstAttribute="top" secondItem="qCe-Im-ByO" secondAttribute="bottom" constant="23.5" id="Tbe-oP-EpW"/>
                     <constraint firstItem="hwv-Vc-y34" firstAttribute="top" secondItem="qCe-Im-ByO" secondAttribute="bottom" constant="23.5" id="Wuh-H9-mJu"/>
+                    <constraint firstItem="hwv-Vc-y34" firstAttribute="leading" secondItem="0iY-cg-L7i" secondAttribute="trailing" constant="8" id="ZLC-0g-xWh"/>
                     <constraint firstItem="2cv-u6-ixP" firstAttribute="top" secondItem="IpM-x1-QCV" secondAttribute="bottom" constant="8" id="cu2-4y-4oG"/>
                     <constraint firstItem="2cv-u6-ixP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="n5r-Tv-3BS"/>
                     <constraint firstItem="IpM-x1-QCV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="nd2-tV-dZe"/>
@@ -77,9 +78,9 @@
             <connections>
                 <outlet property="infoLabel" destination="2cv-u6-ixP" id="jKM-Zp-LOe"/>
                 <outlet property="leftImageView" destination="IpM-x1-QCV" id="bNf-3W-LRr"/>
-                <outlet property="leftImageViewConstraintHeight" destination="ebO-LN-IxC" id="B1r-4e-eF6"/>
-                <outlet property="leftImageViewConstraintWidth" destination="mff-cb-kKe" id="xbB-bW-Jot"/>
-                <outlet property="leftImgToRightImgMargin" destination="AME-8U-bmA" id="m2G-2F-j9M"/>
+                <outlet property="leftImgConstraintHeight" destination="ebO-LN-IxC" id="J4s-KV-6ck"/>
+                <outlet property="leftImgConstraintWidth" destination="mff-cb-kKe" id="Sn5-9r-HtZ"/>
+                <outlet property="leftImgToMiddleImgMargin" destination="AME-8U-bmA" id="8RE-4x-GIZ"/>
                 <outlet property="middleImageView" destination="0iY-cg-L7i" id="Rje-uB-ZQS"/>
                 <outlet property="middleImgConstraintHeight" destination="Aih-i5-UdH" id="IeO-eF-jtf"/>
                 <outlet property="middleImgConstraintWidth" destination="7WX-eM-Ybz" id="U7l-sg-qgk"/>

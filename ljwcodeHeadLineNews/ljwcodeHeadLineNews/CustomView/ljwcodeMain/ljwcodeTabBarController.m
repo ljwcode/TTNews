@@ -12,7 +12,7 @@
 #import "UITabBar+ljwcodeTabBarItem.h"
 #import "ljwcodeHeader.h"
 #import "homeViewController.h"
-#import "ljwcodeWeiTouTiaoViewController.h"
+#import "ljwcodeScreeningHallViewController.h"
 #import "ljwcodeMineViewController.h"
 #import "ljwcodeVideoViewController.h"
 
@@ -32,7 +32,7 @@
     [super viewDidLoad];
     _homeNavi = [self addChildViewController:[homeViewController class] normalImage:@"home_tabbar_32x32_" selectedImage:@"home_tabbar_press_32x32_" title:@"首页"];
     [self addChildViewController:[ljwcodeVideoViewController class] normalImage:@"video_tabbar_32x32_" selectedImage:@"video_tabbar_press_32x32_" title:@"西瓜视频"];
-    [self addChildViewController:[ljwcodeWeiTouTiaoViewController class] normalImage:@"weitoutiao_tabbar_32x32_" selectedImage:@"weitoutiao_tabbar_press_32x32" title:@"放映厅"];
+    [self addChildViewController:[ljwcodeScreeningHallViewController class] normalImage:@"weitoutiao_tabbar_32x32_" selectedImage:@"weitoutiao_tabbar_press_32x32" title:@"放映厅"];
     [self addChildViewController:[ljwcodeMineViewController class] normalImage:@"huoshan_tabbar_32x32_" selectedImage:@"huoshan_tabbar_press_32x32_" title:@"我"];
     
     self.delegate = self;

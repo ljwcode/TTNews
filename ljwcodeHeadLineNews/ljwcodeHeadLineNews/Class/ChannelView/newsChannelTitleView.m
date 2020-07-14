@@ -37,8 +37,6 @@
     self.enterChannelLabel.text = subTitle;
     self.editButton.hidden = !needEdit;
     self.editButton.layer.cornerRadius = 10;
-    self.editButton.layer.borderColor = [[UIColor colorWithRed:0.93 green:0.37 blue:0.37 alpha:1]CGColor];
-    self.editButton.layer.borderWidth = 1;
     self.enterChannelLabel.textColor = [UIColor colorWithRed:0.65 green:0.65 blue:0.65 alpha:1];
     return self;
 }
@@ -46,10 +44,10 @@
 - (IBAction)clickEditButton:(UIButton *)sender {
     sender.selected = !sender.selected;
     if(sender.selected){
-        sender.titleLabel.text = @"拖拽进行排序";
+        _enterChannelLabel.text = @"拖拽进行排序";
         
     }else{
-        sender.titleLabel.text = @"点击进入频道";
+        _enterChannelLabel.text = @"点击进入频道";
     }
     if(self.callBack)
     {

@@ -29,6 +29,7 @@
 		63422C5824A87EC20091FEE1 /* newsChannelTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63422C5724A87EC20091FEE1 /* newsChannelTitleView.xib */; };
 		63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5A24A88BB40091FEE1 /* newsChannelModel.m */; };
 		63422C5E24A88F020091FEE1 /* channelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5D24A88F020091FEE1 /* channelButton.m */; };
+		634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */; };
 		6365C9C024ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6365C9BF24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m */; };
 		63796B1024ADD83B00FB1421 /* homeNewsBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63796B0F24ADD83B00FB1421 /* homeNewsBrowserViewController.m */; };
 		637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2524A9C1E60009274C /* UIButton+extend.m */; };
@@ -60,7 +61,7 @@
 		820978E81BD3A37600CF9D0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 820978E71BD3A37600CF9D0C /* main.m */; };
 		820978EB1BD3A37700CF9D0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 820978EA1BD3A37700CF9D0C /* AppDelegate.m */; };
 		820979101BD3AB2800CF9D0C /* homeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8209790E1BD3AB2800CF9D0C /* homeViewController.m */; };
-		820979151BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979131BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m */; };
+		820979151BD3AEA800CF9D0C /* ljwcodeScreeningHallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979131BD3AEA800CF9D0C /* ljwcodeScreeningHallViewController.m */; };
 		8209791A1BD3AFAC00CF9D0C /* ljwcodeMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979181BD3AFAC00CF9D0C /* ljwcodeMineViewController.m */; };
 		8209791F1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8209791D1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.m */; };
 		820979281BD3B28700CF9D0C /* ljwcodeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979271BD3B28700CF9D0C /* ljwcodeTabBarController.m */; };
@@ -113,6 +114,8 @@
 		63422C5A24A88BB40091FEE1 /* newsChannelModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newsChannelModel.m; sourceTree = "<group>"; };
 		63422C5C24A88F020091FEE1 /* channelButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = channelButton.h; sourceTree = "<group>"; };
 		63422C5D24A88F020091FEE1 /* channelButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = channelButton.m; sourceTree = "<group>"; };
+		634A581324BD9B7D00CDF423 /* baseBadgeLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseBadgeLabel.h; sourceTree = "<group>"; };
+		634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseBadgeLabel.m; sourceTree = "<group>"; };
 		6365C9BE24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeRefreshGifHeader.h; sourceTree = "<group>"; };
 		6365C9BF24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeRefreshGifHeader.m; sourceTree = "<group>"; };
 		63796B0E24ADD83B00FB1421 /* homeNewsBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsBrowserViewController.h; sourceTree = "<group>"; };
@@ -173,8 +176,8 @@
 		820978F71BD3A37700CF9D0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8209790D1BD3AB2800CF9D0C /* homeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = homeViewController.h; sourceTree = "<group>"; };
 		8209790E1BD3AB2800CF9D0C /* homeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = homeViewController.m; sourceTree = "<group>"; };
-		820979121BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeWeiTouTiaoViewController.h; sourceTree = "<group>"; };
-		820979131BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodeWeiTouTiaoViewController.m; sourceTree = "<group>"; };
+		820979121BD3AEA800CF9D0C /* ljwcodeScreeningHallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeScreeningHallViewController.h; sourceTree = "<group>"; };
+		820979131BD3AEA800CF9D0C /* ljwcodeScreeningHallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodeScreeningHallViewController.m; sourceTree = "<group>"; };
 		820979171BD3AFAC00CF9D0C /* ljwcodeMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeMineViewController.h; sourceTree = "<group>"; };
 		820979181BD3AFAC00CF9D0C /* ljwcodeMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodeMineViewController.m; sourceTree = "<group>"; };
 		8209791C1BD3AFDB00CF9D0C /* ljwcodeVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljwcodeVideoViewController.h; sourceTree = "<group>"; };
@@ -273,6 +276,22 @@
 			path = ChannelView;
 			sourceTree = "<group>";
 		};
+		634A581624BDA05E00CDF423 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		634A581724BDA06800CDF423 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				820979121BD3AEA800CF9D0C /* ljwcodeScreeningHallViewController.h */,
+				820979131BD3AEA800CF9D0C /* ljwcodeScreeningHallViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		63796B0D24ADCFDE00FB1421 /* webView */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +324,8 @@
 		637C5C0624A35B6C00D7C0E0 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				634A581324BD9B7D00CDF423 /* baseBadgeLabel.h */,
+				634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -477,7 +498,7 @@
 				63422C4724A8759C0091FEE1 /* ChannelView */,
 				820979041BD3AA9400CF9D0C /* Base */,
 				820979081BD3AB0600CF9D0C /* Home */,
-				820979091BD3AB0600CF9D0C /* weitoutiao */,
+				820979091BD3AB0600CF9D0C /* screeningHall */,
 				8209790A1BD3AB0600CF9D0C /* mine */,
 				8209790C1BD3AB0600CF9D0C /* Video */,
 			);
@@ -506,13 +527,13 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		820979091BD3AB0600CF9D0C /* weitoutiao */ = {
+		820979091BD3AB0600CF9D0C /* screeningHall */ = {
 			isa = PBXGroup;
 			children = (
-				820979121BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.h */,
-				820979131BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m */,
+				634A581724BDA06800CDF423 /* Controller */,
+				634A581624BDA05E00CDF423 /* view */,
 			);
-			path = weitoutiao;
+			path = screeningHall;
 			sourceTree = "<group>";
 		};
 		8209790A1BD3AB0600CF9D0C /* mine */ = {
@@ -745,7 +766,8 @@
 				6328F614249E111F00C767A8 /* ljwcodeHeader.m in Sources */,
 				63422BDF24A839960091FEE1 /* WMPageController.m in Sources */,
 				63422BE224A839960091FEE1 /* WMMenuView.m in Sources */,
-				820979151BD3AEA800CF9D0C /* ljwcodeWeiTouTiaoViewController.m in Sources */,
+				634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */,
+				820979151BD3AEA800CF9D0C /* ljwcodeScreeningHallViewController.m in Sources */,
 				820978E81BD3A37600CF9D0C /* main.m in Sources */,
 				637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */,
 				63422C4A24A875D40091FEE1 /* NewsChannelView.m in Sources */,
