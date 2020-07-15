@@ -1,5 +1,5 @@
 //
-//  ljwcodeScreeningHallViewController.h
+//  VideoViewController.m
 //
 //
 //  Created by ljwcode on 2020/6/18.
@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface ljwcodeScreeningHallViewController : UIViewController
+#import "WMPageController.h"
+
+@interface VideoViewController : WMPageController
 
 @end

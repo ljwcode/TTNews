@@ -9,17 +9,17 @@
 #import "ljwcodeNavigationBar.h"
 #import "ljwcodeHeader.h"
 
-@interface ljwcodeSearchBar : UITextField
+@interface ljwcodeSearchBar : UISearchBar
 
 @end
 
-@interface ljwcodeImageAction : UIImageView
+@interface ljwcodeImageAction : UIButton
 
 @property(nonatomic,copy)void(^ljwcodeImageActionClickBlock)(void);
 
 @end
 
-@interface ljwcodeNavigationBar()<UITextFieldDelegate>
+@interface ljwcodeNavigationBar()<UISearchBarDelegate>
 
 
 @end
@@ -38,7 +38,7 @@
     if(self = [super initWithFrame:frame])
     {
         ljwcodeImageAction *loginHeadImgView = [[ljwcodeImageAction alloc]init];
-        loginHeadImgView.image = [UIImage imageNamed:@"home_no_login_head"];
+        [loginHeadImgView setImage:[UIImage imageNamed:@"home_no_login_head"] forState:UIControlStateNormal];
         [self addSubview:loginHeadImgView];
         @weakify(self);
         [loginHeadImgView setLjwcodeImageActionClickBlock:^{
@@ -48,24 +48,19 @@
                 self.ljwcodeActionCallBack(ljwcodeNavigationBarActonMind);
             }
         }];
+        [loginHeadImgView addTarget:self action:@selector(loginHandle:) forControlEvents:UIControlEventTouchUpInside];
                 
         ljwcodeSearchBar *searchBar = [[ljwcodeSearchBar alloc]init];
-        UIImageView *leftView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
-        leftView.image = [UIImage imageNamed:@"searchicon_search_20x20_"];
-        searchBar.leftView = leftView;
-        searchBar.text = @"搜一搜";
+        searchBar.placeholder = @"搜一搜";
         searchBar.delegate = self;
-        searchBar.backgroundColor = [UIColor lightGrayColor];
-        searchBar.textColor = [UIColor blackColor];
-        searchBar.leftViewMode = UITextFieldViewModeAlways;
-        searchBar.font = [UIFont systemFontOfSize:12.f];
         [self addSubview:searchBar];
         
-        ljwcodeImageAction *cameraImgView = [[ljwcodeImageAction alloc]init];
-        cameraImgView.image = [UIImage imageNamed:@"home_camera"];
-        [self addSubview:cameraImgView];
+        ljwcodeImageAction *publishImgView = [[ljwcodeImageAction alloc]init];
+        [publishImgView setImage:[UIImage imageNamed:@"home_camera"] forState:UIControlStateNormal];
+        [self addSubview:publishImgView];
+        [publishImgView addTarget:self action:@selector(publishHandle:) forControlEvents:UIControlEventTouchUpInside];
         
-        [cameraImgView setLjwcodeImageActionClickBlock:^{
+        [publishImgView setLjwcodeImageActionClickBlock:^{
             @strongify(self);
             if(self.ljwcodeActionCallBack)
             {
@@ -82,10 +77,10 @@
             make.height.mas_equalTo(26);
             make.left.mas_equalTo(loginHeadImgView.mas_right).offset(15);
             make.bottom.mas_equalTo(self).offset(-9);
-            make.right.mas_equalTo(cameraImgView.mas_left).offset(-15);
+            make.right.mas_equalTo(publishImgView.mas_left).offset(-15);
         }];
 
-        [cameraImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [publishImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.mas_equalTo(30);
             make.bottom.mas_equalTo(self).offset(-9);
             make.right.mas_equalTo(self).offset(-15);
@@ -95,6 +90,14 @@
         
     }
     return self;
+}
+
+-(void)loginHandle:(UIButton *)sender{
+    
+}
+
+-(void)publishHandle:(UIButton *)sender{
+    
 }
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -119,12 +122,6 @@
 
 @implementation ljwcodeSearchBar
 
-- (CGRect)leftViewRectForBounds:(CGRect)bounds {
-    
-    CGRect iconRect = [super leftViewRectForBounds:bounds];
-    iconRect.origin.x += 8;
-    return iconRect;
-}
 @end
 
 @implementation ljwcodeImageAction

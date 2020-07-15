@@ -25,6 +25,8 @@
 
 #define isMyChannelFrame(i) CGRectMake(itemSpace+(i%columns)*(itemSpace+_labelWidth), CGRectGetMaxY(_headerViewOne_frame)+lineSpace+(i/columns)*(lineSpace+labelHeight), _labelWidth, labelHeight)
 
-#define isRecomChannelFrame(index) CGRectMake(itemSpace+(index%columns)*(itemSpace+_labelWidth), _headerViewOne_frame.size.height+CGRectGetMaxY(_headerViewOne_frame)+lineSpace+(index/columns)*(lineSpace+labelHeight), _labelWidth, labelHeight)
+#define isRecomChannelFrame(index) CGRectMake(itemSpace+(index%columns)*(itemSpace+_labelWidth), _headerViewOne_frame.size.height+CGRectGetMaxY(_newsModel.frame)+lineSpace+(index/columns)*(lineSpace+labelHeight), _labelWidth, labelHeight)
+
+#define statuBarHeight [UIScreen mainScreen].bounds.size.height == 812?44:20
 
 #endif /* ljwcodeHeadLineNews_h */

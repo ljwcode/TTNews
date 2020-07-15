@@ -33,7 +33,7 @@
                     responseDic = [responseDic objectForKey:@"data"];
                     NSMutableArray *modelArray = [[NSMutableArray alloc]init];
                     if(responseDic.count > 0){
-                        NSArray *responseArray = [responseDic objectForKey:@"data"];
+                        NSArray *responseArray = (NSArray*) responseDic;
                         for(int i = 0;i < responseArray.count;i++){
                             videoTitleModel *titleModel = [[videoTitleModel new]mj_setKeyValues:responseArray[i]];
                             [modelArray addObject:titleModel];

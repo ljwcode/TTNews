@@ -1,5 +1,5 @@
 //
-//  ljwcodeMineViewController.m
+//  ScreeningHallViewController.h
 //
 //
 //  Created by ljwcode on 2020/6/18.
@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ljwcodeMineViewController : UIViewController
+@interface ScreeningHallViewController : UIViewController
 
 @end

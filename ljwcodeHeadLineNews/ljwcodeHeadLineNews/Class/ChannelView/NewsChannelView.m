@@ -14,27 +14,9 @@
 
 @interface channelHeaderView : UIView
 
-@property(nonatomic,copy)void(^callBack)(void);
-
 @end
 
 @implementation channelHeaderView
-
--(instancetype)initWithFrame:(CGRect)frame{
-    if(self = [super initWithFrame:frame]){
-        UIButton *closeBtn = UIButton.buttonType(UIButtonTypeCustom).showImage([UIImage imageNamed:@"close_sdk_login_14x14_"],UIControlStateNormal);
-        closeBtn.frame = CGRectMake(15, 0, 40, 40);
-        [closeBtn addTarget:self action:@selector(closeHandle:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:closeBtn];
-    }
-    return self;
-}
-
--(void)closeHandle:(UIButton *)sender{
-    if(self.callBack){
-        self.callBack();
-    }
-}
 
 @end
 
@@ -45,7 +27,7 @@ static CGFloat labelHeight = 40;
 
 @interface NewsChannelView()<UIScrollViewDelegate>
 
-@property (nonatomic,strong)NSMutableArray *channelArray;
+@property (nonatomic,strong)NSMutableArray *myChannelArray;
 
 @property (nonatomic,strong)NSMutableArray *recommendChannelArray;
 
@@ -69,7 +51,7 @@ static CGFloat labelHeight = 40;
 {
     if(self = [super initWithFrame:frame])
     {
-        _channelArray = [[NSMutableArray alloc]initWithArray:@[@"推荐",@"热点",@"广州",@"视频",
+        _myChannelArray = [[NSMutableArray alloc]initWithArray:@[@"推荐",@"热点",@"广州",@"视频",
                                                                @"社会",@"图片",@"娱乐",@"问答",
                                                                @"科技",@"汽车",@"财经",@"军事",
                                                                @"体育",@"段子",@"国际",@"趣图",
@@ -124,9 +106,9 @@ static CGFloat labelHeight = 40;
 //设置数据源
 -(void)configureData{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        for(int i = 0;i < _channelArray.count;i++){
+        for(int i = 0;i < _myChannelArray.count;i++){
             newsChannelModel *newsModel1 = [[newsChannelModel alloc]init];
-            newsModel1.name = _channelArray[i];
+            newsModel1.name = _myChannelArray[i];
             newsModel1.isMyChannel = YES;
             [self.dataArray addObject:newsModel1];
         }
@@ -304,7 +286,7 @@ static CGFloat labelHeight = 40;
 }
 
 #pragma mark - 刷新编辑按钮状态
-
+//YES:NO
 -(void)refreshEditBtnStatus:(BOOL)show{
     if(!show){
         for(channelButton *btn in self.subviews){
@@ -319,9 +301,9 @@ static CGFloat labelHeight = 40;
         for(channelButton *btn in self.subviews){
             if(![btn isKindOfClass:[channelButton class]])continue;
             if(!btn.channelModel.isMyChannel){
-                btn.deleteImageView.hidden = NO;
-            }else{
                 btn.deleteImageView.hidden = YES;
+            }else{
+                btn.deleteImageView.hidden = NO;
             }
         }
     }
@@ -402,7 +384,9 @@ static CGFloat labelHeight = 40;
 }
 
 #pragma mark - scrollerVIew delegate
-
+/*
+  向上滑动时隐藏channelView
+ */
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if(scrollView.contentOffset.y < -50){
         [self channelHide];

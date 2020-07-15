@@ -1,5 +1,5 @@
 //
-//  ljwcodeVideoViewController.m
+//  MineViewController.m
 //
 //
 //  Created by ljwcode on 2020/6/18.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ljwcodeVideoViewController : UIViewController
+@interface MineViewController : UIViewController
 
 @end

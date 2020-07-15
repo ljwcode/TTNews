@@ -1,18 +1,18 @@
 //
-//  ljwcodeVideoViewController.m
+//  ScreeningHallViewController.m
 //
 //
 //  Created by ljwcode on 2020/6/18.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "ljwcodeVideoViewController.h"
+#import "ScreeningHallViewController.h"
 
-@interface ljwcodeVideoViewController ()
+@interface ScreeningHallViewController ()
 
 @end
 
-@implementation ljwcodeVideoViewController
+@implementation ScreeningHallViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
