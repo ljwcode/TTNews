@@ -1,5 +1,5 @@
 //
-//  headLineSearchViewController.h
+//  UIImage+cropPicture.h
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/7/16.
@@ -10,8 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface headLineSearchViewController : UIViewController
+@interface UIImage (cropPicture)
 
+- (UIImage *)cropPictureWithRoundedCorner:(CGFloat)radius size:(CGSize)size;
 
 @end
 

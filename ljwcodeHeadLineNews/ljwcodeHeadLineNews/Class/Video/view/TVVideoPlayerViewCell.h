@@ -14,13 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TVVideoPlayerViewCell : UITableViewCell
 
-@property(nonatomic,strong)AVPlayer *player; //播放器
-
-@property(nonatomic,strong)AVPlayerItem *playerItem; //播放单元
-
-@property(nonatomic,strong)AVPlayerLayer *playerLayer;//播放界面
-
 @property(nonatomic,strong)videoContentModel *contentModel;
+
+@property(nonatomic,copy)void(^imgViewCallBack)(UIView *parentView);
 
 @end
 

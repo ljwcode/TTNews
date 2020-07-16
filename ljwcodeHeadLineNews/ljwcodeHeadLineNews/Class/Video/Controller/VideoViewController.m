@@ -28,11 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    ljwcodeNavigationBar *navBar = [self showNaviBar];
-    
-    [navBar.navigationBarActionSubject subscribeNext:^(id  _Nullable x) {
-        NSLog(@"%@",x);
-    }];
     [self configureUI];
     
     @weakify(self)
@@ -41,16 +36,6 @@
         self.titleArray = x;
         [self reloadData];
         [self setPageMenuView];
-    }];
-    
-    //channel title 从网络中获取得到
-    [navBar setLjwcodeActionCallBack:^(ljwcodeNavigationBarAction action) {
-        //        @strongify(self);
-        if(action != ljwcodeNavigationBarActionSend){
-            
-        }else{
-            NSLog(@"send");
-        }
     }];
     
     self.view.backgroundColor = [UIColor whiteColor];

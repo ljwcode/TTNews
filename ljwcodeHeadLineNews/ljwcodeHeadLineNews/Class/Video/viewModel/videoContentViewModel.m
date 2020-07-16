@@ -10,6 +10,7 @@
 #import "ljwcodeHeader.h"
 #import "videoContentRequestModel.h"
 #import <MJExtension.h>
+#import "videoContentModel.h"
 
 @implementation videoContentViewModel
 
@@ -28,9 +29,17 @@
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     
                     NSDictionary *responseDic = (NSDictionary *)response;
-                    
+                    NSArray *dataArray  = responseDic[@"data"];
+                    NSMutableArray *array = [NSMutableArray array];
+                    for(int i = 0;i < dataArray.count;i++){
+                        videoContentModel *model = [[[videoContentModel alloc]init]mj_setKeyValues:dataArray[i]];
+                        [[model detailModel]playInfoModel];
+                        [array addObject:model];
+                    }
+                    [subscriber sendNext:array];
+                    [subscriber sendCompleted];
                 } failHandle:^(NSError * _Nonnull error) {
-                    
+                    NSLog(@"请求失败");
                 }];
                 
                 return nil;

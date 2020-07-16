@@ -15,6 +15,8 @@
 #import "homeJokeModel.h"
 #import "ljwcodeHeader.h"
 #import "homeNewsBrowserViewController.h"
+#import "VideoPlayerContainerView.h"
+#import "TVVideoPlayerViewCell.h"
 
 @interface homeDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -24,9 +26,18 @@
 
 @property(nonatomic,strong)NSMutableArray *datasArray;
 
+@property(nonatomic,strong)VideoPlayerContainerView *videoContainerView;
+
 @end
 
 @implementation homeDetailViewController
+
+-(VideoPlayerContainerView *)videoContainerView{
+    if(!_videoContainerView){
+        _videoContainerView = [[VideoPlayerContainerView alloc]init];
+    }
+    return _videoContainerView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,6 +65,8 @@
     }else if([category isEqualToString:@"组图"]){
         homeNewsModel *newsModel = (homeNewsModel *)model;
         return newsModel.data;;
+    }else if([category isEqualToString:@"video"]){
+        return model;
     }else{
         homeNewsModel *newsModel = (homeNewsModel *)model;
         return newsModel.data;
@@ -99,6 +112,10 @@
         
         UINib *contentNewsCell = [UINib nibWithNibName:NSStringFromClass([homeContentNewsTableViewCell class]) bundle:nil];
         [tableView registerNib:contentNewsCell forCellReuseIdentifier:NSStringFromClass([homeContentNewsTableViewCell class])];
+        
+        UINib *tvVideoCell = [UINib nibWithNibName:NSStringFromClass([TVVideoPlayerViewCell class]) bundle:nil];
+        [tableView registerNib:tvVideoCell forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
+        
         _detailTableView = tableView;
     }
     return _detailTableView;
@@ -132,6 +149,12 @@
         homeNewsSummaryModel *model = self.datasArray[indexPath.row];
         cell.summaryModel = model;
         resultCell = cell;
+    }else if([self.titleModel.category isEqualToString:@"video"]){
+        TVVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
+        videoContentModel *model = self.datasArray[indexPath.row];
+        cell.contentModel = model;
+        resultCell = cell;
+        
     }else{
         homeNewsSummaryModel *model = self.datasArray[indexPath.row];
         if(model.infoModel.image_list){

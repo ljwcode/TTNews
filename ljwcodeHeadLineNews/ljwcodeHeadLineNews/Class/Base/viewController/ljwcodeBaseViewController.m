@@ -16,6 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    ljwcodeNavigationBar *navBar = [self showNaviBar];
+    
+    [navBar.navigationBarActionSubject subscribeNext:^(id  _Nullable x) {
+        NSLog(@"%@",x);
+    }];
     self.automaticallyAdjustsScrollViewInsets = NO;
     // Do any additional setup after loading the view.
 }
@@ -75,6 +81,9 @@
     return self.navigationItem.rightBarButtonItem = [self createBarButtonItemWithText:text Selector:@selector(rightItemAction)];
 }
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
 /*
 #pragma mark - Navigation
 

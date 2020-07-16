@@ -104,4 +104,44 @@
     self.frame = frame;
 }
 
+-(void)setX:(CGFloat)x{
+    CGRect frame = self.frame;
+    frame.origin.x = x;
+    self.frame = frame;
+}
+
+-(CGFloat)x{
+    return self.origin.x;
+}
+
+-(void)setY:(CGFloat)y{
+    CGRect frame = self.frame;
+    frame.origin.y = y;
+    self.frame = frame;
+}
+
+-(CGFloat)y{
+    return self.origin.y;
+}
+
+-(void)setSize:(CGSize)size{
+    CGRect frame = self.frame;
+    frame.size = size;
+    self.frame = frame;
+}
+
+-(CGSize)size{
+    return self.frame.size;
+}
+
+-(void)setOrigin:(CGPoint)origin{
+    CGRect frame = self.frame;
+    frame.origin = origin;
+    self.frame = frame;
+}
+
+-(CGPoint)origin{
+    return self.frame.origin;
+}
+
 @end

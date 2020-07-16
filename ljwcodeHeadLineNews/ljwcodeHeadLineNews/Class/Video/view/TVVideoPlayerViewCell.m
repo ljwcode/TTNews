@@ -7,8 +7,8 @@
 //
 
 #import "TVVideoPlayerViewCell.h"
-#import "NetworkSpeedMonitor.h"
-#import "videoPlayerToolView.h"
+#import <UIImageView+WebCache.h>
+#import "UIImage+cropPicture.h"
 
 @interface TVVideoPlayerViewCell()<UIGestureRecognizerDelegate>
 
@@ -35,14 +35,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *videoMoreBtn;
 
-
-@property(nonatomic,strong)videoPlayerToolView *playerToolView;
-
-@property(nonatomic,strong)NetworkSpeedMonitor *speedMonitor;
-
 @end
 
-static CGFloat itemSpace = 10;
 //点击播放 在表页面播放 点击全屏，进入全屏播放
 @implementation TVVideoPlayerViewCell
 
@@ -53,7 +47,6 @@ static CGFloat itemSpace = 10;
     UITapGestureRecognizer *tapBgView = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapVideoPlayHandle:)];
     [_videoBgImgView addGestureRecognizer:tapBgView];
     
-    _videoPlayBtn.userInteractionEnabled = YES;
     [_videoPlayBtn addTarget:self action:@selector(tapVideoPlayHandle:) forControlEvents:UIControlEventTouchUpInside];
     [_videoBgImgView addSubview:_videoPlayBtn];
     [_videoBgImgView addSubview:_vodeoTitleLabel];
@@ -98,18 +91,16 @@ static CGFloat itemSpace = 10;
 
 -(void)setContentModel:(videoContentModel *)contentModel{
     _contentModel = contentModel;
-    
-}
-
--(instancetype)initWithFrame:(CGRect)frame{
-    if(self = [super initWithFrame:frame]){
-        self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:@""]];
-        self.player = [AVPlayer playerWithPlayerItem:_playerItem];
-        self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
-        self.playerLayer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, ([UIScreen mainScreen].bounds.size.height-3*itemSpace)/3);
-        [self.layer addSublayer:self.playerLayer];
-    }
-    return self;
+    [_videoBgImgView sd_setImageWithURL:[NSURL URLWithString:contentModel.detailModel.playInfoModel.poster_url]];
+    _videoAuthorTitleLabel.text = contentModel.detailModel.media_name;
+    _vodeoTitleLabel.text = contentModel.detailModel.title;
+    [_videoAuthHeadImgBtn.imageView sd_setImageWithURL:[NSURL URLWithString: contentModel.detailModel.userInfoModel.avatar_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if(image){
+            _videoAuthHeadImgBtn.imageView.image = [image cropPictureWithRoundedCorner:_videoAuthHeadImgBtn.imageView.image.size.width/2 size:_videoAuthHeadImgBtn.frame.size];
+        }
+    }];
+    _videoPlayCountLabel.text = @"20W";
+    _videoTimeLabel.text = @"20:20";
 }
 
 

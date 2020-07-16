@@ -8,7 +8,10 @@
 
 #import "ljwcodeNavigationBar.h"
 #import "ljwcodeHeader.h"
-#import "headLineSearchViewController.h"
+
+@interface ljwcodeSearchBar : UISearchBar
+
+@end
 
 @interface ljwcodeImageAction : UIButton
 
@@ -114,6 +117,10 @@
  // Drawing code
  }
  */
+
+@end
+
+@implementation ljwcodeSearchBar
 
 @end
 

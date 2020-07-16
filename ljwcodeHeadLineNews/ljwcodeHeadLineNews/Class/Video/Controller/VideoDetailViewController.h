@@ -6,7 +6,6 @@
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "videoTitleModel.h"
 #import "ljwcodeBaseViewController.h"
 

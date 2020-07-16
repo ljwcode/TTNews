@@ -34,6 +34,8 @@
 		6355CFF524BF1078002D3815 /* loginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6355CFF424BF1078002D3815 /* loginView.m */; };
 		6365C9C024ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6365C9BF24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m */; };
 		63796B1024ADD83B00FB1421 /* homeNewsBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63796B0F24ADD83B00FB1421 /* homeNewsBrowserViewController.m */; };
+		637A97F424C04B45000F7405 /* UIImage+cropPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A97F324C04B45000F7405 /* UIImage+cropPicture.m */; };
+		637A97F724C05BD7000F7405 /* VideoPlayerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A97F624C05BD7000F7405 /* VideoPlayerContainerView.m */; };
 		637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2524A9C1E60009274C /* UIButton+extend.m */; };
 		637C2D2924A9CDE30009274C /* homeTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2824A9CDE30009274C /* homeTitleModel.m */; };
 		637C2D2C24A9CF630009274C /* homeTitleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2B24A9CF630009274C /* homeTitleViewModel.m */; };
@@ -50,11 +52,11 @@
 		63C4729E24B0250B0030C84B /* videoPlayerToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4729D24B0250B0030C84B /* videoPlayerToolView.m */; };
 		63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */; };
 		63D7DDBF24B85B8D00612D89 /* shortVideoPlayerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D7DDBE24B85B8D00612D89 /* shortVideoPlayerViewCell.m */; };
-		63D7DDC124B85BB200612D89 /* shortVideoPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63D7DDC024B85BB200612D89 /* shortVideoPlayer.xib */; };
+		63D7DDC124B85BB200612D89 /* shortVideoPlayerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63D7DDC024B85BB200612D89 /* shortVideoPlayerViewCell.xib */; };
 		63E6CB5E24C02CE800E0126C /* headLineSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E6CB5D24C02CE800E0126C /* headLineSearchViewController.m */; };
 		63F1F8D024AF219400D687ED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F1F8CF24AF219400D687ED /* AVFoundation.framework */; };
 		63F1F8D324AF223200D687ED /* TVVideoPlayerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8D224AF223200D687ED /* TVVideoPlayerViewCell.m */; };
-		63F1F8D924AF28CA00D687ED /* TVVideoPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63F1F8D824AF28CA00D687ED /* TVVideoPlayer.xib */; };
+		63F1F8D924AF28CA00D687ED /* TVVideoPlayerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63F1F8D824AF28CA00D687ED /* TVVideoPlayerViewCell.xib */; };
 		63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8DB24AF2D7700D687ED /* videoTitleModel.m */; };
 		63F1F8DF24AF2FD200D687ED /* videoTitleRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8DE24AF2FD200D687ED /* videoTitleRequestModel.m */; };
 		63F1F8E224AF315E00D687ED /* videoContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8E124AF315E00D687ED /* videoContentModel.m */; };
@@ -127,6 +129,10 @@
 		6365C9BF24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeRefreshGifHeader.m; sourceTree = "<group>"; };
 		63796B0E24ADD83B00FB1421 /* homeNewsBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsBrowserViewController.h; sourceTree = "<group>"; };
 		63796B0F24ADD83B00FB1421 /* homeNewsBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsBrowserViewController.m; sourceTree = "<group>"; };
+		637A97F224C04B45000F7405 /* UIImage+cropPicture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+cropPicture.h"; sourceTree = "<group>"; };
+		637A97F324C04B45000F7405 /* UIImage+cropPicture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+cropPicture.m"; sourceTree = "<group>"; };
+		637A97F524C05BD7000F7405 /* VideoPlayerContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerContainerView.h; sourceTree = "<group>"; };
+		637A97F624C05BD7000F7405 /* VideoPlayerContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerContainerView.m; sourceTree = "<group>"; };
 		637C2D2224A995F70009274C /* ljwcodeHeadLineNews.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeHeadLineNews.pch; sourceTree = "<group>"; };
 		637C2D2424A9C1E60009274C /* UIButton+extend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+extend.h"; sourceTree = "<group>"; };
 		637C2D2524A9C1E60009274C /* UIButton+extend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+extend.m"; sourceTree = "<group>"; };
@@ -159,13 +165,13 @@
 		63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkSpeedMonitor.m; sourceTree = "<group>"; };
 		63D7DDBD24B85B8D00612D89 /* shortVideoPlayerViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shortVideoPlayerViewCell.h; sourceTree = "<group>"; };
 		63D7DDBE24B85B8D00612D89 /* shortVideoPlayerViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shortVideoPlayerViewCell.m; sourceTree = "<group>"; };
-		63D7DDC024B85BB200612D89 /* shortVideoPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = shortVideoPlayer.xib; sourceTree = "<group>"; };
+		63D7DDC024B85BB200612D89 /* shortVideoPlayerViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = shortVideoPlayerViewCell.xib; sourceTree = "<group>"; };
 		63E6CB5C24C02CE800E0126C /* headLineSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = headLineSearchViewController.h; sourceTree = "<group>"; };
 		63E6CB5D24C02CE800E0126C /* headLineSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = headLineSearchViewController.m; sourceTree = "<group>"; };
 		63F1F8CF24AF219400D687ED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		63F1F8D124AF223200D687ED /* TVVideoPlayerViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVVideoPlayerViewCell.h; sourceTree = "<group>"; };
 		63F1F8D224AF223200D687ED /* TVVideoPlayerViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVVideoPlayerViewCell.m; sourceTree = "<group>"; };
-		63F1F8D824AF28CA00D687ED /* TVVideoPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVVideoPlayer.xib; sourceTree = "<group>"; };
+		63F1F8D824AF28CA00D687ED /* TVVideoPlayerViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVVideoPlayerViewCell.xib; sourceTree = "<group>"; };
 		63F1F8DA24AF2D7700D687ED /* videoTitleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoTitleModel.h; sourceTree = "<group>"; };
 		63F1F8DB24AF2D7700D687ED /* videoTitleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoTitleModel.m; sourceTree = "<group>"; };
 		63F1F8DD24AF2FD200D687ED /* videoTitleRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoTitleRequestModel.h; sourceTree = "<group>"; };
@@ -242,6 +248,8 @@
 				6365C9BF24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m */,
 				63C4729F24B0566D0030C84B /* NetworkSpeedMonitor.h */,
 				63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */,
+				637A97F224C04B45000F7405 /* UIImage+cropPicture.h */,
+				637A97F324C04B45000F7405 /* UIImage+cropPicture.m */,
 			);
 			path = ljwcodeTools;
 			sourceTree = "<group>";
@@ -442,14 +450,16 @@
 		63F1F8D424AF27CF00D687ED /* view */ = {
 			isa = PBXGroup;
 			children = (
+				637A97F524C05BD7000F7405 /* VideoPlayerContainerView.h */,
+				637A97F624C05BD7000F7405 /* VideoPlayerContainerView.m */,
 				63F1F8D124AF223200D687ED /* TVVideoPlayerViewCell.h */,
 				63F1F8D224AF223200D687ED /* TVVideoPlayerViewCell.m */,
-				63F1F8D824AF28CA00D687ED /* TVVideoPlayer.xib */,
+				63F1F8D824AF28CA00D687ED /* TVVideoPlayerViewCell.xib */,
 				63C4729C24B0250B0030C84B /* videoPlayerToolView.h */,
 				63C4729D24B0250B0030C84B /* videoPlayerToolView.m */,
 				63D7DDBD24B85B8D00612D89 /* shortVideoPlayerViewCell.h */,
 				63D7DDBE24B85B8D00612D89 /* shortVideoPlayerViewCell.m */,
-				63D7DDC024B85BB200612D89 /* shortVideoPlayer.xib */,
+				63D7DDC024B85BB200612D89 /* shortVideoPlayerViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -712,10 +722,10 @@
 				949E779524A39605000C446E /* homejokeTableViewCell.xib in Resources */,
 				63422C5824A87EC20091FEE1 /* newsChannelTitleView.xib in Resources */,
 				6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */,
-				63D7DDC124B85BB200612D89 /* shortVideoPlayer.xib in Resources */,
+				63D7DDC124B85BB200612D89 /* shortVideoPlayerViewCell.xib in Resources */,
 				63167AB824AB6380002CB4EF /* homeListModel in Resources */,
 				63F1F8E424AF31D300D687ED /* videoListModel in Resources */,
-				63F1F8D924AF28CA00D687ED /* TVVideoPlayer.xib in Resources */,
+				63F1F8D924AF28CA00D687ED /* TVVideoPlayerViewCell.xib in Resources */,
 				949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */,
 				63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */,
 				63167ABA24AB63E2002CB4EF /* homeTitleChannelModel in Resources */,
@@ -795,6 +805,7 @@
 				63F1F8E224AF315E00D687ED /* videoContentModel.m in Sources */,
 				63422BE324A839960091FEE1 /* WMProgressView.m in Sources */,
 				63F1F8EA24AF3A3500D687ED /* videoContentViewModel.m in Sources */,
+				637A97F724C05BD7000F7405 /* VideoPlayerContainerView.m in Sources */,
 				63422C5624A87EA30091FEE1 /* newsChannelTitleView.m in Sources */,
 				637C2D3024A9D1600009274C /* networkBaseModel.m in Sources */,
 				63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */,
@@ -808,6 +819,7 @@
 				63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */,
 				63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */,
 				637C2D3624A9D3EA0009274C /* networkManagerCenter.m in Sources */,
+				637A97F424C04B45000F7405 /* UIImage+cropPicture.m in Sources */,
 				94A4A6EA24A25331002A6CA3 /* ljwcodeBaseViewController.m in Sources */,
 				63167AB024AB5FEE002CB4EF /* homeNewsCellViewModel.m in Sources */,
 				63C4729E24B0250B0030C84B /* videoPlayerToolView.m in Sources */,

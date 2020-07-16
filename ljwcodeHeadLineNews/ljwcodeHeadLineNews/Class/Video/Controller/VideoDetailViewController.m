@@ -10,14 +10,17 @@
 #import "TVVideoPlayerViewCell.h"
 #import "shortVideoPlayerViewCell.h"
 #import "videoContentViewModel.h"
+#import "ljwcodeHeader.h"
 
 @interface VideoDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property(nonatomic,strong)UITableView *tableView;
+@property(nonatomic,strong)UITableView *detailTableView;
 
 @property(nonatomic,strong)videoContentViewModel *contentViewModel;
 
 @property(nonatomic,strong)NSMutableArray *dataArray;
+
+@property(nonatomic,strong)videoContentModel *videoPlayModel;
 
 @end
 
@@ -37,37 +40,88 @@
     return _dataArray;
 }
 
--(UITableView *)tableView{
-    if(!_tableView){
-        _tableView = [[UITableView alloc]init];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        [self.view addSubview:_tableView];
+-(UITableView *)detailTableView{
+    if(!_detailTableView){
+        _detailTableView = [[UITableView alloc]init];
+        _detailTableView.delegate = self;
+        _detailTableView.dataSource = self;
+        [self.view addSubview:_detailTableView];
         
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.estimatedRowHeight = UITableViewAutomaticDimension;
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        _detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _detailTableView.estimatedRowHeight = 0;
+        [_detailTableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
         
         UINib *TVNib = [UINib nibWithNibName:NSStringFromClass([TVVideoPlayerViewCell class]) bundle:nil];
-        [_tableView registerNib:TVNib forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
+        [_detailTableView registerNib:TVNib forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
         
-        UINib *shortVideoNib = [UINib nibWithNibName:NSStringFromClass([shortVideoPlayerViewCell class]) bundle:nil];
-        [_tableView registerNib:shortVideoNib forCellReuseIdentifier:NSStringFromClass([shortVideoPlayerViewCell class])];
+//        UINib *shortVideoNib = [UINib nibWithNibName:NSStringFromClass([shortVideoPlayerViewCell class]) bundle:nil];
+//        [_detailTableView registerNib:shortVideoNib forCellReuseIdentifier:NSStringFromClass([shortVideoPlayerViewCell class])];
         
     }
-    return _tableView;
+    return _detailTableView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    @weakify(self);
+    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        @strongify(self);
+        [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
+            [self.dataArray removeAllObjects];
+            [_dataArray addObjectsFromArray:x];
+            [self.detailTableView reloadData];
+            [self.detailTableView.mj_header endRefreshing];
+            [self.detailTableView.mj_footer endRefreshing];
+        }];
+        
+    }];
+    [self.detailTableView.mj_header beginRefreshing];
     // Do any additional setup after loading the view.
 }
 
 -(void)needRefreshTableViewData{
-    [self.tableView setContentOffset:CGPointZero];
-    [self.tableView.mj_header beginRefreshing];
+    [self.detailTableView setContentOffset:CGPointZero];
+    [self.detailTableView.mj_header beginRefreshing];
+}
+
+#pragma mark - UITableViewDelagate && UITableViewDataSource
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _dataArray.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    videoContentModel *model = self.dataArray[indexPath.row];
+    TVVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
+    cell.contentModel = model;
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    /*
+     点击视频播放/跳转播放
+     */
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 225;
+}
+
+-(void)setVideoPlayModel:(videoContentModel *)videoPlayModel{
+    if (_videoPlayModel.playing) {
+        _videoPlayModel.playing = NO;
+        NSInteger index = [self.dataArray indexOfObject:_videoPlayModel];
+        TVVideoPlayerViewCell *cell = [self.detailTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+//        [cell refreshCellStatus];
+    }
+    _videoPlayModel = videoPlayModel;
 }
 
 /*

@@ -10,6 +10,7 @@
 #import "homeNewsRequestModel.h"
 #import "homeNewsModel.h"
 #import "homeJokeModel.h"
+#import "videoContentModel.h"
 
 @implementation homeNewsCellViewModel
 
@@ -34,6 +35,16 @@
                         [jokeModel mj_setKeyValues:responseDic];
                         [jokeModel.data_array makeObjectsPerformSelector:@selector(infoModel)];
                         [subscriber sendNext:jokeModel];
+                        [subscriber sendCompleted];
+                    }else if([input isEqualToString:@"video"]){
+                        NSDictionary *responceDic = (NSDictionary *)response;
+                        NSArray *modelArray = responceDic[@"data"];
+                        NSMutableArray *array = [NSMutableArray array];
+                        for(int i = 0;i < modelArray.count;i++){
+                            videoContentModel *model = [[[videoContentModel alloc]init]mj_setKeyValues:modelArray[i]];
+                            [array addObject:model];
+                        }
+                        [subscriber sendNext:array];
                         [subscriber sendCompleted];
                     }else{
                         homeNewsModel *newsModel = [[homeNewsModel alloc]init];

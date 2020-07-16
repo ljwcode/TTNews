@@ -10,6 +10,14 @@
 
 @interface headLineSearchViewController ()
 
+@property(nonatomic,weak)UIView *headView;
+
+@property(nonatomic,weak)UIView *hotSearchView;
+
+@property(nonatomic,weak)UIView *searchHistoryView;
+
+
+
 @end
 
 @implementation headLineSearchViewController

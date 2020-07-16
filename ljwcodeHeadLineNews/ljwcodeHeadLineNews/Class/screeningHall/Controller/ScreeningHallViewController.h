@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface ScreeningHallViewController : UIViewController
+#import "ljwcodeBaseViewController.h"
+#import "WMPageController.h"
+
+@interface ScreeningHallViewController : WMPageController
 
 @end
