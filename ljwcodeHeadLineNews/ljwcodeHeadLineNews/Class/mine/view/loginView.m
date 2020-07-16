@@ -63,7 +63,6 @@
         make.height.mas_equalTo(50);
     }];
     
-    
     UILabel *titleLabel = [[UILabel alloc]init];
     titleLabel.text = [NSString stringWithFormat:@"今日头条"];
     titleLabel.textColor = [UIColor blackColor];

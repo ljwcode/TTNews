@@ -51,6 +51,7 @@
 		63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */; };
 		63D7DDBF24B85B8D00612D89 /* shortVideoPlayerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D7DDBE24B85B8D00612D89 /* shortVideoPlayerViewCell.m */; };
 		63D7DDC124B85BB200612D89 /* shortVideoPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63D7DDC024B85BB200612D89 /* shortVideoPlayer.xib */; };
+		63E6CB5E24C02CE800E0126C /* headLineSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E6CB5D24C02CE800E0126C /* headLineSearchViewController.m */; };
 		63F1F8D024AF219400D687ED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F1F8CF24AF219400D687ED /* AVFoundation.framework */; };
 		63F1F8D324AF223200D687ED /* TVVideoPlayerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8D224AF223200D687ED /* TVVideoPlayerViewCell.m */; };
 		63F1F8D924AF28CA00D687ED /* TVVideoPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63F1F8D824AF28CA00D687ED /* TVVideoPlayer.xib */; };
@@ -159,6 +160,8 @@
 		63D7DDBD24B85B8D00612D89 /* shortVideoPlayerViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shortVideoPlayerViewCell.h; sourceTree = "<group>"; };
 		63D7DDBE24B85B8D00612D89 /* shortVideoPlayerViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shortVideoPlayerViewCell.m; sourceTree = "<group>"; };
 		63D7DDC024B85BB200612D89 /* shortVideoPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = shortVideoPlayer.xib; sourceTree = "<group>"; };
+		63E6CB5C24C02CE800E0126C /* headLineSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = headLineSearchViewController.h; sourceTree = "<group>"; };
+		63E6CB5D24C02CE800E0126C /* headLineSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = headLineSearchViewController.m; sourceTree = "<group>"; };
 		63F1F8CF24AF219400D687ED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		63F1F8D124AF223200D687ED /* TVVideoPlayerViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVVideoPlayerViewCell.h; sourceTree = "<group>"; };
 		63F1F8D224AF223200D687ED /* TVVideoPlayerViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVVideoPlayerViewCell.m; sourceTree = "<group>"; };
@@ -613,12 +616,12 @@
 		820979241BD3B1CC00CF9D0C /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				820979251BD3B1CC00CF9D0C /* ljwcodeMain */,
+				820979251BD3B1CC00CF9D0C /* Main */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
 		};
-		820979251BD3B1CC00CF9D0C /* ljwcodeMain */ = {
+		820979251BD3B1CC00CF9D0C /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				820979261BD3B28700CF9D0C /* ljwcodeTabBarController.h */,
@@ -631,8 +634,10 @@
 				6328F613249E111F00C767A8 /* ljwcodeHeader.m */,
 				63231B8F24A08F110059FD5F /* ljwcodeNavigationBar.h */,
 				63231B9024A08F110059FD5F /* ljwcodeNavigationBar.m */,
+				63E6CB5C24C02CE800E0126C /* headLineSearchViewController.h */,
+				63E6CB5D24C02CE800E0126C /* headLineSearchViewController.m */,
 			);
-			path = ljwcodeMain;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		94A4A6E724A252CF002A6CA3 /* viewController */ = {
@@ -771,6 +776,7 @@
 				637C5C0A24A35C0800D7C0E0 /* ljwcodeBaseViewModel.m in Sources */,
 				63167AB324AB6091002CB4EF /* homeNewsRequestModel.m in Sources */,
 				631BAEE8249B63D700639CD2 /* UITabBar+ljwcodeTabBarItem.m in Sources */,
+				63E6CB5E24C02CE800E0126C /* headLineSearchViewController.m in Sources */,
 				638481EC24BEEB85002F4C5F /* VideoDetailViewController.m in Sources */,
 				63796B1024ADD83B00FB1421 /* homeNewsBrowserViewController.m in Sources */,
 				63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */,
