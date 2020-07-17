@@ -10,8 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class headLineSearchViewController;
+
+typedef void(^didSearchBlock)(headLineSearchViewController *searchController,UISearchBar *searchBar,NSString *searchText);
+
 @interface headLineSearchViewController : UIViewController
 
++(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *>*)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder;
+
++(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *>*)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder searchBlock:(didSearchBlock)searchBlock;
 
 @end
 
