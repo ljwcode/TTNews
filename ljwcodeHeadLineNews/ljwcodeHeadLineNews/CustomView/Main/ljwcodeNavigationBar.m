@@ -9,16 +9,6 @@
 #import "ljwcodeNavigationBar.h"
 #import "ljwcodeHeader.h"
 
-@interface ljwcodeSearchBar : UISearchBar
-
-@end
-
-@interface ljwcodeImageAction : UIButton
-
-@property(nonatomic,copy)void(^ljwcodeImageActionClickBlock)(void);
-
-@end
-
 @interface ljwcodeNavigationBar()<UISearchBarDelegate>
 
 

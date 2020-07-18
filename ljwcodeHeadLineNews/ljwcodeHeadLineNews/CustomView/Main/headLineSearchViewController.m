@@ -27,8 +27,6 @@
 
 @property(nonatomic,weak)UITableView *baseSearchTableView;
 
-@property(nonatomic,strong)UIViewController *searchViewController;
-
 @property(nonatomic,strong)NSArray<NSString *> *hotSearchies;
 
 @property(nonatomic,copy)didSearchBlock searchBlock;
@@ -74,18 +72,45 @@
 
 @property(nonatomic,assign)BOOL showKeyboard;
 
+@property(nonatomic,copy)NSArray<UILabel *>* hotSearchTag;
+
+@property(nonatomic,strong)UIColor *searchBarBackgroundColor;
+
+@property(nonatomic,assign)BOOL removeSpaceOnSearchString;
+
+@property(nonatomic,assign)NSUInteger searchHistoryCount;
+
+@property(nonatomic,strong)UIViewController *resultShowController;
+
+@property(nonatomic,copy)NSArray<UILabel *> *searchHistoryTag;
+
+@property(nonatomic,assign)BOOL showHotSearch;
+
+@property(nonatomic,assign)UIDeviceOrientation currentOrientation;
+
 @end
 
 @implementation headLineSearchViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+-(void)awakeFromNib{
+    [super awakeFromNib];
+    [self setup];
+}
+
+-(instancetype)init{
+    if(self = [super init]){
+        [self setup];
+    }
+    return self;
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    
+    if(_currentOrientation != [UIDevice currentDevice].orientation){
+        self.hotSearchies = self.hotSearchies;
+        self.searchHistory = self.searchHistory;
+        self.currentOrientation = [UIDevice currentDevice].orientation;
+    }
     CGFloat adaptWidth = 0;
     UISearchBar *searchBar = self.searchBar;
     UITextField *searchTextfield = self.searchTextfield;
@@ -137,6 +162,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self hideHistorySearch];
     if(self.cancelBtnWidth == 0){
         [self viewDidLayoutSubviews];
     }
@@ -147,7 +173,7 @@
             self.navigationController.navigationBar.barTintColor = setColorWithRed(249, 249, 249, 1);
         }
     }
-    if(self.searchViewController.parentViewController == NULL){
+    if(self.resultShowController.parentViewController == NULL){
         [self.searchBar becomeFirstResponder];
     }
     
@@ -155,6 +181,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [self hideHistorySearch];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -255,6 +282,11 @@
 }
 
 -(void)setup{
+    self.showSearchHistory = YES;
+    self.showHotSearch = YES;
+    self.removeSpaceOnSearchString = 0.0;
+    self.historySearchCachePath = SEARCH_HISTORY_SEARCH_PATH;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.baseSearchTableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.navigationController.navigationBar.backIndicatorImage = nil;
@@ -346,7 +378,7 @@
     emptySearchHistoryLabel.text = @"清空";
     emptySearchHistoryLabel.textAlignment = NSTextAlignmentCenter;
     emptySearchHistoryLabel.height = 49;
-    [emptySearchHistoryLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emptySearchHistoryDidClick:)]];
+    [emptySearchHistoryLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emptyButtonHandle:)]];
     emptySearchHistoryLabel.width = footerView.width;
     emptySearchHistoryLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.emptySearchHistoryLabel = emptySearchHistoryLabel;
@@ -411,16 +443,16 @@
         
         switch (i) {
             case 0:
-                rankTag.backgroundColor = [UIColor redColor];
+                rankTag.backgroundColor = setColorWithRed(241, 66, 48, 1);
                 rankTag.textColor = [UIColor whiteColor];
                 break;
             case 1:
                 rankTag.textColor = [UIColor whiteColor];
-                rankTag.backgroundColor = [UIColor blueColor];
+                rankTag.backgroundColor = setColorWithRed(255, 128, 0, 1);
                 break;
             case 2:
                 rankTag.textColor = [UIColor whiteColor];
-                rankTag.backgroundColor = [UIColor greenColor];
+                rankTag.backgroundColor = setColorWithRed(255, 204, 1, 1);
                 break;
             default:
                 rankTag.backgroundColor = [UIColor lightGrayColor];
@@ -441,7 +473,18 @@
     contentView.height = CGRectGetMaxY(self.rankViews.lastObject.frame);
     self.hotSearchView.height = CGRectGetMaxY(contentView.frame) + SEARCH_MARGIN * 2;
     self.baseSearchTableView.tableHeaderView.height = self.headView.height = MAX(CGRectGetMaxY(self.hotSearchView.frame), CGRectGetMaxY(self.searchHistoryView.frame));
+    [self layoutDemand];
     [self.baseSearchTableView setTableHeaderView:self.baseSearchTableView.tableHeaderView];
+}
+
+-(void)layoutDemand{
+    if (self.swapHotSeachWithSearchHistory == NO) {
+        self.hotSearchView.y = SEARCH_MARGIN * 2;
+        self.searchHistoryView.y = self.hotSearchies.count > 0 && self.showHotSearch ? CGRectGetMaxY(self.hotSearchView.frame) : SEARCH_MARGIN * 1.5;
+    } else { // swap popular search whith search history
+        self.searchHistoryView.y = SEARCH_MARGIN * 1.5;
+        self.hotSearchView.y = self.searchHistory.count > 0 && self.showSearchHistory ? CGRectGetMaxY(self.searchHistoryView.frame) : SEARCH_MARGIN * 2;
+    }
 }
 
 -(UILabel *)setUpTitleLabelText:(NSString *)text{
@@ -456,22 +499,70 @@
     return label;
 }
 
+-(UILabel *)setUpLabelWithTitle:(NSString *)title{
+    UILabel *label = [[UILabel alloc]init];
+    label.userInteractionEnabled = YES;
+    label.text = title;
+    label.textColor = [UIColor lightGrayColor];
+    label.backgroundColor = setColorWithRed(250, 250, 250, 1);
+    label.clipsToBounds = YES;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.layer.cornerRadius = 3;
+    [label sizeToFit];
+    label.width += 20;
+    label.height += 14;
+    return label;
+}
+
+-(void)saveSearchCacheWithRefreshView{
+    UISearchBar *searchBar = self.searchBar;
+    [searchBar resignFirstResponder];
+    NSString *searchText = searchBar.text;
+    if(self.removeSpaceOnSearchString){
+        searchText = [searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@" "];
+    }
+    if(self.showSearchHistory && searchText.length > 0){
+        [self.searchHistory removeAllObjects];
+        [self.searchHistory insertObject:searchText atIndex:0];
+        if(self.searchHistory.count > _searchHistoryCount){
+            [self.searchHistory removeLastObject];
+        }
+        [NSKeyedArchiver archiveRootObject:self.searchHistory toFile:self.historySearchCachePath];
+    }
+    [self handleResultShow];
+}
+
+-(void)handleResultShow{
+    self.resultShowController.view.hidden = NO;
+    [self.navigationController pushViewController:self.resultShowController animated:YES];
+}
+
 #pragma mark - 事件响应
 
 -(void)emptyButtonHandle:(UIButton *)sender{
-    
-}
-
--(void)emptySearchHistoryDidClick:(UITapGestureRecognizer *)tap{
-    
+    [self.searchHistory removeAllObjects];
+    [NSKeyedArchiver archiveRootObject:self.searchHistory toFile:self.historySearchCachePath];
+    if(self.swapHotSeachWithSearchHistory == YES){
+        self.hotSearchies = self.hotSearchies;
+    }
 }
 
 -(void)backButtonHandle:(UIButton *)sender{
-    
+    if(self.searchBar.isFirstResponder){
+        if([self.delegte respondsToSelector:@selector(backHandle:)]){
+            [self.delegte backHandle:self];
+        }
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)cancelButtonHandle:(UIButton *)sender{
-    
+    if(self.searchBar.isFirstResponder){
+        if([self.delegte respondsToSelector:@selector(cancelHandle:)]){
+            [self.delegte cancelHandle:self];
+        }
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)keyBoardDidShow:(NSNotification *)noti{
@@ -479,7 +570,30 @@
 }
 
 -(void)tagDidCLick:(UITapGestureRecognizer *)tap{
-    
+    UILabel *label = (UILabel *)tap.view;
+    self.searchBar.text = label.text;
+    if(label.tag == 1){
+        if([self.delegte respondsToSelector:@selector(searchViewController: didSelectHotSearchAtIndex: searchAtIndexText:)]){
+            [self.delegte searchViewController:self didSelectHotSearchAtIndex:[self.hotSearchTag indexOfObject:label] searchAtIndexText:label.text];
+            [self saveSearchCacheWithRefreshView];
+        }else{
+            [self searchBarSearchButtonClicked:self.searchBar];
+        }
+    }else{
+        if([self.delegte respondsToSelector:@selector(searchViewController:didSelectSearchHistoryAtIndex:searchAtIndexText:)]){
+            [self.delegte searchViewController:self didSelectSearchHistoryAtIndex:[self.searchHistoryTag indexOfObject:label] searchAtIndexText:label.text];
+            [self saveSearchCacheWithRefreshView];
+        }else{
+            [self searchBarSearchButtonClicked:self.searchBar];
+        }
+    }
+}
+
+-(void)closeDidClick:(UIButton *)sender{
+    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    [self.searchHistory removeObject:cell.textLabel.text];
+    [NSKeyedArchiver archiveRootObject:self.searchHistory toFile:self.historySearchCachePath];
+    [self.baseSearchTableView reloadData];
 }
 
 #pragma mark - setter
@@ -502,7 +616,7 @@
         }
     }
 }
-
+//交换流行搜索和历史搜索的位置
 -(void)setSwapHotSeachWithSearchHistory:(BOOL)swapHotSeachWithSearchHistory{
     _swapHotSeachWithSearchHistory = swapHotSeachWithSearchHistory;
     self.hotSearchies = self.hotSearchies;
@@ -517,6 +631,73 @@
 -(void)setHotHistorySearchTitle:(NSString *)hotHistorySearchTitle{
     _hotHistorySearchTitle = [hotHistorySearchTitle copy];
     self.searchHistoryLabel.text = hotHistorySearchTitle;
+}
+
+-(void)hideHistorySearch{
+    if(!self.searchHistory.count){
+        self.searchHistoryLabel.hidden = YES;
+        self.searchHistoryTagContentView.hidden = YES;
+        self.emptyButton.hidden = YES;
+        self.searchHistoryView.hidden = YES;
+    }
+    self.searchHistoryLabel.hidden = NO;
+    self.searchHistoryView.hidden = NO;
+    self.emptyButton.hidden = NO;
+    self.searchHistoryTagContentView.hidden = NO;
+}
+
+-(void)setHotSearchies:(NSArray<NSString *> *)hotSearchies{
+    if(self.searchHistory.count == 0 || !self.showHotSearch){
+        self.searchHistoryLabel.hidden = YES;
+        self.searchHistoryTagContentView.hidden = YES;
+        UIView *tableViewHeader = self.baseSearchTableView.tableHeaderView;
+        tableViewHeader.height = SEARCH_MARGIN * 1.5;
+        [self.baseSearchTableView setTableHeaderView:tableViewHeader];
+        return;
+    }
+    self.searchHistoryLabel.hidden = NO;
+    self.hotSearchTagContentView.hidden = NO;
+    self.baseSearchTableView.tableHeaderView.hidden = NO;
+    [self setupHotSearchRankTags];
+    [self hideHistorySearch];
+}
+
+-(void)setShowSearchHistory:(BOOL)showSearchHistory{
+    _showSearchHistory = showSearchHistory;
+    [self setHotSearchies:self.hotSearchies];
+    [self hideHistorySearch];
+}
+
+-(void)setCancelBarButtonItem:(UIBarButtonItem *)cancelBarButtonItem{
+    _cancelBarButtonItem = cancelBarButtonItem;
+    self.navigationItem.rightBarButtonItem = cancelBarButtonItem;
+}
+
+-(void)setCancelButton:(UIButton *)cancelButton{
+    _cancelButton = cancelButton;
+    self.navigationItem.rightBarButtonItem.customView = cancelButton;
+}
+
+-(void)setHotSearchTag:(NSArray<UILabel *> *)hotSearchTag{
+    for(UILabel *label in hotSearchTag){
+        [label setTag:1];
+    }
+    _hotSearchTag = hotSearchTag;
+}
+
+-(void)setSearchBarBackgroundColor:(UIColor *)searchBarBackgroundColor{
+    _searchBarBackgroundColor = searchBarBackgroundColor;
+    self.searchTextfield.backgroundColor = searchBarBackgroundColor;
+}
+
+-(void)setHotSearchStyle:(CGFloat)hotSearchStyle{
+    _hotSearchStyle = hotSearchStyle;
+}
+
+-(void)setShowHotSearch:(BOOL)showHotSearch{
+    _showHotSearch = showHotSearch;
+    [self setHotSearchies:self.hotSearchies];
+    [self hideHistorySearch];
 }
 
 #pragma mark - dealloc
@@ -548,9 +729,31 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if(!cellID){
-        cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.textLabel.textColor = setColorWithRed(113, 113, 113, 1);
+        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell.backgroundColor = [UIColor clearColor];
+        
+        UIButton *closetButton = [[UIButton alloc] init];
+        closetButton.size = CGSizeMake(cell.height, cell.height);
+        [closetButton setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+        UIImageView *closeView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"close"]];
+        [closetButton addTarget:self action:@selector(closeDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        closeView.contentMode = UIViewContentModeCenter;
+        cell.accessoryView = closetButton;
+        UIImageView *line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell-content-line"]];
+        line.height = 0.5;
+        line.alpha = 0.7;
+        line.x = SEARCH_MARGIN;
+        line.y = 43;
+        line.width = tableView.width;
+        line.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        [cell.contentView addSubview:line];
     }
+    
+    cell.imageView.image = [UIImage imageNamed:@"search_history"];
+    cell.textLabel.text = self.searchHistory[indexPath.row];
     
     return cell;
 }
@@ -566,11 +769,41 @@
 #pragma mark - UITableViewdelegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    self.searchBar.text = cell.textLabel.text;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if([self.delegte respondsToSelector:@selector(searchViewController:didSelectSearchHistoryAtIndex:searchAtIndexText:)]){
+        [self.delegte searchViewController:self didSelectSearchHistoryAtIndex:indexPath.row searchAtIndexText:cell.textLabel.text];
+    }else{
+        [self searchBarSearchButtonClicked:self.searchBar];
+    }
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
+#pragma mark UISearchBarDelegate
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    if([self.delegte respondsToSelector:@selector(searchViewController:didSearchWithSearchBar:searchText:)]){
+        [self.delegte searchViewController:self didSearchWithSearchBar:searchBar searchText:searchBar.text];
+        [self saveSearchCacheWithRefreshView];
+        return;
+    }
+    if(self.searchBlock){
+        self.searchBlock(self, searchBar, searchBar.text);
+        [self saveSearchCacheWithRefreshView];
+    }
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    [self handleResultShow];
+    self.resultShowController.view.hidden = 0 == searchText.length;
+    if([self.delegte respondsToSelector:@selector(searchViewController:searchTextDidChangeWithSearchBar:searchText:)]){
+        [self.delegte searchViewController:self searchTextDidChangeWithSearchBar:searchBar searchText:searchText];
+    }
+}
+
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    return YES;
 }
 
 

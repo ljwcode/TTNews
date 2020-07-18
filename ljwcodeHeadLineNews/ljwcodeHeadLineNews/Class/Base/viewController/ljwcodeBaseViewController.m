@@ -7,8 +7,9 @@
 //
 
 #import "ljwcodeBaseViewController.h"
+#import "headLineSearchViewController.h"
 
-@interface ljwcodeBaseViewController ()
+@interface ljwcodeBaseViewController ()<UIGestureRecognizerDelegate,headLineSearchViewControllerDelegate>
 
 @end
 
@@ -22,6 +23,7 @@
     [navBar.navigationBarActionSubject subscribeNext:^(id  _Nullable x) {
         NSLog(@"%@",x);
     }];
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     // Do any additional setup after loading the view.
 }
@@ -30,9 +32,23 @@
 {
     self.navigationController.navigationBar.hidden = YES;
     ljwcodeNavigationBar *navBar = [ljwcodeNavigationBar ljwcodeNavigationBar];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapHandle:)];
+    [navBar addGestureRecognizer:tap];
     [self.view addSubview:navBar];
     
     return navBar;
+}
+
+-(void)tapHandle:(UITapGestureRecognizer *)tap{
+    NSLog(@"点击搜索搜索");
+    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+    __block headLineSearchViewController *searchViewController = [headLineSearchViewController searchViewControllerWithHotSearchies:hotSeaches searchControllerPlaceHolder:@"搜索" searchBlock:^(headLineSearchViewController * _Nonnull searchController, UISearchBar * _Nonnull searchBar, NSString * _Nonnull searchText) {
+        [searchViewController.navigationController pushViewController:self animated:YES];
+    }];
+//    searchViewController.delegte = self;
+    searchViewController.hotSearchStyle = 0;
+    [self.navigationController pushViewController:searchViewController animated:YES];
 }
 //图片显示
 -(UIBarButtonItem *)createBarButtonItemWithImage:(NSString *)imageName Selector:(SEL)selector{

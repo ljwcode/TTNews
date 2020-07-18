@@ -27,4 +27,14 @@ typedef enum : NSInteger
 
 @end
 
+@interface ljwcodeSearchBar : UISearchBar
+
+@end
+
+@interface ljwcodeImageAction : UIButton
+
+@property(nonatomic,copy)void(^ljwcodeImageActionClickBlock)(void);
+
+@end
+
 NS_ASSUME_NONNULL_END
