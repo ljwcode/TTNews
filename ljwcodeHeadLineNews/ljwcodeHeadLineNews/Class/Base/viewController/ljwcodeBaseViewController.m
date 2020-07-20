@@ -43,7 +43,8 @@
 -(void)tapHandle:(UITapGestureRecognizer *)tap{
     NSLog(@"点击搜索搜索");
     NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    __block headLineSearchViewController *searchViewController = [headLineSearchViewController searchViewControllerWithHotSearchies:hotSeaches searchControllerPlaceHolder:@"搜索" searchBlock:^(headLineSearchViewController * _Nonnull searchController, UISearchBar * _Nonnull searchBar, NSString * _Nonnull searchText) {
+    
+    headLineSearchViewController *searchViewController = [headLineSearchViewController searchViewControllerWithHotSearchies:hotSeaches searchControllerPlaceHolder:@"搜一搜" searchBlock:^(headLineSearchViewController * _Nonnull searchController, UISearchBar * _Nonnull searchBar, NSString * _Nonnull searchText) {
         [searchViewController.navigationController pushViewController:self animated:YES];
     }];
 //    searchViewController.delegte = self;

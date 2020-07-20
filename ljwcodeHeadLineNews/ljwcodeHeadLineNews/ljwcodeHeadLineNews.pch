@@ -37,6 +37,10 @@
 
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 
+#define kCompareScreenWidth (kScreenWidth < kScreenHeight ? kScreenWidth : kScreenHeight)
+
+#define kCompareScreenHeight (kScreenWidth > kScreenHeight ? kScreenWidth : kScreenWidth)
+
 #define SEARCH_HISTORY_SEARCH_PATH [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Searchhistories.plist"]
 
 #endif /* ljwcodeHeadLineNews_h */

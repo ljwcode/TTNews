@@ -106,7 +106,8 @@
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    if(_currentOrientation != [UIDevice currentDevice].orientation){
+    
+    if(self.currentOrientation != [UIDevice currentDevice].orientation){
         self.hotSearchies = self.hotSearchies;
         self.searchHistory = self.searchHistory;
         self.currentOrientation = [UIDevice currentDevice].orientation;
@@ -115,8 +116,9 @@
     UISearchBar *searchBar = self.searchBar;
     UITextField *searchTextfield = self.searchTextfield;
     UIView *titleView = self.navigationItem.titleView;
-    UIButton *backButton = self.navigationItem.leftBarButtonItem.customView;
-    UIButton *cancelButton = self.navigationItem.rightBarButtonItem.customView;
+    
+    UIButton *backButton = self.navigationItem.leftBarButtonItem.customView; //返回
+    UIButton *cancelButton = self.navigationItem.rightBarButtonItem.customView; //取消
     
     UIEdgeInsets backBtnEdgeInsets = UIEdgeInsetsZero;
     UIEdgeInsets cancelBtnEdgeInsets = UIEdgeInsetsZero;
@@ -134,7 +136,7 @@
     
     adaptWidth = adaptWidth + navigationBarLyaoutEdgeInsets.left + navigationBarLyaoutEdgeInsets.right;
     if(@available(iOS 11.0,*)){
-        NSLayoutConstraint *leftLayoutConstaaint = [navigationBar.leftAnchor constraintEqualToAnchor:titleView.leftAnchor];
+        NSLayoutConstraint *leftLayoutConstaaint = [searchBar.leftAnchor constraintEqualToAnchor:titleView.leftAnchor];
         if(navigationBarLyaoutEdgeInsets.left > SEARCH_MARGIN){
             [leftLayoutConstaaint setConstant:0];
         }else{
@@ -143,12 +145,15 @@
         searchBar.height = self.view.width>self.view.height ? 24 : 30;
         searchBar.width = self.view.width - SEARCH_MARGIN - adaptWidth;
         searchTextfield.frame = searchBar.bounds;
+        self.searchBar.layer.borderColor = [UIColor redColor].CGColor;
+        self.searchBar.layer.borderWidth = 2.f;
         cancelButton.width = self.cancelBtnWidth;
+        
     }else{
-        titleView.x = self.view.width > self.view.height ? 4 : 7;
-        titleView.y = SEARCH_MARGIN * 1.5;
+        titleView.x = SEARCH_MARGIN * 1.5;
+        titleView.y = self.view.width > self.view.height ? 4 : 7;
         titleView.height = self.view.width > self.view.height ? 24 : 30;
-        titleView.width = self.view.width - titleView.x * 2 - 3;
+        titleView.width = self.view.width - titleView.x * 2 - 3 - self.cancelBtnWidth;
     }
 }
 
@@ -162,6 +167,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     [self hideHistorySearch];
     if(self.cancelBtnWidth == 0){
         [self viewDidLayoutSubviews];
@@ -191,15 +197,14 @@
 
 #pragma mark - 外部初始化调用方法
 +(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *> *)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder{
-    headLineSearchViewController *searchVC = [[headLineSearchViewController alloc]init];
+    headLineSearchViewController *searchVC = [[self alloc]init];
     searchVC.hotSearchies = hotSearchies;
     searchVC.searchBar.placeholder = placeHolder;
     return searchVC;
 }
 
 +(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *> *)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder searchBlock:(didSearchBlock)searchBlock{
-    headLineSearchViewController *headLineSearchVC = [[headLineSearchViewController alloc]init];
-    [self searchViewControllerWithHotSearchies:hotSearchies searchControllerPlaceHolder:placeHolder];
+    headLineSearchViewController *headLineSearchVC = [self searchViewControllerWithHotSearchies:hotSearchies searchControllerPlaceHolder:placeHolder];
     headLineSearchVC.searchBlock = [searchBlock copy];
     return headLineSearchVC;
 }
@@ -210,7 +215,7 @@
         UITableView *baseTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         baseTableView.backgroundColor = [UIColor clearColor];
         baseTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        if([baseTableView respondsToSelector:@selector(cellLayoutMarginsFollowReadableWidth)]){
+        if([baseTableView respondsToSelector:@selector(cellLayoutMarginsFollowReadableWidth:)]){
             baseTableView.cellLayoutMarginsFollowReadableWidth = NO;
         }
         baseTableView.delegate = self;
@@ -231,7 +236,7 @@
         emptyButton.width += SEARCH_MARGIN;
         emptyButton.height += SEARCH_MARGIN;
         emptyButton.centerY = self.searchHistoryLabel.centerY;
-        emptyButton.x = self.searchHistoryView.width - emptyButton.width;
+        emptyButton.x = self.searchHistoryView.width - emptyButton.width*3;
         emptyButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         [emptyButton addTarget:self action:@selector(emptyButtonHandle:) forControlEvents:UIControlEventTouchUpInside];
         [emptyButton sizeToFit];
@@ -247,6 +252,7 @@
         searchHistoryView.x = self.hotSearchView.x;
         searchHistoryView.y = self.hotSearchView.y;
         searchHistoryView.width = self.headView.width - searchHistoryView.x * 2;
+        searchHistoryView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self.headView addSubview:searchHistoryView];
         _searchHistoryView = searchHistoryView;
     }
@@ -255,7 +261,7 @@
 
 -(UILabel *)searchHistoryLabel{
     if(!_searchHistoryLabel){
-        UILabel *titleLabel = [self setUpTitleLabelText:@"历史搜索"];
+        UILabel *titleLabel = [self setUpTitleLabelText:@"返回"];
         [self.searchHistoryView addSubview:titleLabel];
         _searchHistoryLabel = titleLabel;
     }
@@ -267,7 +273,7 @@
         UIView *searchHistoryTagContentView = [[UIView alloc]init];
         searchHistoryTagContentView.width = self.searchHistoryView.width;
         searchHistoryTagContentView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        searchHistoryTagContentView.y = CGRectGetMaxY(searchHistoryTagContentView.frame) + SEARCH_MARGIN;
+        searchHistoryTagContentView.y = CGRectGetMaxY(self.hotSearchTagContentView.frame) + SEARCH_MARGIN;
         [self.searchHistoryView addSubview:searchHistoryTagContentView];
         _searchHistoryTagContentView = searchHistoryTagContentView;
     }
@@ -284,8 +290,10 @@
 -(void)setup{
     self.showSearchHistory = YES;
     self.showHotSearch = YES;
-    self.removeSpaceOnSearchString = 0.0;
+    self.removeSpaceOnSearchString = YES;
+    self.searchBarCornerRadius = 0.0;
     self.historySearchCachePath = SEARCH_HISTORY_SEARCH_PATH;
+    self.searchHistoryCount = 20;
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.baseSearchTableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -300,6 +308,7 @@
     cancelButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     [cancelButton addTarget:self action:@selector(cancelButtonHandle:) forControlEvents:UIControlEventTouchUpInside];
     [cancelButton sizeToFit];
+    
     cancelButton.width += SEARCH_MARGIN;
     self.cancelButton = cancelButton;
     self.cancelBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:cancelButton];
@@ -322,6 +331,7 @@
     self.backBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
     
     UIView *titleView = [[UIView alloc] init];
+    
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:titleView.bounds];
     [titleView addSubview:searchBar];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0) { // iOS 11
@@ -342,22 +352,24 @@
         if ([[subView class] isSubclassOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField *)subView;
             textField.font = [UIFont systemFontOfSize:16];
-            _searchTextfield = textField;
+            self.searchTextfield = textField;
             break;
         }
     }
     self.searchBar = searchBar;
-    
+#pragma mark -----------------------------------------------------------------------------
     UIView *headerView = [[UIView alloc] init];
-    headerView.width = kScreenWidth;
+    headerView.width = kCompareScreenWidth;
     headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
     UIView *hotSearchView = [[UIView alloc] init];
     hotSearchView.x = SEARCH_MARGIN * 1.5;
     hotSearchView.width = headerView.width - hotSearchView.x * 2;
     hotSearchView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    UILabel *titleLabel = [self setUpTitleLabelText:@"搜索"];
+    UILabel *titleLabel = [self setUpTitleLabelText:@"热门搜索"];
     self.hotSearchHeaderLabel = titleLabel;
     [hotSearchView addSubview:titleLabel];
+    
     UIView *hotSearchTagsContentView = [[UIView alloc] init];
     hotSearchTagsContentView.width = hotSearchView.width;
     hotSearchTagsContentView.y = CGRectGetMaxY(titleLabel.frame) + SEARCH_MARGIN;
@@ -370,12 +382,12 @@
     self.baseSearchTableView.tableHeaderView = headerView;
     
     UIView *footerView = [[UIView alloc] init];
-    footerView.width = kScreenWidth;
+    footerView.width = kCompareScreenWidth;
     UILabel *emptySearchHistoryLabel = [[UILabel alloc] init];
     emptySearchHistoryLabel.textColor = [UIColor darkGrayColor];
     emptySearchHistoryLabel.font = [UIFont systemFontOfSize:13];
     emptySearchHistoryLabel.userInteractionEnabled = YES;
-    emptySearchHistoryLabel.text = @"清空";
+    emptySearchHistoryLabel.text = @"清空历史搜索";
     emptySearchHistoryLabel.textAlignment = NSTextAlignmentCenter;
     emptySearchHistoryLabel.height = 49;
     [emptySearchHistoryLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emptyButtonHandle:)]];
@@ -389,6 +401,9 @@
     self.hotSearchies = nil;
 }
 
+/*
+ 热门搜索列表样式
+ */
 - (void)setupHotSearchRankTags
 {
     UIView *contentView = self.hotSearchTagContentView;
@@ -398,13 +413,13 @@
     NSMutableArray *rankTagM = [NSMutableArray array];
     NSMutableArray *rankViewM = [NSMutableArray array];
     for (int i = 0; i < self.hotSearchies.count; i++) {
-        UIView *rankView = [[UIView alloc] init];
+        UIView *rankView = [[UIView alloc] init]; //定义每一个热门搜索标签视图
         rankView.height = 40;
         rankView.width = (self.baseSearchTableView.width - SEARCH_MARGIN * 3) * 0.5;
         rankView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [contentView addSubview:rankView];
-        // rank tag
-        UILabel *rankTag = [[UILabel alloc] init];
+        
+        UILabel *rankTag = [[UILabel alloc] init];//热门搜索列表排序标签
         rankTag.textAlignment = NSTextAlignmentCenter;
         rankTag.font = [UIFont systemFontOfSize:10];
         rankTag.layer.cornerRadius = 3;
@@ -415,8 +430,8 @@
         rankTag.y = (rankView.height - rankTag.height) * 0.5;
         [rankView addSubview:rankTag];
         [rankTagM addObject:rankTag];
-        // rank text
-        UILabel *rankTextLabel = [[UILabel alloc] init];
+        
+        UILabel *rankTextLabel = [[UILabel alloc] init];//热门搜索词排序
         rankTextLabel.text = self.hotSearchies[i];
         rankTextLabel.userInteractionEnabled = YES;
         [rankTextLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tagDidCLick:)]];
@@ -434,7 +449,7 @@
         UIImageView *line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell-content-line"]];
         line.height = 0.5;
         line.alpha = 0.7;
-        line.x = -kScreenWidth * 0.5;
+        line.x = -kCompareScreenWidth * 0.5;
         line.y = rankView.height - 1;
         line.width = self.baseSearchTableView.width;
         line.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -524,7 +539,7 @@
     if(self.showSearchHistory && searchText.length > 0){
         [self.searchHistory removeAllObjects];
         [self.searchHistory insertObject:searchText atIndex:0];
-        if(self.searchHistory.count > _searchHistoryCount){
+        if(self.searchHistory.count > self.searchHistoryCount){
             [self.searchHistory removeLastObject];
         }
         [NSKeyedArchiver archiveRootObject:self.searchHistory toFile:self.historySearchCachePath];
@@ -647,15 +662,16 @@
 }
 
 -(void)setHotSearchies:(NSArray<NSString *> *)hotSearchies{
-    if(self.searchHistory.count == 0 || !self.showHotSearch){
-        self.searchHistoryLabel.hidden = YES;
+    _hotSearchies = hotSearchies;
+    if(hotSearchies.count == 0 || !self.showHotSearch){
+        self.hotSearchHeaderLabel.hidden = YES;
         self.searchHistoryTagContentView.hidden = YES;
         UIView *tableViewHeader = self.baseSearchTableView.tableHeaderView;
         tableViewHeader.height = SEARCH_MARGIN * 1.5;
         [self.baseSearchTableView setTableHeaderView:tableViewHeader];
         return;
     }
-    self.searchHistoryLabel.hidden = NO;
+    self.hotSearchHeaderLabel.hidden = NO;
     self.hotSearchTagContentView.hidden = NO;
     self.baseSearchTableView.tableHeaderView.hidden = NO;
     [self setupHotSearchRankTags];
@@ -697,6 +713,12 @@
 -(void)setShowHotSearch:(BOOL)showHotSearch{
     _showHotSearch = showHotSearch;
     [self setHotSearchies:self.hotSearchies];
+    [self hideHistorySearch];
+}
+
+-(void)setHistorySearchCachePath:(NSString *)historySearchCachePath{
+    _historySearchCachePath = [historySearchCachePath copy];
+    self.searchHistory = nil;
     [self hideHistorySearch];
 }
 
@@ -756,6 +778,10 @@
     cell.textLabel.text = self.searchHistory[indexPath.row];
     
     return cell;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return self.hotHistorySearchTitle.length ? self.hotHistorySearchTitle :  @"搜索...";
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
