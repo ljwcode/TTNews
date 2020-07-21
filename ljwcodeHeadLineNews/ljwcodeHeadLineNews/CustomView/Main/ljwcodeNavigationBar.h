@@ -17,23 +17,12 @@ typedef enum : NSInteger
     ljwcodeNavigationBarActonMind  = 1,
 }ljwcodeNavigationBarAction;
 
-@interface ljwcodeNavigationBar : UIView
+@interface ljwcodeNavigationBar : UISearchBar
 
-@property(nonatomic,strong)RACSubject *navigationBarActionSubject;
+- (instancetype)initWithFrame:(CGRect)frame placeholder:(NSString *)placeholder textFieldLeftView:(UIImageView *)leftView showCancelButton:(BOOL)showCancelButton tintColor:(UIColor *)tintColor;
 
-@property(nonatomic,copy)void(^ljwcodeActionCallBack)(ljwcodeNavigationBarAction action);
-
-+(instancetype)ljwcodeNavigationBar;
-
-@end
-
-@interface ljwcodeSearchBar : UISearchBar
-
-@end
-
-@interface ljwcodeImageAction : UIButton
-
-@property(nonatomic,copy)void(^ljwcodeImageActionClickBlock)(void);
+/// 让searchBar的内容居左显示
+- (void)setLeftPlaceholder;
 
 @end
 

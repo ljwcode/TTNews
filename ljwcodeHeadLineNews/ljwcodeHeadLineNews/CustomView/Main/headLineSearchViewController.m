@@ -112,6 +112,7 @@
         self.searchHistory = self.searchHistory;
         self.currentOrientation = [UIDevice currentDevice].orientation;
     }
+    
     CGFloat adaptWidth = 0;
     UISearchBar *searchBar = self.searchBar;
     UITextField *searchTextfield = self.searchTextfield;
@@ -145,8 +146,7 @@
         searchBar.height = self.view.width>self.view.height ? 24 : 30;
         searchBar.width = self.view.width - SEARCH_MARGIN - adaptWidth;
         searchTextfield.frame = searchBar.bounds;
-        self.searchBar.layer.borderColor = [UIColor redColor].CGColor;
-        self.searchBar.layer.borderWidth = 2.f;
+       
         cancelButton.width = self.cancelBtnWidth;
         
     }else{
@@ -155,10 +155,6 @@
         titleView.height = self.view.width > self.view.height ? 24 : 30;
         titleView.width = self.view.width - titleView.x * 2 - 3 - self.cancelBtnWidth;
     }
-}
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-    [self viewDidLayoutSubviews];
 }
 
 -(BOOL)prefersStatusBarHidden{
@@ -215,7 +211,7 @@
         UITableView *baseTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         baseTableView.backgroundColor = [UIColor clearColor];
         baseTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        if([baseTableView respondsToSelector:@selector(cellLayoutMarginsFollowReadableWidth:)]){
+        if([baseTableView respondsToSelector:@selector(setCellLayoutMarginsFollowReadableWidth:)]){
             baseTableView.cellLayoutMarginsFollowReadableWidth = NO;
         }
         baseTableView.delegate = self;
@@ -261,7 +257,7 @@
 
 -(UILabel *)searchHistoryLabel{
     if(!_searchHistoryLabel){
-        UILabel *titleLabel = [self setUpTitleLabelText:@"返回"];
+        UILabel *titleLabel = [self setUpTitleLabelText:@""];
         [self.searchHistoryView addSubview:titleLabel];
         _searchHistoryLabel = titleLabel;
     }
@@ -324,7 +320,7 @@
     [backButton.imageView sizeToFit];
     [backButton addTarget:self action:@selector(backButtonHandle:) forControlEvents:UIControlEventTouchUpInside];
     backButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-    backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -ceil(backImg.size.width)/2, 0, 0);
+    backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -ceil(backImg.size.width/2), 0, 0);
     [backButton sizeToFit];
     backButton.width += 3;
     self.backButton = backButton;
@@ -781,7 +777,7 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return self.hotHistorySearchTitle.length ? self.hotHistorySearchTitle :  @"搜索...";
+    return self.hotHistorySearchTitle.length ? self.hotHistorySearchTitle :  @"历史记录";
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

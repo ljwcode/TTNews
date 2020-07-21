@@ -8,6 +8,7 @@
 
 #import "loginView.h"
 #import <Masonry/Masonry.h>
+#import <YYText/YYText.h>
 
 @interface loginView()
 
@@ -76,6 +77,73 @@
     }];
     _titleLabel = titleLabel;
     
+    
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc]initWithString:@"登陆即表示同意"];
+    text.yy_font = [UIFont systemFontOfSize:18.f];
+    text.yy_lineSpacing = 2.5;
+    text.yy_color = [UIColor lightGrayColor];
+    
+    NSMutableAttributedString *userProtocolText = [[NSMutableAttributedString alloc]initWithString:@"\"用户协议\""];
+    userProtocolText.yy_font = [UIFont systemFontOfSize:18.f];
+    userProtocolText.yy_lineSpacing = 2.f;
+    userProtocolText.yy_color = [UIColor blackColor];
+    [userProtocolText yy_setTextHighlightRange:userProtocolText.yy_rangeOfAll color:[UIColor blackColor] backgroundColor:[UIColor whiteColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+        
+    }];
+    [text appendAttributedString:userProtocolText];
+    
+    NSMutableAttributedString *andText = [[NSMutableAttributedString alloc]initWithString:@"和"];
+    andText.yy_font = [UIFont systemFontOfSize:18.f];
+    andText.yy_lineSpacing = 2.f;
+    andText.yy_color = [UIColor lightGrayColor];
+    [text appendAttributedString:andText];
+    
+    NSMutableAttributedString *privacyPolicyText = [[NSMutableAttributedString alloc]initWithString:@"\"隐私政策\""];
+    privacyPolicyText.yy_font = [UIFont systemFontOfSize:18.f];
+    privacyPolicyText.yy_lineSpacing = 2.f;
+    privacyPolicyText.yy_color = [UIColor blackColor];
+    [privacyPolicyText yy_setTextHighlightRange:privacyPolicyText.yy_rangeOfAll color:[UIColor blackColor] backgroundColor:[UIColor whiteColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+        
+    }];
+    [text appendAttributedString:privacyPolicyText];
+    
+    YYLabel *tipLabel = [[YYLabel alloc]init];
+    tipLabel.attributedText = text;
+    tipLabel.textAlignment = NSTextAlignmentCenter;
+    tipLabel.textVerticalAlignment = YYTextVerticalAlignmentCenter;
+    tipLabel.numberOfLines = 1;
+    [self addSubview:tipLabel];
+    
+    [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(titleLabel);
+        make.top.mas_equalTo(titleLabel.mas_bottom).offset(5);
+        make.height.mas_equalTo(titleLabel).offset(25);
+    }];
+    
+    
+    UIButton *countryCodeBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [countryCodeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    countryCodeBtn.titleLabel.font = [UIFont systemFontOfSize:18.f];
+    [self addSubview:countryCodeBtn];
+    
+    [countryCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(tipLabel);
+        make.top.mas_equalTo(tipLabel.mas_bottom).offset(50);
+        make.height.width.mas_equalTo(30);
+    }];
+    
+    UITextField *phoneTextfield = [[UITextField alloc]init];
+    phoneTextfield.placeholder = @"手机号";
+    phoneTextfield.attributedPlaceholder = [[NSMutableAttributedString alloc]initWithString:phoneTextfield.placeholder attributes:[NSDictionary dictionaryWithObjectsAndKeys:NSForegroundColorAttributeName,[UIColor grayColor],NSFontAttributeName,[UIFont systemFontOfSize:17.f], nil]];
+    [self addSubview:phoneTextfield];
+    
+    [phoneTextfield mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(countryCodeBtn.mas_right);
+        make.top.mas_equalTo(countryCodeBtn);
+        make.height.mas_equalTo(countryCodeBtn);
+    }];
+    
+    UIImageView *lineImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
     
 }
 

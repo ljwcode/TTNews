@@ -8,98 +8,78 @@
 
 #import "ljwcodeNavigationBar.h"
 #import "ljwcodeHeader.h"
+#import <objc/runtime.h>
 
-@interface ljwcodeNavigationBar()<UISearchBarDelegate>
+@interface ljwcodeNavigationBar()<UITextFieldDelegate>
 
+@property (nonatomic, strong) UIImageView *leftView;
 
 @end
 
 @implementation ljwcodeNavigationBar
 
-+(instancetype)ljwcodeNavigationBar
-{
-    ljwcodeNavigationBar *navBar = [[ljwcodeNavigationBar alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height == 812?88:64)];
-    navBar.backgroundColor = [UIColor colorWithRed:0.83 green:0.24 blue:0.24 alpha:1];
-    return navBar;
-}
-
--(instancetype)initWithFrame:(CGRect)frame
-{
-    if(self = [super initWithFrame:frame])
-    {
-        ljwcodeImageAction *loginHeadImgView = [[ljwcodeImageAction alloc]init];
-        [loginHeadImgView setImage:[UIImage imageNamed:@"home_no_login_head"] forState:UIControlStateNormal];
-        [self addSubview:loginHeadImgView];
-        @weakify(self);
-        [loginHeadImgView setLjwcodeImageActionClickBlock:^{
-            @strongify(self);
-            if(self.ljwcodeActionCallBack)
-            {
-                self.ljwcodeActionCallBack(ljwcodeNavigationBarActonMind);
-            }
-        }];
-        [loginHeadImgView addTarget:self action:@selector(loginHandle:) forControlEvents:UIControlEventTouchUpInside];
-                
-        ljwcodeSearchBar *searchBar = [[ljwcodeSearchBar alloc]init];
-        searchBar.placeholder = @"搜一搜";
-        searchBar.delegate = self;
-        [self addSubview:searchBar];
+- (instancetype)initWithFrame:(CGRect)frame placeholder:(NSString *)placeholder textFieldLeftView:(UIImageView *)leftView showCancelButton:(BOOL)showCancelButton tintColor:(UIColor *)tintColor {
+    if (self = [super initWithFrame:frame]) {
+        self.frame = frame;
+        self.tintColor = tintColor; //光标颜色
+        self.barTintColor = [UIColor whiteColor];
+        self.placeholder = placeholder;
+        self.showsCancelButton = showCancelButton;
+        self.leftView = leftView; // 用来代替左边的放大镜.
+        [self setImage:[UIImage imageNamed:@"search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal]; // 替换输入过程中右侧的clearIcon
         
-        ljwcodeImageAction *publishImgView = [[ljwcodeImageAction alloc]init];
-        [publishImgView setImage:[UIImage imageNamed:@"home_camera"] forState:UIControlStateNormal];
-        [self addSubview:publishImgView];
-        [publishImgView addTarget:self action:@selector(publishHandle:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [publishImgView setLjwcodeImageActionClickBlock:^{
-            @strongify(self);
-            if(self.ljwcodeActionCallBack)
-            {
-                self.ljwcodeActionCallBack(ljwcodeNavigationBarActionSend);
-            }
-        }];
-        [loginHeadImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.mas_equalTo(30);
-            make.bottom.mas_equalTo(self).offset(-9);
-            make.left.mas_equalTo(self).offset(15);
-        }];
-
-        [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(26);
-            make.left.mas_equalTo(loginHeadImgView.mas_right).offset(15);
-            make.bottom.mas_equalTo(self).offset(-9);
-            make.right.mas_equalTo(publishImgView.mas_left).offset(-15);
-        }];
-
-        [publishImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.mas_equalTo(30);
-            make.bottom.mas_equalTo(self).offset(-9);
-            make.right.mas_equalTo(self).offset(-15);
-        }];
-        
-        _navigationBarActionSubject = [RACSubject subject];
-        
+        if ([[UIDevice currentDevice] systemVersion].doubleValue >= 11.0) {
+            [[self.heightAnchor constraintEqualToConstant:44.0] setActive:YES];
+        } else {
+            [self setLeftPlaceholder];
+        }
     }
     return self;
 }
 
--(void)loginHandle:(UIButton *)sender{
+- (void)setLeftPlaceholder {
+    SEL centerSelector = NSSelectorFromString([NSString stringWithFormat:@"%@%@", @"setCenter", @"Placeholder:"]);
+    if ([self respondsToSelector:centerSelector]) {
+        BOOL centeredPlaceholder = NO;
+        NSMethodSignature *signature = [[UISearchBar class] instanceMethodSignatureForSelector:centerSelector];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+        [invocation setTarget:self];
+        [invocation setSelector:centerSelector];
+        [invocation setArgument:&centeredPlaceholder atIndex:2];
+        [invocation invoke];
+    }
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+
+    // search field
+    UITextField *searchField = [self valueForKey:@"searchField"];
+    searchField.backgroundColor = [UIColor whiteColor];
+    searchField.textColor = [UIColor whiteColor];
+    searchField.font = [UIFont systemFontOfSize:16];
+    searchField.layer.cornerRadius = 12.f;
+    searchField.clipsToBounds = YES;
+    searchField.leftView = self.leftView;
+
+    if (@available(iOS 11.0, *)) {
+        // 查看视图层级，在iOS 11之前searchbar的x是12
+        searchField.frame = CGRectMake(12, 8, kScreenWidth*0.8, 28);
+
+    } else {
+        searchField.frame = CGRectMake(0, 8, kScreenWidth*0.8, 28);
+    }
+
+    searchField.borderStyle = UITextBorderStyleNone;
+    searchField.layer.cornerRadius = 12;
+
+    searchField.layer.masksToBounds = YES;
+    [searchField setValue:[UIColor whiteColor] forKeyPath:@"placeholderLabel.textColor"];
+//    [self setValue:searchField forKey:@"searchField"];
     
+    self.searchTextPositionAdjustment = (UIOffset){10, 0}; // 光标偏移量
 }
 
--(void)publishHandle:(UIButton *)sender{
-    
-}
-
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    [_navigationBarActionSubject sendNext:textField];
-    return NO;
-}
-
--(CGSize)intrinsicContentSize
-{
-    return CGSizeMake([UIScreen mainScreen].bounds.size.width-24, 44);
-}
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.
@@ -107,30 +87,5 @@
  // Drawing code
  }
  */
-
-@end
-
-@implementation ljwcodeSearchBar
-
-@end
-
-@implementation ljwcodeImageAction
-
--(instancetype)initWithFrame:(CGRect)frame
-{
-    if(self = [super initWithFrame:frame])
-    {
-        self.userInteractionEnabled = NO;
-    }
-    return self;
-}
-
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    if(self.ljwcodeImageActionClickBlock)
-    {
-        self.ljwcodeImageActionClickBlock();
-    }
-}
 
 @end

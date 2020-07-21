@@ -8,6 +8,8 @@
 
 #import "shortVideoPlayerViewCell.h"
 #import "videoPlayerToolView.h"
+#import <UIImageView+WebCache.h>
+#import "UIImage+cropPicture.h"
 
 @interface shortVideoPlayerViewCell()
 
@@ -38,12 +40,23 @@
 
 @implementation shortVideoPlayerViewCell
 
+-(void)awakeFromNib{
+    [super awakeFromNib];
 
--(instancetype)initWithFrame:(CGRect)frame{
-    if(self = [super initWithFrame:frame]){
-        
-    }
-    return self;
+}
+
+-(void)setContentModel:(videoContentModel *)contentModel{
+    _contentModel = contentModel;
+    [_shortVideoBgImgView sd_setImageWithURL:[NSURL URLWithString:contentModel.detailModel.playInfoModel.poster_url]];
+    _shortVideoInfoLabel.text = contentModel.detailModel.media_name;
+    _shortVideoTitleLabel.text = contentModel.detailModel.title;
+    [_shortVideoAuthorHeadImgBtn.imageView sd_setImageWithURL:[NSURL URLWithString: contentModel.detailModel.userInfoModel.avatar_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if(image){
+            self->_shortVideoAuthorHeadImgBtn.imageView.image = [image cropPictureWithRoundedCorner:self->_shortVideoAuthorHeadImgBtn.imageView.image.size.width/2 size:self->_shortVideoAuthorHeadImgBtn.frame.size];
+        }
+    }];
+    _shortVideoPlayCount.text = @"20W";
+    _shortVideoTimeLabel.text = @"20:20";
 }
 
 /*

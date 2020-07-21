@@ -46,6 +46,7 @@
 		637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3A24A9F1BA0009274C /* MBProgressHUD+Add.m */; };
 		637C5C0A24A35C0800D7C0E0 /* ljwcodeBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */; };
 		638481EC24BEEB85002F4C5F /* VideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638481EB24BEEB85002F4C5F /* VideoDetailViewController.m */; };
+		6389CE2424C6E6F600EE1A28 /* reportButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6389CE2324C6E6F600EE1A28 /* reportButton.m */; };
 		63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AD1AB924AC61D1007EC745 /* homeJokeModel.m */; };
 		63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */; };
 		63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */; };
@@ -154,6 +155,8 @@
 		637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeBaseViewModel.m; sourceTree = "<group>"; };
 		638481EA24BEEB85002F4C5F /* VideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoDetailViewController.h; sourceTree = "<group>"; };
 		638481EB24BEEB85002F4C5F /* VideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoDetailViewController.m; sourceTree = "<group>"; };
+		6389CE2224C6E6F600EE1A28 /* reportButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = reportButton.h; sourceTree = "<group>"; };
+		6389CE2324C6E6F600EE1A28 /* reportButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = reportButton.m; sourceTree = "<group>"; };
 		63AD1AB824AC61D1007EC745 /* homeJokeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeJokeModel.h; sourceTree = "<group>"; };
 		63AD1AB924AC61D1007EC745 /* homeJokeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeJokeModel.m; sourceTree = "<group>"; };
 		63B07BEF24A1DD5600C7CD6F /* homeNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsTableViewCell.h; sourceTree = "<group>"; };
@@ -250,6 +253,8 @@
 				63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */,
 				637A97F224C04B45000F7405 /* UIImage+cropPicture.h */,
 				637A97F324C04B45000F7405 /* UIImage+cropPicture.m */,
+				6389CE2224C6E6F600EE1A28 /* reportButton.h */,
+				6389CE2324C6E6F600EE1A28 /* reportButton.m */,
 			);
 			path = ljwcodeTools;
 			sourceTree = "<group>";
@@ -826,6 +831,7 @@
 				63231B9124A08F110059FD5F /* ljwcodeNavigationBar.m in Sources */,
 				637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */,
 				63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */,
+				6389CE2424C6E6F600EE1A28 /* reportButton.m in Sources */,
 				63167AB624AB6182002CB4EF /* homeNewsModel.m in Sources */,
 				6328F614249E111F00C767A8 /* ljwcodeHeader.m in Sources */,
 				63422BDF24A839960091FEE1 /* WMPageController.m in Sources */,
@@ -954,9 +960,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = LPWBCG9652;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -975,7 +981,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = gmail.com.ljwcodeHeadLineNews;
 				PRODUCT_NAME = "今日头条";
-				PROVISIONING_PROFILE_SPECIFIER = fengxing_dev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -986,9 +992,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = LPWBCG9652;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1007,7 +1013,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = gmail.com.ljwcodeHeadLineNews;
 				PRODUCT_NAME = "今日头条";
-				PROVISIONING_PROFILE_SPECIFIER = fengxing_dev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

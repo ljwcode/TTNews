@@ -56,8 +56,8 @@
         UINib *TVNib = [UINib nibWithNibName:NSStringFromClass([TVVideoPlayerViewCell class]) bundle:nil];
         [_detailTableView registerNib:TVNib forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
         
-//        UINib *shortVideoNib = [UINib nibWithNibName:NSStringFromClass([shortVideoPlayerViewCell class]) bundle:nil];
-//        [_detailTableView registerNib:shortVideoNib forCellReuseIdentifier:NSStringFromClass([shortVideoPlayerViewCell class])];
+        UINib *shortVideoNib = [UINib nibWithNibName:NSStringFromClass([shortVideoPlayerViewCell class]) bundle:nil];
+        [_detailTableView registerNib:shortVideoNib forCellReuseIdentifier:NSStringFromClass([shortVideoPlayerViewCell class])];
         
     }
     return _detailTableView;
@@ -71,7 +71,7 @@
         @strongify(self);
         [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             [self.dataArray removeAllObjects];
-            [_dataArray addObjectsFromArray:x];
+            [self->_dataArray addObjectsFromArray:x];
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
             [self.detailTableView.mj_footer endRefreshing];
@@ -99,7 +99,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     videoContentModel *model = self.dataArray[indexPath.row];
-    TVVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
+    shortVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([shortVideoPlayerViewCell class])];
     cell.contentModel = model;
     return cell;
 }
@@ -118,7 +118,7 @@
     if (_videoPlayModel.playing) {
         _videoPlayModel.playing = NO;
         NSInteger index = [self.dataArray indexOfObject:_videoPlayModel];
-        TVVideoPlayerViewCell *cell = [self.detailTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        shortVideoPlayerViewCell *cell = [self.detailTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
 //        [cell refreshCellStatus];
     }
     _videoPlayModel = videoPlayModel;

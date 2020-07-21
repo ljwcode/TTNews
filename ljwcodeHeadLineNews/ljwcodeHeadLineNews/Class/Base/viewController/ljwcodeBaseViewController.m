@@ -8,8 +8,12 @@
 
 #import "ljwcodeBaseViewController.h"
 #import "headLineSearchViewController.h"
+#import "reportButton.h"
+#import <UIView+LBFrame.h>
 
-@interface ljwcodeBaseViewController ()<UIGestureRecognizerDelegate,headLineSearchViewControllerDelegate>
+@interface ljwcodeBaseViewController ()<UIGestureRecognizerDelegate,headLineSearchViewControllerDelegate,UISearchBarDelegate>
+
+@property(nonatomic,strong)ljwcodeNavigationBar *naviBar;
 
 @end
 
@@ -18,39 +22,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    ljwcodeNavigationBar *navBar = [self showNaviBar];
+    reportButton *messageButton = [[reportButton alloc]initWithBtnText:@"发布" BtnImgView:@"add_channel_titlbar_thin_new_16x16_"];
+    messageButton.frame = CGRectMake(0, 0, 30, 30);
     
-    [navBar.navigationBarActionSubject subscribeNext:^(id  _Nullable x) {
-        NSLog(@"%@",x);
-    }];
+    UIBarButtonItem *messageBarButton = [[UIBarButtonItem alloc] initWithCustomView:messageButton];
+    self.navigationItem.rightBarButtonItem = messageBarButton;
     
+    // search bar
+    UIImageView *leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search"]];
+    leftView.bounds = CGRectMake(0, 0, 24, 24);
+    self.naviBar = [[ljwcodeNavigationBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)
+                                              placeholder:@"搜一搜"
+                                        textFieldLeftView:leftView
+                                         showCancelButton:NO
+                                                tintColor:[UIColor clearColor]];
+    self.navigationItem.titleView = self.naviBar;
+    self.naviBar.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     // Do any additional setup after loading the view.
 }
 
--(ljwcodeNavigationBar *)showNaviBar
-{
-    self.navigationController.navigationBar.hidden = YES;
-    ljwcodeNavigationBar *navBar = [ljwcodeNavigationBar ljwcodeNavigationBar];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapHandle:)];
-    [navBar addGestureRecognizer:tap];
-    [self.view addSubview:navBar];
-    
-    return navBar;
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    NSArray *hotSeaches = @[@"Swift", @"Python", @"Objective-C", @"Java", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+        
+        headLineSearchViewController *searchViewController = [headLineSearchViewController searchViewControllerWithHotSearchies:hotSeaches searchControllerPlaceHolder:hotSeaches[0] searchBlock:^(headLineSearchViewController * _Nonnull searchController, UISearchBar * _Nonnull searchBar, NSString * _Nonnull searchText) {
+            [searchViewController.navigationController pushViewController:self animated:YES];
+        }];
+    //    searchViewController.delegte = self;
+        searchViewController.hotSearchStyle = 0;
+        [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
--(void)tapHandle:(UITapGestureRecognizer *)tap{
-    NSLog(@"点击搜索搜索");
-    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    
-    headLineSearchViewController *searchViewController = [headLineSearchViewController searchViewControllerWithHotSearchies:hotSeaches searchControllerPlaceHolder:@"搜一搜" searchBlock:^(headLineSearchViewController * _Nonnull searchController, UISearchBar * _Nonnull searchBar, NSString * _Nonnull searchText) {
-        [searchViewController.navigationController pushViewController:self animated:YES];
-    }];
-//    searchViewController.delegte = self;
-    searchViewController.hotSearchStyle = 0;
-    [self.navigationController pushViewController:searchViewController animated:YES];
-}
 //图片显示
 -(UIBarButtonItem *)createBarButtonItemWithImage:(NSString *)imageName Selector:(SEL)selector{
     

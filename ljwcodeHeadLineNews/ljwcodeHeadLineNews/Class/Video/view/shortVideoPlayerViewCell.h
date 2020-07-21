@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "videoContentModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface shortVideoPlayerViewCell : UITableViewCell
+
+@property(nonatomic,strong)videoContentModel *contentModel;
+
+@property(nonatomic,copy)void(^imgViewCallBack)(UIView *parentView);
 
 @end
 
