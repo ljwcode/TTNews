@@ -45,8 +45,12 @@
 		637C2D3924A9DDA10009274C /* homeTitleRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3824A9DDA10009274C /* homeTitleRequestModel.m */; };
 		637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3A24A9F1BA0009274C /* MBProgressHUD+Add.m */; };
 		637C5C0A24A35C0800D7C0E0 /* ljwcodeBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */; };
+		637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 637E3CA624C7E65200FA5447 /* AreaCode.plist */; };
 		638481EC24BEEB85002F4C5F /* VideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638481EB24BEEB85002F4C5F /* VideoDetailViewController.m */; };
 		6389CE2424C6E6F600EE1A28 /* reportButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6389CE2324C6E6F600EE1A28 /* reportButton.m */; };
+		63A4E00724C83C980042473D /* loginStyleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4E00624C83C980042473D /* loginStyleButton.m */; };
+		63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4E00924C83E8B0042473D /* otherLoginTypeView.m */; };
+		63A4E00D24C863C10042473D /* CircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4E00C24C863C10042473D /* CircleButton.m */; };
 		63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AD1AB924AC61D1007EC745 /* homeJokeModel.m */; };
 		63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */; };
 		63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */; };
@@ -153,10 +157,17 @@
 		637C2D3B24A9F1BA0009274C /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		637C5C0824A35C0800D7C0E0 /* ljwcodeBaseViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeBaseViewModel.h; sourceTree = "<group>"; };
 		637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeBaseViewModel.m; sourceTree = "<group>"; };
+		637E3CA624C7E65200FA5447 /* AreaCode.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = AreaCode.plist; sourceTree = "<group>"; };
 		638481EA24BEEB85002F4C5F /* VideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoDetailViewController.h; sourceTree = "<group>"; };
 		638481EB24BEEB85002F4C5F /* VideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoDetailViewController.m; sourceTree = "<group>"; };
 		6389CE2224C6E6F600EE1A28 /* reportButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = reportButton.h; sourceTree = "<group>"; };
 		6389CE2324C6E6F600EE1A28 /* reportButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = reportButton.m; sourceTree = "<group>"; };
+		63A4E00524C83C980042473D /* loginStyleButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = loginStyleButton.h; sourceTree = "<group>"; };
+		63A4E00624C83C980042473D /* loginStyleButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = loginStyleButton.m; sourceTree = "<group>"; };
+		63A4E00824C83E8B0042473D /* otherLoginTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = otherLoginTypeView.h; sourceTree = "<group>"; };
+		63A4E00924C83E8B0042473D /* otherLoginTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = otherLoginTypeView.m; sourceTree = "<group>"; };
+		63A4E00B24C863C10042473D /* CircleButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleButton.h; sourceTree = "<group>"; };
+		63A4E00C24C863C10042473D /* CircleButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleButton.m; sourceTree = "<group>"; };
 		63AD1AB824AC61D1007EC745 /* homeJokeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeJokeModel.h; sourceTree = "<group>"; };
 		63AD1AB924AC61D1007EC745 /* homeJokeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeJokeModel.m; sourceTree = "<group>"; };
 		63B07BEF24A1DD5600C7CD6F /* homeNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsTableViewCell.h; sourceTree = "<group>"; };
@@ -255,6 +266,10 @@
 				637A97F324C04B45000F7405 /* UIImage+cropPicture.m */,
 				6389CE2224C6E6F600EE1A28 /* reportButton.h */,
 				6389CE2324C6E6F600EE1A28 /* reportButton.m */,
+				63A4E00524C83C980042473D /* loginStyleButton.h */,
+				63A4E00624C83C980042473D /* loginStyleButton.m */,
+				63A4E00B24C863C10042473D /* CircleButton.h */,
+				63A4E00C24C863C10042473D /* CircleButton.m */,
 			);
 			path = ljwcodeTools;
 			sourceTree = "<group>";
@@ -321,6 +336,8 @@
 			children = (
 				6355CFF324BF1078002D3815 /* loginView.h */,
 				6355CFF424BF1078002D3815 /* loginView.m */,
+				63A4E00824C83E8B0042473D /* otherLoginTypeView.h */,
+				63A4E00924C83E8B0042473D /* otherLoginTypeView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -328,6 +345,7 @@
 		6355CFF024BF0F77002D3815 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				637E3CA624C7E65200FA5447 /* AreaCode.plist */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -731,6 +749,7 @@
 				63F1F8E424AF31D300D687ED /* videoListModel in Resources */,
 				63F1F8D924AF28CA00D687ED /* TVVideoPlayerViewCell.xib in Resources */,
 				949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */,
+				637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */,
 				63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */,
 				63167ABA24AB63E2002CB4EF /* homeTitleChannelModel in Resources */,
 				6355CFEE24BEFC19002D3815 /* videoTitileModel in Resources */,
@@ -787,6 +806,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63F1F8D324AF223200D687ED /* TVVideoPlayerViewCell.m in Sources */,
+				63A4E00D24C863C10042473D /* CircleButton.m in Sources */,
 				637C5C0A24A35C0800D7C0E0 /* ljwcodeBaseViewModel.m in Sources */,
 				63167AB324AB6091002CB4EF /* homeNewsRequestModel.m in Sources */,
 				631BAEE8249B63D700639CD2 /* UITabBar+ljwcodeTabBarItem.m in Sources */,
@@ -794,6 +814,7 @@
 				638481EC24BEEB85002F4C5F /* VideoDetailViewController.m in Sources */,
 				63796B1024ADD83B00FB1421 /* homeNewsBrowserViewController.m in Sources */,
 				63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */,
+				63A4E00724C83C980042473D /* loginStyleButton.m in Sources */,
 				63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */,
 				8209791F1BD3AFDB00CF9D0C /* VideoViewController.m in Sources */,
 				6328F611249DEA8C00C767A8 /* ljwcodeEmitterHelper.m in Sources */,
@@ -828,6 +849,7 @@
 				63167AB024AB5FEE002CB4EF /* homeNewsCellViewModel.m in Sources */,
 				63C4729E24B0250B0030C84B /* videoPlayerToolView.m in Sources */,
 				631BAEEB249B751D00639CD2 /* ljwcodeNavigationController.m in Sources */,
+				63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */,
 				63231B9124A08F110059FD5F /* ljwcodeNavigationBar.m in Sources */,
 				637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */,
 				63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */,

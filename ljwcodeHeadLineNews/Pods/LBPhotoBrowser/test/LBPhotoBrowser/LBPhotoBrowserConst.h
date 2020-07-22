@@ -10,7 +10,7 @@
 #define __LBPhotoBrowserConst__H__
 
 #import <Foundation/Foundation.h>
-#import "UIView+LBFrame.h"
+#import "UIView+Frame.h"
 
 typedef NSMutableArray<NSURL *> LBUrlsMutableArray;
 typedef NSMutableArray <NSValue *> LBFramesMutableArray;

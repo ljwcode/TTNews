@@ -7,7 +7,7 @@
 //
 
 #import "UITabBar+ljwcodeTabBarItem.h"
-#import <UIView+LBFrame.h>
+#import <UIView+Frame.h>
 #import "baseBadgeLabel.h"
 //显示提示消息红点
 @implementation UITabBar (ljwcodeTabBarItem)

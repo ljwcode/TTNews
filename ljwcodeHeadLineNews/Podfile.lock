@@ -34,6 +34,7 @@ PODS:
   - MJExtension (3.2.2)
   - MJRefresh (3.4.3)
   - ReactiveObjC (3.1.1)
+  - SDAutoLayout (2.2.1)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -53,6 +54,7 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - ReactiveObjC
+  - SDAutoLayout (~> 2.2.1)
   - SDWebImage (~> 4.0.0)
   - SDWebImage/WebP
   - YYCache
@@ -70,6 +72,7 @@ SPEC REPOS:
     - MJExtension
     - MJRefresh
     - ReactiveObjC
+    - SDAutoLayout
     - SDWebImage
     - YYCache
     - YYText
@@ -85,10 +88,11 @@ SPEC CHECKSUMS:
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  SDAutoLayout: 5a33af83f0cdd8e20c4b1125de950fe28b27b245
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: bf96244390a9c1b5deb741ebdaa8faf54b584e6d
+PODFILE CHECKSUM: 8d60aed2b5ef55ede14696b8839e501c0399bc37
 
 COCOAPODS: 1.9.3

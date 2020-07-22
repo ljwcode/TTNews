@@ -18,7 +18,6 @@
     CGRect ringRect = CGRectMake(0, 0, 15, 15);
     CGContextSetLineWidth(context, 1);
     CGContextAddEllipseInRect(context, ringRect);
-//    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
     CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
     
     CGContextDrawPath(context, kCGPathFillStroke);

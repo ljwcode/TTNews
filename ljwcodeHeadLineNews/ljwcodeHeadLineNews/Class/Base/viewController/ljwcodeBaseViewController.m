@@ -9,7 +9,7 @@
 #import "ljwcodeBaseViewController.h"
 #import "headLineSearchViewController.h"
 #import "reportButton.h"
-#import <UIView+LBFrame.h>
+#import <UIView+Frame.h>
 
 @interface ljwcodeBaseViewController ()<UIGestureRecognizerDelegate,headLineSearchViewControllerDelegate,UISearchBarDelegate>
 

@@ -18,7 +18,7 @@
 #import "LBTapDetectingImageView.h"
 #import "LBZoomScrollView.h"
 #import "UIImage+LBDecoder.h"
-#import "UIView+LBFrame.h"
+#import "UIView+Frame.h"
 
 FOUNDATION_EXPORT double LBPhotoBrowserVersionNumber;
 FOUNDATION_EXPORT const unsigned char LBPhotoBrowserVersionString[];

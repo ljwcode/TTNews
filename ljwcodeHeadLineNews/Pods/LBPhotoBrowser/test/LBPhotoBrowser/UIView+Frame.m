@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 16816. All rights reserved.
 //
 
-#import "UIView+LBFrame.h"
+#import "UIView+Frame.h"
 
 @implementation UIView (LBFrame)
 

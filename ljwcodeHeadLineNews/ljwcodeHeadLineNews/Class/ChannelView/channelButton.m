@@ -8,7 +8,7 @@
 
 #import "channelButton.h"
 #import <Masonry/Masonry.h>
-#import <UIView+LBFrame.h>
+#import <UIView+Frame.h>
 
 static UIBezierPath *drawBezierPath(channelButton *Btn){
     UIBezierPath *BezierPath = [UIBezierPath bezierPath];

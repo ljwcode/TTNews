@@ -7,7 +7,7 @@
 //
 
 #import "headLineSearchViewController.h"
-#import <UIView+LBFrame.h>
+#import <UIView+Frame.h>
 
 @interface headLineSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UIGestureRecognizerDelegate>
 

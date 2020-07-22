@@ -8,7 +8,7 @@
 
 #import "reportButton.h"
 #import <Masonry/Masonry.h>
-#import <UIView+LBFrame.h>
+#import <UIView+Frame.h>
 
 @implementation reportButton
 
