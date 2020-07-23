@@ -42,7 +42,6 @@
         [self.player replaceCurrentItemWithPlayerItem:item];
         [self vpc_playerItemAddNotification];
     });
-    
 }
 
 -(instancetype)initWithFrame:(CGRect)frame{
@@ -57,7 +56,6 @@
         
     }
     return self;
-    
 }
 
 - (void)networkSpeedChanged:(NSNotification *)sender {
@@ -78,7 +76,6 @@
         [_vpToolsView.playerSlider addTarget:self action:@selector(vpc_sliderTouchEnd:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _vpToolsView;
-    
 }
 
 -(void)playButtonWithStates:(BOOL)state{
@@ -88,7 +85,6 @@
     }else{
         [self.player play];
     }
-    
 }
 
 - (void)vpc_sliderTouchBegin:(UISlider *)sender {
@@ -101,7 +97,6 @@
     NSInteger currentMin = currentTime / 60;
     NSInteger currentSec = (NSInteger)currentTime % 60;
     _vpToolsView.playerTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld",currentMin,currentSec];
-    
 }
 
 - (void)vpc_sliderTouchEnd:(UISlider *)sender {
@@ -112,7 +107,6 @@
     }
     [self.player seekToTime:CMTimeMakeWithSeconds(slideTime, NSEC_PER_SEC) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
     [self.player play];
-    
 }
 
 #pragma mark - 网速监听器
@@ -135,7 +129,6 @@
         _speedTextLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     }
     return _speedTextLabel;
-    
 }
 
 #pragma mark - AVPlayer
@@ -153,7 +146,6 @@
         }];
     }
     return _player;
-    
 }
 
 #pragma mark - AVPlayerLayer
@@ -166,7 +158,6 @@
     return _playerLayer;
     
 }
-
 #pragma mark ---------华丽的分割线---------
 
 #pragma mark - lTime
@@ -174,8 +165,6 @@
     
     NSTimeInterval totalTime = CMTimeGetSeconds(self.player.currentItem.duration);//总时长
     NSTimeInterval currentTime = CMTimeGetSeconds(self.player.currentTime);//当前时间进度
-    
-    // 切换视频源时totalTime/currentTime的值会出现nan导致时间错乱
     if (!(totalTime >= 0) || !(currentTime >= 0)) {
         totalTime = 0;
         currentTime = 0;
@@ -204,9 +193,7 @@
 }
 
 - (void)vpc_addObserverToPlayerItem:(AVPlayerItem *)playerItem {
-    // 监听播放状态
     [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
-    // 监听缓冲进度
     [playerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
 }
 
@@ -235,7 +222,6 @@
         float progress = totalBuffer/totalTime;//缓冲进度
         NSLog(@"progress = %lf",progress);
         
-        //如果缓冲完了，拖动进度条不需要重新显示缓冲条
         if (!self.buffered) {
             if (progress == 1.0) {
                 self.buffered = YES;

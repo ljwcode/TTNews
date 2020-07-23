@@ -1,0 +1,18 @@
+{
+  "images" : [
+    {
+      "filename" : "sharebar_shadow~ipad.png",
+      "idiom" : "ipad",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "sharebar_shadow~ipad@2x.png",
+      "idiom" : "ipad",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

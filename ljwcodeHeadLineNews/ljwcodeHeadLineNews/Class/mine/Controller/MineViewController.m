@@ -7,8 +7,12 @@
 //
 
 #import "MineViewController.h"
+#import "mineHeaderTableViewCell.h"
+#import <UIView+Frame.h>
 
-@interface MineViewController ()
+@interface MineViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property(nonatomic,weak)UITableView *tableView;
 
 @end
 
@@ -16,8 +20,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(UITableView *)tableView{
+    if(!_tableView){
+        UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        [self.view addSubview:tableView];
+        _tableView = tableView;
+    }
+    return _tableView;
+}
+
+
+#pragma mark - UITableViewDelegate && UITableViewDatasource
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 4;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch(indexPath.section){
+        case 1:
+            return self.view.height/4;
+            break;
+    }
+    return 0;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    mineHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([mineHeaderTableViewCell class])];
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning {

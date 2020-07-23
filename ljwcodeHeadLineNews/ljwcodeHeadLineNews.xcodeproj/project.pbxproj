@@ -19,6 +19,11 @@
 		6328F611249DEA8C00C767A8 /* ljwcodeEmitterHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F610249DEA8C00C767A8 /* ljwcodeEmitterHelper.m */; };
 		6328F614249E111F00C767A8 /* ljwcodeHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F613249E111F00C767A8 /* ljwcodeHeader.m */; };
 		6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 820978F21BD3A37700CF9D0C /* Assets.xcassets */; };
+		63403E7924C963150024A362 /* mineHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63403E7824C963140024A362 /* mineHeaderTableViewCell.m */; };
+		63403E7C24C969FB0024A362 /* screeningHallTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63403E7B24C969FB0024A362 /* screeningHallTableViewCell.m */; };
+		63403E7F24C96ADA0024A362 /* buttonStyleOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 63403E7E24C96ADA0024A362 /* buttonStyleOne.m */; };
+		63403E8324C96BF90024A362 /* ButtonViewTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 63403E8224C96BF90024A362 /* ButtonViewTools.m */; };
+		63403E8624C972810024A362 /* buttonStyleTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 63403E8524C972810024A362 /* buttonStyleTwo.m */; };
 		63422BDF24A839960091FEE1 /* WMPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422BD624A839960091FEE1 /* WMPageController.m */; };
 		63422BE024A839960091FEE1 /* WMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422BDA24A839960091FEE1 /* WMMenuItem.m */; };
 		63422BE124A839960091FEE1 /* WMScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422BDC24A839960091FEE1 /* WMScrollView.m */; };
@@ -33,6 +38,8 @@
 		6355CFEE24BEFC19002D3815 /* videoTitileModel in Resources */ = {isa = PBXBuildFile; fileRef = 6355CFED24BEFC19002D3815 /* videoTitileModel */; };
 		6355CFF524BF1078002D3815 /* loginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6355CFF424BF1078002D3815 /* loginView.m */; };
 		6365C9C024ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6365C9BF24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m */; };
+		636EA80624C9924500765F5C /* screeningHollHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA80524C9924500765F5C /* screeningHollHistoryModel.m */; };
+		636EA80924C9977B00765F5C /* videoInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA80824C9977B00765F5C /* videoInfoTableViewCell.m */; };
 		63796B1024ADD83B00FB1421 /* homeNewsBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63796B0F24ADD83B00FB1421 /* homeNewsBrowserViewController.m */; };
 		637A97F424C04B45000F7405 /* UIImage+cropPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A97F324C04B45000F7405 /* UIImage+cropPicture.m */; };
 		637A97F724C05BD7000F7405 /* VideoPlayerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A97F624C05BD7000F7405 /* VideoPlayerContainerView.m */; };
@@ -107,6 +114,16 @@
 		6328F610249DEA8C00C767A8 /* ljwcodeEmitterHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeEmitterHelper.m; sourceTree = "<group>"; };
 		6328F612249E111F00C767A8 /* ljwcodeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeHeader.h; sourceTree = "<group>"; };
 		6328F613249E111F00C767A8 /* ljwcodeHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeHeader.m; sourceTree = "<group>"; };
+		63403E7724C963140024A362 /* mineHeaderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mineHeaderTableViewCell.h; sourceTree = "<group>"; };
+		63403E7824C963140024A362 /* mineHeaderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mineHeaderTableViewCell.m; sourceTree = "<group>"; };
+		63403E7A24C969FB0024A362 /* screeningHallTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = screeningHallTableViewCell.h; sourceTree = "<group>"; };
+		63403E7B24C969FB0024A362 /* screeningHallTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = screeningHallTableViewCell.m; sourceTree = "<group>"; };
+		63403E7D24C96ADA0024A362 /* buttonStyleOne.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = buttonStyleOne.h; sourceTree = "<group>"; };
+		63403E7E24C96ADA0024A362 /* buttonStyleOne.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = buttonStyleOne.m; sourceTree = "<group>"; };
+		63403E8124C96BF80024A362 /* ButtonViewTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonViewTools.h; sourceTree = "<group>"; };
+		63403E8224C96BF90024A362 /* ButtonViewTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonViewTools.m; sourceTree = "<group>"; };
+		63403E8424C972810024A362 /* buttonStyleTwo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = buttonStyleTwo.h; sourceTree = "<group>"; };
+		63403E8524C972810024A362 /* buttonStyleTwo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = buttonStyleTwo.m; sourceTree = "<group>"; };
 		63422BD524A839960091FEE1 /* WMScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollView.h; sourceTree = "<group>"; };
 		63422BD624A839960091FEE1 /* WMPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPageController.m; sourceTree = "<group>"; };
 		63422BD724A839960091FEE1 /* WMMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMenuItem.h; sourceTree = "<group>"; };
@@ -133,6 +150,10 @@
 		6355CFF424BF1078002D3815 /* loginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = loginView.m; sourceTree = "<group>"; };
 		6365C9BE24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeRefreshGifHeader.h; sourceTree = "<group>"; };
 		6365C9BF24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeRefreshGifHeader.m; sourceTree = "<group>"; };
+		636EA80424C9924500765F5C /* screeningHollHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = screeningHollHistoryModel.h; sourceTree = "<group>"; };
+		636EA80524C9924500765F5C /* screeningHollHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = screeningHollHistoryModel.m; sourceTree = "<group>"; };
+		636EA80724C9977B00765F5C /* videoInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoInfoTableViewCell.h; sourceTree = "<group>"; };
+		636EA80824C9977B00765F5C /* videoInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoInfoTableViewCell.m; sourceTree = "<group>"; };
 		63796B0E24ADD83B00FB1421 /* homeNewsBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsBrowserViewController.h; sourceTree = "<group>"; };
 		63796B0F24ADD83B00FB1421 /* homeNewsBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsBrowserViewController.m; sourceTree = "<group>"; };
 		637A97F224C04B45000F7405 /* UIImage+cropPicture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+cropPicture.h"; sourceTree = "<group>"; };
@@ -255,26 +276,40 @@
 		6328F60B249DABDA00C767A8 /* ljwcodeTools */ = {
 			isa = PBXGroup;
 			children = (
+				63403E8024C96AE30024A362 /* UIButton */,
 				637C2D3B24A9F1BA0009274C /* MBProgressHUD+Add.h */,
 				637C2D3A24A9F1BA0009274C /* MBProgressHUD+Add.m */,
 				6328F60F249DEA8C00C767A8 /* ljwcodeEmitterHelper.h */,
 				6328F610249DEA8C00C767A8 /* ljwcodeEmitterHelper.m */,
-				637C2D2424A9C1E60009274C /* UIButton+extend.h */,
-				637C2D2524A9C1E60009274C /* UIButton+extend.m */,
 				6365C9BE24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.h */,
 				6365C9BF24ACB4AF00EC9F1D /* ljwcodeRefreshGifHeader.m */,
 				63C4729F24B0566D0030C84B /* NetworkSpeedMonitor.h */,
 				63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */,
 				637A97F224C04B45000F7405 /* UIImage+cropPicture.h */,
 				637A97F324C04B45000F7405 /* UIImage+cropPicture.m */,
+			);
+			path = ljwcodeTools;
+			sourceTree = "<group>";
+		};
+		63403E8024C96AE30024A362 /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				63403E8124C96BF80024A362 /* ButtonViewTools.h */,
+				63403E8224C96BF90024A362 /* ButtonViewTools.m */,
+				637C2D2424A9C1E60009274C /* UIButton+extend.h */,
+				637C2D2524A9C1E60009274C /* UIButton+extend.m */,
 				6389CE2224C6E6F600EE1A28 /* reportButton.h */,
 				6389CE2324C6E6F600EE1A28 /* reportButton.m */,
 				63A4E00524C83C980042473D /* loginStyleButton.h */,
 				63A4E00624C83C980042473D /* loginStyleButton.m */,
 				63A4E00B24C863C10042473D /* CircleButton.h */,
 				63A4E00C24C863C10042473D /* CircleButton.m */,
+				63403E7D24C96ADA0024A362 /* buttonStyleOne.h */,
+				63403E7E24C96ADA0024A362 /* buttonStyleOne.m */,
+				63403E8424C972810024A362 /* buttonStyleTwo.h */,
+				63403E8524C972810024A362 /* buttonStyleTwo.m */,
 			);
-			path = ljwcodeTools;
+			path = UIButton;
 			sourceTree = "<group>";
 		};
 		63422BBA24A838720091FEE1 /* 3rd */ = {
@@ -341,6 +376,12 @@
 				6355CFF424BF1078002D3815 /* loginView.m */,
 				63A4E00824C83E8B0042473D /* otherLoginTypeView.h */,
 				63A4E00924C83E8B0042473D /* otherLoginTypeView.m */,
+				63403E7724C963140024A362 /* mineHeaderTableViewCell.h */,
+				63403E7824C963140024A362 /* mineHeaderTableViewCell.m */,
+				63403E7A24C969FB0024A362 /* screeningHallTableViewCell.h */,
+				63403E7B24C969FB0024A362 /* screeningHallTableViewCell.m */,
+				636EA80724C9977B00765F5C /* videoInfoTableViewCell.h */,
+				636EA80824C9977B00765F5C /* videoInfoTableViewCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -349,6 +390,8 @@
 			isa = PBXGroup;
 			children = (
 				637E3CA624C7E65200FA5447 /* AreaCode.plist */,
+				636EA80424C9924500765F5C /* screeningHollHistoryModel.h */,
+				636EA80524C9924500765F5C /* screeningHollHistoryModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -821,8 +864,10 @@
 				63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */,
 				63A4E00724C83C980042473D /* loginStyleButton.m in Sources */,
 				63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */,
+				63403E7F24C96ADA0024A362 /* buttonStyleOne.m in Sources */,
 				8209791F1BD3AFDB00CF9D0C /* VideoViewController.m in Sources */,
 				6328F611249DEA8C00C767A8 /* ljwcodeEmitterHelper.m in Sources */,
+				63403E8624C972810024A362 /* buttonStyleTwo.m in Sources */,
 				63F1F8ED24AF3AB600D687ED /* videoContentRequestModel.m in Sources */,
 				820979281BD3B28700CF9D0C /* ljwcodeTabBarController.m in Sources */,
 				63422C5E24A88F020091FEE1 /* channelButton.m in Sources */,
@@ -854,18 +899,23 @@
 				63167AB024AB5FEE002CB4EF /* homeNewsCellViewModel.m in Sources */,
 				63C4729E24B0250B0030C84B /* videoPlayerToolView.m in Sources */,
 				631BAEEB249B751D00639CD2 /* ljwcodeNavigationController.m in Sources */,
+				636EA80924C9977B00765F5C /* videoInfoTableViewCell.m in Sources */,
 				63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */,
 				63231B9124A08F110059FD5F /* ljwcodeNavigationBar.m in Sources */,
 				637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */,
+				63403E8324C96BF90024A362 /* ButtonViewTools.m in Sources */,
+				63403E7924C963150024A362 /* mineHeaderTableViewCell.m in Sources */,
 				63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */,
 				6389CE2424C6E6F600EE1A28 /* reportButton.m in Sources */,
 				63167AB624AB6182002CB4EF /* homeNewsModel.m in Sources */,
+				636EA80624C9924500765F5C /* screeningHollHistoryModel.m in Sources */,
 				63A4E01024C866BB0042473D /* CountryCodeSelectViewController.m in Sources */,
 				6328F614249E111F00C767A8 /* ljwcodeHeader.m in Sources */,
 				63422BDF24A839960091FEE1 /* WMPageController.m in Sources */,
 				63422BE224A839960091FEE1 /* WMMenuView.m in Sources */,
 				6355CFF524BF1078002D3815 /* loginView.m in Sources */,
 				634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */,
+				63403E7C24C969FB0024A362 /* screeningHallTableViewCell.m in Sources */,
 				820979151BD3AEA800CF9D0C /* ScreeningHallViewController.m in Sources */,
 				820978E81BD3A37600CF9D0C /* main.m in Sources */,
 				637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */,

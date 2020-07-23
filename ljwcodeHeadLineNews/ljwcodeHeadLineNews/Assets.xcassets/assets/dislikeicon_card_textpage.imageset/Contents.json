@@ -1,0 +1,18 @@
+{
+  "images" : [
+    {
+      "filename" : "dislikeicon_card_textpage~ipad.png",
+      "idiom" : "ipad",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "dislikeicon_card_textpage~ipad@2x.png",
+      "idiom" : "ipad",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

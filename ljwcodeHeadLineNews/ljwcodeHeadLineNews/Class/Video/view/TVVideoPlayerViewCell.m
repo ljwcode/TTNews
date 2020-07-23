@@ -96,7 +96,7 @@
     _vodeoTitleLabel.text = contentModel.detailModel.title;
     [_videoAuthHeadImgBtn.imageView sd_setImageWithURL:[NSURL URLWithString: contentModel.detailModel.userInfoModel.avatar_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if(image){
-            _videoAuthHeadImgBtn.imageView.image = [image cropPictureWithRoundedCorner:_videoAuthHeadImgBtn.imageView.image.size.width/2 size:_videoAuthHeadImgBtn.frame.size];
+            self->_videoAuthHeadImgBtn.imageView.image = [image cropPictureWithRoundedCorner:self->_videoAuthHeadImgBtn.imageView.image.size.width/2 size:self->_videoAuthHeadImgBtn.frame.size];
         }
     }];
     _videoPlayCountLabel.text = @"20W";

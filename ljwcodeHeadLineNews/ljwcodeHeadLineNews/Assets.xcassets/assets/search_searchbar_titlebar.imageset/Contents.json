@@ -1,0 +1,18 @@
+{
+  "images" : [
+    {
+      "filename" : "search_searchbar_titlebar~ipad.png",
+      "idiom" : "ipad",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "search_searchbar_titlebar~ipad@2x.png",
+      "idiom" : "ipad",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
