@@ -7,9 +7,9 @@
 //
 
 #import "homeNewsBrowserViewController.h"
-#import "ljwcodeHeader.h"
+#import "TTHeader.h"
 #import <WebKit/WebKit.h>
-#import "ljwcodeNavigationController.h"
+#import "TTNavigationController.h"
 
 @interface homeNewsBrowserViewController ()<WKUIDelegate,WKNavigationDelegate>
 
@@ -58,14 +58,14 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    ljwcodeNavigationController *nav = (ljwcodeNavigationController *)self.navigationController;
+    TTNavigationController *nav = (TTNavigationController *)self.navigationController;
     [nav stopGestureRecnozier];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    ljwcodeNavigationController *nav = (ljwcodeNavigationController *)self.navigationController;
+    TTNavigationController *nav = (TTNavigationController *)self.navigationController;
     [nav startGestureRecnozier];
     UIImage *image = [self.navigationController valueForKeyPath:@"defaultImage"];
     [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];

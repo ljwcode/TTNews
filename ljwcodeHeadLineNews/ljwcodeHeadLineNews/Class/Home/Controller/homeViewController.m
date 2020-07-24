@@ -6,9 +6,9 @@
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 #import "homeViewController.h"
-#import "ljwcodeTabBarController.h"
-#import "ljwcodeBaseViewController.h"
-#import "ljwcodeHeader.h"
+#import "TTTabBarController.h"
+#import "TTBaseViewController.h"
+#import "TTHeader.h"
 #import "channelButton.h"
 #import "NewsChannelView.h"
 #import "newsChannelModel.h"

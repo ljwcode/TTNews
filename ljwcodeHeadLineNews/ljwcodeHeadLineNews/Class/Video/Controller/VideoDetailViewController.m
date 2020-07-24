@@ -10,7 +10,7 @@
 #import "TVVideoPlayerViewCell.h"
 #import "shortVideoPlayerViewCell.h"
 #import "videoContentViewModel.h"
-#import "ljwcodeHeader.h"
+#import "TTHeader.h"
 
 @interface VideoDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -99,7 +99,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     videoContentModel *model = self.dataArray[indexPath.row];
-    shortVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([shortVideoPlayerViewCell class])];
+    TVVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
     cell.contentModel = model;
     return cell;
 }
@@ -118,7 +118,7 @@
     if (_videoPlayModel.playing) {
         _videoPlayModel.playing = NO;
         NSInteger index = [self.dataArray indexOfObject:_videoPlayModel];
-        shortVideoPlayerViewCell *cell = [self.detailTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        TVVideoPlayerViewCell *cell = [self.detailTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
 //        [cell refreshCellStatus];
     }
     _videoPlayModel = videoPlayModel;

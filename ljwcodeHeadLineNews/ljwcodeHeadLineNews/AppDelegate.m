@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ljwcodeTabBarController.h"
+#import "TTTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -20,7 +20,7 @@
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	self.window.backgroundColor = [UIColor whiteColor];
 	[self.window makeKeyAndVisible];
-    ljwcodeTabBarController *tabbar = [[ljwcodeTabBarController alloc]init];
+    TTTabBarController *tabbar = [[TTTabBarController alloc]init];
     self.window.rootViewController = tabbar;
 	
 	return YES;

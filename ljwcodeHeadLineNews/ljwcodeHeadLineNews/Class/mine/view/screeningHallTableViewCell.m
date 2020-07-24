@@ -10,7 +10,7 @@
 #import <UIView+Frame.h>
 #import "buttonStyleOne.h"
 #import <Masonry/Masonry.h>
-#import "videoInfoTableViewCell.h"
+#import "videoInfoTableView.h"
 
 @interface screeningHallTableViewCell()<UIScrollViewDelegate>
 
@@ -26,7 +26,7 @@
 
 @property(nonatomic,assign)CGFloat cellHeight;
 
-@property(nonatomic,weak)videoInfoTableViewCell *infoCell;
+@property(nonatomic,weak)videoInfoTableView *infoView;
 
 @end
 
@@ -40,38 +40,42 @@ static CGFloat space = 10;
         
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(space);
-            make.top.mas_equalTo(self.mas_left).offset(space);
-            make.height.mas_equalTo(20);
-            make.width.mas_equalTo(30);
+            make.top.mas_equalTo(self.top).offset(space);
+            make.height.mas_equalTo(30);
+            make.width.mas_equalTo(80);
         }];
         
         [self.showMoreButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.mas_right).offset(-space);
             make.top.mas_equalTo(self.titleLabel);
-            make.height.mas_equalTo(20);
-            make.width.mas_equalTo(45);
+            make.height.mas_equalTo(30);
+            make.width.mas_equalTo(80);
         }];
         
         [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.titleLabel);
-            make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(space);
+            make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(-space);
             make.width.mas_equalTo(self.width - space);
             make.height.mas_equalTo(self.height - 3 * space - self.titleLabel.height);
         }];
         
-//        [self.infoCell mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left
-//        }];
+        [self.infoView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.scrollView.mas_left).offset(space);
+            make.top.mas_equalTo(self.scrollView);
+            make.bottom.mas_equalTo(self.scrollView);
+        }];
     }
     return self;
 }
 
--(videoInfoTableViewCell *)infoCell{
-    if(!_infoCell){
-        videoInfoTableViewCell *infoCell = [[videoInfoTableViewCell alloc]init];
-        _infoCell = infoCell;
+-(videoInfoTableView *)infoView{
+    if(!_infoView){
+        videoInfoTableView *infoView = [[videoInfoTableView alloc]init];
+        [self.scrollView addSubview:infoView];
+        _infoView = infoView;
+        
     }
-    return _infoCell;
+    return _infoView;
 }
 
 -(UILabel *)titleLabel{
@@ -79,9 +83,9 @@ static CGFloat space = 10;
         UILabel *label = [[UILabel alloc]init];
         label.text = @"放映厅";
         label.textColor = [UIColor darkTextColor];
-        label.font = [UIFont systemFontOfSize:16.f];
+        label.font = [UIFont systemFontOfSize:12.f];
         label.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:label];
+        [self.contentView addSubview:label];
         _titleLabel = label;
     }
     return _titleLabel;
@@ -90,8 +94,8 @@ static CGFloat space = 10;
 -(UIButton *)showMoreButton{
     if(!_showMoreButton){
         buttonStyleOne *button = [[buttonStyleOne alloc]init];
-        [button configureTitle:@"查看全部" img:[UIImage imageNamed:@"arrow_morelogin_profile_5x8_"]];
-        [self addSubview:button];
+        [button configureTitle:@"查看全部" img:[UIImage imageNamed:@"arrow_right_setup_12x16_"]];
+        [self.contentView addSubview:button];
         _showMoreButton = button;
     }
     return _showMoreButton;
@@ -105,7 +109,7 @@ static CGFloat space = 10;
         scrollView.showsVerticalScrollIndicator = NO;
         scrollView.showsHorizontalScrollIndicator = YES;
         scrollView.decelerationRate = 0.8;
-        [self addSubview:scrollView];
+        [self.contentView addSubview:scrollView];
         _scrollView = scrollView;
     }
     return _scrollView;

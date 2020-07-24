@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="230"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vee-Uu-1Nh" userLabel="TopView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vee-Uu-1Nh" userLabel="TopView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="146"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aSz-qq-7vg">
@@ -23,13 +23,16 @@
                                 <constraint firstAttribute="height" constant="146" id="OEu-1Y-rlN"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYM-vE-JbF">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYM-vE-JbF">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="NrE-Nq-jub"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLV-XP-M2K" userLabel="time">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLV-XP-M2K" userLabel="time">
                             <rect key="frame" x="266" y="125" width="46" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="JoX-FX-UPU"/>
@@ -38,7 +41,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="观看次数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhj-ha-8Gh" userLabel="playCount">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="观看次数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhj-ha-8Gh" userLabel="playCount">
                             <rect key="frame" x="8" y="125" width="41" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="wtL-8H-Tg4"/>
@@ -47,10 +50,11 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dg1-eA-NSN">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dg1-eA-NSN">
                             <rect key="frame" x="130" y="52" width="60" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="p2v-pG-uhp"/>
+                                <constraint firstAttribute="height" constant="60" id="vwq-ji-ieh"/>
                             </constraints>
                             <state key="normal" title="play" image="new_play_video_44x44_"/>
                         </button>
@@ -60,17 +64,19 @@
                         <constraint firstAttribute="trailing" secondItem="aSz-qq-7vg" secondAttribute="trailing" id="AfL-PX-wvO"/>
                         <constraint firstAttribute="bottom" secondItem="yhj-ha-8Gh" secondAttribute="bottom" id="Bko-wB-F7V"/>
                         <constraint firstItem="aSz-qq-7vg" firstAttribute="leading" secondItem="Vee-Uu-1Nh" secondAttribute="leading" id="BvC-VO-JBK"/>
+                        <constraint firstAttribute="height" constant="146" id="L9J-1Y-t3P"/>
                         <constraint firstAttribute="bottom" secondItem="eLV-XP-M2K" secondAttribute="bottom" id="RDm-oP-z3M"/>
                         <constraint firstItem="EYM-vE-JbF" firstAttribute="leading" secondItem="Vee-Uu-1Nh" secondAttribute="leading" id="UOi-hC-0rX"/>
                         <constraint firstItem="Dg1-eA-NSN" firstAttribute="leading" secondItem="Vee-Uu-1Nh" secondAttribute="leading" constant="130" id="V2m-k5-PsP"/>
                         <constraint firstItem="aSz-qq-7vg" firstAttribute="top" secondItem="Vee-Uu-1Nh" secondAttribute="top" id="WeX-Eh-Lis"/>
                         <constraint firstAttribute="trailing" secondItem="eLV-XP-M2K" secondAttribute="trailing" constant="8" id="XWp-NZ-SIJ"/>
-                        <constraint firstItem="Dg1-eA-NSN" firstAttribute="centerX" secondItem="Vee-Uu-1Nh" secondAttribute="centerX" id="e4t-KT-Uia"/>
+                        <constraint firstItem="Dg1-eA-NSN" firstAttribute="top" secondItem="EYM-vE-JbF" secondAttribute="bottom" constant="8" id="avG-Ll-bzM"/>
+                        <constraint firstItem="EYM-vE-JbF" firstAttribute="top" secondItem="Vee-Uu-1Nh" secondAttribute="top" id="p2H-M8-aPR"/>
                         <constraint firstItem="yhj-ha-8Gh" firstAttribute="leading" secondItem="Vee-Uu-1Nh" secondAttribute="leading" constant="8" id="sHi-yJ-98V"/>
                         <constraint firstAttribute="trailing" secondItem="EYM-vE-JbF" secondAttribute="trailing" id="wJR-mP-ebP"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lt9-UB-C3v" userLabel="BottomView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt9-UB-C3v" userLabel="BottomView">
                     <rect key="frame" x="0.0" y="167" width="320" height="63"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iBQ-uP-vTi">
@@ -111,7 +117,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FrO-Zx-gmJ" userLabel="authorHeadImgbtn">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FrO-Zx-gmJ" userLabel="authorHeadImgbtn">
                             <rect key="frame" x="0.0" y="43" width="52" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="52" id="NrY-Va-MtE"/>
@@ -119,7 +125,7 @@
                             </constraints>
                             <state key="normal" title="Button"/>
                         </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MAs-LQ-NmC" userLabel="videoDetailImg">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MAs-LQ-NmC" userLabel="videoDetailImg">
                             <rect key="frame" x="8" y="-3" width="52" height="38"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="52" id="AYo-cJ-pkb"/>

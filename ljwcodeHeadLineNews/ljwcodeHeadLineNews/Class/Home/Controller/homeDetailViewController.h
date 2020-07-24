@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ljwcodeBaseViewController.h"
+#import "TTBaseViewController.h"
 #import "homeTitleModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface homeDetailViewController : ljwcodeBaseViewController
+@interface homeDetailViewController : TTBaseViewController
 
 @property(nonatomic,strong)homeTitleModel *titleModel;
 

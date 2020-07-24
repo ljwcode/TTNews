@@ -6,11 +6,11 @@
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "ljwcodeBaseViewController.h"
+#import "TTBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface homeNewsBrowserViewController : ljwcodeBaseViewController
+@interface homeNewsBrowserViewController : TTBaseViewController
 
 @property(nonatomic,copy)NSString *urlString;
 

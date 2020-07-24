@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 yq. All rights reserved.
 //
 
-#import "ljwcodeBaseViewController.h"
+#import "TTBaseViewController.h"
 #import "WMMenuView.h"
 #import "WMScrollView.h"
 
@@ -112,7 +112,7 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
 
 @end
 
-@interface WMPageController : ljwcodeBaseViewController <WMMenuViewDelegate, WMMenuViewDataSource, UIScrollViewDelegate, WMPageControllerDataSource, WMPageControllerDelegate>
+@interface WMPageController : TTBaseViewController <WMMenuViewDelegate, WMMenuViewDataSource, UIScrollViewDelegate, WMPageControllerDataSource, WMPageControllerDelegate>
 
 @property (nonatomic, weak) id<WMPageControllerDelegate> delegate;
 @property (nonatomic, weak) id<WMPageControllerDataSource> dataSource;

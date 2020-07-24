@@ -23,6 +23,7 @@
         [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.centerY.mas_equalTo(self);
             make.height.mas_equalTo(self.height/2);
+            make.width.mas_equalTo(self.width/2);
         }];
     }
     return self;
@@ -31,11 +32,11 @@
 -(UIButton *)loginButton{
     if(!_loginButton){
         UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [loginButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [loginButton setImage:[UIImage imageNamed:@"kaixinicon_setup"] forState:UIControlStateNormal];
         [loginButton setTitle:@"登陆" forState:UIControlStateNormal];
         [loginButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         loginButton.titleLabel.font = [UIFont systemFontOfSize:18.f];
-        [self addSubview:loginButton];
+        [self.contentView addSubview:loginButton];
         _loginButton = loginButton;
     }
     return _loginButton;

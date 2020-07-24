@@ -12,10 +12,6 @@
 
 @interface buttonStyleOne()
 
-@property(nonatomic,weak)UIImageView *imgView;
-
-@property(nonatomic,weak)UILabel *label;
-
 @property(nonatomic,strong)UIImage *img;
 
 @property(nonatomic,copy)NSString *title;
@@ -24,11 +20,9 @@
 
 @implementation buttonStyleOne
 
--(instancetype)initWithFrame:(CGRect)frame{
-    if(self = [super initWithFrame:frame]){
-        [self configureButtonWithTitle:_title Img:_img];
-    }
-    return self;
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    [self configureButtonWithTitle:_title Img:_img];
 }
 
 -(void)configureTitle:(NSString *)title img:(UIImage *)img{
@@ -39,11 +33,8 @@
 -(void)configureButtonWithTitle:(NSString *)title Img:(UIImage *)img{
     ButtonViewTools *viewTools = [[ButtonViewTools alloc]init];
     
-    UILabel *titleLabel = [viewTools packageLabel:title paraentView:self labelFrame:CGRectMake(0, 0, self.width * 0.7, self.height) textColor:[UIColor lightGrayColor] fontSize:15.f];
-    _label = titleLabel;
-    
-    UIImageView *imgView = [viewTools packageImgView:img imgViewFrame:CGRectMake(CGRectGetMaxX(titleLabel.frame) + self.width * 0.1, 0, self.width * 0.2, self.height) paraentView:self];
-    _imgView = imgView;
+    UILabel *titleLabel = [viewTools packageLabel:title paraentView:self labelFrame:CGRectMake(0, 0, self.width * 0.7, self.height) textColor:[UIColor blackColor] fontSize:12.f];
+    UIImageView *imgView = [viewTools packageImgView:img imgViewFrame:CGRectMake(titleLabel.x+titleLabel.width + self.width * 0.1, self.center.y * 0.3, self.width * 0.2, self.height/2) paraentView:self];
 }
 
 

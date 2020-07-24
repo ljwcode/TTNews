@@ -9,7 +9,7 @@
 #import "NewsChannelView.h"
 #import "newsChannelTitleView.h"
 #import "newsChannelModel.h"
-#import "ljwcodeHeader.h"
+#import "TTHeader.h"
 #import "channelButton.h"
 
 @interface channelHeaderView : UIView
@@ -106,16 +106,16 @@ static CGFloat labelHeight = 40;
 //设置数据源
 -(void)configureData{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        for(int i = 0;i < _myChannelArray.count;i++){
+        for(int i = 0;i < self->_myChannelArray.count;i++){
             newsChannelModel *newsModel1 = [[newsChannelModel alloc]init];
-            newsModel1.name = _myChannelArray[i];
+            newsModel1.name = self->_myChannelArray[i];
             newsModel1.isMyChannel = YES;
             [self.dataArray addObject:newsModel1];
         }
-        for(int i = 0;i < _recommendChannelArray.count;i++)
+        for(int i = 0;i < self->_recommendChannelArray.count;i++)
         {
             newsChannelModel *newsModel2 = [[newsChannelModel alloc]init];
-            newsModel2.name = _recommendChannelArray[i];
+            newsModel2.name = self->_recommendChannelArray[i];
             newsModel2.isMyChannel = NO;
             [self.dataArray addObject:newsModel2];//dataArray数组保存model里面的数据
         }
@@ -203,7 +203,7 @@ static CGFloat labelHeight = 40;
                 model.hideDeleteBtn = YES;
             }
             if(i == newsModelIndex){
-                _newsModel = model;
+                self->_newsModel = model;
             }
         }
         [self refreshData];
@@ -232,7 +232,7 @@ static CGFloat labelHeight = 40;
                 model.hideDeleteBtn = YES;
             }
             if(i == newsModelIndex){
-                _newsModel = model;
+                self->_newsModel = model;
             }
         }
         [self refreshData];
@@ -243,7 +243,7 @@ static CGFloat labelHeight = 40;
 //刷新数据
 -(void)refreshData{
     dispatch_async(dispatch_get_main_queue(), ^{
-        for (newsChannelModel *model in _dataArray) {
+        for (newsChannelModel *model in self->_dataArray) {
             model.Btn.frame = model.frame;
             model.Btn.deleteImageView.hidden = model.hideDeleteBtn;
             [model.Btn reloadData];
@@ -355,22 +355,22 @@ static CGFloat labelHeight = 40;
     [self newLocationTapWithBtn:Btn locationBlock:^(newsChannelModel* targetModel) {
         if (self.newsModel == Btn.channelModel) {
             newsChannelModel *model = self.dataArray[Btn.channelModel.tag - 1];
-            _newsModel = model;
-        }else if(_newsModel == targetModel){
-            _newsModel = Btn.channelModel;
+            self->_newsModel = model;
+        }else if(self->_newsModel == targetModel){
+            self->_newsModel = Btn.channelModel;
         }
-        [_dataArray removeObject:Btn.channelModel];
-        [_dataArray insertObject:Btn.channelModel atIndex:targetModel.tag];
-        for(int i = 0;i < _dataArray.count;i++){
-            newsChannelModel *model = _dataArray[i];
+        [self->_dataArray removeObject:Btn.channelModel];
+        [self->_dataArray insertObject:Btn.channelModel atIndex:targetModel.tag];
+        for(int i = 0;i < self->_dataArray.count;i++){
+            newsChannelModel *model = self->_dataArray[i];
             model.tag = i;
             if(model.isMyChannel && model != Btn.channelModel){
                 model.frame = isMyChannelFrame(i);
             }
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            for(int i = 0;i < _dataArray.count;i++){
-                newsChannelModel *model = _dataArray[i];
+            for(int i = 0;i < self->_dataArray.count;i++){
+                newsChannelModel *model = self->_dataArray[i];
                 if(model.isMyChannel && model != Btn.channelModel){
                     [UIView animateWithDuration:0.25 animations:^{
                         Btn.channelModel.frame = model.frame;

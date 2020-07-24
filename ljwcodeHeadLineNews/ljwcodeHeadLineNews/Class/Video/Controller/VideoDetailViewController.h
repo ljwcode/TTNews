@@ -7,11 +7,11 @@
 //
 
 #import "videoTitleModel.h"
-#import "ljwcodeBaseViewController.h"
+#import "TTBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface VideoDetailViewController : ljwcodeBaseViewController
+@interface VideoDetailViewController : TTBaseViewController
 
 @property(nonatomic,strong)videoTitleModel *titleModel;
 
