@@ -19,7 +19,7 @@
 		6328F611249DEA8C00C767A8 /* TTEmitterHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F610249DEA8C00C767A8 /* TTEmitterHelper.m */; };
 		6328F614249E111F00C767A8 /* TTHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F613249E111F00C767A8 /* TTHeader.m */; };
 		6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 820978F21BD3A37700CF9D0C /* Assets.xcassets */; };
-		63403E7924C963150024A362 /* mineHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63403E7824C963140024A362 /* mineHeaderTableViewCell.m */; };
+		63403E7924C963150024A362 /* mineHeaderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63403E7824C963140024A362 /* mineHeaderTableView.m */; };
 		63403E7C24C969FB0024A362 /* screeningHallTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63403E7B24C969FB0024A362 /* screeningHallTableViewCell.m */; };
 		63403E7F24C96ADA0024A362 /* buttonStyleOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 63403E7E24C96ADA0024A362 /* buttonStyleOne.m */; };
 		63403E8324C96BF90024A362 /* ButtonViewTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 63403E8224C96BF90024A362 /* ButtonViewTools.m */; };
@@ -117,8 +117,8 @@
 		6328F610249DEA8C00C767A8 /* TTEmitterHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTEmitterHelper.m; sourceTree = "<group>"; };
 		6328F612249E111F00C767A8 /* TTHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTHeader.h; sourceTree = "<group>"; };
 		6328F613249E111F00C767A8 /* TTHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTHeader.m; sourceTree = "<group>"; };
-		63403E7724C963140024A362 /* mineHeaderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mineHeaderTableViewCell.h; sourceTree = "<group>"; };
-		63403E7824C963140024A362 /* mineHeaderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mineHeaderTableViewCell.m; sourceTree = "<group>"; };
+		63403E7724C963140024A362 /* mineHeaderTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mineHeaderTableView.h; sourceTree = "<group>"; };
+		63403E7824C963140024A362 /* mineHeaderTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mineHeaderTableView.m; sourceTree = "<group>"; };
 		63403E7A24C969FB0024A362 /* screeningHallTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = screeningHallTableViewCell.h; sourceTree = "<group>"; };
 		63403E7B24C969FB0024A362 /* screeningHallTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = screeningHallTableViewCell.m; sourceTree = "<group>"; };
 		63403E7D24C96ADA0024A362 /* buttonStyleOne.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = buttonStyleOne.h; sourceTree = "<group>"; };
@@ -385,8 +385,8 @@
 				6355CFF424BF1078002D3815 /* loginView.m */,
 				63A4E00824C83E8B0042473D /* otherLoginTypeView.h */,
 				63A4E00924C83E8B0042473D /* otherLoginTypeView.m */,
-				63403E7724C963140024A362 /* mineHeaderTableViewCell.h */,
-				63403E7824C963140024A362 /* mineHeaderTableViewCell.m */,
+				63403E7724C963140024A362 /* mineHeaderTableView.h */,
+				63403E7824C963140024A362 /* mineHeaderTableView.m */,
 				63403E7A24C969FB0024A362 /* screeningHallTableViewCell.h */,
 				63403E7B24C969FB0024A362 /* screeningHallTableViewCell.m */,
 				636EA80724C9977B00765F5C /* videoInfoTableView.h */,
@@ -920,7 +920,7 @@
 				63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */,
 				637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */,
 				63403E8324C96BF90024A362 /* ButtonViewTools.m in Sources */,
-				63403E7924C963150024A362 /* mineHeaderTableViewCell.m in Sources */,
+				63403E7924C963150024A362 /* mineHeaderTableView.m in Sources */,
 				63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */,
 				6389CE2424C6E6F600EE1A28 /* reportButton.m in Sources */,
 				638E977424CAB4A4005ADF42 /* TTMineNavigationController.m in Sources */,

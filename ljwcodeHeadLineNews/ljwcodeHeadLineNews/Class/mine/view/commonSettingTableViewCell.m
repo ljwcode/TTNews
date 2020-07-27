@@ -20,13 +20,13 @@
 
 @end
 
-static CGFloat Vspace = 10;
-static CGFloat Hspace = 10;
-static CGFloat buttonWidth = 30;
-static CGFloat buttonHeight = 30;
+static CGFloat Vspace = 30;
+static CGFloat Hspace = 30;
+static CGFloat buttonWidth = 50;
+static CGFloat buttonHeight = 50;
 static int columns = 4;
 
-#define isCommonSettingFrame(i) CGRectMake(Hspace*3+(i%columns)*(Hspace+buttonWidth), CGRectGetMaxY(self.titleLabel.frame)+Vspace+(i/columns)*(Vspace+buttonHeight), buttonWidth, buttonHeight)
+#define isCommonSettingFrame(i) CGRectMake(Hspace+(i%columns)*(Hspace+buttonWidth), CGRectGetHeight(self.titleLabel.frame)+Vspace+(i/columns)*(Vspace+buttonHeight)+self.titleLabel.frame.origin.y+Vspace*2, buttonWidth, buttonHeight)
 
 @implementation commonSettingTableViewCell
 

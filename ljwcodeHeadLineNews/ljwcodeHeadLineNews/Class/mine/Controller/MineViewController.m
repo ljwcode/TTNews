@@ -7,17 +7,21 @@
 //
 
 #import "MineViewController.h"
-#import "mineHeaderTableViewCell.h"
+#import "mineHeaderTableView.h"
 #import <UIView+Frame.h>
 #import <MJRefresh/MJRefresh.h>
 #import <Masonry/Masonry.h>
 #import "screeningHallTableViewCell.h"
+#import "commonSettingTableViewCell.h"
+#import "moreSettingTableViewCell.h"
 
-@interface MineViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MineViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 {
     CGFloat sectionHeight;
 }
 @property(nonatomic,strong)UITableView *tableView;
+
+@property(nonatomic,strong)UIView *headerView;
 
 @end
 
@@ -38,10 +42,15 @@
 }
 -(UITableView *)tableView{
     if(!_tableView){
-        UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        mineHeaderTableView *headerView = [[mineHeaderTableView alloc]init];
+        headerView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight*0.3);
+        self.headerView = headerView;
+        
+        tableView.tableHeaderView = headerView;
         _tableView = tableView;
     }
     return _tableView;
@@ -55,11 +64,10 @@
             return 1;
             break;
         case 1:
-        case 2:
-        case 3:
             return 1;
             break;
-            
+        case 2:
+            return 1;
         default:
             break;
     }
@@ -67,7 +75,7 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 4;
+    return 3;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -77,24 +85,18 @@
             break;
         case 1:
         case 2:
-        case 3:
-            return sectionHeight;
+            return kScreenHeight * 0.3;
             break;
     }
     return 0;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0;
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    switch(section){
-        case 0:
-            return 10;
-            break;
-        case 1:
-        case 2:
-        case 3:
-            return 10;
-            break;
-    }
+
     return 0;
 }
 
@@ -103,20 +105,27 @@
     switch (indexPath.section) {
         case 0:
         {
-            mineHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([mineHeaderTableViewCell class])];
+            screeningHallTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([screeningHallTableViewCell class])];
             if(!cell){
-                cell = [[mineHeaderTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([mineHeaderTableViewCell class])];
+                cell = [[screeningHallTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([screeningHallTableViewCell class])];
             }
             resultCell = cell;
         }
             break;
         case 1:
-        case 2:
-        case 3:
         {
-            screeningHallTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([screeningHallTableViewCell class])];
+            commonSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([commonSettingTableViewCell class])];
             if(!cell){
-                cell = [[screeningHallTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([screeningHallTableViewCell class])];
+                cell = [[commonSettingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([commonSettingTableViewCell class])];
+            }
+            resultCell = cell;
+        }
+            break;
+        case 2:
+        {
+            moreSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([moreSettingTableViewCell class])];
+            if(!cell){
+                cell = [[moreSettingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([moreSettingTableViewCell class])];
             }
             resultCell = cell;
         }
@@ -127,6 +136,17 @@
     }
     
     return resultCell;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat y = scrollView.contentOffset.y;
+    CGFloat hey = CGRectGetMaxY(self.headerView.frame);
+    if (y <= -30 || y >= hey-40) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    }else{
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
