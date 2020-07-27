@@ -163,7 +163,7 @@
 		637A97F324C04B45000F7405 /* UIImage+cropPicture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+cropPicture.m"; sourceTree = "<group>"; };
 		637A97F524C05BD7000F7405 /* VideoPlayerContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerContainerView.h; sourceTree = "<group>"; };
 		637A97F624C05BD7000F7405 /* VideoPlayerContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerContainerView.m; sourceTree = "<group>"; };
-		637C2D2224A995F70009274C /* ljwcodeHeadLineNews.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeHeadLineNews.pch; sourceTree = "<group>"; };
+		637C2D2224A995F70009274C /* HeadLineNews.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadLineNews.pch; sourceTree = "<group>"; };
 		637C2D2424A9C1E60009274C /* UIButton+extend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+extend.h"; sourceTree = "<group>"; };
 		637C2D2524A9C1E60009274C /* UIButton+extend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+extend.m"; sourceTree = "<group>"; };
 		637C2D2724A9CDE30009274C /* homeTitleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeTitleModel.h; sourceTree = "<group>"; };
@@ -616,7 +616,7 @@
 				820978EA1BD3A37700CF9D0C /* AppDelegate.m */,
 				820978F21BD3A37700CF9D0C /* Assets.xcassets */,
 				820978E61BD3A37600CF9D0C /* Supporting Files */,
-				637C2D2224A995F70009274C /* ljwcodeHeadLineNews.pch */,
+				637C2D2224A995F70009274C /* HeadLineNews.pch */,
 			);
 			path = ljwcodeHeadLineNews;
 			sourceTree = "<group>";
@@ -1063,7 +1063,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PREFIX_HEADER = ljwcodeHeadLineNews/ljwcodeHeadLineNews.pch;
+				GCC_PREFIX_HEADER = ljwcodeHeadLineNews/HeadLineNews.pch;
 				INFOPLIST_FILE = ljwcodeHeadLineNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1095,7 +1095,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PREFIX_HEADER = ljwcodeHeadLineNews/ljwcodeHeadLineNews.pch;
+				GCC_PREFIX_HEADER = ljwcodeHeadLineNews/HeadLineNews.pch;
 				INFOPLIST_FILE = ljwcodeHeadLineNews/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

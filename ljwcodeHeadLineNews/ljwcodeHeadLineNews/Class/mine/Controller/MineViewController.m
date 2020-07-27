@@ -14,6 +14,7 @@
 #import "screeningHallTableViewCell.h"
 #import "commonSettingTableViewCell.h"
 #import "moreSettingTableViewCell.h"
+#import "loginView.h"
 
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 {
@@ -22,6 +23,8 @@
 @property(nonatomic,strong)UITableView *tableView;
 
 @property(nonatomic,strong)UIView *headerView;
+
+@property(nonatomic,strong)UIView *footerView;
 
 @end
 
@@ -49,6 +52,14 @@
         mineHeaderTableView *headerView = [[mineHeaderTableView alloc]init];
         headerView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight*0.3);
         self.headerView = headerView;
+        headerView.loginBlock = ^{
+            loginView *loginV = [[loginView alloc]init];
+            [loginV show];
+        };
+        
+        UIView *footerView = [[UIView alloc]initWithFrame:CGRectZero];
+        self.footerView = footerView;
+        tableView.tableFooterView = footerView;
         
         tableView.tableHeaderView = headerView;
         _tableView = tableView;

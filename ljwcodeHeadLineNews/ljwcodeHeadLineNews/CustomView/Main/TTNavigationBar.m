@@ -28,7 +28,7 @@
         self.leftView = leftView; // 用来代替左边的放大镜.
         [self setImage:[UIImage imageNamed:@"search"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal]; // 替换输入过程中右侧的clearIcon
         
-        if ([[UIDevice currentDevice] systemVersion].doubleValue >= 11.0) {
+        if (systemVersion >= 11.0) {
             [[self.heightAnchor constraintEqualToConstant:44.0] setActive:YES];
         } else {
             [self setLeftPlaceholder];

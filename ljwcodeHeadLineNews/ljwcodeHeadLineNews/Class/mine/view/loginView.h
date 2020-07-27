@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface loginView : UIView
 
+-(void)show;
+
 @end
 
 NS_ASSUME_NONNULL_END

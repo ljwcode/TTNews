@@ -30,8 +30,17 @@
             make.height.mas_equalTo(self.width/2);
             make.width.mas_equalTo(self.width/2);
         }];
+        [loginButton addTarget:self action:@selector(loginHandle:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
+}
+
+-(void)loginHandle:(UIButton *)sender{
+    if(sender){
+        if(self.loginBlock){
+            self.loginBlock();
+        }
+    }
 }
 
 - (void)awakeFromNib {

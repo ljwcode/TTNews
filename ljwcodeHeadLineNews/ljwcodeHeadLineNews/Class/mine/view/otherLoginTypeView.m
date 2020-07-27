@@ -44,10 +44,7 @@
                     InfoArray:(NSArray *)infoArray
                 MaxLineNumber:(NSInteger)maxLineNumber
                MaxSingleCount:(NSInteger)maxSingleCount{
-    
-    self = [super initWithFrame:frame];
-    
-    if (self) {
+    if (self = [super initWithFrame:frame]) {
         _infoArray = infoArray;
         _buttonArray = [NSMutableArray array];
         _pageViewArray = [NSMutableArray array];
@@ -59,11 +56,6 @@
     }
     
     return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame{
-    
-    return [self initWithFrame:frame InfoArray:nil MaxLineNumber:0 MaxSingleCount:0];
 }
 
 #pragma mark - 初始化数据
@@ -97,7 +89,6 @@
     _scrollView.pagingEnabled = YES;
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.showsHorizontalScrollIndicator = NO;
-    
     [self addSubview:_scrollView];
         
     _pageControl = [[UIPageControl alloc] init];

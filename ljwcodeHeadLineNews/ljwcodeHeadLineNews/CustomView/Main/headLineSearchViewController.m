@@ -330,7 +330,7 @@
     
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:titleView.bounds];
     [titleView addSubview:searchBar];
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0) { // iOS 11
+    if (systemVersion >= 11.0) { // iOS 11
         [NSLayoutConstraint activateConstraints:@[
             [searchBar.topAnchor constraintEqualToAnchor:titleView.topAnchor],
             [searchBar.leftAnchor constraintEqualToAnchor:titleView.leftAnchor],
