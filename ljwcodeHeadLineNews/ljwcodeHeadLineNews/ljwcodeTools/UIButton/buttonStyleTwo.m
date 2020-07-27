@@ -24,13 +24,10 @@
 
 @implementation buttonStyleTwo
 
--(instancetype)initWithFrame:(CGRect)frame{
-    if(self = [super initWithFrame:frame]){
-        [self configureButtonWithTitle:_title Img:_img];
-    }
-    return self;
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    [self configureButtonWithTitle:_title Img:_img];
 }
-
 -(void)configrueTitle:(NSString *)title img:(UIImage *)img{
     _title = title;
     _img = img;

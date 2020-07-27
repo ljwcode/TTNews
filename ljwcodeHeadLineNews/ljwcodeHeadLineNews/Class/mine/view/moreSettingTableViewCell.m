@@ -43,7 +43,7 @@ static int columns = 4;
         for(int i = 0;i < self.infoArray.count;i++){
             buttonStyleTwo *moreSettingButton = [[buttonStyleTwo alloc]init];
             moreSettingButton.frame = isMoreSettingButtonFrame(i);
-            [moreSettingButton configrueTitle:self.infoArray[i][@"title"] img:self.infoArray[i][@"image"]];
+            [moreSettingButton configrueTitle:self.infoArray[i][@"title"] img:[UIImage imageNamed:self.infoArray[i][@"image"]]];
             [self.contentView addSubview:moreSettingButton];
             _moreSettingButton = moreSettingButton;
         }
@@ -54,14 +54,14 @@ static int columns = 4;
 -(NSArray *)infoArray{
     if(!_infoArray){
         _infoArray = [[NSArray alloc]init];
-        _infoArray = @[@{@"title" : @"超级会员",@"image" : @""},
-                       @{@"title" : @"圆梦公寓",@"image" : @""},
-                       @{@"title" : @"夜间模式", @"image" : @""},
+        _infoArray = @[@{@"title" : @"超级会员",@"image" : @"profile_v2_my_comment"},
+                       @{@"title" : @"圆梦公寓",@"image" : @"profile_v2_my_comment"},
+                       @{@"title" : @"夜间模式", @"image" : @"profile_v2_my_comment"},
                        @{@"title" : @"评论",@"image" : @"profile_v2_my_comment"},
-                       @{@"title" : @"点赞",@"image" : @""},
+                       @{@"title" : @"点赞",@"image" : @"profile_v2_my_comment"},
                        @{@"title" : @"扫一扫",@"image" : @"profile_scan_code"},
-                       @{@"title" : @"预约",@"image" : @""},
-                       @{@"title" : @"网络推广",@"image" : @""}
+                       @{@"title" : @"预约",@"image" : @"profile_v2_my_comment"},
+                       @{@"title" : @"网络推广",@"image" : @"profile_v2_my_comment"}
         ];
     }
     return _infoArray;

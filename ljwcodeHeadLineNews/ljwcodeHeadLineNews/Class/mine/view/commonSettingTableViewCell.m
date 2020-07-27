@@ -40,10 +40,10 @@ static int columns = 4;
             make.height.mas_equalTo(30);
         }];
         
-        for(int i = 0;i < _infoArray.count;i++){
+        for(int i = 0;i < self.infoArray.count;i++){
             buttonStyleTwo *commomButton = [[buttonStyleTwo alloc]init];
             commomButton.frame = isCommonSettingFrame(i);
-            [commomButton configrueTitle:_infoArray[i][@"title"] img:_infoArray[i][@"image"]];
+            [commomButton configrueTitle:self.infoArray[i][@"title"] img:[UIImage imageNamed:self.infoArray[i][@"image"]]];
             [self.contentView addSubview:commomButton];
         }
     }
@@ -59,7 +59,7 @@ static int columns = 4;
                        @{@"title" : @"浏览历史", @"image" : @"profile_v2_my_history"},
                        @{@"title" : @"钱包", @"image" : @"profile_v2_my_wallet"},
                        @{@"title" : @"用户反馈", @"image" : @"profile_user_feedback"},
-                       @{@"title" : @"免流量服务", @"image" : @""},
+                       @{@"title" : @"免流量服务", @"image" : @"profile_system_config"},
                        @{@"title" : @"系统设置", @"image" : @"profile_system_config"}
         ];
     }
@@ -71,7 +71,7 @@ static int columns = 4;
         UILabel *label = [[UILabel alloc]init];
         label.text = @"常用功能";
         label.textColor = [UIColor blackColor];
-        label.font = [UIFont systemFontOfSize:13.f];
+        label.font = [UIFont systemFontOfSize:18.f];
         [self.contentView addSubview:label];
         _titleLabel = label;
     }
