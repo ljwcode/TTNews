@@ -19,5 +19,4 @@ pod 'FMDB'
 pod 'LBPhotoBrowser', '~> 2.2.2'
 pod 'SDWebImage/WebP'
 pod 'SDWebImage’,’~> 4.0.0’
-pod 'SDAutoLayout', '~> 2.2.1'
 end

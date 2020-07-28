@@ -10,10 +10,14 @@
 #import <Masonry/Masonry.h>
 #import <YYText/YYText.h>
 #import <UIView+Frame.h>
+#import "countryCodeView.h"
+#import "otherLoginTypeView.h"
 
 @interface loginView()
 
 @property(nonatomic,weak)UIButton *tiktokLoginBtn;
+
+@property(nonatomic,weak)UIButton *countryCodeBtn;
 
 @end
 
@@ -145,9 +149,12 @@
     UIButton *countryCodeBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [countryCodeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     countryCodeBtn.titleLabel.font = [UIFont systemFontOfSize:16.f];
-    [countryCodeBtn setTitle:@"+86" forState:UIControlStateNormal];
+    
+    
     [self addSubview:countryCodeBtn];
-
+    _countryCodeBtn = countryCodeBtn;
+    [countryCodeBtn addTarget:self action:@selector(countryCodeHandle:) forControlEvents:UIControlEventTouchUpInside];
+    
     [countryCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(titleImgView);
         make.top.mas_equalTo(titleImgView.mas_bottom).offset(50);
@@ -243,7 +250,16 @@
 
 -(void)moreLoginHandle:(UIButton *)sender{
     if(sender){
-        
+        otherLoginTypeView *otherView = [[otherLoginTypeView alloc]initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight*0.3)];
+        otherView.layer.borderColor = [UIColor redColor].CGColor;
+        otherView.layer.borderWidth = 2.f;
+        otherView.backgroundColor = [UIColor whiteColor];
+        [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:otherView];
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect rect = otherView.frame;
+            rect.origin.y -= otherView.bounds.size.height;
+            otherView.frame = rect;
+        }];
     }
 }
 
@@ -260,6 +276,14 @@
 -(void)hide{
     [self removeFromSuperview];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+}
+
+-(void)countryCodeHandle:(UIButton *)sender{
+    countryCodeView *view = [[countryCodeView alloc]init];
+    view.didSelectCallback = ^(NSString * _Nonnull text) {
+        [self->_countryCodeBtn setTitle:[NSString stringWithFormat:@"+%@",text] forState:UIControlStateNormal];
+    };
+    [self addSubview:view];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

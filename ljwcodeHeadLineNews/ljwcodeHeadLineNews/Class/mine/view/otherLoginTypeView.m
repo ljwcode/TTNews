@@ -7,226 +7,144 @@
 //
 
 #import "otherLoginTypeView.h"
-#import <SDAutoLayout.h>
+#import <Masonry/Masonry.h>
+#import <UIView+Frame.h>
 
-@interface otherLoginTypeView()<UIScrollViewDelegate>
+@interface otherLoginTypeView()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
-@property(nonatomic,strong)UIScrollView *scrollView;
+@property(nonatomic,strong)UITableView *alertSheetView;
 
-@property(nonatomic,strong)UIPageControl *pageControl;
-
-@property(nonatomic,strong) NSArray *infoArray;
-
-@property(nonatomic,strong) NSMutableArray *buttonArray;
-
-@property(nonatomic,strong) NSMutableArray *pageViewArray;
+@property(nonatomic,strong)NSArray *infoArray;
 
 @end
 
 @implementation otherLoginTypeView
-{
-    NSInteger lineMaxNumber; //最大行数
-    NSInteger singleMaxCount; //单行最大个数
-}
 
 - (void)dealloc{
     
-    _scrollView = nil;
-    _pageControl = nil;
-    _infoArray = nil;
-    _buttonArray = nil;
-    _pageViewArray = nil;
+    self.alertSheetView = nil;
+    self.infoArray = nil;
 }
 
 #pragma mark - 初始化
 
-- (instancetype)initWithFrame:(CGRect)frame
-                    InfoArray:(NSArray *)infoArray
-                MaxLineNumber:(NSInteger)maxLineNumber
-               MaxSingleCount:(NSInteger)maxSingleCount{
-    if (self = [super initWithFrame:frame]) {
-        _infoArray = infoArray;
-        _buttonArray = [NSMutableArray array];
-        _pageViewArray = [NSMutableArray array];
-        lineMaxNumber = maxLineNumber;  //4
-        singleMaxCount = maxSingleCount; //1
-        [self configureDataSource];
-        [self configureSubview];
-        [self configAutoLayout];
+-(instancetype)initWithFrame:(CGRect)frame{
+    if(self = [super initWithFrame:frame]){
+        self.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight*0.3);
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClose:)];
+        [[UIApplication sharedApplication].keyWindow.rootViewController.view addGestureRecognizer:tap];
+        
     }
-    
     return self;
+}
+
+/*
+ 点击空白处关闭
+ */
+
+-(void)tapClose:(UITapGestureRecognizer *)tap{
+    if (tap.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint tapPoint = [tap locationInView:[UIApplication sharedApplication].delegate.window.rootViewController.view];
+        CGRect floatRect = self.alertSheetView.bounds;
+        
+        if (self.alertSheetView && !CGRectContainsPoint(floatRect, tapPoint))
+        {
+            
+            [self.alertSheetView.window removeGestureRecognizer:tap];
+            [self removeFromSuperview];
+        }
+        
+    }
 }
 
 #pragma mark - 初始化数据
 
-- (void)configureDataSource{
+- (NSArray *)infoArray{
     if (!_infoArray) {
-        
+        _infoArray = [[NSArray alloc]init];
         _infoArray = @[
-            @{@"title" : @"密码登陆" , @"image" : @"login_other_pw" , @"highlightedImage" : @"login_other_pw" , @"type" : [NSNumber numberWithInteger:LoginTypeToPassWd]} ,
+            @{@"title" : @"密码登陆" , @"image" : @"login_other_pw" , @"type" : [NSNumber numberWithInteger:LoginTypeToPassWd]} ,
             
-            @{@"title" : @"天翼登陆" , @"image" : @"login_other_ty" , @"highlightedImage" : @"login_other_ty" , @"type" : [NSNumber numberWithInteger:LoginTypeToTianyi]} ,
+            @{@"title" : @"天翼登陆" , @"image" : @"login_other_ty" ,  @"type" : [NSNumber numberWithInteger:LoginTypeToTianyi]} ,
                         
-            @{@"title" : @"QQ登陆" , @"image" : @"login_other_qq" , @"highlightedImage" : @"login_other_qq" , @"type" : [NSNumber numberWithInteger:LoginTypeToQQ]} ,
+            @{@"title" : @"QQ登陆" , @"image" : @"login_other_qq" ,  @"type" : [NSNumber numberWithInteger:LoginTypeToQQ]} ,
             
-            @{@"title" : @"微信登陆" , @"image" : @"login_other_wx" , @"highlightedImage" : @"login_other_wx" , @"type" : [NSNumber numberWithInteger:LoginTypeToWeChat]}];
+            @{@"title" : @"微信登陆" , @"image" : @"login_other_wx" , @"type" : [NSNumber numberWithInteger:LoginTypeToWeChat]}];
     }
-    
-    lineMaxNumber = lineMaxNumber > 0 ? lineMaxNumber : 2;
-    singleMaxCount = singleMaxCount > 0 ? singleMaxCount : 3;
+    return _infoArray;
 }
 
-#pragma mark - 初始化子视图
-
-- (void)configureSubview{
-    _scrollView = [[UIScrollView alloc] init];
-    
-    _scrollView.backgroundColor = [UIColor clearColor];
-    
-    _scrollView.delegate = self;
-    _scrollView.bounces = YES;
-    _scrollView.pagingEnabled = YES;
-    _scrollView.showsVerticalScrollIndicator = NO;
-    _scrollView.showsHorizontalScrollIndicator = NO;
-    [self addSubview:_scrollView];
-        
-    _pageControl = [[UIPageControl alloc] init];
-    _pageControl.currentPage = 0;
-    _pageControl.pageIndicatorTintColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3f];
-    _pageControl.currentPageIndicatorTintColor = [UIColor grayColor];
-    
-    [self addSubview:_pageControl];
-    NSInteger index = 0;
-    
-    UIView *pageView = nil;
-    
-    for (NSDictionary *info in _infoArray) {
-        
-        if (index % (lineMaxNumber * singleMaxCount) == 0) {
-            pageView = [[UIView alloc] init];
-            
-            [_scrollView addSubview:pageView];
-            [_pageViewArray addObject:pageView];
-        }
-        //初始化按钮
-        loginStyleButton *button = [[loginStyleButton alloc]init];
-        [button configTitle:info[@"title"] Image:[UIImage imageNamed:info[@"image"]]];
-        
-        [button.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
-        
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        
-        [button addTarget:self action:@selector(loginButtonHandle:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [pageView addSubview:button];
-        
-        [_buttonArray addObject:button];
-        
-        index++;
+-(UITableView *)alertSheetView{
+    if(!_alertSheetView){
+        UITableView *tableView = [[UITableView alloc]initWithFrame:self.frame style:UITableViewStylePlain];
+        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        [self addSubview:tableView];
+        _alertSheetView = tableView;
     }
-    
-    _pageControl.numberOfPages = _pageViewArray.count > 1 ? _pageViewArray.count : 0;
+    return _alertSheetView;
 }
 
-#pragma mark - 设置自动布局
+#pragma mark - UITableViewDelegate && UITableViewDataSource
 
-- (void)configAutoLayout{
-    
-    NSInteger lineNumber = ceilf((double)_infoArray.count / singleMaxCount);
-    NSInteger singleCount = ceilf((double)_infoArray.count / lineNumber);
-    singleCount = singleCount >= _infoArray.count ? singleCount : singleMaxCount ;
-    CGFloat buttonWidth = self.width / singleCount;
-    
-    CGFloat buttonHeight = 50;
-    
-    NSInteger index = 0;
-    
-    NSInteger currentPageCount = 0;
-    
-    UIView *pageView = nil;
-    
-    for (loginStyleButton *button in _buttonArray) {
-        if (index % (lineMaxNumber * singleMaxCount) == 0) {
-            pageView = _pageViewArray[currentPageCount];
-            //布局页视图
-            if (currentPageCount == 0) {
-                pageView.sd_layout
-                .leftSpaceToView(_scrollView , 0)
-                .topSpaceToView(_scrollView , 0)
-                .rightSpaceToView(_scrollView , 0)
-                .heightIs((lineNumber > lineMaxNumber ? lineMaxNumber : lineNumber ) * buttonHeight);
-            } else {
-                pageView.sd_layout
-                .leftSpaceToView(_pageViewArray[currentPageCount - 1] , 0)
-                .topSpaceToView(_scrollView , 0)
-                .widthRatioToView(_pageViewArray[currentPageCount - 1] , 1)
-                .heightRatioToView(_pageViewArray[currentPageCount - 1] , 1);
-            }
-            currentPageCount ++;
-        }
-        if (index == 0) {
-            button.sd_layout
-            .leftSpaceToView(pageView , 0)
-            .topSpaceToView(pageView , 0)
-            .widthIs(buttonWidth)
-            .heightIs(buttonHeight);
-            
-        } else {
-            if (index % singleCount == 0) {
-                if (index % (lineMaxNumber * singleMaxCount) == 0) {
-                    button.sd_layout
-                    .leftSpaceToView(pageView , 0)
-                    .topSpaceToView(pageView , 0)
-                    .widthIs(buttonWidth)
-                    .heightIs(buttonHeight);
-                } else {
-                    button.sd_layout
-                    .leftSpaceToView(pageView , 0)
-                    .topSpaceToView(_buttonArray[index - singleCount] , 0)
-                    .widthIs(buttonWidth)
-                    .heightIs(buttonHeight);
-                }
-            } else {
-                
-                button.sd_layout
-                .leftSpaceToView(_buttonArray[index - 1] , 0)
-                .topEqualToView(_buttonArray[index - 1])
-                .widthIs(buttonWidth)
-                .heightIs(buttonHeight);
-            }
-        }
-        index ++;
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.infoArray.count;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellID = @"cellID";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if(!cell){
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        UIImageView *titleImgView = [[UIImageView alloc]init];
+        [cell.contentView addSubview:titleImgView];
+        [titleImgView setTag:100003];
+        [titleImgView sizeToFit];
+        titleImgView.layer.borderColor = [UIColor redColor].CGColor;
+        titleImgView.layer.borderWidth = 2.f;
+        [titleImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(cell.contentView);
+            make.centerY.mas_equalTo(cell.contentView);
+            make.height.mas_equalTo(cell.contentView);
+        }];
+        
+        UILabel *detailLabel = [[UILabel alloc]init];
+        detailLabel.textColor = [UIColor lightGrayColor];
+        detailLabel.textAlignment = NSTextAlignmentCenter;
+        detailLabel.layer.borderColor = [UIColor redColor].CGColor;
+        detailLabel.layer.borderWidth = 2.f;
+        detailLabel.font = [UIFont systemFontOfSize:15.f];
+        [cell.contentView addSubview:detailLabel];
+        [detailLabel sizeToFit];
+        [detailLabel setTag:100004];
+        [detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(titleImgView.mas_right).offset(10);
+            make.top.mas_equalTo(titleImgView);
+            make.height.mas_equalTo(titleImgView);
+            make.right.mas_lessThanOrEqualTo(cell.contentView.width*0.5);
+        }];
     }
+    UIImageView *titleImgView = (UIImageView *)[cell.contentView viewWithTag:100003];
+    UILabel *detailLabel = (UILabel *)[cell.contentView viewWithTag:100004];
+    titleImgView.image = [UIImage imageNamed:self.infoArray[indexPath.row][@"image"]];
+    detailLabel.text = self.infoArray[indexPath.row][@"title"];
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    _scrollView.sd_layout
-    .topEqualToView(self)
-    .leftSpaceToView(self, 0.0f)
-    .rightSpaceToView(self , 0.0f)
-    .heightRatioToView(_pageViewArray.lastObject , 1);
-    
-    [_scrollView setupAutoContentSizeWithRightView:_pageViewArray.lastObject rightMargin:0.0f];
-    
-    [_scrollView setupAutoContentSizeWithBottomView:_pageViewArray.lastObject bottomMargin:0.0f];
-    _pageControl.sd_layout
-    .leftEqualToView(self)
-    .rightEqualToView(self)
-    .topSpaceToView(_scrollView , 5.0f)
-    .heightIs(10.0f);
-    
-    [self setupAutoHeightWithBottomView:_pageControl bottomMargin:0.0f];
 }
 
 #pragma mark - 点击按钮跳转拉起第三方登陆
 
 - (void)loginButtonHandle:(UIButton *)sender{
     
-}
-
-#pragma mark - UIScrollViewDelegate
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    self.pageControl.currentPage = scrollView.contentOffset.x / scrollView.width;
 }
 
 /*

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630A976624CFC463003029C3 /* countryCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A976424CFC462003029C3 /* countryCodeView.m */; };
 		63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AAC24AAE3C2002CB4EF /* homeDetailViewController.m */; };
 		63167AB024AB5FEE002CB4EF /* homeNewsCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AAF24AB5FEE002CB4EF /* homeNewsCellViewModel.m */; };
 		63167AB324AB6091002CB4EF /* homeNewsRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AB224AB6091002CB4EF /* homeNewsRequestModel.m */; };
@@ -58,10 +59,8 @@
 		638E977424CAB4A4005ADF42 /* TTMineNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977324CAB4A4005ADF42 /* TTMineNavigationController.m */; };
 		638E977D24CADB90005ADF42 /* commonSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977C24CADB90005ADF42 /* commonSettingTableViewCell.m */; };
 		638E978024CAF04B005ADF42 /* moreSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977F24CAF04B005ADF42 /* moreSettingTableViewCell.m */; };
-		63A4E00724C83C980042473D /* loginStyleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4E00624C83C980042473D /* loginStyleButton.m */; };
 		63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4E00924C83E8B0042473D /* otherLoginTypeView.m */; };
 		63A4E00D24C863C10042473D /* CircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4E00C24C863C10042473D /* CircleButton.m */; };
-		63A4E01024C866BB0042473D /* CountryCodeSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4E00F24C866BB0042473D /* CountryCodeSelectViewController.m */; };
 		63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AD1AB924AC61D1007EC745 /* homeJokeModel.m */; };
 		63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */; };
 		63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */; };
@@ -97,6 +96,8 @@
 
 /* Begin PBXFileReference section */
 		293C19CEC52458542FCA55CC /* Pods-ljwcodeHeadLineNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.release.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.release.xcconfig"; sourceTree = "<group>"; };
+		630A976424CFC462003029C3 /* countryCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countryCodeView.m; sourceTree = "<group>"; };
+		630A976524CFC463003029C3 /* countryCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = countryCodeView.h; sourceTree = "<group>"; };
 		63167AAB24AAE3C2002CB4EF /* homeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeDetailViewController.h; sourceTree = "<group>"; };
 		63167AAC24AAE3C2002CB4EF /* homeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeDetailViewController.m; sourceTree = "<group>"; };
 		63167AAE24AB5FEE002CB4EF /* homeNewsCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsCellViewModel.h; sourceTree = "<group>"; };
@@ -193,14 +194,10 @@
 		638E977C24CADB90005ADF42 /* commonSettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = commonSettingTableViewCell.m; sourceTree = "<group>"; };
 		638E977E24CAF04B005ADF42 /* moreSettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moreSettingTableViewCell.h; sourceTree = "<group>"; };
 		638E977F24CAF04B005ADF42 /* moreSettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = moreSettingTableViewCell.m; sourceTree = "<group>"; };
-		63A4E00524C83C980042473D /* loginStyleButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = loginStyleButton.h; sourceTree = "<group>"; };
-		63A4E00624C83C980042473D /* loginStyleButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = loginStyleButton.m; sourceTree = "<group>"; };
 		63A4E00824C83E8B0042473D /* otherLoginTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = otherLoginTypeView.h; sourceTree = "<group>"; };
 		63A4E00924C83E8B0042473D /* otherLoginTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = otherLoginTypeView.m; sourceTree = "<group>"; };
 		63A4E00B24C863C10042473D /* CircleButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleButton.h; sourceTree = "<group>"; };
 		63A4E00C24C863C10042473D /* CircleButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleButton.m; sourceTree = "<group>"; };
-		63A4E00E24C866BB0042473D /* CountryCodeSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountryCodeSelectViewController.h; sourceTree = "<group>"; };
-		63A4E00F24C866BB0042473D /* CountryCodeSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountryCodeSelectViewController.m; sourceTree = "<group>"; };
 		63AD1AB824AC61D1007EC745 /* homeJokeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeJokeModel.h; sourceTree = "<group>"; };
 		63AD1AB924AC61D1007EC745 /* homeJokeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeJokeModel.m; sourceTree = "<group>"; };
 		63B07BEF24A1DD5600C7CD6F /* homeNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsTableViewCell.h; sourceTree = "<group>"; };
@@ -309,8 +306,6 @@
 				637C2D2524A9C1E60009274C /* UIButton+extend.m */,
 				6389CE2224C6E6F600EE1A28 /* reportButton.h */,
 				6389CE2324C6E6F600EE1A28 /* reportButton.m */,
-				63A4E00524C83C980042473D /* loginStyleButton.h */,
-				63A4E00624C83C980042473D /* loginStyleButton.m */,
 				63A4E00B24C863C10042473D /* CircleButton.h */,
 				63A4E00C24C863C10042473D /* CircleButton.m */,
 				63403E7D24C96ADA0024A362 /* buttonStyleOne.h */,
@@ -381,6 +376,8 @@
 		6355CFEF24BF0F70002D3815 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				630A976524CFC463003029C3 /* countryCodeView.h */,
+				630A976424CFC462003029C3 /* countryCodeView.m */,
 				6355CFF324BF1078002D3815 /* loginView.h */,
 				6355CFF424BF1078002D3815 /* loginView.m */,
 				63A4E00824C83E8B0042473D /* otherLoginTypeView.h */,
@@ -421,8 +418,6 @@
 			children = (
 				820979171BD3AFAC00CF9D0C /* MineViewController.h */,
 				820979181BD3AFAC00CF9D0C /* MineViewController.m */,
-				63A4E00E24C866BB0042473D /* CountryCodeSelectViewController.h */,
-				63A4E00F24C866BB0042473D /* CountryCodeSelectViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -877,7 +872,6 @@
 				638481EC24BEEB85002F4C5F /* VideoDetailViewController.m in Sources */,
 				63796B1024ADD83B00FB1421 /* homeNewsBrowserViewController.m in Sources */,
 				63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */,
-				63A4E00724C83C980042473D /* loginStyleButton.m in Sources */,
 				63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */,
 				63403E7F24C96ADA0024A362 /* buttonStyleOne.m in Sources */,
 				8209791F1BD3AFDB00CF9D0C /* VideoViewController.m in Sources */,
@@ -898,6 +892,7 @@
 				637A97F724C05BD7000F7405 /* VideoPlayerContainerView.m in Sources */,
 				63422C5624A87EA30091FEE1 /* newsChannelTitleView.m in Sources */,
 				637C2D3024A9D1600009274C /* networkBaseModel.m in Sources */,
+				630A976624CFC463003029C3 /* countryCodeView.m in Sources */,
 				63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */,
 				637C2D2924A9CDE30009274C /* homeTitleModel.m in Sources */,
 				820979101BD3AB2800CF9D0C /* homeViewController.m in Sources */,
@@ -926,7 +921,6 @@
 				638E977424CAB4A4005ADF42 /* TTMineNavigationController.m in Sources */,
 				63167AB624AB6182002CB4EF /* homeNewsModel.m in Sources */,
 				636EA80624C9924500765F5C /* screeningHollHistoryModel.m in Sources */,
-				63A4E01024C866BB0042473D /* CountryCodeSelectViewController.m in Sources */,
 				6328F614249E111F00C767A8 /* TTHeader.m in Sources */,
 				63422BDF24A839960091FEE1 /* WMPageController.m in Sources */,
 				638E977D24CADB90005ADF42 /* commonSettingTableViewCell.m in Sources */,
