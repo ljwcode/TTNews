@@ -20,8 +20,9 @@
     if(self = [super initWithFrame:frame]){
         self.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.3);
         UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [loginButton setBackgroundImage:[UIImage imageNamed:@"profile_grid_login"] forState:UIControlStateNormal];
+        [loginButton setBackgroundImage:[UIImage imageNamed:@"profile_grid_login~iphone@2x"] forState:UIControlStateNormal];
         [loginButton setTitle:@"登陆" forState:UIControlStateNormal];
+        [loginButton sizeToFit];
         [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         loginButton.titleLabel.font = [UIFont systemFontOfSize:18.f];
         [self addSubview:loginButton];

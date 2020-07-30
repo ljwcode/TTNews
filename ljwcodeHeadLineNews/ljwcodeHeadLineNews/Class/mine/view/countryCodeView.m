@@ -55,7 +55,7 @@ static NSString *cellID = @"cellID";
 @implementation countryCodeView
 
 /*
- 列表索引
+ 索引列表
  */
 -(NSMutableArray *)indexArray{
     if(!_indexArray){
@@ -314,7 +314,6 @@ static NSString *cellID = @"cellID";
             detailLabel.text = [NSString stringWithFormat:@"+%@",[[self.dataArray[0] objectForKey:@"All"][indexPath.row]objectForKey:@"Num"]];
             break;
             
-            
     }
     return cell;
 }
@@ -326,7 +325,7 @@ static NSString *cellID = @"cellID";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(self.didSelectCallback){
-        self.didSelectCallback([[self.dataArray[0]objectForKey:@"Common"][indexPath.row]objectForKey:@"Num"]);
+        self.didSelectCallback(indexPath.section == 0?[[self.dataArray[0]objectForKey:@"Common"][indexPath.row]objectForKey:@"Num"] : [[self.dataArray[0]objectForKey:@"All"][indexPath.row]objectForKey:@"Num"]);
         
     }
     [self removeFromSuperview];

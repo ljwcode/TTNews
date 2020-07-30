@@ -249,18 +249,15 @@
 }
 
 -(void)moreLoginHandle:(UIButton *)sender{
-    if(sender){
-        otherLoginTypeView *otherView = [[otherLoginTypeView alloc]initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight*0.3)];
-        otherView.layer.borderColor = [UIColor redColor].CGColor;
-        otherView.layer.borderWidth = 2.f;
-        otherView.backgroundColor = [UIColor whiteColor];
-        [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:otherView];
-        [UIView animateWithDuration:0.5 animations:^{
-            CGRect rect = otherView.frame;
-            rect.origin.y -= otherView.bounds.size.height;
-            otherView.frame = rect;
-        }];
-    }
+    otherLoginTypeView *otherView = [[otherLoginTypeView alloc]init];
+    otherView.layer.borderColor = [UIColor redColor].CGColor;
+    otherView.layer.borderWidth = 2.f;
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:otherView];
+    [UIView animateWithDuration:0.5 animations:^{
+        CGRect rect = otherView.frame;
+        rect.origin.y -= otherView.bounds.size.height;
+        otherView.frame = rect;
+    }];
 }
 
 -(void)closeHandle:(UIButton *)sender{

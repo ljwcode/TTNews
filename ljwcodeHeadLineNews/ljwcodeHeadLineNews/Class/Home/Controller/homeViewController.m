@@ -17,6 +17,7 @@
 #import "homeTitleViewModel.h"
 #import "homeDetailViewController.h"
 #import "homeDetailViewController.h"
+#import "headLineSearchViewController.h"
 
 @interface homeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 

@@ -11,7 +11,7 @@
 #import "reportButton.h"
 #import <UIView+Frame.h>
 
-@interface TTBaseViewController ()<UIGestureRecognizerDelegate,headLineSearchViewControllerDelegate,UISearchBarDelegate>
+@interface TTBaseViewController ()<UIGestureRecognizerDelegate,UISearchBarDelegate>
 
 @property(nonatomic,strong)TTNavigationBar *naviBar;
 
@@ -35,7 +35,8 @@
                                               placeholder:@"搜一搜"
                                         textFieldLeftView:leftView
                                          showCancelButton:NO
-                                                tintColor:[UIColor clearColor]];
+                                                tintColor:[UIColor whiteColor]];
+    self.naviBar.layer.cornerRadius = 16.f;
     self.navigationItem.titleView = self.naviBar;
     self.naviBar.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -44,13 +45,12 @@
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     NSArray *hotSeaches = @[@"Swift", @"Python", @"Objective-C", @"Java", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-        
-        headLineSearchViewController *searchViewController = [headLineSearchViewController searchViewControllerWithHotSearchies:hotSeaches searchControllerPlaceHolder:hotSeaches[0] searchBlock:^(headLineSearchViewController * _Nonnull searchController, UISearchBar * _Nonnull searchBar, NSString * _Nonnull searchText) {
-            [searchViewController.navigationController pushViewController:self animated:YES];
-        }];
-    //    searchViewController.delegte = self;
-        searchViewController.hotSearchStyle = 0;
-        [self.navigationController pushViewController:searchViewController animated:YES];
+    
+    __block headLineSearchViewController *searchViewController = [headLineSearchViewController searchViewControllerWithHotSearchies:hotSeaches searchControllerPlaceHolder:hotSeaches[0] searchBlock:^(headLineSearchViewController * _Nonnull searchController, UISearchBar * _Nonnull searchBar, NSString * _Nonnull searchText) {
+        [searchViewController.navigationController pushViewController:self animated:YES];
+    }];
+    searchViewController.hotSearchStyle = 0;
+    [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
 //图片显示

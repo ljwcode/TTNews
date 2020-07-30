@@ -8,6 +8,7 @@
 
 #import "headLineSearchViewController.h"
 #import <UIView+Frame.h>
+#import <Masonry.h>
 
 @interface headLineSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UIGestureRecognizerDelegate>
 
@@ -46,7 +47,7 @@
 
 @property(nonatomic,strong)UIBarButtonItem *cancelBarButtonItem;
 
-@property(nonatomic,strong)UIBarButtonItem *backBarButtonItem;
+//@property(nonatomic,strong)UIBarButtonItem *backBarButtonItem;
 
 @property(nonatomic,weak)UILabel *hotSearchHeaderLabel;
 
@@ -106,7 +107,6 @@
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    
     if(self.currentOrientation != [UIDevice currentDevice].orientation){
         self.hotSearchies = self.hotSearchies;
         self.searchHistory = self.searchHistory;
@@ -115,21 +115,19 @@
     
     CGFloat adaptWidth = 0;
     UISearchBar *searchBar = self.searchBar;
+    searchBar.layer.borderColor = [UIColor redColor].CGColor;
+    searchBar.layer.borderWidth = 2.f;
     UITextField *searchTextfield = self.searchTextfield;
     UIView *titleView = self.navigationItem.titleView;
     
-    UIButton *backButton = self.navigationItem.leftBarButtonItem.customView; //返回
     UIButton *cancelButton = self.navigationItem.rightBarButtonItem.customView; //取消
     
-    UIEdgeInsets backBtnEdgeInsets = UIEdgeInsetsZero;
     UIEdgeInsets cancelBtnEdgeInsets = UIEdgeInsetsZero;
     UIEdgeInsets navigationBarLyaoutEdgeInsets = UIEdgeInsetsZero;
     
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     
     if(@available(iOS 8.0,*)){
-        backButton.layoutMargins = UIEdgeInsetsMake(8, 0, 8, 8);
-        backBtnEdgeInsets = backButton.layoutMargins;
         cancelButton.layoutMargins = UIEdgeInsetsMake(8, 8, 8, 0);
         cancelBtnEdgeInsets = cancelButton.layoutMargins;
         navigationBarLyaoutEdgeInsets = navigationBar.layoutMargins;
@@ -143,8 +141,12 @@
         }else{
             [leftLayoutConstaaint setConstant:10-navigationBarLyaoutEdgeInsets.left];
         }
-        searchBar.height = self.view.width>self.view.height ? 24 : 30;
-        searchBar.width = self.view.width - SEARCH_MARGIN - adaptWidth;
+        [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(SEARCH_MARGIN);
+            make.top.mas_equalTo(SEARCH_MARGIN);
+            make.height.mas_equalTo(self.view.width > self.view.height ? 24 : 30);
+            make.width.mas_equalTo(self.view.width - SEARCH_MARGIN*2 - adaptWidth - cancelButton.width);
+        }];
         searchTextfield.frame = searchBar.bounds;
        
         cancelButton.width = self.cancelBtnWidth;
@@ -168,13 +170,7 @@
     if(self.cancelBtnWidth == 0){
         [self viewDidLayoutSubviews];
     }
-    
-    if(self.navigationController.navigationBar.translucent == NO){
-        self.baseSearchTableView.contentInset = UIEdgeInsetsMake(0, 0, self.view.y, 0);
-        if(!self.navigationController.navigationBar.barTintColor){
-            self.navigationController.navigationBar.barTintColor = setColorWithRed(249, 249, 249, 1);
-        }
-    }
+    self.navigationController.navigationBarHidden = YES;
     if(self.resultShowController.parentViewController == NULL){
         [self.searchBar becomeFirstResponder];
     }
@@ -299,7 +295,7 @@
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
     cancelButton.titleLabel.font = [UIFont systemFontOfSize:17];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
-    [cancelButton setTitleColor:setColorWithRed(113, 113, 113, 1) forState:UIControlStateNormal];
+    [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     cancelButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     cancelButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     [cancelButton addTarget:self action:@selector(cancelButtonHandle:) forControlEvents:UIControlEventTouchUpInside];
@@ -308,23 +304,7 @@
     cancelButton.width += SEARCH_MARGIN;
     self.cancelButton = cancelButton;
     self.cancelBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:cancelButton];
-    
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    UIImage *backImg = [UIImage imageNamed:@"back"];
-    backButton.titleLabel.font = [UIFont systemFontOfSize:17];
-    [backButton setTitle:@"返回" forState:UIControlStateNormal];
-    [backButton setImage:backImg forState:UIControlStateNormal];
-    [backButton setTitleColor:setColorWithRed(113, 113, 113, 1) forState:UIControlStateNormal];
-    backButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [backButton.imageView sizeToFit];
-    [backButton addTarget:self action:@selector(backButtonHandle:) forControlEvents:UIControlEventTouchUpInside];
-    backButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-    backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -ceil(backImg.size.width/2), 0, 0);
-    [backButton sizeToFit];
-    backButton.width += 3;
-    self.backButton = backButton;
-    self.backBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+
     
     UIView *titleView = [[UIView alloc] init];
     
@@ -357,12 +337,13 @@
     UIView *headerView = [[UIView alloc] init];
     headerView.width = kCompareScreenWidth;
     headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    
+    headerView.layer.borderColor = [UIColor redColor].CGColor;
+    headerView.layer.borderWidth = 2.f;
     UIView *hotSearchView = [[UIView alloc] init];
     hotSearchView.x = SEARCH_MARGIN * 1.5;
     hotSearchView.width = headerView.width - hotSearchView.x * 2;
     hotSearchView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    UILabel *titleLabel = [self setUpTitleLabelText:@"热门搜索"];
+    UILabel *titleLabel = [self setUpTitleLabelText:@"猜你想搜"];
     self.hotSearchHeaderLabel = titleLabel;
     [hotSearchView addSubview:titleLabel];
     
@@ -559,20 +540,10 @@
 }
 
 -(void)backButtonHandle:(UIButton *)sender{
-    if(self.searchBar.isFirstResponder){
-        if([self.delegte respondsToSelector:@selector(backHandle:)]){
-            [self.delegte backHandle:self];
-        }
-    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)cancelButtonHandle:(UIButton *)sender{
-    if(self.searchBar.isFirstResponder){
-        if([self.delegte respondsToSelector:@selector(cancelHandle:)]){
-            [self.delegte cancelHandle:self];
-        }
-    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -584,19 +555,9 @@
     UILabel *label = (UILabel *)tap.view;
     self.searchBar.text = label.text;
     if(label.tag == 1){
-        if([self.delegte respondsToSelector:@selector(searchViewController: didSelectHotSearchAtIndex: searchAtIndexText:)]){
-            [self.delegte searchViewController:self didSelectHotSearchAtIndex:[self.hotSearchTag indexOfObject:label] searchAtIndexText:label.text];
-            [self saveSearchCacheWithRefreshView];
-        }else{
-            [self searchBarSearchButtonClicked:self.searchBar];
-        }
+        [self searchBarSearchButtonClicked:self.searchBar];
     }else{
-        if([self.delegte respondsToSelector:@selector(searchViewController:didSelectSearchHistoryAtIndex:searchAtIndexText:)]){
-            [self.delegte searchViewController:self didSelectSearchHistoryAtIndex:[self.searchHistoryTag indexOfObject:label] searchAtIndexText:label.text];
-            [self saveSearchCacheWithRefreshView];
-        }else{
-            [self searchBarSearchButtonClicked:self.searchBar];
-        }
+        [self searchBarSearchButtonClicked:self.searchBar];
     }
 }
 
@@ -795,21 +756,14 @@
     self.searchBar.text = cell.textLabel.text;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if([self.delegte respondsToSelector:@selector(searchViewController:didSelectSearchHistoryAtIndex:searchAtIndexText:)]){
-        [self.delegte searchViewController:self didSelectSearchHistoryAtIndex:indexPath.row searchAtIndexText:cell.textLabel.text];
-    }else{
-        [self searchBarSearchButtonClicked:self.searchBar];
-    }
+     [self searchBarSearchButtonClicked:self.searchBar];
 }
 
 #pragma mark UISearchBarDelegate
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    if([self.delegte respondsToSelector:@selector(searchViewController:didSearchWithSearchBar:searchText:)]){
-        [self.delegte searchViewController:self didSearchWithSearchBar:searchBar searchText:searchBar.text];
-        [self saveSearchCacheWithRefreshView];
-        return;
-    }
+    [self saveSearchCacheWithRefreshView];
+
     if(self.searchBlock){
         self.searchBlock(self, searchBar, searchBar.text);
         [self saveSearchCacheWithRefreshView];
@@ -819,9 +773,6 @@
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     [self handleResultShow];
     self.resultShowController.view.hidden = 0 == searchText.length;
-    if([self.delegte respondsToSelector:@selector(searchViewController:searchTextDidChangeWithSearchBar:searchText:)]){
-        [self.delegte searchViewController:self searchTextDidChangeWithSearchBar:searchBar searchText:searchText];
-    }
 }
 
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{

@@ -12,28 +12,27 @@
 
 @interface otherLoginTypeView()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
-@property(nonatomic,strong)UITableView *alertSheetView;
+@property(nonatomic,weak)UITableView *alertSheetView;
 
 @property(nonatomic,strong)NSArray *infoArray;
 
 @end
-
+static NSString *cellID = @"OtherLoginCellID";
 @implementation otherLoginTypeView
-
-- (void)dealloc{
-    
-    self.alertSheetView = nil;
-    self.infoArray = nil;
-}
-
-#pragma mark - 初始化
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
         self.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight*0.3);
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClose:)];
         [[UIApplication sharedApplication].keyWindow.rootViewController.view addGestureRecognizer:tap];
-        
+        UITableView *tableView = [[UITableView alloc]initWithFrame:self.frame style:UITableViewStylePlain];
+        tableView.backgroundColor = [UIColor whiteColor];
+        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        [self addSubview:tableView];
+        _alertSheetView = tableView;
+        NSLog(@"tableView:%@",NSStringFromCGRect(tableView.frame));
     }
     return self;
 }
@@ -75,18 +74,6 @@
     return _infoArray;
 }
 
--(UITableView *)alertSheetView{
-    if(!_alertSheetView){
-        UITableView *tableView = [[UITableView alloc]initWithFrame:self.frame style:UITableViewStylePlain];
-        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        [self addSubview:tableView];
-        _alertSheetView = tableView;
-    }
-    return _alertSheetView;
-}
-
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -98,13 +85,13 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellID = @"cellID";
+    NSLog(@"cell..........");
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if(!cell){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         UIImageView *titleImgView = [[UIImageView alloc]init];
         [cell.contentView addSubview:titleImgView];
-        [titleImgView setTag:100003];
+        [titleImgView setTag:1003];
         [titleImgView sizeToFit];
         titleImgView.layer.borderColor = [UIColor redColor].CGColor;
         titleImgView.layer.borderWidth = 2.f;
@@ -122,16 +109,16 @@
         detailLabel.font = [UIFont systemFontOfSize:15.f];
         [cell.contentView addSubview:detailLabel];
         [detailLabel sizeToFit];
-        [detailLabel setTag:100004];
+        [detailLabel setTag:1004];
         [detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(titleImgView.mas_right).offset(10);
             make.top.mas_equalTo(titleImgView);
             make.height.mas_equalTo(titleImgView);
-            make.right.mas_lessThanOrEqualTo(cell.contentView.width*0.5);
+            make.right.mas_lessThanOrEqualTo(cell.contentView.width/2);
         }];
     }
-    UIImageView *titleImgView = (UIImageView *)[cell.contentView viewWithTag:100003];
-    UILabel *detailLabel = (UILabel *)[cell.contentView viewWithTag:100004];
+    UIImageView *titleImgView = (UIImageView *)[cell.contentView viewWithTag:1003];
+    UILabel *detailLabel = (UILabel *)[cell.contentView viewWithTag:1004];
     titleImgView.image = [UIImage imageNamed:self.infoArray[indexPath.row][@"image"]];
     detailLabel.text = self.infoArray[indexPath.row][@"title"];
     return cell;

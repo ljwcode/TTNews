@@ -14,27 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^didSearchBlock)(headLineSearchViewController *searchController,UISearchBar *searchBar,NSString *searchText);
 
-@protocol headLineSearchViewControllerDelegate<NSObject>
-
--(void)backHandle:(headLineSearchViewController *)searchViewController;
-
--(void)cancelHandle:(headLineSearchViewController *)searchViewController;
-
--(void)searchViewController:(headLineSearchViewController *)searchViewController didSelectHotSearchAtIndex:(NSInteger)index searchAtIndexText:(NSString *)indexText;
-
--(void)searchViewController:(headLineSearchViewController *)searchViewController didSelectSearchHistoryAtIndex:(NSInteger)index searchAtIndexText:(NSString *)indexText;
-
--(void)searchViewController:(headLineSearchViewController *)searchViewController didSearchWithSearchBar:(UISearchBar *)searchBar searchText:(NSString *)searchText;
-
--(void)searchViewController:(headLineSearchViewController *)searchViewController searchTextDidChangeWithSearchBar:(UISearchBar *)searchBar searchText:(NSString *)searchText;
-
-@end
-
 @interface headLineSearchViewController : UIViewController
 
 @property(nonatomic,assign)CGFloat hotSearchStyle;
-
-@property(nonatomic,copy)id<headLineSearchViewControllerDelegate> delegte;
 
 +(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *>*)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder;
 

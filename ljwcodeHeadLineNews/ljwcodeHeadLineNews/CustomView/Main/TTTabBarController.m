@@ -15,7 +15,7 @@
 #import "ScreeningHallViewController.h"
 #import "MineViewController.h"
 #import "VideoViewController.h"
-#import "TTMineNavigationController.h"
+//#import "TTMineNavigationController.h"
 
 
 @interface TTTabBarController()<UITabBarControllerDelegate>
@@ -100,9 +100,9 @@
     return nav;
 }
 
--(TTMineNavigationController *)addMineChildViewController:(Class)class normalImage:(NSString *)normalImage selectedImage:(NSString *)selectedImage title:(NSString *)title{
+-(TTNavigationController *)addMineChildViewController:(Class)class normalImage:(NSString *)normalImage selectedImage:(NSString *)selectedImage title:(NSString *)title{
     UIViewController *VC = [[class alloc]init];
-    TTMineNavigationController *nav = [[TTMineNavigationController alloc]initWithRootViewController:VC];
+    TTNavigationController *nav = [[TTNavigationController alloc]initWithRootViewController:VC];
     nav.tabBarItem.title = title;
     nav.tabBarItem.image = [[UIImage imageNamed:normalImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     nav.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

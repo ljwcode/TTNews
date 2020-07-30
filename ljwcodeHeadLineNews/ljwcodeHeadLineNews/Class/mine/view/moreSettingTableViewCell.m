@@ -9,6 +9,7 @@
 #import "moreSettingTableViewCell.h"
 #import "buttonStyleTwo.h"
 #import <Masonry.h>
+#import <UIView+Frame.h>
 
 @interface moreSettingTableViewCell()
 
@@ -22,11 +23,8 @@
 
 static CGFloat Vspace = 30;
 static CGFloat Hspace = 30;
-static CGFloat buttonWidth = 50;
-static CGFloat buttonHeight = 50;
-static int columns = 4;
 
-#define isMoreSettingButtonFrame(i) CGRectMake(Hspace+(i%columns)*(Hspace+buttonWidth), CGRectGetHeight(self.titleLabel.frame)+Vspace+(i/columns)*(Vspace+buttonHeight)+self.titleLabel.frame.origin.y+Vspace*2, buttonWidth, buttonHeight)
+static int columns = 4;
 
 @implementation moreSettingTableViewCell
 
@@ -42,10 +40,15 @@ static int columns = 4;
         
         for(int i = 0;i < self.infoArray.count;i++){
             buttonStyleTwo *moreSettingButton = [[buttonStyleTwo alloc]init];
-            moreSettingButton.frame = isMoreSettingButtonFrame(i);
             [moreSettingButton configrueTitle:self.infoArray[i][@"title"] img:[UIImage imageNamed:self.infoArray[i][@"image"]]];
             [self.contentView addSubview:moreSettingButton];
             _moreSettingButton = moreSettingButton;
+            
+            [moreSettingButton mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(Hspace+(i%columns)*(Hspace*1.5+((self.contentView.width-(Hspace*5))/4)));
+                make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(Vspace+(i/columns)*(((self.contentView.width-(Hspace*5))/4)+Vspace));
+                make.width.height.mas_equalTo((self.contentView.width-(Hspace*5))/4);
+            }];
         }
     }
     return self;

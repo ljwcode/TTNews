@@ -32,7 +32,7 @@
     [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15.f],NSFontAttributeName, nil] forState:UIControlStateNormal];
     
     [[UINavigationBar appearance]setBackgroundImage:[self drawImageContext:[UIColor purpleColor]] forBarMetrics:UIBarMetricsDefault];
-    
+    [[UINavigationBar appearance]setHidden:YES];
 }
 
 +(UIImage *)drawImageContext:(UIColor *)color

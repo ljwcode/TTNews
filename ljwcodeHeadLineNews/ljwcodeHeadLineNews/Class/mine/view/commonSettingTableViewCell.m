@@ -9,6 +9,7 @@
 #import "commonSettingTableViewCell.h"
 #import "buttonStyleTwo.h"
 #import <Masonry.h>
+#import <UIView+Frame.h>
 
 @interface commonSettingTableViewCell()
 
@@ -22,11 +23,8 @@
 
 static CGFloat Vspace = 30;
 static CGFloat Hspace = 30;
-static CGFloat buttonWidth = 50;
-static CGFloat buttonHeight = 50;
-static int columns = 4;
 
-#define isCommonSettingFrame(i) CGRectMake(Hspace+(i%columns)*(Hspace+buttonWidth), CGRectGetHeight(self.titleLabel.frame)+Vspace+(i/columns)*(Vspace+buttonHeight)+self.titleLabel.frame.origin.y+Vspace*2, buttonWidth, buttonHeight)
+static int columns = 4;
 
 @implementation commonSettingTableViewCell
 
@@ -39,12 +37,15 @@ static int columns = 4;
             make.width.mas_equalTo(80);
             make.height.mas_equalTo(30);
         }];
-        
         for(int i = 0;i < self.infoArray.count;i++){
             buttonStyleTwo *commomButton = [[buttonStyleTwo alloc]init];
-            commomButton.frame = isCommonSettingFrame(i);
             [commomButton configrueTitle:self.infoArray[i][@"title"] img:[UIImage imageNamed:self.infoArray[i][@"image"]]];
             [self.contentView addSubview:commomButton];
+            [commomButton mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(Hspace+(i%columns)*(Hspace*1.5+((self.contentView.width-(Hspace*5))/4)));
+                make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(Vspace+(i/columns)*(((self.contentView.width-(Hspace*5))/4)+Vspace));
+                make.width.height.mas_equalTo((self.contentView.width-(Hspace*5))/4);
+            }];
         }
     }
     return self;
