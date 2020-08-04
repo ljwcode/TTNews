@@ -14,7 +14,7 @@
 #import "homeNewsCellViewModel.h"
 #import "homeJokeModel.h"
 #import "TTHeader.h"
-#import "homeNewsBrowserViewController.h"
+#import "NewsDetailViewController.h"
 #import "VideoPlayerContainerView.h"
 #import "TVVideoPlayerViewCell.h"
 
@@ -27,6 +27,8 @@
 @property(nonatomic,strong)NSMutableArray *datasArray;
 
 @property(nonatomic,strong)VideoPlayerContainerView *videoContainerView;
+
+@property(nonatomic,strong)homeNewsSummaryModel *model;
 
 @end
 
@@ -146,8 +148,8 @@
         resultCell = cell;
     }else if([self.titleModel.category isEqualToString:@"组图"]){
         homeNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeNewsTableViewCell class])];
-        homeNewsSummaryModel *model = self.datasArray[indexPath.row];
-        cell.summaryModel = model;
+        _model = self.datasArray[indexPath.row];
+        cell.summaryModel = _model;
         resultCell = cell;
     }else if([self.titleModel.category isEqualToString:@"video"]){
         TVVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
@@ -156,14 +158,14 @@
         resultCell = cell;
         
     }else{
-        homeNewsSummaryModel *model = self.datasArray[indexPath.row];
-        if(model.infoModel.image_list){
+       _model = self.datasArray[indexPath.row];
+        if(_model.infoModel.image_list){
             homeNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeNewsTableViewCell class])];
-            cell.summaryModel = model;
+            cell.summaryModel = _model;
             resultCell = cell;
         }else{
             homeContentNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeContentNewsTableViewCell class])];
-            cell.newsSummaryModel = model;
+            cell.newsSummaryModel = _model;
             resultCell = cell;
         }
     }
@@ -172,9 +174,9 @@
 
 //点击news cell跳转到新闻显示界面
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    homeNewsSummaryModel *model = [[homeNewsSummaryModel alloc]init];
-    homeNewsBrowserViewController *webVC = [[homeNewsBrowserViewController alloc]init];
-    webVC.urlString = model.infoModel.article_url;
+    NewsDetailViewController *webVC = [[NewsDetailViewController alloc]init];
+    _model  = self.datasArray[indexPath.row];
+    webVC.urlString = _model.infoModel.article_url;
     [self.navigationController pushViewController:webVC animated:YES];
 }
 

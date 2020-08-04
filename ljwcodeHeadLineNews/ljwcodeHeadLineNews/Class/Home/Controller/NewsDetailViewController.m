@@ -1,17 +1,18 @@
 //
-//  homeNewsBrowserViewController.m
+//  NewsDetailViewController.m
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/7/2.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
-
-#import "homeNewsBrowserViewController.h"
+#import "NewsDetailViewController.h"
 #import "TTHeader.h"
 #import <WebKit/WebKit.h>
 #import "TTNavigationController.h"
+#import <Masonry/Masonry.h>
+#import <UIView+Frame.h>
 
-@interface homeNewsBrowserViewController ()<WKUIDelegate,WKNavigationDelegate>
+@interface NewsDetailViewController ()<WKUIDelegate,WKNavigationDelegate>
 
 @property(nonatomic,weak)WKWebView *newsWebView;
 
@@ -19,7 +20,29 @@
 
 @end
 
-@implementation homeNewsBrowserViewController
+@implementation NewsDetailViewController
+
+-(void)viewDidLayoutSubviews{
+    self.navigationController.title = @"今日头条";
+    [[UINavigationBar appearance]setTranslucent:NO];
+    [[UINavigationBar appearance]setBackgroundColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance]setHidden:YES];
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backBtn setImage:[UIImage imageNamed:@"lefterbackicon_titlebar"] forState:UIControlStateNormal];
+    self.navigationController.navigationItem.backBarButtonItem.customView = backBtn;
+    
+    UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [moreBtn addTarget:self action:@selector(moreBtnHandle:) forControlEvents:UIControlEventTouchUpInside];
+    [moreBtn setImage:[UIImage imageNamed:@"new_more_titlebar"] forState:UIControlStateNormal];
+    
+    UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [searchBtn addTarget:self action:@selector(searchBtnHandle:) forControlEvents:UIControlEventTouchUpInside];
+    [searchBtn setImage:[UIImage imageNamed:@"search_mine_tab"] forState:UIControlStateNormal];
+
+    self.navigationController.navigationItem.rightBarButtonItems = @[moreBtn,searchBtn];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,10 +52,9 @@
 
 -(void)configureUI{
     
-    [self configureLeftBarButtonItemWithText:@"返回"];
     NSURL *url = [NSURL URLWithString:_urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:8.f];
-    [_newsWebView loadRequest:request];
+    [self.newsWebView loadRequest:request];
     
 }
 
@@ -84,6 +106,16 @@
 -(void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error{
     [_hud hideAnimated:YES];
     [MBProgressHUD showMessag:@"loading fail..." toView:nil];
+}
+
+#pragma mark - 点击事件响应
+
+-(void)moreBtnHandle:(UIButton *)sender{
+    
+}
+
+-(void)searchBtnHandle:(UIButton *)sender{
+    
 }
 /*
 #pragma mark - Navigation

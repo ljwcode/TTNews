@@ -7,15 +7,12 @@
 //
 
 #import "commonSettingTableViewCell.h"
-#import "buttonStyleTwo.h"
 #import <Masonry.h>
 #import <UIView+Frame.h>
 
 @interface commonSettingTableViewCell()
 
 @property(nonatomic,weak)UILabel *titleLabel;
-
-@property(nonatomic,weak)buttonStyleTwo *commomButton;
 
 @property(nonatomic,strong)NSArray *infoArray;
 
@@ -38,13 +35,18 @@ static int columns = 4;
             make.height.mas_equalTo(30);
         }];
         for(int i = 0;i < self.infoArray.count;i++){
-            buttonStyleTwo *commomButton = [[buttonStyleTwo alloc]init];
-            [commomButton configrueTitle:self.infoArray[i][@"title"] img:[UIImage imageNamed:self.infoArray[i][@"image"]]];
+            UIButton *commomButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [commomButton setTitle:self.infoArray[i][@"title"] forState:UIControlStateNormal];
+            [commomButton setImage:self.infoArray[i][@"image"] forState:UIControlStateNormal];
+            commomButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+            commomButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
             [self.contentView addSubview:commomButton];
             [commomButton mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(Hspace+(i%columns)*(Hspace*1.5+((self.contentView.width-(Hspace*5))/4)));
                 make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(Vspace+(i/columns)*(((self.contentView.width-(Hspace*5))/4)+Vspace));
-                make.width.height.mas_equalTo((self.contentView.width-(Hspace*5))/4);
+                make.height.mas_equalTo((self.contentView.height - self.titleLabel.height - Vspace * 4) / 2);
+                make.width.mas_equalTo((self.contentView.width - Hspace * 5) / 4);
+                
             }];
         }
     }

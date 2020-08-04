@@ -1,16 +1,16 @@
 //
-//  homeNewsBrowserViewController.h
+//  NewsDetailViewController.h
 //  ljwcodeHeadLineNews
 //
-//  Created by 1 on 2020/7/2.
+//  Created by 1 on 2020/8/4.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "TTBaseViewController.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface homeNewsBrowserViewController : TTBaseViewController
+@interface NewsDetailViewController : UIViewController
 
 @property(nonatomic,copy)NSString *urlString;
 

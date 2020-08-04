@@ -8,7 +8,6 @@
 
 #import "screeningHallTableViewCell.h"
 #import <UIView+Frame.h>
-#import "buttonStyleOne.h"
 #import <Masonry/Masonry.h>
 #import "videoInfoTableView.h"
 
@@ -16,7 +15,7 @@
 
 @property(nonatomic,weak)UILabel *titleLabel;
 
-@property(nonatomic,weak)buttonStyleOne *showMoreButton;
+@property(nonatomic,weak)UIButton *showMoreButton;
 
 @property(nonatomic,weak)UIScrollView *scrollView;
 
@@ -93,8 +92,12 @@ static CGFloat space = 10;
 
 -(UIButton *)showMoreButton{
     if(!_showMoreButton){
-        buttonStyleOne *button = [[buttonStyleOne alloc]init];
-        [button configureTitle:@"查看全部" img:[UIImage imageNamed:@"arrow_right_setup_12x16_"]];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setTitle:@"查看全部" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"arrow_right_setup_12x16_"] forState:UIControlStateNormal];
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         [self.contentView addSubview:button];
         _showMoreButton = button;
     }

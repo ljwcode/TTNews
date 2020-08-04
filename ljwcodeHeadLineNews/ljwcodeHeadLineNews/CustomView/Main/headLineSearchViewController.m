@@ -115,13 +115,10 @@
     
     CGFloat adaptWidth = 0;
     UISearchBar *searchBar = self.searchBar;
-    searchBar.layer.borderColor = [UIColor redColor].CGColor;
-    searchBar.layer.borderWidth = 2.f;
     UITextField *searchTextfield = self.searchTextfield;
     UIView *titleView = self.navigationItem.titleView;
     
     UIButton *cancelButton = self.navigationItem.rightBarButtonItem.customView; //取消
-    
     UIEdgeInsets cancelBtnEdgeInsets = UIEdgeInsetsZero;
     UIEdgeInsets navigationBarLyaoutEdgeInsets = UIEdgeInsetsZero;
     
@@ -144,11 +141,11 @@
         [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(SEARCH_MARGIN);
             make.top.mas_equalTo(SEARCH_MARGIN);
-            make.height.mas_equalTo(self.view.width > self.view.height ? 24 : 30);
+            make.height.mas_equalTo(self.view.width > self.view.height ? 440 : 600);
             make.width.mas_equalTo(self.view.width - SEARCH_MARGIN*2 - adaptWidth - cancelButton.width);
         }];
         searchTextfield.frame = searchBar.bounds;
-       
+        
         cancelButton.width = self.cancelBtnWidth;
         
     }else{
@@ -170,7 +167,10 @@
     if(self.cancelBtnWidth == 0){
         [self viewDidLayoutSubviews];
     }
-    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController.navigationItem setHidesBackButton:YES];
+    [self.navigationItem setHidesBackButton:YES];
+    [self.navigationController.navigationBar.backItem setHidesBackButton:YES];
+    self.navigationController.navigationBarHidden = NO;
     if(self.resultShowController.parentViewController == NULL){
         [self.searchBar becomeFirstResponder];
     }
@@ -307,7 +307,7 @@
 
     
     UIView *titleView = [[UIView alloc] init];
-    
+    titleView.backgroundColor = [UIColor whiteColor];
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:titleView.bounds];
     [titleView addSubview:searchBar];
     if (systemVersion >= 11.0) { // iOS 11
@@ -322,6 +322,7 @@
     }
     self.navigationItem.titleView = titleView;
     searchBar.placeholder = @"搜你想搜";
+    searchBar.text = @"souyisou";
     searchBar.backgroundImage = [UIImage imageNamed:@"clearImage"];
     searchBar.delegate = self;
     for (UIView *subView in [[searchBar.subviews lastObject] subviews]) {
@@ -337,8 +338,6 @@
     UIView *headerView = [[UIView alloc] init];
     headerView.width = kCompareScreenWidth;
     headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    headerView.layer.borderColor = [UIColor redColor].CGColor;
-    headerView.layer.borderWidth = 2.f;
     UIView *hotSearchView = [[UIView alloc] init];
     hotSearchView.x = SEARCH_MARGIN * 1.5;
     hotSearchView.width = headerView.width - hotSearchView.x * 2;

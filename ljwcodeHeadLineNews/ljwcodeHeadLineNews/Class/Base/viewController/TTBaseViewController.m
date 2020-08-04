@@ -8,7 +8,6 @@
 
 #import "TTBaseViewController.h"
 #import "headLineSearchViewController.h"
-#import "reportButton.h"
 #import <UIView+Frame.h>
 
 @interface TTBaseViewController ()<UIGestureRecognizerDelegate,UISearchBarDelegate>
@@ -22,8 +21,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    reportButton *messageButton = [[reportButton alloc]initWithBtnText:@"发布" BtnImgView:@"add_channel_titlbar_thin_new_16x16_"];
+    UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [messageButton setTitle:@"发布" forState:UIControlStateNormal];
+    [messageButton setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
+    [messageButton setContentEdgeInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
+    messageButton.titleLabel.font = [UIFont systemFontOfSize:13.f];
+    [messageButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    messageButton.imageEdgeInsets = UIEdgeInsetsMake(-messageButton.imageView.intrinsicContentSize.height, messageButton.titleLabel.intrinsicContentSize.width, 0, -messageButton.titleLabel.intrinsicContentSize.width/2);
+    messageButton.titleEdgeInsets = UIEdgeInsetsMake(messageButton.titleLabel.intrinsicContentSize.height/2, 0, -messageButton.titleLabel.intrinsicContentSize.height/2,0);
     messageButton.frame = CGRectMake(0, 0, 30, 30);
+    messageButton.contentMode = UIViewContentModeScaleAspectFit;
     
     UIBarButtonItem *messageBarButton = [[UIBarButtonItem alloc] initWithCustomView:messageButton];
     self.navigationItem.rightBarButtonItem = messageBarButton;

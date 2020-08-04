@@ -7,7 +7,6 @@
 //
 
 #import "moreSettingTableViewCell.h"
-#import "buttonStyleTwo.h"
 #import <Masonry.h>
 #import <UIView+Frame.h>
 
@@ -39,8 +38,11 @@ static int columns = 4;
         }];
         
         for(int i = 0;i < self.infoArray.count;i++){
-            buttonStyleTwo *moreSettingButton = [[buttonStyleTwo alloc]init];
-            [moreSettingButton configrueTitle:self.infoArray[i][@"title"] img:[UIImage imageNamed:self.infoArray[i][@"image"]]];
+            UIButton *moreSettingButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [moreSettingButton setTitle:self.infoArray[i][@"title"] forState:UIControlStateNormal];
+            [moreSettingButton setImage:self.infoArray[i][@"image"] forState:UIControlStateNormal];
+            moreSettingButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+            moreSettingButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
             [self.contentView addSubview:moreSettingButton];
             _moreSettingButton = moreSettingButton;
             
