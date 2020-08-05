@@ -11,15 +11,23 @@
 #import "TTNavigationController.h"
 #import <Masonry/Masonry.h>
 #import <UIView+Frame.h>
+#import "newsDetailHeaderView.h"
 
-@interface NewsDetailViewController ()<WKUIDelegate,WKNavigationDelegate>
+@interface NewsDetailViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,weak)WKWebView *newsWebView;
 
 @property(nonatomic,strong)MBProgressHUD *hud;
 
+@property(nonatomic,strong)newsDetailHeaderView *headerView;
+
+@property(nonatomic,weak)UITableView *tableView;
+
+@property(nonatomic,weak)UIScrollView *scrollView;
+
 @end
 
+static CGFloat VSpace = 10;
 @implementation NewsDetailViewController
 
 -(void)viewDidLayoutSubviews{
@@ -46,11 +54,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureUI];
+    [self configureWebUI];
+    
+    _headerView = [[newsDetailHeaderView alloc]initWithFrame:CGRectMake(0,VSpace, self.view.width, kScreenHeight * 0.2)];
+    self.tableView.tableHeaderView = _headerView;
     // Do any additional setup after loading the view.
 }
 
--(void)configureUI{
+-(UITableView *)tableView{
+    if(!_tableView){
+        UITableView *tableView = [[UITableView alloc]initWithFrame:self.scrollView.frame style:UITableViewStylePlain];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        [self.scrollView addSubview:tableView];
+    }
+    return _tableView;
+}
+
+-(UIScrollView *)scrollView{
+    if(!_scrollView){
+        UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+        scrollView.delegate = self;
+        scrollView.bounces = NO;
+        scrollView.contentOffset = CGPointMake(0, self.tableView.height);
+        scrollView.contentSize = CGSizeMake(self.view.width, self.tableView.height);
+        scrollView.showsHorizontalScrollIndicator = NO;
+        scrollView.showsVerticalScrollIndicator = YES;
+        [self.view addSubview:scrollView];
+        _scrollView = scrollView;
+    }
+    return _scrollView;
+}
+
+-(void)configureWebUI{
     
     NSURL *url = [NSURL URLWithString:_urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:8.f];
@@ -64,7 +100,7 @@
         webView.backgroundColor = [UIColor whiteColor];
         webView.UIDelegate = self;
         webView.navigationDelegate = self;
-        [self.view addSubview:webView];
+        [self.tableView addSubview:webView];
         
         [webView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo([UIScreen mainScreen].bounds.size.height);
@@ -106,6 +142,25 @@
 -(void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error{
     [_hud hideAnimated:YES];
     [MBProgressHUD showMessag:@"loading fail..." toView:nil];
+}
+
+#pragma mark - UITableViewDelegate && UITableViewDatasource
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellID = @"cellID";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if(!cellID){
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    return cell;
 }
 
 #pragma mark - 点击事件响应

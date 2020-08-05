@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "newsDetailModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface newsDetailHeaderView : UIView
+
+@property(nonatomic,strong)newsDetailModel *detailModel;
 
 @end
 

@@ -9,6 +9,8 @@
 #import "newsDetailHeaderView.h"
 #import <UIView+Frame.h>
 #import <Masonry/Masonry.h>
+#import <UIImageView+WebCache.h>
+#import "UIImage+cropPicture.h"
 
 @interface newsDetailHeaderView()
 
@@ -24,8 +26,6 @@
 
 @end
 
-static CGFloat hSpace = 10;
-static CGFloat vSpace = 10;
 @implementation newsDetailHeaderView
 
 -(instancetype)initWithFrame:(CGRect)frame{
@@ -44,7 +44,29 @@ static CGFloat vSpace = 10;
             make.width.height.mas_equalTo(30);
         }];
         
+        [self.authorNameBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.headImgBtn.mas_right).offset(hSpace/2);
+            make.top.mas_equalTo(self.headImgBtn);
+            make.height.mas_equalTo(self.headImgBtn.height * 0.5);
+        }];
         
+        [self.authorDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.authorNameBtn);
+            make.top.mas_equalTo(self.authorNameBtn.mas_bottom).offset(2);
+            make.bottom.mas_equalTo(vSpace);
+            make.height.mas_equalTo(self.headImgBtn.height * 0.5 - 2);
+        }];
+        
+        [self.focusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.headImgBtn);
+            make.right.mas_equalTo(hSpace);
+            make.height.mas_equalTo(self.authorNameBtn.height + self.authorDetailLabel.height);
+            make.left.mas_lessThanOrEqualTo(self.authorNameBtn.mas_right).offset(2 * hSpace);
+            make.left.mas_lessThanOrEqualTo(self.authorDetailLabel.mas_right).offset(2 *hSpace);
+            /*
+             1 1 1
+             */
+        }];
     }
     return self;
 }
@@ -77,6 +99,7 @@ static CGFloat vSpace = 10;
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:14.f];
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:btn];
         _authorNameBtn = btn;
     }
@@ -100,10 +123,25 @@ static CGFloat vSpace = 10;
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:13.f];
+        [btn setTitle:@"关注" forState:UIControlStateNormal];
+        [btn setBackgroundColor:[UIColor orangeColor]];
         [self addSubview:btn];
         _focusBtn = btn;
     }
     return _focusBtn;
+}
+
+#pragma mark - 设置数据源
+
+-(void)setDetailModel:(newsDetailModel *)detailModel{
+    _detailModel = detailModel;
+    self.titleLabel.text = detailModel.infoModel.title;
+    [self.headImgBtn.imageView sd_setImageWithURL:[NSURL URLWithString:detailModel.infoModel.authorInfo.avatar_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        self.headImgBtn.imageView.image = [image cropPictureWithRoundedCorner:self.headImgBtn.imageView.image.size.width/2 size:self.headImgBtn.frame.size];
+    }];
+    [self.authorNameBtn setTitle:detailModel.infoModel.authorInfo.name forState:UIControlStateNormal];
+    self.authorDetailLabel.text = detailModel.infoModel.verified_content;
+    
 }
 /*
 // Only override drawRect: if you perform custom drawing.

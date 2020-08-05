@@ -48,4 +48,8 @@
 
 #define  systemVersion [[[UIDevice currentDevice] systemVersion]floatValue]
 
+#define vSpace 10
+
+#define hSpace 10
+
 #endif /* ljwcodeHeadLineNews_h */
