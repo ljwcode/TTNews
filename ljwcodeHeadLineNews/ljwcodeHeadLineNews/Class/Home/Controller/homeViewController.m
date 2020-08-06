@@ -12,7 +12,6 @@
 #import "channelButton.h"
 #import "NewsChannelView.h"
 #import "newsChannelModel.h"
-#import "homeTitleModel.h"
 #import <RACSubject.h>
 #import "homeTitleViewModel.h"
 #import "homeDetailViewController.h"

@@ -49,6 +49,18 @@
             make.bottom.mas_equalTo(self.discussTextField);
         }];
         
+        [self.likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.collectionBtn.mas_right).offset(3 * hSpace);
+            make.top.mas_equalTo(self.collectionBtn);
+            make.bottom.mas_equalTo(self.collectionBtn);
+        }];
+        
+        [self.transmitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.likeBtn.mas_right).offset(3 * hSpace);
+            make.right.mas_equalTo(hSpace);
+            make.top.mas_equalTo(self.likeBtn);
+            make.bottom.mas_equalTo(self.likeBtn);
+        }];
         // a b c d e
     }
     return self;
@@ -68,6 +80,7 @@
         textfield.attributedPlaceholder = attr;
         textfield.borderStyle = UITextBorderStyleRoundedRect;
         textfield.layer.cornerRadius = 15.f;
+        [textfield addTarget:self action:@selector(discussHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:textfield];
         _discussTextField = textfield;
     }
@@ -78,7 +91,7 @@
     if(!_repeatBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setBackgroundImage:[UIImage imageNamed:@"comment_live_day"] forState:UIControlStateNormal];
-        btn.contentMode = UIViewContentModeScaleAspectFit;
+        [btn addTarget:self action:@selector(repeatHnadle:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
         _repeatBtn = btn;
     }
@@ -90,14 +103,42 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setBackgroundImage:[UIImage imageNamed:@"icon_details_collect"] forState:UIControlStateNormal];
         [btn setBackgroundImage:[UIImage imageNamed:@"icon_details_collect_press"] forState:UIControlStateSelected];
-        btn.contentMode = UIViewContentModeScaleAspectFit;
+        [btn addTarget:self action:@selector(collectionHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
         _collectionBtn = btn;
     }
     return _collectionBtn;
 }
 
+-(UIButton *)likeBtn{
+    if(!_likeBtn){
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setBackgroundImage:[UIImage imageNamed:@"details_like_icon"] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"details_like_icon_press"] forState:UIControlStateSelected];
+        [btn addTarget:self action:@selector(likeHandle:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btn];
+        _likeBtn = btn;
+    }
+    return _likeBtn;
+}
 
+-(UIButton *)transmitBtn{
+    if(!_transmitBtn){
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setBackgroundImage:[UIImage imageNamed:@"new_share_tabbar"] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"new_share_tabbar_press"] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(transmitHandle:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btn];
+        _transmitBtn = btn;
+    }
+    return _transmitBtn;
+}
+
+#pragma mark - 点击响应事件
+
+-(void)repeatHnadle:(UIButton *)sender{
+    
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -12,6 +12,10 @@
 #import <Masonry/Masonry.h>
 #import <UIView+Frame.h>
 #import "newsDetailHeaderView.h"
+#import <RACSubject.h>
+#import "newsDetailHeaderViewModel.h"
+#import "newsDetailFooterView.h"
+
 
 @interface NewsDetailViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -25,10 +29,21 @@
 
 @property(nonatomic,weak)UIScrollView *scrollView;
 
+@property(nonatomic,strong)newsDetailHeaderViewModel *headerViewModel;
+
+@property(nonatomic,strong)newsDetailFooterView *footerView;
+
 @end
 
 static CGFloat VSpace = 10;
 @implementation NewsDetailViewController
+
+-(newsDetailHeaderViewModel *)headerViewModel{
+    if(!_headerViewModel){
+        _headerViewModel = [[newsDetailHeaderViewModel alloc]init];
+    }
+    return _headerViewModel;
+}
 
 -(void)viewDidLayoutSubviews{
     self.navigationController.title = @"今日头条";
@@ -57,7 +72,14 @@ static CGFloat VSpace = 10;
     [self configureWebUI];
     
     _headerView = [[newsDetailHeaderView alloc]initWithFrame:CGRectMake(0,VSpace, self.view.width, kScreenHeight * 0.2)];
+    [[self.headerViewModel.newsHeaderCommand execute:@13]subscribeNext:^(id  _Nullable x) {
+        NSLog(@"x = %@",x);
+        
+    }];
     self.tableView.tableHeaderView = _headerView;
+    
+    _footerView = [[newsDetailFooterView alloc]initWithFrame:CGRectMake(0, kScreenHeight * 0.6, self.view.width, kScreenHeight * 0.2)];
+    self.tableView.tableFooterView = _footerView;
     // Do any additional setup after loading the view.
 }
 
@@ -100,7 +122,6 @@ static CGFloat VSpace = 10;
         webView.backgroundColor = [UIColor whiteColor];
         webView.UIDelegate = self;
         webView.navigationDelegate = self;
-        [self.tableView addSubview:webView];
         
         [webView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo([UIScreen mainScreen].bounds.size.height);
@@ -159,7 +180,9 @@ static CGFloat VSpace = 10;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if(!cellID){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        [cell.contentView addSubview:self.newsWebView];
     }
+    
     return cell;
 }
 

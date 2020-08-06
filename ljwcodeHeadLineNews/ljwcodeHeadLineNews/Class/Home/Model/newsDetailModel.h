@@ -62,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface newsDetailModel : NSObject
 
+@property(nonatomic,strong)NSArray *dataArray;
+
 @property(nonatomic,copy)NSString *content;
 
 @property(nonatomic,assign)int code;
