@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "TTHeader.h"
-#import "TTNavigationBar.h"
 #import <YYCache/YYCache.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 

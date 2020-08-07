@@ -18,8 +18,6 @@ typedef void(^didSearchBlock)(headLineSearchViewController *searchController,UIS
 
 @property(nonatomic,assign)CGFloat hotSearchStyle;
 
-+(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *>*)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder;
-
 +(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *>*)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder searchBlock:(didSearchBlock)searchBlock;
 
 @end

@@ -43,11 +43,7 @@
 
 @property(nonatomic,weak)UIButton *cancelButton;
 
-@property(nonatomic,weak)UIButton *backButton;
-
 @property(nonatomic,strong)UIBarButtonItem *cancelBarButtonItem;
-
-//@property(nonatomic,strong)UIBarButtonItem *backBarButtonItem;
 
 @property(nonatomic,weak)UILabel *hotSearchHeaderLabel;
 
@@ -62,8 +58,6 @@
 @property(nonatomic,copy)NSArray<UIView *> *rankViews;
 
 @property(nonatomic,assign)BOOL swapHotSeachWithSearchHistory;
-
-@property(nonatomic,assign)CGFloat searchBarCornerRadius;
 
 @property(nonatomic,copy)NSString *hotSearchTitle;
 
@@ -105,6 +99,18 @@
     return self;
 }
 
+-(UIImage *)drawImageContext:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     if(self.currentOrientation != [UIDevice currentDevice].orientation){
@@ -112,13 +118,13 @@
         self.searchHistory = self.searchHistory;
         self.currentOrientation = [UIDevice currentDevice].orientation;
     }
-    
     CGFloat adaptWidth = 0;
     UISearchBar *searchBar = self.searchBar;
-    UITextField *searchTextfield = self.searchTextfield;
+    UITextField *searchTextfield = [self.searchBar valueForKey:@"searchField"];
+    searchTextfield = self.searchTextfield;
     UIView *titleView = self.navigationItem.titleView;
     
-    UIButton *cancelButton = self.navigationItem.rightBarButtonItem.customView; //取消
+    UIButton *cancelButton = self.navigationItem.rightBarButtonItem.customView;
     UIEdgeInsets cancelBtnEdgeInsets = UIEdgeInsetsZero;
     UIEdgeInsets navigationBarLyaoutEdgeInsets = UIEdgeInsetsZero;
     
@@ -141,11 +147,11 @@
         [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(SEARCH_MARGIN);
             make.top.mas_equalTo(SEARCH_MARGIN);
-            make.height.mas_equalTo(self.view.width > self.view.height ? 440 : 600);
-            make.width.mas_equalTo(self.view.width - SEARCH_MARGIN*2 - adaptWidth - cancelButton.width);
+            make.height.mas_equalTo(self.view.width > self.view.height ? 44 : 28);
+            make.width.mas_equalTo(self.view.width - SEARCH_MARGIN * 2 - adaptWidth - cancelButton.width);
         }];
         searchTextfield.frame = searchBar.bounds;
-        
+        searchTextfield.layer.cornerRadius = 16.f;
         cancelButton.width = self.cancelBtnWidth;
         
     }else{
@@ -155,13 +161,13 @@
         titleView.width = self.view.width - titleView.x * 2 - 3 - self.cancelBtnWidth;
     }
 }
-
 -(BOOL)prefersStatusBarHidden{
     return NO;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:[self drawImageContext:[UIColor whiteColor]]  forBarMetrics:UIBarMetricsDefault];
     
     [self hideHistorySearch];
     if(self.cancelBtnWidth == 0){
@@ -214,6 +220,7 @@
         baseTableView.dataSource = self;
         [self.view addSubview:baseTableView];
         _baseSearchTableView = baseTableView;
+        
     }
     return _baseSearchTableView;
 }
@@ -247,6 +254,7 @@
         searchHistoryView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self.headView addSubview:searchHistoryView];
         _searchHistoryView = searchHistoryView;
+        
     }
     return _searchHistoryView;
 }
@@ -283,7 +291,6 @@
     self.showSearchHistory = YES;
     self.showHotSearch = YES;
     self.removeSpaceOnSearchString = YES;
-    self.searchBarCornerRadius = 0.0;
     self.historySearchCachePath = SEARCH_HISTORY_SEARCH_PATH;
     self.searchHistoryCount = 20;
     
@@ -292,7 +299,7 @@
     self.navigationController.navigationBar.backIndicatorImage = nil;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     
-    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     cancelButton.titleLabel.font = [UIFont systemFontOfSize:17];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -304,10 +311,10 @@
     cancelButton.width += SEARCH_MARGIN;
     self.cancelButton = cancelButton;
     self.cancelBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:cancelButton];
-
     
     UIView *titleView = [[UIView alloc] init];
     titleView.backgroundColor = [UIColor whiteColor];
+    titleView.layer.cornerRadius = 12.f;
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:titleView.bounds];
     [titleView addSubview:searchBar];
     if (systemVersion >= 11.0) { // iOS 11
@@ -321,8 +328,8 @@
         searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     self.navigationItem.titleView = titleView;
+    searchBar.layer.cornerRadius = 15.f;
     searchBar.placeholder = @"搜你想搜";
-    searchBar.text = @"souyisou";
     searchBar.backgroundImage = [UIImage imageNamed:@"clearImage"];
     searchBar.delegate = self;
     for (UIView *subView in [[searchBar.subviews lastObject] subviews]) {
@@ -330,6 +337,7 @@
             UITextField *textField = (UITextField *)subView;
             textField.font = [UIFont systemFontOfSize:16];
             self.searchTextfield = textField;
+            self.searchTextfield.layer.cornerRadius = 15.f;
             break;
         }
     }
@@ -408,6 +416,7 @@
         [rankTagM addObject:rankTag];
         
         UILabel *rankTextLabel = [[UILabel alloc] init];//热门搜索词排序
+        [rankTextLabel setTag:i+1];
         rankTextLabel.text = self.hotSearchies[i];
         rankTextLabel.userInteractionEnabled = YES;
         [rankTextLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tagDidCLick:)]];
@@ -420,6 +429,7 @@
         rankTextLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         rankTextLabel.height = rankView.height;
         [rankTextLabelsM addObject:rankTextLabel];
+
         [rankView addSubview:rankTextLabel];
         
         UIImageView *line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell-content-line"]];
@@ -513,7 +523,7 @@
         searchText = [searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@" "];
     }
     if(self.showSearchHistory && searchText.length > 0){
-        [self.searchHistory removeAllObjects];
+//        [self.searchHistory removeAllObjects];
         [self.searchHistory insertObject:searchText atIndex:0];
         if(self.searchHistory.count > self.searchHistoryCount){
             [self.searchHistory removeLastObject];
@@ -522,10 +532,12 @@
     }
     [self handleResultShow];
 }
-
+/*
+ 跳转目标显示控制器
+ */
 -(void)handleResultShow{
     self.resultShowController.view.hidden = NO;
-    [self.navigationController pushViewController:self.resultShowController animated:YES];
+//    [self.navigationController pushViewController:self.resultShowController animated:YES];
 }
 
 #pragma mark - 事件响应
@@ -536,10 +548,6 @@
     if(self.swapHotSeachWithSearchHistory == YES){
         self.hotSearchies = self.hotSearchies;
     }
-}
-
--(void)backButtonHandle:(UIButton *)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)cancelButtonHandle:(UIButton *)sender{
@@ -553,11 +561,10 @@
 -(void)tagDidCLick:(UITapGestureRecognizer *)tap{
     UILabel *label = (UILabel *)tap.view;
     self.searchBar.text = label.text;
-    if(label.tag == 1){
-        [self searchBarSearchButtonClicked:self.searchBar];
-    }else{
-        [self searchBarSearchButtonClicked:self.searchBar];
-    }
+    [self searchBarSearchButtonClicked:self.searchBar];
+//    [self.searchHistory addObject:self.searchBar.text];
+    [self.baseSearchTableView reloadData];
+    NSLog(@"searchHIstory = %@",self.searchHistory);
 }
 
 -(void)closeDidClick:(UIButton *)sender{
@@ -576,17 +583,6 @@
     _rankTextLabels = rankTextLabels;
 }
 
-//设置searchBar圆角
--(void)setSearchBarCornerRadius:(CGFloat)searchBarCornerRadius{
-    _searchBarCornerRadius = searchBarCornerRadius;
-    for(UIView *view in self.searchTextfield.subviews){
-        if([NSStringFromClass([view class]) isEqualToString:@"_UISearchBarSearchFieldBackgroundView"]){
-            view.layer.cornerRadius = searchBarCornerRadius;
-            view.clipsToBounds = YES;
-            break;
-        }
-    }
-}
 //交换流行搜索和历史搜索的位置
 -(void)setSwapHotSeachWithSearchHistory:(BOOL)swapHotSeachWithSearchHistory{
     _swapHotSeachWithSearchHistory = swapHotSeachWithSearchHistory;

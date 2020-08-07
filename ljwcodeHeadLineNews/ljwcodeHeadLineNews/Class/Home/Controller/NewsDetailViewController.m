@@ -27,8 +27,6 @@
 
 @property(nonatomic,weak)UITableView *tableView;
 
-@property(nonatomic,weak)UIScrollView *scrollView;
-
 @property(nonatomic,strong)newsDetailHeaderViewModel *headerViewModel;
 
 @property(nonatomic,strong)newsDetailFooterView *footerView;
@@ -85,27 +83,12 @@ static CGFloat VSpace = 10;
 
 -(UITableView *)tableView{
     if(!_tableView){
-        UITableView *tableView = [[UITableView alloc]initWithFrame:self.scrollView.frame style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0 , kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
-        [self.scrollView addSubview:tableView];
+        [self.view addSubview:tableView];
     }
     return _tableView;
-}
-
--(UIScrollView *)scrollView{
-    if(!_scrollView){
-        UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
-        scrollView.delegate = self;
-        scrollView.bounces = NO;
-        scrollView.contentOffset = CGPointMake(0, self.tableView.height);
-        scrollView.contentSize = CGSizeMake(self.view.width, self.tableView.height);
-        scrollView.showsHorizontalScrollIndicator = NO;
-        scrollView.showsVerticalScrollIndicator = YES;
-        [self.view addSubview:scrollView];
-        _scrollView = scrollView;
-    }
-    return _scrollView;
 }
 
 -(void)configureWebUI{
@@ -118,15 +101,15 @@ static CGFloat VSpace = 10;
 
 -(WKWebView *)newsWebView{
     if(!_newsWebView){
-        WKWebView *webView = [[WKWebView alloc]init];
+        WKWebView *webView = [[WKWebView alloc]initWithFrame:self.tableView.bounds];
         webView.backgroundColor = [UIColor whiteColor];
         webView.UIDelegate = self;
         webView.navigationDelegate = self;
-        
+        [self.tableView addSubview:webView];
         [webView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo([UIScreen mainScreen].bounds.size.height);
             make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width);
-            make.top.mas_equalTo(self.view).offset([UIScreen mainScreen].bounds.size.height == 812?88:64);
+            make.top.mas_equalTo(self.view).offset([UIScreen mainScreen].bounds.size.height == 812 ? 88 : 64);
             make.left.right.mas_equalTo(self.view).offset(0);
         }];
         
@@ -180,7 +163,7 @@ static CGFloat VSpace = 10;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if(!cellID){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        [cell.contentView addSubview:self.newsWebView];
+//        [cell.contentView addSubview:self.newsWebView];
     }
     
     return cell;
