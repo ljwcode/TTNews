@@ -96,8 +96,8 @@ static CGFloat space = 10;
         [button setTitle:@"查看全部" forState:UIControlStateNormal];
         [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:@"arrow_right_setup_12x16_"] forState:UIControlStateNormal];
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-        button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -button.titleLabel.intrinsicContentSize.width-20);
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, -button.imageView.intrinsicContentSize.width-30, 0, 0);
         [self.contentView addSubview:button];
         _showMoreButton = button;
     }

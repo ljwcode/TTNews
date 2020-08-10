@@ -15,7 +15,6 @@
 #import "ScreeningHallViewController.h"
 #import "MineViewController.h"
 #import "VideoViewController.h"
-//#import "TTMineNavigationController.h"
 
 
 @interface TTTabBarController()<UITabBarControllerDelegate>
@@ -34,18 +33,18 @@
     _homeNavi = [self addChildViewController:[homeViewController class] normalImage:@"new_home_tabbar" selectedImage:@"new_home_tabbar_press" title:@"首页"];
     [self addChildViewController:[VideoViewController class] normalImage:@"video_tabbar" selectedImage:@"video_tabbar_press" title:@"西瓜视频"];
     [self addChildViewController:[ScreeningHallViewController class] normalImage:@"long_video_tabbar" selectedImage:@"long_video_tabbar_press" title:@"放映厅"];
-    [self addMineChildViewController:[MineViewController class] normalImage:@"mine_tabbar" selectedImage:@"mine_tabbar_press" title:@"我"];
+    [self addChildViewController:[MineViewController class] normalImage:@"mine_tabbar" selectedImage:@"mine_tabbar_press" title:@"我"];
     
     self.delegate = self;
     
     @weakify(self)
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        @strongify(self)
-//        [self.tabBar showBadgeWithItemIndex:0 bageNumber:18];//5秒后在首页显示18个红点
-//    });
-//    [[RACScheduler mainThreadScheduler]afterDelay:1.5*60 schedule:^{
-//        [self.tabBar showBadgeWithItemIndex:0 bageNumber:28];//1.5秒后显示28个红点
-//    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        @strongify(self)
+        [self.tabBar showBadgeWithItemIndex:0 bageNumber:18];//5秒后在首页显示18个红点
+    });
+    [[RACScheduler mainThreadScheduler]afterDelay:1.5*60 schedule:^{
+        [self.tabBar showBadgeWithItemIndex:0 bageNumber:28];//1.5秒后显示28个红点
+    }];
 
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:KHomeStopRefreshNot object:nil]subscribeNext:^(NSNotification * _Nullable x) {
         @strongify(self)
@@ -91,16 +90,6 @@
 
 -(TTNavigationController *)addChildViewController:(Class)class normalImage:(NSString *)normalImage selectedImage:(NSString *)selectedImage title:(NSString *)title
 {
-    UIViewController *VC = [[class alloc]init];
-    TTNavigationController *nav = [[TTNavigationController alloc]initWithRootViewController:VC];
-    nav.tabBarItem.title = title;
-    nav.tabBarItem.image = [[UIImage imageNamed:normalImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    nav.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [self addChildViewController:nav];
-    return nav;
-}
-
--(TTNavigationController *)addMineChildViewController:(Class)class normalImage:(NSString *)normalImage selectedImage:(NSString *)selectedImage title:(NSString *)title{
     UIViewController *VC = [[class alloc]init];
     TTNavigationController *nav = [[TTNavigationController alloc]initWithRootViewController:VC];
     nav.tabBarItem.title = title;

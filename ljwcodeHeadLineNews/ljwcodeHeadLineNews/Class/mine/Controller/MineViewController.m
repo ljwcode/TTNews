@@ -20,6 +20,7 @@
 {
     CGFloat sectionHeight;
 }
+
 @property(nonatomic,strong)UITableView *tableView;
 
 @property(nonatomic,strong)UIView *headerView;
@@ -100,7 +101,7 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -109,7 +110,7 @@
             return self.view.height/4;
             break;
         case 1:
-        case 2:
+//        case 2:
             return kScreenHeight * 0.3;
             break;
     }
@@ -146,15 +147,15 @@
             resultCell = cell;
         }
             break;
-        case 2:
-        {
-            moreSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([moreSettingTableViewCell class])];
-            if(!cell){
-                cell = [[moreSettingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([moreSettingTableViewCell class])];
-            }
-            resultCell = cell;
-        }
-            break;
+//        case 2:
+//        {
+//            moreSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([moreSettingTableViewCell class])];
+//            if(!cell){
+//                cell = [[moreSettingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([moreSettingTableViewCell class])];
+//            }
+//            resultCell = cell;
+//        }
+//            break;
             
         default:
             break;

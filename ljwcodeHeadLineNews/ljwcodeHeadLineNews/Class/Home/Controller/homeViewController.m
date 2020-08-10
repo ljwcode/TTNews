@@ -6,17 +6,13 @@
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 #import "homeViewController.h"
-#import "TTTabBarController.h"
-#import "TTBaseViewController.h"
-#import "TTHeader.h"
 #import "channelButton.h"
 #import "NewsChannelView.h"
-#import "newsChannelModel.h"
 #import <RACSubject.h>
 #import "homeTitleViewModel.h"
 #import "homeDetailViewController.h"
-#import "homeDetailViewController.h"
 #import "headLineSearchViewController.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface homeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
@@ -33,7 +29,6 @@
     
     [self configureUI];
     @weakify(self)
-    
     [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         self.titleArray = x;

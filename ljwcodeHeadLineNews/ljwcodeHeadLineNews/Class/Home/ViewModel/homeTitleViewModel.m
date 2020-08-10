@@ -41,7 +41,7 @@
                         [MBProgressHUD showError: server_error toView:nil];
                     }
                 } failHandle:^(NSError *error) {
-                    
+                    NSLog(@"请求失败");
                 }];
                 return nil;
             }];

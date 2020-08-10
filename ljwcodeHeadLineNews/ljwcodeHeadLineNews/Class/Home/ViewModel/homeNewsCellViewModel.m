@@ -54,7 +54,7 @@
                         [subscriber sendCompleted];
                     }
                 } failHandle:^(NSError * _Nonnull error) {
-                    
+                    NSLog(@"newsContent 请求失败");
                 }];
                 
                 return nil;

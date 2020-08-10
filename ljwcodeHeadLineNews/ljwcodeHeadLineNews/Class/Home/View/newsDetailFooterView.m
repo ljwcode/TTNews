@@ -33,35 +33,51 @@
         [self.discussTextField mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(hSpace);
             make.top.mas_equalTo(vSpace/2);
-            make.bottom.mas_equalTo(vSpace);
+            make.right.mas_equalTo(hSpace);
+            make.height.mas_equalTo(self.height * 0.3);
         }];
+        self.discussTextField.layer.borderColor = [UIColor redColor].CGColor;
+        self.discussTextField.layer.borderWidth = 2.f;
         
         [self.repeatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo((self.width - 13 * hSpace - self.discussTextField.width) / 3);
+            make.width.mas_equalTo(self.discussTextField.width/5);
+            make.height.mas_equalTo(self.discussTextField.height);
             make.top.mas_equalTo(self.discussTextField);
             make.bottom.mas_equalTo(self.discussTextField);
             make.left.mas_equalTo(self.discussTextField.mas_right).offset(2 * hSpace);
         }];
-        
+        self.repeatBtn.layer.borderColor = [UIColor blueColor].CGColor;
+        self.repeatBtn.layer.borderWidth = 2.f;
+
         [self.collectionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.repeatBtn.mas_right).offset(3 * hSpace);
+            make.left.mas_equalTo(self.repeatBtn.mas_right).offset(2 * hSpace);
             make.top.mas_equalTo(self.discussTextField);
             make.bottom.mas_equalTo(self.discussTextField);
+            make.width.height.mas_equalTo(self.repeatBtn);
         }];
-        
+        self.collectionBtn.layer.borderColor = [UIColor yellowColor].CGColor;
+        self.collectionBtn.layer.borderWidth = 2.f;
+
         [self.likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.collectionBtn.mas_right).offset(3 * hSpace);
+            make.left.mas_equalTo(self.collectionBtn.mas_right).offset(2 * hSpace);
             make.top.mas_equalTo(self.collectionBtn);
             make.bottom.mas_equalTo(self.collectionBtn);
+            make.width.height.mas_equalTo(self.repeatBtn);
         }];
-        
+
+        self.likeBtn.layer.borderColor = [UIColor purpleColor].CGColor;
+        self.likeBtn.layer.borderWidth = 2.f;
+
         [self.transmitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.likeBtn.mas_right).offset(3 * hSpace);
+            make.left.mas_equalTo(self.likeBtn.mas_right).offset(2 * hSpace);
             make.right.mas_equalTo(hSpace);
             make.top.mas_equalTo(self.likeBtn);
             make.bottom.mas_equalTo(self.likeBtn);
+            make.width.height.mas_equalTo(self.repeatBtn);
         }];
-        // a b c d e
+
+        self.transmitBtn.layer.borderColor = [UIColor greenColor].CGColor;
+        self.transmitBtn.layer.borderWidth = 2.f;
     }
     return self;
 }
@@ -137,6 +153,22 @@
 #pragma mark - 点击响应事件
 
 -(void)repeatHnadle:(UIButton *)sender{
+    
+}
+
+-(void)discussHandle:(UIButton *)sender{
+    
+}
+
+-(void)collectionHandle:(UIButton *)sender{
+    
+}
+
+-(void)likeHandle:(UIButton *)sender{
+    
+}
+
+-(void)transmitHandle:(UIButton *)sender{
     
 }
 /*

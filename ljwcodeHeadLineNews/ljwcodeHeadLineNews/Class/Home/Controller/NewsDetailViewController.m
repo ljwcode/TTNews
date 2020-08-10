@@ -15,6 +15,7 @@
 #import <RACSubject.h>
 #import "newsDetailHeaderViewModel.h"
 #import "newsDetailFooterView.h"
+#import "headLineSearchViewController.h"
 
 
 @interface NewsDetailViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -31,9 +32,12 @@
 
 @property(nonatomic,strong)newsDetailFooterView *footerView;
 
+@property(nonatomic,weak)UIScrollView *containerScrollView;
+
+@property(nonatomic,weak)UIView *contentView;
+
 @end
 
-static CGFloat VSpace = 10;
 @implementation NewsDetailViewController
 
 -(newsDetailHeaderViewModel *)headerViewModel{
@@ -43,79 +47,28 @@ static CGFloat VSpace = 10;
     return _headerViewModel;
 }
 
--(void)viewDidLayoutSubviews{
-    self.navigationController.title = @"今日头条";
-    [[UINavigationBar appearance]setTranslucent:NO];
-    [[UINavigationBar appearance]setBackgroundColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance]setHidden:YES];
+-(void)setNaviBarItem{
+    self.navigationItem.title = @"今日头条";
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backBtn setImage:[UIImage imageNamed:@"lefterbackicon_titlebar"] forState:UIControlStateNormal];
-    self.navigationController.navigationItem.backBarButtonItem.customView = backBtn;
+    UIBarButtonItem *moreBarBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"new_more_titlebar"] style:UIBarButtonItemStylePlain target:self action:@selector(moreBarHandle:)];
     
-    UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [moreBtn addTarget:self action:@selector(moreBtnHandle:) forControlEvents:UIControlEventTouchUpInside];
-    [moreBtn setImage:[UIImage imageNamed:@"new_more_titlebar"] forState:UIControlStateNormal];
-    
-    UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [searchBtn addTarget:self action:@selector(searchBtnHandle:) forControlEvents:UIControlEventTouchUpInside];
-    [searchBtn setImage:[UIImage imageNamed:@"search_mine_tab"] forState:UIControlStateNormal];
+    UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    fixedSpaceBarButtonItem.width = 2 * hSpace;
 
-    self.navigationController.navigationItem.rightBarButtonItems = @[moreBtn,searchBtn];
+    UIBarButtonItem *searchBarBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"search_mine_tab"] style:UIBarButtonItemStylePlain target:self action:@selector(searchBarHandle:)];
+
+    self.navigationItem.rightBarButtonItems = @[moreBarBtn,searchBarBtn];
     
+    UIBarButtonItem *leftBarBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"lefterbackicon_titlebar"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBackHandle:)];
+    self.navigationItem.leftBarButtonItem = leftBarBtn;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self configureWebUI];
-    
-    _headerView = [[newsDetailHeaderView alloc]initWithFrame:CGRectMake(0,VSpace, self.view.width, kScreenHeight * 0.2)];
-    [[self.headerViewModel.newsHeaderCommand execute:@13]subscribeNext:^(id  _Nullable x) {
-        NSLog(@"x = %@",x);
-        
-    }];
-    self.tableView.tableHeaderView = _headerView;
-    
-    _footerView = [[newsDetailFooterView alloc]initWithFrame:CGRectMake(0, kScreenHeight * 0.6, self.view.width, kScreenHeight * 0.2)];
-    self.tableView.tableFooterView = _footerView;
-    // Do any additional setup after loading the view.
-}
-
--(UITableView *)tableView{
-    if(!_tableView){
-        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0 , kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        [self.view addSubview:tableView];
-    }
-    return _tableView;
-}
-
--(void)configureWebUI{
-    
-    NSURL *url = [NSURL URLWithString:_urlString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:8.f];
-    [self.newsWebView loadRequest:request];
-    
-}
-
--(WKWebView *)newsWebView{
-    if(!_newsWebView){
-        WKWebView *webView = [[WKWebView alloc]initWithFrame:self.tableView.bounds];
-        webView.backgroundColor = [UIColor whiteColor];
-        webView.UIDelegate = self;
-        webView.navigationDelegate = self;
-        [self.tableView addSubview:webView];
-        [webView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo([UIScreen mainScreen].bounds.size.height);
-            make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width);
-            make.top.mas_equalTo(self.view).offset([UIScreen mainScreen].bounds.size.height == 812 ? 88 : 64);
-            make.left.right.mas_equalTo(self.view).offset(0);
-        }];
-        
-        _newsWebView = webView;
-    }
-    return _newsWebView;
+-(void)setTabBarItem{
+    UITabBar *tabBar = [[UITabBar alloc]initWithFrame:CGRectMake(0, self.view.height * 0.8, self.view.width, self.view.height * 0.2)];
+    [self.view addSubview:tabBar];
+    tabBar.barTintColor = [UIColor clearColor];
+    [self.footerView setFrame:tabBar.bounds];
+    [tabBar addSubview:self.footerView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -124,6 +77,95 @@ static CGFloat VSpace = 10;
     [nav stopGestureRecnozier];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 }
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setNaviBarItem];
+    
+    [self setTabBarItem];
+//    [self.contentView addSubview:self.headerView];
+//    [self.contentView addSubview:self.footerView];
+    [self.contentView addSubview:self.newsWebView];
+//    [self.contentView addSubview:self.tableView];
+//    self.contentView.backgroundColor = [UIColor redColor];
+//    [self.view addSubview:self.containerScrollView];
+//    [self.containerScrollView addSubview:self.contentView];
+    [self.contentView setFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
+    [self.view addSubview:self.contentView];
+
+//    self.newsWebView.top = self.headerView.height;
+//    self.newsWebView.height = self.view.height;
+//    self.tableView.top = self.newsWebView.bottom;
+//
+    NSURL *url = [NSURL URLWithString:_urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:8.f];
+    [self.newsWebView loadRequest:request];
+//
+//    self.headerView = [[newsDetailHeaderView alloc]initWithFrame:CGRectMake(0,0, self.view.width, kScreenHeight * 0.2)];
+//    [[self.headerViewModel.newsHeaderCommand execute:@13]subscribeNext:^(id  _Nullable x) {
+//        NSLog(@"x = %@",x);
+//    }];
+    
+//    _footerView = [[newsDetailFooterView alloc]initWithFrame:CGRectMake(0, kScreenHeight * 0.6, self.view.width, kScreenHeight * 0.2)];
+    // Do any additional setup after loading the view.
+}
+
+-(UIScrollView *)containerScrollView{
+    if(!_containerScrollView){
+        UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+        scrollView.delegate = self;
+        scrollView.alwaysBounceVertical = YES;
+        _containerScrollView = scrollView;
+    }
+    return _containerScrollView;
+    
+}
+
+-(UITableView *)tableView{
+    if(!_tableView){
+        UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        _tableView = tableView;
+    }
+    return _tableView;
+}
+
+-(UIView *)contentView{
+    if(!_contentView){
+        UIView *view = [[UIView alloc]init];
+        _contentView = view;
+    }
+    return _contentView;
+}
+
+-(newsDetailHeaderView *)headerView{
+    if(!_headerView){
+        _headerView = [[newsDetailHeaderView alloc]init];
+    }
+    return _headerView;
+}
+
+-(newsDetailFooterView *)footerView{
+    if(!_footerView){
+        _footerView = [[newsDetailFooterView alloc]init];
+    }
+    return _footerView;
+}
+
+
+-(WKWebView *)newsWebView{
+    if(!_newsWebView){
+        WKWebView *webView = [[WKWebView alloc]initWithFrame:self.view.bounds];
+        webView.backgroundColor = [UIColor whiteColor];
+        webView.UIDelegate = self;
+        webView.navigationDelegate = self;
+        _newsWebView = webView;
+    }
+    return _newsWebView;
+}
+
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -150,33 +192,20 @@ static CGFloat VSpace = 10;
 
 #pragma mark - UITableViewDelegate && UITableViewDatasource
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if(!cellID){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-//        [cell.contentView addSubview:self.newsWebView];
-    }
-    
-    return cell;
-}
 
 #pragma mark - 点击事件响应
 
--(void)moreBtnHandle:(UIButton *)sender{
+-(void)moreBarHandle:(UIBarButtonItem *)sender{
     
 }
 
--(void)searchBtnHandle:(UIButton *)sender{
-    
+-(void)searchBarHandle:(UIBarButtonItem *)sender{
+    headLineSearchViewController *searchVC = [[headLineSearchViewController alloc]init];
+    [self.navigationController pushViewController:searchVC animated:YES];
+}
+
+-(void)leftBackHandle:(UIBarButtonItem *)sender{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 /*
 #pragma mark - Navigation

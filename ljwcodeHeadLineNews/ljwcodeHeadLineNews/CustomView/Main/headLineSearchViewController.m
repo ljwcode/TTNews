@@ -176,6 +176,7 @@
     [self.navigationController.navigationItem setHidesBackButton:YES];
     [self.navigationItem setHidesBackButton:YES];
     [self.navigationController.navigationBar.backItem setHidesBackButton:YES];
+    
     self.navigationController.navigationBarHidden = NO;
     if(self.resultShowController.parentViewController == NULL){
         [self.searchBar becomeFirstResponder];
