@@ -12,7 +12,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NewsDetailViewController : UIViewController
 
+/*
+1:点击某一行，拿到点击跳转时的请求数据模型
+新闻链接url，头像url，作者名称，新闻标题，作者简介
+*/
+
 @property(nonatomic,copy)NSString *urlString;
+
+@property(nonatomic,copy)NSString *authorHeadImgUrl;
+
+@property(nonatomic,copy)NSString *authorName;
+
+@property(nonatomic,copy)NSString *articleTitle;
+
+@property(nonatomic,copy)NSString *authorAbstract;
 
 @end
 

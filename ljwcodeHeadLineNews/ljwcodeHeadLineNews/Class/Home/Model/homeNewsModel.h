@@ -62,6 +62,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)homeNewsImageModel *middle_image;
 
+@property(nonatomic,copy)NSString *avatar_url;
+
+@property(nonatomic,copy)NSString *description;
+
 
 @end
 

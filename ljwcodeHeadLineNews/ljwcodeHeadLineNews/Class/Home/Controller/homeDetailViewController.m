@@ -176,7 +176,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NewsDetailViewController *webVC = [[NewsDetailViewController alloc]init];
     _model  = self.datasArray[indexPath.row];
+    
     webVC.urlString = _model.infoModel.article_url;
+    webVC.articleTitle = _model.infoModel.title;
+    webVC.authorName = _model.infoModel.media_name;
+    webVC.authorHeadImgUrl = _model.infoModel.avatar_url;
+    webVC.authorAbstract = _model.infoModel.description;
     [self.navigationController pushViewController:webVC animated:YES];
 }
 

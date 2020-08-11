@@ -33,51 +33,37 @@
         [self.discussTextField mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(hSpace);
             make.top.mas_equalTo(vSpace/2);
-            make.right.mas_equalTo(hSpace);
-            make.height.mas_equalTo(self.height * 0.3);
+            make.height.mas_equalTo(self.height * 0.2);
+            make.width.mas_equalTo(self.width * 0.4);
         }];
-        self.discussTextField.layer.borderColor = [UIColor redColor].CGColor;
-        self.discussTextField.layer.borderWidth = 2.f;
         
         [self.repeatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(self.discussTextField.width/5);
-            make.height.mas_equalTo(self.discussTextField.height);
+            make.height.mas_equalTo(self.discussTextField);
+            make.width.mas_equalTo(self.width * 0.1);
             make.top.mas_equalTo(self.discussTextField);
             make.bottom.mas_equalTo(self.discussTextField);
-            make.left.mas_equalTo(self.discussTextField.mas_right).offset(2 * hSpace);
+            make.left.mas_equalTo(self.discussTextField.mas_right).offset(1 * hSpace);
         }];
-        self.repeatBtn.layer.borderColor = [UIColor blueColor].CGColor;
-        self.repeatBtn.layer.borderWidth = 2.f;
-
-        [self.collectionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.repeatBtn.mas_right).offset(2 * hSpace);
-            make.top.mas_equalTo(self.discussTextField);
-            make.bottom.mas_equalTo(self.discussTextField);
-            make.width.height.mas_equalTo(self.repeatBtn);
-        }];
-        self.collectionBtn.layer.borderColor = [UIColor yellowColor].CGColor;
-        self.collectionBtn.layer.borderWidth = 2.f;
-
+      
         [self.likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.collectionBtn.mas_right).offset(2 * hSpace);
-            make.top.mas_equalTo(self.collectionBtn);
-            make.bottom.mas_equalTo(self.collectionBtn);
             make.width.height.mas_equalTo(self.repeatBtn);
+            make.left.mas_equalTo(self.repeatBtn.mas_right).offset(1 * hSpace);
+            make.top.mas_equalTo(self.discussTextField);
         }];
-
-        self.likeBtn.layer.borderColor = [UIColor purpleColor].CGColor;
-        self.likeBtn.layer.borderWidth = 2.f;
-
+        
+        [self.collectionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_equalTo(self.likeBtn);
+            make.left.mas_equalTo(self.likeBtn.mas_right).offset(1 * hSpace);
+            make.top.mas_equalTo(self.discussTextField);
+        }];
+        
         [self.transmitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.likeBtn.mas_right).offset(2 * hSpace);
-            make.right.mas_equalTo(hSpace);
-            make.top.mas_equalTo(self.likeBtn);
-            make.bottom.mas_equalTo(self.likeBtn);
-            make.width.height.mas_equalTo(self.repeatBtn);
+            make.width.height.mas_equalTo(self.collectionBtn);
+            make.left.mas_equalTo(self.collectionBtn.mas_right).offset(1 * hSpace);
+            make.top.mas_equalTo(self.discussTextField);
+            make.right.mas_lessThanOrEqualTo(hSpace);
         }];
 
-        self.transmitBtn.layer.borderColor = [UIColor greenColor].CGColor;
-        self.transmitBtn.layer.borderWidth = 2.f;
     }
     return self;
 }
@@ -117,7 +103,7 @@
 -(UIButton *)collectionBtn{
     if(!_collectionBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setBackgroundImage:[UIImage imageNamed:@"icon_details_collect"] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"tab_collect"] forState:UIControlStateNormal];
         [btn setBackgroundImage:[UIImage imageNamed:@"icon_details_collect_press"] forState:UIControlStateSelected];
         [btn addTarget:self action:@selector(collectionHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
