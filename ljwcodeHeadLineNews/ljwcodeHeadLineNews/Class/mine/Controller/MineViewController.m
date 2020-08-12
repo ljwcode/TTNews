@@ -101,7 +101,7 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 3;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -110,19 +110,10 @@
             return self.view.height/4;
             break;
         case 1:
-//        case 2:
+        case 2:
             return kScreenHeight * 0.3;
             break;
     }
-    return 0;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-
     return 0;
 }
 
@@ -147,21 +138,35 @@
             resultCell = cell;
         }
             break;
-//        case 2:
-//        {
-//            moreSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([moreSettingTableViewCell class])];
-//            if(!cell){
-//                cell = [[moreSettingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([moreSettingTableViewCell class])];
-//            }
-//            resultCell = cell;
-//        }
-//            break;
+        case 2:
+        {
+            moreSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([moreSettingTableViewCell class])];
+            if(!cell){
+                cell = [[moreSettingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([moreSettingTableViewCell class])];
+            }
+            resultCell = cell;
+        }
+            break;
             
         default:
             break;
     }
     
     return resultCell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+        return 8;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+       return 0.1;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+return [[UIView alloc]init];
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+return [[UIView alloc]init];
 }
 
 - (void)didReceiveMemoryWarning {

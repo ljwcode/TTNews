@@ -40,16 +40,19 @@
 -(void)setNaviBarItem{
     self.navigationItem.title = @"今日头条";
     
-    UIBarButtonItem *moreBarBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"new_more_titlebar"] style:UIBarButtonItemStylePlain target:self action:@selector(moreBarHandle:)];
+    UIImage *moreImg = [[UIImage imageNamed:@"new_more_titlebar"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem *moreBarBtn = [[UIBarButtonItem alloc]initWithImage:moreImg style:UIBarButtonItemStylePlain target:self action:@selector(moreBarHandle:)];
     
     UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     fixedSpaceBarButtonItem.width = 2 * hSpace;
-
-    UIBarButtonItem *searchBarBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"search_mine_tab"] style:UIBarButtonItemStylePlain target:self action:@selector(searchBarHandle:)];
+    
+    UIImage *searchImg = [[UIImage imageNamed:@"search_mine_tab"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem *searchBarBtn = [[UIBarButtonItem alloc]initWithImage:searchImg style:UIBarButtonItemStylePlain target:self action:@selector(searchBarHandle:)];
 
     self.navigationItem.rightBarButtonItems = @[moreBarBtn,searchBarBtn];
     
-    UIBarButtonItem *leftBarBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"lefterbackicon_titlebar"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBackHandle:)];
+    UIImage *leftImg = [[UIImage imageNamed:@"lefterbackicon_titlebar"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIBarButtonItem *leftBarBtn = [[UIBarButtonItem alloc]initWithImage:leftImg style:UIBarButtonItemStylePlain target:self action:@selector(leftBackHandle:)];
     self.navigationItem.leftBarButtonItem = leftBarBtn;
 }
 
@@ -80,7 +83,7 @@
     NSURL *url = [NSURL URLWithString:_urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:8.f];
     [self.newsWebView loadRequest:request];
-    
+    [self.headerView setHeadViewDataSource];
     self.tableView.tableHeaderView = self.headerView;
 }
 
@@ -90,7 +93,7 @@
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
         scrollView.delegate = self;
         scrollView.alwaysBounceVertical = YES;
-        scrollView.contentSize = CGSizeMake(kScreenWidth, kScreenHeight * 2);
+//        scrollView.contentSize = CGSizeMake(kScreenWidth, kScreenHeight * 2);
         [self.view addSubview:scrollView];
         scrollView.maximumZoomScale = 1;
         scrollView.minimumZoomScale = 1;

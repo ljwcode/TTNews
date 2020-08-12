@@ -18,9 +18,6 @@
 
 @end
 
-static CGFloat Vspace = 30;
-static CGFloat Hspace = 30;
-
 static int columns = 4;
 
 @implementation commonSettingTableViewCell
@@ -29,29 +26,40 @@ static int columns = 4;
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.contentView).offset(Hspace);
-            make.top.mas_equalTo(self.contentView).offset(Vspace);
+            make.left.mas_equalTo(self.contentView).offset(hSpace * 3);
+            make.top.mas_equalTo(self.contentView).offset(vSpace);
             make.width.mas_equalTo(80);
             make.height.mas_equalTo(30);
         }];
+       
         for(int i = 0;i < self.infoArray.count;i++){
             UIButton *commomButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [commomButton setTitle:self.infoArray[i][@"title"] forState:UIControlStateNormal];
-            [commomButton setImage:self.infoArray[i][@"image"] forState:UIControlStateNormal];
-            commomButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-            commomButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+            [commomButton setImage:[UIImage imageNamed:self.infoArray[i][@"image"]] forState:UIControlStateNormal];
+            [commomButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            commomButton.titleLabel.font = [UIFont systemFontOfSize:13.f];
             [self.contentView addSubview:commomButton];
+            [commomButton.titleLabel sizeToFit];
+            
+            commomButton.imageEdgeInsets = UIEdgeInsetsMake(-commomButton.titleLabel.intrinsicContentSize.height, 0, 0, -commomButton.titleLabel.intrinsicContentSize.width);
+            
+            commomButton.titleEdgeInsets = UIEdgeInsetsMake(commomButton.imageView.intrinsicContentSize.height, -commomButton.imageView.intrinsicContentSize.width, 0, 0);
+            
+            [self.contentView addSubview:commomButton];
+            
             [commomButton mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(Hspace+(i%columns)*(Hspace*1.5+((self.contentView.width-(Hspace*5))/4)));
-                make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(Vspace+(i/columns)*(((self.contentView.width-(Hspace*5))/4)+Vspace));
-                make.height.mas_equalTo((self.contentView.height - self.titleLabel.height - Vspace * 4) / 2);
-                make.width.mas_equalTo((self.contentView.width - Hspace * 5) / 4);
-                
+                make.left.mas_equalTo(hSpace * 2 + (i%columns)*(hSpace * 2 * 1.5+((self.contentView.width-(hSpace * 2 * 5))/4)));
+                make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(vSpace * 1 + (i/columns)*(((self.contentView.width-(hSpace * 2 * 5))/4) + vSpace * 2));
+                make.width.height.mas_equalTo(60);
             }];
+            
+            [commomButton addTarget:self action:@selector(commonHandle:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
     return self;
 }
+
+#pragma mark - lazy load
 
 -(NSArray *)infoArray{
     if(!_infoArray){
@@ -62,7 +70,7 @@ static int columns = 4;
                        @{@"title" : @"浏览历史", @"image" : @"profile_v2_my_history"},
                        @{@"title" : @"钱包", @"image" : @"profile_v2_my_wallet"},
                        @{@"title" : @"用户反馈", @"image" : @"profile_user_feedback"},
-                       @{@"title" : @"免流量服务", @"image" : @"profile_system_config"},
+                       @{@"title" : @"免流服务", @"image" : @"profile_system_config"},
                        @{@"title" : @"系统设置", @"image" : @"profile_system_config"}
         ];
     }
@@ -79,6 +87,12 @@ static int columns = 4;
         _titleLabel = label;
     }
     return _titleLabel;
+}
+
+#pragma mark - 点击事件
+
+-(void)commonHandle:(UIButton *)sender{
+    
 }
 
 - (void)awakeFromNib {

@@ -96,9 +96,14 @@ static CGFloat space = 10;
         [button setTitle:@"查看全部" forState:UIControlStateNormal];
         [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:@"arrow_right_setup_12x16_"] forState:UIControlStateNormal];
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -button.titleLabel.intrinsicContentSize.width-20);
-        button.titleEdgeInsets = UIEdgeInsetsMake(0, -button.imageView.intrinsicContentSize.width-30, 0, 0);
+        button.titleLabel.font = [UIFont systemFontOfSize:13.f];
+        
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, button.titleLabel.intrinsicContentSize.width, 0, -button.titleLabel.intrinsicContentSize.width);
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, -button.imageView.intrinsicContentSize.width, 0, button.imageView.intrinsicContentSize.width);
+        
+        [button addTarget:self action:@selector(lookAllHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:button];
+        
         _showMoreButton = button;
     }
     return _showMoreButton;
@@ -118,7 +123,19 @@ static CGFloat space = 10;
     return _scrollView;
 }
 
+-(void)lookAllHandle:(UIButton *)sender{
+    UIViewController *VC = [self viewController];
+}
 
+- (UIViewController*)viewController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UINavigationController class]]) {
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

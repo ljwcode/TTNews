@@ -20,9 +20,6 @@
 
 @end
 
-static CGFloat Vspace = 30;
-static CGFloat Hspace = 30;
-
 static int columns = 4;
 
 @implementation moreSettingTableViewCell
@@ -30,8 +27,8 @@ static int columns = 4;
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.contentView).offset(Hspace);
-            make.top.mas_equalTo(self.contentView).offset(Vspace);
+            make.left.mas_equalTo(self.contentView).offset(hSpace * 3);
+            make.top.mas_equalTo(self.contentView).offset(vSpace);
             make.width.mas_equalTo(80);
             make.height.mas_equalTo(30);
             
@@ -40,16 +37,19 @@ static int columns = 4;
         for(int i = 0;i < self.infoArray.count;i++){
             UIButton *moreSettingButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [moreSettingButton setTitle:self.infoArray[i][@"title"] forState:UIControlStateNormal];
-            [moreSettingButton setImage:self.infoArray[i][@"image"] forState:UIControlStateNormal];
-            moreSettingButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-            moreSettingButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+            [moreSettingButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            moreSettingButton.titleLabel.font = [UIFont systemFontOfSize:13.f];
+            [moreSettingButton.titleLabel sizeToFit];
+            [moreSettingButton setImage:[UIImage imageNamed:self.infoArray[i][@"image"]] forState:UIControlStateNormal];
+            moreSettingButton.imageEdgeInsets = UIEdgeInsetsMake(-moreSettingButton.titleLabel.intrinsicContentSize.height, 0, 0, -moreSettingButton.titleLabel.intrinsicContentSize.width);
+            moreSettingButton.titleEdgeInsets = UIEdgeInsetsMake(moreSettingButton.imageView.intrinsicContentSize.height, -moreSettingButton.imageView.intrinsicContentSize.width, 0, 0);
             [self.contentView addSubview:moreSettingButton];
             _moreSettingButton = moreSettingButton;
             
             [moreSettingButton mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(Hspace+(i%columns)*(Hspace*1.5+((self.contentView.width-(Hspace*5))/4)));
-                make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(Vspace+(i/columns)*(((self.contentView.width-(Hspace*5))/4)+Vspace));
-                make.width.height.mas_equalTo((self.contentView.width-(Hspace*5))/4);
+                make.left.mas_equalTo(hSpace * 2 + (i%columns)*(hSpace * 2 * 1.5+((self.contentView.width-(hSpace * 2 * 5))/4)));
+                make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(vSpace * 1 + (i/columns)*(((self.contentView.width-(hSpace * 2 * 5))/4) + vSpace * 2));
+                make.width.height.mas_equalTo(60);
             }];
         }
     }
@@ -91,7 +91,7 @@ static int columns = 4;
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 

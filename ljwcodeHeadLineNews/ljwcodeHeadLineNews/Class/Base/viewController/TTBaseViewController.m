@@ -30,7 +30,7 @@
      [reportBtn setTitle:@"发布" forState:UIControlStateNormal];
      [reportBtn setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
      reportBtn.titleLabel.font = [UIFont systemFontOfSize:13.f];
-     [reportBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+     [reportBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
      reportBtn.contentMode = UIViewContentModeScaleAspectFit;
      reportBtn.imageEdgeInsets = UIEdgeInsetsMake(-reportBtn.titleLabel.intrinsicContentSize.height/2, 0, 0, 0);
      reportBtn.titleEdgeInsets = UIEdgeInsetsMake(reportBtn.imageView.intrinsicContentSize.height, -reportBtn.imageView.intrinsicContentSize.width, 0, 0);

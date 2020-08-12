@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *authorAbstract;
 
+-(void)setHeadViewDataSource;
+
 @end
 
 NS_ASSUME_NONNULL_END

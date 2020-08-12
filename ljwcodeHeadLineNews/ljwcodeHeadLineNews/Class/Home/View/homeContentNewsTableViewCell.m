@@ -56,7 +56,7 @@ static CGFloat itemSpace = 5;
         _detailImgSpace.constant = 0;
         _detailImgView.hidden = YES;
     }
-    _detailLabel.text = [NSString stringWithFormat:@"%@   %d阅读d  0分钟前",newsSummaryModel.infoModel.media_name,newsSummaryModel.infoModel.read_count];
+    _detailLabel.text = [NSString stringWithFormat:@"%@   %d阅读  0分钟前",newsSummaryModel.infoModel.media_name,newsSummaryModel.infoModel.read_count];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
