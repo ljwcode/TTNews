@@ -9,8 +9,11 @@
 #import "commonSettingTableViewCell.h"
 #import <Masonry.h>
 #import <UIView+Frame.h>
+#import "focusViewController.h"
 
 @interface commonSettingTableViewCell()
+
+@property(nonatomic,strong)focusViewController *focusVC;
 
 @property(nonatomic,weak)UILabel *titleLabel;
 
@@ -54,6 +57,7 @@ static int columns = 4;
             }];
             
             [commomButton addTarget:self action:@selector(commonHandle:) forControlEvents:UIControlEventTouchUpInside];
+            commomButton.restorationIdentifier = [NSString stringWithFormat:@"%@%d",@"commomBtnRestorationID",i];
         }
     }
     return self;
@@ -92,6 +96,13 @@ static int columns = 4;
 #pragma mark - 点击事件
 
 -(void)commonHandle:(UIButton *)sender{
+    if([sender.restorationIdentifier isEqualToString:@"commomBtnRestorationID0"]){
+        NSLog(@"点击了0");
+        _focusVC = [[focusViewController alloc]init];
+        [[self getCurrentViewController].navigationController pushViewController:_focusVC animated:YES];
+    }else if([sender.restorationIdentifier isEqualToString:@"commomBtnRestorationID1"]){
+        
+    }
     
 }
 

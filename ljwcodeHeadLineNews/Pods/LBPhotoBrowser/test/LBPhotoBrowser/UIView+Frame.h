@@ -27,4 +27,7 @@
 @property(nonatomic,assign)CGSize size;
 
 @property(nonatomic,assign)CGPoint origin;
+
+-(UIViewController *)getCurrentViewController;
+
 @end

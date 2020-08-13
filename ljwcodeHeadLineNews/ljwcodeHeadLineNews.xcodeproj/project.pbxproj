@@ -16,6 +16,10 @@
 		63167ABA24AB63E2002CB4EF /* homeTitleChannelModel in Resources */ = {isa = PBXBuildFile; fileRef = 63167AB924AB63E2002CB4EF /* homeTitleChannelModel */; };
 		631BAEE8249B63D700639CD2 /* UITabBar+TTTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BAEE7249B63D700639CD2 /* UITabBar+TTTabBarItem.m */; };
 		631BAEEB249B751D00639CD2 /* TTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BAEEA249B751D00639CD2 /* TTNavigationController.m */; };
+		631CFA6124E514C40082B941 /* TTStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA6024E514C30082B941 /* TTStatusView.m */; };
+		631CFA6424E516700082B941 /* TTScrollStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA6324E516700082B941 /* TTScrollStatusView.m */; };
+		631CFA6824E5276A0082B941 /* focusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA6724E5276A0082B941 /* focusViewController.m */; };
+		631CFA7124E567250082B941 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA7024E567240082B941 /* MessageViewController.m */; };
 		63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63231B9024A08F110059FD5F /* TTNavigationBar.m */; };
 		6328F611249DEA8C00C767A8 /* TTEmitterHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F610249DEA8C00C767A8 /* TTEmitterHelper.m */; };
 		6328F614249E111F00C767A8 /* TTHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F613249E111F00C767A8 /* TTHeader.m */; };
@@ -112,6 +116,14 @@
 		631BAEE7249B63D700639CD2 /* UITabBar+TTTabBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+TTTabBarItem.m"; sourceTree = "<group>"; };
 		631BAEE9249B751D00639CD2 /* TTNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNavigationController.h; sourceTree = "<group>"; };
 		631BAEEA249B751D00639CD2 /* TTNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTNavigationController.m; sourceTree = "<group>"; };
+		631CFA5F24E514C30082B941 /* TTStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTStatusView.h; sourceTree = "<group>"; };
+		631CFA6024E514C30082B941 /* TTStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTStatusView.m; sourceTree = "<group>"; };
+		631CFA6224E516700082B941 /* TTScrollStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTScrollStatusView.h; sourceTree = "<group>"; };
+		631CFA6324E516700082B941 /* TTScrollStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTScrollStatusView.m; sourceTree = "<group>"; };
+		631CFA6624E5276A0082B941 /* focusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = focusViewController.h; sourceTree = "<group>"; };
+		631CFA6724E5276A0082B941 /* focusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = focusViewController.m; sourceTree = "<group>"; };
+		631CFA6F24E567240082B941 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		631CFA7024E567240082B941 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		63231B8F24A08F110059FD5F /* TTNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNavigationBar.h; sourceTree = "<group>"; };
 		63231B9024A08F110059FD5F /* TTNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTNavigationBar.m; sourceTree = "<group>"; };
 		6328F60F249DEA8C00C767A8 /* TTEmitterHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTEmitterHelper.h; sourceTree = "<group>"; };
@@ -279,9 +291,35 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		631CFA5D24E4DFFF0082B941 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		631CFA5E24E4E00E0082B941 /* commonSettingView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = commonSettingView;
+			sourceTree = "<group>";
+		};
+		631CFA6524E51BEF0082B941 /* TTHorizontalCateoryTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				631CFA5F24E514C30082B941 /* TTStatusView.h */,
+				631CFA6024E514C30082B941 /* TTStatusView.m */,
+				631CFA6224E516700082B941 /* TTScrollStatusView.h */,
+				631CFA6324E516700082B941 /* TTScrollStatusView.m */,
+			);
+			path = TTHorizontalCateoryTabBar;
+			sourceTree = "<group>";
+		};
 		6328F60B249DABDA00C767A8 /* ljwcodeTools */ = {
 			isa = PBXGroup;
 			children = (
+				631CFA6524E51BEF0082B941 /* TTHorizontalCateoryTabBar */,
 				63403E8024C96AE30024A362 /* UIButton */,
 				637C2D3B24A9F1BA0009274C /* MBProgressHUD+Add.h */,
 				637C2D3A24A9F1BA0009274C /* MBProgressHUD+Add.m */,
@@ -382,6 +420,7 @@
 		6355CFEF24BF0F70002D3815 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				631CFA5E24E4E00E0082B941 /* commonSettingView */,
 				630A976524CFC463003029C3 /* countryCodeView.h */,
 				630A976424CFC462003029C3 /* countryCodeView.m */,
 				6355CFF324BF1078002D3815 /* loginView.h */,
@@ -424,6 +463,10 @@
 			children = (
 				820979171BD3AFAC00CF9D0C /* MineViewController.h */,
 				820979181BD3AFAC00CF9D0C /* MineViewController.m */,
+				631CFA6624E5276A0082B941 /* focusViewController.h */,
+				631CFA6724E5276A0082B941 /* focusViewController.m */,
+				631CFA6F24E567240082B941 /* MessageViewController.h */,
+				631CFA7024E567240082B941 /* MessageViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -482,6 +525,7 @@
 		63B07BEC24A1DCE900C7CD6F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				631CFA5D24E4DFFF0082B941 /* New Group */,
 				63B07BEF24A1DD5600C7CD6F /* homeNewsTableViewCell.h */,
 				63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */,
 				63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */,
@@ -878,6 +922,7 @@
 				63E6CB5E24C02CE800E0126C /* headLineSearchViewController.m in Sources */,
 				638481EC24BEEB85002F4C5F /* VideoDetailViewController.m in Sources */,
 				63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */,
+				631CFA7124E567250082B941 /* MessageViewController.m in Sources */,
 				63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */,
 				8209791F1BD3AFDB00CF9D0C /* VideoViewController.m in Sources */,
 				6328F611249DEA8C00C767A8 /* TTEmitterHelper.m in Sources */,
@@ -891,6 +936,7 @@
 				63422BE024A839960091FEE1 /* WMMenuItem.m in Sources */,
 				949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */,
 				63F1F8E224AF315E00D687ED /* videoContentModel.m in Sources */,
+				631CFA6424E516700082B941 /* TTScrollStatusView.m in Sources */,
 				63422BE324A839960091FEE1 /* WMProgressView.m in Sources */,
 				63F1F8EA24AF3A3500D687ED /* videoContentViewModel.m in Sources */,
 				63D4FF9F24D96FC40035F561 /* NewsDetailViewController.m in Sources */,
@@ -909,6 +955,7 @@
 				820978EB1BD3A37700CF9D0C /* AppDelegate.m in Sources */,
 				63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */,
 				63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */,
+				631CFA6824E5276A0082B941 /* focusViewController.m in Sources */,
 				637C2D3624A9D3EA0009274C /* networkManagerCenter.m in Sources */,
 				638E978024CAF04B005ADF42 /* moreSettingTableViewCell.m in Sources */,
 				637A97F424C04B45000F7405 /* UIImage+cropPicture.m in Sources */,
@@ -923,6 +970,7 @@
 				637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */,
 				63403E7924C963150024A362 /* mineHeaderTableView.m in Sources */,
 				63BE352524DAD63A001ADFDD /* newsDetailFooterView.m in Sources */,
+				631CFA6124E514C40082B941 /* TTStatusView.m in Sources */,
 				63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */,
 				638E977424CAB4A4005ADF42 /* TTMineNavigationController.m in Sources */,
 				63167AB624AB6182002CB4EF /* homeNewsModel.m in Sources */,
