@@ -49,11 +49,14 @@ static NSString *cellID = @"OtherLoginCellID";
         
         if (self.alertSheetView && !CGRectContainsPoint(floatRect, tapPoint))
         {
-            
             [self.alertSheetView.window removeGestureRecognizer:tap];
-            [self removeFromSuperview];
+            
+            [UIView animateWithDuration:0.5 animations:^{
+                CGRect rect = self.frame;
+                rect.origin.y += kScreenHeight;
+                self.frame = rect;
+            }];
         }
-        
     }
 }
 

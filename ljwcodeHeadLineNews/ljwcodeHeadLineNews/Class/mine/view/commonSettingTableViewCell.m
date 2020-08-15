@@ -10,6 +10,7 @@
 #import <Masonry.h>
 #import <UIView+Frame.h>
 #import "focusViewController.h"
+#import "MessageViewController.h"
 
 @interface commonSettingTableViewCell()
 
@@ -101,7 +102,8 @@ static int columns = 4;
         _focusVC = [[focusViewController alloc]init];
         [[self getCurrentViewController].navigationController pushViewController:_focusVC animated:YES];
     }else if([sender.restorationIdentifier isEqualToString:@"commomBtnRestorationID1"]){
-        
+        MessageViewController *messageVC = [[MessageViewController alloc]init];
+        [[self getCurrentViewController].navigationController pushViewController:messageVC animated:YES];
     }
     
 }

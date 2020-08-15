@@ -9,6 +9,9 @@
 #import "MessageViewController.h"
 #import <UIView+Frame.h>
 #import <Masonry.h>
+#import "TTNavigationController.h"
+#import "loginView.h"
+#import "showAllMsgChannelView.h"
 
 @interface MessageViewController ()
 
@@ -16,9 +19,19 @@
 
 @property(nonatomic,weak)UIButton *loginBtn;
 
+@property(nonatomic,strong)showAllMsgChannelView *showView;
+
 @end
 
 @implementation MessageViewController
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    TTNavigationController *nav = (TTNavigationController *)self.navigationController;
+    [nav startGestureRecnozier];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,22 +70,49 @@
     titleBtn.titleLabel.font = [UIFont systemFontOfSize:13.f];
     [titleBtn setImage:[UIImage imageNamed:@"personal_home_recommend_down_black"] forState:UIControlStateNormal];
     [titleBtn addTarget:self action:@selector(titleHandle:) forControlEvents:UIControlEventTouchUpInside];
+    titleBtn.imageEdgeInsets = UIEdgeInsetsMake(0, titleBtn.titleLabel.intrinsicContentSize.width, 0, -titleBtn.titleLabel.intrinsicContentSize.width);
+    titleBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -titleBtn.imageView.intrinsicContentSize.width, 0, titleBtn.imageView.intrinsicContentSize.width);
     self.navigationItem.titleView = titleBtn;
 }
 
 #pragma mark - 点击事件
 
 -(void)leftBackHandle:(UIBarButtonItem *)sender{
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)titleHandle:(UIButton *)sender{
     sender.selected = !sender.selected;
     if(sender.selected){
         [sender setImage:[UIImage imageNamed:@"personal_home_recommend_up_black"] forState:UIControlStateNormal];
+        _showView = [[showAllMsgChannelView alloc]init];
+        [self.view addSubview:_showView];
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect rect = self->_showView.frame;
+            rect.origin.y += self->_showView.height;
+            self->_showView.frame = rect;
+        }];
     }else{
         [sender setImage:[UIImage imageNamed:@"personal_home_recommend_down_black"] forState:UIControlStateNormal];
+        _showView = [[showAllMsgChannelView alloc]init];
+        [_showView removeFromSuperview];
+        [UIView animateWithDuration:0.5 animations:^{
+            CGRect rect = self->_showView.frame;
+            rect.origin.y += 0;
+            self->_showView.frame = rect;
+        }];
+       
+//        [UIView animateWithDuration:0.5 animations:^{
+//            CGRect rect = self->_showView.frame;
+//            rect.origin.y -= self->_showView.height;
+//            self->_showView.frame = rect;
+//        }];
     }
+}
+
+-(void)loginHandle:(UIButton *)sender{
+    loginView *view = [[loginView alloc]init];
+    [view show];
 }
 
 #pragma mark - lazy load
@@ -98,6 +138,7 @@
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:15.f];
         [btn setBackgroundColor:[UIColor orangeColor]];
+        [btn addTarget:self action:@selector(loginHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
         _loginBtn = btn;
     }

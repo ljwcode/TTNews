@@ -67,7 +67,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     TTNavigationController *nav = (TTNavigationController *)self.navigationController;
-    [nav stopGestureRecnozier];
+    [nav startGestureRecnozier];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 }
 

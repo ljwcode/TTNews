@@ -29,7 +29,7 @@
 }
 
 -(void)viewDidLoad{
-    [self createNaviItem];
+//    [self createNaviItem];
     
     self.view.backgroundColor = [UIColor whiteColor];
     _scrollStatusView = [[TTScrollStatusView alloc]initWithTitleArr:@[@"用户",@"话题",@"专题"] type:ScrollTapTypeWithNavigation];
@@ -43,38 +43,38 @@
     [super viewWillAppear:animated];
     TTNavigationController *nav = (TTNavigationController *)self.navigationController;
     [nav startGestureRecnozier];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
-
-#pragma mark -- UITableViewDelegate && UITableViewDatasource
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(tableView.tag == 0){
-        return 1;
-    }else{
-        return 2;
-    }
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if(!cellID){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }
-    if(tableView.tag == 0){
-        cell.textLabel.text = @"用户";
-    }else if(tableView.tag == 1){
-        cell.textLabel.text = @"话题";
-    }else{
-        cell.textLabel.text = @"专题";
-    }
-    return cell;
-}
+//
+//#pragma mark -- UITableViewDelegate && UITableViewDatasource
+//
+//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    if(tableView.tag == 0){
+//        return 1;
+//    }else{
+//        return 2;
+//    }
+//}
+//
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+//    return 1;
+//}
+//
+//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    static NSString *cellID = @"cellID";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//    if(!cellID){
+//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+//    }
+//    if(tableView.tag == 0){
+//        cell.textLabel.text = @"用户";
+//    }else if(tableView.tag == 1){
+//        cell.textLabel.text = @"话题";
+//    }else{
+//        cell.textLabel.text = @"专题";
+//    }
+//    return cell;
+//}
 
 #pragma mark - TTScrollStatusDelegate
 

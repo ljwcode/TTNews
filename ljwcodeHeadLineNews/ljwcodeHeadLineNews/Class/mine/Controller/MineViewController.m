@@ -23,8 +23,6 @@
 
 @property(nonatomic,strong)UITableView *tableView;
 
-@property(nonatomic,strong)UIView *headerView;
-
 @property(nonatomic,strong)UIView *footerView;
 
 @end
@@ -46,27 +44,29 @@
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setBackgroundImage:[self drawImageContext:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
 - (void)viewDidLoad {
+
     [super viewDidLoad];
-    sectionHeight = kScreenHeight/4;
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.view);
     }];
     // Do any additional setup after loading the view from its nib.
 }
+
+#pragma mark - laze load
+
 -(UITableView *)tableView{
     if(!_tableView){
         UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
         tableView.delegate = self;
         tableView.dataSource = self;
-        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         mineHeaderTableView *headerView = [[mineHeaderTableView alloc]init];
-        headerView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight*0.3);
-        self.headerView = headerView;
+        tableView.tableHeaderView = headerView;
         headerView.loginBlock = ^{
             loginView *loginV = [[loginView alloc]init];
             [loginV show];
@@ -85,19 +85,7 @@
 #pragma mark - UITableViewDelegate && UITableViewDatasource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    switch (section) {
-        case 0:
-            return 1;
-            break;
-        case 1:
-            return 1;
-            break;
-        case 2:
-            return 1;
-        default:
-            break;
-    }
-    return 0;
+   return 1;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -156,17 +144,19 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-        return 8;
+   
+    return 8;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-       return 0.1;
+    return 0.1;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-return [[UIView alloc]init];
+    return [[UIView alloc]init];
+
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-return [[UIView alloc]init];
+    return [[UIView alloc]init];
 }
 
 - (void)didReceiveMemoryWarning {

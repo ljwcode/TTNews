@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger,ScrollTapType)
 
 @interface TTScrollStatusView : UIView
 
-@property(nonatomic,strong)NSMutableArray *tableArr;
+@property(nonatomic,strong)NSMutableArray *viewArr;
 
 @property(nonatomic,weak)id<TTScrollStatusDelegate> scrollStatusDelegate;
 

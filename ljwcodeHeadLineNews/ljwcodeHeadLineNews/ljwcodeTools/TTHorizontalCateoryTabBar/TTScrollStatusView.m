@@ -10,13 +10,13 @@
 #import "TTStatusView.h"
 #import <MJRefresh/MJRefresh.h>
 
-@interface TTScrollStatusView()<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,TTStatusViewDelegate>
+@interface TTScrollStatusView()<UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,TTStatusViewDelegate>
 
 @property(nonatomic,strong)TTStatusView *statusView;
 
 @property(nonatomic,strong)UIScrollView *mainScrollView;
 
-@property(nonatomic,strong)UITableView *curTable;
+@property(nonatomic,strong)UICollectionView *curTable;
 
 @property(nonatomic,assign)BOOL isRefresh;
 
@@ -55,7 +55,7 @@
                        type:type
              normalTabColor:setColorWithRed(154, 156, 156, 1)
              selectTabColor:setColorWithRed(0, 0, 0, 1)
-                  lineColor:setColorWithRed(10, 193, 147, 1)];
+                  lineColor:[UIColor redColor]];
 }
 -(void)setupWithTitleArr:(NSArray *)titleArr
                     type:(ScrollTapType)type
@@ -89,55 +89,53 @@
                        lineColor:(UIColor *)lineColor {
     float height = self.frame.size.height;
     float statusViewHeight = 45;
-    _tableArr = [NSMutableArray array];
+    self.viewArr = [NSMutableArray array];
     [self.statusView setUpStatusButtonWithTitle:titleArr
                                     normalColor:normalColor
                                   selectedColor:selectedColor
                                       lineColor:lineColor];
-    UIView *sessionLine = [[UIView alloc]initWithFrame:CGRectMake(0,statusViewHeight,kScreenWidth,5)];
-    sessionLine.backgroundColor = setColorWithRed(242, 242, 242, 1);
-    [self addSubview:sessionLine];
 
-    statusViewHeight += sessionLine.frame.size.height;
     self.mainScrollView.frame = CGRectMake(0,statusViewHeight,kScreenWidth,height - statusViewHeight);
     self.mainScrollView.contentSize = CGSizeMake(kScreenWidth * titleArr.count, 0);
     float mainScrollH = height - statusViewHeight;
     for (NSInteger i = 0; i < titleArr.count; i++) {
-        [self createTable:i height:mainScrollH];
+        [self createDataView:i height:mainScrollH];
     }
-    if (_tableArr.count > 0) {
-        _curTable = _tableArr[0];
+    if (self.viewArr.count > 0) {
+        _curTable = self.viewArr[0];
     }
 }
 
--(void)createTable:(NSInteger)index height:(float)height{
-    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(kScreenWidth * index, 0,kScreenWidth,height)];
-    table.layer.borderColor = [UIColor blueColor].CGColor;
-    table.layer.borderWidth = 5.f;
-    table.delegate = self;
-    table.dataSource = self;
-    table.tag = index;
-    table.tableFooterView = [[UIView alloc]init];
-    table.mj_header =  [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        if (self->_scrollStatusDelegate && [self->_scrollStatusDelegate respondsToSelector:@selector(refreshViewWithTag:isHeader:)]) {
-            [self->_scrollStatusDelegate refreshViewWithTag:table.tag
-                                                     isHeader:YES];
-            [table.mj_header endRefreshing];
-            self->_isRefresh = NO;
-        }
-    }];
-    table.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        self->_isRefresh = YES;
-        if (self->_scrollStatusDelegate && [self->_scrollStatusDelegate respondsToSelector:@selector(refreshViewWithTag:isHeader:)]) {
-            self->_isRefresh = YES;
-            [self->_scrollStatusDelegate refreshViewWithTag:table.tag
-                                                     isHeader:NO];
-        }
-        [table.mj_footer endRefreshing];
-        self->_isRefresh = NO;
-    }];
-    [self.tableArr addObject:table];
-    [self.mainScrollView addSubview:table];
+-(void)createDataView:(NSInteger)index height:(float)height{
+    
+//    UICollectionView *collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(kScreenWidth * index, 0, kScreenWidth, kScreenHeight) collectionViewLayout:];
+    
+//    UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(kScreenWidth * index, 0,kScreenWidth,height)];
+    
+//    table.delegate = self;
+//    table.dataSource = self;
+//    table.tag = index;
+//    table.tableFooterView = [[UIView alloc]init];
+//    table.mj_header =  [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        if (self->_scrollStatusDelegate && [self->_scrollStatusDelegate respondsToSelector:@selector(refreshViewWithTag:isHeader:)]) {
+//            [self->_scrollStatusDelegate refreshViewWithTag:table.tag
+//                                                     isHeader:YES];
+//            [table.mj_header endRefreshing];
+//            self->_isRefresh = NO;
+//        }
+//    }];
+//    table.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+//        self->_isRefresh = YES;
+//        if (self->_scrollStatusDelegate && [self->_scrollStatusDelegate respondsToSelector:@selector(refreshViewWithTag:isHeader:)]) {
+//            self->_isRefresh = YES;
+//            [self->_scrollStatusDelegate refreshViewWithTag:table.tag
+//                                                     isHeader:NO];
+//        }
+//        [table.mj_footer endRefreshing];
+//        self->_isRefresh = NO;
+//    }];
+//    [self.tableArr addObject:table];
+//    [self.mainScrollView addSubview:table];
 }
 
 #pragma mark -- tableView delegate
@@ -182,14 +180,14 @@
     if (![scrollView isKindOfClass:[UITableView class]]) {
         if (_isRefresh == NO) {
             int scrollIndex = scrollView.contentOffset.x / kScreenWidth;
-            _curTable = _tableArr[scrollIndex];
+            _curTable = self.viewArr[scrollIndex];
             [_statusView changeTag:scrollIndex];
         }
     }
 }
 - (void)statusViewSelectIndex:(NSInteger)index {
     [_mainScrollView setContentOffset:CGPointMake(kScreenWidth * index, 0) animated:YES];
-    _curTable = _tableArr[index];
+    _curTable = self.viewArr[index];
 }
 
 #pragma mark - lazy load
@@ -217,6 +215,12 @@
     return _statusView;
 }
 
+-(NSMutableArray *)viewArr{
+    if(!_viewArr){
+        _viewArr = [[NSMutableArray alloc]init];
+    }
+    return _viewArr;
+}
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.
