@@ -7,12 +7,10 @@
 //
 
 #import "focusViewController.h"
-#import "TTScrollStatusView.h"
 #import "TTNavigationController.h"
 
-@interface focusViewController()<TTScrollStatusDelegate>
+@interface focusViewController()
 
-@property(nonatomic,strong)TTScrollStatusView *scrollStatusView;
 
 @end
 
@@ -32,10 +30,6 @@
 //    [self createNaviItem];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    _scrollStatusView = [[TTScrollStatusView alloc]initWithTitleArr:@[@"用户",@"话题",@"专题"] type:ScrollTapTypeWithNavigation];
-    _scrollStatusView.scrollStatusDelegate = self;
-    self.navigationItem.titleView = _scrollStatusView;
-    
     [super viewDidLoad];
 }
 
