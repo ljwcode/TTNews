@@ -70,8 +70,10 @@
     titleBtn.titleLabel.font = [UIFont systemFontOfSize:13.f];
     [titleBtn setImage:[UIImage imageNamed:@"personal_home_recommend_down_black"] forState:UIControlStateNormal];
     [titleBtn addTarget:self action:@selector(titleHandle:) forControlEvents:UIControlEventTouchUpInside];
+    
     titleBtn.imageEdgeInsets = UIEdgeInsetsMake(0, titleBtn.titleLabel.intrinsicContentSize.width, 0, -titleBtn.titleLabel.intrinsicContentSize.width);
     titleBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -titleBtn.imageView.intrinsicContentSize.width, 0, titleBtn.imageView.intrinsicContentSize.width);
+    
     self.navigationItem.titleView = titleBtn;
 }
 

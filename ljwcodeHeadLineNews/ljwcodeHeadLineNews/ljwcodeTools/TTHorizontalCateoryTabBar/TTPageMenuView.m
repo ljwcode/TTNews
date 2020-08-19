@@ -37,7 +37,7 @@
         [self.menuCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.leading.bottom.trailing.mas_equalTo(self);
         }];
-
+        
     }
     return self;
 }
@@ -79,10 +79,10 @@
 
 -(NSInteger)menuCount{
     NSInteger menuCount = [self.dataSource numberOfItemInMenuView:self];
-       if (menuCount != 0 && self.decorateView == nil) {
-
-       }
-       return menuCount;
+    if (menuCount != 0 && self.decorateView == nil) {
+        [self addDecorateView];
+    }
+    return menuCount;
 }
 
 #pragma mark -- UICollectionViewDelegateFlowlayout
@@ -120,15 +120,103 @@
 #pragma mark -- UIScrollViewDelegate
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.decorateView.scrollView setContentOffset:scrollView.contentOffset];
+    if(scrollView.tag == 12000){
+        [self.decorateView.scrollView setContentOffset:scrollView.contentOffset];
+    }
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+-(void)addDecorateView{
+    UIView *decorateView = nil;
+    if([self.dataSource respondsToSelector:@selector(decorateMenuView:)] && [self.dataSource decorateMenuView:self]){
+        decorateView = [self.dataSource decorateMenuView:self];
+    }
+    
+    TTPageDecorateView *view = [[TTPageDecorateView alloc]init];
+    [view setDecorateView:decorateView withDecorateCount:[self.dataSource numberOfItemInMenuView:self] withDecorateSize:self.menuSize];
+    self.decorateView = view;
+    [self insertSubview:self.decorateView atIndex:0];
+    [self.decorateView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.leading.bottom.trailing.mas_equalTo(self);
+    }];
 }
-*/
+
+-(void)willMoveToSuperview:(UIView *)newSuperview{
+    if(!newSuperview){
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self selectedItemAtIndex:self.selectedIndex withAnimation:NO];
+    });
+}
+
+-(void)selectedItemAtIndex:(NSInteger)index withAnimation:(BOOL)animation{
+    if(index == -1){
+        index = 0;
+    }
+    NSIndexPath *selectIndexPath = [NSIndexPath indexPathForItem:index inSection:0];
+    TTPageMenuItem *item = [self.dataSource menuView:self menuCellForItemAtIndex:selectIndexPath.row];
+    if (!item){
+        return;
+    }
+    
+    if(index != self.selectedIndex && [self.delegate respondsToSelector:@selector(menuView:didSelectedAtIndex:)]){
+        [self.delegate menuView:self didSelectedAtIndex:selectIndexPath.row];
+        self.beforSelectedIndex = self.selectedIndex == -1 ? 0 : self.selectedIndex;
+        self.selectedIndex = index;
+        [self.menuCollectionView reloadData];
+    }
+    if(self.decorateView){
+        [self.decorateView moveToIndex:index withAnimation:animation];
+    }
+    [self refreshSelectedItemFrame:item.frame];
+}
+
+-(void)refreshSelectedItemFrame:(CGRect)frame{
+    CGSize contentSize = self.menuCollectionView.contentSize;
+    if(contentSize.width <= self.menuCollectionView.frame.size.width){
+        return;
+    }
+    CGFloat itemX = frame.origin.x;
+    CGFloat itemWith = self.menuCollectionView.frame.size.width;
+    if(itemX > itemWith/2){
+        CGFloat targetX;
+        if((contentSize.width-itemX) <= itemWith/2){
+            targetX = contentSize.width - itemWith;
+        }else{
+            targetX = itemX - itemWith/2 + frame.size.width/2;
+        }
+        if(targetX + itemWith > contentSize.width){
+            targetX = contentSize.width - itemWith;
+        }
+        [self.menuCollectionView setContentOffset:CGPointMake(targetX, 0) animated:YES];
+    }else{
+        [self.menuCollectionView setContentOffset:CGPointMake(0, 0) animated:YES];
+    }
+}
+
+-(void)reloadData{
+    if(self.decorateView){
+        UIView *decorateItem = nil;
+        if([self.dataSource respondsToSelector:@selector(decorateMenuView:)] && [self.dataSource decorateMenuView:self]){
+            decorateItem = [self.dataSource decorateMenuView:self];
+        }
+        [self.decorateView setDecorateView:decorateItem withDecorateCount:[self.dataSource numberOfItemInMenuView:self] withDecorateSize:self.menuSize];
+    }
+    if(self.selectedIndex > (self.menuCount - 1)){
+        self.selectedIndex = 0;
+    }
+    [self selectedItemAtIndex:self.selectedIndex withAnimation:NO];
+    if([self.delegate respondsToSelector:@selector(menuView:didSelectedAtIndex:)]){
+        [self.delegate menuView:self didSelectedAtIndex:self.selectedIndex];
+    }
+    [self.menuCollectionView reloadData];
+}
+/*
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end
