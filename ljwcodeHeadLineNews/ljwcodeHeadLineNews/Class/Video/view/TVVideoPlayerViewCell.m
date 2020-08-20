@@ -9,36 +9,46 @@
 #import "TVVideoPlayerViewCell.h"
 #import <UIImageView+WebCache.h>
 #import "UIImage+cropPicture.h"
+#import <Masonry/Masonry.h>
 
 @interface TVVideoPlayerViewCell()<UIGestureRecognizerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *videoBgImgView;
+@property (weak, nonatomic)UIImageView *videoBgImgView;
 
-@property (weak, nonatomic) IBOutlet UILabel *vodeoTitleLabel;
+@property (weak, nonatomic)UILabel *vodeoTitleLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *videoPlayBtn;
+@property (weak, nonatomic)UIButton *videoPlayBtn;
 
-@property (weak, nonatomic) IBOutlet UILabel *videoTimeLabel;
+@property (weak, nonatomic)UILabel *videoTimeLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *videoPlayCountLabel;
+@property (weak, nonatomic)UILabel *videoPlayCountLabel;
 
-@property (weak, nonatomic) IBOutlet UIImageView *videoDetailImgView;
+@property (weak, nonatomic)UIImageView *videoDetailImgView;
 
-@property (weak, nonatomic) IBOutlet UIButton *videoAuthHeadImgBtn;
+@property (weak, nonatomic)UIButton *videoAuthHeadImgBtn;
 
-@property (weak, nonatomic) IBOutlet UILabel *videoAuthorTitleLabel;
+@property (weak, nonatomic)UILabel *videoAuthorTitleLabel;
 
 
-@property (weak, nonatomic) IBOutlet UIButton *videoFocusBtn;
+@property (weak, nonatomic)UIButton *videoFocusBtn;
 
-@property (weak, nonatomic) IBOutlet UIButton *videoCommitRepeatBtn;
+@property (weak, nonatomic)UIButton *videoCommitRepeatBtn;
 
-@property (weak, nonatomic) IBOutlet UIButton *videoMoreBtn;
+@property (weak, nonatomic)UIButton *videoMoreBtn;
 
 @end
 
 //点击播放 在表页面播放 点击全屏，进入全屏播放
 @implementation TVVideoPlayerViewCell
+
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
+        [self.videoBgImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.top.right.mas_equalTo(self.contentView);
+        }];
+    }
+    return self;
+}
 
 -(void)awakeFromNib{
     [super awakeFromNib];
@@ -101,6 +111,18 @@
     }];
     _videoPlayCountLabel.text = @"20W";
     _videoTimeLabel.text = @"20:20";
+}
+
+
+#pragma mark -- lzay load
+
+-(UIImageView *)videoBgImgView{
+    if(!_videoBgImgView){
+        UIImageView *imgView = [[UIImageView alloc]init];
+        [self.contentView addSubview:imgView];
+        _videoBgImgView = imgView;
+    }
+    return _videoBgImgView;
 }
 
 
