@@ -115,8 +115,8 @@
         UINib *contentNewsCell = [UINib nibWithNibName:NSStringFromClass([homeContentNewsTableViewCell class]) bundle:nil];
         [tableView registerNib:contentNewsCell forCellReuseIdentifier:NSStringFromClass([homeContentNewsTableViewCell class])];
         
-        UINib *tvVideoCell = [UINib nibWithNibName:NSStringFromClass([TVVideoPlayerViewCell class]) bundle:nil];
-        [tableView registerNib:tvVideoCell forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
+//        UINib *tvVideoCell = [UINib nibWithNibName:NSStringFromClass([TVVideoPlayerViewCell class]) bundle:nil];
+//        [tableView registerNib:tvVideoCell forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
         
         _detailTableView = tableView;
     }

@@ -46,18 +46,12 @@
         _detailTableView.delegate = self;
         _detailTableView.dataSource = self;
         [self.view addSubview:_detailTableView];
-        
+        _detailTableView.rowHeight = 100;
         _detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _detailTableView.estimatedRowHeight = 0;
         [_detailTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
+            make.edges.mas_equalTo(UIEdgeInsetsZero);
         }];
-        
-        UINib *TVNib = [UINib nibWithNibName:NSStringFromClass([TVVideoPlayerViewCell class]) bundle:nil];
-        [_detailTableView registerNib:TVNib forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
-        
-        UINib *shortVideoNib = [UINib nibWithNibName:NSStringFromClass([shortVideoPlayerViewCell class]) bundle:nil];
-        [_detailTableView registerNib:shortVideoNib forCellReuseIdentifier:NSStringFromClass([shortVideoPlayerViewCell class])];
         
     }
     return _detailTableView;
@@ -100,6 +94,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     videoContentModel *model = self.dataArray[indexPath.row];
     TVVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
+    if(!cell){
+        cell = [[TVVideoPlayerViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
+    }
     cell.contentModel = model;
     return cell;
 }
