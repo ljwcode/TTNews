@@ -52,13 +52,9 @@
 
 #define hSpace 10
 
-#define IS_IPHONE_X  (kScreenWidth == 375.f && kScreenHeight == 812.f)
-
 #define kStatusBarHeight [[UIApplication sharedApplication]statusBarFrame].size.height
 
 #define kNavBarHeight 44.0
-
-#define kTabBarHeight  (IS_IPHONE_X ? 83.f : 49.f)
 
 #define kTopHeight  (kStatusBarHeight + kNavBarHeight)
 

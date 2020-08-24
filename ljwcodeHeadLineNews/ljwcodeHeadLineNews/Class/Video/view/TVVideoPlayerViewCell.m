@@ -55,15 +55,12 @@
             make.left.top.right.mas_equalTo(0);
             make.height.mas_equalTo(self.contentView.frame.size.height * 0.6);
         }];
-        self.videoBgImgView.layer.borderColor = [UIColor redColor].CGColor;
-        self.videoBgImgView.layer.borderWidth = 2.f;
         
         [self.videoTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(2 * hSpace);
-            make.top.mas_equalTo(vSpace);
-            make.right.mas_equalTo(2 * hSpace);
-            make.width.mas_equalTo(self.videoBgImgView.frame.size.width - 4 * hSpace);
-            make.height.mas_equalTo(self.videoBgImgView.frame.size.height * 0.2);
+            make.top.mas_equalTo(2);
+            make.centerX.mas_equalTo(self.videoBgImgView);
+            make.width.mas_equalTo(self.contentView.frame.size.width);
+            make.height.mas_equalTo(self.contentView.frame.size.height * 0.5);
         }];
         
         [self.videoPlayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -72,7 +69,7 @@
         }];
         
         [self.videoPlayCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(2 * hSpace);
+            make.left.mas_equalTo(hSpace);
             make.bottom.mas_equalTo(2 * vSpace);
             make.width.mas_equalTo(80);
             make.height.mas_equalTo(20);
@@ -86,7 +83,8 @@
         }];
         
         [self.videoDetailBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.right.mas_equalTo(0);
+            make.left.right.mas_equalTo(0);
+            make.top.mas_equalTo(self.videoBgImgView.mas_bottom).offset(2);
             make.height.mas_equalTo(self.contentView.frame.size.height * 0.2);
         }];
         
@@ -152,6 +150,7 @@
     return self;
 }
 
+#pragma mark -- set model
 -(void)setContentModel:(videoContentModel *)contentModel{
     _contentModel = contentModel;
     [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:contentModel.detailModel.playInfoModel.poster_url]];
@@ -182,11 +181,11 @@
 -(UILabel *)videoTitleLabel{
     if(!_videoTitleLabel){
         UILabel *label = [[UILabel alloc]init];
-        label.textColor = [UIColor grayColor];
+        label.textColor = [UIColor blackColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:17.f];
-        label.numberOfLines = 0;
-        label.backgroundColor = [UIColor clearColor];
+        label.numberOfLines = 2;
+
         [self.videoBgImgView addSubview:label];
         _videoTitleLabel = label;
     }
@@ -247,7 +246,6 @@
 -(UIButton *)videoDetailImgBtn{
     if(!_videoDetailImgBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [btn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         [self.videoBgImgView addSubview:btn];
         _videoDetailImgBtn = btn;
     }
