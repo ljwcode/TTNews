@@ -7,13 +7,32 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface videoUserInfoModel : NSObject
+@interface MediaInfoModel : NSObject
 
 @property(nonatomic,copy)NSString *avatar_url;
+
+@property(nonatomic,assign)int follow;
+
+@property(nonatomic,copy)NSString *is_star_user;
+
+@property(nonatomic,copy)NSString *media_id;
+
+@property(nonatomic,copy)NSString *name;
+
+@property(nonatomic,copy)NSString *recommend_reason;
+
+@property(nonatomic,copy)NSString *recommend_type;
+
+@property(nonatomic,copy)NSString *user_id;
+
+@property(nonatomic,copy)NSString *user_verified;
+
+@property(nonatomic,copy)NSString *verified_content;
 
 @end
 
@@ -55,7 +74,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)videoPlayInfoModel *playInfoModel;
 
-@property(nonatomic,strong)videoUserInfoModel *userInfoModel;
+@property(nonatomic,strong)MediaInfoModel *userInfoModel;
+
+@property(nonatomic,copy)NSString *share_url;
+
+@property(nonatomic,strong)NSDictionary *media_info;
 
 @end
 

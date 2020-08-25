@@ -24,17 +24,6 @@
 
 @property (weak, nonatomic)UILabel *videoPlayCountLabel;
 
-@property(nonatomic,weak)UIView *videoDetailBgView;
-
-@property (weak, nonatomic)UIButton *videoDetailImgBtn;
-
-@property(nonatomic,weak)UILabel *videoNameLabel;
-
-@property(nonatomic,weak)UILabel *watchVideoLabel;
-
-@property(nonatomic,weak)UILabel *videoDetailLabel;
-
-
 @property(nonatomic,weak)UIView *authorBgView;
 
 @property (weak, nonatomic)UIButton *videoAuthHeadBtn;
@@ -53,14 +42,14 @@
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         [self.videoBgImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.mas_equalTo(0);
-            make.height.mas_equalTo(self.contentView.frame.size.height * 0.6);
+            make.height.mas_equalTo(125);
         }];
         
         [self.videoTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(2);
             make.centerX.mas_equalTo(self.videoBgImgView);
-            make.width.mas_equalTo(self.contentView.frame.size.width);
-            make.height.mas_equalTo(self.contentView.frame.size.height * 0.5);
+            make.width.mas_equalTo(self.videoBgImgView.frame.size.width);
+            make.height.mas_equalTo(self.videoBgImgView.frame.size.height * 0.5);
         }];
         
         [self.videoPlayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -82,66 +71,37 @@
             make.height.mas_equalTo(20);
         }];
         
-        [self.videoDetailBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.mas_equalTo(0);
-            make.top.mas_equalTo(self.videoBgImgView.mas_bottom).offset(2);
-            make.height.mas_equalTo(self.contentView.frame.size.height * 0.2);
-        }];
-        
-        [self.videoDetailImgBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(2 * hSpace);
-            make.top.mas_equalTo(vSpace);
-            make.bottom.mas_equalTo(vSpace);
-        }];
-        
-        [self.videoNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.videoDetailImgBtn.mas_right).offset(2 * hSpace);
-            make.top.mas_equalTo(self.videoDetailImgBtn);
-            make.height.mas_equalTo(self.videoDetailImgBtn.frame.size.height / 2);
-        }];
-        
-        [self.watchVideoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.videoNameLabel.mas_right).offset(2 * hSpace);
-            make.top.mas_equalTo(self.videoNameLabel);
-            make.height.mas_equalTo(self.videoNameLabel);
-        }];
-        
-        [self.videoDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.videoNameLabel);
-            make.top.mas_equalTo(self.videoNameLabel.mas_bottom).offset(vSpace);
-            make.bottom.mas_equalTo(-2 * vSpace);
-        }];
-        
         [self.authorBgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(0);
             make.right.mas_equalTo(0);
-            make.top.mas_equalTo(self.videoDetailBgView.mas_bottom).offset(0);
+            make.top.mas_equalTo(self.videoBgImgView.mas_bottom).offset(0);
             make.bottom.mas_equalTo(0);
-            make.height.mas_equalTo(self.contentView.frame.size.height * 0.2);
+            make.height.mas_equalTo(50);
         }];
         
         [self.videoAuthHeadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(2);
+            make.left.mas_equalTo(hSpace);
             make.top.mas_equalTo(2);
             make.bottom.mas_equalTo(2);
-            make.height.mas_equalTo(self.authorBgView.frame.size.height - 4 * vSpace);
+            make.height.mas_equalTo(self.authorBgView.height - 4);
         }];
         
         [self.authorFocusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.videoAuthHeadBtn.mas_right).offset(2 * hSpace);
-            make.centerY.mas_equalTo(self.videoAuthHeadBtn);
-            make.height.width.mas_equalTo(self.videoAuthHeadBtn.height / 3);
+            make.left.mas_equalTo(self.videoAuthHeadBtn.mas_right).offset(hSpace);
+            make.centerY.mas_equalTo(self.authorBgView);
+            make.height.width.mas_equalTo(40);
         }];
         
         [self.videoCommitRepeatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.authorFocusBtn.mas_right).offset(self.authorBgView.width/3);
+            make.left.mas_lessThanOrEqualTo(self.authorFocusBtn.mas_right).offset(5 * hSpace);
             make.centerY.mas_equalTo(self.authorFocusBtn);
-            make.width.height.mas_equalTo(self.authorFocusBtn);
+            make.height.mas_equalTo(self.authorFocusBtn);
+            make.width.mas_equalTo(40 * 1.5);
         }];
         
         [self.videoMoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(2 * hSpace);
-            make.left.mas_equalTo(self.videoCommitRepeatBtn.mas_right).offset(3 * hSpace);
+            make.right.mas_equalTo(-hSpace);
+            make.left.mas_equalTo(self.videoCommitRepeatBtn.mas_right).offset(hSpace);
             make.centerY.mas_equalTo(self.authorBgView);
             make.height.width.mas_equalTo(self.authorFocusBtn);
         }];
@@ -156,7 +116,7 @@
     [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:contentModel.detailModel.playInfoModel.poster_url]];
     [self.videoAuthHeadBtn setTitle:contentModel.detailModel.media_name forState:UIControlStateNormal];
     self.videoTitleLabel.text = contentModel.detailModel.title;
-    [self.videoAuthHeadBtn.imageView sd_setImageWithURL:[NSURL URLWithString: contentModel.detailModel.userInfoModel.avatar_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [self.videoAuthHeadBtn.imageView sd_setImageWithURL:[NSURL URLWithString: [contentModel.detailModel.media_info objectForKey:@"avatar_url"]] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if(image){
             self.videoAuthHeadBtn.imageView.image = [image cropPictureWithRoundedCorner:self.videoAuthHeadBtn.imageView.image.size.width/2 size:self.videoAuthHeadBtn.frame.size];
         }
@@ -230,65 +190,6 @@
     return _videoTimeLabel;
 }
 
--(UIView *)videoDetailBgView{
-    if(!_videoDetailBgView){
-        UIView *view = [[UIView alloc]init];
-        view.backgroundColor = [UIColor grayColor];
-        UIGestureRecognizer *gesRec = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(videoDetailHandle:)];
-        gesRec.delegate = self;
-        [view addGestureRecognizer:gesRec];
-        [self.contentView addSubview:view];
-        _videoDetailBgView = view;
-    }
-    return _videoDetailBgView;
-}
-
--(UIButton *)videoDetailImgBtn{
-    if(!_videoDetailImgBtn){
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.videoBgImgView addSubview:btn];
-        _videoDetailImgBtn = btn;
-    }
-    return _videoDetailImgBtn;
-}
-
--(UILabel *)videoNameLabel{
-    if(!_videoNameLabel){
-        UILabel *label = [[UILabel alloc]init];
-        label.textColor = [UIColor blackColor];
-        label.font = [UIFont systemFontOfSize:13.f];
-        label.textAlignment = NSTextAlignmentCenter;
-        [self.videoDetailBgView addSubview:label];
-        _videoNameLabel = label;
-    }
-    return _videoNameLabel;
-}
-
--(UILabel *)watchVideoLabel{
-    if(!_watchVideoLabel){
-        UILabel *label = [[UILabel alloc]init];
-        label.textColor = [UIColor redColor];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:13.f];
-        label.text = @"看完整版>";
-        [self.videoDetailBgView addSubview:label];
-        _watchVideoLabel = label;
-    }
-    return _watchVideoLabel;
-}
-
--(UILabel *)videoDetailLabel{
-    if(!_videoDetailLabel){
-        UILabel *label = [[UILabel alloc]init];
-        label.textColor = [UIColor grayColor];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:10.f];
-        [self.videoDetailBgView addSubview:label];
-        _videoDetailLabel = label;
-    }
-    return _videoDetailLabel;
-}
-
 -(UIView *)authorBgView{
     if(!_authorBgView){
         UIView *view = [[UIView alloc]init];
@@ -304,6 +205,8 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:13.f];
+        [btn.titleLabel sizeToFit];
+        btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.authorBgView addSubview:btn];
         _videoAuthHeadBtn = btn;
     }
@@ -316,6 +219,7 @@
         [btn setTitle:@"关注" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:13.f];
+        [btn addTarget:self action:@selector(focusHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self.authorBgView addSubview:btn];
         _authorFocusBtn = btn;
     }
@@ -325,9 +229,12 @@
 -(UIButton *)videoCommitRepeatBtn{
     if(!_videoCommitRepeatBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitle:@"评论" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:@"comment_24x24_"] forState:UIControlStateNormal];
+        [btn.titleLabel sizeToFit];
         btn.titleLabel.font = [UIFont systemFontOfSize:13.f];
+        [btn addTarget:self action:@selector(commitRepesatHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self.authorBgView addSubview:btn];
         _videoCommitRepeatBtn = btn;
     }
@@ -338,6 +245,7 @@
     if(!_videoMoreBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setImage:[UIImage imageNamed:@"More_24x24_"] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(moreHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self.authorBgView addSubview:btn];
         _videoMoreBtn = btn;
     }
@@ -350,6 +258,18 @@
 }
 
 -(void)videoDetailHandle:(UIGestureRecognizer *)ges{
+    
+}
+
+-(void)focusHandle:(UIButton *)sender{
+    
+}
+
+-(void)commitRepesatHandle:(UIButton *)sender{
+    
+}
+
+-(void)moreHandle:(UIButton *)sender{
     
 }
 /*

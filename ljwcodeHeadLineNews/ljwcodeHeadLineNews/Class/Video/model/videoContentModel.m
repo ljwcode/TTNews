@@ -9,7 +9,7 @@
 #import "videoContentModel.h"
 #import <MJExtension/MJExtension.h>
 
-@implementation videoUserInfoModel
+@implementation MediaInfoModel
 
 @end
 

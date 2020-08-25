@@ -8,7 +8,6 @@
 
 #import "VideoDetailViewController.h"
 #import "TVVideoPlayerViewCell.h"
-#import "shortVideoPlayerViewCell.h"
 #import "videoContentViewModel.h"
 #import "TTHeader.h"
 
@@ -42,13 +41,11 @@
 
 -(UITableView *)detailTableView{
     if(!_detailTableView){
-        _detailTableView = [[UITableView alloc]init];
+        _detailTableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
         _detailTableView.delegate = self;
         _detailTableView.dataSource = self;
         [self.view addSubview:_detailTableView];
-        _detailTableView.rowHeight = 100;
         _detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _detailTableView.estimatedRowHeight = 0;
         [_detailTableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsZero);
         }];
@@ -84,11 +81,11 @@
 #pragma mark - UITableViewDelagate && UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return self.dataArray.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _dataArray.count;
+    return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -97,8 +94,14 @@
     if(!cell){
         cell = [[TVVideoPlayerViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentModel = model;
+    
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 225;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -115,8 +118,12 @@
     return 10;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 225;
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return [[UIView alloc]init];
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc]init];
 }
 
 -(void)setVideoPlayModel:(videoContentModel *)videoPlayModel{
