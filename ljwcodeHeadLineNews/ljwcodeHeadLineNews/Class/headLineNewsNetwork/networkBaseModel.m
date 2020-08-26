@@ -44,7 +44,7 @@
                 successHandle(response);
             }
         } failHandle:^(NSError * _Nonnull error) {
-            if(_showErrorHud){
+            if(self->_showErrorHud){
                 [self showNetwordErrorHub:error];
             }
             if(failHandle){
@@ -57,7 +57,7 @@
                 successHandle(response);
             }
         } failHandle:^(NSError * _Nonnull error) {
-            if(_showErrorHud){
+            if(self->_showErrorHud){
                 [self showNetwordErrorHub:error];
             }
             if(failHandle){

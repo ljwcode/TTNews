@@ -15,7 +15,6 @@
 #import "homeJokeModel.h"
 #import "TTHeader.h"
 #import "NewsDetailViewController.h"
-#import "VideoPlayerContainerView.h"
 #import "TVVideoPlayerViewCell.h"
 
 @interface homeDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -26,20 +25,11 @@
 
 @property(nonatomic,strong)NSMutableArray *datasArray;
 
-@property(nonatomic,strong)VideoPlayerContainerView *videoContainerView;
-
 @property(nonatomic,strong)homeNewsSummaryModel *model;
 
 @end
 
 @implementation homeDetailViewController
-
--(VideoPlayerContainerView *)videoContainerView{
-    if(!_videoContainerView){
-        _videoContainerView = [[VideoPlayerContainerView alloc]init];
-    }
-    return _videoContainerView;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -115,9 +105,6 @@
         UINib *contentNewsCell = [UINib nibWithNibName:NSStringFromClass([homeContentNewsTableViewCell class]) bundle:nil];
         [tableView registerNib:contentNewsCell forCellReuseIdentifier:NSStringFromClass([homeContentNewsTableViewCell class])];
         
-//        UINib *tvVideoCell = [UINib nibWithNibName:NSStringFromClass([TVVideoPlayerViewCell class]) bundle:nil];
-//        [tableView registerNib:tvVideoCell forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
-        
         _detailTableView = tableView;
     }
     return _detailTableView;
@@ -155,6 +142,7 @@
         TVVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
         videoContentModel *model = self.datasArray[indexPath.row];
         cell.contentModel = model;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         resultCell = cell;
         
     }else{

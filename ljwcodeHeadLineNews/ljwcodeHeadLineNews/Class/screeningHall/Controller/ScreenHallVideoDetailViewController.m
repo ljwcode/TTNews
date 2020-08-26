@@ -18,13 +18,22 @@
 
 @property(nonatomic,strong)videoContentViewModel *contentViewModel;
 
+@property(nonatomic,strong)NSMutableArray *dataArray;
+
 @end
 
 @implementation ScreenHallVideoDetailViewController
 
+-(NSMutableArray *)dataArray{
+    if(!_dataArray){
+        _dataArray = [[NSMutableArray alloc]init];
+    }
+    return _dataArray;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
            flowLayout.minimumLineSpacing = 10;
            flowLayout.minimumInteritemSpacing = 10;
@@ -35,6 +44,20 @@
     collectionView.dataSource = self;
     [collectionView registerClass:[VideoCoverCollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
     [self.view addSubview:collectionView];
+    
+    @weakify(self);
+    collectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        @strongify(self);
+        [[self.contentViewModel.videoContentCommand execute:@12]subscribeNext:^(id  _Nullable x) {
+            [self.dataArray removeAllObjects];
+            [self->_dataArray addObjectsFromArray:x];
+            [collectionView reloadData];
+            [collectionView.mj_header endRefreshing];
+            [collectionView.mj_footer endRefreshing];
+        }];
+        
+    }];
+    [collectionView.mj_header beginRefreshing];
     
     // Do any additional setup after loading the view.
 }
@@ -57,9 +80,12 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
+    videoContentModel *model = self.dataArray[indexPath.row];
+    NSString *videoID = model.videoInfo.video_id;
+    NSString *url = [[networkURLManager shareInstance]parseVideoRealURLWithVideo_id:videoID];
     if ([cell isKindOfClass:[VideoCoverCollectionViewCell class]]) {
         //方便讲解事例数据
-        [(VideoCoverCollectionViewCell *)cell layoutWithVideoCoverUrl:@"videoCover" videoUrl:@"http://v6-default.ixigua.com/1c0c70e2a919b29bf989ec2357f4b7d3/5f438f0a/video/tos/cn/tos-cn-ve-4/34d737db2f3b42738d62d39040e84547/?a=2012&br=813&bt=271&cr=0&cs=0&dr=0&ds=1&er=&l=202008241653510100140470662A189F34&lr=&mime_type=video_mp4&qs=0&rc=M2lnNzU8OmZlZmVmOGY2OEApNzRoMztmNmRpNzNmNzM8aGc2LmMuYDFeNjMxYmNeYDU2c2FeYjIyLTJeMjQtL2M2Yy06Yw==&vl=&vr="];
+        [(VideoCoverCollectionViewCell *)cell layoutWithVideoCoverUrl:@"videoCover" videoUrl:url];
     }
     return cell;
 }

@@ -41,6 +41,7 @@
 		6365C9C024ACB4AF00EC9F1D /* TTRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6365C9BF24ACB4AF00EC9F1D /* TTRefreshGifHeader.m */; };
 		636EA80624C9924500765F5C /* screeningHollHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA80524C9924500765F5C /* screeningHollHistoryModel.m */; };
 		636EA80924C9977B00765F5C /* videoInfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA80824C9977B00765F5C /* videoInfoTableView.m */; };
+		63722D0724F63E8B000121AD /* NSData+CRC32.m in Sources */ = {isa = PBXBuildFile; fileRef = 63722D0624F63E8B000121AD /* NSData+CRC32.m */; };
 		637A97F424C04B45000F7405 /* UIImage+cropPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A97F324C04B45000F7405 /* UIImage+cropPicture.m */; };
 		637A97F724C05BD7000F7405 /* VideoPlayerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A97F624C05BD7000F7405 /* VideoPlayerContainerView.m */; };
 		637BAF2224F3A07F00711003 /* ScreenHallVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BAF2124F3A07F00711003 /* ScreenHallVideoDetailViewController.m */; };
@@ -168,6 +169,8 @@
 		636EA80524C9924500765F5C /* screeningHollHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = screeningHollHistoryModel.m; sourceTree = "<group>"; };
 		636EA80724C9977B00765F5C /* videoInfoTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoInfoTableView.h; sourceTree = "<group>"; };
 		636EA80824C9977B00765F5C /* videoInfoTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoInfoTableView.m; sourceTree = "<group>"; };
+		63722D0524F63E8B000121AD /* NSData+CRC32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+CRC32.h"; sourceTree = "<group>"; };
+		63722D0624F63E8B000121AD /* NSData+CRC32.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+CRC32.m"; sourceTree = "<group>"; };
 		637A97F224C04B45000F7405 /* UIImage+cropPicture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+cropPicture.h"; sourceTree = "<group>"; };
 		637A97F324C04B45000F7405 /* UIImage+cropPicture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+cropPicture.m"; sourceTree = "<group>"; };
 		637A97F524C05BD7000F7405 /* VideoPlayerContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerContainerView.h; sourceTree = "<group>"; };
@@ -366,6 +369,8 @@
 				637A97F324C04B45000F7405 /* UIImage+cropPicture.m */,
 				637BAF2324F3A2AD00711003 /* TTScreen.h */,
 				637BAF2424F3A2AD00711003 /* TTScreen.m */,
+				63722D0524F63E8B000121AD /* NSData+CRC32.h */,
+				63722D0624F63E8B000121AD /* NSData+CRC32.m */,
 			);
 			path = ljwcodeTools;
 			sourceTree = "<group>";
@@ -987,6 +992,7 @@
 				630A976624CFC463003029C3 /* countryCodeView.m in Sources */,
 				63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */,
 				637C2D2924A9CDE30009274C /* homeTitleModel.m in Sources */,
+				63722D0724F63E8B000121AD /* NSData+CRC32.m in Sources */,
 				820979101BD3AB2800CF9D0C /* homeViewController.m in Sources */,
 				63422BE124A839960091FEE1 /* WMScrollView.m in Sources */,
 				637BAF2824F3A44E00711003 /* VideoCoverCollectionViewCell.m in Sources */,

@@ -16,7 +16,7 @@
     if(self = [super init]){
         _titleCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                homeTitleRequestModel *request = [homeTitleRequestModel initWithNetworkModelWithUrlString:networkManager.homeTitleUrlString isPost:NO];
+                homeTitleRequestModel *request = [homeTitleRequestModel initWithNetworkModelWithUrlString:networkURLManager.homeTitleUrlString isPost:NO];
                 request.iid = LJWCODE_IID;
                 request.device_id = LJWCODE_DEVICE_ID;
                 request.aid = [input intValue];

@@ -52,7 +52,6 @@
 
 @end
 
-
 @implementation videoContentModel
 - (instancetype)init
 {
@@ -70,5 +69,25 @@
     }
     return _detailModel;
 }
+
+-(video_detail_info *)videoInfo{
+    if(!_videoInfo){
+        NSData *data = [self.content dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        _videoInfo = [[[video_detail_info alloc]init]mj_setKeyValues:dic];
+    }
+    return _videoInfo;
+}
+@end
+
+@implementation video_detail_info
+
+-(instancetype)init{
+    if(self = [super init]){
+        
+    }
+    return self;
+}
+
 @end
 

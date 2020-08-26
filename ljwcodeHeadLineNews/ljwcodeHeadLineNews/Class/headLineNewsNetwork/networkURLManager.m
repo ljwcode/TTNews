@@ -8,8 +8,18 @@
 
 #import "networkURLManager.h"
 #import "TTHeader.h"
+#import "NSData+CRC32.h"
 
-@implementation networkManager
+@implementation networkURLManager
+
++(networkURLManager *)shareInstance{
+    static networkURLManager *Instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Instance = [[networkURLManager alloc]init];
+    });
+    return Instance;
+}
 
 +(NSString *)homeTitleUrlString{
     return [NSString stringWithFormat:@"%@article/category/get_subscribed/v1/?",ljwcode_Base_url];
@@ -35,7 +45,19 @@
 }
 
 +(NSString *)playVideoURLString{
-    return [NSString stringWithFormat:@"%@video/urls/v/1/toutiao/mp4/9583cca5fceb4c6b9ca749c214fd1f90?r=18723666135963302&s=3807690062&callback=tt_playerzfndr",ljwcode_VideoBase_url];
+    return [NSString stringWithFormat:@"%@video/urls/v/1/toutiao/mp4/9583cca5fceb4c6b9ca749c214fd1f90?r=18723666135963302&s=3807690062&callback=tt_playerzfndr",ljwcode_Base_url];
+}
+
+-(NSString *)parseVideoRealURLWithVideo_id:(NSString *)video_id{
+    int r = arc4random();
+    NSString *url = [NSString stringWithFormat:@"/video/urls/v/1/toutiao/mp4/\(video_id)?r=\(%d)",r];
+    NSData *data = [url dataUsingEncoding:NSUTF8StringEncoding];
+    UInt64 crc32 = data.getCRC32;
+    if(crc32 < 0){
+        crc32 += 0x100000000;
+    }
+    NSString *realURL = [NSString stringWithFormat:@"http://i.snssdk.com/video/urls/v/1/toutiao/mp4/\%@?r=%d&s=%llu",video_id,r,crc32];
+    return realURL;
 }
 
 @end

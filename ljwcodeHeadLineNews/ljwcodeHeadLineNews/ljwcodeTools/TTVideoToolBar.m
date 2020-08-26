@@ -103,6 +103,10 @@
     return self;
 }
 
+-(void)setContentModel:(videoContentModel *)contentModel{
+    
+}
+
 - (void)layoutWithModel:(id)model {
 
     _avatorImageView.image = [UIImage imageNamed:@"AppIcon"];

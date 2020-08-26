@@ -118,10 +118,9 @@
     self.videoTitleLabel.text = contentModel.detailModel.title;
     [self.videoAuthHeadBtn.imageView sd_setImageWithURL:[NSURL URLWithString: [contentModel.detailModel.media_info objectForKey:@"avatar_url"]] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if(image){
-            self.videoAuthHeadBtn.imageView.image = [image cropPictureWithRoundedCorner:self.videoAuthHeadBtn.imageView.image.size.width/2 size:self.videoAuthHeadBtn.frame.size];
+            self.videoAuthHeadBtn.imageView.image = [image cropPictureWithRoundedCorner:self.videoAuthHeadBtn.imageView.image.size.width size:self.videoAuthHeadBtn.frame.size];
         }
     }];
-    
     self.videoPlayCountLabel.text = @"20W";
     self.videoTimeLabel.text = @"20:20";
 }
@@ -193,7 +192,7 @@
 -(UIView *)authorBgView{
     if(!_authorBgView){
         UIView *view = [[UIView alloc]init];
-        view.backgroundColor = [UIColor whiteColor];
+        view.backgroundColor = [UIColor grayColor];
         [self.contentView addSubview:view];
         _authorBgView = view;
     }

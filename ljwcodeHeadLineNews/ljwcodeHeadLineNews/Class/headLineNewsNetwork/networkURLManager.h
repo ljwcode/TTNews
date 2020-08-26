@@ -10,7 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface networkManager : NSObject
+@interface networkURLManager : NSObject
+
++(networkURLManager *)shareInstance;
 
 +(NSString *)homeTitleUrlString;
 
@@ -25,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSString *)microVideoURLString;
 
 +(NSString *)playVideoURLString;
+
+-(NSString *)parseVideoRealURLWithVideo_id:(NSString *)video_id;
 
 @end
 

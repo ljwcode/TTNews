@@ -82,6 +82,28 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface video_detail_info : NSObject
+
+@property(nonatomic,assign)int group_flags;
+
+@property(nonatomic,copy)NSString *detail_video_large_image;
+
+@property(nonatomic,copy)NSString *video_id;
+
+@property(nonatomic,assign)int direct_play;
+
+@property(nonatomic,assign)int show_pgc_subscribe;
+
+@property(nonatomic,assign)int video_watch_count;
+
+@property(nonatomic,assign)int video_type;
+
+@property(nonatomic,assign)int video_watching_count;
+
+@property(nonatomic,assign)int video_preloading_flag;
+
+@end
+
 @interface videoContentModel : NSObject
 
 @property(nonatomic,copy)NSString *code;
@@ -92,6 +114,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)videoDetailModel *detailModel;
 
+@property(nonatomic,strong)video_detail_info *videoInfo;
+
 @end
+
+
 
 NS_ASSUME_NONNULL_END

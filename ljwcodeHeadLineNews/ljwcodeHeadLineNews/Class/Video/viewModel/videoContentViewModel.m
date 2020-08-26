@@ -19,12 +19,13 @@
         _videoContentCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 
-                videoContentRequestModel *request = [videoContentRequestModel initWithNetworkModelWithUrlString:networkManager.videoListURLString isPost:NO];
+                videoContentRequestModel *request = [videoContentRequestModel initWithNetworkModelWithUrlString:networkURLManager.videoListURLString isPost:NO];
                 request.device_id = LJWCODE_DEVICE_ID;
                 request.iid = LJWCODE_IID;
                 request.device_platform = @"iPhone 11 Pro";
                 request.version_code = @"7.7.0";
                 request.input = input;
+                //https://i.snssdk.com/video/urls/v/1/toutiao/mp4/9583cca5fceb4c6b9ca749c214fd1f90?r=18723666135963302&s=3807690062&callback=tt_playerzfndr
                 
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     
