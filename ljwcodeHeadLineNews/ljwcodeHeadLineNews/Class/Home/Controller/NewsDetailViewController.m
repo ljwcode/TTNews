@@ -11,7 +11,6 @@
 #import "TTNavigationController.h"
 #import <Masonry/Masonry.h>
 #import <UIView+Frame.h>
-#import "newsDetailHeaderView.h"
 #import <RACSubject.h>
 #import "newsDetailFooterView.h"
 #import "headLineSearchViewController.h"
@@ -22,8 +21,6 @@
 @property(nonatomic,weak)WKWebView *newsWebView;
 
 @property(nonatomic,strong)MBProgressHUD *hud;
-
-@property(nonatomic,strong)newsDetailHeaderView *headerView;
 
 @property(nonatomic,weak)UITableView *tableView;
 
@@ -83,17 +80,15 @@
     NSURL *url = [NSURL URLWithString:_urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:8.f];
     [self.newsWebView loadRequest:request];
-    [self.headerView setHeadViewDataSource];
-    self.tableView.tableHeaderView = self.headerView;
+
 }
 
 #pragma mark -- lazy load
 -(UIScrollView *)containerScrollView{
     if(!_containerScrollView){
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kScreenHeight * 2)];
         scrollView.delegate = self;
         scrollView.alwaysBounceVertical = YES;
-//        scrollView.contentSize = CGSizeMake(kScreenWidth, kScreenHeight * 2);
         [self.view addSubview:scrollView];
         scrollView.maximumZoomScale = 1;
         scrollView.minimumZoomScale = 1;
@@ -121,17 +116,6 @@
     return _tableView;
 }
 
--(newsDetailHeaderView *)headerView{
-    if(!_headerView){
-        _headerView = [[newsDetailHeaderView alloc]initWithFrame:CGRectMake(0,0, self.view.width, self.view.height * 0.2)];
-        _headerView.articleTitle = _articleTitle;
-        _headerView.authorName = _authorName;
-        _headerView.authorHeadImgUrl = _authorHeadImgUrl;
-        _headerView.authorAbstract = _authorAbstract;
-    }
-    return _headerView;
-}
-
 -(newsDetailFooterView *)footerView{
     if(!_footerView){
         _footerView = [[newsDetailFooterView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height * 0.2)];
@@ -150,7 +134,7 @@
         WKUserScript *wkUserScript = [[WKUserScript alloc] initWithSource:jSString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
 
         [wkUController addUserScript:wkUserScript];
-        WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1) configuration:wkWebConfig];
+        WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth,self.containerScrollView.height) configuration:wkWebConfig];
         webView.backgroundColor = [UIColor clearColor];
         webView.opaque = NO;
         webView.userInteractionEnabled = NO;
@@ -167,7 +151,6 @@
     }
     return _newsWebView;
 }
-
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

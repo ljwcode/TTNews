@@ -20,6 +20,8 @@
 
 @property(nonatomic,strong)NSMutableArray *dataArray;
 
+@property(nonatomic,strong)UICollectionView *collectionView;
+
 @end
 
 @implementation ScreenHallVideoDetailViewController
@@ -34,35 +36,43 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-           flowLayout.minimumLineSpacing = 10;
-           flowLayout.minimumInteritemSpacing = 10;
-           flowLayout.itemSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.width / 16 * 9 + TTToolBarHeight);
-    
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
-    collectionView.delegate = self;
-    collectionView.dataSource = self;
-    [collectionView registerClass:[VideoCoverCollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
-    [self.view addSubview:collectionView];
     
     @weakify(self);
-    collectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+    self.collectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         @strongify(self);
-        [[self.contentViewModel.videoContentCommand execute:@12]subscribeNext:^(id  _Nullable x) {
+        [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             [self.dataArray removeAllObjects];
             [self->_dataArray addObjectsFromArray:x];
-            [collectionView reloadData];
-            [collectionView.mj_header endRefreshing];
-            [collectionView.mj_footer endRefreshing];
+            [self.collectionView reloadData];
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshing];
         }];
         
     }];
-    [collectionView.mj_header beginRefreshing];
+    [self.collectionView.mj_header beginRefreshing];
     
     // Do any additional setup after loading the view.
 }
 
 #pragma mark -- lazy load
+
+-(UICollectionView *)collectionView{
+    if(!_collectionView){
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
+        flowLayout.minimumLineSpacing = 10;
+        flowLayout.minimumInteritemSpacing = 10;
+        flowLayout.itemSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.width / 16 * 9 + TTToolBarHeight);
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        [_collectionView registerClass:[VideoCoverCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([VideoCoverCollectionViewCell class])];
+        [self.view addSubview:_collectionView];
+    }
+    return _collectionView;
+}
+
 -(videoContentViewModel *)contentViewModel{
     if(!_contentViewModel){
         _contentViewModel = [[videoContentViewModel alloc]init];
@@ -74,18 +84,17 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     //需要返回数据个数
-    return 20;
+    return self.dataArray.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([VideoCoverCollectionViewCell class]) forIndexPath:indexPath];
     videoContentModel *model = self.dataArray[indexPath.row];
     NSString *videoID = model.videoInfo.video_id;
     NSString *url = [[networkURLManager shareInstance]parseVideoRealURLWithVideo_id:videoID];
     if ([cell isKindOfClass:[VideoCoverCollectionViewCell class]]) {
-        //方便讲解事例数据
-        [(VideoCoverCollectionViewCell *)cell layoutWithVideoCoverUrl:@"videoCover" videoUrl:url];
+        [(VideoCoverCollectionViewCell *)cell layoutWithVideoCoverUrl:[model.videoInfo.detail_video_large_image objectForKey:@"url"] videoUrl:url];
     }
     return cell;
 }

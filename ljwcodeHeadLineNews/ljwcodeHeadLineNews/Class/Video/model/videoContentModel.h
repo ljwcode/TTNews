@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)int group_flags;
 
-@property(nonatomic,copy)NSString *detail_video_large_image;
+@property(nonatomic,copy)NSDictionary *detail_video_large_image;
 
 @property(nonatomic,copy)NSString *video_id;
 

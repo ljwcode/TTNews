@@ -75,6 +75,7 @@
         NSData *data = [self.content dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         _videoInfo = [[[video_detail_info alloc]init]mj_setKeyValues:dic];
+        NSLog(@"videoID = %@",_videoInfo.video_id);
     }
     return _videoInfo;
 }
