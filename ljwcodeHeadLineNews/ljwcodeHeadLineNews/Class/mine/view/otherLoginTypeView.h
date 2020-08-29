@@ -11,19 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface otherLoginTypeView : UIView
 
-typedef enum {
-    
-   LoginTypeToPassWd = 0,//密码登陆
-    
-   LoginTypeToTianyi = 1,//天翼登陆
-    
-   LoginTypeToQQ     = 2,//QQ登陆
-    
-   LoginTypeToWeChat = 3, //微信登陆
-    
-} LoginType;
-
-
 @end
 
 NS_ASSUME_NONNULL_END

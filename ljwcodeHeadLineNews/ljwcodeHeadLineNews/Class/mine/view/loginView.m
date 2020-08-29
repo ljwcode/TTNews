@@ -13,11 +13,13 @@
 #import "countryCodeView.h"
 #import "otherLoginTypeView.h"
 
-@interface loginView()
+@interface loginView()<UIGestureRecognizerDelegate>
 
 @property(nonatomic,weak)UIButton *tiktokLoginBtn;
 
 @property(nonatomic,weak)UIButton *countryCodeBtn;
+
+@property(nonatomic,strong)otherLoginTypeView *otherView;
 
 @end
 
@@ -30,8 +32,35 @@
         self.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
         self.backgroundColor = [UIColor whiteColor];
         [self configureUI];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClose:)];
+        tap.delegate = self;
+        [self addGestureRecognizer:tap];
     }
     return self;
+}
+
+/*
+ 点击空白处关闭
+ */
+
+-(void)tapClose:(UITapGestureRecognizer *)tap{
+    if (tap.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint tapPoint = [tap locationInView:self];
+        CGRect floatRect = self.otherView.bounds;
+        
+        if (self.otherView && !CGRectContainsPoint(floatRect, tapPoint))
+        {
+            [self removeGestureRecognizer:tap];
+            [UIView animateWithDuration:0.5 animations:^{
+                CGRect rect = self.otherView.frame;
+                rect.origin.y += kScreenHeight;
+                self.otherView.frame = rect;
+            }];
+            [self.otherView removeFromSuperview];
+        }
+    }
 }
 
 -(void)keyboardshow:(NSNotification *)noti{
@@ -149,8 +178,7 @@
     UIButton *countryCodeBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [countryCodeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     countryCodeBtn.titleLabel.font = [UIFont systemFontOfSize:16.f];
-    
-    
+    [countryCodeBtn setTitle:@"+86" forState:UIControlStateNormal];
     [self addSubview:countryCodeBtn];
     _countryCodeBtn = countryCodeBtn;
     [countryCodeBtn addTarget:self action:@selector(countryCodeHandle:) forControlEvents:UIControlEventTouchUpInside];
@@ -211,12 +239,8 @@
     }];
 
     UIButton *tiktokLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [tiktokLoginBtn setImage:[UIImage imageNamed:@"login_sync_tiktok"] forState:UIControlStateNormal];
+    [tiktokLoginBtn setImage:[UIImage imageNamed:@"douyin_sdk_login"] forState:UIControlStateNormal];
     [self addSubview:tiktokLoginBtn];
-    tiktokLoginBtn.layer.cornerRadius = tiktokLoginBtn.width/2;
-    tiktokLoginBtn.layer.borderColor = [UIColor grayColor].CGColor;
-    tiktokLoginBtn.layer.borderWidth = 1.f;
-    tiktokLoginBtn.layer.masksToBounds = YES;
     _tiktokLoginBtn = tiktokLoginBtn;
 
     [tiktokLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -232,10 +256,11 @@
     [appleLogin mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(tiktokLoginBtn.mas_right).offset(5);
         make.bottom.mas_equalTo(tiktokLoginBtn);
-        make.width.height.mas_equalTo(tiktokLoginBtn);
+        make.width.mas_equalTo(tiktokLoginBtn);
+        make.height.mas_equalTo(tiktokLoginBtn);
     }];
 
-    UIButton *moreLoginType = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton *moreLoginType = [UIButton buttonWithType:UIButtonTypeCustom];
     [moreLoginType setImage:[UIImage imageNamed:@"more_sdk_login"] forState:UIControlStateNormal];
     [self addSubview:moreLoginType];
 
@@ -248,15 +273,14 @@
     
 }
 
+#pragma mark -- 点击事件
+
 -(void)moreLoginHandle:(UIButton *)sender{
-    otherLoginTypeView *otherView = [[otherLoginTypeView alloc]init];
-    otherView.layer.borderColor = [UIColor redColor].CGColor;
-    otherView.layer.borderWidth = 2.f;
-    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:otherView];
+    [self addSubview:self.otherView];
     [UIView animateWithDuration:0.5 animations:^{
-        CGRect rect = otherView.frame;
-        rect.origin.y -= otherView.bounds.size.height;
-        otherView.frame = rect;
+        CGRect rect = self.otherView.frame;
+        rect.origin.y -= self.otherView.bounds.size.height;
+        self.otherView.frame = rect;
     }];
 }
 
@@ -285,6 +309,16 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self endEditing:YES];
+}
+
+#pragma mark -- lazy load
+-(otherLoginTypeView *)otherView{
+    if(!_otherView){
+        _otherView = [[otherLoginTypeView alloc]init];
+        _otherView.backgroundColor = [UIColor whiteColor];
+    }
+    return _otherView;
+    
 }
 
 /*

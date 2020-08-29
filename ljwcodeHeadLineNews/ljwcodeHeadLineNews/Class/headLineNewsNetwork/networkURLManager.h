@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(NSString *)parseVideoRealURLWithVideo_id:(NSString *)video_id;
 
++(NSString *)searchSuggestionUrl;
+
 @end
 
 NS_ASSUME_NONNULL_END

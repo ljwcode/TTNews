@@ -60,4 +60,9 @@
     return realURL;
 }
 
++(NSString *)searchSuggestionUrl{
+    NSString *url = [NSString stringWithFormat:@"%@search/suggest/homepage_suggest/?",ljwcode_Base_url];
+    return url;
+}
+
 @end

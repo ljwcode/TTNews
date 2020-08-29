@@ -10,7 +10,7 @@
 #import <Masonry/Masonry.h>
 #import <UIView+Frame.h>
 
-@interface otherLoginTypeView()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
+@interface otherLoginTypeView()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,weak)UITableView *alertSheetView;
 
@@ -23,10 +23,7 @@ static NSString *cellID = @"OtherLoginCellID";
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
         self.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight*0.3);
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClose:)];
-        [[UIApplication sharedApplication].keyWindow.rootViewController.view addGestureRecognizer:tap];
-        UITableView *tableView = [[UITableView alloc]initWithFrame:self.frame style:UITableViewStylePlain];
-        tableView.backgroundColor = [UIColor whiteColor];
+        UITableView *tableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStylePlain];
         tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -37,42 +34,19 @@ static NSString *cellID = @"OtherLoginCellID";
     return self;
 }
 
-/*
- 点击空白处关闭
- */
-
--(void)tapClose:(UITapGestureRecognizer *)tap{
-    if (tap.state == UIGestureRecognizerStateEnded)
-    {
-        CGPoint tapPoint = [tap locationInView:[UIApplication sharedApplication].delegate.window.rootViewController.view];
-        CGRect floatRect = self.alertSheetView.bounds;
-        
-        if (self.alertSheetView && !CGRectContainsPoint(floatRect, tapPoint))
-        {
-            [self.alertSheetView.window removeGestureRecognizer:tap];
-            
-            [UIView animateWithDuration:0.5 animations:^{
-                CGRect rect = self.frame;
-                rect.origin.y += kScreenHeight;
-                self.frame = rect;
-            }];
-        }
-    }
-}
-
 #pragma mark - 初始化数据
 
 - (NSArray *)infoArray{
     if (!_infoArray) {
         _infoArray = [[NSArray alloc]init];
         _infoArray = @[
-            @{@"title" : @"密码登陆" , @"image" : @"login_other_pw" , @"type" : [NSNumber numberWithInteger:LoginTypeToPassWd]} ,
+            @{@"title" : @"密码登陆" , @"image" : @"login_other_pw"},
             
-            @{@"title" : @"天翼登陆" , @"image" : @"login_other_ty" ,  @"type" : [NSNumber numberWithInteger:LoginTypeToTianyi]} ,
+            @{@"title" : @"天翼登陆" , @"image" : @"login_other_ty"},
                         
-            @{@"title" : @"QQ登陆" , @"image" : @"login_other_qq" ,  @"type" : [NSNumber numberWithInteger:LoginTypeToQQ]} ,
+            @{@"title" : @"QQ登陆" , @"image" : @"login_other_qq"},
             
-            @{@"title" : @"微信登陆" , @"image" : @"login_other_wx" , @"type" : [NSNumber numberWithInteger:LoginTypeToWeChat]}];
+            @{@"title" : @"微信登陆" , @"image" : @"login_other_wx"}];
     }
     return _infoArray;
 }
@@ -88,55 +62,26 @@ static NSString *cellID = @"OtherLoginCellID";
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"cell..........");
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if(!cell){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        UIImageView *titleImgView = [[UIImageView alloc]init];
-        [cell.contentView addSubview:titleImgView];
-        [titleImgView setTag:1003];
-        [titleImgView sizeToFit];
-        titleImgView.layer.borderColor = [UIColor redColor].CGColor;
-        titleImgView.layer.borderWidth = 2.f;
-        [titleImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.mas_equalTo(cell.contentView);
-            make.centerY.mas_equalTo(cell.contentView);
-            make.height.mas_equalTo(cell.contentView);
-        }];
-        
-        UILabel *detailLabel = [[UILabel alloc]init];
-        detailLabel.textColor = [UIColor lightGrayColor];
-        detailLabel.textAlignment = NSTextAlignmentCenter;
-        detailLabel.layer.borderColor = [UIColor redColor].CGColor;
-        detailLabel.layer.borderWidth = 2.f;
-        detailLabel.font = [UIFont systemFontOfSize:15.f];
-        [cell.contentView addSubview:detailLabel];
-        [detailLabel sizeToFit];
-        [detailLabel setTag:1004];
-        [detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(titleImgView.mas_right).offset(10);
-            make.top.mas_equalTo(titleImgView);
-            make.height.mas_equalTo(titleImgView);
-            make.right.mas_lessThanOrEqualTo(cell.contentView.width/2);
-        }];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = cell.contentView.bounds;
+        [btn setTag:10010];
+        [cell.contentView addSubview:btn];
     }
-    UIImageView *titleImgView = (UIImageView *)[cell.contentView viewWithTag:1003];
-    UILabel *detailLabel = (UILabel *)[cell.contentView viewWithTag:1004];
-    titleImgView.image = [UIImage imageNamed:self.infoArray[indexPath.row][@"image"]];
-    detailLabel.text = self.infoArray[indexPath.row][@"title"];
+    UIButton *btn = (UIButton *)[cell.contentView viewWithTag:10010];
+    [btn setTitle:self.infoArray[indexPath.row][@"title"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:16.f];
+    [btn setImage:[UIImage imageNamed:self.infoArray[indexPath.row][@"image"]] forState:UIControlStateNormal];
+//
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
-
-#pragma mark - 点击按钮跳转拉起第三方登陆
-
-- (void)loginButtonHandle:(UIButton *)sender{
-    
-}
-
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.

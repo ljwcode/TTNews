@@ -22,11 +22,11 @@
 
 @property(nonatomic,strong)MBProgressHUD *hud;
 
-@property(nonatomic,weak)UITableView *tableView;
+//@property(nonatomic,weak)UITableView *tableView;
 
 @property(nonatomic,strong)newsDetailFooterView *footerView;
 
-@property(nonatomic,weak)UIScrollView *containerScrollView;
+//@property(nonatomic,weak)UIScrollView *containerScrollView;
 
 @property(nonatomic,assign)CGFloat webViewHeight;
 
@@ -83,38 +83,38 @@
 
 }
 
-#pragma mark -- lazy load
--(UIScrollView *)containerScrollView{
-    if(!_containerScrollView){
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kScreenHeight * 2)];
-        scrollView.delegate = self;
-        scrollView.alwaysBounceVertical = YES;
-        [self.view addSubview:scrollView];
-        scrollView.maximumZoomScale = 1;
-        scrollView.minimumZoomScale = 1;
-        [scrollView setBouncesZoom:NO];
-        _containerScrollView = scrollView;
-    }
-    return _containerScrollView;
-    
-}
+//#pragma mark -- lazy load
+//-(UIScrollView *)containerScrollView{
+//    if(!_containerScrollView){
+//        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kScreenHeight * 2)];
+//        scrollView.delegate = self;
+//        scrollView.alwaysBounceVertical = YES;
+//        [self.view addSubview:scrollView];
+//        scrollView.maximumZoomScale = 1;
+//        scrollView.minimumZoomScale = 1;
+//        [scrollView setBouncesZoom:NO];
+//        _containerScrollView = scrollView;
+//    }
+//    return _containerScrollView;
+//
+//}
 
--(UITableView *)tableView{
-    if(!_tableView){
-        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height * 0.8) style:UITableViewStylePlain];
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        tableView.contentInset = UIEdgeInsetsZero;
-        tableView.showsVerticalScrollIndicator = NO;
-        tableView.showsHorizontalScrollIndicator = NO;
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
-        [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"NewsContent"];
-        [self.view addSubview:tableView];
-        _tableView = tableView;
-    }
-    return _tableView;
-}
+//-(UITableView *)tableView{
+//    if(!_tableView){
+//        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height * 0.8) style:UITableViewStylePlain];
+//        tableView.delegate = self;
+//        tableView.dataSource = self;
+//        tableView.contentInset = UIEdgeInsetsZero;
+//        tableView.showsVerticalScrollIndicator = NO;
+//        tableView.showsHorizontalScrollIndicator = NO;
+//        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        
+//        [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"NewsContent"];
+//        [self.view addSubview:tableView];
+//        _tableView = tableView;
+//    }
+//    return _tableView;
+//}
 
 -(newsDetailFooterView *)footerView{
     if(!_footerView){
@@ -134,7 +134,7 @@
         WKUserScript *wkUserScript = [[WKUserScript alloc] initWithSource:jSString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
 
         [wkUController addUserScript:wkUserScript];
-        WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth,self.containerScrollView.height) configuration:wkWebConfig];
+        WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth,kScreenHeight * 2) configuration:wkWebConfig];
         webView.backgroundColor = [UIColor clearColor];
         webView.opaque = NO;
         webView.userInteractionEnabled = NO;
@@ -142,11 +142,11 @@
         webView.UIDelegate = self;
         webView.navigationDelegate = self;
         [webView sizeToFit];
-        [webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+//        [webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
         NSURL *url = [NSURL URLWithString:_urlString];
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
         [webView loadRequest:urlRequest];
-        [self.containerScrollView addSubview:webView];
+        [self.view addSubview:webView];
         _newsWebView = webView;
     }
     return _newsWebView;
@@ -195,7 +195,7 @@
             if(!cellID){
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
             }
-            [cell.contentView addSubview:self.containerScrollView];
+            [cell.contentView addSubview:self.newsWebView];
             resultCell = cell;
             
         }
@@ -225,16 +225,16 @@
 
 #pragma mark - kvo
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    if([keyPath isEqualToString:@"contentSize"]){
-        UIScrollView *scrollView = (UIScrollView *)object;
-        CGFloat height = scrollView.contentSize.height;
-        self.webViewHeight = height;
-        self.newsWebView.frame = CGRectMake(0, 0, self.view.frame.size.width, height);
-        self.containerScrollView.frame = CGRectMake(0, 0, self.view.frame.size.width, height);
-        self.containerScrollView.contentSize = CGSizeMake(self.view.frame.size.width, height);
-    }
-}
+//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+//    if([keyPath isEqualToString:@"contentSize"]){
+//        UIScrollView *scrollView = (UIScrollView *)object;
+//        CGFloat height = scrollView.contentSize.height;
+//        self.webViewHeight = height;
+//        self.newsWebView.frame = CGRectMake(0, 0, self.view.frame.size.width, height);
+//        self.containerScrollView.frame = CGRectMake(0, 0, self.view.frame.size.width, height);
+//        self.containerScrollView.contentSize = CGSizeMake(self.view.frame.size.width, height);
+//    }
+//}
 
 -(void)dealloc{
     [self.newsWebView.scrollView removeObserver:self forKeyPath:@"contentSize"];

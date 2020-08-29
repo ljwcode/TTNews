@@ -10,10 +10,13 @@
 #import "headLineSearchViewController.h"
 #import <UIView+Frame.h>
 #import "TTNavigationBar.h"
+#import "TTSearchSuggestionViewModel.h"
 
 @interface TTBaseViewController ()<UIGestureRecognizerDelegate,UISearchBarDelegate>
 
 @property(nonatomic,strong)TTNavigationBar *naviBar;
+
+@property(nonatomic,strong)TTSearchSuggestionViewModel *viewModel;
 
 @end
 
@@ -43,13 +46,18 @@
 
      self.navigationItem.rightBarButtonItem = reportBarBtn;
      
-     UIImageView *leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search"]];
+     UIImageView *leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icons_search"]];
      leftView.bounds = CGRectMake(0, 0, 24, 24);
+    
+    __block NSString *placeHolder = @"";
+    [[self.viewModel.SearchSuggestionCommand execute:@"title"]subscribeNext:^(id  _Nullable x) {
+        placeHolder = x;
+        self.naviBar = [[TTNavigationBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44) placeholder:x textFieldLeftView:leftView tintColor:[UIColor whiteColor]];
+        self.navigationItem.titleView = self.naviBar;
+        self.naviBar.delegate = self;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }];
      
-     self.naviBar = [[TTNavigationBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44) placeholder:@"搜你想搜" textFieldLeftView:leftView tintColor:[UIColor whiteColor]];
-     self.navigationItem.titleView = self.naviBar;
-     self.naviBar.delegate = self;
-     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
@@ -110,6 +118,15 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
+}
+
+#pragma mark -- lazy load
+
+-(TTSearchSuggestionViewModel *)viewModel{
+    if(!_viewModel){
+        _viewModel = [[TTSearchSuggestionViewModel alloc]init];
+    }
+    return _viewModel;
 }
 /*
 #pragma mark - Navigation
