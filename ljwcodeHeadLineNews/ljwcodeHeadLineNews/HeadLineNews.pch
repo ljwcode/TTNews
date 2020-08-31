@@ -58,4 +58,7 @@
 
 #define kTopHeight  (kStatusBarHeight + kNavBarHeight)
 
+#define AppId @"wxbeafe42095e03edf"
+#define UniversalLink  @"https://help.wechat.com/ljwcodeHeadLineNews/abc"
+
 #endif /* ljwcodeHeadLineNews_h */

@@ -8,12 +8,24 @@
 
 #import "AppDelegate.h"
 #import "TTTabBarController.h"
+#import <WXApi.h>
+#import "otherLoginTypeView.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate,RespToWXDelegate>
+{
+    enum WXScene _scene;
+}
 
 @end
 
 @implementation AppDelegate
+
+-(instancetype)init{
+    if(self = [super init]){
+        _scene = WXSceneSession;
+    }
+    return self;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
@@ -22,6 +34,15 @@
 	[self.window makeKeyAndVisible];
     TTTabBarController *tabbar = [[TTTabBarController alloc]init];
     self.window.rootViewController = tabbar;
+    
+    //在register之前打开log, 后续可以根据log排查问题
+    [WXApi startLogByLevel:WXLogLevelDetail logBlock:^(NSString *log) {
+        NSLog(@"WeChatSDK: %@", log);
+    }];
+    
+    [WXApi checkUniversalLinkReady:^(WXULCheckStep step, WXCheckULStepResult* result) {
+        NSLog(@"%@, %u, %@, %@", @(step), result.success, result.errorInfo, result.suggestion);
+    }];
 	
 	return YES;
 }
@@ -47,6 +68,27 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+-(BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler{
+    return [WXApi handleOpenUniversalLink:userActivity delegate:self];
+}
+
+#pragma mark -- RespToWXDelegate
+-(void)RespToWX{
+    SendMessageToWXReq *req = [[SendMessageToWXReq alloc]init];
+    req.text = @"req to wechat";
+    req.bText = @"wx";
+    req.scene = _scene;
+    [WXApi sendReq:req completion:nil];
 }
 
 @end

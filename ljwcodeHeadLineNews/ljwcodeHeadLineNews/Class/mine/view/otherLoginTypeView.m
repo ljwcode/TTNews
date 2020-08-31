@@ -9,10 +9,11 @@
 #import "otherLoginTypeView.h"
 #import <Masonry/Masonry.h>
 #import <UIView+Frame.h>
+#import <WXApi.h>
 
-@interface otherLoginTypeView()<UITableViewDelegate,UITableViewDataSource>
+@interface otherLoginTypeView()<UITableViewDelegate,UITableViewDataSource,WXApiDelegate>
 
-@property(nonatomic,weak)UITableView *alertSheetView;
+@property(nonatomic,strong)UITableView *alertSheetView;
 
 @property(nonatomic,strong)NSArray *infoArray;
 
@@ -28,7 +29,7 @@ static NSString *cellID = @"OtherLoginCellID";
         tableView.delegate = self;
         tableView.dataSource = self;
         [self addSubview:tableView];
-        _alertSheetView = tableView;
+        tableView.userInteractionEnabled = YES;
         NSLog(@"tableView:%@",NSStringFromCGRect(tableView.frame));
     }
     return self;
@@ -70,6 +71,7 @@ static NSString *cellID = @"OtherLoginCellID";
         [btn setTag:10010];
         [cell.contentView addSubview:btn];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     UIButton *btn = (UIButton *)[cell.contentView viewWithTag:10010];
     [btn setTitle:self.infoArray[indexPath.row][@"title"] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -80,6 +82,39 @@ static NSString *cellID = @"OtherLoginCellID";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch(indexPath.row){
+        case 0:
+            
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            [self respToWechat];
+            break;
+            default:
+            break;
+            
+    }
+}
+
+#pragma mark -- 跳转到WX
+
+-(void)respToWechat{
+    [WXApi registerApp:AppId universalLink:UniversalLink];
+    if(self.delegate){
+        [self.delegate RespToWX];
+    }
+    [self.getCurrentViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark -- WXApiDelegate
+-(void)onReq:(BaseReq *)req{
+    
+}
+
+-(void)onResp:(BaseResp *)resp{
     
 }
 /*

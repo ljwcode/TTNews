@@ -13,7 +13,7 @@
 #import "countryCodeView.h"
 #import "otherLoginTypeView.h"
 
-@interface loginView()<UIGestureRecognizerDelegate>
+@interface loginView()
 
 @property(nonatomic,weak)UIButton *tiktokLoginBtn;
 
@@ -28,14 +28,14 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardshow:) name:UIKeyboardWillShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardDidHideNotification object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
         self.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
         self.backgroundColor = [UIColor whiteColor];
         [self configureUI];
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClose:)];
-        tap.delegate = self;
-        [self addGestureRecognizer:tap];
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClose:)];
+//        tap.delegate = self;
+//        [self addGestureRecognizer:tap];
     }
     return self;
 }
@@ -297,6 +297,7 @@
 -(void)hide{
     [self removeFromSuperview];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 -(void)countryCodeHandle:(UIButton *)sender{

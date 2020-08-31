@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - DouyinOpenSDK (4.0.0)
   - DZNEmptyDataSet (1.8.1)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -32,7 +33,7 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJExtension (3.2.2)
-  - MJRefresh (3.4.3)
+  - MJRefresh (3.5.0)
   - ReactiveObjC (3.1.1)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
@@ -40,11 +41,13 @@ PODS:
   - SDWebImage/WebP (4.0.0):
     - libwebp
     - SDWebImage/Core
+  - WechatOpenSDK (1.8.7.1)
   - YYCache (1.0.4)
   - YYText (1.0.7)
 
 DEPENDENCIES:
   - AFNetworking
+  - DouyinOpenSDK
   - DZNEmptyDataSet
   - FMDB
   - LBPhotoBrowser (~> 2.2.2)
@@ -55,12 +58,14 @@ DEPENDENCIES:
   - ReactiveObjC
   - SDWebImage (~> 4.0.0)
   - SDWebImage/WebP
+  - WechatOpenSDK
   - YYCache
   - YYText
 
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - DouyinOpenSDK
     - DZNEmptyDataSet
     - FMDB
     - LBPhotoBrowser
@@ -71,24 +76,27 @@ SPEC REPOS:
     - MJRefresh
     - ReactiveObjC
     - SDWebImage
+    - WechatOpenSDK
     - YYCache
     - YYText
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  DouyinOpenSDK: 370f429928f1433547f296ccb2e47c2a85fddc0d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   LBPhotoBrowser: e924dea551c494815fde9185bad85ab6331c45da
-  libwebp: 04242ef451672185c1fe41b285a034d2fbda483c
+  libwebp: d7684f7241543c7a5ff47953cc9b9f184fe16610
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
-  MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: bf96244390a9c1b5deb741ebdaa8faf54b584e6d
+PODFILE CHECKSUM: f5f8af14c25996607753a9efeaeed597fd8a3024
 
-COCOAPODS: 1.10.0.beta.1
+COCOAPODS: 1.10.0.beta.2

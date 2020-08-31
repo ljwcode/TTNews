@@ -60,7 +60,6 @@
 		637C5C0A24A35C0800D7C0E0 /* ljwcodeBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */; };
 		637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 637E3CA624C7E65200FA5447 /* AreaCode.plist */; };
 		638481EC24BEEB85002F4C5F /* VideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638481EB24BEEB85002F4C5F /* VideoDetailViewController.m */; };
-		63870C0F24E6408000F4C94D /* showAllMsgChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63870C0E24E6408000F4C94D /* showAllMsgChannelView.m */; };
 		638E977424CAB4A4005ADF42 /* TTMineNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977324CAB4A4005ADF42 /* TTMineNavigationController.m */; };
 		638E977D24CADB90005ADF42 /* commonSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977C24CADB90005ADF42 /* commonSettingTableViewCell.m */; };
 		638E978024CAF04B005ADF42 /* moreSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977F24CAF04B005ADF42 /* moreSettingTableViewCell.m */; };
@@ -83,6 +82,7 @@
 		63E6CB5E24C02CE800E0126C /* headLineSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E6CB5D24C02CE800E0126C /* headLineSearchViewController.m */; };
 		63E7177324F9F430003A690E /* TTSearchSuggestionRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */; };
 		63E7177624F9F4A0003A690E /* TTSearchSuggestionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E7177524F9F4A0003A690E /* TTSearchSuggestionViewModel.m */; };
+		63E8079924FD218A00C58406 /* showAllMsgChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8079824FD218A00C58406 /* showAllMsgChannelView.m */; };
 		63F1F8D024AF219400D687ED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F1F8CF24AF219400D687ED /* AVFoundation.framework */; };
 		63F1F8D324AF223200D687ED /* TVVideoPlayerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8D224AF223200D687ED /* TVVideoPlayerViewCell.m */; };
 		63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8DB24AF2D7700D687ED /* videoTitleModel.m */; };
@@ -208,8 +208,6 @@
 		637E3CA624C7E65200FA5447 /* AreaCode.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = AreaCode.plist; sourceTree = "<group>"; };
 		638481EA24BEEB85002F4C5F /* VideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoDetailViewController.h; sourceTree = "<group>"; };
 		638481EB24BEEB85002F4C5F /* VideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoDetailViewController.m; sourceTree = "<group>"; };
-		63870C0D24E6408000F4C94D /* showAllMsgChannelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = showAllMsgChannelView.h; sourceTree = "<group>"; };
-		63870C0E24E6408000F4C94D /* showAllMsgChannelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = showAllMsgChannelView.m; sourceTree = "<group>"; };
 		638E977224CAB4A4005ADF42 /* TTMineNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTMineNavigationController.h; sourceTree = "<group>"; };
 		638E977324CAB4A4005ADF42 /* TTMineNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTMineNavigationController.m; sourceTree = "<group>"; };
 		638E977B24CADB90005ADF42 /* commonSettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = commonSettingTableViewCell.h; sourceTree = "<group>"; };
@@ -253,6 +251,8 @@
 		63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TTSearchSuggestionRequestModel.m; path = ljwcodeHeadLineNews/ljwcodeTools/TTSearchSuggestionRequestModel.m; sourceTree = SOURCE_ROOT; };
 		63E7177424F9F4A0003A690E /* TTSearchSuggestionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTSearchSuggestionViewModel.h; sourceTree = "<group>"; };
 		63E7177524F9F4A0003A690E /* TTSearchSuggestionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSearchSuggestionViewModel.m; sourceTree = "<group>"; };
+		63E8079724FD218A00C58406 /* showAllMsgChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showAllMsgChannelView.h; sourceTree = "<group>"; };
+		63E8079824FD218A00C58406 /* showAllMsgChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showAllMsgChannelView.m; sourceTree = "<group>"; };
 		63F1F8CF24AF219400D687ED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		63F1F8D124AF223200D687ED /* TVVideoPlayerViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVVideoPlayerViewCell.h; sourceTree = "<group>"; };
 		63F1F8D224AF223200D687ED /* TVVideoPlayerViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVVideoPlayerViewCell.m; sourceTree = "<group>"; };
@@ -318,15 +318,6 @@
 				293C19CEC52458542FCA55CC /* Pods-ljwcodeHeadLineNews.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		631CFA5E24E4E00E0082B941 /* commonSettingView */ = {
-			isa = PBXGroup;
-			children = (
-				63870C0D24E6408000F4C94D /* showAllMsgChannelView.h */,
-				63870C0E24E6408000F4C94D /* showAllMsgChannelView.m */,
-			);
-			path = commonSettingView;
 			sourceTree = "<group>";
 		};
 		631CFA6524E51BEF0082B941 /* TTHorizontalCateoryTabBar */ = {
@@ -464,7 +455,8 @@
 		6355CFEF24BF0F70002D3815 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				631CFA5E24E4E00E0082B941 /* commonSettingView */,
+				63E8079724FD218A00C58406 /* showAllMsgChannelView.h */,
+				63E8079824FD218A00C58406 /* showAllMsgChannelView.m */,
 				630A976524CFC463003029C3 /* countryCodeView.h */,
 				630A976424CFC462003029C3 /* countryCodeView.m */,
 				6355CFF324BF1078002D3815 /* loginView.h */,
@@ -699,9 +691,9 @@
 				820978FD1BD3A94100CF9D0C /* Class */,
 				820978E91BD3A37700CF9D0C /* AppDelegate.h */,
 				820978EA1BD3A37700CF9D0C /* AppDelegate.m */,
+				637C2D2224A995F70009274C /* HeadLineNews.pch */,
 				820978F21BD3A37700CF9D0C /* Assets.xcassets */,
 				820978E61BD3A37600CF9D0C /* Supporting Files */,
-				637C2D2224A995F70009274C /* HeadLineNews.pch */,
 			);
 			path = ljwcodeHeadLineNews;
 			sourceTree = "<group>";
@@ -986,6 +978,7 @@
 				63D4FF9F24D96FC40035F561 /* NewsDetailViewController.m in Sources */,
 				637A97F724C05BD7000F7405 /* VideoPlayerContainerView.m in Sources */,
 				63422C5624A87EA30091FEE1 /* newsChannelTitleView.m in Sources */,
+				63E8079924FD218A00C58406 /* showAllMsgChannelView.m in Sources */,
 				637C2D3024A9D1600009274C /* networkBaseModel.m in Sources */,
 				630A976624CFC463003029C3 /* countryCodeView.m in Sources */,
 				63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */,
@@ -1036,7 +1029,6 @@
 				637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */,
 				63422C4A24A875D40091FEE1 /* NewsChannelView.m in Sources */,
 				949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */,
-				63870C0F24E6408000F4C94D /* showAllMsgChannelView.m in Sources */,
 				8209791A1BD3AFAC00CF9D0C /* MineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1168,6 +1160,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ljwcodeHeadLineNews/OpenSDK1.8.7.1",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1199,6 +1195,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ljwcodeHeadLineNews/OpenSDK1.8.7.1",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
