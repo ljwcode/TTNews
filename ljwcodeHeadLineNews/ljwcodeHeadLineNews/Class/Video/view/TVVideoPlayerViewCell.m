@@ -34,6 +34,8 @@
 
 @property (weak, nonatomic)UIButton *videoMoreBtn;
 
+@property(nonatomic,strong)NSIndexPath *indexPath;
+
 @end
 
 @implementation TVVideoPlayerViewCell
@@ -113,10 +115,10 @@
 #pragma mark -- set model
 -(void)setContentModel:(videoContentModel *)contentModel{
     _contentModel = contentModel;
-    [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:contentModel.detailModel.playInfoModel.poster_url]];
+    [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:contentModel.poster_url]];
     [self.videoAuthHeadBtn setTitle:contentModel.detailModel.media_name forState:UIControlStateNormal];
     self.videoTitleLabel.text = contentModel.detailModel.title;
-    [self.videoAuthHeadBtn.imageView sd_setImageWithURL:[NSURL URLWithString: [contentModel.detailModel.media_info objectForKey:@"avatar_url"]] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [self.videoAuthHeadBtn.imageView sd_setImageWithURL:[NSURL URLWithString: contentModel.detailModel.media_info.avatar_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if(image){
             self.videoAuthHeadBtn.imageView.image = [image cropPictureWithRoundedCorner:self.videoAuthHeadBtn.imageView.image.size.width size:self.videoAuthHeadBtn.frame.size];
         }
@@ -251,9 +253,16 @@
     return _videoMoreBtn;
 }
 
+-(void)setDelegate:(id<TVVideoPlayerCellDelegate,NSObject>)delegate withIndexPath:(NSIndexPath *)indexPath{
+    self.delegate = delegate;
+    self.indexPath = indexPath;
+}
+
 #pragma mark -- 点击事件响应
 -(void)clickPlayHandle:(UIButton *)sender{
-    
+    if([self.delegate respondsToSelector:@selector(VideoPlayerAtIndexPath:)]){
+        [self.delegate VideoPlayerAtIndexPath:self.indexPath];
+    }
 }
 
 -(void)videoDetailHandle:(UIGestureRecognizer *)ges{
@@ -270,6 +279,10 @@
 
 -(void)moreHandle:(UIButton *)sender{
     
+}
+
+-(void)setNormalModel{
+    self.videoBgImgView.hidden = YES;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

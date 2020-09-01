@@ -16,6 +16,7 @@
 #import "TTHeader.h"
 #import "NewsDetailViewController.h"
 #import "TVVideoPlayerViewCell.h"
+#import "videoContentModel.h"
 
 @interface homeDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -58,7 +59,8 @@
         homeNewsModel *newsModel = (homeNewsModel *)model;
         return newsModel.data;;
     }else if([category isEqualToString:@"video"]){
-        return model;
+        videoContentModel *videoModel = (videoContentModel *)model;
+        return videoModel;
     }else{
         homeNewsModel *newsModel = (homeNewsModel *)model;
         return newsModel.data;

@@ -11,12 +11,23 @@
 #import "videoContentModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol TVVideoPlayerCellDelegate<NSObject>
+
+-(void)VideoPlayerAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
 
 @interface TVVideoPlayerViewCell : UITableViewCell
 
 @property(nonatomic,strong)videoContentModel *contentModel;
 
 @property(nonatomic,copy)void(^imgViewCallBack)(UIView *parentView);
+
+@property(nonatomic,assign)id<TVVideoPlayerCellDelegate,NSObject>delegate;
+
+-(void)setDelegate:(id<TVVideoPlayerCellDelegate,NSObject> _Nonnull)delegate withIndexPath:(NSIndexPath *)indexPath;
+
+-(void)setNormalModel;
 
 @end
 

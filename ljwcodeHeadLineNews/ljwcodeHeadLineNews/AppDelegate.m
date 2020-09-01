@@ -91,4 +91,13 @@
     [WXApi sendReq:req completion:nil];
 }
 
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    // 可以这么写
+    if (self.allowOrentitaionRotation) {
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    }
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+
 @end

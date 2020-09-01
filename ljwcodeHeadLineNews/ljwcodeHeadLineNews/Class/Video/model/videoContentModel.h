@@ -52,17 +52,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)videoUrlInfoModel *video_3;
 
-@end
+@property(nonatomic,assign)int vwidth;
 
-@interface videoPlayInfoModel : NSObject
-
-@property(nonatomic,assign)float video_duration;
-
-@property(nonatomic,copy)NSString *poster_url;
-
-@property(nonatomic,strong)videoUrlLevelModel *video_list;
+@property(nonatomic,assign)int vheight;
 
 @end
+
 
 @interface videoDetailModel : NSObject
 
@@ -72,13 +67,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *video_play_info;
 
-@property(nonatomic,strong)videoPlayInfoModel *playInfoModel;
-
-@property(nonatomic,strong)MediaInfoModel *userInfoModel;
+@property(nonatomic,strong)MediaInfoModel *media_info;
 
 @property(nonatomic,copy)NSString *share_url;
-
-@property(nonatomic,strong)NSDictionary *media_info;
 
 @end
 
@@ -106,6 +97,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface videoContentModel : NSObject
 
+@property(nonatomic,assign)float video_duration;
+
+@property(nonatomic,copy)NSString *poster_url;
+
+@property(nonatomic,strong)videoUrlLevelModel *video_list;
+
 @property(nonatomic,copy)NSString *code;
 
 @property(nonatomic,copy)NSString *content;
@@ -114,10 +111,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)videoDetailModel *detailModel;
 
-@property(nonatomic,strong)video_detail_info *videoInfo;
+@property(nonatomic,strong)video_detail_info *video_detail_info;
+
+@property(nonatomic,readonly)BOOL isVerticalVideo;
+
+@property(nonatomic,strong)NSArray *dataArray;
 
 @end
-
-
 
 NS_ASSUME_NONNULL_END

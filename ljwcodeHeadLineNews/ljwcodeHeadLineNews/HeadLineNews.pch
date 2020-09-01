@@ -6,6 +6,7 @@
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #ifndef ljwcodeHeadLineNews_h
 #define ljwcodeHeadLineNews_h
 
@@ -60,5 +61,9 @@
 
 #define AppId @"wxbeafe42095e03edf"
 #define UniversalLink  @"https://help.wechat.com/ljwcodeHeadLineNews/abc"
+
+#define kPlayerViewTag 100
+
+#define kAppDelegate ((AppDelegate *)[[UIApplication sharedApplication]delegate])
 
 #endif /* ljwcodeHeadLineNews_h */

@@ -30,29 +30,16 @@
 
 @end
 
-@implementation videoPlayInfoModel
-
-
-@end
-
 @implementation videoDetailModel
-
-- (videoPlayInfoModel *)playInfoModel {
-    if (!_playInfoModel) {
-        NSData *data = [self.video_play_info dataUsingEncoding:NSUTF8StringEncoding];
-        if (!data) {
-            return nil;
-        }else {
-            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            _playInfoModel = [[[videoPlayInfoModel alloc]init] mj_setKeyValues:dic];
-        }
-    }
-    return _playInfoModel;
-}
 
 @end
 
 @implementation videoContentModel
+
+-(BOOL)isIsVerticalVideo{
+    return _video_list.vwidth < _video_list.vheight;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -70,15 +57,22 @@
     return _detailModel;
 }
 
--(video_detail_info *)videoInfo{
-    if(!_videoInfo){
+-(video_detail_info *)video_detail_info{
+    if(!_video_detail_info){
         NSData *data = [self.content dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        _videoInfo = [[[video_detail_info alloc]init]mj_setKeyValues:dic];
-        NSLog(@"videoID = %@",_videoInfo.video_id);
+        _video_detail_info = [[[video_detail_info alloc]init]mj_setKeyValues:dic];
+        NSLog(@"videoID = %@",_video_detail_info.video_id);
     }
-    return _videoInfo;
+    return _video_detail_info;
 }
+
++(NSDictionary *)mj_objectClassInArray{
+    return @{
+        @"data" : @"videoContentModel"
+    };
+}
+
 @end
 
 @implementation video_detail_info
