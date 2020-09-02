@@ -87,6 +87,8 @@
             make.bottom.mas_equalTo(2);
             make.height.mas_equalTo(self.authorBgView.height - 4);
         }];
+        self.videoAuthHeadBtn.imageView.layer.borderColor = [UIColor redColor].CGColor;
+        self.videoAuthHeadBtn.imageView.layer.borderWidth = 2.f;
         
         [self.authorFocusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.videoAuthHeadBtn.mas_right).offset(hSpace);
@@ -115,14 +117,15 @@
 #pragma mark -- set model
 -(void)setContentModel:(videoContentModel *)contentModel{
     _contentModel = contentModel;
-    [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:contentModel.poster_url]];
+    [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:[contentModel.detailModel.video_detail_info.detail_video_large_image objectForKey:@"url"]]];
     [self.videoAuthHeadBtn setTitle:contentModel.detailModel.media_name forState:UIControlStateNormal];
     self.videoTitleLabel.text = contentModel.detailModel.title;
-    [self.videoAuthHeadBtn.imageView sd_setImageWithURL:[NSURL URLWithString: contentModel.detailModel.media_info.avatar_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        if(image){
-            self.videoAuthHeadBtn.imageView.image = [image cropPictureWithRoundedCorner:self.videoAuthHeadBtn.imageView.image.size.width size:self.videoAuthHeadBtn.frame.size];
-        }
-    }];
+//    [self.videoAuthHeadBtn.imageView sd_setImageWithURL:[NSURL URLWithString: contentModel.detailModel.media_info.avatar_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+//        if(image){
+//            self.videoAuthHeadBtn.imageView.image = [image cropPictureWithRoundedCorner:self.videoAuthHeadBtn.imageView.image.size.width size:self.videoAuthHeadBtn.frame.size];
+//        }
+//    }];
+    [self.videoAuthHeadBtn.imageView sd_setImageWithURL:[NSURL URLWithString:contentModel.detailModel.media_info.avatar_url]];
     self.videoPlayCountLabel.text = @"20W";
     self.videoTimeLabel.text = @"20:20";
 }

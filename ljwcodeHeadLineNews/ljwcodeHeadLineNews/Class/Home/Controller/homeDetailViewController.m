@@ -39,7 +39,7 @@
     self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         @strongify(self);
         [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-            [self.datasArray removeAllObjects];
+//            [self.datasArray removeAllObjects];
             NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
             [self.datasArray addObjectsFromArray:datasArray];
             [self.detailTableView reloadData];
@@ -59,8 +59,7 @@
         homeNewsModel *newsModel = (homeNewsModel *)model;
         return newsModel.data;;
     }else if([category isEqualToString:@"video"]){
-        videoContentModel *videoModel = (videoContentModel *)model;
-        return videoModel;
+        return model;
     }else{
         homeNewsModel *newsModel = (homeNewsModel *)model;
         return newsModel.data;
@@ -107,6 +106,8 @@
         UINib *contentNewsCell = [UINib nibWithNibName:NSStringFromClass([homeContentNewsTableViewCell class]) bundle:nil];
         [tableView registerNib:contentNewsCell forCellReuseIdentifier:NSStringFromClass([homeContentNewsTableViewCell class])];
         
+        [tableView registerClass:[TVVideoPlayerViewCell class] forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
+        
         _detailTableView = tableView;
     }
     return _detailTableView;
@@ -144,7 +145,6 @@
         TVVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
         videoContentModel *model = self.datasArray[indexPath.row];
         cell.contentModel = model;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         resultCell = cell;
         
     }else{

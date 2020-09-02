@@ -8,12 +8,15 @@
 
 #import "videoTitleModel.h"
 #import "TTBaseViewController.h"
+#import "homeTitleModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VideoDetailViewController : TTBaseViewController
 
 @property(nonatomic,strong)videoTitleModel *titleModel;
+
+@property(nonatomic,strong)homeTitleModel *homeTitle;
 
 @end
 

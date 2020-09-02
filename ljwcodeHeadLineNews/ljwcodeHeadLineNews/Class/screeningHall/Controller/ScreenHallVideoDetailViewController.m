@@ -91,10 +91,10 @@
 
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([VideoCoverCollectionViewCell class]) forIndexPath:indexPath];
     videoContentModel *model = self.dataArray[indexPath.row];
-    NSString *videoID = model.video_detail_info.video_id;
+    NSString *videoID = model.detailModel.video_detail_info.video_id;
     NSString *url = [[networkURLManager shareInstance]parseVideoRealURLWithVideo_id:videoID];
     if ([cell isKindOfClass:[VideoCoverCollectionViewCell class]]) {
-        [(VideoCoverCollectionViewCell *)cell layoutWithVideoCoverUrl:[model.video_detail_info.detail_video_large_image objectForKey:@"url"] videoUrl:url];
+        [(VideoCoverCollectionViewCell *)cell layoutWithVideoCoverUrl:[model.detailModel.video_detail_info.detail_video_large_image objectForKey:@"url"] videoUrl:url];
     }
     return cell;
 }

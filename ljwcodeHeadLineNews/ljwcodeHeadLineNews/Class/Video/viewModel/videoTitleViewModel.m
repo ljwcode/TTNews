@@ -11,6 +11,11 @@
 #import "videoTitleModel.h"
 #import "TTHeader.h"
 #import <MJExtension.h>
+#import "videoTitleModel.h"
+
+@interface videoTitleViewModel()
+
+@end
 
 
 @implementation videoTitleViewModel
@@ -29,11 +34,16 @@
                 request.input = input;
                 
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
+                    
+//                    NSMutableDictionary *jsonDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"{\"category\": \"video\", \"name\": \"推荐\"}", nil];
                     NSDictionary *responseDic = (NSDictionary *)response;
                     responseDic = [responseDic objectForKey:@"data"];
+                    
+//                    [jsonDic addEntriesFromDictionary:responseDic];
+                    
                     NSMutableArray *modelArray = [[NSMutableArray alloc]init];
                     if(responseDic.count > 0){
-                        NSArray *responseArray = (NSArray*) responseDic;
+                        NSMutableArray *responseArray = (NSMutableArray*) responseDic;
                         for(int i = 0;i < responseArray.count;i++){
                             videoTitleModel *titleModel = [[videoTitleModel new]mj_setKeyValues:responseArray[i]];
                             [modelArray addObject:titleModel];

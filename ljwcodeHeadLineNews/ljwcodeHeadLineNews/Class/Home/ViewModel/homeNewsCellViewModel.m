@@ -37,14 +37,13 @@
                         [subscriber sendNext:jokeModel];
                         [subscriber sendCompleted];
                     }else if([input isEqualToString:@"video"]){
-                        NSDictionary *responceDic = (NSDictionary *)response;
-                        NSArray *modelArray = responceDic[@"data"];
+                        NSArray *modelArray = responseDic[@"data"];
                         NSMutableArray *array = [NSMutableArray array];
                         for(int i = 0;i < modelArray.count;i++){
                             videoContentModel *model = [[[videoContentModel alloc]init]mj_setKeyValues:modelArray[i]];
                             [array addObject:model];
                         }
-                        [subscriber sendNext:array];
+                        [subscriber sendNext:array]; //发送一个数组
                         [subscriber sendCompleted];
                     }else{
                         homeNewsModel *newsModel = [[homeNewsModel alloc]init];

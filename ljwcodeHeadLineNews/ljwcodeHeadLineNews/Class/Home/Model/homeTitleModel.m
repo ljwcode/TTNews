@@ -10,4 +10,19 @@
 
 @implementation homeTitleModel
 
+-(instancetype)init{
+    if(self = [super init]){
+        self.name = @"";
+        self.category = @"";
+        self.concern_id = @"";
+        self.default_add = 0;
+        self.flags = 0;
+        self.icon_url = @"";
+        self.tip_new  = 0;
+        self.type = 0;
+        self.flags = 0;
+    }
+    return self;
+}
+
 @end

@@ -56,7 +56,7 @@
     if(crc32 < 0){
         crc32 += 0x100000000;
     }
-    NSString *realURL = [NSString stringWithFormat:@"http://i.snssdk.com/video/urls/v/1/toutiao/mp4/\%@?r=%d&s=%llu",video_id,r,crc32];
+    NSString *realURL = [NSString stringWithFormat:@"http://is.snssdk.com/video/urls/v/1/toutiao/mp4/\%@?r=%d&s=%llu",video_id,r,crc32];
     return realURL;
 }
 

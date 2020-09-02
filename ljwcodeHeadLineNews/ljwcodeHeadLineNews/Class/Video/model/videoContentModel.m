@@ -57,16 +57,6 @@
     return _detailModel;
 }
 
--(video_detail_info *)video_detail_info{
-    if(!_video_detail_info){
-        NSData *data = [self.content dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        _video_detail_info = [[[video_detail_info alloc]init]mj_setKeyValues:dic];
-        NSLog(@"videoID = %@",_video_detail_info.video_id);
-    }
-    return _video_detail_info;
-}
-
 +(NSDictionary *)mj_objectClassInArray{
     return @{
         @"data" : @"videoContentModel"

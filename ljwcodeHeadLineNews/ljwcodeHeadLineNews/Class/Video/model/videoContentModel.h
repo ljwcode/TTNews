@@ -58,21 +58,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
-@interface videoDetailModel : NSObject
-
-@property(nonatomic,copy)NSString *media_name;
-
-@property(nonatomic,copy)NSString *title;
-
-@property(nonatomic,copy)NSString *video_play_info;
-
-@property(nonatomic,strong)MediaInfoModel *media_info;
-
-@property(nonatomic,copy)NSString *share_url;
-
-@end
-
 @interface video_detail_info : NSObject
 
 @property(nonatomic,assign)int group_flags;
@@ -95,6 +80,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+
+@interface videoDetailModel : NSObject
+
+@property(nonatomic,copy)NSString *media_name;
+
+@property(nonatomic,copy)NSString *title;
+
+@property(nonatomic,copy)NSString *video_play_info;
+
+@property(nonatomic,strong)MediaInfoModel *media_info;
+
+@property(nonatomic,copy)NSString *share_url;
+
+@property(nonatomic,strong)video_detail_info *video_detail_info;
+
+@end
+
+
 @interface videoContentModel : NSObject
 
 @property(nonatomic,assign)float video_duration;
@@ -110,8 +114,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL playing;
 
 @property(nonatomic,strong)videoDetailModel *detailModel;
-
-@property(nonatomic,strong)video_detail_info *video_detail_info;
 
 @property(nonatomic,readonly)BOOL isVerticalVideo;
 

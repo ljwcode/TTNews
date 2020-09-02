@@ -24,6 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *icon_url;
 
+@property(nonatomic,assign)int type;
+
+@property(nonatomic,assign)int tip_new;
+
 
 @end
 

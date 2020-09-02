@@ -81,10 +81,8 @@
     
     @weakify(self);
     self.detailTableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
-        NSLog(@"refresh");
         [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-            [self.dataArray removeAllObjects];
-            [self->_dataArray addObjectsFromArray:x];
+            [self.dataArray addObjectsFromArray:x];
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
             [self.detailTableView.mj_footer endRefreshing];
@@ -93,8 +91,7 @@
     self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         @strongify(self);
         [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-            [self.dataArray removeAllObjects];
-            [self->_dataArray addObjectsFromArray:x];
+            [self.dataArray addObjectsFromArray:x];
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
             [self.detailTableView.mj_footer endRefreshing];
@@ -164,11 +161,11 @@
 #pragma mark - UITableViewDelagate && UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.dataArray.count;
+    return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -227,8 +224,8 @@
 #pragma mark -- private method
 
 - (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
-    _videoPlayModel = [[videoContentModel alloc]init];
-    [self.player playTheIndexPath:indexPath assetURL:[NSURL URLWithString:@""]];
+    NSString *urlString = [[networkURLManager shareInstance]parseVideoRealURLWithVideo_id:_videoPlayModel.detailModel.video_detail_info.video_id];
+    [self.player playTheIndexPath:indexPath assetURL:[NSURL URLWithString:urlString]];
     [self.playerControlView showTitle:_videoPlayModel.detailModel.title coverURLString:_videoPlayModel.poster_url fullScreenMode:_videoPlayModel.isVerticalVideo ? ZFFullScreenModePortrait : ZFFullScreenModeLandscape];
 }
 

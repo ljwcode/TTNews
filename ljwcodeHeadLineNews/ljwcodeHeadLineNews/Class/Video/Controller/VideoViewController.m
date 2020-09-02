@@ -31,9 +31,9 @@
     [self configureUI];
     
     @weakify(self)
-    [[self.titleViewModle.videoCommand execute:@18] subscribeNext:^(id  _Nullable x) {
+    [[self.titleViewModle.videoCommand execute:@"video"] subscribeNext:^(id  _Nullable x) {
         @strongify(self);
-        self.titleArray = x;
+        self.titleArray = x;  //x返回一个列表名称数组
         [self reloadData];
         [self setPageMenuView];
     }];
