@@ -34,16 +34,37 @@
                 request.input = input;
                 
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
-                    
+                    /*
+                    category = "subv_tt_video_sports";
+                    "category_type" = 0;
+                    flags = 0;
+                    "icon_url" = "";
+                    name = "\U4f53\U80b2";
+                    "tip_new" = 0;
+                    type = 4;
+                    "web_url" = "";
+                    */
 //                    NSMutableDictionary *jsonDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"{\"category\": \"video\", \"name\": \"推荐\"}", nil];
+//                    NSString *jsonStr = @"{\"category\": \"video\", \"name\": \"推荐\"}";
+                    
                     NSDictionary *responseDic = (NSDictionary *)response;
                     responseDic = [responseDic objectForKey:@"data"];
                     
-//                    [jsonDic addEntriesFromDictionary:responseDic];
+                    NSMutableDictionary *videoDic = [[NSMutableDictionary alloc]init];
+                    videoDic[@"category"] = @"video";
+                    videoDic[@"category_type"] = @"0";
+                    videoDic[@"flags"] = @"0";
+                    videoDic[@"icon_url"] = @"";
+                    videoDic[@"name"] = @"推荐";
+                    videoDic[@"tip_new"] = @"0";
+                    videoDic[@"type"] = @"4";
+                    videoDic[@"web_url"] = @"";
                     
                     NSMutableArray *modelArray = [[NSMutableArray alloc]init];
                     if(responseDic.count > 0){
-                        NSMutableArray *responseArray = (NSMutableArray*) responseDic;
+                        NSMutableArray *responseArray = [NSMutableArray array];
+                        responseArray = (NSMutableArray *)responseDic.mutableCopy;
+                        [responseArray insertObject:videoDic atIndex:0];
                         for(int i = 0;i < responseArray.count;i++){
                             videoTitleModel *titleModel = [[videoTitleModel new]mj_setKeyValues:responseArray[i]];
                             [modelArray addObject:titleModel];

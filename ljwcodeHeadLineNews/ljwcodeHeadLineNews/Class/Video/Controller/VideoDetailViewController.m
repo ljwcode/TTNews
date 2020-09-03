@@ -69,7 +69,7 @@
 
 - (ZFPlayerControlView *)playerControlView {
     if (!_playerControlView) {
-        _playerControlView = [ZFPlayerControlView new];
+        _playerControlView = [[ZFPlayerControlView alloc]init];
         _playerControlView.prepareShowLoading = YES;
         _playerControlView.prepareShowControlView = YES;
     }
@@ -111,7 +111,6 @@
     self.player.orientationWillChange = ^(ZFPlayerController * _Nonnull player, BOOL isFullScreen) {
         kAppDelegate.allowOrentitaionRotation  = isFullScreen;
     };
-    [[UIApplication sharedApplication]delegate];
     
     self.player.playerDidToEnd = ^(id  _Nonnull asset) {
         @strongify(self);
@@ -132,9 +131,7 @@
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    CGFloat y = CGRectGetMaxY(self.navigationController.navigationBar.frame);
-    CGFloat h = CGRectGetMaxY(self.view.frame);
-    self.detailTableView.frame = CGRectMake(0, y, self.view.frame.size.width, h-y);
+    self.detailTableView.frame = self.view.bounds;
 }
 
 - (BOOL)shouldAutorotate {
@@ -176,7 +173,6 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentModel = model;
-    [cell setNormalModel];
     [cell setDelegate:self withIndexPath:indexPath];
     
     return cell;
@@ -224,9 +220,10 @@
 #pragma mark -- private method
 
 - (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *urlString = [[networkURLManager shareInstance]parseVideoRealURLWithVideo_id:_videoPlayModel.detailModel.video_detail_info.video_id];
+    self.videoPlayModel = self.dataArray[indexPath.row];
+    NSString *urlString = [[networkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
     [self.player playTheIndexPath:indexPath assetURL:[NSURL URLWithString:urlString]];
-    [self.playerControlView showTitle:_videoPlayModel.detailModel.title coverURLString:_videoPlayModel.poster_url fullScreenMode:_videoPlayModel.isVerticalVideo ? ZFFullScreenModePortrait : ZFFullScreenModeLandscape];
+//    [self.playerControlView showTitle:_videoPlayModel.detailModel.title coverURLString:[_videoPlayModel.detailModel.video_detail_info.detail_video_large_image objectForKey:@"url"]  fullScreenMode:_videoPlayModel.isVerticalVideo ? ZFFullScreenModePortrait : ZFFullScreenModeLandscape];
 }
 
 #pragma mark -- TVVideoPlayerCellDelegate

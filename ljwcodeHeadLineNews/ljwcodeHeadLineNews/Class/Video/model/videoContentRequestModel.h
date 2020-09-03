@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *version_code;
 
-@property(nonatomic,copy)NSString *input;
+@property(nonatomic,copy)NSString *category;
 
 
 //https://is.snssdk.com/video/urls/v/1/toutiao/mp4/9583cca5fceb4c6b9ca749c214fd1f90?r=18723666135963302&s=3807690062&callback=tt_playerzfndr

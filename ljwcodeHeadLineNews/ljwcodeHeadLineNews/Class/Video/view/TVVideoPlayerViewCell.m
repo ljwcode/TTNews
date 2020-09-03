@@ -11,6 +11,7 @@
 #import "UIImage+cropPicture.h"
 #import <Masonry/Masonry.h>
 #import <UIView+Frame.h>
+#import <SDWebImageManager.h>
 
 @interface TVVideoPlayerViewCell()<UIGestureRecognizerDelegate>
 
@@ -42,6 +43,11 @@
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickPlayHandle:)];
+        tap.delegate = self;
+        [self.contentView addGestureRecognizer:tap];
+        
         [self.videoBgImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.mas_equalTo(0);
             make.height.mas_equalTo(125);
@@ -87,6 +93,7 @@
             make.bottom.mas_equalTo(2);
             make.height.mas_equalTo(self.authorBgView.height - 4);
         }];
+        
         self.videoAuthHeadBtn.imageView.layer.borderColor = [UIColor redColor].CGColor;
         self.videoAuthHeadBtn.imageView.layer.borderWidth = 2.f;
         
@@ -120,12 +127,12 @@
     [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:[contentModel.detailModel.video_detail_info.detail_video_large_image objectForKey:@"url"]]];
     [self.videoAuthHeadBtn setTitle:contentModel.detailModel.media_name forState:UIControlStateNormal];
     self.videoTitleLabel.text = contentModel.detailModel.title;
-//    [self.videoAuthHeadBtn.imageView sd_setImageWithURL:[NSURL URLWithString: contentModel.detailModel.media_info.avatar_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-//        if(image){
-//            self.videoAuthHeadBtn.imageView.image = [image cropPictureWithRoundedCorner:self.videoAuthHeadBtn.imageView.image.size.width size:self.videoAuthHeadBtn.frame.size];
-//        }
-//    }];
-    [self.videoAuthHeadBtn.imageView sd_setImageWithURL:[NSURL URLWithString:contentModel.detailModel.media_info.avatar_url]];
+    
+    [self.videoAuthHeadBtn.imageView sd_setImageWithURL:[NSURL URLWithString: contentModel.detailModel.media_info.avatar_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if(image){
+            self.videoAuthHeadBtn.imageView.image = [image cropPictureWithRoundedCorner:self.videoAuthHeadBtn.imageView.image.size.width/2 size:self.videoAuthHeadBtn.frame.size];
+        }
+    }];
     self.videoPlayCountLabel.text = @"20W";
     self.videoTimeLabel.text = @"20:20";
 }
@@ -197,7 +204,7 @@
 -(UIView *)authorBgView{
     if(!_authorBgView){
         UIView *view = [[UIView alloc]init];
-        view.backgroundColor = [UIColor grayColor];
+        view.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:view];
         _authorBgView = view;
     }
@@ -262,14 +269,10 @@
 }
 
 #pragma mark -- 点击事件响应
--(void)clickPlayHandle:(UIButton *)sender{
+-(void)clickPlayHandle:(id)sender{
     if([self.delegate respondsToSelector:@selector(VideoPlayerAtIndexPath:)]){
         [self.delegate VideoPlayerAtIndexPath:self.indexPath];
     }
-}
-
--(void)videoDetailHandle:(UIGestureRecognizer *)ges{
-    
 }
 
 -(void)focusHandle:(UIButton *)sender{

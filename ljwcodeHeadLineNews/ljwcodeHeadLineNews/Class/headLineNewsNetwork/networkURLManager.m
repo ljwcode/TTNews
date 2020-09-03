@@ -33,7 +33,7 @@
     return [NSString stringWithFormat:@"%@video_api/get_category/v1/?",ljwcode_Base_url];
 }
 + (NSString *)videoListURLString {
-    return [NSString stringWithFormat:@"%@api/news/feed/v58/?",ljwcode_Base_url];
+    return [NSString stringWithFormat:@"%@api/news/feed/v58/?",ljwcode_VideoBase_url];
 }
 
 + (NSString *)microHeadlineURLString {
@@ -50,13 +50,16 @@
 
 -(NSString *)parseVideoRealURLWithVideo_id:(NSString *)video_id{
     int r = arc4random();
-    NSString *url = [NSString stringWithFormat:@"/video/urls/v/1/toutiao/mp4/\(video_id)?r=\(%d)",r];
+    if(r < 0){
+        r = abs(r);
+    }
+    NSString *url = [NSString stringWithFormat:@"/video/urls/v/1/toutiao/mp4/%@?r=%d",video_id,r];
     NSData *data = [url dataUsingEncoding:NSUTF8StringEncoding];
     UInt64 crc32 = data.getCRC32;
     if(crc32 < 0){
         crc32 += 0x100000000;
     }
-    NSString *realURL = [NSString stringWithFormat:@"http://is.snssdk.com/video/urls/v/1/toutiao/mp4/\%@?r=%d&s=%llu",video_id,r,crc32];
+    NSString *realURL = [NSString stringWithFormat:@"http://is.snssdk.com/video/urls/v/1/toutiao/mp4/%@?r=%d&s=%llu",video_id,r,crc32];
     return realURL;
 }
 
