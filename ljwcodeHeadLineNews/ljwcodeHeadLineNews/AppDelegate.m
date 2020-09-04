@@ -43,6 +43,12 @@
     [WXApi checkUniversalLinkReady:^(WXULCheckStep step, WXCheckULStepResult* result) {
         NSLog(@"%@, %u, %@, %@", @(step), result.success, result.errorInfo, result.suggestion);
     }];
+    
+    NSURL* urlToDocumentsFolder = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+      __autoreleasing NSError *error;
+      NSDate *installDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:urlToDocumentsFolder.path error:&error] objectForKey:NSFileCreationDate];
+
+      NSLog(@"This app was installed by the user on %@ %f", installDate, [installDate timeIntervalSince1970]);
 	
 	return YES;
 }

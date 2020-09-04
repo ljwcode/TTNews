@@ -42,19 +42,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *back_url_1;
 
+@property(nonatomic,assign)int vwidth;
+
+@property(nonatomic,assign)int vheight;
+
 @end
 
-@interface videoUrlLevelModel : NSObject
+@interface video_list : NSObject
 
 @property(nonatomic,strong)videoUrlInfoModel *video_1;
 
 @property(nonatomic,strong)videoUrlInfoModel *video_2;
 
 @property(nonatomic,strong)videoUrlInfoModel *video_3;
-
-@property(nonatomic,assign)int vwidth;
-
-@property(nonatomic,assign)int vheight;
 
 @end
 
@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *poster_url;
 
-@property(nonatomic,strong)videoUrlLevelModel *video_list;
+@property(nonatomic,strong)video_list *video_list;
 
 @property(nonatomic,copy)NSString *code;
 
@@ -118,6 +118,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,readonly)BOOL isVerticalVideo;
 
 @property(nonatomic,strong)NSArray *dataArray;
+
+@property(nonatomic,copy)NSString *data;
 
 @end
 

@@ -79,6 +79,8 @@
 		63C4FA9924EBCE2E00CF9850 /* TTPageDecorateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4FA9824EBCE2E00CF9850 /* TTPageDecorateView.m */; };
 		63C4FA9C24EBDFC900CF9850 /* TTPageMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4FA9B24EBDFC900CF9850 /* TTPageMenuView.m */; };
 		63D4FF9F24D96FC40035F561 /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D4FF9E24D96FC40035F561 /* NewsDetailViewController.m */; };
+		63DB0D182501E3F900B9FA0A /* parseVideoRealURLViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DB0D172501E3F900B9FA0A /* parseVideoRealURLViewModel.m */; };
+		63DB0D1B2501F19200B9FA0A /* videoRealURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DB0D1A2501F19200B9FA0A /* videoRealURLRequestModel.m */; };
 		63E6CB5E24C02CE800E0126C /* headLineSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E6CB5D24C02CE800E0126C /* headLineSearchViewController.m */; };
 		63E7177324F9F430003A690E /* TTSearchSuggestionRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */; };
 		63E7177624F9F4A0003A690E /* TTSearchSuggestionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E7177524F9F4A0003A690E /* TTSearchSuggestionViewModel.m */; };
@@ -245,6 +247,10 @@
 		63C4FA9B24EBDFC900CF9850 /* TTPageMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTPageMenuView.m; sourceTree = "<group>"; };
 		63D4FF9D24D96FC40035F561 /* NewsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsDetailViewController.h; sourceTree = "<group>"; };
 		63D4FF9E24D96FC40035F561 /* NewsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsDetailViewController.m; sourceTree = "<group>"; };
+		63DB0D162501E3F900B9FA0A /* parseVideoRealURLViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parseVideoRealURLViewModel.h; sourceTree = "<group>"; };
+		63DB0D172501E3F900B9FA0A /* parseVideoRealURLViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = parseVideoRealURLViewModel.m; sourceTree = "<group>"; };
+		63DB0D192501F19200B9FA0A /* videoRealURLRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoRealURLRequestModel.h; sourceTree = "<group>"; };
+		63DB0D1A2501F19200B9FA0A /* videoRealURLRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoRealURLRequestModel.m; sourceTree = "<group>"; };
 		63E6CB5C24C02CE800E0126C /* headLineSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = headLineSearchViewController.h; sourceTree = "<group>"; };
 		63E6CB5D24C02CE800E0126C /* headLineSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = headLineSearchViewController.m; sourceTree = "<group>"; };
 		63E7177124F9F430003A690E /* TTSearchSuggestionRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TTSearchSuggestionRequestModel.h; path = ljwcodeHeadLineNews/ljwcodeTools/TTSearchSuggestionRequestModel.h; sourceTree = SOURCE_ROOT; };
@@ -636,6 +642,8 @@
 				63F1F8E124AF315E00D687ED /* videoContentModel.m */,
 				63F1F8EB24AF3AB600D687ED /* videoContentRequestModel.h */,
 				63F1F8EC24AF3AB600D687ED /* videoContentRequestModel.m */,
+				63DB0D192501F19200B9FA0A /* videoRealURLRequestModel.h */,
+				63DB0D1A2501F19200B9FA0A /* videoRealURLRequestModel.m */,
 				63F1F8E324AF31D300D687ED /* videoListModel */,
 				6355CFED24BEFC19002D3815 /* videoTitileModel */,
 			);
@@ -649,6 +657,8 @@
 				63F1F8E624AF347600D687ED /* videoTitleViewModel.m */,
 				63F1F8E824AF3A3500D687ED /* videoContentViewModel.h */,
 				63F1F8E924AF3A3500D687ED /* videoContentViewModel.m */,
+				63DB0D162501E3F900B9FA0A /* parseVideoRealURLViewModel.h */,
+				63DB0D172501E3F900B9FA0A /* parseVideoRealURLViewModel.m */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -997,6 +1007,7 @@
 				637A97F724C05BD7000F7405 /* VideoPlayerContainerView.m in Sources */,
 				63422C5624A87EA30091FEE1 /* newsChannelTitleView.m in Sources */,
 				63E8079924FD218A00C58406 /* showAllMsgChannelView.m in Sources */,
+				63DB0D182501E3F900B9FA0A /* parseVideoRealURLViewModel.m in Sources */,
 				637C2D3024A9D1600009274C /* networkBaseModel.m in Sources */,
 				630A976624CFC463003029C3 /* countryCodeView.m in Sources */,
 				63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */,
@@ -1048,6 +1059,7 @@
 				63422C4A24A875D40091FEE1 /* NewsChannelView.m in Sources */,
 				949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */,
 				8209791A1BD3AFAC00CF9D0C /* MineViewController.m in Sources */,
+				63DB0D1B2501F19200B9FA0A /* videoRealURLRequestModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

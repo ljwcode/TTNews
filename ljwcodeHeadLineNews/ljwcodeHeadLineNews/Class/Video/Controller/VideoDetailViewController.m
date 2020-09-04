@@ -14,6 +14,8 @@
 #import <ZFPlayer/ZFAVPlayerManager.h>
 #import <ZFPlayer/ZFPlayerControlView.h>
 
+#import "parseVideoRealURLViewModel.h"
+
 @interface VideoDetailViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate>
 
 @property(nonatomic,strong)UITableView *detailTableView;
@@ -28,9 +30,18 @@
 
 @property(nonatomic,strong)ZFPlayerControlView *playerControlView;
 
+@property(nonatomic,strong)parseVideoRealURLViewModel *realURLViewModel;
+
 @end
 
 @implementation VideoDetailViewController
+
+-(parseVideoRealURLViewModel *)realURLViewModel{
+    if(!_realURLViewModel){
+        _realURLViewModel = [[parseVideoRealURLViewModel alloc]init];
+    }
+    return _realURLViewModel;
+}
 
 -(videoContentViewModel *)contentViewModel{
     if(!_contentViewModel){
@@ -166,13 +177,13 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    videoContentModel *model = self.dataArray[indexPath.row];
+    self.videoPlayModel = self.dataArray[indexPath.row];
     TVVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
     if(!cell){
         cell = [[TVVideoPlayerViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.contentModel = model;
+    cell.contentModel = self.videoPlayModel;
     [cell setDelegate:self withIndexPath:indexPath];
     
     return cell;
@@ -220,10 +231,20 @@
 #pragma mark -- private method
 
 - (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
+//    //video_id 拼接url
     self.videoPlayModel = self.dataArray[indexPath.row];
     NSString *urlString = [[networkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
-    [self.player playTheIndexPath:indexPath assetURL:[NSURL URLWithString:urlString]];
-//    [self.playerControlView showTitle:_videoPlayModel.detailModel.title coverURLString:[_videoPlayModel.detailModel.video_detail_info.detail_video_large_image objectForKey:@"url"]  fullScreenMode:_videoPlayModel.isVerticalVideo ? ZFFullScreenModePortrait : ZFFullScreenModeLandscape];
+    if(self.parseRealURL){
+        self.parseRealURL(urlString);
+    }
+    
+    [[self.realURLViewModel.VideoRealURLCommand execute:nil]subscribeNext:^(id  _Nullable x) {
+        NSLog(@"%@",x);
+    }];
+    
+    NSString *videoURL = self.videoPlayModel.video_list.video_1.main_url;
+    [self.player playTheIndexPath:indexPath assetURL:[NSURL URLWithString:videoURL]];
+    //    [self.playerControlView showTitle:_videoPlayModel.detailModel.title coverURLString:[_videoPlayModel.detailModel.video_detail_info.detail_video_large_image objectForKey:@"url"]  fullScreenMode:_videoPlayModel.isVerticalVideo ? ZFFullScreenModePortrait : ZFFullScreenModeLandscape];
 }
 
 #pragma mark -- TVVideoPlayerCellDelegate

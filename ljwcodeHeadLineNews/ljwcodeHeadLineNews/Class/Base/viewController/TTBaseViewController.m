@@ -66,7 +66,7 @@
     headLineSearchViewController *searchViewController = [headLineSearchViewController searchViewControllerWithHotSearchies:hotSeaches searchControllerPlaceHolder:hotSeaches[0] searchBlock:^(headLineSearchViewController * _Nonnull searchController, UISearchBar * _Nonnull searchBar, NSString * _Nonnull searchText) {
     }];
     searchViewController.hotSearchStyle = 0;
-    [self.navigationController pushViewController:searchViewController animated:YES];
+//    [self.navigationController pushViewController:searchViewController animated:YES];
 }
 
 //图片显示

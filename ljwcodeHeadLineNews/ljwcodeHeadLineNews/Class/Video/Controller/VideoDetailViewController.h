@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)homeTitleModel *homeTitle;
 
+@property(nonatomic,copy)void(^parseRealURL)(NSString *url);
+
 @end
 
 NS_ASSUME_NONNULL_END

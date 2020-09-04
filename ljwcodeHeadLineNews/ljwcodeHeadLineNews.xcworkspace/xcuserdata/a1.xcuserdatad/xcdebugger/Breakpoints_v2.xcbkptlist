@@ -28,5 +28,117 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6259FDFF-F095-4DB0-92E1-1A65ECE155FA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ljwcodeHeadLineNews/Class/Video/viewModel/parseVideoRealURLViewModel.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "-init"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6259FDFF-F095-4DB0-92E1-1A65ECE155FA - 54dbcd11c10c9d23"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__34-[parseVideoRealURLViewModel init]_block_invoke_2"
+                  moduleName = "&#x4eca;&#x65e5;&#x5934;&#x6761;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a1/Documents/TTNews/ljwcodeHeadLineNews/ljwcodeHeadLineNews/Class/Video/viewModel/parseVideoRealURLViewModel.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "188">
+               </Location>
+               <Location
+                  uuid = "6259FDFF-F095-4DB0-92E1-1A65ECE155FA - 54dbcd11c12c9d22"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__34-[parseVideoRealURLViewModel init]_block_invoke_3"
+                  moduleName = "&#x4eca;&#x65e5;&#x5934;&#x6761;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a1/Documents/TTNews/ljwcodeHeadLineNews/ljwcodeHeadLineNews/Class/Video/viewModel/parseVideoRealURLViewModel.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "585D2BCB-6502-497F-AEEC-B727DEDAB7FD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ljwcodeHeadLineNews/Class/Video/viewModel/parseVideoRealURLViewModel.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "-init"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "585D2BCB-6502-497F-AEEC-B727DEDAB7FD - c1859eff8f09dd56"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__34-[parseVideoRealURLViewModel init]_block_invoke"
+                  moduleName = "&#x4eca;&#x65e5;&#x5934;&#x6761;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a1/Documents/TTNews/ljwcodeHeadLineNews/ljwcodeHeadLineNews/Class/Video/viewModel/parseVideoRealURLViewModel.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "585D2BCB-6502-497F-AEEC-B727DEDAB7FD - 54dbcd11c10c9d23"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__34-[parseVideoRealURLViewModel init]_block_invoke_2"
+                  moduleName = "&#x4eca;&#x65e5;&#x5934;&#x6761;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a1/Documents/TTNews/ljwcodeHeadLineNews/ljwcodeHeadLineNews/Class/Video/viewModel/parseVideoRealURLViewModel.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "72">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0DC32D2E-3D10-45E4-B78B-65BCEB4E803B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ljwcodeHeadLineNews/Class/Video/Controller/VideoDetailViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "-playTheVideoAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

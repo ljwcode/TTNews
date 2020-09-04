@@ -25,7 +25,7 @@
 }
 
 @end
-@implementation videoUrlLevelModel
+@implementation video_list
 
 
 @end
@@ -37,7 +37,8 @@
 @implementation videoContentModel
 
 -(BOOL)isIsVerticalVideo{
-    return _video_list.vwidth < _video_list.vheight;
+//    return _video_list.vwidth < _video_list.vheight;
+    return NO;
 }
 
 - (instancetype)init
@@ -57,10 +58,13 @@
     return _detailModel;
 }
 
-+(NSDictionary *)mj_objectClassInArray{
-    return @{
-        @"data" : @"videoContentModel"
-    };
+-(video_list *)video_list{
+    if(!_video_list){
+        NSData *data = [self.data dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        _video_list = [[[video_list alloc]init]mj_setKeyValues:dic];
+    }
+    return _video_list;
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "networkURLManager.h"
 #import "TTHeader.h"
 #import "NSData+CRC32.h"
+#import "VideoDetailViewController.h"
 
 @implementation networkURLManager
 
@@ -66,6 +67,15 @@
 +(NSString *)searchSuggestionUrl{
     NSString *url = [NSString stringWithFormat:@"%@search/suggest/homepage_suggest/?",ljwcode_Base_url];
     return url;
+}
+
++(NSString *)parseVideoRealURL{
+    __block NSString *urlString = @"";
+    VideoDetailViewController *videoDetailVC = [[VideoDetailViewController alloc]init];
+    videoDetailVC.parseRealURL = ^(NSString * _Nonnull url) {
+        urlString = url;
+    };
+    return urlString;
 }
 
 @end
