@@ -20,11 +20,13 @@
         _VideoRealURLCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 videoRealURLRequestModel *request = [videoRealURLRequestModel initWithNetworkModelWithUrlString:networkURLManager.parseVideoRealURL isPost:NO];
+                request.input = input;
                 
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     NSDictionary *responseDic = (NSDictionary *)response;
-                    NSArray *responseArray = [responseDic objectForKey:@"data"];
-                    
+                    NSDictionary *responseArray = [responseDic objectForKey:@"data"];
+                    videoContentModel *model = [[[videoContentModel alloc]init]mj_setKeyValues:responseArray];
+                    [subscriber sendNext:model];
                     [subscriber sendCompleted];
                 } failHandle:^(NSError * _Nonnull error) {
                     NSLog(@"解析请求失败");

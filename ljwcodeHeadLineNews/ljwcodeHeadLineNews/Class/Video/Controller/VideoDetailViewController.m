@@ -238,8 +238,9 @@
         self.parseRealURL(urlString);
     }
     
-    [[self.realURLViewModel.VideoRealURLCommand execute:nil]subscribeNext:^(id  _Nullable x) {
+    [[self.realURLViewModel.VideoRealURLCommand execute:@13]subscribeNext:^(id  _Nullable x) {
         NSLog(@"%@",x);
+        self.videoPlayModel = x;
     }];
     
     NSString *videoURL = self.videoPlayModel.video_list.video_1.main_url;
