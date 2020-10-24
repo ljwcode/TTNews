@@ -69,13 +69,4 @@
     return url;
 }
 
-+(NSString *)parseVideoRealURL{
-    __block NSString *urlString = @"";
-    VideoDetailViewController *videoDetailVC = [[VideoDetailViewController alloc]init];
-    videoDetailVC.parseRealURL = ^(NSString * _Nonnull url) {
-        urlString = url;
-    };
-    return urlString;
-}
-
 @end

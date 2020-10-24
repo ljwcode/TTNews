@@ -35,6 +35,9 @@
 		63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5A24A88BB40091FEE1 /* newsChannelModel.m */; };
 		63422C5E24A88F020091FEE1 /* channelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5D24A88F020091FEE1 /* channelButton.m */; };
 		634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */; };
+		6352492125442980009AECF2 /* QRCodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6352492025442980009AECF2 /* QRCodeManager.m */; };
+		63524924254429DD009AECF2 /* QRCodePreviewVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 63524923254429DD009AECF2 /* QRCodePreviewVIew.m */; };
+		6352492725442F76009AECF2 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6352492625442F76009AECF2 /* QRCodeViewController.m */; };
 		6355CFEE24BEFC19002D3815 /* videoTitileModel in Resources */ = {isa = PBXBuildFile; fileRef = 6355CFED24BEFC19002D3815 /* videoTitileModel */; };
 		6355CFF524BF1078002D3815 /* loginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6355CFF424BF1078002D3815 /* loginView.m */; };
 		635E8C3D24E29328000345C4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635E8C3C24E29328000345C4 /* WebKit.framework */; };
@@ -162,6 +165,12 @@
 		63422C5D24A88F020091FEE1 /* channelButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = channelButton.m; sourceTree = "<group>"; };
 		634A581324BD9B7D00CDF423 /* baseBadgeLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseBadgeLabel.h; sourceTree = "<group>"; };
 		634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseBadgeLabel.m; sourceTree = "<group>"; };
+		6352491F25442980009AECF2 /* QRCodeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodeManager.h; sourceTree = "<group>"; };
+		6352492025442980009AECF2 /* QRCodeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeManager.m; sourceTree = "<group>"; };
+		63524922254429DD009AECF2 /* QRCodePreviewVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodePreviewVIew.h; sourceTree = "<group>"; };
+		63524923254429DD009AECF2 /* QRCodePreviewVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodePreviewVIew.m; sourceTree = "<group>"; };
+		6352492525442F76009AECF2 /* QRCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
+		6352492625442F76009AECF2 /* QRCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
 		6355CFED24BEFC19002D3815 /* videoTitileModel */ = {isa = PBXFileReference; lastKnownFileType = text; path = videoTitileModel; sourceTree = "<group>"; };
 		6355CFF324BF1078002D3815 /* loginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = loginView.h; sourceTree = "<group>"; };
 		6355CFF424BF1078002D3815 /* loginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = loginView.m; sourceTree = "<group>"; };
@@ -348,6 +357,7 @@
 		6328F60B249DABDA00C767A8 /* ljwcodeTools */ = {
 			isa = PBXGroup;
 			children = (
+				6352491E2544294E009AECF2 /* QRCodeTool */,
 				631CFA6524E51BEF0082B941 /* TTHorizontalCateoryTabBar */,
 				63403E8024C96AE30024A362 /* UIButton */,
 				637C2D3B24A9F1BA0009274C /* MBProgressHUD+Add.h */,
@@ -458,6 +468,17 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		6352491E2544294E009AECF2 /* QRCodeTool */ = {
+			isa = PBXGroup;
+			children = (
+				6352491F25442980009AECF2 /* QRCodeManager.h */,
+				6352492025442980009AECF2 /* QRCodeManager.m */,
+				63524922254429DD009AECF2 /* QRCodePreviewVIew.h */,
+				63524923254429DD009AECF2 /* QRCodePreviewVIew.m */,
+			);
+			path = QRCodeTool;
+			sourceTree = "<group>";
+		};
 		6355CFEF24BF0F70002D3815 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +524,8 @@
 		6355CFF224BF0F86002D3815 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6352492525442F76009AECF2 /* QRCodeViewController.h */,
+				6352492625442F76009AECF2 /* QRCodeViewController.m */,
 				820979171BD3AFAC00CF9D0C /* MineViewController.h */,
 				820979181BD3AFAC00CF9D0C /* MineViewController.m */,
 				631CFA6624E5276A0082B941 /* focusViewController.h */,
@@ -1003,6 +1026,7 @@
 				63F1F8E224AF315E00D687ED /* videoContentModel.m in Sources */,
 				63422BE324A839960091FEE1 /* WMProgressView.m in Sources */,
 				63F1F8EA24AF3A3500D687ED /* videoContentViewModel.m in Sources */,
+				63524924254429DD009AECF2 /* QRCodePreviewVIew.m in Sources */,
 				63D4FF9F24D96FC40035F561 /* NewsDetailViewController.m in Sources */,
 				637A97F724C05BD7000F7405 /* VideoPlayerContainerView.m in Sources */,
 				63422C5624A87EA30091FEE1 /* newsChannelTitleView.m in Sources */,
@@ -1022,6 +1046,7 @@
 				63ABADD624DBF48F0087453E /* discussEditView.m in Sources */,
 				637C2D3324A9D1930009274C /* networkURLManager.m in Sources */,
 				820978EB1BD3A37700CF9D0C /* AppDelegate.m in Sources */,
+				6352492725442F76009AECF2 /* QRCodeViewController.m in Sources */,
 				63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */,
 				63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */,
 				631CFA6824E5276A0082B941 /* focusViewController.m in Sources */,
@@ -1048,6 +1073,7 @@
 				63422BDF24A839960091FEE1 /* WMPageController.m in Sources */,
 				63C4FA9C24EBDFC900CF9850 /* TTPageMenuView.m in Sources */,
 				638E977D24CADB90005ADF42 /* commonSettingTableViewCell.m in Sources */,
+				6352492125442980009AECF2 /* QRCodeManager.m in Sources */,
 				63422BE224A839960091FEE1 /* WMMenuView.m in Sources */,
 				6355CFF524BF1078002D3815 /* loginView.m in Sources */,
 				634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */,

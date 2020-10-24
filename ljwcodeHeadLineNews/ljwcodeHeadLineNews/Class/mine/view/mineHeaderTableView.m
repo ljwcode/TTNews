@@ -19,8 +19,28 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
         self.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.3);
+        
+        UIButton *scanQRCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [scanQRCodeBtn setImage:[UIImage imageNamed:@"profile_scan_code"] forState:UIControlStateNormal];
+        [scanQRCodeBtn addTarget:self action:@selector(scanQRCode:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:scanQRCodeBtn];
+        [scanQRCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(vSpace);
+            make.top.mas_equalTo(hSpace);
+            make.width.height.mas_equalTo(40);
+        }];
+        
+        UIButton *SettingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [SettingBtn setImage:[UIImage imageNamed:@"profile_system_config"] forState:UIControlStateNormal];
+        [SettingBtn addTarget:self action:@selector(SettingHandle:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:SettingBtn];
+        [SettingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(-vSpace);
+            make.top.mas_equalTo(hSpace);
+            make.width.height.mas_equalTo(40);
+        }];
+        
         UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [loginButton setBackgroundImage:[UIImage imageNamed:@"profile_grid_login~iphone@2x"] forState:UIControlStateNormal];
         [loginButton setImage:[UIImage imageNamed:@"profile_grid_login~iphone@2x"] forState:UIControlStateNormal];
         [loginButton setTitle:@"登陆" forState:UIControlStateNormal];
         [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -38,6 +58,16 @@
         [loginButton addTarget:self action:@selector(loginHandle:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
+}
+
+#pragma mark ----- 响应事件
+
+-(void)SettingHandle:(UIButton *)sender{
+    
+}
+
+-(void)scanQRCode:(UIButton *)sender{
+    
 }
 
 -(void)loginHandle:(UIButton *)sender{

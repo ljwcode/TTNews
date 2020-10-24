@@ -55,9 +55,9 @@
         
         [self.videoTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(2);
-            make.centerX.mas_equalTo(self.videoBgImgView);
-            make.width.mas_equalTo(self.videoBgImgView.frame.size.width);
-            make.height.mas_equalTo(self.videoBgImgView.frame.size.height * 0.5);
+            make.centerX.mas_equalTo(self.contentView);
+            make.left.right.mas_equalTo(0);
+            make.height.mas_equalTo(125);
         }];
         
         [self.videoPlayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -66,15 +66,15 @@
         }];
         
         [self.videoPlayCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(hSpace);
-            make.bottom.mas_equalTo(2 * vSpace);
+            make.left.mas_equalTo(hSpace/2);
+            make.bottom.mas_equalTo(self.videoBgImgView.mas_bottom).offset(-hSpace);
             make.width.mas_equalTo(80);
             make.height.mas_equalTo(20);
         }];
         
         [self.videoTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(hSpace);
-            make.bottom.mas_equalTo(2 * vSpace);
+            make.right.mas_equalTo(-hSpace/2);
+            make.bottom.mas_equalTo(self.videoBgImgView.mas_bottom).offset(-hSpace);
             make.width.mas_equalTo(80);
             make.height.mas_equalTo(20);
         }];
@@ -91,11 +91,8 @@
             make.left.mas_equalTo(hSpace);
             make.top.mas_equalTo(2);
             make.bottom.mas_equalTo(2);
-            make.height.mas_equalTo(self.authorBgView.height - 4);
+            make.height.width.mas_equalTo(50);
         }];
-        
-        self.videoAuthHeadBtn.imageView.layer.borderColor = [UIColor redColor].CGColor;
-        self.videoAuthHeadBtn.imageView.layer.borderWidth = 2.f;
         
         [self.authorFocusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.videoAuthHeadBtn.mas_right).offset(hSpace);
@@ -131,10 +128,13 @@
     [self.videoAuthHeadBtn.imageView sd_setImageWithURL:[NSURL URLWithString: contentModel.detailModel.media_info.avatar_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if(image){
             self.videoAuthHeadBtn.imageView.image = [image cropPictureWithRoundedCorner:self.videoAuthHeadBtn.imageView.image.size.width/2 size:self.videoAuthHeadBtn.frame.size];
+            if(error){
+                NSLog(@"error = %@",error);
+            }
         }
     }];
-    self.videoPlayCountLabel.text = @"20W";
-    self.videoTimeLabel.text = @"20:20";
+    self.videoPlayCountLabel.text = [NSString stringWithFormat:@"%d次播放",contentModel.detailModel.video_detail_info.video_watch_count];
+    self.videoTimeLabel.text = [NSString stringWithFormat:@"%d:%d",contentModel.detailModel.video_duration/60,contentModel.detailModel.video_duration%60];
 }
 
 
@@ -152,12 +152,11 @@
 -(UILabel *)videoTitleLabel{
     if(!_videoTitleLabel){
         UILabel *label = [[UILabel alloc]init];
-        label.textColor = [UIColor blackColor];
+        label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:17.f];
-        label.numberOfLines = 2;
-
-        [self.videoBgImgView addSubview:label];
+        label.font = [UIFont systemFontOfSize:25.f weight:6.f];
+        label.numberOfLines = 0;
+        [self.contentView addSubview:label];
         _videoTitleLabel = label;
     }
     return _videoTitleLabel;
@@ -179,8 +178,9 @@
         UILabel *label = [[UILabel alloc]init];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:10.f];
-        [self.videoBgImgView addSubview:label];
+        label.font = [UIFont systemFontOfSize:12.f];
+        label.adjustsFontSizeToFitWidth = YES;
+        [self.contentView addSubview:label];
         _videoPlayCountLabel = label;
     }
     return _videoPlayCountLabel;
@@ -193,9 +193,10 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:10.f];
         label.backgroundColor = [UIColor blackColor];
-        label.alpha = 0.4;
         label.layer.cornerRadius = 10.f;
-        [self.videoBgImgView addSubview:label];
+        label.layer.masksToBounds = YES;
+        label.alpha = 0.6;
+        [self.contentView addSubview:label];
         _videoTimeLabel = label;
     }
     return _videoTimeLabel;
@@ -215,9 +216,11 @@
     if(!_videoAuthHeadBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:13.f];
-        [btn.titleLabel sizeToFit];
+        btn.titleLabel.font = [UIFont systemFontOfSize:15.f];
+        btn.titleLabel.adjustsFontSizeToFitWidth = YES;
         btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        btn.imageEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
+        btn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         [self.authorBgView addSubview:btn];
         _videoAuthHeadBtn = btn;
     }

@@ -96,6 +96,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)video_detail_info *video_detail_info;
 
+@property(nonatomic,assign)int video_duration;
+
 @end
 
 

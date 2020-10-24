@@ -234,18 +234,17 @@
 //    //video_id 拼接url
     self.videoPlayModel = self.dataArray[indexPath.row];
     NSString *urlString = [[networkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
-    if(self.parseRealURL){
-        self.parseRealURL(urlString);
-    }
-    
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     [[self.realURLViewModel.VideoRealURLCommand execute:@13]subscribeNext:^(id  _Nullable x) {
         NSLog(@"%@",x);
         self.videoPlayModel = x;
+        dispatch_semaphore_signal(sem);
     }];
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
     
     NSString *videoURL = self.videoPlayModel.video_list.video_1.main_url;
     [self.player playTheIndexPath:indexPath assetURL:[NSURL URLWithString:videoURL]];
-    //    [self.playerControlView showTitle:_videoPlayModel.detailModel.title coverURLString:[_videoPlayModel.detailModel.video_detail_info.detail_video_large_image objectForKey:@"url"]  fullScreenMode:_videoPlayModel.isVerticalVideo ? ZFFullScreenModePortrait : ZFFullScreenModeLandscape];
+        [self.playerControlView showTitle:_videoPlayModel.detailModel.title coverURLString:[_videoPlayModel.detailModel.video_detail_info.detail_video_large_image objectForKey:@"url"]  fullScreenMode:_videoPlayModel.isVerticalVideo ? ZFFullScreenModePortrait : ZFFullScreenModeLandscape];
 }
 
 #pragma mark -- TVVideoPlayerCellDelegate
