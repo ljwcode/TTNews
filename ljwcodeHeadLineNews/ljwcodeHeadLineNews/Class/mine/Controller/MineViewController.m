@@ -62,7 +62,7 @@
 
 -(UITableView *)tableView{
     if(!_tableView){
-        UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+        UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         tableView.delegate = self;
         tableView.dataSource = self;
         mineHeaderTableView *headerView = [[mineHeaderTableView alloc]init];

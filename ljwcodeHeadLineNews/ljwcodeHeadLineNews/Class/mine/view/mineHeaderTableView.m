@@ -9,6 +9,8 @@
 #import "mineHeaderTableView.h"
 #import <Masonry/Masonry.h>
 #import <UIView+Frame.h>
+#import "QRCodeViewController.h"
+#import "SettingViewController.h"
 
 @interface mineHeaderTableView()
 
@@ -63,11 +65,13 @@
 #pragma mark ----- 响应事件
 
 -(void)SettingHandle:(UIButton *)sender{
-    
+    SettingViewController *SettingVC = [[SettingViewController alloc]init];
+    [[self getCurrentViewController].navigationController pushViewController:SettingVC animated:YES];
 }
 
 -(void)scanQRCode:(UIButton *)sender{
-    
+    QRCodeViewController *QRCodeVC = [[QRCodeViewController alloc]init];
+    [[self getCurrentViewController].navigationController pushViewController:QRCodeVC animated:YES];
 }
 
 -(void)loginHandle:(UIButton *)sender{

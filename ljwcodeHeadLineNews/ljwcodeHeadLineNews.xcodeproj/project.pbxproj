@@ -73,6 +73,7 @@
 		63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */; };
 		63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */; };
 		63BE352524DAD63A001ADFDD /* newsDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE352424DAD63A001ADFDD /* newsDetailFooterView.m */; };
+		63BE5E792546B90D00381E38 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE5E782546B90D00381E38 /* SettingViewController.m */; };
 		63C4729E24B0250B0030C84B /* videoPlayerToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4729D24B0250B0030C84B /* videoPlayerToolView.m */; };
 		63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */; };
 		63C4FA8D24EBC1C800CF9850 /* TTHorizontalPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4FA8C24EBC1C800CF9850 /* TTHorizontalPageViewController.m */; };
@@ -238,6 +239,8 @@
 		63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homeNewsTableViewCell.xib; sourceTree = "<group>"; };
 		63BE352324DAD63A001ADFDD /* newsDetailFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newsDetailFooterView.h; sourceTree = "<group>"; };
 		63BE352424DAD63A001ADFDD /* newsDetailFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newsDetailFooterView.m; sourceTree = "<group>"; };
+		63BE5E772546B90D00381E38 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		63BE5E782546B90D00381E38 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		63C4729C24B0250B0030C84B /* videoPlayerToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoPlayerToolView.h; sourceTree = "<group>"; };
 		63C4729D24B0250B0030C84B /* videoPlayerToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoPlayerToolView.m; sourceTree = "<group>"; };
 		63C4729F24B0566D0030C84B /* NetworkSpeedMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkSpeedMonitor.h; sourceTree = "<group>"; };
@@ -532,6 +535,8 @@
 				631CFA6724E5276A0082B941 /* focusViewController.m */,
 				631CFA6F24E567240082B941 /* MessageViewController.h */,
 				631CFA7024E567240082B941 /* MessageViewController.m */,
+				63BE5E772546B90D00381E38 /* SettingViewController.h */,
+				63BE5E782546B90D00381E38 /* SettingViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1076,6 +1081,7 @@
 				6352492125442980009AECF2 /* QRCodeManager.m in Sources */,
 				63422BE224A839960091FEE1 /* WMMenuView.m in Sources */,
 				6355CFF524BF1078002D3815 /* loginView.m in Sources */,
+				63BE5E792546B90D00381E38 /* SettingViewController.m in Sources */,
 				634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */,
 				63403E7C24C969FB0024A362 /* screeningHallTableViewCell.m in Sources */,
 				820979151BD3AEA800CF9D0C /* ScreeningHallViewController.m in Sources */,
