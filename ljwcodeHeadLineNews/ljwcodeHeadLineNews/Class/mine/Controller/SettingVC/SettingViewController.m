@@ -8,12 +8,17 @@
 
 #import "SettingViewController.h"
 #import <Masonry/Masonry.h>
+#import "PrivacyViewController.h"
+#import "clearCacheTools.h"
+#import "NetWorkConfigureViewController.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)UITableView *tableView;
 
 @property(nonatomic,strong)UIView *footerView;
+
+@property(nonatomic,strong)UISwitch *switchOnNight;
 
 @end
 
@@ -72,7 +77,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
-    UITableViewCell *ResultCell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    UITableViewCell *ResultCell = nil;
     switch(indexPath.section){
         case 0:{
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -91,9 +96,9 @@
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
                 if(indexPath.row == 0){
                     cell.textLabel.text = @"夜间模式";
-                    UISwitch *switchOnNight = [[UISwitch alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.1, cell.frame.size.height/2)];
-                    switchOnNight.on = false;
-                    cell.accessoryView = switchOnNight;
+                    self.switchOnNight = [[UISwitch alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.1, cell.frame.size.height/2)];
+                    self.switchOnNight.on = false;
+                    cell.accessoryView = self.switchOnNight;
                 }else if(indexPath.row == 1){
                     cell.textLabel.text = @"字体大小";
                     UIButton *chooseFontSizeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -120,13 +125,22 @@
                     cell.textLabel.text = @"清除缓存";
                     UIButton *clearCacheBtn = [UIButton buttonWithType:UIButtonTypeCustom];
                     clearCacheBtn.frame = CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.2, cell.frame.size.height/2);
-                    [clearCacheBtn setTitle:@"0.00MB" forState:UIControlStateNormal];
+                    NSString *CachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+                    [UIView animateWithDuration:2.f animations:^{
+                        [clearCacheBtn setTitle:@"计算中..." forState:UIControlStateNormal];
+                    } completion:^(BOOL finished) {
+                        if(finished){
+                            [clearCacheBtn setTitle:[NSString stringWithFormat:@"%@MB",[clearCacheTools getCacheSizeWithFilePath:CachePath]] forState:UIControlStateNormal];
+                        }
+                    }];
+                    
                     clearCacheBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
                     clearCacheBtn.titleLabel.font = [UIFont systemFontOfSize:12.f];
                     [clearCacheBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
                     [clearCacheBtn setImage:[UIImage imageNamed:@"arrow_right_setup"] forState:UIControlStateNormal];
                     clearCacheBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -clearCacheBtn.imageView.intrinsicContentSize.width, 0, clearCacheBtn.imageView.intrinsicContentSize.width);
                     clearCacheBtn.imageEdgeInsets = UIEdgeInsetsMake(0, clearCacheBtn.titleLabel.intrinsicContentSize.width, 0, -clearCacheBtn.titleLabel.intrinsicContentSize.width);
+                    [clearCacheBtn setTag:10011];
                     [clearCacheBtn addTarget:self action:@selector(clearCacheHandle:) forControlEvents:UIControlEventTouchUpInside];
                     cell.accessoryView = clearCacheBtn;
                 }else if(indexPath.row == 1){
@@ -208,6 +222,45 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return [[UIView alloc]init];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.section) {
+        case 0:{
+            PrivacyViewController *privacyVC = [[PrivacyViewController alloc]init];
+            [self.navigationController pushViewController:privacyVC animated:YES];
+        }
+            break;
+        case 1:{
+            
+        }
+            break;
+        case 2:{
+            if(indexPath.row == 0){
+                NSString *CachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+                
+                UIAlertController *alertSheetVC = [UIAlertController alertControllerWithTitle:@"" message:@"确定删除所有缓存？离线内容及图片均会被删除" preferredStyle:UIAlertControllerStyleActionSheet];
+                UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [UIView animateWithDuration:1.f animations:^{
+                        [clearCacheTools clearCacheWithFilePath:CachePath];
+                    } completion:^(BOOL finished) {
+                        UIButton *clearBtn = (UIButton *)[self.tableView viewWithTag:10011];
+                        [clearBtn setTitle:@"0.00MB" forState:UIControlStateNormal];
+                    }];
+                }];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+                [alertSheetVC addAction:sureAction];
+                [alertSheetVC addAction:cancelAction];
+                [self presentViewController:alertSheetVC animated:YES completion:nil];
+            }else if(indexPath.row == 1){
+                NetWorkConfigureViewController *NetConfigureVC = [[NetWorkConfigureViewController alloc]init];
+                [self.navigationController pushViewController:NetConfigureVC animated:YES];
+            }
+        }
+            
+        default:
+            break;
+    }
 }
 
 

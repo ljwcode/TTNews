@@ -66,4 +66,10 @@
 
 #define kAppDelegate ((AppDelegate *)[[UIApplication sharedApplication]delegate])
 
+#define BackgroundViewColorTag 11
+
+#define TableViewCellTextColorTag 12
+
+#define TableViewCellBackgroundColorTag 13
+
 #endif /* ljwcodeHeadLineNews_h */

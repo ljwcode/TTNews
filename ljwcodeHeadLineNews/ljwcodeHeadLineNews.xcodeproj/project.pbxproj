@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,18 @@
 		63167ABA24AB63E2002CB4EF /* homeTitleChannelModel in Resources */ = {isa = PBXBuildFile; fileRef = 63167AB924AB63E2002CB4EF /* homeTitleChannelModel */; };
 		631BAEE8249B63D700639CD2 /* UITabBar+TTTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BAEE7249B63D700639CD2 /* UITabBar+TTTabBarItem.m */; };
 		631BAEEB249B751D00639CD2 /* TTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BAEEA249B751D00639CD2 /* TTNavigationController.m */; };
+		631BC8FF25481893001B82AB /* UINavigationBar+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC8FE25481893001B82AB /* UINavigationBar+ThemeChange.m */; };
+		631BC903254818AE001B82AB /* UITableView+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC902254818AE001B82AB /* UITableView+ThemeChange.m */; };
+		631BC907254818C6001B82AB /* UITableViewCell+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC906254818C6001B82AB /* UITableViewCell+ThemeChange.m */; };
+		631BC90C25481905001B82AB /* UIColor+TTColorTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC90B25481905001B82AB /* UIColor+TTColorTools.m */; };
+		631BC91225481950001B82AB /* TTMethodSWizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC91125481950001B82AB /* TTMethodSWizzle.m */; };
+		631BC918254819AA001B82AB /* TTThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC917254819AA001B82AB /* TTThemeManager.m */; };
+		631BC91C25481E50001B82AB /* TTThemeDefault.plist in Resources */ = {isa = PBXBuildFile; fileRef = 631BC91B25481E50001B82AB /* TTThemeDefault.plist */; };
+		631BC91F25481E66001B82AB /* TTThemeDefaultTag.plist in Resources */ = {isa = PBXBuildFile; fileRef = 631BC91E25481E66001B82AB /* TTThemeDefaultTag.plist */; };
+		631BC92225481E7D001B82AB /* TTThemeNight.plist in Resources */ = {isa = PBXBuildFile; fileRef = 631BC92125481E7D001B82AB /* TTThemeNight.plist */; };
+		631BC92525481E8B001B82AB /* TTThemeNightTag.plist in Resources */ = {isa = PBXBuildFile; fileRef = 631BC92425481E8B001B82AB /* TTThemeNightTag.plist */; };
+		631BC92A25482A9A001B82AB /* clearCacheTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC92925482A9A001B82AB /* clearCacheTools.m */; };
+		631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC92D25483D8D001B82AB /* NetWorkConfigureViewController.m */; };
 		631CFA6824E5276A0082B941 /* focusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA6724E5276A0082B941 /* focusViewController.m */; };
 		631CFA7124E567250082B941 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA7024E567240082B941 /* MessageViewController.m */; };
 		63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63231B9024A08F110059FD5F /* TTNavigationBar.m */; };
@@ -72,6 +84,10 @@
 		63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AD1AB924AC61D1007EC745 /* homeJokeModel.m */; };
 		63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */; };
 		63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */; };
+		63BE32FD2547F3D000607EBA /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE32FC2547F3D000607EBA /* PrivacyViewController.m */; };
+		63BE33512548160500607EBA /* UILabel+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE33502548160500607EBA /* UILabel+ThemeChange.m */; };
+		63BE33552548163100607EBA /* UIView+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE33542548163100607EBA /* UIView+ThemeChange.m */; };
+		63BE33592548165200607EBA /* UITabBar+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE33582548165200607EBA /* UITabBar+ThemeChange.m */; };
 		63BE352524DAD63A001ADFDD /* newsDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE352424DAD63A001ADFDD /* newsDetailFooterView.m */; };
 		63BE5E792546B90D00381E38 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE5E782546B90D00381E38 /* SettingViewController.m */; };
 		63C4729E24B0250B0030C84B /* videoPlayerToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4729D24B0250B0030C84B /* videoPlayerToolView.m */; };
@@ -131,6 +147,26 @@
 		631BAEE7249B63D700639CD2 /* UITabBar+TTTabBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+TTTabBarItem.m"; sourceTree = "<group>"; };
 		631BAEE9249B751D00639CD2 /* TTNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNavigationController.h; sourceTree = "<group>"; };
 		631BAEEA249B751D00639CD2 /* TTNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTNavigationController.m; sourceTree = "<group>"; };
+		631BC8FD25481893001B82AB /* UINavigationBar+ThemeChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+ThemeChange.h"; sourceTree = "<group>"; };
+		631BC8FE25481893001B82AB /* UINavigationBar+ThemeChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+ThemeChange.m"; sourceTree = "<group>"; };
+		631BC901254818AE001B82AB /* UITableView+ThemeChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+ThemeChange.h"; sourceTree = "<group>"; };
+		631BC902254818AE001B82AB /* UITableView+ThemeChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+ThemeChange.m"; sourceTree = "<group>"; };
+		631BC905254818C6001B82AB /* UITableViewCell+ThemeChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+ThemeChange.h"; sourceTree = "<group>"; };
+		631BC906254818C6001B82AB /* UITableViewCell+ThemeChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+ThemeChange.m"; sourceTree = "<group>"; };
+		631BC90A25481905001B82AB /* UIColor+TTColorTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+TTColorTools.h"; sourceTree = "<group>"; };
+		631BC90B25481905001B82AB /* UIColor+TTColorTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TTColorTools.m"; sourceTree = "<group>"; };
+		631BC91025481950001B82AB /* TTMethodSWizzle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTMethodSWizzle.h; sourceTree = "<group>"; };
+		631BC91125481950001B82AB /* TTMethodSWizzle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTMethodSWizzle.m; sourceTree = "<group>"; };
+		631BC916254819AA001B82AB /* TTThemeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTThemeManager.h; sourceTree = "<group>"; };
+		631BC917254819AA001B82AB /* TTThemeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTThemeManager.m; sourceTree = "<group>"; };
+		631BC91B25481E50001B82AB /* TTThemeDefault.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TTThemeDefault.plist; sourceTree = "<group>"; };
+		631BC91E25481E66001B82AB /* TTThemeDefaultTag.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TTThemeDefaultTag.plist; sourceTree = "<group>"; };
+		631BC92125481E7D001B82AB /* TTThemeNight.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TTThemeNight.plist; sourceTree = "<group>"; };
+		631BC92425481E8B001B82AB /* TTThemeNightTag.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TTThemeNightTag.plist; sourceTree = "<group>"; };
+		631BC92825482A9A001B82AB /* clearCacheTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = clearCacheTools.h; sourceTree = "<group>"; };
+		631BC92925482A9A001B82AB /* clearCacheTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = clearCacheTools.m; sourceTree = "<group>"; };
+		631BC92C25483D8D001B82AB /* NetWorkConfigureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWorkConfigureViewController.h; sourceTree = "<group>"; };
+		631BC92D25483D8D001B82AB /* NetWorkConfigureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWorkConfigureViewController.m; sourceTree = "<group>"; };
 		631CFA6624E5276A0082B941 /* focusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = focusViewController.h; sourceTree = "<group>"; };
 		631CFA6724E5276A0082B941 /* focusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = focusViewController.m; sourceTree = "<group>"; };
 		631CFA6F24E567240082B941 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
@@ -237,6 +273,14 @@
 		63B07BEF24A1DD5600C7CD6F /* homeNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsTableViewCell.h; sourceTree = "<group>"; };
 		63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsTableViewCell.m; sourceTree = "<group>"; };
 		63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homeNewsTableViewCell.xib; sourceTree = "<group>"; };
+		63BE32FB2547F3D000607EBA /* PrivacyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
+		63BE32FC2547F3D000607EBA /* PrivacyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyViewController.m; sourceTree = "<group>"; };
+		63BE334F2548160500607EBA /* UILabel+ThemeChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+ThemeChange.h"; sourceTree = "<group>"; };
+		63BE33502548160500607EBA /* UILabel+ThemeChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ThemeChange.m"; sourceTree = "<group>"; };
+		63BE33532548163100607EBA /* UIView+ThemeChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ThemeChange.h"; sourceTree = "<group>"; };
+		63BE33542548163100607EBA /* UIView+ThemeChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ThemeChange.m"; sourceTree = "<group>"; };
+		63BE33572548165200607EBA /* UITabBar+ThemeChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+ThemeChange.h"; sourceTree = "<group>"; };
+		63BE33582548165200607EBA /* UITabBar+ThemeChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+ThemeChange.m"; sourceTree = "<group>"; };
 		63BE352324DAD63A001ADFDD /* newsDetailFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newsDetailFooterView.h; sourceTree = "<group>"; };
 		63BE352424DAD63A001ADFDD /* newsDetailFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newsDetailFooterView.m; sourceTree = "<group>"; };
 		63BE5E772546B90D00381E38 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -338,6 +382,35 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		631BC909254818DB001B82AB /* UIColorExtension */ = {
+			isa = PBXGroup;
+			children = (
+				631BC90A25481905001B82AB /* UIColor+TTColorTools.h */,
+				631BC90B25481905001B82AB /* UIColor+TTColorTools.m */,
+			);
+			path = UIColorExtension;
+			sourceTree = "<group>";
+		};
+		631BC90F2548191F001B82AB /* MethodSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				631BC91025481950001B82AB /* TTMethodSWizzle.h */,
+				631BC91125481950001B82AB /* TTMethodSWizzle.m */,
+			);
+			path = MethodSwizzle;
+			sourceTree = "<group>";
+		};
+		631BC91525481989001B82AB /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				631BC91B25481E50001B82AB /* TTThemeDefault.plist */,
+				631BC91E25481E66001B82AB /* TTThemeDefaultTag.plist */,
+				631BC92125481E7D001B82AB /* TTThemeNight.plist */,
+				631BC92425481E8B001B82AB /* TTThemeNightTag.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		631CFA6524E51BEF0082B941 /* TTHorizontalCateoryTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +433,7 @@
 		6328F60B249DABDA00C767A8 /* ljwcodeTools */ = {
 			isa = PBXGroup;
 			children = (
+				63BE334D254815BD00607EBA /* ThemeManager */,
 				6352491E2544294E009AECF2 /* QRCodeTool */,
 				631CFA6524E51BEF0082B941 /* TTHorizontalCateoryTabBar */,
 				63403E8024C96AE30024A362 /* UIButton */,
@@ -377,6 +451,8 @@
 				637BAF2424F3A2AD00711003 /* TTScreen.m */,
 				63722D0524F63E8B000121AD /* NSData+CRC32.h */,
 				63722D0624F63E8B000121AD /* NSData+CRC32.m */,
+				631BC92825482A9A001B82AB /* clearCacheTools.h */,
+				631BC92925482A9A001B82AB /* clearCacheTools.m */,
 			);
 			path = ljwcodeTools;
 			sourceTree = "<group>";
@@ -527,6 +603,7 @@
 		6355CFF224BF0F86002D3815 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				63BE32FA2547F37000607EBA /* SettingVC */,
 				6352492525442F76009AECF2 /* QRCodeViewController.h */,
 				6352492625442F76009AECF2 /* QRCodeViewController.m */,
 				820979171BD3AFAC00CF9D0C /* MineViewController.h */,
@@ -535,8 +612,6 @@
 				631CFA6724E5276A0082B941 /* focusViewController.m */,
 				631CFA6F24E567240082B941 /* MessageViewController.h */,
 				631CFA7024E567240082B941 /* MessageViewController.m */,
-				63BE5E772546B90D00381E38 /* SettingViewController.h */,
-				63BE5E782546B90D00381E38 /* SettingViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -644,6 +719,51 @@
 				63167AAF24AB5FEE002CB4EF /* homeNewsCellViewModel.m */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		63BE32FA2547F37000607EBA /* SettingVC */ = {
+			isa = PBXGroup;
+			children = (
+				63BE5E772546B90D00381E38 /* SettingViewController.h */,
+				63BE5E782546B90D00381E38 /* SettingViewController.m */,
+				63BE32FB2547F3D000607EBA /* PrivacyViewController.h */,
+				63BE32FC2547F3D000607EBA /* PrivacyViewController.m */,
+				631BC92C25483D8D001B82AB /* NetWorkConfigureViewController.h */,
+				631BC92D25483D8D001B82AB /* NetWorkConfigureViewController.m */,
+			);
+			path = SettingVC;
+			sourceTree = "<group>";
+		};
+		63BE334D254815BD00607EBA /* ThemeManager */ = {
+			isa = PBXGroup;
+			children = (
+				631BC916254819AA001B82AB /* TTThemeManager.h */,
+				631BC917254819AA001B82AB /* TTThemeManager.m */,
+				631BC91525481989001B82AB /* Resource */,
+				631BC90F2548191F001B82AB /* MethodSwizzle */,
+				631BC909254818DB001B82AB /* UIColorExtension */,
+				63BE334E254815DB00607EBA /* Category */,
+			);
+			path = ThemeManager;
+			sourceTree = "<group>";
+		};
+		63BE334E254815DB00607EBA /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				63BE334F2548160500607EBA /* UILabel+ThemeChange.h */,
+				63BE33502548160500607EBA /* UILabel+ThemeChange.m */,
+				63BE33532548163100607EBA /* UIView+ThemeChange.h */,
+				63BE33542548163100607EBA /* UIView+ThemeChange.m */,
+				63BE33572548165200607EBA /* UITabBar+ThemeChange.h */,
+				63BE33582548165200607EBA /* UITabBar+ThemeChange.m */,
+				631BC8FD25481893001B82AB /* UINavigationBar+ThemeChange.h */,
+				631BC8FE25481893001B82AB /* UINavigationBar+ThemeChange.m */,
+				631BC901254818AE001B82AB /* UITableView+ThemeChange.h */,
+				631BC902254818AE001B82AB /* UITableView+ThemeChange.m */,
+				631BC905254818C6001B82AB /* UITableViewCell+ThemeChange.h */,
+				631BC906254818C6001B82AB /* UITableViewCell+ThemeChange.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		63F1F8D424AF27CF00D687ED /* view */ = {
@@ -900,7 +1020,7 @@
 				};
 			};
 			buildConfigurationList = 820978DE1BD3A37600CF9D0C /* Build configuration list for PBXProject "ljwcodeHeadLineNews" */;
-			compatibilityVersion = "Xcode 11.4";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -922,15 +1042,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				631BC91C25481E50001B82AB /* TTThemeDefault.plist in Resources */,
 				949E779524A39605000C446E /* homejokeTableViewCell.xib in Resources */,
 				63422C5824A87EC20091FEE1 /* newsChannelTitleView.xib in Resources */,
+				631BC92225481E7D001B82AB /* TTThemeNight.plist in Resources */,
 				6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */,
 				63167AB824AB6380002CB4EF /* homeListModel in Resources */,
 				63F1F8E424AF31D300D687ED /* videoListModel in Resources */,
 				949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */,
 				637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */,
 				63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */,
+				631BC91F25481E66001B82AB /* TTThemeDefaultTag.plist in Resources */,
 				63167ABA24AB63E2002CB4EF /* homeTitleChannelModel in Resources */,
+				631BC92525481E8B001B82AB /* TTThemeNightTag.plist in Resources */,
 				6355CFEE24BEFC19002D3815 /* videoTitileModel in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1009,6 +1133,7 @@
 				631BAEE8249B63D700639CD2 /* UITabBar+TTTabBarItem.m in Sources */,
 				63E6CB5E24C02CE800E0126C /* headLineSearchViewController.m in Sources */,
 				638481EC24BEEB85002F4C5F /* VideoDetailViewController.m in Sources */,
+				631BC92A25482A9A001B82AB /* clearCacheTools.m in Sources */,
 				63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */,
 				631CFA7124E567250082B941 /* MessageViewController.m in Sources */,
 				637BAF2B24F3A4A600711003 /* TTVideoToolBar.m in Sources */,
@@ -1022,6 +1147,7 @@
 				820979281BD3B28700CF9D0C /* TTTabBarController.m in Sources */,
 				637BAF2E24F3A5A600711003 /* TTVideoPlayer.m in Sources */,
 				63422C5E24A88F020091FEE1 /* channelButton.m in Sources */,
+				631BC91225481950001B82AB /* TTMethodSWizzle.m in Sources */,
 				63F1F8E724AF347600D687ED /* videoTitleViewModel.m in Sources */,
 				6365C9C024ACB4AF00EC9F1D /* TTRefreshGifHeader.m in Sources */,
 				637C2D2C24A9CF630009274C /* homeTitleViewModel.m in Sources */,
@@ -1031,6 +1157,9 @@
 				63F1F8E224AF315E00D687ED /* videoContentModel.m in Sources */,
 				63422BE324A839960091FEE1 /* WMProgressView.m in Sources */,
 				63F1F8EA24AF3A3500D687ED /* videoContentViewModel.m in Sources */,
+				631BC918254819AA001B82AB /* TTThemeManager.m in Sources */,
+				63BE33552548163100607EBA /* UIView+ThemeChange.m in Sources */,
+				631BC8FF25481893001B82AB /* UINavigationBar+ThemeChange.m in Sources */,
 				63524924254429DD009AECF2 /* QRCodePreviewVIew.m in Sources */,
 				63D4FF9F24D96FC40035F561 /* NewsDetailViewController.m in Sources */,
 				637A97F724C05BD7000F7405 /* VideoPlayerContainerView.m in Sources */,
@@ -1055,16 +1184,21 @@
 				63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */,
 				63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */,
 				631CFA6824E5276A0082B941 /* focusViewController.m in Sources */,
+				631BC90C25481905001B82AB /* UIColor+TTColorTools.m in Sources */,
 				637C2D3624A9D3EA0009274C /* networkManagerCenter.m in Sources */,
 				638E978024CAF04B005ADF42 /* moreSettingTableViewCell.m in Sources */,
 				637A97F424C04B45000F7405 /* UIImage+cropPicture.m in Sources */,
+				63BE33512548160500607EBA /* UILabel+ThemeChange.m in Sources */,
 				63C4FA9024EBC20400CF9850 /* TTPageViewController.m in Sources */,
 				94A4A6EA24A25331002A6CA3 /* TTBaseViewController.m in Sources */,
 				63167AB024AB5FEE002CB4EF /* homeNewsCellViewModel.m in Sources */,
+				631BC903254818AE001B82AB /* UITableView+ThemeChange.m in Sources */,
 				63C4729E24B0250B0030C84B /* videoPlayerToolView.m in Sources */,
 				631BAEEB249B751D00639CD2 /* TTNavigationController.m in Sources */,
 				636EA80924C9977B00765F5C /* videoInfoTableView.m in Sources */,
+				63BE32FD2547F3D000607EBA /* PrivacyViewController.m in Sources */,
 				63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */,
+				631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */,
 				63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */,
 				637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */,
 				63403E7924C963150024A362 /* mineHeaderTableView.m in Sources */,
@@ -1073,9 +1207,11 @@
 				63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */,
 				638E977424CAB4A4005ADF42 /* TTMineNavigationController.m in Sources */,
 				63167AB624AB6182002CB4EF /* homeNewsModel.m in Sources */,
+				631BC907254818C6001B82AB /* UITableViewCell+ThemeChange.m in Sources */,
 				636EA80624C9924500765F5C /* screeningHollHistoryModel.m in Sources */,
 				6328F614249E111F00C767A8 /* TTHeader.m in Sources */,
 				63422BDF24A839960091FEE1 /* WMPageController.m in Sources */,
+				63BE33592548165200607EBA /* UITabBar+ThemeChange.m in Sources */,
 				63C4FA9C24EBDFC900CF9850 /* TTPageMenuView.m in Sources */,
 				638E977D24CADB90005ADF42 /* commonSettingTableViewCell.m in Sources */,
 				6352492125442980009AECF2 /* QRCodeManager.m in Sources */,
