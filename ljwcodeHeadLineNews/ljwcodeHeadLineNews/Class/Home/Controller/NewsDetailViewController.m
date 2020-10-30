@@ -97,7 +97,7 @@
         WKUserScript *wkUserScript = [[WKUserScript alloc] initWithSource:jSString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
 
         [wkUController addUserScript:wkUserScript];
-        WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth,kScreenHeight) configuration:wkWebConfig];
+        WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth,kScreenHeight*2) configuration:wkWebConfig];
         webView.backgroundColor = [UIColor clearColor];
         webView.opaque = NO;
         webView.userInteractionEnabled = YES;

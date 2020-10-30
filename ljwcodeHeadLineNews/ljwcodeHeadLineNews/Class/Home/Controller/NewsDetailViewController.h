@@ -19,14 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *urlString;
 
-@property(nonatomic,copy)NSString *authorHeadImgUrl;
-
-@property(nonatomic,copy)NSString *authorName;
-
-@property(nonatomic,copy)NSString *articleTitle;
-
-@property(nonatomic,copy)NSString *authorAbstract;
-
 @end
 
 NS_ASSUME_NONNULL_END
