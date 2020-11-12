@@ -11,6 +11,7 @@
 #import "PrivacyViewController.h"
 #import "clearCacheTools.h"
 #import "NetWorkConfigureViewController.h"
+#import "PushNotificationSettingViewController.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -255,6 +256,9 @@
             }else if(indexPath.row == 1){
                 NetWorkConfigureViewController *NetConfigureVC = [[NetWorkConfigureViewController alloc]init];
                 [self.navigationController pushViewController:NetConfigureVC animated:YES];
+            }else if(indexPath.row == 2){
+                PushNotificationSettingViewController *pushNotiVC = [[PushNotificationSettingViewController alloc]init];
+                [self.navigationController pushViewController:pushNotiVC animated:YES];
             }
         }
             
