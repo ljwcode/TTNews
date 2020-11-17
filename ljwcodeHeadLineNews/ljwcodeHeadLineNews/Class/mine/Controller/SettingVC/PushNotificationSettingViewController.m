@@ -9,6 +9,7 @@
 #import "PushNotificationSettingViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "MBProgressHUD+Add.h"
+#import "TTCloseNotificationTipView.h"
 
 @interface PushNotificationSettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -85,6 +86,7 @@
                 cell.detailTextLabel.text = @"你可能错过重要的资讯通知，点击开启消息通知";
                 [cell.detailTextLabel setTag:10014];
                 UISwitch *notiSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(cell.contentView.frame)*0.1, CGRectGetHeight(cell.contentView.frame)*0.5)];
+                [notiSwitch addTarget:self action:@selector(notiSwitchHandle:) forControlEvents:UIControlEventTouchUpInside];
                 notiSwitch.on = false;
                 cell.accessoryView = notiSwitch;
                 self.isClose = YES;
@@ -189,8 +191,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.section) {
-        case 0:
+        case 0:{
             
+        }
             break;
             
         default:
@@ -251,6 +254,17 @@
 #pragma mark ---- 响应事件
 -(void)backBarItemHandle:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)notiSwitchHandle:(UISwitch *)sender{
+    sender.selected = !sender.selected;
+    if(sender.on){
+        [MBProgressHUD showSuccess:@"打开推送通知"];
+    }else{
+        TTCloseNotificationTipView *closeTipView = [[TTCloseNotificationTipView alloc]initWithFrame:CGRectMake(0, kScreenHeight * 0.6, kScreenWidth, kScreenHeight * 0.4)];
+        [self.view addSubview:closeTipView];
+//        [closeTipView show];
+    }
 }
 
 /*

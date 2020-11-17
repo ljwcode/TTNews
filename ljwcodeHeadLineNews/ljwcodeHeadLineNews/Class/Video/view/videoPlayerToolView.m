@@ -16,74 +16,90 @@
 @implementation videoPlayerToolView
 
 -(instancetype)initWithFrame:(CGRect)frame{
-    if(self = [super initWithFrame:frame]){
-        self.backgroundColor = [UIColor colorWithWhite:0.5 alpha:1];
-        [self addSubview:self.playPauseBtn];
-        [self addSubview:self.playerProgressView];
-        [self addSubview:self.playerSlider];
-        [self addSubview:self.playerTimeLabel];
+    
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+        [self createUI];//创建UI
     }
     return self;
-}
-
--(UIButton *)playPauseBtn{
-    if(!_playPauseBtn){
-        _playPauseBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.height, self.frame.size.width)];
-        [_playPauseBtn setImage:[UIImage imageNamed:@"new_play_video_44x44_"] forState:UIControlStateNormal];
-        [_playPauseBtn addTarget:self action:@selector(playPauseBtnHandle:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _playPauseBtn;
-}
-
--(void)playPauseBtnHandle:(UIButton *)sender{
-    sender.selected = !sender.selected;
-    //
-    if(sender.selected){
-        [sender setImage:[UIImage imageNamed:@"new_play_video_44x44_"] forState:UIControlStateNormal];
-    }else{
-        [sender setImage:[UIImage imageNamed:@"new_pause_video_60x60_"] forState:UIControlStateNormal];
-    }
-    if([self.delegate respondsToSelector:@selector(videoPlayerAction:)]){
-        [self.delegate videoPlayerAction:sender.selected];
-    }
-}
-
--(UIProgressView *)playerProgressView{
-    if(!_playerProgressView){
-        _playerProgressView = [[UIProgressView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.playPauseBtn.frame)+20, CGRectGetMidY(self.playPauseBtn.frame), 200, 4)];
-        _playerProgressView.progressTintColor = [UIColor whiteColor];
-        _playerProgressView.trackTintColor = [UIColor cyanColor];
-    }
     
-    return _playerProgressView;
 }
 
--(UISlider *)playerSlider{
-    if(!_playerSlider){
-        _playerSlider = [[UISlider alloc]initWithFrame:CGRectMake(self.playerProgressView.frame.origin.x, CGRectGetMidY(self.playerProgressView.frame), 200, 20)];
-        _playerSlider.backgroundColor = [UIColor lightGrayColor];
-        _playerSlider.maximumTrackTintColor = [UIColor cyanColor];
-        _playerSlider.minimumTrackTintColor = [UIColor whiteColor];
-        [_playerSlider setThumbImage:[UIImage imageNamed:@"pointer_x2_60x60"] forState:UIControlStateNormal];
+#pragma mark - 创建UI
+-(void)createUI{
+    [self addSubview:self.playerBtn];//开始暂停按钮
+    [self addSubview:self.bufferProgressView];//缓冲条
+    [self addSubview:self.progressSlider];//创建进度条
+    [self addSubview:self.videoTimeLabel];//视频时间
+}
+
+#pragma mark - 视频时间
+-(UILabel *)videoTimeLabel{
+    
+    if (!_videoTimeLabel) {
+        _videoTimeLabel = [UILabel new];
+        _videoTimeLabel.frame = CGRectMake(CGRectGetMaxX(_progressSlider.frame)+10, 0, self.frame.size.width - CGRectGetWidth(_progressSlider.frame) - 40 - CGRectGetWidth(_playerBtn.frame), self.frame.size.height);
+        _videoTimeLabel.text = @"00:00/00:00";
+        _videoTimeLabel.textColor = [UIColor whiteColor];
+        _videoTimeLabel.textAlignment = NSTextAlignmentCenter;
+        _videoTimeLabel.font = [UIFont systemFontOfSize:12];
+        _videoTimeLabel.adjustsFontSizeToFitWidth = YES;
     }
-    return _playerSlider;
+    return _videoTimeLabel;
+    
 }
--(UILabel *)playerTimeLabel{
-    if(!_playerTimeLabel){
-        _playerTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.playerSlider.frame)+20, CGRectGetMidY(self.playerSlider.frame), self.playerSlider.frame.size.width/4, 20)];
-        _playerTimeLabel.text = @"00:00/00:00";
-        _playerTimeLabel.textColor = [UIColor whiteColor];
-        _playerTimeLabel.font = [UIFont systemFontOfSize:12.f];
-        _playerTimeLabel.highlighted = YES;
+
+#pragma mark - 创建进度条
+-(UISlider *)progressSlider{
+    
+    if (!_progressSlider) {
+        _progressSlider = [UISlider new];
+        _progressSlider.frame = CGRectMake(CGRectGetMinX(_bufferProgressView.frame) - 2, CGRectGetMidY(_bufferProgressView.frame) - 10, CGRectGetWidth(_bufferProgressView.frame) - 4, 20);
+        _progressSlider.maximumTrackTintColor = [UIColor clearColor];
+        _progressSlider.minimumTrackTintColor = [UIColor whiteColor];
+        [_progressSlider setThumbImage:[UIImage imageNamed:@"point"] forState:0];
     }
-    return _playerTimeLabel;
+    return _progressSlider;
+    
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+
+#pragma mark - 缓冲条
+-(UIProgressView *)bufferProgressView{
+    
+    if (!_bufferProgressView) {
+        _bufferProgressView = [UIProgressView new];
+        _bufferProgressView.frame = CGRectMake(CGRectGetMaxX(_playerBtn.frame) + 20, CGRectGetMidY(_playerBtn.frame) - 2, kScreenWidth-CGRectGetMaxX(_playerBtn.frame)-20*2-100, 4);
+        _bufferProgressView.trackTintColor = [UIColor grayColor];
+        _bufferProgressView.progressTintColor = [UIColor cyanColor];
+    }
+    return _bufferProgressView;
+    
 }
-*/
+
+#pragma mark - 开始暂停按钮
+-(UIButton *)playerBtn{
+    
+    if (!_playerBtn) {
+        _playerBtn = [UIButton new];
+        _playerBtn.frame = CGRectMake(0, 0, self.frame.size.height, self.frame.size.height);
+        [_playerBtn setImage:[UIImage imageNamed:@"Pause"] forState:0];
+        [_playerBtn addTarget:self action:@selector(btnCheckSelect:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _playerBtn;
+    
+}
+
+-(void)btnCheckSelect:(UIButton *)sender{
+    sender.selected = !sender.isSelected;
+    if (sender.selected) {
+        [_playerBtn setImage:[UIImage imageNamed:@"Player"] forState:UIControlStateNormal];
+    }else{
+        [_playerBtn setImage:[UIImage imageNamed:@"Pause"] forState:UIControlStateNormal];
+    }
+    if ([_delegate respondsToSelector:@selector(playButtonWithStates:)]) {
+        [_delegate playButtonWithStates:sender.selected];
+    }
+}
 
 @end

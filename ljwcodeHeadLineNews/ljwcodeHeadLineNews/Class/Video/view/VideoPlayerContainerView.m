@@ -12,7 +12,7 @@
 #import "NetworkSpeedMonitor.h"
 #import "videoPlayerToolView.h"
 
-@interface VideoPlayerContainerView ()<videoPlayerItemDelegate>
+@interface VideoPlayerContainerView ()<VideoPlayerToolsViewDelegate>
 
 @property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
@@ -28,7 +28,7 @@
 @implementation VideoPlayerContainerView
 
 //设置播放地址
--(void)setUrlVideo:(NSString *)urlVideo{
+-(void)setUrlVideo:(AVPlayerItem *)urlVideo{
     
     [self.player seekToTime:CMTimeMakeWithSeconds(0, NSEC_PER_SEC) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
     [self.player play];//开始播放视频
@@ -36,12 +36,13 @@
     [self.speedMonitor startNetworkSpeedMonitor];//开始监听网速
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkSpeedChanged:) name:NetworkDownloadSpeedNotificationKey object:nil];
     
-    AVPlayerItem *item = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:urlVideo]];
+    AVPlayerItem *item = urlVideo;
     [self vpc_addObserverToPlayerItem:item];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self.player replaceCurrentItemWithPlayerItem:item];
         [self vpc_playerItemAddNotification];
     });
+    
 }
 
 -(instancetype)initWithFrame:(CGRect)frame{
@@ -65,21 +66,20 @@
 
 #pragma mark - 工具条
 -(videoPlayerToolView *)vpToolsView{
-    
     if (!_vpToolsView) {
-        
         _vpToolsView = [[videoPlayerToolView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.frame) - 40, CGRectGetWidth(self.frame), 40)];
         _vpToolsView.delegate = self;
         
-        [_vpToolsView.playerSlider addTarget:self action:@selector(vpc_sliderTouchBegin:) forControlEvents:UIControlEventTouchDown];
-        [_vpToolsView.playerSlider addTarget:self action:@selector(vpc_sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-        [_vpToolsView.playerSlider addTarget:self action:@selector(vpc_sliderTouchEnd:) forControlEvents:UIControlEventTouchUpInside];
+        [_vpToolsView.progressSlider addTarget:self action:@selector(vpc_sliderTouchBegin:) forControlEvents:UIControlEventTouchDown];
+        [_vpToolsView.progressSlider addTarget:self action:@selector(vpc_sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+        [_vpToolsView.progressSlider addTarget:self action:@selector(vpc_sliderTouchEnd:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _vpToolsView;
 }
 
+#pragma mark ------- VideoPlayerToolsViewDelegate
+
 -(void)playButtonWithStates:(BOOL)state{
-    
     if (state) {
         [self.player pause];
     }else{
@@ -93,20 +93,22 @@
 
 - (void)vpc_sliderValueChanged:(UISlider *)sender {
     
-    NSTimeInterval currentTime = CMTimeGetSeconds(self.player.currentItem.duration) * _vpToolsView.playerSlider.value;
+    NSTimeInterval currentTime = CMTimeGetSeconds(self.player.currentItem.duration) * _vpToolsView.progressSlider.value;
     NSInteger currentMin = currentTime / 60;
     NSInteger currentSec = (NSInteger)currentTime % 60;
-    _vpToolsView.playerTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld",currentMin,currentSec];
+    _vpToolsView.videoTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld",currentMin,currentSec];
+    
 }
 
 - (void)vpc_sliderTouchEnd:(UISlider *)sender {
     
-    NSTimeInterval slideTime = CMTimeGetSeconds(self.player.currentItem.duration) * _vpToolsView.playerSlider.value;
+    NSTimeInterval slideTime = CMTimeGetSeconds(self.player.currentItem.duration) * _vpToolsView.progressSlider.value;
     if (slideTime == CMTimeGetSeconds(self.player.currentItem.duration)) {
         slideTime -= 0.5;
     }
     [self.player seekToTime:CMTimeMakeWithSeconds(slideTime, NSEC_PER_SEC) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
     [self.player play];
+    
 }
 
 #pragma mark - 网速监听器
@@ -119,7 +121,6 @@
 
 #pragma mark - 显示网速Label
 - (UILabel *)speedTextLabel {
-    
     if (!_speedTextLabel) {
         _speedTextLabel = [UILabel new];
         _speedTextLabel.frame = CGRectMake(0, 0, self.frame.size.width, 20);
@@ -129,6 +130,7 @@
         _speedTextLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     }
     return _speedTextLabel;
+    
 }
 
 #pragma mark - AVPlayer
@@ -140,9 +142,9 @@
         // 每秒回调一次
         self.playbackObserver = [_player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:NULL usingBlock:^(CMTime time) {
             [weakSelf vpc_setTimeLabel];
-            NSTimeInterval totalTime = CMTimeGetSeconds(weakSelf.player.currentItem.duration);//总时长
+            NSTimeInterval totavideoTimeLabel = CMTimeGetSeconds(weakSelf.player.currentItem.duration);//总时长
             NSTimeInterval currentTime = time.value / time.timescale;//当前时间进度
-            weakSelf.vpToolsView.playerSlider.value = currentTime / totalTime;
+            weakSelf.vpToolsView.progressSlider.value = currentTime / totavideoTimeLabel;
         }];
     }
     return _player;
@@ -158,31 +160,35 @@
     return _playerLayer;
     
 }
-#pragma mark ---------华丽的分割线---------
 
-#pragma mark - lTime
+
+#pragma mark - videoTimeLabel
+
 - (void)vpc_setTimeLabel {
     
-    NSTimeInterval totalTime = CMTimeGetSeconds(self.player.currentItem.duration);//总时长
+    NSTimeInterval totavideoTimeLabel = CMTimeGetSeconds(self.player.currentItem.duration);//总时长
     NSTimeInterval currentTime = CMTimeGetSeconds(self.player.currentTime);//当前时间进度
-    if (!(totalTime >= 0) || !(currentTime >= 0)) {
-        totalTime = 0;
+    
+    // 切换视频源时totavideoTimeLabel/currentTime的值会出现nan导致时间错乱
+    if (!(totavideoTimeLabel >= 0) || !(currentTime >= 0)) {
+        totavideoTimeLabel = 0;
         currentTime = 0;
     }
     
-    NSInteger totalMin = totalTime / 60;
-    NSInteger totalSec = (NSInteger)totalTime % 60;
-    NSString *totalTimeStr = [NSString stringWithFormat:@"%02ld:%02ld",totalMin,totalSec];
+    NSInteger totalMin = totavideoTimeLabel / 60;
+    NSInteger totalSec = (NSInteger)totavideoTimeLabel % 60;
+    NSString *totavideoTimeLabelStr = [NSString stringWithFormat:@"%02ld:%02ld",totalMin,totalSec];
     
     NSInteger currentMin = currentTime / 60;
     NSInteger currentSec = (NSInteger)currentTime % 60;
     NSString *currentTimeStr = [NSString stringWithFormat:@"%02ld:%02ld",currentMin,currentSec];
     
-    _vpToolsView.playerTimeLabel.text = [NSString stringWithFormat:@"%@/%@",currentTimeStr,totalTimeStr];
+    _vpToolsView.videoTimeLabel.text = [NSString stringWithFormat:@"%@/%@",currentTimeStr,totavideoTimeLabelStr];
     
 }
 
-#pragma mark - 观察者
+#pragma mark - Observer
+
 - (void)vpc_playerItemAddNotification {
     // 播放完成通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vpc_playbackFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
@@ -193,7 +199,9 @@
 }
 
 - (void)vpc_addObserverToPlayerItem:(AVPlayerItem *)playerItem {
+    // 监听播放状态
     [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+    // 监听缓冲进度
     [playerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
 }
 
@@ -218,15 +226,16 @@
         NSTimeInterval startSeconds = CMTimeGetSeconds(timeRange.start);//本次缓冲起始时间
         NSTimeInterval durationSeconds = CMTimeGetSeconds(timeRange.duration);//缓冲时间
         NSTimeInterval totalBuffer = startSeconds + durationSeconds;//缓冲总长度
-        float totalTime = CMTimeGetSeconds(self.player.currentItem.duration);//视频总长度
-        float progress = totalBuffer/totalTime;//缓冲进度
+        float totavideoTimeLabel = CMTimeGetSeconds(self.player.currentItem.duration);//视频总长度
+        float progress = totalBuffer/totavideoTimeLabel;//缓冲进度
         NSLog(@"progress = %lf",progress);
         
+        //如果缓冲完了，拖动进度条不需要重新显示缓冲条
         if (!self.buffered) {
             if (progress == 1.0) {
                 self.buffered = YES;
             }
-            [self.vpToolsView.playerProgressView setProgress:progress];
+            [self.vpToolsView.bufferProgressView setProgress:progress];
         }
         NSLog(@"yon = %@",self.buffered ? @"yes" : @"no");
     }

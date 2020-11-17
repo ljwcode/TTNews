@@ -85,6 +85,7 @@
 		63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AD1AB924AC61D1007EC745 /* homeJokeModel.m */; };
 		63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */; };
 		63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */; };
+		63BB1C222563DD00004E97E7 /* TTCloseNotificationTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BB1C212563DD00004E97E7 /* TTCloseNotificationTipView.m */; };
 		63BE32FD2547F3D000607EBA /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE32FC2547F3D000607EBA /* PrivacyViewController.m */; };
 		63BE33512548160500607EBA /* UILabel+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE33502548160500607EBA /* UILabel+ThemeChange.m */; };
 		63BE33552548163100607EBA /* UIView+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE33542548163100607EBA /* UIView+ThemeChange.m */; };
@@ -278,6 +279,8 @@
 		63B07BEF24A1DD5600C7CD6F /* homeNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsTableViewCell.h; sourceTree = "<group>"; };
 		63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsTableViewCell.m; sourceTree = "<group>"; };
 		63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homeNewsTableViewCell.xib; sourceTree = "<group>"; };
+		63BB1C202563DD00004E97E7 /* TTCloseNotificationTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTCloseNotificationTipView.h; sourceTree = "<group>"; };
+		63BB1C212563DD00004E97E7 /* TTCloseNotificationTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTCloseNotificationTipView.m; sourceTree = "<group>"; };
 		63BE32FB2547F3D000607EBA /* PrivacyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
 		63BE32FC2547F3D000607EBA /* PrivacyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyViewController.m; sourceTree = "<group>"; };
 		63BE334F2548160500607EBA /* UILabel+ThemeChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+ThemeChange.h"; sourceTree = "<group>"; };
@@ -801,6 +804,8 @@
 				63F1F8D224AF223200D687ED /* TVVideoPlayerViewCell.m */,
 				63C4729C24B0250B0030C84B /* videoPlayerToolView.h */,
 				63C4729D24B0250B0030C84B /* videoPlayerToolView.m */,
+				63BB1C202563DD00004E97E7 /* TTCloseNotificationTipView.h */,
+				63BB1C212563DD00004E97E7 /* TTCloseNotificationTipView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1203,6 +1208,7 @@
 				63422BE124A839960091FEE1 /* WMScrollView.m in Sources */,
 				637BAF2824F3A44E00711003 /* VideoCoverCollectionViewCell.m in Sources */,
 				63C4FA9924EBCE2E00CF9850 /* TTPageDecorateView.m in Sources */,
+				63BB1C222563DD00004E97E7 /* TTCloseNotificationTipView.m in Sources */,
 				63C4FA9324EBC2DE00CF9850 /* TTPageDecorateItemView.m in Sources */,
 				63F1F8DF24AF2FD200D687ED /* videoTitleRequestModel.m in Sources */,
 				63ABADD624DBF48F0087453E /* discussEditView.m in Sources */,
