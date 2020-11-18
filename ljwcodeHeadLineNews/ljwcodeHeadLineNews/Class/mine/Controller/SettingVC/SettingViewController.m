@@ -21,6 +21,8 @@
 
 @property(nonatomic,strong)UISwitch *switchOnNight;
 
+@property(nonatomic,strong)NSArray *fontSizeArray;
+
 @end
 
 @implementation SettingViewController
@@ -103,6 +105,7 @@
                 }else if(indexPath.row == 1){
                     cell.textLabel.text = @"字体大小";
                     UIButton *chooseFontSizeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+                    [chooseFontSizeBtn setTag:10031];
                     chooseFontSizeBtn.frame = CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.1, cell.frame.size.height/2);
                     [chooseFontSizeBtn setImage:[UIImage imageNamed:@"arrow_right_setup"] forState:UIControlStateNormal];
                     [chooseFontSizeBtn setTitle:@"中" forState:UIControlStateNormal];
@@ -233,7 +236,22 @@
         }
             break;
         case 1:{
-            
+            if(indexPath.row == 0){
+                
+            }else if(indexPath.row == 1){
+                UIAlertController *configureFontVC = [UIAlertController alertControllerWithTitle:@"" message:@"设置字体大小" preferredStyle:UIAlertControllerStyleActionSheet];
+                for(int i = 0;i < self.fontSizeArray.count;i++){
+                    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:self.fontSizeArray[i] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        UIButton *btn = (UIButton *)[tableView viewWithTag:10031];
+                        [btn setTitle:self.fontSizeArray[i] forState:UIControlStateNormal];
+                    }];
+                    [configureFontVC addAction:alertAction];
+                }
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+                [configureFontVC addAction:cancelAction];
+                [self presentViewController:configureFontVC  animated:YES completion:nil];
+                
+            }
         }
             break;
         case 2:{
@@ -267,6 +285,9 @@
     }
 }
 
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    return YES;
+}
 
 #pragma mark ---------- 事件响应
 -(void)backToParentVCHandle:(id)sender{
@@ -307,6 +328,13 @@
         _footerView = view;
     }
     return _footerView;
+}
+
+-(NSArray *)fontSizeArray{
+    if(!_fontSizeArray){
+        _fontSizeArray = [NSArray arrayWithObjects:@"小",@"中",@"大",@"特大", nil];
+    }
+    return _fontSizeArray;
 }
 
 /*

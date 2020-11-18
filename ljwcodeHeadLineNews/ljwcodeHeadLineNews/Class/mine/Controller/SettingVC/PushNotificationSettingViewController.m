@@ -83,6 +83,7 @@
             if(!cell){
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
                 cell.textLabel.text = @"推送通知设置";
+                cell.detailTextLabel.textColor = [UIColor redColor];
                 cell.detailTextLabel.text = @"你可能错过重要的资讯通知，点击开启消息通知";
                 [cell.detailTextLabel setTag:10014];
                 UISwitch *notiSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(cell.contentView.frame)*0.1, CGRectGetHeight(cell.contentView.frame)*0.5)];
@@ -157,6 +158,7 @@
                 cell.textLabel.text = @"消息免打扰";
                 UISwitch *msgNotiSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(cell.contentView.frame)*0.1, CGRectGetHeight(cell.contentView.frame)/2)];
                 msgNotiSwitch.on = false;
+                [msgNotiSwitch addTarget:self action:@selector(NotiFreeHandle:) forControlEvents:UIControlEventTouchUpInside];
                 cell.accessoryView = msgNotiSwitch;
             }
             ResultCell = cell;
@@ -191,7 +193,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.section) {
-        case 0:{
+        case 5:{
             
         }
             break;
@@ -199,6 +201,10 @@
         default:
             break;
     }
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -259,11 +265,31 @@
 -(void)notiSwitchHandle:(UISwitch *)sender{
     sender.selected = !sender.selected;
     if(sender.on){
+        UILabel *cellDetailLabel = (UILabel *)[self.tableView viewWithTag:10014];
+        cellDetailLabel.text = @"有重要消息及时通知我";
+        cellDetailLabel.textColor = [UIColor blackColor];
         [MBProgressHUD showSuccess:@"打开推送通知"];
     }else{
+        UILabel *cellDetailLabel = (UILabel *)[self.tableView viewWithTag:10014];
+        cellDetailLabel.text = @"你可能错过重要的资讯通知，点击开启消息通知";
+        cellDetailLabel.textColor = [UIColor redColor];
         TTCloseNotificationTipView *closeTipView = [[TTCloseNotificationTipView alloc]initWithFrame:CGRectMake(0, kScreenHeight * 0.6, kScreenWidth, kScreenHeight * 0.4)];
         [self.view addSubview:closeTipView];
-//        [closeTipView show];
+    }
+}
+
+-(void)NotiFreeHandle:(UISwitch *)sender{
+    sender.selected = !sender.selected;
+    if(sender.on){
+        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"InsertCellID"];
+        if(!cell){
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"InsertCellID"];
+            cell.textLabel.text = @"免打扰时间";
+            UILabel *freeTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.3, CGRectGetHeight(cell.frame))];
+            [freeTimeLabel setText:@"00:00 - 06:00"];
+            cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+            cell.accessoryView = freeTimeLabel;
+        }
     }
 }
 

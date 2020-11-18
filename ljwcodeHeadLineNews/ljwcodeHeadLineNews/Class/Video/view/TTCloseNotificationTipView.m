@@ -8,19 +8,26 @@
 
 #import "TTCloseNotificationTipView.h"
 
-@interface TTCloseNotificationTipView()
-
-@property(nonatomic,assign)BOOL isSelected;
+@interface TTCloseNotificationTipView(){
+    NSInteger selectedCount;
+}
 
 @property(nonatomic,strong)NSArray *nameArray;
+
 
 @end
 
 @implementation TTCloseNotificationTipView
 
+-(instancetype)init{
+    if(self = [super init]){
+        selectedCount = 0;
+    }
+    return self;
+}
+
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
-        self.isSelected = false;
         self.backgroundColor = [UIColor whiteColor];
         UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [closeBtn setImage:[UIImage imageNamed:@"popup_newclose"] forState:UIControlStateNormal];
@@ -66,11 +73,11 @@
     return self;
 }
 
-
 - (void)createUI{
-    CGFloat w = 0; CGFloat h = 10 + 6.5 * vSpace; for (int i = 0; i< self.nameArray.count; i++) {
+    CGFloat w = 0;
+    CGFloat h = 10 + 6.5 * vSpace;
+    for (int i = 0; i< self.nameArray.count; i++) {
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        
         //获取文字的长度
         NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:15]};
         CGFloat length = [self.nameArray[i] boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size.width;
@@ -79,8 +86,7 @@
         btn.frame = CGRectMake(10 + w, h, length + 15 , 30);
         
         //当大于屏幕的宽度自动换
-        if (10 + w + length + 15 > kScreenWidth)
-        {
+        if (10 + w + length + 15 > kScreenWidth){
             w = 0;
             h = h + btn.frame.size.height + 10;
             btn.frame = CGRectMake(10 + w, h, length + 15 , 30);
@@ -93,7 +99,7 @@
         [btn addTarget:self action:@selector(TipReasonHandle:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = i+10;
         btn.layer.cornerRadius = 5;
-        btn.layer.borderWidth = 2;
+        btn.layer.borderWidth = 1;
         btn.layer.borderColor = [UIColor grayColor].CGColor;
         btn.clipsToBounds = YES;
         
@@ -115,20 +121,22 @@
 }
 
 -(void)submitHandle:(id)sender{
-    if(!self.isSelected){
+    if(selectedCount == 0){
         [MBProgressHUD showSuccess:@"请选择关闭的原因"];
     }else{
-        
+        NSLog(@"提交");
+        [self removeFromSuperview];
     }
 }
 
 -(void)TipReasonHandle:(UIButton *)sender{
     sender.selected = !sender.selected;
     if(sender.selected){
-        self.isSelected = true;
         [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        selectedCount ++;
     }else{
-        
+        [sender setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        selectedCount --;
     }
 }
 

@@ -11,6 +11,7 @@
 #import <UIView+Frame.h>
 #import "TTNavigationBar.h"
 #import "TTSearchSuggestionViewModel.h"
+#import "TTReportArticleView.h"
 
 @interface TTBaseViewController ()<UIGestureRecognizerDelegate,UISearchBarDelegate>
 
@@ -37,6 +38,7 @@
      reportBtn.contentMode = UIViewContentModeScaleAspectFit;
      reportBtn.imageEdgeInsets = UIEdgeInsetsMake(-reportBtn.titleLabel.intrinsicContentSize.height/2, 0, 0, 0);
      reportBtn.titleEdgeInsets = UIEdgeInsetsMake(reportBtn.imageView.intrinsicContentSize.height, -reportBtn.imageView.intrinsicContentSize.width, 0, 0);
+    [reportBtn addTarget:self action:@selector(reportHandle:) forControlEvents:UIControlEventTouchUpInside];
      
      UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 44)];
      reportBtn.frame = view.bounds;
@@ -118,6 +120,15 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
+}
+
+#pragma mark ---- 响应事件
+
+-(void)reportHandle:(UIButton *)sender{
+    TTReportArticleView *TTReportView = [[TTReportArticleView alloc]initWithFrame:CGRectMake(0, kScreenHeight * 0.5, kScreenWidth, kScreenHeight * 0.5)];
+    TTReportView.backgroundColor = [UIColor whiteColor];
+    TTReportView.layer.cornerRadius = 5.f;
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:TTReportView];
 }
 
 #pragma mark -- lazy load
