@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63034DF125669830008098F0 /* IMYWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63034DEC25669830008098F0 /* IMYWebView.m */; };
+		63034DF225669830008098F0 /* IMY_NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 63034DEF25669830008098F0 /* IMY_NJKWebViewProgress.m */; };
 		6305043A256525B000CB910D /* TTReportArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63050439256525B000CB910D /* TTReportArticleView.m */; };
 		630A976624CFC463003029C3 /* countryCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A976424CFC462003029C3 /* countryCodeView.m */; };
 		63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AAC24AAE3C2002CB4EF /* homeDetailViewController.m */; };
@@ -53,7 +55,7 @@
 		63524924254429DD009AECF2 /* QRCodePreviewVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 63524923254429DD009AECF2 /* QRCodePreviewVIew.m */; };
 		6352492725442F76009AECF2 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6352492625442F76009AECF2 /* QRCodeViewController.m */; };
 		6355CFEE24BEFC19002D3815 /* videoTitileModel in Resources */ = {isa = PBXBuildFile; fileRef = 6355CFED24BEFC19002D3815 /* videoTitileModel */; };
-		6355CFF524BF1078002D3815 /* loginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6355CFF424BF1078002D3815 /* loginView.m */; };
+		6355CFF524BF1078002D3815 /* TTloginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6355CFF424BF1078002D3815 /* TTloginView.m */; };
 		635E8C3D24E29328000345C4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635E8C3C24E29328000345C4 /* WebKit.framework */; };
 		6365C9C024ACB4AF00EC9F1D /* TTRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6365C9BF24ACB4AF00EC9F1D /* TTRefreshGifHeader.m */; };
 		636EA80624C9924500765F5C /* screeningHollHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA80524C9924500765F5C /* screeningHollHistoryModel.m */; };
@@ -138,6 +140,10 @@
 
 /* Begin PBXFileReference section */
 		293C19CEC52458542FCA55CC /* Pods-ljwcodeHeadLineNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.release.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.release.xcconfig"; sourceTree = "<group>"; };
+		63034DEC25669830008098F0 /* IMYWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMYWebView.m; sourceTree = "<group>"; };
+		63034DEE25669830008098F0 /* IMY_NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMY_NJKWebViewProgress.h; sourceTree = "<group>"; };
+		63034DEF25669830008098F0 /* IMY_NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMY_NJKWebViewProgress.m; sourceTree = "<group>"; };
+		63034DF025669830008098F0 /* IMYWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMYWebView.h; sourceTree = "<group>"; };
 		63050438256525B000CB910D /* TTReportArticleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTReportArticleView.h; sourceTree = "<group>"; };
 		63050439256525B000CB910D /* TTReportArticleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTReportArticleView.m; sourceTree = "<group>"; };
 		630A976424CFC462003029C3 /* countryCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countryCodeView.m; sourceTree = "<group>"; };
@@ -219,8 +225,8 @@
 		6352492525442F76009AECF2 /* QRCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		6352492625442F76009AECF2 /* QRCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
 		6355CFED24BEFC19002D3815 /* videoTitileModel */ = {isa = PBXFileReference; lastKnownFileType = text; path = videoTitileModel; sourceTree = "<group>"; };
-		6355CFF324BF1078002D3815 /* loginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = loginView.h; sourceTree = "<group>"; };
-		6355CFF424BF1078002D3815 /* loginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = loginView.m; sourceTree = "<group>"; };
+		6355CFF324BF1078002D3815 /* TTloginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTloginView.h; sourceTree = "<group>"; };
+		6355CFF424BF1078002D3815 /* TTloginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTloginView.m; sourceTree = "<group>"; };
 		635E8C3C24E29328000345C4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		6365C9BE24ACB4AF00EC9F1D /* TTRefreshGifHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTRefreshGifHeader.h; sourceTree = "<group>"; };
 		6365C9BF24ACB4AF00EC9F1D /* TTRefreshGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTRefreshGifHeader.m; sourceTree = "<group>"; };
@@ -401,6 +407,25 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		63034DEB25669830008098F0 /* IMYWebView */ = {
+			isa = PBXGroup;
+			children = (
+				63034DEC25669830008098F0 /* IMYWebView.m */,
+				63034DED25669830008098F0 /* UIWebViewProgress */,
+				63034DF025669830008098F0 /* IMYWebView.h */,
+			);
+			path = IMYWebView;
+			sourceTree = "<group>";
+		};
+		63034DED25669830008098F0 /* UIWebViewProgress */ = {
+			isa = PBXGroup;
+			children = (
+				63034DEE25669830008098F0 /* IMY_NJKWebViewProgress.h */,
+				63034DEF25669830008098F0 /* IMY_NJKWebViewProgress.m */,
+			);
+			path = UIWebViewProgress;
+			sourceTree = "<group>";
+		};
 		631BC909254818DB001B82AB /* UIColorExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,6 +477,7 @@
 		6328F60B249DABDA00C767A8 /* ljwcodeTools */ = {
 			isa = PBXGroup;
 			children = (
+				63034DEB25669830008098F0 /* IMYWebView */,
 				634AF048254C203F0013EE56 /* ios_asset */,
 				63BE334D254815BD00607EBA /* ThemeManager */,
 				6352491E2544294E009AECF2 /* QRCodeTool */,
@@ -595,8 +621,8 @@
 				63E8079824FD218A00C58406 /* showAllMsgChannelView.m */,
 				630A976524CFC463003029C3 /* countryCodeView.h */,
 				630A976424CFC462003029C3 /* countryCodeView.m */,
-				6355CFF324BF1078002D3815 /* loginView.h */,
-				6355CFF424BF1078002D3815 /* loginView.m */,
+				6355CFF324BF1078002D3815 /* TTloginView.h */,
+				6355CFF424BF1078002D3815 /* TTloginView.m */,
 				63A4E00824C83E8B0042473D /* otherLoginTypeView.h */,
 				63A4E00924C83E8B0042473D /* otherLoginTypeView.m */,
 				63403E7724C963140024A362 /* mineHeaderTableView.h */,
@@ -1220,12 +1246,14 @@
 				63BB1C222563DD00004E97E7 /* TTCloseNotificationTipView.m in Sources */,
 				63C4FA9324EBC2DE00CF9850 /* TTPageDecorateItemView.m in Sources */,
 				63F1F8DF24AF2FD200D687ED /* videoTitleRequestModel.m in Sources */,
+				63034DF225669830008098F0 /* IMY_NJKWebViewProgress.m in Sources */,
 				63ABADD624DBF48F0087453E /* discussEditView.m in Sources */,
 				637C2D3324A9D1930009274C /* networkURLManager.m in Sources */,
 				820978EB1BD3A37700CF9D0C /* AppDelegate.m in Sources */,
 				6352492725442F76009AECF2 /* QRCodeViewController.m in Sources */,
 				63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */,
 				63DEE600254AC12200D356D4 /* TTCheckNetWorkStatus.m in Sources */,
+				63034DF125669830008098F0 /* IMYWebView.m in Sources */,
 				63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */,
 				631CFA6824E5276A0082B941 /* focusViewController.m in Sources */,
 				631BC90C25481905001B82AB /* UIColor+TTColorTools.m in Sources */,
@@ -1262,7 +1290,7 @@
 				638E977D24CADB90005ADF42 /* commonSettingTableViewCell.m in Sources */,
 				6352492125442980009AECF2 /* QRCodeManager.m in Sources */,
 				63422BE224A839960091FEE1 /* WMMenuView.m in Sources */,
-				6355CFF524BF1078002D3815 /* loginView.m in Sources */,
+				6355CFF524BF1078002D3815 /* TTloginView.m in Sources */,
 				63BE5E792546B90D00381E38 /* SettingViewController.m in Sources */,
 				634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */,
 				63403E7C24C969FB0024A362 /* screeningHallTableViewCell.m in Sources */,

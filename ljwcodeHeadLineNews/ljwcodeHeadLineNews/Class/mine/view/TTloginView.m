@@ -1,19 +1,19 @@
 //
-//  loginView.m
+//  TTloginView.m
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/7/15.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "loginView.h"
+#import "TTloginView.h"
 #import <Masonry/Masonry.h>
 #import <YYText/YYText.h>
 #import <UIView+Frame.h>
 #import "countryCodeView.h"
 #import "otherLoginTypeView.h"
 
-@interface loginView()
+@interface TTloginView()
 
 @property(nonatomic,weak)UIButton *tiktokLoginBtn;
 
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation loginView
+@implementation TTloginView
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){

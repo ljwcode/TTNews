@@ -7,8 +7,6 @@
 //
 
 #import "newsDetailFooterView.h"
-#import <Masonry/Masonry.h>
-#import <UIView+Frame.h>
 
 @interface newsDetailFooterView()<UITextFieldDelegate,UITextViewDelegate>
 

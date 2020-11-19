@@ -1,5 +1,5 @@
 //
-//  loginView.h
+//  TTloginView.h
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/7/15.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface loginView : UIView
+@interface TTloginView : UIView
 
 -(void)show;
 

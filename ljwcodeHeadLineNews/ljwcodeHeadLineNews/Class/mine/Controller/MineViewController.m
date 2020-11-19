@@ -14,7 +14,7 @@
 #import "screeningHallTableViewCell.h"
 #import "commonSettingTableViewCell.h"
 #import "moreSettingTableViewCell.h"
-#import "loginView.h"
+#import "TTloginView.h"
 
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 {
@@ -68,7 +68,7 @@
         mineHeaderTableView *headerView = [[mineHeaderTableView alloc]init];
         tableView.tableHeaderView = headerView;
         headerView.loginBlock = ^{
-            loginView *loginV = [[loginView alloc]init];
+            TTloginView *loginV = [[TTloginView alloc]init];
             [loginV show];
         };
         

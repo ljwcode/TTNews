@@ -19,6 +19,8 @@
 
 @property(nonatomic,strong)TTSearchSuggestionViewModel *viewModel;
 
+@property(nonatomic,strong)TTReportArticleView *ReportArticleView;
+
 @end
 
 @implementation TTBaseViewController
@@ -125,13 +127,20 @@
 #pragma mark ---- 响应事件
 
 -(void)reportHandle:(UIButton *)sender{
-    TTReportArticleView *TTReportView = [[TTReportArticleView alloc]initWithFrame:CGRectMake(0, kScreenHeight * 0.5, kScreenWidth, kScreenHeight * 0.5)];
-    TTReportView.backgroundColor = [UIColor whiteColor];
-    TTReportView.layer.cornerRadius = 5.f;
-    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:TTReportView];
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:self.ReportArticleView];
 }
 
 #pragma mark -- lazy load
+
+-(TTReportArticleView *)ReportArticleView{
+    if(!_ReportArticleView){
+        _ReportArticleView = [[TTReportArticleView alloc]initWithFrame:CGRectMake(0, kScreenHeight * 0.5, kScreenWidth, kScreenHeight * 0.5)];
+        _ReportArticleView.backgroundColor = [UIColor whiteColor];
+        _ReportArticleView.layer.cornerRadius = 5.f;
+    }
+    return _ReportArticleView;
+}
 
 -(TTSearchSuggestionViewModel *)viewModel{
     if(!_viewModel){
@@ -139,6 +148,7 @@
     }
     return _viewModel;
 }
+
 /*
 #pragma mark - Navigation
 

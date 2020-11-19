@@ -7,6 +7,7 @@
 //
 
 #import "TTReportArticleView.h"
+#import "TTloginView.h"
 
 @interface TTReportArticleView()<UITableViewDelegate,UITableViewDataSource>
 
@@ -30,6 +31,9 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
+        
+        [self addSubview:self.tableView];
+        
         UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
         loginBtn.titleLabel.font = [UIFont systemFontOfSize:13.f];
@@ -65,7 +69,6 @@
             }];
         }
         
-        
     }
     return self;
 }
@@ -84,17 +87,28 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if(!cell){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         cell.textLabel.text = self.writeTitleArray[indexPath.row];
         UIButton *writeHotBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [writeHotBtn setFrame:CGRectMake(0, 0, CGRectGetWidth(cell.frame) * 0.3, CGRectGetHeight(cell.frame) * 0.5)];
         [writeHotBtn setTitle:self.writeDescriptionArray[indexPath.row] forState:UIControlStateNormal];
         [writeHotBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [writeHotBtn setImage:[UIImage imageNamed:@"arrow_right_setup"] forState:UIControlStateNormal];
-        writeHotBtn.titleLabel.font = [UIFont systemFontOfSize:11.f];
+        writeHotBtn.titleLabel.font = [UIFont systemFontOfSize:13.f];
         writeHotBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
         writeHotBtn.imageEdgeInsets = UIEdgeInsetsMake(0, writeHotBtn.titleLabel.intrinsicContentSize.width, 0, -writeHotBtn.titleLabel.intrinsicContentSize.width);
         writeHotBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -writeHotBtn.imageView.intrinsicContentSize.width, 0, writeHotBtn.imageView.intrinsicContentSize.width);
         cell.accessoryView = writeHotBtn;
+        
+        UIView *lineView = [[UIView alloc]init];
+        lineView.backgroundColor = [UIColor grayColor];
+        [cell addSubview:lineView];
+        
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(hSpace);
+            make.right.mas_equalTo(-hSpace);
+            make.bottom.mas_equalTo(cell.mas_bottom).offset(0);
+            make.height.mas_equalTo(1);
+        }];
     }
     return cell;
 }
@@ -102,7 +116,12 @@
 #pragma mark ---- 响应事件
 
 -(void)TologinHandle:(UIButton *)sender{
-    
+    TTloginView *loginView = [[TTloginView alloc]init];
+    [loginView show];
+}
+
+-(void)closeHandle:(UIButton *)sender{
+    [self removeFromSuperview];
 }
 
 #pragma mark ---- lazy load
@@ -126,16 +145,16 @@
         _tableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.tableHeaderView = self.tableHeaderView;
         _tableView.tableFooterView = self.tableFooterView;
-        [self addSubview:_tableView];
     }
     return _tableView;
 }
 
 -(UIView *)tableHeaderView{
     if(!_tableHeaderView){
-        _tableHeaderView = [[UIView alloc]init];
+        _tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.2)];
     }
     return _tableHeaderView;
 }
@@ -156,15 +175,15 @@
 
 -(UIView *)tableFooterView{
     if(!_tableFooterView){
-        _tableFooterView = [[UIView alloc]init];
-        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-        imgView.center = _tableFooterView.center;
-        [imgView setImage:[UIImage imageNamed:@"close_channel"]];
-        [_tableFooterView addSubview:imgView];
+        _tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.2)];
+        UIButton *closeBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+        closeBtn.center = _tableFooterView.center;
+        [closeBtn setImage:[UIImage imageNamed:@"close_channel"] forState:UIControlStateNormal];
+        [closeBtn addTarget:self action:@selector(closeHandle:) forControlEvents:UIControlEventTouchUpInside];
+        [_tableFooterView addSubview:closeBtn];
     }
     return _tableFooterView;
 }
-
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -172,5 +191,11 @@
     // Drawing code
 }
 */
+
+@end
+
+
+@implementation UITableViewCell (TTTableViewCellLineShow)
+
 
 @end

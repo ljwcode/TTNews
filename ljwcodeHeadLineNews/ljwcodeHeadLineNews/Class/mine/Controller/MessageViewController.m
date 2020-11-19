@@ -10,7 +10,7 @@
 #import <UIView+Frame.h>
 #import <Masonry.h>
 #import "TTNavigationController.h"
-#import "loginView.h"
+#import "TTloginView.h"
 #import "showAllMsgChannelView.h"
 
 @interface MessageViewController ()
@@ -113,7 +113,7 @@
 }
 
 -(void)loginHandle:(UIButton *)sender{
-    loginView *view = [[loginView alloc]init];
+    TTloginView *view = [[TTloginView alloc]init];
     [view show];
 }
 
