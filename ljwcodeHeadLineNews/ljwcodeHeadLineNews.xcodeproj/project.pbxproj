@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		63034DF125669830008098F0 /* IMYWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63034DEC25669830008098F0 /* IMYWebView.m */; };
-		63034DF225669830008098F0 /* IMY_NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 63034DEF25669830008098F0 /* IMY_NJKWebViewProgress.m */; };
 		6305043A256525B000CB910D /* TTReportArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63050439256525B000CB910D /* TTReportArticleView.m */; };
 		630A976624CFC463003029C3 /* countryCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A976424CFC462003029C3 /* countryCodeView.m */; };
 		63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AAC24AAE3C2002CB4EF /* homeDetailViewController.m */; };
@@ -112,6 +110,8 @@
 		63E7177324F9F430003A690E /* TTSearchSuggestionRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */; };
 		63E7177624F9F4A0003A690E /* TTSearchSuggestionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E7177524F9F4A0003A690E /* TTSearchSuggestionViewModel.m */; };
 		63E8079924FD218A00C58406 /* showAllMsgChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8079824FD218A00C58406 /* showAllMsgChannelView.m */; };
+		63E8C373256796E100F69701 /* TTWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C372256796E100F69701 /* TTWebView.m */; };
+		63E8C3782567B29600F69701 /* TTHomeMoreShareVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C3772567B29600F69701 /* TTHomeMoreShareVIew.m */; };
 		63F1F8D024AF219400D687ED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F1F8CF24AF219400D687ED /* AVFoundation.framework */; };
 		63F1F8D324AF223200D687ED /* TVVideoPlayerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8D224AF223200D687ED /* TVVideoPlayerViewCell.m */; };
 		63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8DB24AF2D7700D687ED /* videoTitleModel.m */; };
@@ -140,10 +140,6 @@
 
 /* Begin PBXFileReference section */
 		293C19CEC52458542FCA55CC /* Pods-ljwcodeHeadLineNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.release.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.release.xcconfig"; sourceTree = "<group>"; };
-		63034DEC25669830008098F0 /* IMYWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMYWebView.m; sourceTree = "<group>"; };
-		63034DEE25669830008098F0 /* IMY_NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMY_NJKWebViewProgress.h; sourceTree = "<group>"; };
-		63034DEF25669830008098F0 /* IMY_NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMY_NJKWebViewProgress.m; sourceTree = "<group>"; };
-		63034DF025669830008098F0 /* IMYWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMYWebView.h; sourceTree = "<group>"; };
 		63050438256525B000CB910D /* TTReportArticleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTReportArticleView.h; sourceTree = "<group>"; };
 		63050439256525B000CB910D /* TTReportArticleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTReportArticleView.m; sourceTree = "<group>"; };
 		630A976424CFC462003029C3 /* countryCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countryCodeView.m; sourceTree = "<group>"; };
@@ -337,6 +333,10 @@
 		63E7177524F9F4A0003A690E /* TTSearchSuggestionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSearchSuggestionViewModel.m; sourceTree = "<group>"; };
 		63E8079724FD218A00C58406 /* showAllMsgChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showAllMsgChannelView.h; sourceTree = "<group>"; };
 		63E8079824FD218A00C58406 /* showAllMsgChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showAllMsgChannelView.m; sourceTree = "<group>"; };
+		63E8C371256796E100F69701 /* TTWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTWebView.h; sourceTree = "<group>"; };
+		63E8C372256796E100F69701 /* TTWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTWebView.m; sourceTree = "<group>"; };
+		63E8C3762567B29600F69701 /* TTHomeMoreShareVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTHomeMoreShareVIew.h; sourceTree = "<group>"; };
+		63E8C3772567B29600F69701 /* TTHomeMoreShareVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTHomeMoreShareVIew.m; sourceTree = "<group>"; };
 		63F1F8CF24AF219400D687ED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		63F1F8D124AF223200D687ED /* TVVideoPlayerViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVVideoPlayerViewCell.h; sourceTree = "<group>"; };
 		63F1F8D224AF223200D687ED /* TVVideoPlayerViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVVideoPlayerViewCell.m; sourceTree = "<group>"; };
@@ -407,25 +407,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		63034DEB25669830008098F0 /* IMYWebView */ = {
-			isa = PBXGroup;
-			children = (
-				63034DEC25669830008098F0 /* IMYWebView.m */,
-				63034DED25669830008098F0 /* UIWebViewProgress */,
-				63034DF025669830008098F0 /* IMYWebView.h */,
-			);
-			path = IMYWebView;
-			sourceTree = "<group>";
-		};
-		63034DED25669830008098F0 /* UIWebViewProgress */ = {
-			isa = PBXGroup;
-			children = (
-				63034DEE25669830008098F0 /* IMY_NJKWebViewProgress.h */,
-				63034DEF25669830008098F0 /* IMY_NJKWebViewProgress.m */,
-			);
-			path = UIWebViewProgress;
-			sourceTree = "<group>";
-		};
 		631BC909254818DB001B82AB /* UIColorExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,7 +458,6 @@
 		6328F60B249DABDA00C767A8 /* ljwcodeTools */ = {
 			isa = PBXGroup;
 			children = (
-				63034DEB25669830008098F0 /* IMYWebView */,
 				634AF048254C203F0013EE56 /* ios_asset */,
 				63BE334D254815BD00607EBA /* ThemeManager */,
 				6352491E2544294E009AECF2 /* QRCodeTool */,
@@ -501,6 +481,8 @@
 				631BC92925482A9A001B82AB /* clearCacheTools.m */,
 				63DEE5FE254AC12200D356D4 /* TTCheckNetWorkStatus.h */,
 				63DEE5FF254AC12200D356D4 /* TTCheckNetWorkStatus.m */,
+				63E8C371256796E100F69701 /* TTWebView.h */,
+				63E8C372256796E100F69701 /* TTWebView.m */,
 			);
 			path = ljwcodeTools;
 			sourceTree = "<group>";
@@ -747,6 +729,8 @@
 				63ABADD524DBF48F0087453E /* discussEditView.m */,
 				63F6751D254C22DC009F9AB7 /* TTShowShareConfigureView.h */,
 				63F6751E254C22DC009F9AB7 /* TTShowShareConfigureView.m */,
+				63E8C3762567B29600F69701 /* TTHomeMoreShareVIew.h */,
+				63E8C3772567B29600F69701 /* TTHomeMoreShareVIew.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1076,7 +1060,7 @@
 		820978DB1BD3A37600CF9D0C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = ljwcode;
 				TargetAttributes = {
 					820978E21BD3A37600CF9D0C = {
@@ -1246,14 +1230,12 @@
 				63BB1C222563DD00004E97E7 /* TTCloseNotificationTipView.m in Sources */,
 				63C4FA9324EBC2DE00CF9850 /* TTPageDecorateItemView.m in Sources */,
 				63F1F8DF24AF2FD200D687ED /* videoTitleRequestModel.m in Sources */,
-				63034DF225669830008098F0 /* IMY_NJKWebViewProgress.m in Sources */,
 				63ABADD624DBF48F0087453E /* discussEditView.m in Sources */,
 				637C2D3324A9D1930009274C /* networkURLManager.m in Sources */,
 				820978EB1BD3A37700CF9D0C /* AppDelegate.m in Sources */,
 				6352492725442F76009AECF2 /* QRCodeViewController.m in Sources */,
 				63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */,
 				63DEE600254AC12200D356D4 /* TTCheckNetWorkStatus.m in Sources */,
-				63034DF125669830008098F0 /* IMYWebView.m in Sources */,
 				63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */,
 				631CFA6824E5276A0082B941 /* focusViewController.m in Sources */,
 				631BC90C25481905001B82AB /* UIColor+TTColorTools.m in Sources */,
@@ -1272,6 +1254,7 @@
 				63BE32FD2547F3D000607EBA /* PrivacyViewController.m in Sources */,
 				63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */,
 				631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */,
+				63E8C373256796E100F69701 /* TTWebView.m in Sources */,
 				63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */,
 				637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */,
 				63403E7924C963150024A362 /* mineHeaderTableView.m in Sources */,
@@ -1285,6 +1268,7 @@
 				636EA80624C9924500765F5C /* screeningHollHistoryModel.m in Sources */,
 				6328F614249E111F00C767A8 /* TTHeader.m in Sources */,
 				63422BDF24A839960091FEE1 /* WMPageController.m in Sources */,
+				63E8C3782567B29600F69701 /* TTHomeMoreShareVIew.m in Sources */,
 				63BE33592548165200607EBA /* UITabBar+ThemeChange.m in Sources */,
 				63C4FA9C24EBDFC900CF9850 /* TTPageMenuView.m in Sources */,
 				638E977D24CADB90005ADF42 /* commonSettingTableViewCell.m in Sources */,
@@ -1331,6 +1315,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1356,7 +1341,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1386,6 +1371,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1405,7 +1391,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1427,7 +1413,7 @@
 				);
 				GCC_PREFIX_HEADER = ljwcodeHeadLineNews/HeadLineNews.pch;
 				INFOPLIST_FILE = ljwcodeHeadLineNews/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1464,7 +1450,7 @@
 				);
 				GCC_PREFIX_HEADER = ljwcodeHeadLineNews/HeadLineNews.pch;
 				INFOPLIST_FILE = ljwcodeHeadLineNews/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
