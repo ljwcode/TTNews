@@ -9,12 +9,11 @@
 #import "TTHeader.h"
 #import <WebKit/WebKit.h>
 #import "TTNavigationController.h"
-#import <Masonry/Masonry.h>
-#import <UIView+Frame.h>
 #import <RACSubject.h>
 #import "newsDetailFooterView.h"
 #import "headLineSearchViewController.h"
 #import "TTWebView.h"
+#import "TTHomeMoreShareVIew.h"
 
 
 @interface NewsDetailViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,TTWebViewDelegate>
@@ -220,7 +219,11 @@
 #pragma mark - 点击事件响应
 
 -(void)moreBarHandle:(UIBarButtonItem *)sender{
-    
+    TTHomeMoreShareVIew *moreShareView = [[TTHomeMoreShareVIew alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.5, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.5)];
+    moreShareView.backgroundColor = [UIColor whiteColor];
+    moreShareView.layer.cornerRadius = 8.f;
+    moreShareView.layer.masksToBounds = YES;
+    [self.view addSubview:moreShareView];
 }
 
 -(void)searchBarHandle:(UIBarButtonItem *)sender{

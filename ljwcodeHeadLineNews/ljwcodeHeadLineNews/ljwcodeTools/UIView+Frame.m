@@ -1,83 +1,71 @@
 //
 //  UIView+Frame.m
-//  woaoappios
+//  ljwcodeHeadLineNews
 //
-//  Created by jianghui yin on 14-10-8.
-//  Copyright (c) 2014年 16816. All rights reserved.
+//  Created by 1 on 2020/11/21.
+//  Copyright © 2020 ljwcode. All rights reserved.
 //
 
 #import "UIView+Frame.h"
 
-@implementation UIView (LBFrame)
+@implementation UIView (Frame)
 
-- (CGFloat)top
-{
+- (CGFloat)top{
     return self.frame.origin.y;
 }
 
-- (void)setTop:(CGFloat)y
-{
+- (void)setTop:(CGFloat)y{
     CGRect frame = self.frame;
     frame.origin.y = y;
     self.frame = frame;
 }
 
-- (CGFloat)right
-{
+- (CGFloat)right{
     return self.frame.origin.x + self.frame.size.width;
 }
 
-- (void)setRight:(CGFloat)right
-{
+- (void)setRight:(CGFloat)right{
     CGRect frame = self.frame;
     frame.origin.x = right - self.frame.size.width;
     self.frame = frame;
 }
 
-- (CGFloat)bottom
-{
+- (CGFloat)bottom{
     return self.frame.origin.y + self.frame.size.height;
 }
 
-- (void)setBottom:(CGFloat)bottom
-{
+- (void)setBottom:(CGFloat)bottom{
     CGRect frame = self.frame;
     frame.origin.y = bottom - self.frame.size.height;
     self.frame = frame;
 }
 
-- (CGFloat)left
-{
+- (CGFloat)left{
     return self.frame.origin.x;
 }
 
-- (void)setLeft:(CGFloat)x
-{
+- (void)setLeft:(CGFloat)x{
     CGRect frame = self.frame;
     frame.origin.x = x;
     self.frame = frame;
 }
 
-- (CGFloat)width
-{
+- (CGFloat)width{
     return self.frame.size.width;
 }
 
-- (void)setWidth:(CGFloat)width
-{
+- (void)setWidth:(CGFloat)width{
     CGRect frame = self.frame;
     frame.size.width = width;
     self.frame = frame;
 }
--(void)setCenterX:(CGFloat)centerX
-{
+-(void)setCenterX:(CGFloat)centerX{
     CGPoint  center=self.center;
     center.x=centerX;
     self.center=center;
 
 }
--(CGFloat)centerX
-{
+-(CGFloat)centerX{
     return self.center.x;
 }
 -(void)setCenterY:(CGFloat)centerY{
@@ -87,18 +75,15 @@
     self.center = center;
     
 }
--(CGFloat)centerY
-{
+-(CGFloat)centerY{
     return self.center.y;
 }
 
-- (CGFloat)height
-{
+- (CGFloat)height{
     return self.frame.size.height;
 }
 
-- (void)setHeight:(CGFloat)height
-{
+- (void)setHeight:(CGFloat)height{
     CGRect frame = self.frame;
     frame.size.height = height;
     self.frame = frame;
@@ -155,4 +140,24 @@
     return nil;
 }
 
+-(UIWindow *)getCurrentWindow{
+    if([[[UIApplication sharedApplication]delegate]window]){
+        return [[[UIApplication sharedApplication]delegate]window];
+    }else{
+        if(@available(iOS 13.0,*)){
+            NSArray *array = [[[UIApplication sharedApplication]connectedScenes]allObjects];
+            UIWindowScene *windowScene = (UIWindowScene *)array[0];
+            UIWindow *mainWindow = [windowScene valueForKey:@"delegate.window"];
+            if(mainWindow){
+                return  mainWindow;
+            }else{
+                return [UIApplication sharedApplication].windows.lastObject;
+            }
+        }else{
+            return [UIApplication sharedApplication].keyWindow;
+        }
+    }
+}
+
 @end
+

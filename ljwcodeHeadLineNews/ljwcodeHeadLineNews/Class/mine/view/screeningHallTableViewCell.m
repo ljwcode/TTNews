@@ -7,7 +7,6 @@
 //
 
 #import "screeningHallTableViewCell.h"
-#import <UIView+Frame.h>
 #import <Masonry/Masonry.h>
 #import "videoInfoTableView.h"
 

@@ -7,8 +7,6 @@
 //
 
 #import "otherLoginTypeView.h"
-#import <Masonry/Masonry.h>
-#import <UIView+Frame.h>
 #import <WXApi.h>
 
 @interface otherLoginTypeView()<UITableViewDelegate,UITableViewDataSource,WXApiDelegate>

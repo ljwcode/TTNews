@@ -8,9 +8,7 @@
 
 #import "MineViewController.h"
 #import "mineHeaderTableView.h"
-#import <UIView+Frame.h>
 #import <MJRefresh/MJRefresh.h>
-#import <Masonry/Masonry.h>
 #import "screeningHallTableViewCell.h"
 #import "commonSettingTableViewCell.h"
 #import "moreSettingTableViewCell.h"

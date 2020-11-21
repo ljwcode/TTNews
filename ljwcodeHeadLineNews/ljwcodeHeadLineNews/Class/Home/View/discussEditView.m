@@ -7,8 +7,6 @@
 //
 
 #import "discussEditView.h"
-#import <UIView+Frame.h>
-#import <Masonry/Masonry.h>
 
 @interface discussEditView()<UITextViewDelegate>
 

@@ -1,5 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 target 'ljwcodeHeadLineNews' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
@@ -7,15 +8,12 @@ target 'ljwcodeHeadLineNews' do
   # Pods for ljwcodeHeadLineNews
 pod 'AFNetworking'
 pod 'YYCache'
-pod 'DZNEmptyDataSet'
 pod 'MJExtension'
 pod 'MBProgressHUD'
 pod 'ReactiveObjC'
 pod 'MJRefresh'
 pod 'Masonry'
 pod 'YYText'
-pod 'FMDB'
-pod 'LBPhotoBrowser', '~> 2.2.2'
 pod 'SDWebImage/WebP'
 pod 'SDWebImage’,’~> 4.0.0’
 pod 'DouyinOpenSDK'

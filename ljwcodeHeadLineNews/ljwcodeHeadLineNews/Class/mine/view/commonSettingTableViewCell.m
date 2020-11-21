@@ -7,8 +7,6 @@
 //
 
 #import "commonSettingTableViewCell.h"
-#import <Masonry.h>
-#import <UIView+Frame.h>
 #import "focusViewController.h"
 #import "MessageViewController.h"
 

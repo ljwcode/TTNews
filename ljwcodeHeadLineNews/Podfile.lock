@@ -15,12 +15,6 @@ PODS:
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - DouyinOpenSDK (4.0.0)
-  - DZNEmptyDataSet (1.8.1)
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
-  - LBPhotoBrowser (2.2.2):
-    - SDWebImage
   - libwebp (1.1.0):
     - libwebp/demux (= 1.1.0)
     - libwebp/mux (= 1.1.0)
@@ -53,9 +47,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - DouyinOpenSDK
-  - DZNEmptyDataSet
-  - FMDB
-  - LBPhotoBrowser (~> 2.2.2)
   - Masonry
   - MBProgressHUD
   - MJExtension
@@ -70,12 +61,9 @@ DEPENDENCIES:
   - ZFPlayer/ControlView
 
 SPEC REPOS:
-  trunk:
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - AFNetworking
     - DouyinOpenSDK
-    - DZNEmptyDataSet
-    - FMDB
-    - LBPhotoBrowser
     - libwebp
     - Masonry
     - MBProgressHUD
@@ -91,10 +79,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   DouyinOpenSDK: 370f429928f1433547f296ccb2e47c2a85fddc0d
-  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  LBPhotoBrowser: e924dea551c494815fde9185bad85ab6331c45da
-  libwebp: d7684f7241543c7a5ff47953cc9b9f184fe16610
+  libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
@@ -106,6 +91,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZFPlayer: f88787c815f7b0801279c42f131a89e2823e669e
 
-PODFILE CHECKSUM: eea396224bb1fcae9a90cd3b0547c1f9075e6be3
+PODFILE CHECKSUM: bb325221bbfc10e8dcee83bb11134eb3fd513a84
 
-COCOAPODS: 1.10.0.beta.2
+COCOAPODS: 1.10.0

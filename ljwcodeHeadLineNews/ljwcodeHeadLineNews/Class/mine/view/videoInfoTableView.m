@@ -7,8 +7,6 @@
 //
 
 #import "videoInfoTableView.h"
-#import <Masonry/Masonry.h>
-#import <UIView+Frame.h>
 
 @interface videoInfoTableView()
 

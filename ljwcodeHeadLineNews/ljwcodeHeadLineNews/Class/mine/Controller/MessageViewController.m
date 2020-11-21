@@ -7,8 +7,6 @@
 //
 
 #import "MessageViewController.h"
-#import <UIView+Frame.h>
-#import <Masonry.h>
 #import "TTNavigationController.h"
 #import "TTloginView.h"
 #import "showAllMsgChannelView.h"

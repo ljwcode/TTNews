@@ -7,8 +7,6 @@
 //
 
 #import "mineHeaderTableView.h"
-#import <Masonry/Masonry.h>
-#import <UIView+Frame.h>
 #import "QRCodeViewController.h"
 #import "SettingViewController.h"
 

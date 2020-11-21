@@ -7,9 +7,7 @@
 //
 
 #import "TTloginView.h"
-#import <Masonry/Masonry.h>
 #import <YYText/YYText.h>
-#import <UIView+Frame.h>
 #import "countryCodeView.h"
 #import "otherLoginTypeView.h"
 

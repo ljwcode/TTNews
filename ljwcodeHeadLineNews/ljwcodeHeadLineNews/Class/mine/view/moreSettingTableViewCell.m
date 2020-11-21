@@ -7,8 +7,6 @@
 //
 
 #import "moreSettingTableViewCell.h"
-#import <Masonry.h>
-#import <UIView+Frame.h>
 
 @interface moreSettingTableViewCell()
 

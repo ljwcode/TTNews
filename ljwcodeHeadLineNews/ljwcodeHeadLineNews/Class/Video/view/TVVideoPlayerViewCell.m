@@ -9,8 +9,6 @@
 #import "TVVideoPlayerViewCell.h"
 #import <UIImageView+WebCache.h>
 #import "UIImage+cropPicture.h"
-#import <Masonry/Masonry.h>
-#import <UIView+Frame.h>
 #import <SDWebImageManager.h>
 
 @interface TVVideoPlayerViewCell()<UIGestureRecognizerDelegate>

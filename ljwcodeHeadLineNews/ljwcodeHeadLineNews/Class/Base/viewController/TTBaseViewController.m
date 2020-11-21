@@ -8,7 +8,6 @@
 
 #import "TTBaseViewController.h"
 #import "headLineSearchViewController.h"
-#import <UIView+Frame.h>
 #import "TTNavigationBar.h"
 #import "TTSearchSuggestionViewModel.h"
 #import "TTReportArticleView.h"

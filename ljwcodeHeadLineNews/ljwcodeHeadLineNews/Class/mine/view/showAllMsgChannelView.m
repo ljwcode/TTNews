@@ -7,8 +7,6 @@
 //
 
 #import "showAllMsgChannelView.h"
-#import <UIView+Frame.h>
-#import <Masonry/Masonry.h>
 
 @interface showAllMsgChannelView()
 

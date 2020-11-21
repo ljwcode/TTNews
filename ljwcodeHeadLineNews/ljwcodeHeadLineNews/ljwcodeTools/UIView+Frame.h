@@ -1,14 +1,16 @@
 //
 //  UIView+Frame.h
-//  woaoappios
+//  ljwcodeHeadLineNews
 //
-//  Created by jianghui yin on 14-10-8.
-//  Copyright (c) 2014年 16816. All rights reserved.
+//  Created by 1 on 2020/11/21.
+//  Copyright © 2020 ljwcode. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (LBFrame)
+NS_ASSUME_NONNULL_BEGIN
+
+@interface UIView (Frame)
 
 @property (nonatomic, assign) CGFloat top;
 @property (nonatomic, assign) CGFloat bottom;
@@ -30,4 +32,8 @@
 
 -(UIViewController *)getCurrentViewController;
 
+-(UIWindow *)getCurrentWindow;
+
 @end
+
+NS_ASSUME_NONNULL_END

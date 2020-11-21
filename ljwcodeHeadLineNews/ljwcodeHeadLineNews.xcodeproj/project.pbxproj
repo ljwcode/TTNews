@@ -15,6 +15,7 @@
 		63167AB624AB6182002CB4EF /* homeNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AB524AB6182002CB4EF /* homeNewsModel.m */; };
 		63167AB824AB6380002CB4EF /* homeListModel in Resources */ = {isa = PBXBuildFile; fileRef = 63167AB724AB6380002CB4EF /* homeListModel */; };
 		63167ABA24AB63E2002CB4EF /* homeTitleChannelModel in Resources */ = {isa = PBXBuildFile; fileRef = 63167AB924AB63E2002CB4EF /* homeTitleChannelModel */; };
+		63167BA02569170200B967B2 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167B9F2569170200B967B2 /* UIView+Frame.m */; };
 		631BAEE8249B63D700639CD2 /* UITabBar+TTTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BAEE7249B63D700639CD2 /* UITabBar+TTTabBarItem.m */; };
 		631BAEEB249B751D00639CD2 /* TTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BAEEA249B751D00639CD2 /* TTNavigationController.m */; };
 		631BC8FF25481893001B82AB /* UINavigationBar+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC8FE25481893001B82AB /* UINavigationBar+ThemeChange.m */; };
@@ -154,6 +155,8 @@
 		63167AB524AB6182002CB4EF /* homeNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsModel.m; sourceTree = "<group>"; };
 		63167AB724AB6380002CB4EF /* homeListModel */ = {isa = PBXFileReference; lastKnownFileType = text; path = homeListModel; sourceTree = "<group>"; };
 		63167AB924AB63E2002CB4EF /* homeTitleChannelModel */ = {isa = PBXFileReference; lastKnownFileType = text; path = homeTitleChannelModel; sourceTree = "<group>"; };
+		63167B9E2569170200B967B2 /* UIView+Frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		63167B9F2569170200B967B2 /* UIView+Frame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		631BAEE6249B63D700639CD2 /* UITabBar+TTTabBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+TTTabBarItem.h"; sourceTree = "<group>"; };
 		631BAEE7249B63D700639CD2 /* UITabBar+TTTabBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+TTTabBarItem.m"; sourceTree = "<group>"; };
 		631BAEE9249B751D00639CD2 /* TTNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNavigationController.h; sourceTree = "<group>"; };
@@ -483,6 +486,8 @@
 				63DEE5FF254AC12200D356D4 /* TTCheckNetWorkStatus.m */,
 				63E8C371256796E100F69701 /* TTWebView.h */,
 				63E8C372256796E100F69701 /* TTWebView.m */,
+				63167B9E2569170200B967B2 /* UIView+Frame.h */,
+				63167B9F2569170200B967B2 /* UIView+Frame.m */,
 			);
 			path = ljwcodeTools;
 			sourceTree = "<group>";
@@ -1260,6 +1265,7 @@
 				63403E7924C963150024A362 /* mineHeaderTableView.m in Sources */,
 				63C4FA8D24EBC1C800CF9850 /* TTHorizontalPageViewController.m in Sources */,
 				63DEE5FC254ABA8F00D356D4 /* PushNotificationSettingViewController.m in Sources */,
+				63167BA02569170200B967B2 /* UIView+Frame.m in Sources */,
 				63BE352524DAD63A001ADFDD /* newsDetailFooterView.m in Sources */,
 				63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */,
 				638E977424CAB4A4005ADF42 /* TTMineNavigationController.m in Sources */,
