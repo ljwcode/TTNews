@@ -1,23 +1,23 @@
 //
-//  networkURLManager.m
+//  TTNetworkURLManager.m
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/6/29.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "networkURLManager.h"
+#import "TTNetworkURLManager.h"
 #import "TTHeader.h"
 #import "NSData+CRC32.h"
 #import "VideoDetailViewController.h"
 
-@implementation networkURLManager
+@implementation TTNetworkURLManager
 
-+(networkURLManager *)shareInstance{
-    static networkURLManager *Instance = nil;
++(TTNetworkURLManager *)shareInstance{
+    static TTNetworkURLManager *Instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        Instance = [[networkURLManager alloc]init];
+        Instance = [[TTNetworkURLManager alloc]init];
     });
     return Instance;
 }

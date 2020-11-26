@@ -70,9 +70,9 @@
 		637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2524A9C1E60009274C /* UIButton+extend.m */; };
 		637C2D2924A9CDE30009274C /* homeTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2824A9CDE30009274C /* homeTitleModel.m */; };
 		637C2D2C24A9CF630009274C /* homeTitleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2B24A9CF630009274C /* homeTitleViewModel.m */; };
-		637C2D3024A9D1600009274C /* networkBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2F24A9D1600009274C /* networkBaseModel.m */; };
-		637C2D3324A9D1930009274C /* networkURLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3224A9D1930009274C /* networkURLManager.m */; };
-		637C2D3624A9D3EA0009274C /* networkManagerCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3524A9D3EA0009274C /* networkManagerCenter.m */; };
+		637C2D3024A9D1600009274C /* TTNetworkBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2F24A9D1600009274C /* TTNetworkBaseModel.m */; };
+		637C2D3324A9D1930009274C /* TTNetworkURLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3224A9D1930009274C /* TTNetworkURLManager.m */; };
+		637C2D3624A9D3EA0009274C /* TTNetworkManagerCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3524A9D3EA0009274C /* TTNetworkManagerCenter.m */; };
 		637C2D3924A9DDA10009274C /* homeTitleRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3824A9DDA10009274C /* homeTitleRequestModel.m */; };
 		637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3A24A9F1BA0009274C /* MBProgressHUD+Add.m */; };
 		637C5C0A24A35C0800D7C0E0 /* ljwcodeBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */; };
@@ -256,12 +256,12 @@
 		637C2D2824A9CDE30009274C /* homeTitleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeTitleModel.m; sourceTree = "<group>"; };
 		637C2D2A24A9CF630009274C /* homeTitleViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeTitleViewModel.h; sourceTree = "<group>"; };
 		637C2D2B24A9CF630009274C /* homeTitleViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeTitleViewModel.m; sourceTree = "<group>"; };
-		637C2D2E24A9D1600009274C /* networkBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = networkBaseModel.h; sourceTree = "<group>"; };
-		637C2D2F24A9D1600009274C /* networkBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = networkBaseModel.m; sourceTree = "<group>"; };
-		637C2D3124A9D1930009274C /* networkURLManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = networkURLManager.h; sourceTree = "<group>"; };
-		637C2D3224A9D1930009274C /* networkURLManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = networkURLManager.m; sourceTree = "<group>"; };
-		637C2D3424A9D3EA0009274C /* networkManagerCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = networkManagerCenter.h; sourceTree = "<group>"; };
-		637C2D3524A9D3EA0009274C /* networkManagerCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = networkManagerCenter.m; sourceTree = "<group>"; };
+		637C2D2E24A9D1600009274C /* TTNetworkBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNetworkBaseModel.h; sourceTree = "<group>"; };
+		637C2D2F24A9D1600009274C /* TTNetworkBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTNetworkBaseModel.m; sourceTree = "<group>"; };
+		637C2D3124A9D1930009274C /* TTNetworkURLManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNetworkURLManager.h; sourceTree = "<group>"; };
+		637C2D3224A9D1930009274C /* TTNetworkURLManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTNetworkURLManager.m; sourceTree = "<group>"; };
+		637C2D3424A9D3EA0009274C /* TTNetworkManagerCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNetworkManagerCenter.h; sourceTree = "<group>"; };
+		637C2D3524A9D3EA0009274C /* TTNetworkManagerCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTNetworkManagerCenter.m; sourceTree = "<group>"; };
 		637C2D3724A9DDA10009274C /* homeTitleRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeTitleRequestModel.h; sourceTree = "<group>"; };
 		637C2D3824A9DDA10009274C /* homeTitleRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeTitleRequestModel.m; sourceTree = "<group>"; };
 		637C2D3A24A9F1BA0009274C /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
@@ -330,8 +330,8 @@
 		63DEE5FF254AC12200D356D4 /* TTCheckNetWorkStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTCheckNetWorkStatus.m; sourceTree = "<group>"; };
 		63E6CB5C24C02CE800E0126C /* headLineSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = headLineSearchViewController.h; sourceTree = "<group>"; };
 		63E6CB5D24C02CE800E0126C /* headLineSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = headLineSearchViewController.m; sourceTree = "<group>"; };
-		63E7177124F9F430003A690E /* TTSearchSuggestionRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TTSearchSuggestionRequestModel.h; path = ljwcodeHeadLineNews/ljwcodeTools/TTSearchSuggestionRequestModel.h; sourceTree = SOURCE_ROOT; };
-		63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TTSearchSuggestionRequestModel.m; path = ljwcodeHeadLineNews/ljwcodeTools/TTSearchSuggestionRequestModel.m; sourceTree = SOURCE_ROOT; };
+		63E7177124F9F430003A690E /* TTSearchSuggestionRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TTSearchSuggestionRequestModel.h; path = ljwcodeHeadLineNews/Class/Base/model/TTSearchSuggestionRequestModel.h; sourceTree = SOURCE_ROOT; };
+		63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TTSearchSuggestionRequestModel.m; path = ljwcodeHeadLineNews/Class/Base/model/TTSearchSuggestionRequestModel.m; sourceTree = SOURCE_ROOT; };
 		63E7177424F9F4A0003A690E /* TTSearchSuggestionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTSearchSuggestionViewModel.h; sourceTree = "<group>"; };
 		63E7177524F9F4A0003A690E /* TTSearchSuggestionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSearchSuggestionViewModel.m; sourceTree = "<group>"; };
 		63E8079724FD218A00C58406 /* showAllMsgChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showAllMsgChannelView.h; sourceTree = "<group>"; };
@@ -456,6 +456,15 @@
 				63C4FA9B24EBDFC900CF9850 /* TTPageMenuView.m */,
 			);
 			path = TTHorizontalCateoryTabBar;
+			sourceTree = "<group>";
+		};
+		63265C2D256F5DA200AACBC6 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				63E7177124F9F430003A690E /* TTSearchSuggestionRequestModel.h */,
+				63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		6328F60B249DABDA00C767A8 /* ljwcodeTools */ = {
@@ -662,23 +671,14 @@
 		637C2D2D24A9D1120009274C /* headLineNewsNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				637C2D2E24A9D1600009274C /* networkBaseModel.h */,
-				637C2D2F24A9D1600009274C /* networkBaseModel.m */,
-				637C2D3124A9D1930009274C /* networkURLManager.h */,
-				637C2D3224A9D1930009274C /* networkURLManager.m */,
-				637C2D3424A9D3EA0009274C /* networkManagerCenter.h */,
-				637C2D3524A9D3EA0009274C /* networkManagerCenter.m */,
+				637C2D2E24A9D1600009274C /* TTNetworkBaseModel.h */,
+				637C2D2F24A9D1600009274C /* TTNetworkBaseModel.m */,
+				637C2D3124A9D1930009274C /* TTNetworkURLManager.h */,
+				637C2D3224A9D1930009274C /* TTNetworkURLManager.m */,
+				637C2D3424A9D3EA0009274C /* TTNetworkManagerCenter.h */,
+				637C2D3524A9D3EA0009274C /* TTNetworkManagerCenter.m */,
 			);
 			path = headLineNewsNetwork;
-			sourceTree = "<group>";
-		};
-		637C5C0524A35B6500D7C0E0 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				63E7177124F9F430003A690E /* TTSearchSuggestionRequestModel.h */,
-				63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */,
-			);
-			path = model;
 			sourceTree = "<group>";
 		};
 		637C5C0624A35B6C00D7C0E0 /* view */ = {
@@ -719,6 +719,7 @@
 		63B07BEC24A1DCE900C7CD6F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				63422C4724A8759C0091FEE1 /* ChannelView */,
 				63B07BEF24A1DD5600C7CD6F /* homeNewsTableViewCell.h */,
 				63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */,
 				63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */,
@@ -923,7 +924,6 @@
 			isa = PBXGroup;
 			children = (
 				637C2D2D24A9D1120009274C /* headLineNewsNetwork */,
-				63422C4724A8759C0091FEE1 /* ChannelView */,
 				820979041BD3AA9400CF9D0C /* Base */,
 				820979081BD3AB0600CF9D0C /* Home */,
 				820979091BD3AB0600CF9D0C /* screeningHall */,
@@ -936,9 +936,9 @@
 		820979041BD3AA9400CF9D0C /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				63265C2D256F5DA200AACBC6 /* model */,
 				637C5C0724A35B7B00D7C0E0 /* viewModel */,
 				637C5C0624A35B6C00D7C0E0 /* view */,
-				637C5C0524A35B6500D7C0E0 /* model */,
 				94A4A6E724A252CF002A6CA3 /* viewController */,
 			);
 			path = Base;
@@ -1223,7 +1223,7 @@
 				63422C5624A87EA30091FEE1 /* newsChannelTitleView.m in Sources */,
 				63E8079924FD218A00C58406 /* showAllMsgChannelView.m in Sources */,
 				63DB0D182501E3F900B9FA0A /* parseVideoRealURLViewModel.m in Sources */,
-				637C2D3024A9D1600009274C /* networkBaseModel.m in Sources */,
+				637C2D3024A9D1600009274C /* TTNetworkBaseModel.m in Sources */,
 				630A976624CFC463003029C3 /* countryCodeView.m in Sources */,
 				63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */,
 				637C2D2924A9CDE30009274C /* homeTitleModel.m in Sources */,
@@ -1236,7 +1236,7 @@
 				63C4FA9324EBC2DE00CF9850 /* TTPageDecorateItemView.m in Sources */,
 				63F1F8DF24AF2FD200D687ED /* videoTitleRequestModel.m in Sources */,
 				63ABADD624DBF48F0087453E /* discussEditView.m in Sources */,
-				637C2D3324A9D1930009274C /* networkURLManager.m in Sources */,
+				637C2D3324A9D1930009274C /* TTNetworkURLManager.m in Sources */,
 				820978EB1BD3A37700CF9D0C /* AppDelegate.m in Sources */,
 				6352492725442F76009AECF2 /* QRCodeViewController.m in Sources */,
 				63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */,
@@ -1244,7 +1244,7 @@
 				63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */,
 				631CFA6824E5276A0082B941 /* focusViewController.m in Sources */,
 				631BC90C25481905001B82AB /* UIColor+TTColorTools.m in Sources */,
-				637C2D3624A9D3EA0009274C /* networkManagerCenter.m in Sources */,
+				637C2D3624A9D3EA0009274C /* TTNetworkManagerCenter.m in Sources */,
 				638E978024CAF04B005ADF42 /* moreSettingTableViewCell.m in Sources */,
 				637A97F424C04B45000F7405 /* UIImage+cropPicture.m in Sources */,
 				63BE33512548160500607EBA /* UILabel+ThemeChange.m in Sources */,

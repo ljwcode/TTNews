@@ -1,19 +1,19 @@
 //
-//  networkBaseModel.m
+//  TTNetworkBaseModel.m
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/6/29.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "networkBaseModel.h"
+#import "TTNetworkBaseModel.h"
 #import <MJExtension/MJExtension.h>
 #import "MBProgressHUD+Add.h"
 
 #define request_timeOut_code -1001
 #define request_network_disconnection_code -1009
 
-@implementation networkBaseModel
+@implementation TTNetworkBaseModel
 
 -(instancetype)init{
     if(self = [super init]){
@@ -26,7 +26,7 @@
 
 +(instancetype)initWithNetworkModelWithUrlString:(NSString *)urlString isPost:(BOOL)isPost
 {
-    networkBaseModel *model = [[[self class] alloc]init];
+    TTNetworkBaseModel *model = [[[self class] alloc]init];
     model.isPost = isPost;
     model.urlString = urlString;
     
@@ -39,7 +39,7 @@
     }
     NSMutableDictionary *parameter = [self params];
     if(_isPost){
-        [networkManagerCenter PostRequestWithUrlString:_urlString paramater:parameter successHandle:^(id  _Nonnull response) {
+        [TTNetworkManagerCenter PostRequestWithUrlString:_urlString paramater:parameter successHandle:^(id  _Nonnull response) {
             if(successHandle){
                 successHandle(response);
             }
@@ -52,7 +52,7 @@
             }
         }];
     }else{
-        [networkManagerCenter GetRequestWithUrlString:_urlString parameter:parameter successHandle:^(id  _Nonnull response) {
+        [TTNetworkManagerCenter GetRequestWithUrlString:_urlString parameter:parameter successHandle:^(id  _Nonnull response) {
             if(successHandle){
                 successHandle(response);
             }

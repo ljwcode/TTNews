@@ -1,5 +1,5 @@
 //
-//  networkURLManager.h
+//  TTNetworkURLManager.h
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/6/29.
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface networkURLManager : NSObject
+@interface TTNetworkURLManager : NSObject
 
-+(networkURLManager *)shareInstance;
++(TTNetworkURLManager *)shareInstance;
 
 +(NSString *)homeTitleUrlString;
 

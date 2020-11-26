@@ -8,8 +8,8 @@
 
 #import "parseVideoRealURLViewModel.h"
 #import "videoContentModel.h"
-#import "networkURLManager.h"
-#import "networkManagerCenter.h"
+#import "TTNetworkURLManager.h"
+#import "TTNetworkManagerCenter.h"
 #import "videoRealURLRequestModel.h"
 #import <AFNetworking.h>
 

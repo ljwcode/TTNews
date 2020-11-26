@@ -233,7 +233,7 @@
 - (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
 //    //video_id 拼接url
     self.videoPlayModel = self.dataArray[indexPath.row];
-    NSString *urlString = [[networkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
+    NSString *urlString = [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     [[self.realURLViewModel.VideoRealURLCommand execute:@13]subscribeNext:^(id  _Nullable x) {
         NSLog(@"%@",x);

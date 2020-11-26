@@ -6,11 +6,11 @@
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "networkBaseModel.h"
+#import "TTNetworkBaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface videoRealURLRequestModel : networkBaseModel
+@interface videoRealURLRequestModel : TTNetworkBaseModel
 
 @property(nonatomic,copy)NSString *input;
 

@@ -11,7 +11,7 @@
 #import <MJExtension/MJExtension.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "TTHeader.h"
-#import "networkURLManager.h"
+#import "TTNetworkURLManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

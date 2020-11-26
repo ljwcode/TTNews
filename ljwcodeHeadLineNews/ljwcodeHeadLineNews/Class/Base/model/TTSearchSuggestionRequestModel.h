@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "networkBaseModel.h"
+#import "TTNetworkBaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TTSearchSuggestionRequestModel : networkBaseModel
+@interface TTSearchSuggestionRequestModel : TTNetworkBaseModel
 
 @property(nonatomic,copy)NSString *device_id;
 

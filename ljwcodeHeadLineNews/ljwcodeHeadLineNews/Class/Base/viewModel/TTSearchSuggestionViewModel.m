@@ -10,8 +10,8 @@
 #import "TTSearchSuggestionRequestModel.h"
 #import <MJExtension/MJExtension.h>
 #import "TTHeader.h"
-#import "networkURLManager.h"
-#import "networkBaseModel.h"
+#import "TTNetworkURLManager.h"
+#import "TTNetworkBaseModel.h"
 
 @interface TTSearchSuggestionViewModel()
 
@@ -23,7 +23,7 @@
     if(self = [super init]){
         _SearchSuggestionCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSubject createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                TTSearchSuggestionRequestModel *request = [TTSearchSuggestionRequestModel initWithNetworkModelWithUrlString:networkURLManager.searchSuggestionUrl isPost:NO];
+                TTSearchSuggestionRequestModel *request = [TTSearchSuggestionRequestModel initWithNetworkModelWithUrlString:TTNetworkURLManager.searchSuggestionUrl isPost:NO];
                 request.device_id = LJWCODE_DEVICE_ID;
                 request.iid = LJWCODE_IID;
                 

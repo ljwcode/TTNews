@@ -1,5 +1,5 @@
 //
-//  networkManagerCenter.h
+//  TTNetworkManagerCenter.h
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/6/29.
@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^requestSucceedHandle)(id response);
 typedef void(^requestFailHandle)(NSError *error);
 
-@interface networkManagerCenter : NSObject
+@interface TTNetworkManagerCenter : NSObject
 
 +(NSURLSessionDataTask *)PostRequestWithUrlString:(NSString *)urlString paramater:(NSDictionary *)parameter successHandle:(requestSucceedHandle)successHandle failHandle:(requestFailHandle)failHandle;
 

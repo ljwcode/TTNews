@@ -19,7 +19,7 @@
         _videoContentCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 
-                videoContentRequestModel *request = [videoContentRequestModel initWithNetworkModelWithUrlString:networkURLManager.videoListURLString isPost:NO];
+                videoContentRequestModel *request = [videoContentRequestModel initWithNetworkModelWithUrlString:TTNetworkURLManager.videoListURLString isPost:NO];
                 request.device_id = LJWCODE_DEVICE_ID;
                 request.iid = LJWCODE_IID;
                 request.device_platform = @"iPhone 11 Pro";

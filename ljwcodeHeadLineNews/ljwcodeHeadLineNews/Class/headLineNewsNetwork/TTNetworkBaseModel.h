@@ -1,5 +1,5 @@
 //
-//  networkBaseModel.h
+//  TTNetworkBaseModel.h
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/6/29.
@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "networkURLManager.h"
-#import "networkManagerCenter.h"
+#import "TTNetworkURLManager.h"
+#import "TTNetworkManagerCenter.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface networkBaseModel : NSObject
+@interface TTNetworkBaseModel : NSObject
 
 @property(nonatomic,assign)BOOL isPost;
 @property(nonatomic,copy)NSString *urlString;
