@@ -1,5 +1,5 @@
 //
-//  newsChannelTitleView.h
+//  TTChannelMyHeaderView.h
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/6/28.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface newsChannelTitleView : UIView
+@interface TTChannelMyHeaderView : UICollectionReusableView
 
 @property(nonatomic,copy)void(^callBack)(BOOL selected);
 

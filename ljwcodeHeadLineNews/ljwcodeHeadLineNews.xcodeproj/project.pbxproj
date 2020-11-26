@@ -33,6 +33,9 @@
 		631CFA6824E5276A0082B941 /* focusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA6724E5276A0082B941 /* focusViewController.m */; };
 		631CFA7124E567250082B941 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA7024E567240082B941 /* MessageViewController.m */; };
 		63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63231B9024A08F110059FD5F /* TTNavigationBar.m */; };
+		63265C43256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63265C41256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.m */; };
+		63265C4B256F9FF100AACBC6 /* TTChannelMyHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63265C4A256F9FF100AACBC6 /* TTChannelMyHeaderView.xib */; };
+		63265C4E256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63265C4D256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib */; };
 		6328F611249DEA8C00C767A8 /* TTEmitterHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F610249DEA8C00C767A8 /* TTEmitterHelper.m */; };
 		6328F614249E111F00C767A8 /* TTHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F613249E111F00C767A8 /* TTHeader.m */; };
 		6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 820978F21BD3A37700CF9D0C /* Assets.xcassets */; };
@@ -43,9 +46,8 @@
 		63422BE124A839960091FEE1 /* WMScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422BDC24A839960091FEE1 /* WMScrollView.m */; };
 		63422BE224A839960091FEE1 /* WMMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422BDD24A839960091FEE1 /* WMMenuView.m */; };
 		63422BE324A839960091FEE1 /* WMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422BDE24A839960091FEE1 /* WMProgressView.m */; };
-		63422C4A24A875D40091FEE1 /* NewsChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C4924A875D40091FEE1 /* NewsChannelView.m */; };
-		63422C5624A87EA30091FEE1 /* newsChannelTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5524A87EA30091FEE1 /* newsChannelTitleView.m */; };
-		63422C5824A87EC20091FEE1 /* newsChannelTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63422C5724A87EC20091FEE1 /* newsChannelTitleView.xib */; };
+		63422C4A24A875D40091FEE1 /* NewsChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C4924A875D40091FEE1 /* NewsChannelViewController.m */; };
+		63422C5624A87EA30091FEE1 /* TTChannelMyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5524A87EA30091FEE1 /* TTChannelMyHeaderView.m */; };
 		63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5A24A88BB40091FEE1 /* newsChannelModel.m */; };
 		63422C5E24A88F020091FEE1 /* channelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5D24A88F020091FEE1 /* channelButton.m */; };
 		634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */; };
@@ -187,6 +189,10 @@
 		631CFA7024E567240082B941 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		63231B8F24A08F110059FD5F /* TTNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNavigationBar.h; sourceTree = "<group>"; };
 		63231B9024A08F110059FD5F /* TTNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTNavigationBar.m; sourceTree = "<group>"; };
+		63265C40256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTChannelRecommendHeaderView.h; sourceTree = "<group>"; };
+		63265C41256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTChannelRecommendHeaderView.m; sourceTree = "<group>"; };
+		63265C4A256F9FF100AACBC6 /* TTChannelMyHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTChannelMyHeaderView.xib; sourceTree = "<group>"; };
+		63265C4D256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTChannelRecommendHeaderView.xib; sourceTree = "<group>"; };
 		6328F60F249DEA8C00C767A8 /* TTEmitterHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTEmitterHelper.h; sourceTree = "<group>"; };
 		6328F610249DEA8C00C767A8 /* TTEmitterHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTEmitterHelper.m; sourceTree = "<group>"; };
 		6328F612249E111F00C767A8 /* TTHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTHeader.h; sourceTree = "<group>"; };
@@ -205,11 +211,10 @@
 		63422BDC24A839960091FEE1 /* WMScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollView.m; sourceTree = "<group>"; };
 		63422BDD24A839960091FEE1 /* WMMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMenuView.m; sourceTree = "<group>"; };
 		63422BDE24A839960091FEE1 /* WMProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMProgressView.m; sourceTree = "<group>"; };
-		63422C4824A875D40091FEE1 /* NewsChannelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsChannelView.h; sourceTree = "<group>"; };
-		63422C4924A875D40091FEE1 /* NewsChannelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsChannelView.m; sourceTree = "<group>"; };
-		63422C5424A87EA30091FEE1 /* newsChannelTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newsChannelTitleView.h; sourceTree = "<group>"; };
-		63422C5524A87EA30091FEE1 /* newsChannelTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newsChannelTitleView.m; sourceTree = "<group>"; };
-		63422C5724A87EC20091FEE1 /* newsChannelTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = newsChannelTitleView.xib; sourceTree = "<group>"; };
+		63422C4824A875D40091FEE1 /* NewsChannelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsChannelViewController.h; sourceTree = "<group>"; };
+		63422C4924A875D40091FEE1 /* NewsChannelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsChannelViewController.m; sourceTree = "<group>"; };
+		63422C5424A87EA30091FEE1 /* TTChannelMyHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTChannelMyHeaderView.h; sourceTree = "<group>"; };
+		63422C5524A87EA30091FEE1 /* TTChannelMyHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTChannelMyHeaderView.m; sourceTree = "<group>"; };
 		63422C5924A88BB40091FEE1 /* newsChannelModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newsChannelModel.h; sourceTree = "<group>"; };
 		63422C5A24A88BB40091FEE1 /* newsChannelModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newsChannelModel.m; sourceTree = "<group>"; };
 		63422C5C24A88F020091FEE1 /* channelButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = channelButton.h; sourceTree = "<group>"; };
@@ -540,13 +545,12 @@
 		63422C4724A8759C0091FEE1 /* ChannelView */ = {
 			isa = PBXGroup;
 			children = (
-				63422C4824A875D40091FEE1 /* NewsChannelView.h */,
-				63422C4924A875D40091FEE1 /* NewsChannelView.m */,
-				63422C5424A87EA30091FEE1 /* newsChannelTitleView.h */,
-				63422C5524A87EA30091FEE1 /* newsChannelTitleView.m */,
-				63422C5724A87EC20091FEE1 /* newsChannelTitleView.xib */,
-				63422C5924A88BB40091FEE1 /* newsChannelModel.h */,
-				63422C5A24A88BB40091FEE1 /* newsChannelModel.m */,
+				63422C5424A87EA30091FEE1 /* TTChannelMyHeaderView.h */,
+				63422C5524A87EA30091FEE1 /* TTChannelMyHeaderView.m */,
+				63265C4A256F9FF100AACBC6 /* TTChannelMyHeaderView.xib */,
+				63265C40256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.h */,
+				63265C41256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.m */,
+				63265C4D256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib */,
 				63422C5C24A88F020091FEE1 /* channelButton.h */,
 				63422C5D24A88F020091FEE1 /* channelButton.m */,
 			);
@@ -712,6 +716,8 @@
 				63167AAC24AAE3C2002CB4EF /* homeDetailViewController.m */,
 				63D4FF9D24D96FC40035F561 /* NewsDetailViewController.h */,
 				63D4FF9E24D96FC40035F561 /* NewsDetailViewController.m */,
+				63422C4824A875D40091FEE1 /* NewsChannelViewController.h */,
+				63422C4924A875D40091FEE1 /* NewsChannelViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -744,6 +750,8 @@
 		63B07BED24A1DCF100C7CD6F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				63422C5924A88BB40091FEE1 /* newsChannelModel.h */,
+				63422C5A24A88BB40091FEE1 /* newsChannelModel.m */,
 				637C2D2724A9CDE30009274C /* homeTitleModel.h */,
 				637C2D2824A9CDE30009274C /* homeTitleModel.m */,
 				637C2D3724A9DDA10009274C /* homeTitleRequestModel.h */,
@@ -1098,10 +1106,11 @@
 			files = (
 				631BC91C25481E50001B82AB /* TTThemeDefault.plist in Resources */,
 				949E779524A39605000C446E /* homejokeTableViewCell.xib in Resources */,
-				63422C5824A87EC20091FEE1 /* newsChannelTitleView.xib in Resources */,
 				631BC92225481E7D001B82AB /* TTThemeNight.plist in Resources */,
 				6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */,
 				63167AB824AB6380002CB4EF /* homeListModel in Resources */,
+				63265C4B256F9FF100AACBC6 /* TTChannelMyHeaderView.xib in Resources */,
+				63265C4E256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib in Resources */,
 				634AF04A254C20580013EE56 /* articlev60.html in Resources */,
 				63F1F8E424AF31D300D687ED /* videoListModel in Resources */,
 				949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */,
@@ -1220,7 +1229,8 @@
 				63524924254429DD009AECF2 /* QRCodePreviewVIew.m in Sources */,
 				63D4FF9F24D96FC40035F561 /* NewsDetailViewController.m in Sources */,
 				637A97F724C05BD7000F7405 /* VideoPlayerContainerView.m in Sources */,
-				63422C5624A87EA30091FEE1 /* newsChannelTitleView.m in Sources */,
+				63422C5624A87EA30091FEE1 /* TTChannelMyHeaderView.m in Sources */,
+				63265C43256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.m in Sources */,
 				63E8079924FD218A00C58406 /* showAllMsgChannelView.m in Sources */,
 				63DB0D182501E3F900B9FA0A /* parseVideoRealURLViewModel.m in Sources */,
 				637C2D3024A9D1600009274C /* TTNetworkBaseModel.m in Sources */,
@@ -1288,7 +1298,7 @@
 				820978E81BD3A37600CF9D0C /* main.m in Sources */,
 				63E7177324F9F430003A690E /* TTSearchSuggestionRequestModel.m in Sources */,
 				637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */,
-				63422C4A24A875D40091FEE1 /* NewsChannelView.m in Sources */,
+				63422C4A24A875D40091FEE1 /* NewsChannelViewController.m in Sources */,
 				949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */,
 				8209791A1BD3AFAC00CF9D0C /* MineViewController.m in Sources */,
 				63DB0D1B2501F19200B9FA0A /* videoRealURLRequestModel.m in Sources */,

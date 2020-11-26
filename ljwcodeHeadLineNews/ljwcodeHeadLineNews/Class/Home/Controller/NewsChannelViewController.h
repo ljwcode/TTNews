@@ -1,5 +1,5 @@
 //
-//  NewsChannelView.h
+//  NewsChannelViewController.h
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/6/28.
@@ -10,11 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NewsChannelView : UIScrollView
+@interface NewsChannelViewController : UIViewController
 
--(void)channelShow;
-
--(void)channelHide;
+@property(nonatomic,strong,readonly)NSMutableArray *myDataArray;
 
 @end
 

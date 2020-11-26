@@ -1,14 +1,14 @@
 //
-//  newsChannelTitleView.m
+//  TTChannelMyHeaderView.m
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/6/28.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "newsChannelTitleView.h"
+#import "TTChannelMyHeaderView.h"
 
-@interface newsChannelTitleView()
+@interface TTChannelMyHeaderView()
 
 @property (weak, nonatomic) IBOutlet UILabel *clickChannelLabel;
 
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation newsChannelTitleView
+@implementation TTChannelMyHeaderView
 
 -(instancetype)newsChannelTitleView{
     NSString *className = NSStringFromClass([self class]);
@@ -45,12 +45,10 @@
     sender.selected = !sender.selected;
     if(sender.selected){
         _enterChannelLabel.text = @"拖拽进行排序";
-        
     }else{
         _enterChannelLabel.text = @"点击进入频道";
     }
-    if(self.callBack)
-    {
+    if(self.callBack){
         self.callBack(sender.selected);
     }
 }
