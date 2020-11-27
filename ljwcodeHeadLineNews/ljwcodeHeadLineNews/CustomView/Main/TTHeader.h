@@ -11,8 +11,6 @@
 #import "UIButton+extend.h"
 #import "MBProgressHUD+Add.h"
 #import <MJRefresh/MJRefresh.h>
-#import "TTRefreshGifHeader.h"
-
 
 UIKIT_EXTERN NSString const *ljwcode_Base_url;
 

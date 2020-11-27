@@ -10,7 +10,6 @@
 #import <RACSubject.h>
 #import "homeTitleViewModel.h"
 #import "homeDetailViewController.h"
-#import "headLineSearchViewController.h"
 #import <MJRefresh/MJRefresh.h>
 
 @interface homeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>

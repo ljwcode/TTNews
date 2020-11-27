@@ -15,6 +15,7 @@ PODS:
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - DouyinOpenSDK (4.0.0)
+  - DZNEmptyDataSet (1.8.1)
   - libwebp (1.1.0):
     - libwebp/demux (= 1.1.0)
     - libwebp/mux (= 1.1.0)
@@ -28,6 +29,7 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MJExtension (3.2.2)
   - MJRefresh (3.5.0)
+  - PromisesObjC (1.2.11)
   - ReactiveObjC (3.1.1)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
@@ -47,10 +49,12 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - DouyinOpenSDK
+  - DZNEmptyDataSet (~> 1.8.1)
   - Masonry
   - MBProgressHUD
   - MJExtension
   - MJRefresh
+  - PromisesObjC
   - ReactiveObjC
   - SDWebImage (~> 4.0.0)
   - SDWebImage/WebP
@@ -64,11 +68,13 @@ SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - AFNetworking
     - DouyinOpenSDK
+    - DZNEmptyDataSet
     - libwebp
     - Masonry
     - MBProgressHUD
     - MJExtension
     - MJRefresh
+    - PromisesObjC
     - ReactiveObjC
     - SDWebImage
     - WechatOpenSDK
@@ -79,11 +85,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   DouyinOpenSDK: 370f429928f1433547f296ccb2e47c2a85fddc0d
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
@@ -91,6 +99,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZFPlayer: f88787c815f7b0801279c42f131a89e2823e669e
 
-PODFILE CHECKSUM: bb325221bbfc10e8dcee83bb11134eb3fd513a84
+PODFILE CHECKSUM: f817fe8acab82eecc7f2904caedeaabe9905cc4f
 
 COCOAPODS: 1.10.0

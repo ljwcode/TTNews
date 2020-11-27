@@ -17,8 +17,9 @@
 #import "NewsDetailViewController.h"
 #import "TVVideoPlayerViewCell.h"
 #import "videoContentModel.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface homeDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface homeDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource>
 
 @property(nonatomic,weak)UITableView *detailTableView;
 
@@ -39,12 +40,10 @@
     self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         @strongify(self);
         [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-//            [self.datasArray removeAllObjects];
             NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
             [self.datasArray addObjectsFromArray:datasArray];
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
-            [self.detailTableView.mj_footer endRefreshing];
         }];
     }];
     [self.detailTableView.mj_header beginRefreshing];
@@ -65,6 +64,8 @@
         return newsModel.data;
     }
 }
+
+#pragma mark ----- lazy load
 
 -(NSMutableArray *)datasArray{
     if(!_datasArray){
@@ -87,8 +88,11 @@
         UITableView *tableView = [[UITableView alloc]init];
         tableView.delegate = self;
         tableView.dataSource = self;
+        
+        tableView.emptyDataSetSource = self;
+        tableView.emptyDataSetDelegate = self;
         tableView.estimatedRowHeight = UITableViewAutomaticDimension;
-        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
        
         [self.view addSubview:tableView];
         [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -116,6 +120,53 @@
 -(void)needRefreshTableViewData{
     [self.detailTableView setContentOffset:CGPointZero];
     [self.detailTableView.mj_header beginRefreshing];
+}
+
+#pragma mark - DZNEmptyDataSetDelegate && DZNEmptyDataSetSource
+
+-(UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView{
+    return [UIImage imageNamed:@"details_slogan01"];
+}
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *text = @"当前网络不可用，点击重试";
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:text];
+    [attStr addAttribute:NSFontAttributeName
+                   value:[UIFont systemFontOfSize:15.0]
+                   range:NSMakeRange(0, text.length)];
+    [attStr addAttribute:NSForegroundColorAttributeName
+                   value:[UIColor lightGrayColor]
+                   range:NSMakeRange(0, text.length)];
+    [attStr addAttribute:NSForegroundColorAttributeName
+                   value:[UIColor blueColor]
+                   range:NSMakeRange(8, 4)];
+    return attStr;
+}
+
+- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView {
+    return -70.0f;
+}
+
+/*
+ 点击重试 重新执行刷新请求
+ */
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button {
+    @weakify(self);
+    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        @strongify(self);
+        [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
+            NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
+            [self.datasArray addObjectsFromArray:datasArray];
+            [self.detailTableView reloadData];
+            [self.detailTableView.mj_header endRefreshing];
+            [self.detailTableView.mj_footer endRefreshing];
+        }];
+    }];
+    [self.detailTableView.mj_header beginRefreshing];
+}
+
+- (void)emptyDataSetWillAppear:(UIScrollView *)scrollView {
+    self.detailTableView.contentOffset = CGPointZero;
 }
 
 #pragma mark - UITableViewDelegate && UITableViewDatasource
