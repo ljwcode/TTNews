@@ -1,5 +1,5 @@
 //
-//  headLineSearchViewController.h
+//  TTSearchViewController.h
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/7/16.
@@ -10,13 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class headLineSearchViewController;
+@class TTSearchViewController;
 
-typedef void(^didSearchBlock)(headLineSearchViewController *searchController,UISearchBar *searchBar,NSString *searchText);
+typedef void(^didSearchBlock)(TTSearchViewController *searchController,UISearchBar *searchBar,NSString *searchText);
 
-@interface headLineSearchViewController : UIViewController
+@interface TTSearchViewController : UIViewController
 
 @property(nonatomic,assign)CGFloat hotSearchStyle;
+
+@property(nonatomic,copy)NSString *SearchRecommendation;
 
 +(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *>*)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder searchBlock:(didSearchBlock)searchBlock;
 

@@ -109,7 +109,7 @@
 		63DB0D1B2501F19200B9FA0A /* videoRealURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DB0D1A2501F19200B9FA0A /* videoRealURLRequestModel.m */; };
 		63DEE5FC254ABA8F00D356D4 /* PushNotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DEE5FB254ABA8F00D356D4 /* PushNotificationSettingViewController.m */; };
 		63DEE600254AC12200D356D4 /* TTCheckNetWorkStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DEE5FF254AC12200D356D4 /* TTCheckNetWorkStatus.m */; };
-		63E6CB5E24C02CE800E0126C /* headLineSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E6CB5D24C02CE800E0126C /* headLineSearchViewController.m */; };
+		63E6CB5E24C02CE800E0126C /* TTSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E6CB5D24C02CE800E0126C /* TTSearchViewController.m */; };
 		63E7177324F9F430003A690E /* TTSearchSuggestionRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */; };
 		63E7177624F9F4A0003A690E /* TTSearchSuggestionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E7177524F9F4A0003A690E /* TTSearchSuggestionViewModel.m */; };
 		63E8079924FD218A00C58406 /* showAllMsgChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8079824FD218A00C58406 /* showAllMsgChannelView.m */; };
@@ -333,8 +333,8 @@
 		63DEE5FB254ABA8F00D356D4 /* PushNotificationSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushNotificationSettingViewController.m; sourceTree = "<group>"; };
 		63DEE5FE254AC12200D356D4 /* TTCheckNetWorkStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTCheckNetWorkStatus.h; sourceTree = "<group>"; };
 		63DEE5FF254AC12200D356D4 /* TTCheckNetWorkStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTCheckNetWorkStatus.m; sourceTree = "<group>"; };
-		63E6CB5C24C02CE800E0126C /* headLineSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = headLineSearchViewController.h; sourceTree = "<group>"; };
-		63E6CB5D24C02CE800E0126C /* headLineSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = headLineSearchViewController.m; sourceTree = "<group>"; };
+		63E6CB5C24C02CE800E0126C /* TTSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTSearchViewController.h; sourceTree = "<group>"; };
+		63E6CB5D24C02CE800E0126C /* TTSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSearchViewController.m; sourceTree = "<group>"; };
 		63E7177124F9F430003A690E /* TTSearchSuggestionRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TTSearchSuggestionRequestModel.h; path = ljwcodeHeadLineNews/Class/Base/model/TTSearchSuggestionRequestModel.h; sourceTree = SOURCE_ROOT; };
 		63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TTSearchSuggestionRequestModel.m; path = ljwcodeHeadLineNews/Class/Base/model/TTSearchSuggestionRequestModel.m; sourceTree = SOURCE_ROOT; };
 		63E7177424F9F4A0003A690E /* TTSearchSuggestionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTSearchSuggestionViewModel.h; sourceTree = "<group>"; };
@@ -1027,8 +1027,8 @@
 				6328F613249E111F00C767A8 /* TTHeader.m */,
 				63231B8F24A08F110059FD5F /* TTNavigationBar.h */,
 				63231B9024A08F110059FD5F /* TTNavigationBar.m */,
-				63E6CB5C24C02CE800E0126C /* headLineSearchViewController.h */,
-				63E6CB5D24C02CE800E0126C /* headLineSearchViewController.m */,
+				63E6CB5C24C02CE800E0126C /* TTSearchViewController.h */,
+				63E6CB5D24C02CE800E0126C /* TTSearchViewController.m */,
 				638E977224CAB4A4005ADF42 /* TTMineNavigationController.h */,
 				638E977324CAB4A4005ADF42 /* TTMineNavigationController.m */,
 			);
@@ -1196,7 +1196,7 @@
 				637C5C0A24A35C0800D7C0E0 /* ljwcodeBaseViewModel.m in Sources */,
 				63167AB324AB6091002CB4EF /* homeNewsRequestModel.m in Sources */,
 				631BAEE8249B63D700639CD2 /* UITabBar+TTTabBarItem.m in Sources */,
-				63E6CB5E24C02CE800E0126C /* headLineSearchViewController.m in Sources */,
+				63E6CB5E24C02CE800E0126C /* TTSearchViewController.m in Sources */,
 				638481EC24BEEB85002F4C5F /* VideoDetailViewController.m in Sources */,
 				63F6751F254C22DC009F9AB7 /* TTShowShareConfigureView.m in Sources */,
 				631BC92A25482A9A001B82AB /* clearCacheTools.m in Sources */,

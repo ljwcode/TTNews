@@ -1,14 +1,14 @@
 //
-//  headLineSearchViewController.m
+//  TTSearchViewController.m
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/7/16.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "headLineSearchViewController.h"
+#import "TTSearchViewController.h"
 
-@interface headLineSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UIGestureRecognizerDelegate>
+@interface TTSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UIGestureRecognizerDelegate>
 
 @property(nonatomic,weak)UIView *headView;
 
@@ -47,8 +47,6 @@
 
 @property(nonatomic,weak)UIView *hotSearchTagContentView;
 
-@property(nonatomic,weak)UILabel *emptySearchHistoryLabel;
-
 @property(nonatomic,copy)NSArray<UILabel *> *rankTextLabels;
 
 @property(nonatomic,copy)NSArray<UILabel *> *rankTags;
@@ -83,7 +81,7 @@
 
 @end
 
-@implementation headLineSearchViewController
+@implementation TTSearchViewController
 
 -(void)awakeFromNib{
     [super awakeFromNib];
@@ -109,6 +107,22 @@
     return image;
 }
 
+/** 取消searchBar背景色 */
+- (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size
+{
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     if(self.currentOrientation != [UIDevice currentDevice].orientation){
@@ -120,8 +134,10 @@
     UISearchBar *searchBar = self.searchBar;
     UITextField *searchTextfield = [self.searchBar valueForKey:@"searchField"];
     searchTextfield = self.searchTextfield;
+    searchTextfield = [self.searchBar valueForKey:@"searchField"];
+    searchTextfield.backgroundColor = [UIColor lightGrayColor];
     UIView *titleView = self.navigationItem.titleView;
-    
+
     UIButton *cancelButton = self.navigationItem.rightBarButtonItem.customView;
     UIEdgeInsets cancelBtnEdgeInsets = UIEdgeInsetsZero;
     UIEdgeInsets navigationBarLyaoutEdgeInsets = UIEdgeInsetsZero;
@@ -149,7 +165,8 @@
             make.width.mas_equalTo(self.view.width - SEARCH_MARGIN * 2 - adaptWidth - cancelButton.width);
         }];
         searchTextfield.frame = searchBar.bounds;
-        searchTextfield.layer.cornerRadius = 16.f;
+        searchTextfield.layer.cornerRadius = 13.f;
+        searchTextfield.layer.masksToBounds = YES;
         cancelButton.width = self.cancelBtnWidth;
         
     }else{
@@ -194,14 +211,14 @@
 
 #pragma mark - 外部初始化调用方法
 +(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *> *)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder{
-    headLineSearchViewController *searchVC = [[self alloc]init];
+    TTSearchViewController *searchVC = [[self alloc]init];
     searchVC.hotSearchies = hotSearchies;
     searchVC.searchBar.placeholder = placeHolder;
     return searchVC;
 }
 
 +(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *> *)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder searchBlock:(didSearchBlock)searchBlock{
-    headLineSearchViewController *headLineSearchVC = [self searchViewControllerWithHotSearchies:hotSearchies searchControllerPlaceHolder:placeHolder];
+    TTSearchViewController *headLineSearchVC = [self searchViewControllerWithHotSearchies:hotSearchies searchControllerPlaceHolder:placeHolder];
     headLineSearchVC.searchBlock = [searchBlock copy];
     return headLineSearchVC;
 }
@@ -215,11 +232,11 @@
         if([baseTableView respondsToSelector:@selector(setCellLayoutMarginsFollowReadableWidth:)]){
             baseTableView.cellLayoutMarginsFollowReadableWidth = NO;
         }
+        baseTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         baseTableView.delegate = self;
         baseTableView.dataSource = self;
         [self.view addSubview:baseTableView];
         _baseSearchTableView = baseTableView;
-        
     }
     return _baseSearchTableView;
 }
@@ -336,51 +353,72 @@
             UITextField *textField = (UITextField *)subView;
             textField.font = [UIFont systemFontOfSize:16];
             self.searchTextfield = textField;
-            self.searchTextfield.layer.cornerRadius = 15.f;
+            self.searchTextfield.layer.cornerRadius = 13.f;
             break;
         }
     }
     self.searchBar = searchBar;
-#pragma mark -----------------------------------------------------------------------------
-    UIView *headerView = [[UIView alloc] init];
-    headerView.width = kCompareScreenWidth;
-    headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    UIView *hotSearchView = [[UIView alloc] init];
-    hotSearchView.x = SEARCH_MARGIN * 1.5;
-    hotSearchView.width = headerView.width - hotSearchView.x * 2;
-    hotSearchView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    UILabel *titleLabel = [self setUpTitleLabelText:@"猜你想搜"];
-    self.hotSearchHeaderLabel = titleLabel;
-    [hotSearchView addSubview:titleLabel];
+        
+//    UIView *headerView = [[UIView alloc] init];
+//    headerView.width = kCompareScreenWidth;
+//    headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//    UIView *hotSearchView = [[UIView alloc] init];
+//    hotSearchView.x = SEARCH_MARGIN * 1.5;
+//    hotSearchView.width = headerView.width - hotSearchView.x * 2;
+//    hotSearchView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//    UILabel *titleLabel = [self setUpTitleLabelText:@"猜你想搜"];
+//    self.hotSearchHeaderLabel = titleLabel;
+//    [hotSearchView addSubview:titleLabel];
+//    headerView.layer.borderColor = [UIColor blueColor].CGColor;
+//    headerView.layer.borderWidth = 2.f;
+//
+//    UIView *hotSearchTagsContentView = [[UIView alloc] init];
+//    hotSearchTagsContentView.width = hotSearchView.width;
+//    hotSearchTagsContentView.y = CGRectGetMaxY(titleLabel.frame) + SEARCH_MARGIN;
+//    hotSearchTagsContentView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//    [hotSearchView addSubview:hotSearchTagsContentView];
+//    [headerView addSubview:hotSearchView];
+//    self.hotSearchTagContentView = hotSearchTagsContentView;
+//    self.hotSearchView = hotSearchView;
+//    self.headView = headerView;
+//    self.baseSearchTableView.tableHeaderView = headerView;
     
-    UIView *hotSearchTagsContentView = [[UIView alloc] init];
-    hotSearchTagsContentView.width = hotSearchView.width;
-    hotSearchTagsContentView.y = CGRectGetMaxY(titleLabel.frame) + SEARCH_MARGIN;
-    hotSearchTagsContentView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    [hotSearchView addSubview:hotSearchTagsContentView];
-    [headerView addSubview:hotSearchView];
-    self.hotSearchTagContentView = hotSearchTagsContentView;
-    self.hotSearchView = hotSearchView;
-    self.headView = headerView;
-    self.baseSearchTableView.tableHeaderView = headerView;
+#pragma mark ----- footer view ------------
     
     UIView *footerView = [[UIView alloc] init];
     footerView.width = kCompareScreenWidth;
-    UILabel *emptySearchHistoryLabel = [[UILabel alloc] init];
-    emptySearchHistoryLabel.textColor = [UIColor darkGrayColor];
-    emptySearchHistoryLabel.font = [UIFont systemFontOfSize:13];
-    emptySearchHistoryLabel.userInteractionEnabled = YES;
-    emptySearchHistoryLabel.text = @"清空历史搜索";
-    emptySearchHistoryLabel.textAlignment = NSTextAlignmentCenter;
-    emptySearchHistoryLabel.height = 49;
-    [emptySearchHistoryLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emptyButtonHandle:)]];
-    emptySearchHistoryLabel.width = footerView.width;
-    emptySearchHistoryLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.emptySearchHistoryLabel = emptySearchHistoryLabel;
-    [footerView addSubview:emptySearchHistoryLabel];
-    footerView.height = emptySearchHistoryLabel.height;
-    self.baseSearchTableView.tableFooterView = footerView;
+    footerView.height = 60;
+    UIView *lineView = [[UIView alloc]init];
+    lineView.backgroundColor = [UIColor lightGrayColor];
+    [footerView addSubview:lineView];
+    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(1);
+    }];
+    UILabel *PrivateSearchLabel = [[UILabel alloc]init];
+    PrivateSearchLabel.textColor = [UIColor blackColor];
+    PrivateSearchLabel.text = @"无痕搜索模式";
+    PrivateSearchLabel.font = [UIFont systemFontOfSize:15.f];
+    PrivateSearchLabel.adjustsFontSizeToFitWidth = YES;
+    [footerView addSubview:PrivateSearchLabel];
+    [PrivateSearchLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(hSpace);
+        make.centerY.mas_equalTo(footerView);
+        make.height.mas_equalTo(footerView.height/2);
+        make.width.mas_equalTo(80);
+    }];
     
+    UISwitch *privateSwitch = [[UISwitch alloc]init];
+    privateSwitch.on = false;
+    [footerView addSubview:privateSwitch];
+    [privateSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-hSpace);
+        make.centerY.mas_equalTo(footerView);
+        make.height.mas_equalTo(footerView.height/2);
+        make.width.mas_equalTo(60);
+    }];
+    self.baseSearchTableView.tableFooterView = footerView;
     self.hotSearchies = nil;
 }
 
@@ -574,6 +612,10 @@
     [self.baseSearchTableView reloadData];
 }
 
+-(void)clearHandle:(UIButton *)sender{
+    
+}
+
 #pragma mark - setter
 
 -(void)setRankTextLabels:(NSArray<UILabel *> *)rankTextLabels{
@@ -692,48 +734,76 @@
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 3;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    self.baseSearchTableView.tableFooterView.hidden = 0 == self.searchHistory.count||!self.showSearchHistory;
-    return self.searchHistory.count;
+    if(section == 0){
+        return 1;
+    }else if(section == 0){
+        self.baseSearchTableView.tableFooterView.hidden = true == self.searchHistory.count||!self.showSearchHistory;
+        return self.searchHistory.count;
+    }else if(section ==  1){
+        return self.hotSearchies.count/2;
+    }
+    return 0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.textLabel.textColor = setColorWithRed(113, 113, 113, 1);
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
-        cell.backgroundColor = [UIColor clearColor];
-        
-        UIButton *closetButton = [[UIButton alloc] init];
-        closetButton.size = CGSizeMake(cell.height, cell.height);
-        [closetButton setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
-        UIImageView *closeView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"close"]];
-        [closetButton addTarget:self action:@selector(closeDidClick:) forControlEvents:UIControlEventTouchUpInside];
-        closeView.contentMode = UIViewContentModeCenter;
-        cell.accessoryView = closetButton;
-        UIImageView *line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell-content-line"]];
-        line.height = 0.5;
-        line.alpha = 0.7;
-        line.x = SEARCH_MARGIN;
-        line.y = 43;
-        line.width = tableView.width;
-        line.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [cell.contentView addSubview:line];
+    UITableViewCell *ResultCell = nil;
+    if(indexPath.section == 0){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if(!cell){
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            cell.textLabel.text = self.SearchRecommendation;
+        }
+        ResultCell = cell;
+    }else if(indexPath.section == 1){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (!cell) {
+            for(int i = 0;i < self.searchHistory.count/2;i++){
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+                UIButton *leftSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+                [leftSearchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                leftSearchBtn.titleLabel.font = [UIFont systemFontOfSize:15.f];
+                [cell addSubview:leftSearchBtn];
+                [leftSearchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.mas_equalTo(hSpace/2);
+                    make.centerY.mas_equalTo(cell);
+                    make.width.mas_equalTo(cell.width/2 - hSpace);
+                    make.height.mas_equalTo(cell.height/2);
+                }];
+                
+                UIView *VLineView = [[UIView alloc]init];
+                VLineView.backgroundColor = [UIColor grayColor];
+                [cell addSubview:VLineView];
+                [VLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.centerY.mas_equalTo(cell);
+                    make.height.mas_equalTo(cell.height/2);
+                    make.width.mas_equalTo(1);
+                }];
+                UIButton *rightSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+                [rightSearchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                rightSearchBtn.titleLabel.font = [UIFont systemFontOfSize:18.f];
+                [cell addSubview:rightSearchBtn];
+                [rightSearchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.right.mas_equalTo(-hSpace);
+                    make.centerY.mas_equalTo(cell);
+                    make.width.mas_equalTo(cell.width/2 - hSpace);
+                    make.height.mas_equalTo(cell.height);
+                }];
+                [leftSearchBtn setTitle:self.searchHistory[i] forState:UIControlStateNormal];
+                if(i+1 <= self.searchHistory.count-1){
+                    [rightSearchBtn setTitle:self.searchHistory[i+1] forState:UIControlStateNormal];
+                }
+                
+            }
+        }
+        ResultCell = cell;
     }
     
-    cell.imageView.image = [UIImage imageNamed:@"search_history"];
-    cell.textLabel.text = self.searchHistory[indexPath.row];
-    
-    return cell;
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return self.hotHistorySearchTitle.length ? self.hotHistorySearchTitle :  @"历史记录";
+    return ResultCell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -741,7 +811,46 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.01;
+    return 1;
+}
+    
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if(section == 1){
+        UIView *clearView = [[UIView alloc]init];
+        UILabel *clearLabel = [[UILabel alloc]init];
+        clearLabel.textColor = [UIColor lightGrayColor];
+        clearLabel.text = @"搜索历史";
+        clearLabel.adjustsFontSizeToFitWidth = YES;
+        clearLabel.font = [UIFont systemFontOfSize:15.f];
+        [clearView addSubview:clearLabel];
+        [clearLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.top.mas_equalTo(hSpace);
+            make.width.mas_equalTo(80);
+            make.height.mas_equalTo(40);
+        }];
+        UIButton *clearBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [clearBtn setImage:[UIImage imageNamed:@"empty"] forState:UIControlStateNormal];
+        [clearBtn addTarget:self action:@selector(clearHandle:) forControlEvents:UIControlEventTouchUpInside];
+        [clearView addSubview:clearBtn];
+        [clearBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(-hSpace);
+            make.top.mas_equalTo(vSpace);
+            make.width.mas_equalTo(40);
+            make.height.mas_equalTo(40);
+        }];
+        return clearView;
+    }else{
+        return [[UIView alloc]init];
+    }
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if(section == 0 || section == 1){
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(hSpace, 0, tableView.width - 2 * hSpace, 1)];
+        lineView.backgroundColor = [UIColor lightGrayColor];
+        return lineView;
+    }else{
+        return [[UIView alloc]init];
+    }
 }
 
 #pragma mark - UITableViewdelegate

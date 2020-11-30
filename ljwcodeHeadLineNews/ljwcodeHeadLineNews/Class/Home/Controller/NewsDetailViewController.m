@@ -11,7 +11,7 @@
 #import "TTNavigationController.h"
 #import <RACSubject.h>
 #import "newsDetailFooterView.h"
-#import "headLineSearchViewController.h"
+#import "TTSearchViewController.h"
 #import "TTWebView.h"
 #import "TTHomeMoreShareVIew.h"
 
@@ -227,7 +227,7 @@
 }
 
 -(void)searchBarHandle:(UIBarButtonItem *)sender{
-    headLineSearchViewController *searchVC = [[headLineSearchViewController alloc]init];
+    TTSearchViewController *searchVC = [[TTSearchViewController alloc]init];
     [self.navigationController pushViewController:searchVC animated:YES];
 }
 

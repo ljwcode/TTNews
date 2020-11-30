@@ -7,7 +7,7 @@
 //
 
 #import "TTBaseViewController.h"
-#import "headLineSearchViewController.h"
+#import "TTSearchViewController.h"
 #import "TTNavigationBar.h"
 #import "TTSearchSuggestionViewModel.h"
 #import "TTReportArticleView.h"
@@ -21,6 +21,8 @@
 @property(nonatomic,strong)TTSearchSuggestionViewModel *viewModel;
 
 @property(nonatomic,strong)TTReportArticleView *ReportArticleView;
+
+@property(nonatomic,strong)TTSearchViewController *searchVC;
 
 @end
 
@@ -75,18 +77,14 @@
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
         [[self.viewModel.SearchSuggestionCommand execute:@"title"]subscribeNext:^(id  _Nullable x) {
             fulfill(x);
+            self.searchVC.SearchRecommendation = x;
         }];
     }];
 }
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    NSArray *hotSeaches = @[@"Swift", @"Python", @"Objective-C", @"Java", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    
-    headLineSearchViewController *searchViewController = [headLineSearchViewController searchViewControllerWithHotSearchies:hotSeaches searchControllerPlaceHolder:hotSeaches[0] searchBlock:^(headLineSearchViewController * _Nonnull searchController, UISearchBar * _Nonnull searchBar, NSString * _Nonnull searchText) {
-    }];
-    searchViewController.hotSearchStyle = 0;
-//    [self.navigationController pushViewController:searchViewController animated:YES];
-    [self presentViewController:searchViewController animated:YES completion:nil];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self.searchVC];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 //图片显示
@@ -163,6 +161,16 @@
         _viewModel = [[TTSearchSuggestionViewModel alloc]init];
     }
     return _viewModel;
+}
+
+-(TTSearchViewController *)searchVC{
+    if(!_searchVC){
+        NSArray *hotSeaches = @[@"Swift", @"Python", @"Objective-C", @"Java", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+        _searchVC = [TTSearchViewController searchViewControllerWithHotSearchies:hotSeaches searchControllerPlaceHolder:hotSeaches[0] searchBlock:^(TTSearchViewController * _Nonnull searchController, UISearchBar * _Nonnull searchBar, NSString * _Nonnull searchText) {
+        }];
+        _searchVC.hotSearchStyle = 0;
+    }
+    return _searchVC;
 }
 
 /*
