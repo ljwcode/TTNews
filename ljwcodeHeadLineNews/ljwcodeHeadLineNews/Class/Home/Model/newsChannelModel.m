@@ -10,10 +10,8 @@
 
 @implementation newsChannelModel
 
--(instancetype)init
-{
-    if(self = [super init])
-    {
+-(instancetype)init{
+    if(self = [super init]){
         self.hideDeleteBtn = YES;
     }
     return self;

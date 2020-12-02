@@ -6,12 +6,12 @@
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "ljwcodeBaseViewModel.h"
+#import "TTBaseViewModel.h"
 #import <RACCommand.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface videoTitleViewModel : ljwcodeBaseViewModel
+@interface videoTitleViewModel : TTBaseViewModel
 
 @property(nonatomic,strong)RACCommand *videoCommand;
 

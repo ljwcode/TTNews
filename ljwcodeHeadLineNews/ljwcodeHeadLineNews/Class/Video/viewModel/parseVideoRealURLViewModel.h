@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <ReactiveObjC/ReactiveObjC.h>
-#import "ljwcodeBaseViewModel.h"
+#import "TTBaseViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface parseVideoRealURLViewModel : ljwcodeBaseViewModel
+@interface parseVideoRealURLViewModel : TTBaseViewModel
 
 @property(nonatomic,strong)RACCommand *VideoRealURLCommand;
 

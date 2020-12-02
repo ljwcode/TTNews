@@ -82,9 +82,10 @@
 		637C2D3624A9D3EA0009274C /* TTNetworkManagerCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3524A9D3EA0009274C /* TTNetworkManagerCenter.m */; };
 		637C2D3924A9DDA10009274C /* homeTitleRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3824A9DDA10009274C /* homeTitleRequestModel.m */; };
 		637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D3A24A9F1BA0009274C /* MBProgressHUD+Add.m */; };
-		637C5C0A24A35C0800D7C0E0 /* ljwcodeBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */; };
+		637C5C0A24A35C0800D7C0E0 /* TTBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C5C0924A35C0800D7C0E0 /* TTBaseViewModel.m */; };
 		637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 637E3CA624C7E65200FA5447 /* AreaCode.plist */; };
 		638481EC24BEEB85002F4C5F /* VideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638481EB24BEEB85002F4C5F /* VideoDetailViewController.m */; };
+		638A1A5C25778BA00002F50B /* TTArticleSearchWordViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 638A1A5B25778BA00002F50B /* TTArticleSearchWordViewModel.m */; };
 		638E977424CAB4A4005ADF42 /* TTMineNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977324CAB4A4005ADF42 /* TTMineNavigationController.m */; };
 		638E977D24CADB90005ADF42 /* commonSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977C24CADB90005ADF42 /* commonSettingTableViewCell.m */; };
 		638E978024CAF04B005ADF42 /* moreSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977F24CAF04B005ADF42 /* moreSettingTableViewCell.m */; };
@@ -286,11 +287,13 @@
 		637C2D3824A9DDA10009274C /* homeTitleRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeTitleRequestModel.m; sourceTree = "<group>"; };
 		637C2D3A24A9F1BA0009274C /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		637C2D3B24A9F1BA0009274C /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
-		637C5C0824A35C0800D7C0E0 /* ljwcodeBaseViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ljwcodeBaseViewModel.h; sourceTree = "<group>"; };
-		637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ljwcodeBaseViewModel.m; sourceTree = "<group>"; };
+		637C5C0824A35C0800D7C0E0 /* TTBaseViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTBaseViewModel.h; sourceTree = "<group>"; };
+		637C5C0924A35C0800D7C0E0 /* TTBaseViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTBaseViewModel.m; sourceTree = "<group>"; };
 		637E3CA624C7E65200FA5447 /* AreaCode.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = AreaCode.plist; sourceTree = "<group>"; };
 		638481EA24BEEB85002F4C5F /* VideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoDetailViewController.h; sourceTree = "<group>"; };
 		638481EB24BEEB85002F4C5F /* VideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoDetailViewController.m; sourceTree = "<group>"; };
+		638A1A5A25778BA00002F50B /* TTArticleSearchWordViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTArticleSearchWordViewModel.h; sourceTree = "<group>"; };
+		638A1A5B25778BA00002F50B /* TTArticleSearchWordViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTArticleSearchWordViewModel.m; sourceTree = "<group>"; };
 		638E977224CAB4A4005ADF42 /* TTMineNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTMineNavigationController.h; sourceTree = "<group>"; };
 		638E977324CAB4A4005ADF42 /* TTMineNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTMineNavigationController.m; sourceTree = "<group>"; };
 		638E977B24CADB90005ADF42 /* commonSettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = commonSettingTableViewCell.h; sourceTree = "<group>"; };
@@ -551,6 +554,8 @@
 		633368DC25761A5600F47A91 /* viewModel */ = {
 			isa = PBXGroup;
 			children = (
+				638A1A5A25778BA00002F50B /* TTArticleSearchWordViewModel.h */,
+				638A1A5B25778BA00002F50B /* TTArticleSearchWordViewModel.m */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -765,8 +770,8 @@
 		637C5C0724A35B7B00D7C0E0 /* viewModel */ = {
 			isa = PBXGroup;
 			children = (
-				637C5C0824A35C0800D7C0E0 /* ljwcodeBaseViewModel.h */,
-				637C5C0924A35C0800D7C0E0 /* ljwcodeBaseViewModel.m */,
+				637C5C0824A35C0800D7C0E0 /* TTBaseViewModel.h */,
+				637C5C0924A35C0800D7C0E0 /* TTBaseViewModel.m */,
 				63E7177424F9F4A0003A690E /* TTSearchSuggestionViewModel.h */,
 				63E7177524F9F4A0003A690E /* TTSearchSuggestionViewModel.m */,
 			);
@@ -1255,7 +1260,7 @@
 				637BAF2524F3A2AD00711003 /* TTScreen.m in Sources */,
 				63A4E00D24C863C10042473D /* CircleButton.m in Sources */,
 				634ECB0D25764A6500DBCC15 /* TTArticleSearchInboxFourWordsCell.m in Sources */,
-				637C5C0A24A35C0800D7C0E0 /* ljwcodeBaseViewModel.m in Sources */,
+				637C5C0A24A35C0800D7C0E0 /* TTBaseViewModel.m in Sources */,
 				63167AB324AB6091002CB4EF /* homeNewsRequestModel.m in Sources */,
 				631BAEE8249B63D700639CD2 /* UITabBar+TTTabBarItem.m in Sources */,
 				63E6CB5E24C02CE800E0126C /* TTSearchViewController.m in Sources */,
@@ -1326,6 +1331,7 @@
 				94A4A6EA24A25331002A6CA3 /* TTBaseViewController.m in Sources */,
 				63167AB024AB5FEE002CB4EF /* homeNewsCellViewModel.m in Sources */,
 				631BC903254818AE001B82AB /* UITableView+ThemeChange.m in Sources */,
+				638A1A5C25778BA00002F50B /* TTArticleSearchWordViewModel.m in Sources */,
 				6305043A256525B000CB910D /* TTReportArticleView.m in Sources */,
 				63C4729E24B0250B0030C84B /* videoPlayerToolView.m in Sources */,
 				631BAEEB249B751D00639CD2 /* TTNavigationController.m in Sources */,

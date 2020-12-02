@@ -1,5 +1,5 @@
 //
-//  ljwcodeBaseViewModel.h
+//  TTBaseViewModel.h
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/6/24.
@@ -16,7 +16,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #define server_error @"服务器异常"
-@interface ljwcodeBaseViewModel : NSObject
+@interface TTBaseViewModel : NSObject
 
 -(void)bindView:(UIView *)view;
 

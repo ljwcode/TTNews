@@ -96,6 +96,14 @@
     return _rightTagLabel;
 }
 
+#pragma mark ----- setter model
+
+-(void)setSearchWordsModel:(TTArticleSearchInboxFourWordsModel *)SearchWordsModel{
+    _SearchWordsModel = SearchWordsModel;
+    self.leftTagLabel.text = SearchWordsModel.word;
+    self.rightTagLabel.text = SearchWordsModel.word;
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

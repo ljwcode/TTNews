@@ -13,6 +13,9 @@
 #import "TTReportArticleView.h"
 #import <FBLPromises/FBLPromise.h>
 #import <FBLPromises/FBLPromises.h>
+#import "TTArticleSearchInboxFourWordsModel.h"
+#import "TTArticleSearchWordViewModel.h"
+
 
 @interface TTBaseViewController ()<UIGestureRecognizerDelegate,UISearchBarDelegate>
 
@@ -24,15 +27,29 @@
 
 @property(nonatomic,strong)TTSearchViewController *searchVC;
 
+@property(nonatomic,strong)TTArticleSearchWordViewModel *keywordViewModel;
+
 @end
 
 @implementation TTBaseViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[FBLPromise do:^id _Nullable{
+        return [self asyncGetArray];
+    }]then:^id _Nullable(id  _Nullable value) {
+        return self.searchVC.keywordArray = value;
+    }];
     [self createSearchBar];
         // Do any additional setup after loading the view.
+}
+
+-(FBLPromise *)asyncGetArray{
+    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
+        [[self.keywordViewModel.searchWordCommand execute:@10]subscribeNext:^(id  _Nullable x) {
+            fulfill(x);
+        }];
+    }];
 }
 
 -(void)createSearchBar{
@@ -76,10 +93,9 @@
 -(FBLPromise *)getPlaceholderText{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
         [[self.viewModel.SearchSuggestionCommand execute:@"title"]subscribeNext:^(id  _Nullable x) {
-            fulfill(x);
             NSArray *array = [x componentsSeparatedByString:@"|"];
             NSString *keyword = [NSString stringWithFormat:@"%@ | %@",array[0],array[1]];
-            self.searchVC.SearchRecommendation = keyword;
+            fulfill(keyword);
         }];
     }];
 }
@@ -163,6 +179,14 @@
         _viewModel = [[TTSearchSuggestionViewModel alloc]init];
     }
     return _viewModel;
+}
+
+
+-(TTArticleSearchWordViewModel *)keywordViewModel{
+    if(!_keywordViewModel){
+        _keywordViewModel = [[TTArticleSearchWordViewModel alloc]init];
+    }
+    return _keywordViewModel;
 }
 
 -(TTSearchViewController *)searchVC{

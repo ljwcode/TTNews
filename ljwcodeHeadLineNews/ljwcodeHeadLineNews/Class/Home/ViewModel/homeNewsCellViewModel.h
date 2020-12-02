@@ -6,11 +6,11 @@
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "ljwcodeBaseViewModel.h"
+#import "TTBaseViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface homeNewsCellViewModel : ljwcodeBaseViewModel
+@interface homeNewsCellViewModel : TTBaseViewModel
 
 @property(nonatomic,strong)RACCommand *newsCellViewCommand;
 

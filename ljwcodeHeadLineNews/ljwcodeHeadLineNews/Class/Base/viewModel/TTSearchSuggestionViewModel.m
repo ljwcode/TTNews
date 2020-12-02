@@ -30,8 +30,7 @@
                 
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     NSDictionary *responseDic = [(NSDictionary *)response objectForKey:@"data"];
-                    NSString *title = [NSString stringWithFormat:@"%@",[responseDic objectForKey:@"homepage_search_suggest"]];
-                    [subscriber sendNext:title];
+                    [subscriber sendNext:[responseDic objectForKey:@"homepage_search_suggest"]];
                     [subscriber sendCompleted];
                 } failHandle:^(NSError * _Nonnull error) {
                     NSLog(@"search title request error");

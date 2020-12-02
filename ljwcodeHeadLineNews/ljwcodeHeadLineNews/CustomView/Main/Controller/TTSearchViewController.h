@@ -18,7 +18,7 @@ typedef void(^didSearchBlock)(TTSearchViewController *searchController,UISearchB
 
 @property(nonatomic,assign)CGFloat hotSearchStyle;
 
-@property(nonatomic,copy)NSString *SearchRecommendation;
+@property(nonatomic,strong)NSArray *keywordArray;
 
 +(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *>*)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder searchBlock:(didSearchBlock)searchBlock;
 

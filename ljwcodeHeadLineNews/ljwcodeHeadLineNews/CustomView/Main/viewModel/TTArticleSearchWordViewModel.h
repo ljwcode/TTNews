@@ -1,19 +1,20 @@
 //
-//  TTSearchSuggestionViewModel.h
+//  TTArticleSearchWordViewModel.h
 //  ljwcodeHeadLineNews
 //
-//  Created by 1 on 2020/8/29.
+//  Created by 1 on 2020/12/2.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "TTBaseViewModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TTSearchSuggestionViewModel : TTBaseViewModel
+@interface TTArticleSearchWordViewModel : TTBaseViewModel
 
-@property(nonatomic,strong)RACCommand *SearchSuggestionCommand;
+@property(nonatomic,strong)RACCommand *searchWordCommand;
 
 @end
 

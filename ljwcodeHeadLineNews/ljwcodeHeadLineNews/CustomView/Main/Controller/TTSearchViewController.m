@@ -7,6 +7,14 @@
 //
 
 #import "TTSearchViewController.h"
+#import "TTArticleSearchInboxFourWordsCell.h"
+#import "TTArticleSearchInboxFourWordsModel.h"
+#import "TTArticleSearchHeaderCell.h"
+#import "TTArticleSearchTagCell.h"
+
+static NSString *const TTArticleSearchInboxFourWordsCellID = @"TTArticleSearchInboxFourWordsCell";
+static NSString *const TTArticleSearchHeaderCellID = @"TTArticleSearchHeaderCell";
+static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
 
 @interface TTSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UIGestureRecognizerDelegate>
 
@@ -79,6 +87,8 @@
 
 @property(nonatomic,assign)UIDeviceOrientation currentOrientation;
 
+@property(nonatomic,strong)TTArticleSearchInboxFourWordsModel *searchKeyWordModel;
+
 @end
 
 @implementation TTSearchViewController
@@ -95,8 +105,7 @@
     return self;
 }
 
--(UIImage *)drawImageContext:(UIColor *)color
-{
+-(UIImage *)drawImageContext:(UIColor *)color{
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -223,7 +232,7 @@
     return headLineSearchVC;
 }
 
-#pragma mark - 视图懒加载
+#pragma mark - lazy load
 -(UITableView *)baseSearchTableView{
     if(!_baseSearchTableView){
         UITableView *baseTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
@@ -301,6 +310,20 @@
         _searchHistory = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:self.historySearchCachePath]];
     }
     return _searchHistory;
+}
+
+-(TTArticleSearchInboxFourWordsModel *)searchKeyWordModel{
+    if(!_searchKeyWordModel){
+        _searchKeyWordModel = [[TTArticleSearchInboxFourWordsModel alloc]init];
+    }
+    return _searchKeyWordModel;
+}
+
+-(NSArray *)keywordArray{
+    if(!_keywordArray){
+        _keywordArray = [NSArray array];
+    }
+    return _keywordArray;
 }
 
 -(void)setup{
@@ -728,10 +751,11 @@
     static NSString *cellID = @"cellID";
     UITableViewCell *ResultCell = nil;
     if(indexPath.section == 0){
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        TTArticleSearchInboxFourWordsCell *cell = [tableView dequeueReusableCellWithIdentifier:TTArticleSearchInboxFourWordsCellID];
         if(!cell){
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-            cell.textLabel.text = self.SearchRecommendation;
+            TTArticleSearchInboxFourWordsModel *model = self.keywordArray[indexPath.row];
+            cell = [[TTArticleSearchInboxFourWordsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            cell.SearchWordsModel = model;
         }
         ResultCell = cell;
     }else if(indexPath.section == 1){

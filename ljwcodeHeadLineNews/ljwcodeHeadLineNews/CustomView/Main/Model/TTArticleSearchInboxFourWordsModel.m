@@ -10,4 +10,14 @@
 
 @implementation TTArticleSearchInboxFourWordsModel
 
+-(instancetype)init{
+    if(self = [super init]){
+        self.homepage_search_suggest = @"";
+        self.recommend_reason = @"";
+        self.word = @"";
+        self.recommend_reason = @"";
+    }
+    return self;
+}
+
 @end

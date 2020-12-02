@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TTArticleSearchInboxFourWordsModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TTArticleSearchInboxFourWordsCell : UITableViewCell
+
+@property(nonatomic,strong)TTArticleSearchInboxFourWordsModel *SearchWordsModel;
 
 @end
 

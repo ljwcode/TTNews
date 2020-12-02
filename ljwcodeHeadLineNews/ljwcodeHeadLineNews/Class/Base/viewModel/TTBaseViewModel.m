@@ -1,14 +1,14 @@
 //
-//  ljwcodeBaseViewModel.m
+//  TTBaseViewModel.m
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/6/24.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "ljwcodeBaseViewModel.h"
+#import "TTBaseViewModel.h"
 
-@implementation ljwcodeBaseViewModel
+@implementation TTBaseViewModel
 
 -(void)bindView:(UIView *)view{
     
