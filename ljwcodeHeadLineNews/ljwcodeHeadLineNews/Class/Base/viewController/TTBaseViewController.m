@@ -77,7 +77,9 @@
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
         [[self.viewModel.SearchSuggestionCommand execute:@"title"]subscribeNext:^(id  _Nullable x) {
             fulfill(x);
-            self.searchVC.SearchRecommendation = x;
+            NSArray *array = [x componentsSeparatedByString:@"|"];
+            NSString *keyword = [NSString stringWithFormat:@"%@ | %@",array[0],array[1]];
+            self.searchVC.SearchRecommendation = keyword;
         }];
     }];
 }

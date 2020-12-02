@@ -358,30 +358,6 @@
         }
     }
     self.searchBar = searchBar;
-        
-//    UIView *headerView = [[UIView alloc] init];
-//    headerView.width = kCompareScreenWidth;
-//    headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-//    UIView *hotSearchView = [[UIView alloc] init];
-//    hotSearchView.x = SEARCH_MARGIN * 1.5;
-//    hotSearchView.width = headerView.width - hotSearchView.x * 2;
-//    hotSearchView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-//    UILabel *titleLabel = [self setUpTitleLabelText:@"猜你想搜"];
-//    self.hotSearchHeaderLabel = titleLabel;
-//    [hotSearchView addSubview:titleLabel];
-//    headerView.layer.borderColor = [UIColor blueColor].CGColor;
-//    headerView.layer.borderWidth = 2.f;
-//
-//    UIView *hotSearchTagsContentView = [[UIView alloc] init];
-//    hotSearchTagsContentView.width = hotSearchView.width;
-//    hotSearchTagsContentView.y = CGRectGetMaxY(titleLabel.frame) + SEARCH_MARGIN;
-//    hotSearchTagsContentView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-//    [hotSearchView addSubview:hotSearchTagsContentView];
-//    [headerView addSubview:hotSearchView];
-//    self.hotSearchTagContentView = hotSearchTagsContentView;
-//    self.hotSearchView = hotSearchView;
-//    self.headView = headerView;
-//    self.baseSearchTableView.tableHeaderView = headerView;
     
 #pragma mark ----- footer view ------------
     
@@ -425,8 +401,7 @@
 /*
  热门搜索列表样式
  */
-- (void)setupHotSearchRankTags
-{
+- (void)setupHotSearchRankTags{
     UIView *contentView = self.hotSearchTagContentView;
     [self.hotSearchTagContentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
@@ -762,43 +737,40 @@
     }else if(indexPath.section == 1){
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (!cell) {
-            for(int i = 0;i < self.searchHistory.count/2;i++){
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-                UIButton *leftSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-                [leftSearchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                leftSearchBtn.titleLabel.font = [UIFont systemFontOfSize:15.f];
-                [cell addSubview:leftSearchBtn];
-                [leftSearchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.mas_equalTo(hSpace/2);
-                    make.centerY.mas_equalTo(cell);
-                    make.width.mas_equalTo(cell.width/2 - hSpace);
-                    make.height.mas_equalTo(cell.height/2);
-                }];
-                
-                UIView *VLineView = [[UIView alloc]init];
-                VLineView.backgroundColor = [UIColor grayColor];
-                [cell addSubview:VLineView];
-                [VLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.centerX.centerY.mas_equalTo(cell);
-                    make.height.mas_equalTo(cell.height/2);
-                    make.width.mas_equalTo(1);
-                }];
-                UIButton *rightSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-                [rightSearchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                rightSearchBtn.titleLabel.font = [UIFont systemFontOfSize:18.f];
-                [cell addSubview:rightSearchBtn];
-                [rightSearchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.right.mas_equalTo(-hSpace);
-                    make.centerY.mas_equalTo(cell);
-                    make.width.mas_equalTo(cell.width/2 - hSpace);
-                    make.height.mas_equalTo(cell.height);
-                }];
-                [leftSearchBtn setTitle:self.searchHistory[i] forState:UIControlStateNormal];
-                if(i+1 <= self.searchHistory.count-1){
-                    [rightSearchBtn setTitle:self.searchHistory[i+1] forState:UIControlStateNormal];
-                }
-                
-            }
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            UIButton *leftSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [leftSearchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            leftSearchBtn.titleLabel.font = [UIFont systemFontOfSize:15.f];
+            [cell addSubview:leftSearchBtn];
+            [leftSearchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(hSpace/2);
+                make.centerY.mas_equalTo(cell);
+                make.width.mas_equalTo(cell.width/2 - hSpace);
+                make.height.mas_equalTo(cell.height/2);
+            }];
+            
+            UIView *VLineView = [[UIView alloc]init];
+            VLineView.backgroundColor = [UIColor grayColor];
+            [cell addSubview:VLineView];
+            [VLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.centerY.mas_equalTo(cell);
+                make.height.mas_equalTo(cell.height/2);
+                make.width.mas_equalTo(1);
+            }];
+            UIButton *rightSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [rightSearchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            rightSearchBtn.titleLabel.font = [UIFont systemFontOfSize:18.f];
+            [cell addSubview:rightSearchBtn];
+            [rightSearchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.mas_equalTo(-hSpace);
+                make.centerY.mas_equalTo(cell);
+                make.width.mas_equalTo(cell.width/2 - hSpace);
+                make.height.mas_equalTo(cell.height);
+            }];
+//            [leftSearchBtn setTitle:self.searchHistory[i] forState:UIControlStateNormal];
+//            if(i+1 <= self.searchHistory.count-1){
+//                [rightSearchBtn setTitle:self.searchHistory[i+1] forState:UIControlStateNormal];
+//            }
         }
         ResultCell = cell;
     }

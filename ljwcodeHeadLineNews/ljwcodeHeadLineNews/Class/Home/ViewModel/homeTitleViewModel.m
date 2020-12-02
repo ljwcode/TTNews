@@ -33,7 +33,6 @@
                         }
                         [subscriber sendNext:models];
                         [subscriber sendCompleted];
-//                        dealloc
                         [RACDisposable disposableWithBlock:^{
                             NSLog(@"销毁了rac");
                         }];

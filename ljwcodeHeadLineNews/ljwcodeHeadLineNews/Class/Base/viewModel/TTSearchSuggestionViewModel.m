@@ -12,6 +12,7 @@
 #import "TTHeader.h"
 #import "TTNetworkURLManager.h"
 #import "TTNetworkBaseModel.h"
+#import "TTArticleSearchInboxFourWordsModel.h"
 
 @interface TTSearchSuggestionViewModel()
 
