@@ -10,12 +10,15 @@
 
 @interface TTArticleSearchHeaderCell()
 
+@property(nonatomic,assign)BOOL isShowDel;
+
 @end
 
 @implementation TTArticleSearchHeaderCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
+        self.isShowDel = false;
         [self.contentView addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(hSpace);
@@ -26,12 +29,12 @@
         
         [self.contentView addSubview:self.actionBtn];
         [self.actionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-hSpace);
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-hSpace);
             make.top.mas_equalTo(vSpace);
             make.width.mas_equalTo(30);
             make.height.mas_equalTo(20);
         }];
-        
+
         [self.contentView addSubview:self.delAllBtn];
         [self.delAllBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.actionBtn.mas_left).offset(-hSpace);
@@ -58,6 +61,7 @@
 -(UIButton *)actionBtn{
     if(!_actionBtn){
         _actionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_actionBtn addTarget:self action:@selector(actionHandle:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _actionBtn;
 }
@@ -70,8 +74,23 @@
         _delAllBtn.titleLabel.font = [UIFont systemFontOfSize:13.f];
         _delAllBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
         _delAllBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [_delAllBtn setHidden:true];
     }
     return _delAllBtn;
+}
+
+#pragma mark ---- 响应事件
+
+-(void)actionHandle:(UIButton *)sender{
+    sender.selected  = !sender.selected;
+    if(sender.selected){
+        self.isShowDel = true;
+        [self.delAllBtn setHidden:false];
+       
+    }else{
+        self.isShowDel = false;
+        [self.delAllBtn setHidden:true];
+    }
 }
 
 - (void)awakeFromNib {
