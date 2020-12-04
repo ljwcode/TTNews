@@ -34,6 +34,14 @@
             make.width.mas_equalTo(30);
             make.height.mas_equalTo(20);
         }];
+        
+        [self.contentView addSubview:self.completeBtn];
+        [self.completeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-hSpace);
+            make.top.mas_equalTo(vSpace);
+            make.width.mas_equalTo(30);
+            make.height.mas_equalTo(20);
+        }];
 
         [self.contentView addSubview:self.delAllBtn];
         [self.delAllBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -62,8 +70,22 @@
     if(!_actionBtn){
         _actionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_actionBtn addTarget:self action:@selector(actionHandle:) forControlEvents:UIControlEventTouchUpInside];
+        [_actionBtn setImage:[UIImage imageNamed:@"empty"] forState:UIControlStateNormal];
+
     }
     return _actionBtn;
+}
+
+-(UIButton *)completeBtn{
+    if(!_completeBtn){
+        _completeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_completeBtn addTarget:self action:@selector(completeHandle:) forControlEvents:UIControlEventTouchUpInside];
+        [_completeBtn setTitle:@"完成" forState:UIControlStateNormal];
+        [_completeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        _completeBtn.titleLabel.font = [UIFont systemFontOfSize:13.f];
+        [_completeBtn setHidden:true];
+    }
+    return _completeBtn;
 }
 
 -(UIButton *)delAllBtn{
@@ -86,10 +108,18 @@
     if(sender.selected){
         self.isShowDel = true;
         [self.delAllBtn setHidden:false];
-       
-    }else{
+        [self.actionBtn setHidden:true];
+        [self.completeBtn setHidden:false];
+    }
+}
+
+-(void)completeHandle:(UIButton *)sender{
+    sender.selected = !sender.selected;
+    if(sender.selected){
         self.isShowDel = false;
         [self.delAllBtn setHidden:true];
+        [self.actionBtn setHidden:false];
+        [self.completeBtn setHidden:true];
     }
 }
 

@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TTArticleSearchInboxFourWordsCell : UITableViewCell
 
-@property(nonatomic,strong)TTArticleSearchInboxFourWordsModel *SearchWordsModel;
-
 @end
 
 NS_ASSUME_NONNULL_END

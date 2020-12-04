@@ -18,7 +18,7 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
 
 @interface TTSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UIGestureRecognizerDelegate>
 
-@property(nonatomic,strong)NSMutableArray *searchHistory;
+@property(nonatomic,strong)NSMutableArray *searchHistoryArray;
 
 @property(nonatomic,strong)NSMutableArray *recommendSearchArray;
 
@@ -97,7 +97,7 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     if(self.currentOrientation != [UIDevice currentDevice].orientation){
-        self.searchHistory = self.searchHistory;
+        self.searchHistoryArray = self.searchHistoryArray;
         self.currentOrientation = [UIDevice currentDevice].orientation;
     }
     CGFloat adaptWidth = 0;
@@ -204,11 +204,19 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
     return _baseSearchTableView;
 }
 
--(NSMutableArray *)searchHistory{
-    if(!_searchHistory){
-        _searchHistory = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:self.historySearchCachePath]];
+-(NSMutableArray *)searchHistoryArray{
+    if(!_searchHistoryArray){
+        _searchHistoryArray = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:self.historySearchCachePath]];
     }
-    return _searchHistory;
+    return _searchHistoryArray;
+}
+
+-(NSMutableArray *)recommendSearchArray{
+    if(!_recommendSearchArray){
+        _recommendSearchArray = [[NSMutableArray alloc]init];
+        _recommendSearchArray = [NSMutableArray arrayWithArray:self.keywordArray];
+    }
+    return _recommendSearchArray;
 }
 
 -(TTArticleSearchInboxFourWordsModel *)searchKeyWordModel{
@@ -216,13 +224,6 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
         _searchKeyWordModel = [[TTArticleSearchInboxFourWordsModel alloc]init];
     }
     return _searchKeyWordModel;
-}
-
--(NSArray *)keywordArray{
-    if(!_keywordArray){
-        _keywordArray = [NSArray array];
-    }
-    return _keywordArray;
 }
 
 -(void)setup{
@@ -328,11 +329,11 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
     }
     if(self.showSearchHistory && searchText.length > 0){
 //        [self.searchHistory removeAllObjects];
-        [self.searchHistory insertObject:searchText atIndex:0];
-        if(self.searchHistory.count > self.searchHistoryCount){
-            [self.searchHistory removeLastObject];
+        [self.searchHistoryArray insertObject:searchText atIndex:0];
+        if(self.searchHistoryArray.count > self.searchHistoryCount){
+            [self.searchHistoryArray removeLastObject];
         }
-        [NSKeyedArchiver archiveRootObject:self.searchHistory toFile:self.historySearchCachePath];
+        [NSKeyedArchiver archiveRootObject:self.searchHistoryArray toFile:self.historySearchCachePath];
     }
 }
 
@@ -382,14 +383,16 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 3;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(section == 0){
         return 1;
     }else if(section == 1){
-        return 1 + self.recommendSearchArray.count;
+        return self.searchHistoryArray.count + 1;
+    }else if(section == 2){
+        return self.recommendSearchArray.count;
     }
     return 0;
 }
@@ -403,27 +406,33 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         for(int i = 0;i < 2;i++){
+            UILabel *label = (UILabel *)[cell viewWithTag:1+i];
             TTArticleSearchInboxFourWordsModel *model = self.keywordArray[i];
-            cell.SearchWordsModel = model;
+            label.text = model.word;
         }
         
         ResultCell = cell;
     }else if(indexPath.section == 1){
         if(indexPath.row == 0){
             TTArticleSearchHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:TTArticleSearchHeaderCellID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             if(!cell){
                 cell = [[TTArticleSearchHeaderCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TTArticleSearchHeaderCellID];
             }
             cell.titleLabel.text = @"搜索历史";
-            [cell.actionBtn setImage:[UIImage imageNamed:@"empty"] forState:UIControlStateNormal];
             ResultCell = cell;
         }else{
             TTArticleSearchTagCell *cell = [tableView dequeueReusableCellWithIdentifier:TTArticleSearchTagCellID];
             if(!cell){
                 cell = [[TTArticleSearchTagCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TTArticleSearchTagCellID];
             }
-            
+            for(int i = 0;i < self.searchHistoryArray.count;i++){
+                cell.leftSearchTagItemLabel.text = self.recommendSearchArray[i];
+                cell.rightSearchTagItemLabel.text = (i+1 < self.recommendSearchArray.count) ? self.recommendSearchArray[i+1] : @"";
+            }
         }
+    }else if(indexPath.section == 2){
+        
     }
     
     return ResultCell;
@@ -437,8 +446,9 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     self.searchBar.text = cell.textLabel.text;
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
      [self searchBarSearchButtonClicked:self.searchBar];
 }
 

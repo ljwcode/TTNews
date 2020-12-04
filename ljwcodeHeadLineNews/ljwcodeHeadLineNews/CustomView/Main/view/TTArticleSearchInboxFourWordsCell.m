@@ -15,18 +15,18 @@
         for(int i = 0;i < 2;i++){
             UILabel *TagLabel = [[UILabel alloc]init];
             TagLabel.textColor = [UIColor blackColor];
-            TagLabel.textAlignment = NSTextAlignmentCenter;
-            TagLabel.font = [UIFont systemFontOfSize:15.f];
-            [TagLabel setTag:10030+i];
+            TagLabel.textAlignment = NSTextAlignmentLeft;
+            TagLabel.font = [UIFont systemFontOfSize:17.f];
+            [TagLabel setTag:1+i];
             [self.contentView addSubview:TagLabel];
+
             [TagLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(0+(CGRectGetWidth(self.contentView.frame)/2) * i);
+                make.left.mas_equalTo(hSpace+(kScreenWidth/2) * i);
                 make.top.bottom.mas_equalTo(0);
-                make.width.mas_equalTo(CGRectGetWidth(self.contentView.frame)/2);
-                if(i == 1){
-                    make.right.mas_equalTo(0);
-                }
+                make.width.mas_equalTo(kScreenWidth/2 - hSpace * 2);
+                
             }];
+            
         }
         UIView *lineView = [[UIView alloc]init];
         lineView.backgroundColor = [UIColor lightGrayColor];
@@ -37,19 +37,21 @@
             make.width.mas_equalTo(0.5);
             make.height.mas_equalTo(CGRectGetHeight(self.contentView.frame)/2);
         }];
+        
+        UIView *bottomLine = [[UIView alloc]init];
+        bottomLine.backgroundColor = [UIColor lightGrayColor];
+        [self.contentView addSubview:bottomLine];
+        [bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(hSpace);
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-hSpace);
+            make.bottom.mas_equalTo(0);
+            make.height.mas_equalTo(0.5);
+            make.width.mas_equalTo(kScreenWidth - 2 * hSpace);
+        }];
     }
     return self;
 }
 
-#pragma mark ----- setter model
-
--(void)setSearchWordsModel:(TTArticleSearchInboxFourWordsModel *)SearchWordsModel{
-    _SearchWordsModel = SearchWordsModel;
-    for(int i=0;i<2;i++){
-        UILabel *label =(UILabel *)[self viewWithTag:10030 + i];
-        label.text = SearchWordsModel.word;
-    }
-}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

@@ -10,13 +10,6 @@
 
 @interface TTArticleSearchTagCell()
 
-@property (weak, nonatomic) IBOutlet UIView *leftSearchTagItemView;
-@property (weak, nonatomic) IBOutlet UILabel *leftSearchTagItemLabel;
-
-@property (weak, nonatomic) IBOutlet UIView *rightSearchTagItemView;
-@property (weak, nonatomic) IBOutlet UILabel *rightSearchTagItemLabel;
-
-
 @end
 
 @implementation TTArticleSearchTagCell
