@@ -10,18 +10,6 @@
 
 @interface TTArticleSearchCell()
 
-@property(nonatomic,strong)UIView *leftSearchHistoryTagView;
-
-@property(nonatomic,strong)UILabel *leftTagLabel;
-
-@property(nonatomic,strong)UIButton *leftDelTagBtn;
-
-@property(nonatomic,strong)UIView *rightSearchHistoryTagView;
-
-@property(nonatomic,strong)UILabel *rightTagLabel;
-
-@property(nonatomic,strong)UIButton *rightDelTagBtn;
-
 @end
 
 @implementation TTArticleSearchCell
@@ -30,37 +18,41 @@
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         [self.contentView addSubview:self.leftSearchHistoryTagView];
         [self.leftSearchHistoryTagView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.bottom.mas_equalTo(0);
-            make.width.mas_equalTo(self.width/2 - hSpace);
+            make.top.bottom.mas_equalTo(0);
+            make.left.mas_equalTo(hSpace);
+            make.width.mas_equalTo(kScreenWidth/2 - 2 * hSpace);
         }];
         
         [self.leftSearchHistoryTagView addSubview:self.leftTagLabel];
         [self.leftTagLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.bottom.mas_equalTo(0);
-            make.width.mas_equalTo(self.leftSearchHistoryTagView.width * 0.8);
+            make.edges.mas_equalTo(0);
         }];
         
         [self.leftSearchHistoryTagView addSubview:self.leftDelTagBtn];
         [self.leftDelTagBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.top.bottom.mas_equalTo(0);
+            make.right.mas_equalTo(0);
+            make.width.height.mas_equalTo(20);
+            make.centerY.mas_equalTo(self.contentView);
             make.left.mas_equalTo(self.leftTagLabel.mas_right).offset(2);
         }];
         
         [self.contentView addSubview:self.rightSearchHistoryTagView];
         [self.rightSearchHistoryTagView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.top.bottom.mas_equalTo(0);
-            make.width.mas_equalTo(self.width/2 - hSpace);
+            make.top.bottom.mas_equalTo(0);
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-hSpace);
+            make.width.mas_equalTo(kScreenWidth/2 - 2 * hSpace);
         }];
         
         [self.rightSearchHistoryTagView addSubview:self.rightTagLabel];
         [self.rightTagLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.bottom.mas_equalTo(0);
-            make.width.mas_equalTo(self.leftTagLabel);
+            make.edges.mas_equalTo(0);
         }];
         
         [self.rightSearchHistoryTagView addSubview:self.rightDelTagBtn];
         [self.rightDelTagBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.top.bottom.mas_equalTo(0);
+            make.right.mas_equalTo(0);
+            make.width.height.mas_equalTo(20);
+            make.centerY.mas_equalTo(self.contentView);
             make.left.mas_equalTo(self.rightTagLabel.mas_right).offset(2);
         }];
         
@@ -68,8 +60,8 @@
         lineView.backgroundColor = [UIColor lightGrayColor];
         [self.contentView addSubview:lineView];
         [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.mas_equalTo(self.contentView);
-            make.top.bottom.mas_equalTo(0);
+            make.centerX.centerY.mas_equalTo(self.contentView);
+            make.height.mas_equalTo(self.contentView.height / 2);
             make.width.mas_equalTo(1);
         }];
     }
@@ -90,7 +82,7 @@
         _leftTagLabel = [[UILabel alloc]init];
         _leftTagLabel.textColor = [UIColor blackColor];
         _leftTagLabel.font = [UIFont systemFontOfSize:13.f];
-        _leftTagLabel.textAlignment = NSTextAlignmentCenter;
+        _leftTagLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _leftTagLabel;
 }
@@ -115,7 +107,7 @@
         _rightTagLabel = [[UILabel alloc]init];
         _rightTagLabel.textColor = [UIColor blackColor];
         _rightTagLabel.font = [UIFont systemFontOfSize:13.f];
-        _rightTagLabel.textAlignment = NSTextAlignmentCenter;
+        _rightTagLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _rightTagLabel;
 }

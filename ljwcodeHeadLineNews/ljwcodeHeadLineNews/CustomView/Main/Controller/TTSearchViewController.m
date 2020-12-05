@@ -11,12 +11,14 @@
 #import "TTArticleSearchInboxFourWordsModel.h"
 #import "TTArticleSearchHeaderCell.h"
 #import "TTArticleSearchTagCell.h"
+#import "TTArticleSearchCell.h"
 
 static NSString *const TTArticleSearchInboxFourWordsCellID = @"TTArticleSearchInboxFourWordsCell";
 static NSString *const TTArticleSearchHeaderCellID = @"TTArticleSearchHeaderCell";
 static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
+static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
 
-@interface TTSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UIGestureRecognizerDelegate>
+@interface TTSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UIGestureRecognizerDelegate,UIScrollViewDelegate>
 
 @property(nonatomic,strong)NSMutableArray *searchHistoryArray;
 
@@ -50,6 +52,10 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
 @property(nonatomic,assign)UIDeviceOrientation currentOrientation;
 
 @property(nonatomic,strong)TTArticleSearchInboxFourWordsModel *searchKeyWordModel;
+
+@property(nonatomic,assign)NSInteger section;
+
+@property(nonatomic,strong)UIScrollView *privateSearchView;
 
 @end
 
@@ -97,7 +103,6 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     if(self.currentOrientation != [UIDevice currentDevice].orientation){
-        self.searchHistoryArray = self.searchHistoryArray;
         self.currentOrientation = [UIDevice currentDevice].orientation;
     }
     CGFloat adaptWidth = 0;
@@ -152,6 +157,10 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.recommendSearchArray = [NSMutableArray arrayWithArray:self.keywordArray];
+    /*
+     11 22 33 44 55 66
+     */
     [self.navigationController.navigationBar setBackgroundImage:[self drawImageContext:[UIColor whiteColor]]  forBarMetrics:UIBarMetricsDefault];
     
     if(self.cancelBtnWidth == 0){
@@ -172,58 +181,6 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.searchBar resignFirstResponder];
-}
-
-#pragma mark - 外部初始化调用方法
-+(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *> *)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder{
-    TTSearchViewController *searchVC = [[self alloc]init];
-    searchVC.searchBar.placeholder = placeHolder;
-    return searchVC;
-}
-
-+(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *> *)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder searchBlock:(didSearchBlock)searchBlock{
-    TTSearchViewController *headLineSearchVC = [self searchViewControllerWithHotSearchies:hotSearchies searchControllerPlaceHolder:placeHolder];
-    headLineSearchVC.searchBlock = [searchBlock copy];
-    return headLineSearchVC;
-}
-
-#pragma mark - lazy load
--(UITableView *)baseSearchTableView{
-    if(!_baseSearchTableView){
-        _baseSearchTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
-        _baseSearchTableView.backgroundColor = [UIColor clearColor];
-        _baseSearchTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        if([_baseSearchTableView respondsToSelector:@selector(setCellLayoutMarginsFollowReadableWidth:)]){
-            _baseSearchTableView.cellLayoutMarginsFollowReadableWidth = NO;
-        }
-        _baseSearchTableView.delegate = self;
-        _baseSearchTableView.dataSource = self;
-        _baseSearchTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        [self.view addSubview:_baseSearchTableView];
-    }
-    return _baseSearchTableView;
-}
-
--(NSMutableArray *)searchHistoryArray{
-    if(!_searchHistoryArray){
-        _searchHistoryArray = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:self.historySearchCachePath]];
-    }
-    return _searchHistoryArray;
-}
-
--(NSMutableArray *)recommendSearchArray{
-    if(!_recommendSearchArray){
-        _recommendSearchArray = [[NSMutableArray alloc]init];
-        _recommendSearchArray = [NSMutableArray arrayWithArray:self.keywordArray];
-    }
-    return _recommendSearchArray;
-}
-
--(TTArticleSearchInboxFourWordsModel *)searchKeyWordModel{
-    if(!_searchKeyWordModel){
-        _searchKeyWordModel = [[TTArticleSearchInboxFourWordsModel alloc]init];
-    }
-    return _searchKeyWordModel;
 }
 
 -(void)setup{
@@ -286,6 +243,10 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
     UIView *footerView = [[UIView alloc] init];
     footerView.width = kCompareScreenWidth;
     footerView.height = 60;
+    footerView.y =  self.baseSearchTableView.height - 120;
+    footerView.x = 0;
+    [self.baseSearchTableView addSubview:footerView];
+    
     UIView *lineView = [[UIView alloc]init];
     lineView.backgroundColor = [UIColor lightGrayColor];
     [footerView addSubview:lineView];
@@ -309,6 +270,7 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
     
     UISwitch *privateSwitch = [[UISwitch alloc]init];
     privateSwitch.on = false;
+    [privateSwitch addTarget:self action:@selector(privateHandle:) forControlEvents:UIControlEventTouchUpInside];
     [footerView addSubview:privateSwitch];
     [privateSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-hSpace);
@@ -316,7 +278,6 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
         make.height.mas_equalTo(footerView.height/2);
         make.width.mas_equalTo(60);
     }];
-    self.baseSearchTableView.tableFooterView = footerView;
 }
 
 
@@ -328,7 +289,7 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
         searchText = [searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@" "];
     }
     if(self.showSearchHistory && searchText.length > 0){
-//        [self.searchHistory removeAllObjects];
+        [self.searchHistoryArray removeAllObjects];
         [self.searchHistoryArray insertObject:searchText atIndex:0];
         if(self.searchHistoryArray.count > self.searchHistoryCount){
             [self.searchHistoryArray removeLastObject];
@@ -337,12 +298,131 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
     }
 }
 
+-(void)createPrivateView{
+    [self.baseSearchTableView addSubview:self.privateSearchView];
+    UIImageView *animateImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_incognito_mode"]];
+    [self.privateSearchView addSubview:animateImgView];
+    [animateImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.privateSearchView);
+        make.top.mas_equalTo(self.privateSearchView.mas_top).offset(self.privateSearchView.height * 0.3);
+        make.width.height.mas_equalTo(60);
+    }];
+    
+    UILabel *titleLabel = [[UILabel alloc]init];
+    titleLabel.text = @"你已进入无痕搜索模式";
+    titleLabel.textColor = [UIColor blackColor];
+    titleLabel.font = [UIFont systemFontOfSize:16.f];
+    [self.privateSearchView addSubview:titleLabel];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(animateImgView.mas_bottom).offset(2*vSpace);
+        make.centerX.mas_equalTo(self.privateSearchView);
+        make.width.mas_equalTo(kScreenWidth * 0.4);
+        make.height.mas_equalTo(30);
+    }];
+    
+    UILabel *tipLabel = [[UILabel alloc]init];
+    tipLabel.text = @"在无痕搜索模式中，你的搜索历史和对应浏览历史将不会被记录";
+    tipLabel.numberOfLines = 2;
+    tipLabel.textColor = [UIColor lightGrayColor];
+    tipLabel.font = [UIFont systemFontOfSize:10.f];
+    [self.privateSearchView addSubview:tipLabel];
+    [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(titleLabel.mas_bottom).offset(vSpace);
+        make.centerX.mas_equalTo(self.privateSearchView);
+        make.width.mas_equalTo(kScreenWidth * 0.6);
+        make.height.mas_equalTo(20);
+    }];
+    
+}
+
+#pragma mark - 外部初始化调用方法
++(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *> *)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder{
+    TTSearchViewController *searchVC = [[self alloc]init];
+    searchVC.searchBar.placeholder = placeHolder;
+    return searchVC;
+}
+
++(instancetype)searchViewControllerWithHotSearchies:(NSArray<NSString *> *)hotSearchies searchControllerPlaceHolder:(NSString *)placeHolder searchBlock:(didSearchBlock)searchBlock{
+    TTSearchViewController *headLineSearchVC = [self searchViewControllerWithHotSearchies:hotSearchies searchControllerPlaceHolder:placeHolder];
+    headLineSearchVC.searchBlock = [searchBlock copy];
+    return headLineSearchVC;
+}
+
+#pragma mark - lazy load
+-(UITableView *)baseSearchTableView{
+    if(!_baseSearchTableView){
+        _baseSearchTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _baseSearchTableView.backgroundColor = [UIColor clearColor];
+        _baseSearchTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        if([_baseSearchTableView respondsToSelector:@selector(setCellLayoutMarginsFollowReadableWidth:)]){
+            _baseSearchTableView.cellLayoutMarginsFollowReadableWidth = NO;
+        }
+        _baseSearchTableView.delegate = self;
+        _baseSearchTableView.dataSource = self;
+        _baseSearchTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        UINib *tagCell = [UINib nibWithNibName:NSStringFromClass([TTArticleSearchTagCell class]) bundle:nil];
+        [_baseSearchTableView registerNib:tagCell forCellReuseIdentifier:TTArticleSearchTagCellID];
+        [self.view addSubview:_baseSearchTableView];
+    }
+    return _baseSearchTableView;
+}
+
+-(NSMutableArray *)searchHistoryArray{
+    if(!_searchHistoryArray){
+        _searchHistoryArray = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:self.historySearchCachePath]];
+    }
+    return _searchHistoryArray;
+}
+
+-(NSMutableArray *)recommendSearchArray{
+    if(!_recommendSearchArray){
+        _recommendSearchArray = [[NSMutableArray alloc]init];
+    }
+    return _recommendSearchArray;
+}
+
+-(TTArticleSearchInboxFourWordsModel *)searchKeyWordModel{
+    if(!_searchKeyWordModel){
+        _searchKeyWordModel = [[TTArticleSearchInboxFourWordsModel alloc]init];
+    }
+    return _searchKeyWordModel;
+}
+
+-(UIScrollView *)privateSearchView{
+    if(!_privateSearchView){
+        _privateSearchView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 60)];
+        _privateSearchView.backgroundColor = [UIColor whiteColor];
+        _privateSearchView.delegate = self;
+        _privateSearchView.bounces = YES;
+        _privateSearchView.showsVerticalScrollIndicator = NO;
+        _privateSearchView.showsHorizontalScrollIndicator = NO;
+    }
+    return _privateSearchView;
+}
+
 #pragma mark - 事件响应
 
 
 -(void)cancelButtonHandle:(UIButton *)sender{
 //    [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)privateHandle:(UISwitch *)sender{
+    sender.selected = !sender.selected;
+    if(sender.on == true){
+        [MBProgressHUD showSuccess:@"无痕搜索模式已开启"];
+//        [self delAllSection];
+        [self createPrivateView];
+    }else{
+        [MBProgressHUD showSuccess:@"无痕搜索模式已关闭"];
+    }
+}
+
+
+-(void)delAllSection{
+    _section = 0;
+    [self.baseSearchTableView deleteSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 -(void)keyBoardDidShow:(NSNotification *)noti{
@@ -383,14 +463,15 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    _section = self.searchHistoryArray.count > 0 ? 3 : 2;
+    return _section;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(section == 0){
         return 1;
     }else if(section == 1){
-        return self.searchHistoryArray.count + 1;
+        return self.searchHistoryArray.count > 0 ? self.searchHistoryArray.count / 2 + 1 : 0;
     }else if(section == 2){
         return self.recommendSearchArray.count;
     }
@@ -420,19 +501,43 @@ static NSString *const TTArticleSearchTagCellID = @"TTArticleSearchTagCell";
                 cell = [[TTArticleSearchHeaderCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TTArticleSearchHeaderCellID];
             }
             cell.titleLabel.text = @"搜索历史";
+            [cell.actionBtn setImage:[UIImage imageNamed:@"empty"] forState:UIControlStateNormal];
+            ResultCell = cell;
+        }else{
+            TTArticleSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:TTArticleSearchCellID];
+            if(!cell){
+                cell = [[TTArticleSearchCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TTArticleSearchCellID];
+            }
+            for(int i = 0;i < self.searchHistoryArray.count - 1 ;i++){
+                cell.leftTagLabel.text = self.searchHistoryArray[i];
+                cell.rightTagLabel.text = (i+1 <= self.searchHistoryArray.count - 1) ? self.searchHistoryArray[i+1] : @"";
+                if(i + 1 == self.searchHistoryArray.count - 1){
+                    break;
+                }
+            }
+            ResultCell = cell;
+        }
+    }else if(indexPath.section == 2){
+        if(indexPath.row == 0){
+            TTArticleSearchHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:TTArticleSearchHeaderCellID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if(!cell){
+                cell = [[TTArticleSearchHeaderCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TTArticleSearchHeaderCellID];
+            }
+            cell.titleLabel.text = @"猜你想搜";
+            [cell.actionBtn setImage:[UIImage imageNamed:@"eye-line"] forState:UIControlStateNormal];
             ResultCell = cell;
         }else{
             TTArticleSearchTagCell *cell = [tableView dequeueReusableCellWithIdentifier:TTArticleSearchTagCellID];
             if(!cell){
                 cell = [[TTArticleSearchTagCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TTArticleSearchTagCellID];
             }
-            for(int i = 0;i < self.searchHistoryArray.count;i++){
-                cell.leftSearchTagItemLabel.text = self.recommendSearchArray[i];
-                cell.rightSearchTagItemLabel.text = (i+1 < self.recommendSearchArray.count) ? self.recommendSearchArray[i+1] : @"";
+            for(int i = 0;i < self.recommendSearchArray.count/2;i++){
+                TTArticleSearchInboxFourWordsModel *model = self.recommendSearchArray[i];
+                cell.leftSearchTagItemLabel.text = model.word;
             }
+            ResultCell = cell;
         }
-    }else if(indexPath.section == 2){
-        
     }
     
     return ResultCell;

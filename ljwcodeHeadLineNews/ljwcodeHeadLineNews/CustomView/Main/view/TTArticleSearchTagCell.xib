@@ -21,7 +21,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfQ-Ly-gxL">
                         <rect key="frame" x="10" y="14" width="186.5" height="31"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fg5-vc-fN8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fg5-vc-fN8">
                                 <rect key="frame" x="0.0" y="0.0" width="186.5" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -46,7 +46,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RaE-hc-et5">
                         <rect key="frame" x="243.5" y="14" width="186.5" height="31"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aS0-ir-sMk">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aS0-ir-sMk">
                                 <rect key="frame" x="0.0" y="0.0" width="186.5" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -78,10 +78,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="leftSearchTagItemLabel" destination="fg5-vc-fN8" id="RSj-cj-vwI"/>
-                <outlet property="leftSearchTagItemView" destination="hfQ-Ly-gxL" id="Oxi-fs-KDl"/>
-                <outlet property="rightSearchTagItemLabel" destination="aS0-ir-sMk" id="5ee-dr-hzh"/>
-                <outlet property="rightSearchTagItemView" destination="RaE-hc-et5" id="DyX-xS-UDn"/>
+                <outlet property="leftSearchTagItemLabel" destination="fg5-vc-fN8" id="5ts-M4-6sL"/>
+                <outlet property="leftSearchTagItemView" destination="hfQ-Ly-gxL" id="5Al-G8-hvV"/>
+                <outlet property="rightSearchTagItemLabel" destination="aS0-ir-sMk" id="oUd-Uc-xfn"/>
+                <outlet property="rightSearchTagItemView" destination="RaE-hc-et5" id="qsb-MX-8rg"/>
             </connections>
             <point key="canvasLocation" x="60.869565217391312" y="40.848214285714285"/>
         </tableViewCell>

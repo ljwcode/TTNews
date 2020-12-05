@@ -70,8 +70,6 @@
     if(!_actionBtn){
         _actionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_actionBtn addTarget:self action:@selector(actionHandle:) forControlEvents:UIControlEventTouchUpInside];
-        [_actionBtn setImage:[UIImage imageNamed:@"empty"] forState:UIControlStateNormal];
-
     }
     return _actionBtn;
 }

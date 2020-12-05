@@ -13,9 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TTArticleSearchTagCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIView *leftSearchTagItemView;
+
 @property (weak, nonatomic) IBOutlet UILabel *leftSearchTagItemLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *rightSearchTagItemView;
+
 @property (weak, nonatomic) IBOutlet UILabel *rightSearchTagItemLabel;
 
 @end
