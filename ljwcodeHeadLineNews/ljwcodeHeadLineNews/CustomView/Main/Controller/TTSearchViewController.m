@@ -53,7 +53,7 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
 
 @property(nonatomic,strong)TTArticleSearchInboxFourWordsModel *searchKeyWordModel;
 
-@property(nonatomic,assign)NSInteger section;
+@property(nonatomic,strong)NSMutableArray *sectionArray;
 
 @property(nonatomic,strong)UIScrollView *privateSearchView;
 
@@ -158,6 +158,8 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.recommendSearchArray = [NSMutableArray arrayWithArray:self.keywordArray];
+    
+    self.sectionArray = [NSMutableArray arrayWithObject:@""];
     /*
      11 22 33 44 55 66
      */
@@ -391,7 +393,7 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
 -(UIScrollView *)privateSearchView{
     if(!_privateSearchView){
         _privateSearchView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 60)];
-        _privateSearchView.backgroundColor = [UIColor whiteColor];
+        _privateSearchView.backgroundColor = [UIColor clearColor];
         _privateSearchView.delegate = self;
         _privateSearchView.bounces = YES;
         _privateSearchView.showsVerticalScrollIndicator = NO;
@@ -412,7 +414,7 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
     sender.selected = !sender.selected;
     if(sender.on == true){
         [MBProgressHUD showSuccess:@"无痕搜索模式已开启"];
-//        [self delAllSection];
+        [self delAllSection];
         [self createPrivateView];
     }else{
         [MBProgressHUD showSuccess:@"无痕搜索模式已关闭"];
@@ -421,8 +423,13 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
 
 
 -(void)delAllSection{
-    _section = 0;
-    [self.baseSearchTableView deleteSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+    NSArray *deleteIndexPaths = [NSArray arrayWithObjects:
+                                    [NSIndexPath indexPathForRow:0 inSection:0],
+                                    [NSIndexPath indexPathForRow:0 inSection:1],
+                                    nil];
+//    [self.baseSearchTableView deleteSections:deleteIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.baseSearchTableView deleteSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationFade];
+    
 }
 
 -(void)keyBoardDidShow:(NSNotification *)noti{
@@ -463,8 +470,8 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    _section = self.searchHistoryArray.count > 0 ? 3 : 2;
-    return _section;
+//    return self.sectionArray.count;
+    return 3;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
