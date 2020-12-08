@@ -18,8 +18,6 @@ pod 'SDWebImage/WebP'
 pod 'SDWebImage’,’~> 4.0.0’
 pod 'DouyinOpenSDK'
 pod 'WechatOpenSDK'
-pod 'ZFPlayer/AVPlayer'
-pod 'ZFPlayer/ControlView'
 pod 'DZNEmptyDataSet', '~> 1.8.1'
 pod 'PromisesObjC'
 end

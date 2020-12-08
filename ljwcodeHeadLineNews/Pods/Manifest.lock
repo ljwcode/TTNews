@@ -40,11 +40,6 @@ PODS:
   - WechatOpenSDK (1.8.7.1)
   - YYCache (1.0.4)
   - YYText (1.0.7)
-  - ZFPlayer/AVPlayer (4.0.1):
-    - ZFPlayer/Core
-  - ZFPlayer/ControlView (4.0.1):
-    - ZFPlayer/Core
-  - ZFPlayer/Core (4.0.1)
 
 DEPENDENCIES:
   - AFNetworking
@@ -61,8 +56,6 @@ DEPENDENCIES:
   - WechatOpenSDK
   - YYCache
   - YYText
-  - ZFPlayer/AVPlayer
-  - ZFPlayer/ControlView
 
 SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
@@ -80,7 +73,6 @@ SPEC REPOS:
     - WechatOpenSDK
     - YYCache
     - YYText
-    - ZFPlayer
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -97,8 +89,7 @@ SPEC CHECKSUMS:
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
-  ZFPlayer: f88787c815f7b0801279c42f131a89e2823e669e
 
-PODFILE CHECKSUM: f817fe8acab82eecc7f2904caedeaabe9905cc4f
+PODFILE CHECKSUM: b3ede876dfd69fb86b778f94a0ddba3abb7c7522
 
 COCOAPODS: 1.10.0

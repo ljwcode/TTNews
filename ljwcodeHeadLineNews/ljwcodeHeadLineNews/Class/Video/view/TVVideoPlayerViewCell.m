@@ -11,7 +11,7 @@
 #import "UIImage+cropPicture.h"
 #import <SDWebImageManager.h>
 
-@interface TVVideoPlayerViewCell()<UIGestureRecognizerDelegate>
+@interface TVVideoPlayerViewCell()
 
 @property (weak, nonatomic)UIImageView *videoBgImgView;
 
@@ -35,16 +35,14 @@
 
 @property(nonatomic,strong)NSIndexPath *indexPath;
 
+@property(nonatomic,strong)UIImageView *authHeadImgView;
+
 @end
 
 @implementation TVVideoPlayerViewCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickPlayHandle:)];
-        tap.delegate = self;
-        [self.contentView addGestureRecognizer:tap];
         
         [self.videoBgImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.mas_equalTo(0);
@@ -85,12 +83,20 @@
             make.height.mas_equalTo(50);
         }];
         
-        [self.videoAuthHeadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.authorBgView addSubview:self.authHeadImgView];
+        [self.authHeadImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(hSpace);
-            make.top.mas_equalTo(2);
-            make.bottom.mas_equalTo(2);
-            make.height.width.mas_equalTo(50);
+            make.centerY.mas_equalTo(self.authorBgView);
+            make.width.height.mas_equalTo(40);
         }];
+        
+        [self.videoAuthHeadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.authHeadImgView.mas_right).offset(2);;
+            make.centerY.mas_equalTo(self.authorBgView);
+            make.height.mas_equalTo(50);
+            make.width.mas_equalTo(80);
+        }];
+        
         
         [self.authorFocusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.videoAuthHeadBtn.mas_right).offset(hSpace);
@@ -122,15 +128,17 @@
     [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:[contentModel.detailModel.video_detail_info.detail_video_large_image objectForKey:@"url"]]];
     [self.videoAuthHeadBtn setTitle:contentModel.detailModel.media_name forState:UIControlStateNormal];
     self.videoTitleLabel.text = contentModel.detailModel.title;
+   
+    NSString * urlStr = [contentModel.detailModel.media_info.avatar_url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    if(urlStr){
+        [self.authHeadImgView sd_setImageWithURL:[NSURL URLWithString:urlStr] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            self.authHeadImgView.image = [image cropPictureWithRoundedCorner:self.authHeadImgView.image.size.width/2 size:self.authHeadImgView.frame.size];
+                
+        }];
+    }else{
+        [self.authHeadImgView setImage:[UIImage imageNamed:@"recommend_user_see_more_icon"]];
+    }
     
-    [self.videoAuthHeadBtn.imageView sd_setImageWithURL:[NSURL URLWithString: contentModel.detailModel.media_info.avatar_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        if(image){
-            self.videoAuthHeadBtn.imageView.image = [image cropPictureWithRoundedCorner:self.videoAuthHeadBtn.imageView.image.size.width/2 size:self.videoAuthHeadBtn.frame.size];
-            if(error){
-                NSLog(@"error = %@",error);
-            }
-        }
-    }];
     self.videoPlayCountLabel.text = [NSString stringWithFormat:@"%d次播放",contentModel.detailModel.video_detail_info.video_watch_count];
     self.videoTimeLabel.text = [NSString stringWithFormat:@"%d:%d",contentModel.detailModel.video_duration/60,contentModel.detailModel.video_duration%60];
 }
@@ -214,11 +222,7 @@
     if(!_videoAuthHeadBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:15.f];
         btn.titleLabel.adjustsFontSizeToFitWidth = YES;
-        btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        btn.imageEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
-        btn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         [self.authorBgView addSubview:btn];
         _videoAuthHeadBtn = btn;
     }
@@ -262,6 +266,13 @@
         _videoMoreBtn = btn;
     }
     return _videoMoreBtn;
+}
+
+-(UIImageView *)authHeadImgView{
+    if(!_authHeadImgView){
+        _authHeadImgView = [[UIImageView alloc]init];
+    }
+    return _authHeadImgView;
 }
 
 -(void)setDelegate:(id<TVVideoPlayerCellDelegate,NSObject>)delegate withIndexPath:(NSIndexPath *)indexPath{

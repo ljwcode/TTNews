@@ -10,10 +10,8 @@
 #import "TVVideoPlayerViewCell.h"
 #import "videoContentViewModel.h"
 #import "TTHeader.h"
-
-#import <ZFPlayer/ZFAVPlayerManager.h>
-#import <ZFPlayer/ZFPlayerControlView.h>
-
+#import <FBLPromises/FBLPromises.h>
+#import <FBLPromises/FBLPromise.h>
 #import "parseVideoRealURLViewModel.h"
 
 @interface VideoDetailViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate>
@@ -25,10 +23,6 @@
 @property(nonatomic,strong)NSMutableArray *dataArray;
 
 @property(nonatomic,strong)videoContentModel *videoPlayModel;
-
-@property(nonatomic,strong)ZFPlayerController *player;
-
-@property(nonatomic,strong)ZFPlayerControlView *playerControlView;
 
 @property(nonatomic,strong)parseVideoRealURLViewModel *realURLViewModel;
 
@@ -70,21 +64,11 @@
         } else {
             self.automaticallyAdjustsScrollViewInsets = NO;
         }
-        _detailTableView.estimatedRowHeight = 0;
-        _detailTableView.estimatedSectionFooterHeight = 0;
-        _detailTableView.estimatedSectionHeaderHeight = 0;
-        
+//        _detailTableView.estimatedRowHeight = 0;
+//        _detailTableView.estimatedSectionFooterHeight = 0;
+//        _detailTableView.estimatedSectionHeaderHeight = 0;
     }
     return _detailTableView;
-}
-
-- (ZFPlayerControlView *)playerControlView {
-    if (!_playerControlView) {
-        _playerControlView = [[ZFPlayerControlView alloc]init];
-        _playerControlView.prepareShowLoading = YES;
-        _playerControlView.prepareShowControlView = YES;
-    }
-    return _playerControlView;
 }
 
 - (void)viewDidLoad {
@@ -110,34 +94,14 @@
         
     }];
     [self.detailTableView.mj_header beginRefreshing];
-    
-    ZFAVPlayerManager *playerManager = [[ZFAVPlayerManager alloc] init];
-    /// player的tag值必须在cell里设置
-    self.player = [ZFPlayerController playerWithScrollView:self.detailTableView playerManager:playerManager containerViewTag:kPlayerViewTag];
-    self.player.controlView = self.playerControlView;
-    self.player.shouldAutoPlay = NO;
-    /// 1.0是完全消失的时候
-    self.player.playerDisapperaPercent = 1.0;
-    
-    self.player.orientationWillChange = ^(ZFPlayerController * _Nonnull player, BOOL isFullScreen) {
-        kAppDelegate.allowOrentitaionRotation  = isFullScreen;
-    };
-    
-    self.player.playerDidToEnd = ^(id  _Nonnull asset) {
-        @strongify(self);
-        [self.player stopCurrentPlayingCell];
-    };
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.player.viewControllerDisappear = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.player.viewControllerDisappear = YES;
 }
 
 - (void)viewWillLayoutSubviews {
@@ -197,55 +161,34 @@
     /*
      点击视频播放/跳转播放
      */
-    if (self.player.playingIndexPath != indexPath) {
-        [self.player stopCurrentPlayingCell];
-    }
-    /// 如果没有播放，则点击进详情页会自动播放
-    if (!self.player.currentPlayerManager.isPlaying) {
-        [self playTheVideoAtIndexPath:indexPath];
-    }
-}
-
-#pragma mark -- UIScrollViewDelegate
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [scrollView zf_scrollViewDidEndDecelerating];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    [scrollView zf_scrollViewDidEndDraggingWillDecelerate:decelerate];
-}
-
-- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
-    [scrollView zf_scrollViewDidScrollToTop];
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [scrollView zf_scrollViewDidScroll];
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [scrollView zf_scrollViewWillBeginDragging];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [self playTheVideoAtIndexPath:indexPath];
+   
 }
 
 #pragma mark -- private method
 
 - (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
-//    //video_id 拼接url
     self.videoPlayModel = self.dataArray[indexPath.row];
-    NSString *urlString = [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
-    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    [[self.realURLViewModel.VideoRealURLCommand execute:@13]subscribeNext:^(id  _Nullable x) {
-        NSLog(@"%@",x);
-        self.videoPlayModel = x;
-        dispatch_semaphore_signal(sem);
+
+    [[[FBLPromise do:^id _Nullable{
+        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
+    }]then:^id _Nullable(id  _Nullable value) {
+        return [self GetVideoParseData:value];
+    }]then:^id _Nullable(id  _Nullable value) {
+        self.videoPlayModel = value;
+        return self.videoPlayModel.video_list.video_1.main_url;
     }];
-    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
-    
-    NSString *videoURL = self.videoPlayModel.video_list.video_1.main_url;
-    [self.player playTheIndexPath:indexPath assetURL:[NSURL URLWithString:videoURL]];
-        [self.playerControlView showTitle:_videoPlayModel.detailModel.title coverURLString:[_videoPlayModel.detailModel.video_detail_info.detail_video_large_image objectForKey:@"url"]  fullScreenMode:_videoPlayModel.isVerticalVideo ? ZFFullScreenModePortrait : ZFFullScreenModeLandscape];
 }
+
+-(FBLPromise *)GetVideoParseData:(id)input{
+    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
+        [[self.realURLViewModel.VideoRealURLCommand execute:input]subscribeNext:^(id  _Nullable x) {
+            fulfill(x);
+        }];
+    }];
+}
+
 
 #pragma mark -- TVVideoPlayerCellDelegate
 

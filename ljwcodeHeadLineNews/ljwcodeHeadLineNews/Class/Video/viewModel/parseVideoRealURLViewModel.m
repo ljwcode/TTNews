@@ -19,9 +19,7 @@
     if(self = [super init]){
         _VideoRealURLCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                videoRealURLRequestModel *request = [videoRealURLRequestModel initWithNetworkModelWithUrlString:@"" isPost:NO];
-                request.input = input;
-                
+                videoRealURLRequestModel *request = [videoRealURLRequestModel initWithNetworkModelWithUrlString:input isPost:NO];                
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     NSDictionary *responseDic = (NSDictionary *)response;
                     NSDictionary *responseArray = [responseDic objectForKey:@"data"];

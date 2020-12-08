@@ -45,14 +45,14 @@ static CGFloat itemSpace = 5;
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    NSArray *constraintArray = @[_leftImgConstraintHeight,_leftImgConstraintWidth,_middleImgConstraintWidth,_middleImgConstraintHeight,_rightImgConstraintWidth,_rightImgConstraintHeight];
-    CGFloat width = ([UIScreen mainScreen].bounds.size.width - 20 - 2 * itemSpace)/3;
-    for(NSLayoutConstraint *constraint in constraintArray){
-        constraint.constant = width;
-    }
-    _leftImgToMiddleImgMargin.constant = itemSpace;
-    _titleLabel.numberOfLines = 2;
-    _infoLabel.font = [UIFont systemFontOfSize:10];
+//    NSArray *constraintArray = @[_leftImgConstraintHeight,_leftImgConstraintWidth,_middleImgConstraintWidth,_middleImgConstraintHeight,_rightImgConstraintWidth,_rightImgConstraintHeight];
+//    CGFloat width = ([UIScreen mainScreen].bounds.size.width - 2 * itemSpace)/3;
+//    for(NSLayoutConstraint *constraint in constraintArray){
+//        constraint.constant = width;
+//    }
+//    _leftImgToMiddleImgMargin.constant = itemSpace;
+//    _titleLabel.numberOfLines = 2;
+//    _infoLabel.font = [UIFont systemFontOfSize:10];
     _imageViews = @[_leftImageView,_middleImageView,_rightImageView];
     // Initialization code
 }

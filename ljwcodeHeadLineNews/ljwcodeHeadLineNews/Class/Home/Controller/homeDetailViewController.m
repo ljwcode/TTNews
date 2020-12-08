@@ -217,9 +217,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NewsDetailViewController *webVC = [[NewsDetailViewController alloc]init];
     _model  = self.datasArray[indexPath.row];
+    if([self.titleModel.category isEqualToString:@"video"]){
+        NSLog(@"播放视频");
+    }else{
+        webVC.urlString = _model.infoModel.article_url;
+        [self.navigationController pushViewController:webVC animated:YES];
+    }
     
-    webVC.urlString = _model.infoModel.article_url;
-    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 /*
