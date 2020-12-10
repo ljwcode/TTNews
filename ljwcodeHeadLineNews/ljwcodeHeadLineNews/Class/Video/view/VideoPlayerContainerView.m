@@ -28,7 +28,7 @@
 @implementation VideoPlayerContainerView
 
 //设置播放地址
--(void)setUrlVideo:(AVPlayerItem *)urlVideo{
+-(void)setUrlVideo:(NSString *)urlVideo{
     
     [self.player seekToTime:CMTimeMakeWithSeconds(0, NSEC_PER_SEC) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
     [self.player play];//开始播放视频
@@ -36,7 +36,7 @@
     [self.speedMonitor startNetworkSpeedMonitor];//开始监听网速
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkSpeedChanged:) name:NetworkDownloadSpeedNotificationKey object:nil];
     
-    AVPlayerItem *item = urlVideo;
+    AVPlayerItem *item = [[AVPlayerItem alloc]initWithURL:[NSURL URLWithString:urlVideo]];
     [self vpc_addObserverToPlayerItem:item];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self.player replaceCurrentItemWithPlayerItem:item];
@@ -46,15 +46,11 @@
 }
 
 -(instancetype)initWithFrame:(CGRect)frame{
-    
-    self = [super initWithFrame:frame];
-    if (self) {
-        
+    if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
         [self.layer addSublayer:self.playerLayer];
         [self addSubview:self.speedTextLabel];
         [self addSubview:self.vpToolsView];
-        
     }
     return self;
 }
@@ -96,7 +92,7 @@
     NSTimeInterval currentTime = CMTimeGetSeconds(self.player.currentItem.duration) * _vpToolsView.progressSlider.value;
     NSInteger currentMin = currentTime / 60;
     NSInteger currentSec = (NSInteger)currentTime % 60;
-    _vpToolsView.videoTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld",currentMin,currentSec];
+    _vpToolsView.timeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld",currentMin,currentSec];
     
 }
 
@@ -142,9 +138,9 @@
         // 每秒回调一次
         self.playbackObserver = [_player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:NULL usingBlock:^(CMTime time) {
             [weakSelf vpc_setTimeLabel];
-            NSTimeInterval totavideoTimeLabel = CMTimeGetSeconds(weakSelf.player.currentItem.duration);//总时长
+            NSTimeInterval totalTime = CMTimeGetSeconds(weakSelf.player.currentItem.duration);//总时长
             NSTimeInterval currentTime = time.value / time.timescale;//当前时间进度
-            weakSelf.vpToolsView.progressSlider.value = currentTime / totavideoTimeLabel;
+            weakSelf.vpToolsView.progressSlider.value = currentTime / totalTime;
         }];
     }
     return _player;
@@ -162,28 +158,27 @@
 }
 
 
-#pragma mark - videoTimeLabel
+#pragma mark - lTime
 
 - (void)vpc_setTimeLabel {
     
-    NSTimeInterval totavideoTimeLabel = CMTimeGetSeconds(self.player.currentItem.duration);//总时长
+    NSTimeInterval totalTime = CMTimeGetSeconds(self.player.currentItem.duration);//总时长
     NSTimeInterval currentTime = CMTimeGetSeconds(self.player.currentTime);//当前时间进度
-    
-    // 切换视频源时totavideoTimeLabel/currentTime的值会出现nan导致时间错乱
-    if (!(totavideoTimeLabel >= 0) || !(currentTime >= 0)) {
-        totavideoTimeLabel = 0;
+    // 切换视频源时totalTime/currentTime的值会出现nan导致时间错乱
+    if (!(totalTime >= 0) || !(currentTime >= 0)) {
+        totalTime = 0;
         currentTime = 0;
     }
     
-    NSInteger totalMin = totavideoTimeLabel / 60;
-    NSInteger totalSec = (NSInteger)totavideoTimeLabel % 60;
-    NSString *totavideoTimeLabelStr = [NSString stringWithFormat:@"%02ld:%02ld",totalMin,totalSec];
+    NSInteger totalMin = totalTime / 60;
+    NSInteger totalSec = (NSInteger)totalTime % 60;
+    NSString *totalTimeStr = [NSString stringWithFormat:@"%02ld:%02ld",totalMin,totalSec];
     
     NSInteger currentMin = currentTime / 60;
     NSInteger currentSec = (NSInteger)currentTime % 60;
     NSString *currentTimeStr = [NSString stringWithFormat:@"%02ld:%02ld",currentMin,currentSec];
     
-    _vpToolsView.videoTimeLabel.text = [NSString stringWithFormat:@"%@/%@",currentTimeStr,totavideoTimeLabelStr];
+    _vpToolsView.timeLabel.text = [NSString stringWithFormat:@"%@/%@",currentTimeStr,totalTimeStr];
     
 }
 
@@ -226,8 +221,8 @@
         NSTimeInterval startSeconds = CMTimeGetSeconds(timeRange.start);//本次缓冲起始时间
         NSTimeInterval durationSeconds = CMTimeGetSeconds(timeRange.duration);//缓冲时间
         NSTimeInterval totalBuffer = startSeconds + durationSeconds;//缓冲总长度
-        float totavideoTimeLabel = CMTimeGetSeconds(self.player.currentItem.duration);//视频总长度
-        float progress = totalBuffer/totavideoTimeLabel;//缓冲进度
+        float totalTime = CMTimeGetSeconds(self.player.currentItem.duration);//视频总长度
+        float progress = totalBuffer/totalTime;//缓冲进度
         NSLog(@"progress = %lf",progress);
         
         //如果缓冲完了，拖动进度条不需要重新显示缓冲条

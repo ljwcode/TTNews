@@ -13,6 +13,7 @@
 #import <FBLPromises/FBLPromises.h>
 #import <FBLPromises/FBLPromise.h>
 #import "parseVideoRealURLViewModel.h"
+#import "VideoPlayerContainerView.h"
 
 @interface VideoDetailViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate>
 
@@ -26,9 +27,13 @@
 
 @property(nonatomic,strong)parseVideoRealURLViewModel *realURLViewModel;
 
+@property(nonatomic,strong)VideoPlayerContainerView *player;
+
 @end
 
 @implementation VideoDetailViewController
+
+#pragma mark ---- lazy load
 
 -(parseVideoRealURLViewModel *)realURLViewModel{
     if(!_realURLViewModel){
@@ -64,9 +69,6 @@
         } else {
             self.automaticallyAdjustsScrollViewInsets = NO;
         }
-//        _detailTableView.estimatedRowHeight = 0;
-//        _detailTableView.estimatedSectionFooterHeight = 0;
-//        _detailTableView.estimatedSectionHeaderHeight = 0;
     }
     return _detailTableView;
 }
@@ -146,6 +148,7 @@
     if(!cell){
         cell = [[TVVideoPlayerViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
     }
+    self.player = [[VideoPlayerContainerView alloc]initWithFrame:cell.bounds];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentModel = self.videoPlayModel;
     [cell setDelegate:self withIndexPath:indexPath];
@@ -163,21 +166,36 @@
      */
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self playTheVideoAtIndexPath:indexPath];
-   
 }
 
 #pragma mark -- private method
 
 - (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
     self.videoPlayModel = self.dataArray[indexPath.row];
+    [[FBLPromise do:^id _Nullable{
+        return [self getVideoURL];
+    }]then:^id _Nullable(id  _Nullable value) {
+        return [self playVideo:value];
+    }];
+    
+}
 
-    [[[FBLPromise do:^id _Nullable{
+-(FBLPromise *)getVideoURL{
+    return [[[FBLPromise do:^id _Nullable{
         return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
     }]then:^id _Nullable(id  _Nullable value) {
         return [self GetVideoParseData:value];
     }]then:^id _Nullable(id  _Nullable value) {
         self.videoPlayModel = value;
+        NSLog(@"video url = %@",self.videoPlayModel.video_list.video_1.main_url);
         return self.videoPlayModel.video_list.video_1.main_url;
+    }];
+}
+
+-(FBLPromise *)playVideo:(NSString *)url{
+    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
+        self.player.urlVideo = url;
+        [self.view addSubview:self.player];
     }];
 }
 

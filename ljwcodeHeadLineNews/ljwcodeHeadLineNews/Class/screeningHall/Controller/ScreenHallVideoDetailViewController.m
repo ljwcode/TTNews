@@ -8,9 +8,6 @@
 
 #import "ScreenHallVideoDetailViewController.h"
 #import "TTHeader.h"
-#import "VideoCoverCollectionViewCell.h"
-#import "TTVideoPlayer.h"
-#import "TTVideoToolBar.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "videoContentViewModel.h"
 
@@ -61,13 +58,13 @@
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
         flowLayout.minimumLineSpacing = 10;
         flowLayout.minimumInteritemSpacing = 10;
-        flowLayout.itemSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.width / 16 * 9 + TTToolBarHeight);
+//        flowLayout.itemSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.width / 16 * 9 + TTToolBarHeight);
         
         _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        [_collectionView registerClass:[VideoCoverCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([VideoCoverCollectionViewCell class])];
+//        [_collectionView registerClass:[VideoCoverCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([VideoCoverCollectionViewCell class])];
         [self.view addSubview:_collectionView];
     }
     return _collectionView;
@@ -88,14 +85,14 @@
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([VideoCoverCollectionViewCell class]) forIndexPath:indexPath];
-    videoContentModel *model = self.dataArray[indexPath.row];
-    NSString *videoID = model.detailModel.video_detail_info.video_id;
-    NSString *url = [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:videoID];
-    if ([cell isKindOfClass:[VideoCoverCollectionViewCell class]]) {
-        [(VideoCoverCollectionViewCell *)cell layoutWithVideoCoverUrl:[model.detailModel.video_detail_info.detail_video_large_image objectForKey:@"url"] videoUrl:url];
-    }
+    UICollectionViewCell *cell = nil;
+//    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([VideoCoverCollectionViewCell class]) forIndexPath:indexPath];
+//    videoContentModel *model = self.dataArray[indexPath.row];
+//    NSString *videoID = model.detailModel.video_detail_info.video_id;
+//    NSString *url = [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:videoID];
+//    if ([cell isKindOfClass:[VideoCoverCollectionViewCell class]]) {
+//        [(VideoCoverCollectionViewCell *)cell layoutWithVideoCoverUrl:[model.detailModel.video_detail_info.detail_video_large_image objectForKey:@"url"] videoUrl:url];
+//    }
     return cell;
 }
 

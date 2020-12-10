@@ -67,13 +67,11 @@
 		636EA80624C9924500765F5C /* screeningHollHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA80524C9924500765F5C /* screeningHollHistoryModel.m */; };
 		636EA80924C9977B00765F5C /* videoInfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA80824C9977B00765F5C /* videoInfoTableView.m */; };
 		63722D0724F63E8B000121AD /* NSData+CRC32.m in Sources */ = {isa = PBXBuildFile; fileRef = 63722D0624F63E8B000121AD /* NSData+CRC32.m */; };
+		6373A7A22580DE610086C1A2 /* TTCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6373A7A12580DE610086C1A2 /* TTCarouselView.m */; };
 		637A97F424C04B45000F7405 /* UIImage+cropPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A97F324C04B45000F7405 /* UIImage+cropPicture.m */; };
 		637A97F724C05BD7000F7405 /* VideoPlayerContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 637A97F624C05BD7000F7405 /* VideoPlayerContainerView.m */; };
 		637BAF2224F3A07F00711003 /* ScreenHallVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BAF2124F3A07F00711003 /* ScreenHallVideoDetailViewController.m */; };
 		637BAF2524F3A2AD00711003 /* TTScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BAF2424F3A2AD00711003 /* TTScreen.m */; };
-		637BAF2824F3A44E00711003 /* VideoCoverCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BAF2724F3A44E00711003 /* VideoCoverCollectionViewCell.m */; };
-		637BAF2B24F3A4A600711003 /* TTVideoToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BAF2A24F3A4A600711003 /* TTVideoToolBar.m */; };
-		637BAF2E24F3A5A600711003 /* TTVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 637BAF2D24F3A5A600711003 /* TTVideoPlayer.m */; };
 		637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2524A9C1E60009274C /* UIButton+extend.m */; };
 		637C2D2924A9CDE30009274C /* homeTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2824A9CDE30009274C /* homeTitleModel.m */; };
 		637C2D2C24A9CF630009274C /* homeTitleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C2D2B24A9CF630009274C /* homeTitleViewModel.m */; };
@@ -256,6 +254,8 @@
 		636EA80824C9977B00765F5C /* videoInfoTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoInfoTableView.m; sourceTree = "<group>"; };
 		63722D0524F63E8B000121AD /* NSData+CRC32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+CRC32.h"; sourceTree = "<group>"; };
 		63722D0624F63E8B000121AD /* NSData+CRC32.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+CRC32.m"; sourceTree = "<group>"; };
+		6373A7A02580DE610086C1A2 /* TTCarouselView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TTCarouselView.h; path = Pods/DZNEmptyDataSet/TTCarouselView.h; sourceTree = SOURCE_ROOT; };
+		6373A7A12580DE610086C1A2 /* TTCarouselView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TTCarouselView.m; path = Pods/DZNEmptyDataSet/TTCarouselView.m; sourceTree = SOURCE_ROOT; };
 		637A97F224C04B45000F7405 /* UIImage+cropPicture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+cropPicture.h"; sourceTree = "<group>"; };
 		637A97F324C04B45000F7405 /* UIImage+cropPicture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+cropPicture.m"; sourceTree = "<group>"; };
 		637A97F524C05BD7000F7405 /* VideoPlayerContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerContainerView.h; sourceTree = "<group>"; };
@@ -264,12 +264,6 @@
 		637BAF2124F3A07F00711003 /* ScreenHallVideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenHallVideoDetailViewController.m; sourceTree = "<group>"; };
 		637BAF2324F3A2AD00711003 /* TTScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTScreen.h; sourceTree = "<group>"; };
 		637BAF2424F3A2AD00711003 /* TTScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTScreen.m; sourceTree = "<group>"; };
-		637BAF2624F3A44E00711003 /* VideoCoverCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VideoCoverCollectionViewCell.h; path = ljwcodeHeadLineNews/ljwcodeTools/VideoCoverCollectionViewCell.h; sourceTree = SOURCE_ROOT; };
-		637BAF2724F3A44E00711003 /* VideoCoverCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = VideoCoverCollectionViewCell.m; path = ljwcodeHeadLineNews/ljwcodeTools/VideoCoverCollectionViewCell.m; sourceTree = SOURCE_ROOT; };
-		637BAF2924F3A4A600711003 /* TTVideoToolBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TTVideoToolBar.h; path = ljwcodeHeadLineNews/ljwcodeTools/TTVideoToolBar.h; sourceTree = SOURCE_ROOT; };
-		637BAF2A24F3A4A600711003 /* TTVideoToolBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TTVideoToolBar.m; path = ljwcodeHeadLineNews/ljwcodeTools/TTVideoToolBar.m; sourceTree = SOURCE_ROOT; };
-		637BAF2C24F3A5A600711003 /* TTVideoPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TTVideoPlayer.h; path = ljwcodeHeadLineNews/ljwcodeTools/TTVideoPlayer.h; sourceTree = SOURCE_ROOT; };
-		637BAF2D24F3A5A600711003 /* TTVideoPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TTVideoPlayer.m; path = ljwcodeHeadLineNews/ljwcodeTools/TTVideoPlayer.m; sourceTree = SOURCE_ROOT; };
 		637C2D2224A995F70009274C /* HeadLineNews.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadLineNews.pch; sourceTree = "<group>"; };
 		637C2D2424A9C1E60009274C /* UIButton+extend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+extend.h"; sourceTree = "<group>"; };
 		637C2D2524A9C1E60009274C /* UIButton+extend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+extend.m"; sourceTree = "<group>"; };
@@ -629,12 +623,8 @@
 		634A581624BDA05E00CDF423 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				637BAF2624F3A44E00711003 /* VideoCoverCollectionViewCell.h */,
-				637BAF2724F3A44E00711003 /* VideoCoverCollectionViewCell.m */,
-				637BAF2924F3A4A600711003 /* TTVideoToolBar.h */,
-				637BAF2A24F3A4A600711003 /* TTVideoToolBar.m */,
-				637BAF2C24F3A5A600711003 /* TTVideoPlayer.h */,
-				637BAF2D24F3A5A600711003 /* TTVideoPlayer.m */,
+				6373A7A02580DE610086C1A2 /* TTCarouselView.h */,
+				6373A7A12580DE610086C1A2 /* TTCarouselView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1250,9 +1240,9 @@
 				638481EC24BEEB85002F4C5F /* VideoDetailViewController.m in Sources */,
 				63F6751F254C22DC009F9AB7 /* TTShowShareConfigureView.m in Sources */,
 				631BC92A25482A9A001B82AB /* clearCacheTools.m in Sources */,
+				6373A7A22580DE610086C1A2 /* TTCarouselView.m in Sources */,
 				63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */,
 				631CFA7124E567250082B941 /* MessageViewController.m in Sources */,
-				637BAF2B24F3A4A600711003 /* TTVideoToolBar.m in Sources */,
 				63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */,
 				637BAF2224F3A07F00711003 /* ScreenHallVideoDetailViewController.m in Sources */,
 				8209791F1BD3AFDB00CF9D0C /* VideoViewController.m in Sources */,
@@ -1262,7 +1252,6 @@
 				63F1F8ED24AF3AB600D687ED /* videoContentRequestModel.m in Sources */,
 				63C4FA9624EBC83C00CF9850 /* TTPageMenuItem.m in Sources */,
 				820979281BD3B28700CF9D0C /* TTTabBarController.m in Sources */,
-				637BAF2E24F3A5A600711003 /* TTVideoPlayer.m in Sources */,
 				63422C5E24A88F020091FEE1 /* channelButton.m in Sources */,
 				631BC91225481950001B82AB /* TTMethodSWizzle.m in Sources */,
 				63F1F8E724AF347600D687ED /* videoTitleViewModel.m in Sources */,
@@ -1290,7 +1279,6 @@
 				63722D0724F63E8B000121AD /* NSData+CRC32.m in Sources */,
 				820979101BD3AB2800CF9D0C /* homeViewController.m in Sources */,
 				63422BE124A839960091FEE1 /* WMScrollView.m in Sources */,
-				637BAF2824F3A44E00711003 /* VideoCoverCollectionViewCell.m in Sources */,
 				63C4FA9924EBCE2E00CF9850 /* TTPageDecorateView.m in Sources */,
 				63BB1C222563DD00004E97E7 /* TTCloseNotificationTipView.m in Sources */,
 				63C4FA9324EBC2DE00CF9850 /* TTPageDecorateItemView.m in Sources */,
