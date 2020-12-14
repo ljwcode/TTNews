@@ -29,7 +29,7 @@
     [self addSubview:self.bufferProgressView];//缓冲条
     [self addSubview:self.progressSlider];//创建进度条
     [self addSubview:self.timeLabel];//视频时间
-//    [self addSubview:self.fullScreenBtn];//全屏设置
+    [self addSubview:self.fullScreenBtn];//全屏设置
 }
 
 #pragma mark - lazy load
@@ -84,7 +84,7 @@
     if(!_fullScreenBtn){
         _fullScreenBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_fullScreenBtn setBackgroundImage:[UIImage imageNamed:@"enlarge_video"] forState:UIControlStateNormal];
-//        _fullScreenBtn setFrame:CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+        [_fullScreenBtn setFrame:CGRectMake(CGRectGetMaxX(self.timeLabel.frame) + hSpace, self.timeLabel.frame.origin.y, 20, 20)];
     }
     return _fullScreenBtn;
 }

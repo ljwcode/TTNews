@@ -141,6 +141,7 @@
     
     self.videoPlayCountLabel.text = [NSString stringWithFormat:@"%d次播放",contentModel.detailModel.video_detail_info.video_watch_count];
     self.videoTimeLabel.text = [NSString stringWithFormat:@"%d:%d",contentModel.detailModel.video_duration/60,contentModel.detailModel.video_duration%60];
+    self.videoFrame = CGRectMake(0, 0, kScreenWidth,175);
 }
 
 
@@ -282,8 +283,11 @@
 
 #pragma mark -- 点击事件响应
 -(void)clickPlayHandle:(id)sender{
-    if([self.delegate respondsToSelector:@selector(VideoPlayerAtIndexPath:)]){
-        [self.delegate VideoPlayerAtIndexPath:self.indexPath];
+//    if([self.delegate respondsToSelector:@selector(VideoPlayerAtIndexPath:)]){
+//        [self.delegate VideoPlayerAtIndexPath:self.indexPath];
+//    }
+    if(self.delegate && [self.delegate respondsToSelector:@selector(initPlayerView:playClick:)]){
+        [self.delegate initPlayerView:self playClick:self.contentModel];
     }
 }
 

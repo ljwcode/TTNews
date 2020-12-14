@@ -14,8 +14,9 @@
 #import <FBLPromises/FBLPromise.h>
 #import "parseVideoRealURLViewModel.h"
 #import "VideoPlayerContainerView.h"
+#import "TTPlayerView.h"
 
-@interface VideoDetailViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate>
+@interface VideoDetailViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate,UIScrollViewDelegate>
 
 @property(nonatomic,strong)UITableView *detailTableView;
 
@@ -28,6 +29,12 @@
 @property(nonatomic,strong)parseVideoRealURLViewModel *realURLViewModel;
 
 @property(nonatomic,strong)VideoPlayerContainerView *player;
+
+@property(nonatomic,strong)TTPlayerView *playerView;
+
+@property(nonatomic,strong)UITableViewCell *playingCell;
+
+@property(nonatomic,copy)NSString *videoURL;
 
 @end
 
@@ -148,11 +155,10 @@
     if(!cell){
         cell = [[TVVideoPlayerViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
     }
-    self.player = [[VideoPlayerContainerView alloc]initWithFrame:cell.bounds];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentModel = self.videoPlayModel;
     [cell setDelegate:self withIndexPath:indexPath];
-    
+        
     return cell;
 }
 
@@ -194,8 +200,8 @@
 
 -(FBLPromise *)playVideo:(NSString *)url{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
-        self.player.urlVideo = url;
-        [self.view addSubview:self.player];
+        self.videoURL = url;
+        [self playVideoInVisiableCells];
     }];
 }
 
@@ -207,11 +213,120 @@
     }];
 }
 
+//进入这个界面就自动播放
+-(void)playVideoInVisiableCells{
+    TVVideoPlayerViewCell *firstCell = nil;
+    NSArray *visiableCells = [self.detailTableView visibleCells];
+    
+    for (int i = 0; i < visiableCells.count; i++) {
+        UITableViewCell *cell = visiableCells[i];
+        
+        if ([cell isKindOfClass:[TVVideoPlayerViewCell class]]) {
+            firstCell = (TVVideoPlayerViewCell *)cell;
+            break;
+        }
+    }
+    //播放第一个视频
+    [self initPlayerView:firstCell playClick:firstCell.contentModel];
+
+}
+
 
 #pragma mark -- TVVideoPlayerCellDelegate
 
--(void)VideoPlayerAtIndexPath:(NSIndexPath *)indexPath{
-    [self playTheVideoAtIndexPath:indexPath];
+
+- (void)initPlayerView:(TVVideoPlayerViewCell *)cell playClick:(videoContentModel *)convention{
+    self.playingCell = cell;
+    [_playerView destroyPlayer];
+    _playerView = nil;
+    
+    TTPlayerView *playerView = [[TTPlayerView alloc] initWithFrame:cell.videoFrame];
+    _playerView = playerView;
+    
+    [cell.contentView addSubview:_playerView];
+    
+    //视频地址
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self->_playerView.url = [NSURL URLWithString:self.videoURL];
+        //播放
+        [self->_playerView playVideo];
+        
+    });
+    
+    //返回按钮点击事件回调
+    [_playerView backButton:^(UIButton *button) {
+        NSLog(@"返回按钮被点击");
+    }];
+    
+    //播放完成回调
+    [_playerView endPlay:^{
+        [self->_playerView destroyPlayer];
+        self->_playerView = nil;
+        NSLog(@"播放完成");
+    }];
+}
+
+#pragma mark ---- UIScrollview delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSArray *cells = [self.detailTableView visibleCells];
+    if (![cells containsObject:self.playingCell]) {
+        
+        if (_playerView) {
+            [_playerView destroyPlayer];
+            _playerView = nil;
+        }
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [self handleScrollPlaying:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (!decelerate){
+        [self handleScrollPlaying:scrollView];
+    }
+}
+
+- (void)handleScrollPlaying:(UIScrollView *)scrollView{
+    TVVideoPlayerViewCell *finnalCell = nil;
+    NSArray *visiableCells = [self.detailTableView visibleCells];
+    
+    NSMutableArray *tempVideoCells = [NSMutableArray array];
+    for (int i = 0; i < visiableCells.count; i++) {
+        UITableViewCell *cell = visiableCells[i];
+        
+        if ([cell isKindOfClass:[TVVideoPlayerViewCell class]]) {
+            [tempVideoCells addObject:cell];
+        }
+    }
+    
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    CGFloat gap = MAXFLOAT;
+    for (TVVideoPlayerViewCell *cell in tempVideoCells) {
+        
+        [indexPaths addObject:[self.detailTableView indexPathForCell:cell]];
+        
+        CGPoint coorCentre = [cell.superview convertPoint:cell.center toView:nil];
+        CGFloat delta = fabs(coorCentre.y-[UIScreen mainScreen].bounds.size.height*0.5);
+        if (delta < gap) {
+            gap = delta;
+            finnalCell = cell;
+        }
+        
+    }
+    if (finnalCell != nil && self.playingCell != finnalCell)  {
+        if (_playerView) {
+            [_playerView destroyPlayer];
+            _playerView = nil;
+        }
+        
+        [self initPlayerView:finnalCell playClick:finnalCell.contentModel];
+        
+        self.playingCell = finnalCell;
+        return;
+    }
 }
 
 /*

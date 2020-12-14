@@ -42,6 +42,9 @@
 		633368E125761AC900F47A91 /* TTArticleSearchTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 633368DF25761AC900F47A91 /* TTArticleSearchTagCell.m */; };
 		633368E225761AC900F47A91 /* TTArticleSearchTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 633368E025761AC900F47A91 /* TTArticleSearchTagCell.xib */; };
 		633368E625762F5800F47A91 /* TTArticleSearchHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 633368E525762F5800F47A91 /* TTArticleSearchHeaderCell.m */; };
+		633BEA5C2587602E00423C39 /* TTSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 633BEA5B2587602E00423C39 /* TTSlider.m */; };
+		633BEA602587607900423C39 /* TTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 633BEA5F2587607900423C39 /* TTPlayerView.m */; };
+		633BEA642587640700423C39 /* TTPlayerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 633BEA632587640700423C39 /* TTPlayerMaskView.m */; };
 		63403E7924C963150024A362 /* mineHeaderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63403E7824C963140024A362 /* mineHeaderTableView.m */; };
 		63403E7C24C969FB0024A362 /* screeningHallTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63403E7B24C969FB0024A362 /* screeningHallTableViewCell.m */; };
 		63422BDF24A839960091FEE1 /* WMPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422BD624A839960091FEE1 /* WMPageController.m */; };
@@ -207,6 +210,12 @@
 		633368E025761AC900F47A91 /* TTArticleSearchTagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TTArticleSearchTagCell.xib; sourceTree = "<group>"; };
 		633368E425762F5800F47A91 /* TTArticleSearchHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTArticleSearchHeaderCell.h; sourceTree = "<group>"; };
 		633368E525762F5800F47A91 /* TTArticleSearchHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTArticleSearchHeaderCell.m; sourceTree = "<group>"; };
+		633BEA5A2587602E00423C39 /* TTSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTSlider.h; sourceTree = "<group>"; };
+		633BEA5B2587602E00423C39 /* TTSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSlider.m; sourceTree = "<group>"; };
+		633BEA5E2587607900423C39 /* TTPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTPlayerView.h; sourceTree = "<group>"; };
+		633BEA5F2587607900423C39 /* TTPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTPlayerView.m; sourceTree = "<group>"; };
+		633BEA622587640700423C39 /* TTPlayerMaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTPlayerMaskView.h; sourceTree = "<group>"; };
+		633BEA632587640700423C39 /* TTPlayerMaskView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTPlayerMaskView.m; sourceTree = "<group>"; };
 		63403E7724C963140024A362 /* mineHeaderTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mineHeaderTableView.h; sourceTree = "<group>"; };
 		63403E7824C963140024A362 /* mineHeaderTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mineHeaderTableView.m; sourceTree = "<group>"; };
 		63403E7A24C969FB0024A362 /* screeningHallTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = screeningHallTableViewCell.h; sourceTree = "<group>"; };
@@ -694,6 +703,8 @@
 				638E977C24CADB90005ADF42 /* commonSettingTableViewCell.m */,
 				638E977E24CAF04B005ADF42 /* moreSettingTableViewCell.h */,
 				638E977F24CAF04B005ADF42 /* moreSettingTableViewCell.m */,
+				63BB1C202563DD00004E97E7 /* TTCloseNotificationTipView.h */,
+				63BB1C212563DD00004E97E7 /* TTCloseNotificationTipView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -896,8 +907,12 @@
 				63F1F8D224AF223200D687ED /* TVVideoPlayerViewCell.m */,
 				63C4729C24B0250B0030C84B /* videoPlayerToolView.h */,
 				63C4729D24B0250B0030C84B /* videoPlayerToolView.m */,
-				63BB1C202563DD00004E97E7 /* TTCloseNotificationTipView.h */,
-				63BB1C212563DD00004E97E7 /* TTCloseNotificationTipView.m */,
+				633BEA5A2587602E00423C39 /* TTSlider.h */,
+				633BEA5B2587602E00423C39 /* TTSlider.m */,
+				633BEA5E2587607900423C39 /* TTPlayerView.h */,
+				633BEA5F2587607900423C39 /* TTPlayerView.m */,
+				633BEA622587640700423C39 /* TTPlayerMaskView.h */,
+				633BEA632587640700423C39 /* TTPlayerMaskView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1305,6 +1320,7 @@
 				6305043A256525B000CB910D /* TTReportArticleView.m in Sources */,
 				63C4729E24B0250B0030C84B /* videoPlayerToolView.m in Sources */,
 				631BAEEB249B751D00639CD2 /* TTNavigationController.m in Sources */,
+				633BEA602587607900423C39 /* TTPlayerView.m in Sources */,
 				636EA80924C9977B00765F5C /* videoInfoTableView.m in Sources */,
 				63BE32FD2547F3D000607EBA /* PrivacyViewController.m in Sources */,
 				63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */,
@@ -1316,6 +1332,7 @@
 				63C4FA8D24EBC1C800CF9850 /* TTHorizontalPageViewController.m in Sources */,
 				63DEE5FC254ABA8F00D356D4 /* PushNotificationSettingViewController.m in Sources */,
 				63167BA02569170200B967B2 /* UIView+Frame.m in Sources */,
+				633BEA642587640700423C39 /* TTPlayerMaskView.m in Sources */,
 				63BE352524DAD63A001ADFDD /* newsDetailFooterView.m in Sources */,
 				63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */,
 				638E977424CAB4A4005ADF42 /* TTMineNavigationController.m in Sources */,
@@ -1337,6 +1354,7 @@
 				63403E7C24C969FB0024A362 /* screeningHallTableViewCell.m in Sources */,
 				820979151BD3AEA800CF9D0C /* ScreeningHallViewController.m in Sources */,
 				820978E81BD3A37600CF9D0C /* main.m in Sources */,
+				633BEA5C2587602E00423C39 /* TTSlider.m in Sources */,
 				63E7177324F9F430003A690E /* TTSearchSuggestionRequestModel.m in Sources */,
 				637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */,
 				63422C4A24A875D40091FEE1 /* NewsChannelViewController.m in Sources */,

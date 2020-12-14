@@ -11,13 +11,17 @@
 #import "videoContentModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@class TVVideoPlayerViewCell;
+
 @protocol TVVideoPlayerCellDelegate<NSObject>
 
--(void)VideoPlayerAtIndexPath:(NSIndexPath *)indexPath;
+- (void)initPlayerView:(TVVideoPlayerViewCell *)cell playClick:(videoContentModel *)convention;
 
 @end
 
 @interface TVVideoPlayerViewCell : UITableViewCell
+
+@property(nonatomic,assign)CGRect videoFrame;
 
 @property(nonatomic,strong)videoContentModel *contentModel;
 

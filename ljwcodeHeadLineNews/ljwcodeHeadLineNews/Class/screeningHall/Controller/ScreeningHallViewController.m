@@ -10,7 +10,7 @@
 #import "TTHeader.h"
 #import "videoTitleViewModel.h"
 #import "videoTitleModel.h"
-#import "ScreenHallVideoDetailViewController.h"
+//#import "ScreenHallVideoDetailViewController.h"
 
 @interface ScreeningHallViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
@@ -68,13 +68,14 @@
 //设置每一个分页栏展示的控制器及内容
 - (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index{
     
-    if (index > self.titleArray.count - 1) {
-        return  [[ScreenHallVideoDetailViewController alloc]init];
-    }
-    videoTitleModel *model = self.titleArray[index];
-    ScreenHallVideoDetailViewController *detail = [[ScreenHallVideoDetailViewController alloc]init];
-    detail.titleModel = model;
-    return detail;
+    return [[UIViewController alloc]init];
+//    if (index > self.titleArray.count - 1) {
+//        return  [[ScreenHallVideoDetailViewController alloc]init];
+//    }
+//    videoTitleModel *model = self.titleArray[index];
+//    ScreenHallVideoDetailViewController *detail = [[ScreenHallVideoDetailViewController alloc]init];
+//    detail.titleModel = model;
+//    return detail;
 
 }
 //设置每一个channel的title
@@ -106,7 +107,7 @@
 }
 
 -(void)needRefreshTableViewData{
-    ScreenHallVideoDetailViewController *videoDetailVC = (ScreenHallVideoDetailViewController *)self.currentViewController;
+//    ScreenHallVideoDetailViewController *videoDetailVC = (ScreenHallVideoDetailViewController *)self.currentViewController;
 //    [videoDetailVC needRefreshTableViewData];
 }
 
