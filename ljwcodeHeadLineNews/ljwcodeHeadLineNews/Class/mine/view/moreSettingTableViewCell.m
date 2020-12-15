@@ -45,7 +45,7 @@ static int columns = 4;
             _moreSettingButton = moreSettingButton;
             
             [moreSettingButton mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(hSpace * 2 + (i%columns)*(hSpace * 2 * 1.5+((self.contentView.width-(hSpace * 2 * 5))/4)));
+                make.left.mas_equalTo(hSpace * 2 + (i%columns) * (60 + (kScreenWidth - hSpace * 4 - 60 * 4)/3));
                 make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(vSpace * 1 + (i/columns)*(((self.contentView.width-(hSpace * 2 * 5))/4) + vSpace * 2));
                 make.width.height.mas_equalTo(60);
             }];

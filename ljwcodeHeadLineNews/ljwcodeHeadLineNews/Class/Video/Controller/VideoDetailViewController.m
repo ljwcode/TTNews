@@ -13,7 +13,6 @@
 #import <FBLPromises/FBLPromises.h>
 #import <FBLPromises/FBLPromise.h>
 #import "parseVideoRealURLViewModel.h"
-#import "VideoPlayerContainerView.h"
 #import "TTPlayerView.h"
 
 @interface VideoDetailViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate,UIScrollViewDelegate>
@@ -27,8 +26,6 @@
 @property(nonatomic,strong)videoContentModel *videoPlayModel;
 
 @property(nonatomic,strong)parseVideoRealURLViewModel *realURLViewModel;
-
-@property(nonatomic,strong)VideoPlayerContainerView *player;
 
 @property(nonatomic,strong)TTPlayerView *playerView;
 
@@ -181,7 +178,8 @@
     [[FBLPromise do:^id _Nullable{
         return [self getVideoURL];
     }]then:^id _Nullable(id  _Nullable value) {
-        return [self playVideo:value];
+//        return [self playVideo:value];
+        return [self playVideoWithURL:value videoIndexPath:indexPath];
     }];
     
 }
@@ -198,10 +196,21 @@
     }];
 }
 
+/// 播放当前列表第一个视频 同时需要打开下面UIScrollerView的注释
+/// @param url 视频的真实URL
 -(FBLPromise *)playVideo:(NSString *)url{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
         self.videoURL = url;
         [self playVideoInVisiableCells];
+    }];
+}
+
+-(FBLPromise *)playVideoWithURL:(NSString *)url videoIndexPath:(NSIndexPath*)indexPath{
+    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
+        self.videoURL = url;
+        TVVideoPlayerViewCell *cell = nil;
+        cell = [self.detailTableView cellForRowAtIndexPath:indexPath];
+        [self initPlayerView:cell playClick:cell.contentModel];
     }];
 }
 
@@ -220,7 +229,6 @@
     
     for (int i = 0; i < visiableCells.count; i++) {
         UITableViewCell *cell = visiableCells[i];
-        
         if ([cell isKindOfClass:[TVVideoPlayerViewCell class]]) {
             firstCell = (TVVideoPlayerViewCell *)cell;
             break;
@@ -279,55 +287,55 @@
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    [self handleScrollPlaying:scrollView];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    if (!decelerate){
-        [self handleScrollPlaying:scrollView];
-    }
-}
-
-- (void)handleScrollPlaying:(UIScrollView *)scrollView{
-    TVVideoPlayerViewCell *finnalCell = nil;
-    NSArray *visiableCells = [self.detailTableView visibleCells];
-    
-    NSMutableArray *tempVideoCells = [NSMutableArray array];
-    for (int i = 0; i < visiableCells.count; i++) {
-        UITableViewCell *cell = visiableCells[i];
-        
-        if ([cell isKindOfClass:[TVVideoPlayerViewCell class]]) {
-            [tempVideoCells addObject:cell];
-        }
-    }
-    
-    NSMutableArray *indexPaths = [NSMutableArray array];
-    CGFloat gap = MAXFLOAT;
-    for (TVVideoPlayerViewCell *cell in tempVideoCells) {
-        
-        [indexPaths addObject:[self.detailTableView indexPathForCell:cell]];
-        
-        CGPoint coorCentre = [cell.superview convertPoint:cell.center toView:nil];
-        CGFloat delta = fabs(coorCentre.y-[UIScreen mainScreen].bounds.size.height*0.5);
-        if (delta < gap) {
-            gap = delta;
-            finnalCell = cell;
-        }
-        
-    }
-    if (finnalCell != nil && self.playingCell != finnalCell)  {
-        if (_playerView) {
-            [_playerView destroyPlayer];
-            _playerView = nil;
-        }
-        
-        [self initPlayerView:finnalCell playClick:finnalCell.contentModel];
-        
-        self.playingCell = finnalCell;
-        return;
-    }
-}
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+//    [self handleScrollPlaying:scrollView];
+//}
+//
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+//    if (!decelerate){
+//        [self handleScrollPlaying:scrollView];
+//    }
+//}
+//
+//- (void)handleScrollPlaying:(UIScrollView *)scrollView{
+//    TVVideoPlayerViewCell *finnalCell = nil;
+//    NSArray *visiableCells = [self.detailTableView visibleCells];
+//
+//    NSMutableArray *tempVideoCells = [NSMutableArray array];
+//    for (int i = 0; i < visiableCells.count; i++) {
+//        UITableViewCell *cell = visiableCells[i];
+//
+//        if ([cell isKindOfClass:[TVVideoPlayerViewCell class]]) {
+//            [tempVideoCells addObject:cell];
+//        }
+//    }
+//
+//    NSMutableArray *indexPaths = [NSMutableArray array];
+//    CGFloat gap = MAXFLOAT;
+//    for (TVVideoPlayerViewCell *cell in tempVideoCells) {
+//
+//        [indexPaths addObject:[self.detailTableView indexPathForCell:cell]];
+//
+//        CGPoint coorCentre = [cell.superview convertPoint:cell.center toView:nil];
+//        CGFloat delta = fabs(coorCentre.y-[UIScreen mainScreen].bounds.size.height*0.5);
+//        if (delta < gap) {
+//            gap = delta;
+//            finnalCell = cell;
+//        }
+//
+//    }
+//    if (finnalCell != nil && self.playingCell != finnalCell)  {
+//        if (_playerView) {
+//            [_playerView destroyPlayer];
+//            _playerView = nil;
+//        }
+//
+//        [self initPlayerView:finnalCell playClick:finnalCell.contentModel];
+//
+//        self.playingCell = finnalCell;
+//        return;
+//    }
+//}
 
 /*
  #pragma mark - Navigation

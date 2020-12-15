@@ -26,8 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSString *)microVideoURLString;
 
-+(NSString *)playVideoURLString;
-
 -(NSString *)parseVideoRealURLWithVideo_id:(NSString *)video_id;
 
 +(NSString *)searchSuggestionUrl;

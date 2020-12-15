@@ -45,10 +45,6 @@
     return [NSString stringWithFormat:@"%@api/news/feed/v75/?",ljwcode_Base_url];
 }
 
-+(NSString *)playVideoURLString{
-    return [NSString stringWithFormat:@"%@video/urls/v/1/toutiao/mp4/9583cca5fceb4c6b9ca749c214fd1f90?r=18723666135963302&s=3807690062&callback=tt_playerzfndr",ljwcode_Base_url];
-}
-
 -(NSString *)parseVideoRealURLWithVideo_id:(NSString *)video_id{
     int r = arc4random();
     if(r < 0){
