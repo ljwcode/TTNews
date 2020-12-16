@@ -17,7 +17,7 @@
 #import "NewsDetailViewController.h"
 #import "TVVideoPlayerViewCell.h"
 #import "videoContentModel.h"
-#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "UIScrollView+EmptyDataSet.h"
 
 @interface homeDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource>
 

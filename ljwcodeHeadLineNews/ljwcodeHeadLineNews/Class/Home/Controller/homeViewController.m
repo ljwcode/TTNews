@@ -11,6 +11,7 @@
 #import "homeTitleViewModel.h"
 #import "homeDetailViewController.h"
 #import <MJRefresh/MJRefresh.h>
+#import "homeTitleDBViewModel.h"
 
 @interface homeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
@@ -18,21 +19,42 @@
 
 @property(nonatomic,strong)homeTitleViewModel *titleViewModle;
 
+@property(nonatomic,strong)homeTitleDBViewModel *titleDb;
+
 @end
 
 @implementation homeViewController
 
+-(instancetype)init{
+    if(self = [super init]){
+        if([self.titleDb DBTableISExist]){
+            self.titleArray = [self.titleDb queryDBWithTitle];
+        }else{
+            @weakify(self)
+            [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
+                NSArray *array = x;
+                @strongify(self);
+                [self.titleDb createTitleCacheDb];
+                for(int i = 0;i < array.count;i++){
+                    homeTitleModel *model = array[i];
+                    [self.titleDb InsertDataWithDB:model];
+                }
+            }];
+        }
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+//    if([self.titleDb DBTableISExist]){
+//        NSLog(@"数据表已存在");
+//       self.titleArray = [self.titleDb queryDBWithTitle];
+//    }else{
+//        [self.titleDb createTitleCacheDb];
+//    }
     [self configureUI];
-    @weakify(self)
-    [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        self.titleArray = x;
-        [self reloadData];
-        [self setPageMenuView];
-    }];
+    [self reloadData];
     
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view from its nib.
@@ -48,6 +70,13 @@
         _titleViewModle = [[homeTitleViewModel alloc]init];
     }
     return _titleViewModle;
+}
+
+-(homeTitleDBViewModel *)titleDb{
+    if(!_titleDb){
+        _titleDb = [[homeTitleDBViewModel alloc]init];
+    }
+    return _titleDb;
 }
 
 -(void)configureUI{
@@ -78,7 +107,7 @@
 
 #pragma mark - WMPageController delelgate && datasource
 -(NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController{
-    if(self.titleArray.count == 0||!_titleArray){
+    if(self.titleArray.count == 0||!self.titleArray){
         return 0;
     }
     return self.titleArray.count+1;

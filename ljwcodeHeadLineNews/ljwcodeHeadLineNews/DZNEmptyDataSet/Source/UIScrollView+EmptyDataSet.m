@@ -10,8 +10,7 @@
 
 #import "UIScrollView+EmptyDataSet.h"
 #import <objc/runtime.h>
-#import "TTAFNetworkReachabilityManager.h"
-
+#import <AFNetworkReachabilityManager.h>
 @interface UIView (DZNConstraintBasedLayoutExtensions)
 
 - (NSLayoutConstraint *)equallyRelatedConstraintWithView:(UIView *)view attribute:(NSLayoutAttribute)attribute;
@@ -218,7 +217,7 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
 
 - (NSAttributedString *)dzn_buttonTitleForState:(UIControlState)state
 {
-    if([TTAFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable){
+    if([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable){
         return [self DZN_ButtonTitle:state];
     }
     

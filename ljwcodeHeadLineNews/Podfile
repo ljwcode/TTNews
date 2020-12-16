@@ -18,6 +18,6 @@ pod 'SDWebImage/WebP'
 pod 'SDWebImage’,’~> 4.0.0’
 pod 'DouyinOpenSDK'
 pod 'WechatOpenSDK'
-pod 'DZNEmptyDataSet', '~> 1.8.1'
 pod 'PromisesObjC'
+pod 'FMDB', '~> 2.7.5'
 end

@@ -33,9 +33,7 @@
                         }
                         [subscriber sendNext:models];
                         [subscriber sendCompleted];
-                        [RACDisposable disposableWithBlock:^{
-                            NSLog(@"销毁了rac");
-                        }];
+                        
                     }else {
                         [MBProgressHUD showError: server_error toView:nil];
                     }
