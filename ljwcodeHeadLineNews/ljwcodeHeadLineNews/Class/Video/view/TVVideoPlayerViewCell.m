@@ -125,7 +125,7 @@
 #pragma mark -- set model
 -(void)setContentModel:(videoContentModel *)contentModel{
     _contentModel = contentModel;
-    [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:[contentModel.detailModel.video_detail_info.detail_video_large_image objectForKey:@"url"]]];
+    [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:contentModel.detailModel.video_detail_info.detail_video_large_image.url]];
     [self.videoAuthHeadBtn setTitle:contentModel.detailModel.media_name forState:UIControlStateNormal];
     self.videoTitleLabel.text = contentModel.detailModel.title;
    

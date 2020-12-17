@@ -11,6 +11,7 @@
 #import "videoTitleViewModel.h"
 #import "VideoDetailViewController.h"
 #import "videoTitleModel.h"
+#import "videoTitleDBViewModel.h"
 
 @interface VideoViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
@@ -18,26 +19,38 @@
 
 @property(nonatomic,strong)NSMutableArray *titleArray;
 
+@property(nonatomic,strong)videoTitleDBViewModel *titleDBViewModel;
 
 @end
 
 @implementation VideoViewController
 
-
+-(instancetype)init{
+    if(self = [super init]){
+        if([self.titleDBViewModel DBTableIsExists]){
+           self.titleArray = [self.titleDBViewModel queryDataBase];
+        }else{
+            @weakify(self)
+            [[self.titleViewModle.videoCommand execute:@"video"] subscribeNext:^(id  _Nullable x) {
+                @strongify(self);
+                self.titleArray = x;  //x返回一个列表名称数组
+                [self.titleDBViewModel createDBCacheTable];
+                for(int i = 0;i < self.titleArray.count;i++){
+                    videoTitleModel *model = self.titleArray[i];
+                    [self.titleDBViewModel InsertDBWithModel:model];
+                }
+            }];
+        }
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self configureUI];
-    
-    @weakify(self)
-    [[self.titleViewModle.videoCommand execute:@"video"] subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        self.titleArray = x;  //x返回一个列表名称数组
-        [self reloadData];
-        [self setPageMenuView];
-    }];
-    
+    [self reloadData];
+    [self setPageMenuView];
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view from its nib.
 }
@@ -100,6 +113,15 @@
         [super menuView:menu didSelesctedIndex:index currentIndex:currentIndex];
     }
     
+}
+
+#pragma mark ----- lazy load
+
+-(videoTitleDBViewModel *)titleDBViewModel{
+    if(!_titleDBViewModel){
+        _titleDBViewModel = [[videoTitleDBViewModel alloc]init];
+    }
+    return _titleDBViewModel;
 }
 
 -(videoTitleViewModel *)titleViewModle{

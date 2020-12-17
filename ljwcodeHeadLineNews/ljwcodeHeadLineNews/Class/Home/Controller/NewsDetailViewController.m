@@ -235,9 +235,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)dealloc{
-    NSLog(@"dealloc");
-}
 /*
 #pragma mark - Navigation
 

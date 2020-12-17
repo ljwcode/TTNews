@@ -58,11 +58,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface detail_video_large_image : NSObject
+
+@property(nonatomic,strong)NSString *url;
+
+@end
+
 @interface video_detail_info : NSObject
 
 @property(nonatomic,assign)int group_flags;
 
-@property(nonatomic,copy)NSDictionary *detail_video_large_image;
+@property(nonatomic,strong)detail_video_large_image *detail_video_large_image;
 
 @property(nonatomic,copy)NSString *video_id;
 

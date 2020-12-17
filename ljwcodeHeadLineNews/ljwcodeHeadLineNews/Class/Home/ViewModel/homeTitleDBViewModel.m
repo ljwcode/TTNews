@@ -7,58 +7,48 @@
 //
 
 #import "homeTitleDBViewModel.h"
-#import "homeTitleViewModel.h"
 
 @interface homeTitleDBViewModel()
 
-@property(nonatomic,strong)homeTitleViewModel *titleViewModel;
+@property(nonatomic,strong)FMDatabase *fmDataBase;
 
 @end
 
 @implementation homeTitleDBViewModel
 
 -(void)createTitleCacheDb{
-    
-    if ([self.fmDataBase open]) {
-        NSLog(@"数据库打开成功");
-        /*
-         创建数据表
-          */
-        BOOL executeUpdate = [self.fmDataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS TTHomeTitle (id integer PRIMARY KEY AUTOINCREMENT,name varchar NOT NULL,category varchar NOT NULL,concern_id varchar NOT NULL,flags integer NOT NULL,default_add integer NOT NULL,icon_url varchar NOT NULL,type integer NOT NULL,tip_new integer NOT NULL);"];
-        if (executeUpdate) {
-            NSLog(@"创建表成功");
-        } else {
-            NSLog(@"创建表失败");
-        }
-    }else{
+    if(![self.fmDataBase open]){
         NSLog(@"数据库打开失败");
+        return;
+    }
+    BOOL executeUpdate = [self.fmDataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS TTHomeTitle (id integer PRIMARY KEY AUTOINCREMENT,name varchar NOT NULL,category varchar NOT NULL,concern_id varchar NOT NULL,flags integer NOT NULL,default_add integer NOT NULL,icon_url varchar NOT NULL,type integer NOT NULL,tip_new integer NOT NULL);"];
+    if (executeUpdate) {
+        NSLog(@"homeTitle创建表成功");
+    } else {
+        NSLog(@"homeTitle创建表失败");
     }
 }
 
 -(void)InsertDataWithDB:(homeTitleModel *)model{
-    BOOL isOpen = [self.fmDataBase open];
-    if(isOpen){
-        NSLog(@"打开数据库成功");
-        model.concern_id = @"";
-        model.icon_url = @"";
-        model.flags = 0;
-        model.default_add = 0;
-        model.type = 0;
-        model.tip_new = 0;
-        BOOL results = [self.fmDataBase executeUpdate:@"insert into TTHomeTitle (name,category,concern_id,flags,default_add,icon_url,type,tip_new) VALUES (?,?,?,?,?,?,?,?)",model.name,model.category,model.concern_id,model.flags,model.default_add,model.icon_url,model.type,model.tip_new];
-        if(results){
-            NSLog(@"数据插入成功");
-            FMResultSet *result = [self.fmDataBase executeQuery:@"select * from TTHomeTitle"];
-            while([result next]){
-                int ID = [result intForColumn:@"id"];
-                NSString *title = [result objectForColumn:@"titleName"];
-                NSLog(@"插入数据为%d : title = %@",ID,title);
-            }
-        }else{
-            NSLog(@"数据插入失败");
-        }
+    if(![self.fmDataBase open]){
+        NSLog(@"数据库打开失败");
+        return;
+    }
+    NSString *concern_id = @"1";
+    NSString *icon_url = @"1";
+    int flags = 1;
+    int default_add = 1;
+    int type = 1;
+    int tip_new = 1;
+    /*
+     注意：在执行fmdb数据插入时，需要严格注意插入的数据类型是否匹配，否则容易产生crash
+     例如int 类型数据插入传值时应该@（int）,而不能直接传如int
+     */
+    BOOL results = [self.fmDataBase executeUpdate:@"insert into TTHomeTitle (name,category,concern_id,flags,default_add,icon_url,type,tip_new) VALUES (?,?,?,?,?,?,?,?)",model.name,model.category,concern_id,@(flags),@(default_add),icon_url,@(type),@(tip_new)];
+    if(results){
+        NSLog(@"数据插入成功");
     }else{
-        NSLog(@"打开数据库失败");
+        NSLog(@"数据插入失败");
     }
 }
 
@@ -77,33 +67,27 @@
 }
 
 -(NSMutableArray *)queryDBWithTitle{
-    NSString *delRepeatSql = @"select distinct titleName from TTHomeTitle"; //去重
-    FMResultSet *result = [self.fmDataBase executeQuery:delRepeatSql];
+    NSString *Sql = @"select * from TTHomeTitle";
+    FMResultSet *result = [self.fmDataBase executeQuery:Sql];
     NSMutableArray *array = [NSMutableArray array];
     while ([result next]) {
-        NSString *name = [result objectForColumn:@"titleName"];
-        NSLog(@"name = %@",name);
-        [array addObject:name];
+        homeTitleModel *titleModel = [[homeTitleModel alloc]init];
+        titleModel.name = [result objectForColumn:@"name"];
+        titleModel.category = [result objectForColumn:@"category"];
+        [array addObject:titleModel];
     }
     return array;
 }
 
 #pragma mark ------ lazy load
 
--(homeTitleViewModel *)titleViewModel{
-    if(!_titleViewModel){
-        _titleViewModel = [[homeTitleViewModel alloc]init];
-    }
-    return _titleViewModel;
-}
-
 -(FMDatabase *)fmDataBase{
     if(!_fmDataBase){
         NSString *dbPath = [[NSString alloc]init];
         dbPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         NSLog(@"数据库地址为%@",dbPath);
-        NSString *fileName = [dbPath stringByAppendingPathComponent:@"homeTitle.sqlite"];//设置数据库名称
-        _fmDataBase = [FMDatabase databaseWithPath:fileName];//创建并获取数据库信息
+        NSString *dbFileName = [dbPath stringByAppendingPathComponent:@"TTDataBase.sqlite"];//设置数据库名称
+        _fmDataBase = [FMDatabase databaseWithPath:dbFileName];//创建并获取数据库信息
         [_fmDataBase open];
     }
     return _fmDataBase;

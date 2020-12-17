@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface homeTitleDBViewModel : NSObject
 
-@property(nonatomic,strong)FMDatabase *fmDataBase;
-
 -(void)createTitleCacheDb;
 
 -(void)InsertDataWithDB:(homeTitleModel *)model;

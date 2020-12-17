@@ -9,6 +9,11 @@
 #import "videoContentModel.h"
 #import <MJExtension/MJExtension.h>
 
+@implementation detail_video_large_image
+
+
+@end
+
 @implementation MediaInfoModel
 
 @end

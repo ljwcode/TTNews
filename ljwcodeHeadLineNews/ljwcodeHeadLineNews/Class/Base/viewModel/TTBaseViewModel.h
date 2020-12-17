@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <YYCache/YYCache.h>
 #import <MJExtension/MJExtension.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "TTHeader.h"

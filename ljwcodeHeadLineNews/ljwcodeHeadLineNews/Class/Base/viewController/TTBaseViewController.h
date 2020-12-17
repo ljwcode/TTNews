@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "TTHeader.h"
-#import <YYCache/YYCache.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
 NS_ASSUME_NONNULL_BEGIN

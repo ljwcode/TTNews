@@ -32,13 +32,14 @@
         }else{
             @weakify(self)
             [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
-                NSArray *array = x;
                 @strongify(self);
+                self.titleArray = x;
                 [self.titleDb createTitleCacheDb];
-                for(int i = 0;i < array.count;i++){
-                    homeTitleModel *model = array[i];
+                for(int i = 0;i < self.titleArray.count;i++){
+                    homeTitleModel *model = self.titleArray[i];
                     [self.titleDb InsertDataWithDB:model];
                 }
+                [self reloadData];
             }];
         }
     }
@@ -47,15 +48,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    if([self.titleDb DBTableISExist]){
-//        NSLog(@"数据表已存在");
-//       self.titleArray = [self.titleDb queryDBWithTitle];
-//    }else{
-//        [self.titleDb createTitleCacheDb];
-//    }
+    [self PageMenuView];
     [self configureUI];
-    [self reloadData];
-    
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view from its nib.
 }
@@ -85,9 +79,10 @@
     self.automaticallyCalculatesItemWidths = YES;
     self.itemMargin = 10;
 }
-#pragma mark - setup "add" pageMenuView
--(void)setPageMenuView{
-    
+
+#pragma mark -----  pageMenuView
+
+-(void)PageMenuView{
     UIButton *addChannelBtn = UIButton.buttonType(UIButtonTypeCustom).showImage([UIImage imageNamed:@"add_channel_titlbar_thin_new"],UIControlStateNormal).bgImage([UIImage imageNamed:@"shadow_add_titlebar_new3_52x36_"],UIControlStateNormal);
     
     addChannelBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-52, 0, 52, 35);
@@ -106,6 +101,7 @@
 }
 
 #pragma mark - WMPageController delelgate && datasource
+
 -(NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController{
     if(self.titleArray.count == 0||!self.titleArray){
         return 0;
@@ -127,7 +123,7 @@
 //设置每一个channel的title
 -(NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index{
     if (index > self.titleArray.count - 1) {
-        return @"       ";
+        return @" ";
     }else {
         homeTitleModel *model = self.titleArray[index];
         return model.name;
