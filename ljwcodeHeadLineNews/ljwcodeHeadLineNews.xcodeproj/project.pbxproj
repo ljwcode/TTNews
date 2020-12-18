@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6305043A256525B000CB910D /* TTReportArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63050439256525B000CB910D /* TTReportArticleView.m */; };
 		630A976624CFC463003029C3 /* countryCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A976424CFC462003029C3 /* countryCodeView.m */; };
+		6313651E258C842900FCAAA9 /* videoDetailCacheDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6313651D258C842900FCAAA9 /* videoDetailCacheDBViewModel.m */; };
 		63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AAC24AAE3C2002CB4EF /* homeDetailViewController.m */; };
 		63167AB024AB5FEE002CB4EF /* homeNewsCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AAF24AB5FEE002CB4EF /* homeNewsCellViewModel.m */; };
 		63167AB324AB6091002CB4EF /* homeNewsRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AB224AB6091002CB4EF /* homeNewsRequestModel.m */; };
@@ -158,6 +159,8 @@
 		63050439256525B000CB910D /* TTReportArticleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTReportArticleView.m; sourceTree = "<group>"; };
 		630A976424CFC462003029C3 /* countryCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countryCodeView.m; sourceTree = "<group>"; };
 		630A976524CFC463003029C3 /* countryCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = countryCodeView.h; sourceTree = "<group>"; };
+		6313651C258C842900FCAAA9 /* videoDetailCacheDBViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoDetailCacheDBViewModel.h; sourceTree = "<group>"; };
+		6313651D258C842900FCAAA9 /* videoDetailCacheDBViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoDetailCacheDBViewModel.m; sourceTree = "<group>"; };
 		63167AAB24AAE3C2002CB4EF /* homeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeDetailViewController.h; sourceTree = "<group>"; };
 		63167AAC24AAE3C2002CB4EF /* homeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeDetailViewController.m; sourceTree = "<group>"; };
 		63167AAE24AB5FEE002CB4EF /* homeNewsCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsCellViewModel.h; sourceTree = "<group>"; };
@@ -972,6 +975,8 @@
 				63DB0D172501E3F900B9FA0A /* parseVideoRealURLViewModel.m */,
 				63CBA1F9258B39FC0020511C /* videoTitleDBViewModel.h */,
 				63CBA1FA258B39FD0020511C /* videoTitleDBViewModel.m */,
+				6313651C258C842900FCAAA9 /* videoDetailCacheDBViewModel.h */,
+				6313651D258C842900FCAAA9 /* videoDetailCacheDBViewModel.m */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -1350,6 +1355,7 @@
 				631BAEEB249B751D00639CD2 /* TTNavigationController.m in Sources */,
 				633BEA602587607900423C39 /* TTPlayerView.m in Sources */,
 				636EA80924C9977B00765F5C /* videoInfoTableView.m in Sources */,
+				6313651E258C842900FCAAA9 /* videoDetailCacheDBViewModel.m in Sources */,
 				63CBA1FB258B39FD0020511C /* videoTitleDBViewModel.m in Sources */,
 				63BE32FD2547F3D000607EBA /* PrivacyViewController.m in Sources */,
 				63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */,

@@ -14,6 +14,7 @@
 #import <FBLPromises/FBLPromise.h>
 #import "parseVideoRealURLViewModel.h"
 #import "TTPlayerView.h"
+#import "videoDetailCacheDBViewModel.h"
 
 @interface VideoDetailViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate,UIScrollViewDelegate>
 
@@ -33,66 +34,39 @@
 
 @property(nonatomic,copy)NSString *videoURL;
 
+@property(nonatomic,strong)videoDetailCacheDBViewModel *videoDBViewModel;
+
 @end
 
 @implementation VideoDetailViewController
 
-#pragma mark ---- lazy load
-
--(parseVideoRealURLViewModel *)realURLViewModel{
-    if(!_realURLViewModel){
-        _realURLViewModel = [[parseVideoRealURLViewModel alloc]init];
-    }
-    return _realURLViewModel;
-}
-
--(videoContentViewModel *)contentViewModel{
-    if(!_contentViewModel){
-        _contentViewModel = [[videoContentViewModel alloc]init];
-    }
-    return _contentViewModel;
-}
-
--(NSMutableArray *)dataArray{
-    if(!_dataArray){
-        _dataArray  = [[NSMutableArray alloc]init];
-    }
-    return _dataArray;
-}
-
--(UITableView *)detailTableView{
-    if(!_detailTableView){
-        _detailTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _detailTableView.delegate = self;
-        _detailTableView.dataSource = self;
-        [_detailTableView registerClass:[TVVideoPlayerViewCell class] forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
-        [self.view addSubview:_detailTableView];
-        _detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        if (@available(iOS 11.0, *)) {
-            _detailTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        } else {
-            self.automaticallyAdjustsScrollViewInsets = NO;
+-(instancetype)init{
+    if(self = [super init]){
+        if([self.videoDBViewModel IsExistsVideoCacheTable]){
+            self.dataArray = [self.videoDBViewModel queryDBTableWithVideoContent];
+        }else{
+            NSLog(@"数据表不存在");
+            
         }
     }
-    return _detailTableView;
+    return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     @weakify(self);
-    self.detailTableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
-        [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-            [self.dataArray addObjectsFromArray:x];
-            [self.detailTableView reloadData];
-            [self.detailTableView.mj_header endRefreshing];
-            [self.detailTableView.mj_footer endRefreshing];
-        }];
-    }];
     self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         @strongify(self);
         [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             [self.dataArray addObjectsFromArray:x];
+            
+            [self.videoDBViewModel createDBWithVideoCacheTable];
+            for(int i = 0;i < self.dataArray.count;i++){
+                videoContentModel *model = self.dataArray[i];
+                [self.videoDBViewModel InsertVideoCacheWithDB:model];
+            }
+            
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
             [self.detailTableView.mj_footer endRefreshing];
@@ -116,11 +90,11 @@
 }
 
 - (BOOL)shouldAutorotate {
-    return NO;
+    return YES;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskPortrait;
+    return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationLandscapeRight;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -155,7 +129,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentModel = self.videoPlayModel;
     [cell setDelegate:self withIndexPath:indexPath];
-        
+    
     return cell;
 }
 
@@ -279,12 +253,28 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     NSArray *cells = [self.detailTableView visibleCells];
     if (![cells containsObject:self.playingCell]) {
-        
         if (_playerView) {
             [_playerView destroyPlayer];
             _playerView = nil;
         }
     }
+    
+    CGFloat height = scrollView.frame.size.height;
+    CGFloat contentYoffset = scrollView.contentOffset.y;
+    CGFloat distanceFromBottom = scrollView.contentSize.height - contentYoffset;
+    if (distanceFromBottom < height) {
+        @weakify(self);
+        self.detailTableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+            @strongify(self);
+            [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
+                [self.dataArray addObjectsFromArray:x];
+                [self.detailTableView reloadData];
+                [self.detailTableView.mj_footer endRefreshing];
+                [self.detailTableView.mj_header endRefreshing];
+            }];
+        }];
+    }
+
 }
 
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -336,6 +326,55 @@
 //        return;
 //    }
 //}
+
+
+#pragma mark ---- lazy load
+
+-(parseVideoRealURLViewModel *)realURLViewModel{
+    if(!_realURLViewModel){
+        _realURLViewModel = [[parseVideoRealURLViewModel alloc]init];
+    }
+    return _realURLViewModel;
+}
+
+-(videoContentViewModel *)contentViewModel{
+    if(!_contentViewModel){
+        _contentViewModel = [[videoContentViewModel alloc]init];
+    }
+    return _contentViewModel;
+}
+
+-(NSMutableArray *)dataArray{
+    if(!_dataArray){
+        _dataArray  = [[NSMutableArray alloc]init];
+    }
+    return _dataArray;
+}
+
+-(UITableView *)detailTableView{
+    if(!_detailTableView){
+        _detailTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _detailTableView.delegate = self;
+        _detailTableView.dataSource = self;
+        [_detailTableView registerClass:[TVVideoPlayerViewCell class] forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
+        [self.view addSubview:_detailTableView];
+        _detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        if (@available(iOS 11.0, *)) {
+            _detailTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+    }
+    return _detailTableView;
+}
+
+-(videoDetailCacheDBViewModel *)videoDBViewModel{
+    if(!_videoDBViewModel){
+        _videoDBViewModel = [[videoDetailCacheDBViewModel alloc]init];
+    }
+    return _videoDBViewModel;
+}
+
 
 /*
  #pragma mark - Navigation
