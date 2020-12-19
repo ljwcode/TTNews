@@ -44,11 +44,22 @@
      注意：在执行fmdb数据插入时，需要严格注意插入的数据类型是否匹配，否则容易产生crash
      例如int 类型数据插入传值时应该@（int）,而不能直接传如int
      */
-    BOOL results = [self.fmDataBase executeUpdate:@"insert into TTHomeTitle (name,category,concern_id,flags,default_add,icon_url,type,tip_new) VALUES (?,?,?,?,?,?,?,?)",model.name,model.category,concern_id,@(flags),@(default_add),icon_url,@(type),@(tip_new)];
-    if(results){
-        NSLog(@"数据插入成功");
-    }else{
-        NSLog(@"数据插入失败");
+    [self.fmDataBase beginTransaction];
+    BOOL isRollBack = NO;
+    @try {
+        BOOL results = [self.fmDataBase executeUpdate:@"insert into TTHomeTitle (name,category,concern_id,flags,default_add,icon_url,type,tip_new) VALUES (?,?,?,?,?,?,?,?)",model.name,model.category,concern_id,@(flags),@(default_add),icon_url,@(type),@(tip_new)];
+        if(results){
+            NSLog(@"数据插入成功");
+        }else{
+            NSLog(@"数据插入失败");
+        }
+    } @catch (NSException *exception) {
+        isRollBack = YES;
+        [self.fmDataBase rollback];
+    } @finally {
+        if(!isRollBack){
+            [self.fmDataBase commit];
+        }
     }
 }
 

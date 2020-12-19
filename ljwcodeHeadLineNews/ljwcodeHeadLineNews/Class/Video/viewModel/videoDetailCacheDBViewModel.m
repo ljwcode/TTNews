@@ -7,6 +7,7 @@
 //
 
 #import "videoDetailCacheDBViewModel.h"
+#import <MJExtension/MJExtension.h>
 
 static int maxCacheVideoItem;
 
@@ -31,7 +32,8 @@ static int maxCacheVideoItem;
         NSLog(@"数据库打开失败");
         return;
     }
-    BOOL executeCreateTable = [self.fmDataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS TTVideoDetailTable (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,media_name varchar NOT NULL,title varchar NOT NULL,video_play_info varchar,share_url varchar NOT NULL,video_duration integer NOT NULL,avatar_url varchar NOT NULL,detail_video_large_image varchar NOT NULL,video_watch_count integer NOT NULL,video_id varchar NOT NULL)"];
+//    BOOL executeCreateTable = [self.fmDataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS TTVideoDetailTable (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,media_name varchar NOT NULL,title varchar NOT NULL,video_play_info varchar,share_url varchar NOT NULL,video_duration integer NOT NULL,avatar_url varchar NOT NULL,detail_video_large_image varchar NOT NULL,video_watch_count integer NOT NULL,video_id varchar NOT NULL)"];
+    BOOL executeCreateTable = [self.fmDataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS TTVideoDetailTable (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,dic blob NOT NULL)"];
     if(executeCreateTable){
         NSLog(@"videoCache创表成功");
     }else{
@@ -53,7 +55,7 @@ static int maxCacheVideoItem;
     return NO;
 }
 
--(void)InsertVideoCacheWithDB:(videoContentModel *)model{
+-(void)InsertVideoCacheWithDB:(NSArray *)dataArray{
     if(![self.fmDataBase open]){
         NSLog(@"数据库打开失败");
         return;
@@ -61,12 +63,27 @@ static int maxCacheVideoItem;
     [self.fmDataBase beginTransaction];
     BOOL isRollBack = NO;
     @try {
-        BOOL executeInsertDB = [self.fmDataBase executeUpdate:@"insert into TTVideoDetailTable (media_name,title,video_play_info,share_url,video_duration,avatar_url,detail_video_large_image,video_watch_count,video_id) values (?,?,?,?,?,?,?,?,?)",model.detailModel.media_name,model.detailModel.title,model.detailModel.video_play_info,model.detailModel.share_url,@(model.detailModel.video_duration),model.detailModel.media_info.avatar_url,model.detailModel.video_detail_info.detail_video_large_image,@(model.detailModel.video_detail_info.video_watch_count),model.detailModel.video_detail_info.video_id];
-        if(executeInsertDB){
-            NSLog(@"videoCache数据插入成功");
-        }else{
-            NSLog(@"videoCache数据插入失败");
+        for(videoDetailModel *model in dataArray){
+            NSDictionary *dataDic = [model mj_keyValues];
+            NSData *data = nil;
+            NSError *Error;
+            if(@available (iOS 11.0, *)){
+                data = [NSKeyedArchiver archivedDataWithRootObject:dataDic requiringSecureCoding:YES error:&Error];
+            }else{
+                data = [NSKeyedArchiver archivedDataWithRootObject:dataDic];
+            }
+            if(!data && Error){
+                NSLog(@"缓存失败 %@",Error);
+            }
+            
+            BOOL executeInsertDB = [self.fmDataBase executeUpdate:@"insert into TTVideoDetailTable (dic) values (?)",dataDic];
+            if(executeInsertDB){
+                NSLog(@"videoCache数据插入成功");
+            }else{
+                NSLog(@"videoCache数据插入失败");
+            }
         }
+        
     } @catch (NSException *exception) {
         isRollBack = YES;
         [self.fmDataBase rollback];
@@ -83,17 +100,18 @@ static int maxCacheVideoItem;
     FMResultSet *result = [self.fmDataBase executeQuery:sql];
     NSMutableArray *array = [NSMutableArray array];
     while ([result next]) {
-        videoContentModel *model = [[videoContentModel alloc]init];
-        model.detailModel.media_name = [result objectForColumn:@"media_name"];
-        model.detailModel.title = [result objectForColumn:@"title"];
-        model.detailModel.video_play_info = [result objectForColumn:@"video_play_info"];
-        model.detailModel.share_url = [result objectForColumn:@"share_url"];
-        model.detailModel.video_duration = [result intForColumn:@"video_duration"];
-        model.detailModel.media_info.avatar_url = [result objectForColumn:@"avatar_url"];
-        model.detailModel.video_detail_info.detail_video_large_image = [result objectForColumn:@"detail_video_large_image"];
-        model.detailModel.video_detail_info.video_watch_count = [result intForColumn:@"video_watch_count"];
-        model.detailModel.video_detail_info.video_id = [result objectForColumn:@"video_id"];
-        [array addObject:model];
+        NSData *data = [result objectForColumn:@"dic"];
+        NSError *Error;
+        NSDictionary *dic = [NSDictionary dictionary];
+        if(@available (iOS 11.0,*)){
+            dic = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:data error:&Error];
+        }else{
+            dic = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        }
+        if(dic){
+            videoDetailModel *model = [[videoDetailModel alloc]mj_setKeyValues:dic];
+            [array addObject:model];
+        }
     }
     return array;
 }

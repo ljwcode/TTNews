@@ -25,15 +25,13 @@
                 request.device_platform = @"iPhone 11 Pro";
                 request.version_code = @"7.7.0";
                 request.category = input;
-                //https://i.snssdk.com/video/urls/v/1/toutiao/mp4/9583cca5fceb4c6b9ca749c214fd1f90?r=18723666135963302&s=3807690062&callback=tt_playerzfndr
                 
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
-                    
                     NSDictionary *responseDic = (NSDictionary *)response;
                     NSArray *dataArray  = responseDic[@"data"];
                     NSMutableArray *array = [NSMutableArray array];
                     for(int i = 0;i < dataArray.count;i++){
-                        videoContentModel *model = [[[videoContentModel alloc]init]mj_setKeyValues:dataArray[i]];
+                        videoDetailModel *model = [[[videoDetailModel alloc]init]mj_setKeyValues:[dataArray[i] objectForKey:@"content"]];
                         [array addObject:model];
                     }
                     [subscriber sendNext:array];

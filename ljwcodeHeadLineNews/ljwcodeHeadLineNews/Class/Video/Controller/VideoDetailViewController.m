@@ -24,7 +24,7 @@
 
 @property(nonatomic,strong)NSMutableArray *dataArray;
 
-@property(nonatomic,strong)videoContentModel *videoPlayModel;
+@property(nonatomic,strong)videoDetailModel *videoPlayModel;
 
 @property(nonatomic,strong)parseVideoRealURLViewModel *realURLViewModel;
 
@@ -46,7 +46,7 @@
             self.dataArray = [self.videoDBViewModel queryDBTableWithVideoContent];
         }else{
             NSLog(@"数据表不存在");
-            
+
         }
     }
     return self;
@@ -60,11 +60,12 @@
         @strongify(self);
         [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             [self.dataArray addObjectsFromArray:x];
-            
-            [self.videoDBViewModel createDBWithVideoCacheTable];
-            for(int i = 0;i < self.dataArray.count;i++){
-                videoContentModel *model = self.dataArray[i];
-                [self.videoDBViewModel InsertVideoCacheWithDB:model];
+            NSArray *array = x;
+            if(![self.videoDBViewModel IsExistsVideoCacheTable]){
+                [self.videoDBViewModel createDBWithVideoCacheTable];
+            }
+            for(int i = 0;i < array.count;i++){
+                [self.videoDBViewModel InsertVideoCacheWithDB:self.dataArray];
             }
             
             [self.detailTableView reloadData];
@@ -160,7 +161,8 @@
 
 -(FBLPromise *)getVideoURL{
     return [[[FBLPromise do:^id _Nullable{
-        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
+//        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
+        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.video_detail_info.video_id];
     }]then:^id _Nullable(id  _Nullable value) {
         return [self GetVideoParseData:value];
     }]then:^id _Nullable(id  _Nullable value) {

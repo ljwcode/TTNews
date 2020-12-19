@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(BOOL)IsExistsVideoCacheTable;
 
--(void)InsertVideoCacheWithDB:(videoContentModel *)model;
+-(void)InsertVideoCacheWithDB:(NSArray *)dataArray;
 
 -(NSMutableArray *)queryDBTableWithVideoContent;
 

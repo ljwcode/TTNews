@@ -58,12 +58,24 @@
         NSLog(@"数据库打开失败");
         return;
     }
-    BOOL result = [self.fmDataBase executeUpdate:@"insert into TTVideoTitle (name,category,category_type,flags,icon_url,tip_new,type,web_url) values (?,?,?,?,?,?,?,?)",model.name,model.category,@(model.category_type),@(model.flags),model.icon_url,@(model.tip_new),@(model.type),model.web_url];
-    if(!result){
-        NSLog(@"数据插入失败");
-        return;
+    [self.fmDataBase beginTransaction];
+    BOOL isRollBack = NO;
+    @try {
+        BOOL result = [self.fmDataBase executeUpdate:@"insert into TTVideoTitle (name,category,category_type,flags,icon_url,tip_new,type,web_url) values (?,?,?,?,?,?,?,?)",model.name,model.category,@(model.category_type),@(model.flags),model.icon_url,@(model.tip_new),@(model.type),model.web_url];
+        if(!result){
+            NSLog(@"数据插入失败");
+            return;
+        }
+        NSLog(@"数据插入成功");
+    } @catch (NSException *exception) {
+        isRollBack = YES;
+        [self.fmDataBase rollback];
+    } @finally {
+        if(!isRollBack){
+            [self.fmDataBase commit];
+        }
     }
-    NSLog(@"数据插入成功");
+    
 }
 
 -(NSMutableArray *)queryDataBase{

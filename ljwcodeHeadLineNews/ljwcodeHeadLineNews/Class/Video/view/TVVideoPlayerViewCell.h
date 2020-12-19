@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol TVVideoPlayerCellDelegate<NSObject>
 
-- (void)initPlayerView:(TVVideoPlayerViewCell *)cell playClick:(videoContentModel *)convention;
+- (void)initPlayerView:(TVVideoPlayerViewCell *)cell playClick:(videoDetailModel *)convention;
 
 @end
 
@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)CGRect videoFrame;
 
-@property(nonatomic,strong)videoContentModel *contentModel;
+@property(nonatomic,strong)videoDetailModel *contentModel;
 
 @property(nonatomic,copy)void(^imgViewCallBack)(UIView *parentView);
 

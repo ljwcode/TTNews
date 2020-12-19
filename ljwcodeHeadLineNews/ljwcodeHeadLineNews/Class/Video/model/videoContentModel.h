@@ -104,6 +104,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)int video_duration;
 
+@property(nonatomic,strong)video_list *video_list;
+
 @end
 
 
@@ -119,15 +121,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *content;
 
-@property(nonatomic,assign)BOOL playing;
-
 @property(nonatomic,strong)videoDetailModel *detailModel;
-
-@property(nonatomic,readonly)BOOL isVerticalVideo;
-
-@property(nonatomic,strong)NSArray *dataArray;
-
-@property(nonatomic,copy)NSString *data;
 
 @end
 
