@@ -31,7 +31,7 @@
                     NSArray *dataArray  = responseDic[@"data"];
                     NSMutableArray *array = [NSMutableArray array];
                     for(int i = 0;i < dataArray.count;i++){
-                        videoDetailModel *model = [[[videoDetailModel alloc]init]mj_setKeyValues:[dataArray[i] objectForKey:@"content"]];
+                        videoContentModel *model = [[[videoContentModel alloc]init]mj_setKeyValues:dataArray[i]];
                         [array addObject:model];
                     }
                     [subscriber sendNext:array];

@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)CGRect videoFrame;
 
-@property(nonatomic,strong)videoDetailModel *contentModel;
+@property(nonatomic,strong)videoContentModel *contentModel;
 
 @property(nonatomic,copy)void(^imgViewCallBack)(UIView *parentView);
 

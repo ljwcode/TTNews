@@ -123,13 +123,13 @@
 }
 
 #pragma mark -- set model
--(void)setContentModel:(videoDetailModel *)contentModel{
+-(void)setContentModel:(videoContentModel *)contentModel{
     _contentModel = contentModel;
-    [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:contentModel.video_detail_info.detail_video_large_image.url]];
-    [self.videoAuthHeadBtn setTitle:contentModel.media_name forState:UIControlStateNormal];
-    self.videoTitleLabel.text = contentModel.title;
+    [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:contentModel.detailModel.video_detail_info.detail_video_large_image.url]];
+    [self.videoAuthHeadBtn setTitle:contentModel.detailModel.media_name forState:UIControlStateNormal];
+    self.videoTitleLabel.text = contentModel.detailModel.title;
    
-    NSString * urlStr = [contentModel.media_info.avatar_url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSString * urlStr = [contentModel.detailModel.media_info.avatar_url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     if(urlStr){
         [self.authHeadImgView sd_setImageWithURL:[NSURL URLWithString:urlStr] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             self.authHeadImgView.image = [image cropPictureWithRoundedCorner:self.authHeadImgView.image.size.width/2 size:self.authHeadImgView.frame.size];
@@ -139,8 +139,8 @@
         [self.authHeadImgView setImage:[UIImage imageNamed:@"recommend_user_see_more_icon"]];
     }
     
-    self.videoPlayCountLabel.text = [NSString stringWithFormat:@"%d次播放",contentModel.video_detail_info.video_watch_count];
-    self.videoTimeLabel.text = [NSString stringWithFormat:@"%d:%d",contentModel.video_duration/60,contentModel.video_duration%60];
+    self.videoPlayCountLabel.text = [NSString stringWithFormat:@"%d次播放",contentModel.detailModel.video_detail_info.video_watch_count];
+    self.videoTimeLabel.text = [NSString stringWithFormat:@"%d:%d",contentModel.detailModel.video_duration/60,contentModel.detailModel.video_duration%60];
     self.videoFrame = CGRectMake(0, 0, kScreenWidth,175);
 }
 

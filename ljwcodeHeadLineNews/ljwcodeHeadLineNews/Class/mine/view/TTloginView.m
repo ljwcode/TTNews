@@ -75,8 +75,6 @@
 }
 
 -(void)keyboardHide:(NSNotification *)noti{
-    CGRect keyboardFrame = [noti.userInfo[@"UIKeyboardFrameEndUserInfoKey"]CGRectValue];
-    CGFloat keyboarHeight = keyboardFrame.size.height;
     [UIView animateWithDuration:0.25 animations:^{
         [self.tiktokLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.mas_left).offset(systemVersion >= 13.0 ? self.width/3 : self.width*2/5);

@@ -24,7 +24,7 @@
 
 @property(nonatomic,strong)NSMutableArray *dataArray;
 
-@property(nonatomic,strong)videoDetailModel *videoPlayModel;
+@property(nonatomic,strong)videoContentModel *videoPlayModel;
 
 @property(nonatomic,strong)parseVideoRealURLViewModel *realURLViewModel;
 
@@ -42,8 +42,8 @@
 
 -(instancetype)init{
     if(self = [super init]){
-        if([self.videoDBViewModel IsExistsVideoCacheTable]){
-            self.dataArray = [self.videoDBViewModel queryDBTableWithVideoContent];
+        if([self.videoDBViewModel IsExistsVideoCacheTable:self.titleModel.category]){
+            self.dataArray = [self.videoDBViewModel queryDBTableWithVideoContent:self.titleModel.category];
         }else{
             NSLog(@"数据表不存在");
 
@@ -61,11 +61,11 @@
         [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             [self.dataArray addObjectsFromArray:x];
             NSArray *array = x;
-            if(![self.videoDBViewModel IsExistsVideoCacheTable]){
-                [self.videoDBViewModel createDBWithVideoCacheTable];
+            if(![self.videoDBViewModel IsExistsVideoCacheTable:self.titleModel.category]){
+                [self.videoDBViewModel createDBWithVideoCacheTable:self.titleModel.category];
             }
             for(int i = 0;i < array.count;i++){
-                [self.videoDBViewModel InsertVideoCacheWithDB:self.dataArray];
+                [self.videoDBViewModel InsertVideoCacheWithDB:self.dataArray VideoCategory:self.titleModel.category];
             }
             
             [self.detailTableView reloadData];
@@ -161,8 +161,7 @@
 
 -(FBLPromise *)getVideoURL{
     return [[[FBLPromise do:^id _Nullable{
-//        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
-        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.video_detail_info.video_id];
+        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
     }]then:^id _Nullable(id  _Nullable value) {
         return [self GetVideoParseData:value];
     }]then:^id _Nullable(id  _Nullable value) {
