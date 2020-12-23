@@ -13,13 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface videoDetailCacheDBViewModel : NSObject
 
--(void)createDBWithVideoCacheTable:(NSString *)category;
+-(void)createDBWithVideoCacheTable;
 
--(BOOL)IsExistsVideoCacheTable:(NSString *)category;
+-(BOOL)IsExistsVideoCacheTable;
 
--(void)InsertVideoCacheWithDB:(NSArray *)dataArray VideoCategory:(NSString *)category;
+-(void)InsertVideoCacheWithDB:(NSArray *)dataArray;
 
--(NSMutableArray *)queryDBTableWithVideoContent:(NSString *)category;
+-(NSMutableArray *)queryDBTableWithVideoContent;
+
+-(void)createDBFilePath:(NSString *)category;
 
 @end
 

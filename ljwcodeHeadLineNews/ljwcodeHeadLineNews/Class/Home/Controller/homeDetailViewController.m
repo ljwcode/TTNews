@@ -185,7 +185,9 @@
         [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
             [self.datasArray addObjectsFromArray:datasArray];
-            [self.detailTableView reloadData];
+        
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            [self.detailTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
             [self.detailTableView.mj_header endRefreshing];
             [self.detailTableView.mj_footer endRefreshing];
         }];

@@ -9,8 +9,6 @@
 #import "videoDetailCacheDBViewModel.h"
 #import <MJExtension/MJExtension.h>
 
-static int maxCacheVideoItem;
-
 @interface videoDetailCacheDBViewModel()
 
 @property(nonatomic,strong)FMDatabase *fmDataBase;
@@ -21,81 +19,73 @@ static int maxCacheVideoItem;
 
 -(instancetype)init{
     if(self = [super init]){
-        maxCacheVideoItem = 20;
+        [self.fmDataBase open];
     }
     return self;
 }
 
--(void)createDBWithVideoCacheTable:(NSString *)category{
+-(void)createDBWithVideoCacheTable{
     if(![self.fmDataBase open]){
         
         NSLog(@"数据库打开失败");
         return;
     }
-    NSString *sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS TTVideoDetailTable_%@ (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,dic blob NOT NULL)",category];
+    NSString *sql = @"CREATE TABLE IF NOT EXISTS TTVideoDetailTable (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,data blob)";
     BOOL executeCreateTable = [self.fmDataBase executeUpdate:sql];
-    /*
-     插入一个分类管理，每次存取数据进入对应类别的数据表
-     */
-    
     if(executeCreateTable){
         NSLog(@"videoCache创表成功");
+        /*
+         创建该数据表的触发器 设置最大存储行数为20行，当超过20行时，将会触发删除最早插入的那一行，始终保留最大行数为20行
+         */
+        NSString *sql = @"CREATE TRIGGER IF NOT EXISTS Trl AFTER INSERT ON TTVideoDetailTable when (select count(*) from TTVideoDetailTable)>20 BEGIN delete from TTVideoDetailTable where id in (select id from TTVideoDetailTable order by id limit 0,1);END;";
+        if([self.fmDataBase executeUpdate:sql]){
+            NSLog(@"触发器设置成功");
+        }else{
+            NSLog(@"触发器设置失败");
+        }
     }else{
         NSLog(@"videoCache创表失败");
         return;
     }
 }
 
--(BOOL)IsExistsVideoCacheTable:(NSString *)category{
-    NSString *existsSql = [NSString stringWithFormat:@"SELECT COUNT(*) count FROM sqlite_master where type='table' and name='TTVideoDetailTable_%@'",category ];
+-(BOOL)IsExistsVideoCacheTable{
+    NSString *existsSql = @"SELECT COUNT(*) count FROM sqlite_master where type='table' and name='TTVideoDetailTable'";
     FMResultSet *result = [self.fmDataBase executeQuery:existsSql];
     if ([result next]) {
         NSInteger count = [result intForColumn:@"count"];
         NSLog(@"The table count: %li", count);
         if (count == 1) {
-            NSLog(@"数据表已存在");
+            NSLog(@"videoCache数据表已存在");
             return YES;
         }
     }
     return NO;
 }
 
--(void)InsertVideoCacheWithDB:(NSArray *)dataArray VideoCategory:(nonnull NSString *)category{
+-(void)InsertVideoCacheWithDB:(NSArray *)dataArray{
     if(![self.fmDataBase open]){
         NSLog(@"数据库打开失败");
         return;
     }
-    NSString *sql = [NSString stringWithFormat:@"select count(*) from TTVideoDetailTable_%@",category];
-    FMResultSet *result = [self.fmDataBase executeQuery:sql];
-    int i;
-    while([result next]){
-        i++;
-    }
-    NSLog(@"数据行数为%d",i);
     [self.fmDataBase beginTransaction];
     BOOL isRollBack = NO;
     @try {
         for(videoContentModel *model in dataArray){
             NSDictionary *dataDic = [model mj_keyValues];
-            NSData *data = nil;
-            NSError *Error;
-            if(@available (iOS 11.0, *)){
-                data = [NSKeyedArchiver archivedDataWithRootObject:dataDic requiringSecureCoding:YES error:&Error];
-            }else{
-                data = [NSKeyedArchiver archivedDataWithRootObject:dataDic];
-            }
+            NSError *Error = nil;
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dataDic requiringSecureCoding:YES error:&Error];
             if(!data && Error){
-                NSLog(@"缓存失败 %@",Error);
+                NSLog(@"Error = %@",Error);
             }
-            NSString *sql = [NSString stringWithFormat:@"insert into TTVideoDetailTable_%@ dic values %@",category,data];
-            BOOL executeInsertDB = [self.fmDataBase executeUpdate:sql];
+            NSString *sql = @"INSERT INTO TTVideoDetailTable(data) VALUES (?)";
+            BOOL executeInsertDB = [self.fmDataBase executeUpdate:sql,data];
             if(executeInsertDB){
                 NSLog(@"videoCache数据插入成功");
             }else{
                 NSLog(@"videoCache数据插入失败");
             }
         }
-        
     } @catch (NSException *exception) {
         isRollBack = YES;
         [self.fmDataBase rollback];
@@ -104,22 +94,17 @@ static int maxCacheVideoItem;
             [self.fmDataBase commit];
         }
     }
-    
 }
 
--(NSMutableArray *)queryDBTableWithVideoContent:(NSString *)category{
-    NSString *sql = [NSString stringWithFormat:@"select * from TTVideoDetailTable_%@",category];
+-(NSMutableArray *)queryDBTableWithVideoContent{
+    NSString *sql = @"select * from TTVideoDetailTable";
     FMResultSet *result = [self.fmDataBase executeQuery:sql];
     NSMutableArray *array = [NSMutableArray array];
     while ([result next]) {
         NSData *data = [result dataForColumn:@"dic"];
         NSError *Error;
         NSDictionary *dic;
-        if(@available (iOS 11.0,*)){
-            dic = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSDictionary class] fromData:data error:&Error];
-        }else{
-            dic = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        }
+        dic = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSDictionary class] fromData:data error:&Error];
         if(dic){
             videoContentModel *model = [[videoContentModel alloc]mj_setKeyValues:dic];
             [array addObject:model];
@@ -132,17 +117,27 @@ static int maxCacheVideoItem;
     /*
      首次安装启动app开始缓存当前界面的数据，以防下次启动到开界面时展示空白界面
      设置分类存储离线数据，单个类别最大数据量为20行，当插入新数据时，删除队尾数据（最旧的数据）
+     db 1 2 3
+     table 1 1 1
      */
+    NSString *sql = @"update";
+}
+
+-(void)createDBFilePath:(NSString *)category{
+    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString *DBName = [NSString stringWithFormat:@"TTDB_%@.sqlite",category];
+    NSString *DBFile =[DBPath stringByAppendingPathComponent:DBName];
+    NSLog(@"DBPath = %@",DBPath);
+    self.fmDataBase = [FMDatabase databaseWithPath:DBFile];
+    [self.fmDataBase open];
+    NSLog(@"数据库已打开");
 }
 
 #pragma mark ------- lazy load
 
 -(FMDatabase *)fmDataBase{
     if(!_fmDataBase){
-        NSString *dbPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
-        NSString *dbFile = [dbPath stringByAppendingPathComponent:@"TTDataBase.sqlite"];
-        _fmDataBase = [FMDatabase databaseWithPath:dbFile];
-        [_fmDataBase open];
+        _fmDataBase = [[FMDatabase alloc]init];
     }
     return _fmDataBase;
 }

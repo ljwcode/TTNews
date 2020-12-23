@@ -42,11 +42,10 @@
 
 -(instancetype)init{
     if(self = [super init]){
-        if([self.videoDBViewModel IsExistsVideoCacheTable:self.titleModel.category]){
-            self.dataArray = [self.videoDBViewModel queryDBTableWithVideoContent:self.titleModel.category];
+        if([self.videoDBViewModel IsExistsVideoCacheTable]){
+            self.dataArray = [self.videoDBViewModel queryDBTableWithVideoContent];
         }else{
             NSLog(@"数据表不存在");
-
         }
     }
     return self;
@@ -61,16 +60,16 @@
         [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             [self.dataArray addObjectsFromArray:x];
             NSArray *array = x;
-            if(![self.videoDBViewModel IsExistsVideoCacheTable:self.titleModel.category]){
-                [self.videoDBViewModel createDBWithVideoCacheTable:self.titleModel.category];
+            if(![self.videoDBViewModel IsExistsVideoCacheTable]){
+                [self.videoDBViewModel createDBFilePath:self.titleModel.category];
+                [self.videoDBViewModel createDBWithVideoCacheTable];
             }
             for(int i = 0;i < array.count;i++){
-                [self.videoDBViewModel InsertVideoCacheWithDB:self.dataArray VideoCategory:self.titleModel.category];
+                [self.videoDBViewModel InsertVideoCacheWithDB:array];
             }
             
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
-            [self.detailTableView.mj_footer endRefreshing];
         }];
         
     }];
@@ -144,6 +143,25 @@
      */
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self playTheVideoAtIndexPath:indexPath];
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == [self.dataArray count] - 1) {
+        [self performSelector:@selector(updateData) withObject:nil afterDelay:1.0f];
+    }
+}
+
+-(void)updateData{
+    @weakify(self);
+    self.detailTableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        @strongify(self);
+        [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
+            [self.dataArray addObjectsFromArray:x];
+            [self.detailTableView reloadData];
+            [self.detailTableView.mj_footer endRefreshing];
+        }];
+    }];
+    [self.detailTableView.mj_footer beginRefreshing];
 }
 
 #pragma mark -- private method
@@ -260,22 +278,19 @@
         }
     }
     
-    CGFloat height = scrollView.frame.size.height;
-    CGFloat contentYoffset = scrollView.contentOffset.y;
-    CGFloat distanceFromBottom = scrollView.contentSize.height - contentYoffset;
-    if (distanceFromBottom < height) {
-        @weakify(self);
-        self.detailTableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
-            @strongify(self);
-            [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-                [self.dataArray addObjectsFromArray:x];
-                [self.detailTableView reloadData];
-                [self.detailTableView.mj_footer endRefreshing];
-                [self.detailTableView.mj_header endRefreshing];
-            }];
-        }];
-    }
+    NSLog(@"contentY = %f",scrollView.contentOffset.y);
+    NSLog(@"contnetH = %f",scrollView.contentSize.height);
 
+//    @weakify(self);
+//    self.detailTableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+//        @strongify(self);
+//        [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
+//            [self.dataArray addObjectsFromArray:x];
+//            [self.detailTableView reloadData];
+//            [self.detailTableView.mj_footer endRefreshing];
+//        }];
+//    }];
+//    [self.detailTableView.mj_footer beginRefreshing];
 }
 
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -360,11 +375,6 @@
         [_detailTableView registerClass:[TVVideoPlayerViewCell class] forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
         [self.view addSubview:_detailTableView];
         _detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        if (@available(iOS 11.0, *)) {
-            _detailTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        } else {
-            self.automaticallyAdjustsScrollViewInsets = NO;
-        }
     }
     return _detailTableView;
 }

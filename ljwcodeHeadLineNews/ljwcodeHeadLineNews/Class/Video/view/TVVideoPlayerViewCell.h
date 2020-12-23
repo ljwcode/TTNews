@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol TVVideoPlayerCellDelegate<NSObject>
 
-- (void)initPlayerView:(TVVideoPlayerViewCell *)cell playClick:(videoDetailModel *)convention;
+- (void)initPlayerView:(TVVideoPlayerViewCell *)cell playClick:(videoContentModel *)convention;
 
 @end
 
