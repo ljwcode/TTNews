@@ -13,6 +13,7 @@
 #import "TTNetworkURLManager.h"
 #import "TTNetworkBaseModel.h"
 #import "TTArticleSearchInboxFourWordsModel.h"
+#import "TTSearchKeywordModel.h"
 
 @interface TTSearchSuggestionViewModel()
 
@@ -30,7 +31,8 @@
                 
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     NSDictionary *responseDic = [(NSDictionary *)response objectForKey:@"data"];
-                    [subscriber sendNext:[responseDic objectForKey:@"homepage_search_suggest"]];
+                    TTSearchKeywordModel *model = [[TTSearchKeywordModel new]mj_setKeyValues:responseDic];
+                    [subscriber sendNext:model];
                     [subscriber sendCompleted];
                 } failHandle:^(NSError * _Nonnull error) {
                     NSLog(@"search title request error");

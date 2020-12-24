@@ -15,7 +15,8 @@
 #import <FBLPromises/FBLPromises.h>
 #import "TTArticleSearchInboxFourWordsModel.h"
 #import "TTArticleSearchWordViewModel.h"
-
+#import "TTDBCacheSearchKeywordViewModel.h"
+#import "TTSearchKeywordModel.h"
 
 @interface TTBaseViewController ()<UIGestureRecognizerDelegate,UISearchBarDelegate>
 
@@ -29,19 +30,32 @@
 
 @property(nonatomic,strong)TTArticleSearchWordViewModel *keywordViewModel;
 
+@property(nonatomic,strong)TTDBCacheSearchKeywordViewModel *SearchCacheViewModel;
+
+@property(nonatomic,copy)NSString *placeHoldText;
+
+@property(nonatomic,strong)UIImageView *leftView;
+
 @end
 
 @implementation TTBaseViewController
 
+-(instancetype)init{
+    if(self = [super init]){
+        
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self createSearchBar];
     [[FBLPromise do:^id _Nullable{
         return [self asyncGetArray];
     }]then:^id _Nullable(id  _Nullable value) {
         return self.searchVC.keywordArray = value;
     }];
-    [self createSearchBar];
-        // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
 }
 
 -(FBLPromise *)asyncGetArray{
@@ -53,47 +67,40 @@
 }
 
 -(void)createSearchBar{
+    [self createNavSearchBarView];
     [[FBLPromise do:^id _Nullable{
         return [self getPlaceholderText];
     }] then:^id _Nullable(id  _Nullable value) {
-        return [self createNavSearchBarView:value];
+        return self.naviBar.placeholder = value;
     }];
 }
 
--(FBLPromise *)createNavSearchBarView:(id)placeholderText{
-    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
-        UIButton *reportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-         [reportBtn setTitle:@"发布" forState:UIControlStateNormal];
-         [reportBtn setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
-         reportBtn.titleLabel.font = [UIFont systemFontOfSize:13.f];
-         [reportBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-         reportBtn.contentMode = UIViewContentModeScaleAspectFit;
-         reportBtn.imageEdgeInsets = UIEdgeInsetsMake(-reportBtn.titleLabel.intrinsicContentSize.height/2, 0, 0, 0);
-         reportBtn.titleEdgeInsets = UIEdgeInsetsMake(reportBtn.imageView.intrinsicContentSize.height, -reportBtn.imageView.intrinsicContentSize.width, 0, 0);
-        [reportBtn addTarget:self action:@selector(reportHandle:) forControlEvents:UIControlEventTouchUpInside];
-         
-         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 44)];
-         reportBtn.frame = view.bounds;
-         [view addSubview:reportBtn];
-        
-         UIBarButtonItem *reportBarBtn = [[UIBarButtonItem alloc]initWithCustomView:view];
-
-         self.navigationItem.rightBarButtonItem = reportBarBtn;
-         
-         UIImageView *leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icons_search"]];
-         leftView.bounds = CGRectMake(0, 0, 24, 24);
-        
-        self.naviBar = [[TTNavigationBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44) placeholder:placeholderText textFieldLeftView:leftView tintColor:[UIColor whiteColor]];
-        self.navigationItem.titleView = self.naviBar;
-        self.naviBar.delegate = self;
-    }];
+-(void)createNavSearchBarView{
+    UIButton *reportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [reportBtn setTitle:@"发布" forState:UIControlStateNormal];
+    [reportBtn setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
+    reportBtn.titleLabel.font = [UIFont systemFontOfSize:13.f];
+    [reportBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    reportBtn.contentMode = UIViewContentModeScaleAspectFit;
+    reportBtn.imageEdgeInsets = UIEdgeInsetsMake(-reportBtn.titleLabel.intrinsicContentSize.height/2, 0, 0, 0);
+    reportBtn.titleEdgeInsets = UIEdgeInsetsMake(reportBtn.imageView.intrinsicContentSize.height, -reportBtn.imageView.intrinsicContentSize.width, 0, 0);
+    [reportBtn addTarget:self action:@selector(reportHandle:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 44)];
+    reportBtn.frame = view.bounds;
+    [view addSubview:reportBtn];
+    
+    UIBarButtonItem *reportBarBtn = [[UIBarButtonItem alloc]initWithCustomView:view];
+    
+    self.navigationItem.rightBarButtonItem = reportBarBtn;
+    self.navigationItem.titleView = self.naviBar;
 }
 
 -(FBLPromise *)getPlaceholderText{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
         [[self.viewModel.SearchSuggestionCommand execute:@"title"]subscribeNext:^(id  _Nullable x) {
-            NSArray *array = [x componentsSeparatedByString:@"|"];
+            TTSearchKeywordModel *model = x;
+            NSArray *array = [model.homepage_search_suggest componentsSeparatedByString:@"|"];
             NSString *keyword = [NSString stringWithFormat:@"%@ | %@",array[0],array[1]];
             fulfill(keyword);
         }];
@@ -128,8 +135,7 @@
     return self.navigationItem.rightBarButtonItem = [self createBarButtonItemWithImage:imageName Selector:@selector(rightItemAction)];
 }
 
--(void)leftItemAction
-{
+-(void)leftItemAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -140,7 +146,6 @@
 -(UIBarButtonItem *)createBarButtonItemWithText:(NSString *)text Selector:(SEL)selector{
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:text style:UIBarButtonItemStylePlain target:self action:selector];
-    
     return item;
 }
 
@@ -159,11 +164,30 @@
 #pragma mark ---- 响应事件
 
 -(void)reportHandle:(UIButton *)sender{
-    
     [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:self.ReportArticleView];
 }
 
 #pragma mark -- lazy load
+
+-(UIImageView *)leftView{
+    if(!_leftView){
+        _leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icons_search"]];
+        _leftView.bounds = CGRectMake(0, 0, 24, 24);
+    }
+    return _leftView;
+}
+
+-(TTNavigationBar *)naviBar{
+    if(!_naviBar){
+        _naviBar = [[TTNavigationBar alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 44)];
+        _naviBar.delegate = self;
+        _naviBar.tintColor = [UIColor whiteColor];
+        _naviBar.barTintColor = [UIColor whiteColor];
+        _naviBar.barStyle = UIBarStyleDefault;
+        _naviBar.leftView = self.leftView;
+    }
+    return _naviBar;
+}
 
 -(TTReportArticleView *)ReportArticleView{
     if(!_ReportArticleView){
@@ -181,12 +205,18 @@
     return _viewModel;
 }
 
-
 -(TTArticleSearchWordViewModel *)keywordViewModel{
     if(!_keywordViewModel){
         _keywordViewModel = [[TTArticleSearchWordViewModel alloc]init];
     }
     return _keywordViewModel;
+}
+
+-(TTDBCacheSearchKeywordViewModel *)SearchCacheViewModel{
+    if(!_SearchCacheViewModel){
+        _SearchCacheViewModel = [[TTDBCacheSearchKeywordViewModel alloc]init];
+    }
+    return _SearchCacheViewModel;
 }
 
 -(TTSearchViewController *)searchVC{
@@ -200,13 +230,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

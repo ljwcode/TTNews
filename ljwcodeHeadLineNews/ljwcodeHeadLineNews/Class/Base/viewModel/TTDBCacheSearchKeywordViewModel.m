@@ -1,21 +1,23 @@
 //
-//  videoDetailCacheDBViewModel.m
+//  TTDBCacheSearchKeywordViewModel.m
 //  ljwcodeHeadLineNews
 //
-//  Created by 1 on 2020/12/18.
+//  Created by 1 on 2020/12/24.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "videoDetailCacheDBViewModel.h"
+#import "TTDBCacheSearchKeywordViewModel.h"
+#import <FMDB/FMDB.h>
 #import <MJExtension/MJExtension.h>
+#import "TTSearchKeywordModel.h"
 
-@interface videoDetailCacheDBViewModel()
+@interface TTDBCacheSearchKeywordViewModel()
 
 @property(nonatomic,strong)FMDatabase *fmDataBase;
 
 @end
 
-@implementation videoDetailCacheDBViewModel
+@implementation TTDBCacheSearchKeywordViewModel
 
 -(instancetype)init{
     if(self = [super init]){
@@ -24,46 +26,37 @@
     return self;
 }
 
--(void)createDBWithVideoCacheTable{
+-(void)createDBWithSearchKeywordTable{
     if(![self.fmDataBase open]){
         
         NSLog(@"数据库打开失败");
         return;
     }
-    NSString *sql = @"CREATE TABLE IF NOT EXISTS TTVideoDetailTable (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,data blob)";
+    NSString *sql = @"CREATE TABLE IF NOT EXISTS TTSearchKeyword (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,keyword varchar NOT NULL)";
     BOOL executeCreateTable = [self.fmDataBase executeUpdate:sql];
     if(executeCreateTable){
-        NSLog(@"videoCache创表成功");
-        /*
-         创建该数据表的触发器 设置最大存储行数为20行，当超过20行时，将会触发删除最早插入的那一行，始终保留最大行数为20行
-         */
-        NSString *sql = @"CREATE TRIGGER IF NOT EXISTS Trl AFTER INSERT ON TTVideoDetailTable when (select count(*) from TTVideoDetailTable)>20 BEGIN delete from TTVideoDetailTable where id in (select id from TTVideoDetailTable order by id limit 0,1);END;";
-        if([self.fmDataBase executeUpdate:sql]){
-            NSLog(@"触发器设置成功");
-        }else{
-            NSLog(@"触发器设置失败");
-        }
+        NSLog(@"keyword创表成功");
     }else{
-        NSLog(@"videoCache创表失败");
+        NSLog(@"keyword创表失败");
         return;
     }
 }
 
--(BOOL)IsExistsVideoCacheTable{
-    NSString *existsSql = @"SELECT COUNT(*) count FROM sqlite_master where type='table' and name='TTVideoDetailTable'";
+-(BOOL)IsExistsKeywordCacheTable{
+    NSString *existsSql = @"SELECT COUNT(*) count FROM sqlite_master where type='table' and name='TTSearchKeyword'";
     FMResultSet *result = [self.fmDataBase executeQuery:existsSql];
     if ([result next]) {
         NSInteger count = [result intForColumn:@"count"];
         NSLog(@"The table count: %li", count);
         if (count == 1) {
-            NSLog(@"videoCache数据表已存在");
+            NSLog(@"keyword数据表已存在");
             return YES;
         }
     }
     return NO;
 }
 
--(void)InsertVideoCacheWithDB:(NSArray *)dataArray{
+-(void)InsertSearchKeywordWithDB{
     if(![self.fmDataBase open]){
         NSLog(@"数据库打开失败");
         return;
@@ -71,20 +64,19 @@
     [self.fmDataBase beginTransaction];
     BOOL isRollBack = NO;
     @try {
-        for(videoContentModel *model in dataArray){
-            NSDictionary *dataDic = [model mj_keyValues];
-            NSError *Error = nil;
-            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dataDic requiringSecureCoding:YES error:&Error];
-            if(!data && Error){
-                NSLog(@"Error = %@",Error);
-            }
-            NSString *sql = @"INSERT INTO TTVideoDetailTable(data) VALUES (?)";
-            BOOL executeInsertDB = [self.fmDataBase executeUpdate:sql,data];
-            if(executeInsertDB){
-                NSLog(@"videoCache数据插入成功");
-            }else{
-                NSLog(@"videoCache数据插入失败");
-            }
+        TTSearchKeywordModel *model = [[TTSearchKeywordModel alloc]init];
+        NSDictionary *dataDic = [model mj_keyValues];
+        NSError *Error = nil;
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dataDic requiringSecureCoding:YES error:&Error];
+        if(!data && Error){
+            NSLog(@"Error = %@",Error);
+        }
+        NSString *sql = @"INSERT INTO TTSearchKeyword(keyword) VALUES (?)";
+        BOOL executeInsertDB = [self.fmDataBase executeUpdate:sql,data];
+        if(executeInsertDB){
+            NSLog(@"keyword数据插入成功");
+        }else{
+            NSLog(@"keyword数据插入失败");
         }
     } @catch (NSException *exception) {
         isRollBack = YES;
@@ -97,16 +89,16 @@
 }
 
 -(NSMutableArray *)queryDBTableWithVideoContent{
-    NSString *sql = @"select * from TTVideoDetailTable";
+    NSString *sql = @"select * from TTSearchKeyword";
     FMResultSet *result = [self.fmDataBase executeQuery:sql];
     NSMutableArray *array = [NSMutableArray array];
     while ([result next]) {
-        NSData *data = [result dataForColumn:@"data"];
+        NSData *data = [result dataForColumn:@"keyword"];
         NSError *Error;
         NSDictionary *dic;
         dic = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSDictionary class] fromData:data error:&Error];
         if(dic){
-            videoContentModel *model = [[videoContentModel alloc]mj_setKeyValues:dic];
+            TTSearchKeywordModel *model = [[TTSearchKeywordModel alloc]mj_setKeyValues:dic];
             [array addObject:model];
         }
     }
@@ -123,9 +115,9 @@
     NSString *sql = @"update";
 }
 
--(void)createDBFilePath:(NSString *)category{
+-(void)createDBFilePath{
     NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
-    NSString *DBName = [NSString stringWithFormat:@"TTDB_%@.sqlite",category];
+    NSString *DBName = [NSString stringWithFormat:@"TTDB_SearchKeyword.sqlite"];
     NSString *DBFile =[DBPath stringByAppendingPathComponent:DBName];
     NSLog(@"DBPath = %@",DBPath);
     self.fmDataBase = [FMDatabase databaseWithPath:DBFile];
@@ -141,6 +133,5 @@
     }
     return _fmDataBase;
 }
-
 
 @end

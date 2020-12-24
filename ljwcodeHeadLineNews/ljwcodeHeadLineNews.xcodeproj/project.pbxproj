@@ -107,6 +107,8 @@
 		63BE33592548165200607EBA /* UITabBar+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE33582548165200607EBA /* UITabBar+ThemeChange.m */; };
 		63BE352524DAD63A001ADFDD /* newsDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE352424DAD63A001ADFDD /* newsDetailFooterView.m */; };
 		63BE5E792546B90D00381E38 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE5E782546B90D00381E38 /* SettingViewController.m */; };
+		63BF78F12594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BF78F02594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m */; };
+		63BF78F525947A64007C8C98 /* TTSearchKeywordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BF78F425947A64007C8C98 /* TTSearchKeywordModel.m */; };
 		63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */; };
 		63C4FA8D24EBC1C800CF9850 /* TTHorizontalPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4FA8C24EBC1C800CF9850 /* TTHorizontalPageViewController.m */; };
 		63C4FA9024EBC20400CF9850 /* TTPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4FA8F24EBC20400CF9850 /* TTPageViewController.m */; };
@@ -338,6 +340,10 @@
 		63BE352424DAD63A001ADFDD /* newsDetailFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newsDetailFooterView.m; sourceTree = "<group>"; };
 		63BE5E772546B90D00381E38 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		63BE5E782546B90D00381E38 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		63BF78EF2594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTDBCacheSearchKeywordViewModel.h; sourceTree = "<group>"; };
+		63BF78F02594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTDBCacheSearchKeywordViewModel.m; sourceTree = "<group>"; };
+		63BF78F325947A64007C8C98 /* TTSearchKeywordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTSearchKeywordModel.h; sourceTree = "<group>"; };
+		63BF78F425947A64007C8C98 /* TTSearchKeywordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSearchKeywordModel.m; sourceTree = "<group>"; };
 		63C4729F24B0566D0030C84B /* NetworkSpeedMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkSpeedMonitor.h; sourceTree = "<group>"; };
 		63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkSpeedMonitor.m; sourceTree = "<group>"; };
 		63C4FA8B24EBC1C800CF9850 /* TTHorizontalPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTHorizontalPageViewController.h; sourceTree = "<group>"; };
@@ -501,6 +507,8 @@
 			children = (
 				63E7177124F9F430003A690E /* TTSearchSuggestionRequestModel.h */,
 				63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */,
+				63BF78F325947A64007C8C98 /* TTSearchKeywordModel.h */,
+				63BF78F425947A64007C8C98 /* TTSearchKeywordModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -754,6 +762,8 @@
 				637C5C0924A35C0800D7C0E0 /* TTBaseViewModel.m */,
 				63E7177424F9F4A0003A690E /* TTSearchSuggestionViewModel.h */,
 				63E7177524F9F4A0003A690E /* TTSearchSuggestionViewModel.m */,
+				63BF78EF2594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.h */,
+				63BF78F02594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -1303,6 +1313,7 @@
 				820979281BD3B28700CF9D0C /* TTTabBarController.m in Sources */,
 				63422C5E24A88F020091FEE1 /* channelButton.m in Sources */,
 				63CBA20E258B58680020511C /* homeNewsDetailDBViewModel.m in Sources */,
+				63BF78F525947A64007C8C98 /* TTSearchKeywordModel.m in Sources */,
 				631BC91225481950001B82AB /* TTMethodSWizzle.m in Sources */,
 				63F1F8E724AF347600D687ED /* videoTitleViewModel.m in Sources */,
 				637C2D2C24A9CF630009274C /* homeTitleViewModel.m in Sources */,
@@ -1362,6 +1373,7 @@
 				631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */,
 				63E8C373256796E100F69701 /* TTWebView.m in Sources */,
 				63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */,
+				63BF78F12594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m in Sources */,
 				637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */,
 				63403E7924C963150024A362 /* mineHeaderTableView.m in Sources */,
 				63C4FA8D24EBC1C800CF9850 /* TTHorizontalPageViewController.m in Sources */,

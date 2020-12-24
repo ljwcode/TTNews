@@ -45,7 +45,9 @@
         if([self.videoDBViewModel IsExistsVideoCacheTable]){
             self.dataArray = [self.videoDBViewModel queryDBTableWithVideoContent];
         }else{
-            NSLog(@"数据表不存在");
+            NSLog(@"video数据表不存在");
+            [self.videoDBViewModel createDBFilePath:self.titleModel.category];
+            [self.videoDBViewModel createDBWithVideoCacheTable];
         }
     }
     return self;
@@ -60,10 +62,6 @@
         [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             [self.dataArray addObjectsFromArray:x];
             NSArray *array = x;
-            if(![self.videoDBViewModel IsExistsVideoCacheTable]){
-                [self.videoDBViewModel createDBFilePath:self.titleModel.category];
-                [self.videoDBViewModel createDBWithVideoCacheTable];
-            }
             for(int i = 0;i < array.count;i++){
                 [self.videoDBViewModel InsertVideoCacheWithDB:array];
             }
@@ -117,6 +115,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"number of rows %lu",(unsigned long)self.dataArray.count);
     return self.dataArray.count;
 }
 
@@ -129,7 +128,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentModel = self.videoPlayModel;
     [cell setDelegate:self withIndexPath:indexPath];
-    
+    NSLog(@"cell for rows %lu",(unsigned long)self.dataArray.count);
     return cell;
 }
 
@@ -277,20 +276,6 @@
             _playerView = nil;
         }
     }
-    
-    NSLog(@"contentY = %f",scrollView.contentOffset.y);
-    NSLog(@"contnetH = %f",scrollView.contentSize.height);
-
-//    @weakify(self);
-//    self.detailTableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
-//        @strongify(self);
-//        [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-//            [self.dataArray addObjectsFromArray:x];
-//            [self.detailTableView reloadData];
-//            [self.detailTableView.mj_footer endRefreshing];
-//        }];
-//    }];
-//    [self.detailTableView.mj_footer beginRefreshing];
 }
 
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{

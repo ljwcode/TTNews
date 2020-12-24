@@ -12,30 +12,23 @@
 
 @interface TTNavigationBar()<UITextFieldDelegate>
 
-@property (nonatomic, strong) UIImageView *leftView;
-
 @end
 
 @implementation TTNavigationBar
 
-- (instancetype)initWithFrame:(CGRect)frame placeholder:(NSString *)placeholder textFieldLeftView:(UIImageView *)leftView tintColor:(UIColor *)tintColor {
-    if (self = [super initWithFrame:frame]) {
+-(instancetype)initWithFrame:(CGRect)frame{
+    if(self = [super initWithFrame:frame]){
         self.frame = frame;
-        self.tintColor = tintColor; //光标颜色
-        self.barTintColor = [UIColor whiteColor];
-        self.placeholder = placeholder;
-        self.barStyle = UIBarStyleDefault;
-        self.leftView = leftView; // 用来代替左边的放大镜.
-        if (systemVersion >= 11.0) {
+        if(@available(iOS 11.0,*)){
             [[self.heightAnchor constraintEqualToConstant:44.0] setActive:YES];
-        } else {
-            [self setLeftPlaceholder];
+        }else{
+            [self LeftPlaceholder];
         }
     }
     return self;
 }
 
-- (void)setLeftPlaceholder {
+- (void)LeftPlaceholder {
     SEL centerSelector = NSSelectorFromString([NSString stringWithFormat:@"%@%@", @"setCenter", @"Placeholder:"]);
     if ([self respondsToSelector:centerSelector]) {
         BOOL centeredPlaceholder = NO;

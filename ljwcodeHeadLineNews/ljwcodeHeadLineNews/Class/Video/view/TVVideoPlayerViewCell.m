@@ -128,12 +128,15 @@
     [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:contentModel.detailModel.video_detail_info.detail_video_large_image.url]];
     [self.videoAuthHeadBtn setTitle:contentModel.detailModel.media_name forState:UIControlStateNormal];
     self.videoTitleLabel.text = contentModel.detailModel.title;
-   
+    
     NSString * urlStr = [contentModel.detailModel.media_info.avatar_url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     if(urlStr){
         [self.authHeadImgView sd_setImageWithURL:[NSURL URLWithString:urlStr] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            self.authHeadImgView.image = [image cropPictureWithRoundedCorner:self.authHeadImgView.image.size.width/2 size:self.authHeadImgView.frame.size];
-                
+            if(!image){
+                [self.authHeadImgView setImage:[UIImage imageNamed:@"recommend_user_see_more_icon"]];
+            }else{
+                self.authHeadImgView.image = [image cropPictureWithRoundedCorner:self.authHeadImgView.image.size.width/2 size:self.authHeadImgView.frame.size];
+            }
         }];
     }else{
         [self.authHeadImgView setImage:[UIImage imageNamed:@"recommend_user_see_more_icon"]];
