@@ -8,9 +8,23 @@
 
 #import <Foundation/Foundation.h>
 #import "videoContentModel.h"
+#import <Realm/Realm.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
+@interface TTVideoDetailArrayModel : RLMObject
+
+@property NSData *data;
+
+@end
+
 @interface videoDetailCacheDBViewModel : NSObject
+
+@property(nonatomic,strong)TTVideoDetailArrayModel *arrayModel;
+
+-(void)TT_saveVideoDataModel:(NSArray *)array;
+
+-(NSMutableArray *)TT_queryVideoDataModel;
 
 @end
 

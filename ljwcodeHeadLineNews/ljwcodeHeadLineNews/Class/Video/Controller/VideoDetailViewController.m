@@ -44,16 +44,27 @@
     [super viewDidLoad];
     
     @weakify(self);
-    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+    self.detailTableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
         @strongify(self);
-        [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-            [self.dataArray addObjectsFromArray:x];
-            [self.detailTableView reloadData];
-            [self.detailTableView.mj_header endRefreshing];
-        }];
-        
+        NSArray *array = [self.videoDBViewModel TT_queryVideoDataModel];
+        [self.dataArray addObjectsFromArray:array];
+        [self.detailTableView reloadData];
+        [self.detailTableView.mj_header endRefreshing];
     }];
     [self.detailTableView.mj_header beginRefreshing];
+//    @weakify(self);
+//    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+//        @strongify(self);
+//        [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
+//            [self.dataArray addObjectsFromArray:x];
+//            NSArray *array = x;
+//            [self.videoDBViewModel TT_saveVideoDataModel:array];
+//            [self.detailTableView reloadData];
+//            [self.detailTableView.mj_header endRefreshing];
+//        }];
+//
+//    }];
+//    [self.detailTableView.mj_header beginRefreshing];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
