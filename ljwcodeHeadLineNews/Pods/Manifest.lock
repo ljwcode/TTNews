@@ -31,8 +31,11 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MJExtension (3.2.2)
   - MJRefresh (3.5.0)
-  - PromisesObjC (1.2.11)
+  - PromisesObjC (1.2.12)
   - ReactiveObjC (3.1.1)
+  - Realm (10.5.0):
+    - Realm/Headers (= 10.5.0)
+  - Realm/Headers (10.5.0)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -53,6 +56,7 @@ DEPENDENCIES:
   - MJRefresh
   - PromisesObjC
   - ReactiveObjC
+  - Realm
   - SDWebImage (~> 4.0.0)
   - SDWebImage/WebP
   - WechatOpenSDK
@@ -71,6 +75,7 @@ SPEC REPOS:
     - MJRefresh
     - PromisesObjC
     - ReactiveObjC
+    - Realm
     - SDWebImage
     - WechatOpenSDK
     - YYCache
@@ -85,13 +90,14 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
-  PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
+  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  Realm: e1c22c3d83b229afb70ebc10e1771c91e9542d12
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 53116aaae54a1dd3dc0f07a6dbd0a9d877d82a2a
+PODFILE CHECKSUM: 3cba0511300f12616dce260a887671aba5ee287e
 
 COCOAPODS: 1.10.0

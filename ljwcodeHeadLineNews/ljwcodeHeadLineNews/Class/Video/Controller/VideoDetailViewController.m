@@ -40,19 +40,6 @@
 
 @implementation VideoDetailViewController
 
--(instancetype)init{
-    if(self = [super init]){
-        if([self.videoDBViewModel IsExistsVideoCacheTable]){
-            self.dataArray = [self.videoDBViewModel queryDBTableWithVideoContent];
-        }else{
-            NSLog(@"video数据表不存在");
-            [self.videoDBViewModel createDBFilePath:self.titleModel.category];
-            [self.videoDBViewModel createDBWithVideoCacheTable];
-        }
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -61,11 +48,6 @@
         @strongify(self);
         [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             [self.dataArray addObjectsFromArray:x];
-            NSArray *array = x;
-            for(int i = 0;i < array.count;i++){
-                [self.videoDBViewModel InsertVideoCacheWithDB:array];
-            }
-            
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
         }];

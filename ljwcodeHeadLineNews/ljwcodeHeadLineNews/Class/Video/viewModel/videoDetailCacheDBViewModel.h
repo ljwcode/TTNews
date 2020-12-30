@@ -7,21 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <FMDB/FMDB.h>
 #import "videoContentModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface videoDetailCacheDBViewModel : NSObject
-
--(void)createDBWithVideoCacheTable;
-
--(BOOL)IsExistsVideoCacheTable;
-
--(void)InsertVideoCacheWithDB:(NSArray *)dataArray;
-
--(NSMutableArray *)queryDBTableWithVideoContent;
-
--(void)createDBFilePath:(NSString *)category;
 
 @end
 
