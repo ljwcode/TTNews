@@ -40,13 +40,6 @@
 
 @implementation TTBaseViewController
 
--(instancetype)init{
-    if(self = [super init]){
-        
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createSearchBar];
@@ -56,6 +49,13 @@
         return self.searchVC.keywordArray = value;
     }];
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if([self.SearchCacheViewModel IsExistsKeywordCacheTable]){
+        [self.SearchCacheViewModel queryDBTableWithVideoContent];
+    }
 }
 
 -(FBLPromise *)asyncGetArray{

@@ -13,7 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface homeNewsDetailDBViewModel : NSObject
 
+-(void)TT_saveHomeNewsDetailModel:(NSArray *)array TT_DetailCategory:(NSString *)category;
 
+-(NSMutableArray *)TT_quertNewsDetailData:(NSString *)category;
 
 @end
 
