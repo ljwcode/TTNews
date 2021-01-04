@@ -22,6 +22,7 @@
 #import <FBLPromises/FBLPromise.h>
 #import "parseVideoRealURLViewModel.h"
 #import "TTPlayerView.h"
+#import "homeNewsDetailDBViewModel.h"
 
 @interface homeDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource>
 
@@ -50,18 +51,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    @weakify(self);
+//    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+//        @strongify(self);
+//        [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
+//            NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
+//            [self.datasArray addObjectsFromArray:datasArray];
+//            homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
+//            [dbViewModel TT_saveHomeNewsDetailModel:datasArray TT_DetailCategory:self.titleModel.category];
+//
+//            [self.detailTableView reloadData];
+//            [self.detailTableView.mj_header endRefreshing];
+//        }];
+//    }];
+//    [self.detailTableView.mj_header beginRefreshing];
+    // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     @weakify(self);
     self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         @strongify(self);
-        [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-            NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
-            [self.datasArray addObjectsFromArray:datasArray];
-            [self.detailTableView reloadData];
-            [self.detailTableView.mj_header endRefreshing];
-        }];
+        homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
+        NSArray *dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
+        if(dataArray.count == 0){
+            return;
+        }
+        [self.datasArray addObjectsFromArray:dataArray];
+        [self.detailTableView reloadData];
+        [self.detailTableView.mj_header endRefreshing];
     }];
     [self.detailTableView.mj_header beginRefreshing];
-    // Do any additional setup after loading the view.
 }
 
 -(NSArray *)modelArrayWithCategory:(NSString *)category fromModel:(id)model{
@@ -255,6 +276,26 @@
         [self.navigationController pushViewController:webVC animated:YES];
     }
     
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == [self.datasArray count] - 1) {
+        [self performSelector:@selector(updateData) withObject:nil afterDelay:1.0f];
+    }
+}
+
+-(void)updateData{
+    @weakify(self);
+    self.detailTableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        @strongify(self);
+        [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
+            NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
+            [self.datasArray addObjectsFromArray:datasArray];
+            [self.detailTableView reloadData];
+            [self.detailTableView.mj_header endRefreshing];
+        }];
+    }];
+    [self.detailTableView.mj_header beginRefreshing];
 }
 
 #pragma mark -- private method

@@ -36,6 +36,8 @@
 
 @property(nonatomic,strong)UIImageView *leftView;
 
+@property(nonatomic,strong)NSArray *keywordModelArray;
+
 @end
 
 @implementation TTBaseViewController
@@ -43,27 +45,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createSearchBar];
-    [[FBLPromise do:^id _Nullable{
-        return [self asyncGetArray];
-    }]then:^id _Nullable(id  _Nullable value) {
-        return self.searchVC.keywordArray = value;
-    }];
     // Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if([self.SearchCacheViewModel IsExistsKeywordCacheTable]){
-        [self.SearchCacheViewModel queryDBTableWithVideoContent];
+      self.keywordModelArray = [self.SearchCacheViewModel queryDBTableWithVideoContent];
     }
-}
-
--(FBLPromise *)asyncGetArray{
-    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
-        [[self.keywordViewModel.searchWordCommand execute:@10]subscribeNext:^(id  _Nullable x) {
-            fulfill(x);
-        }];
-    }];
 }
 
 -(void)createSearchBar{
@@ -217,6 +206,13 @@
         _SearchCacheViewModel = [[TTDBCacheSearchKeywordViewModel alloc]init];
     }
     return _SearchCacheViewModel;
+}
+
+-(NSArray *)keywordModelArray{
+    if(!_keywordModelArray){
+        _keywordModelArray = [[NSArray alloc]init];
+    }
+    return _keywordModelArray;
 }
 
 -(TTSearchViewController *)searchVC{

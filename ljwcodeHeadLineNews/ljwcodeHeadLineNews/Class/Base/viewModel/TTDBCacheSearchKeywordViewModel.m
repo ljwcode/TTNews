@@ -56,7 +56,7 @@
     return NO;
 }
 
--(void)InsertSearchKeywordWithDB{
+-(void)InsertSearchKeywordWithDB:(NSArray *)dataArray{
     if(![self.fmDataBase open]){
         NSLog(@"数据库打开失败");
         return;
@@ -64,20 +64,24 @@
     [self.fmDataBase beginTransaction];
     BOOL isRollBack = NO;
     @try {
-        TTSearchKeywordModel *model = [[TTSearchKeywordModel alloc]init];
-        NSDictionary *dataDic = [model mj_keyValues];
-        NSError *Error = nil;
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dataDic requiringSecureCoding:YES error:&Error];
-        if(!data && Error){
-            NSLog(@"Error = %@",Error);
+        for(TTSearchKeywordModel *model in dataArray){
+            NSDictionary *dataDic = [model mj_keyValues];
+            NSError *Error = nil;
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dataDic requiringSecureCoding:YES error:&Error];
+            if(!data && Error){
+                NSLog(@"Error = %@",Error);
+            }
+            NSString *sql = @"INSERT INTO TTSearchKeyword(keyword) VALUES (?)";
+            BOOL executeInsertDB = [self.fmDataBase executeUpdate:sql,data];
+            if(executeInsertDB){
+                NSLog(@"keyword数据插入成功");
+                NSString *sql = @"CREATE TRIGGER IF NOT EXISTS Trl AFTER INSERT ON TTSearchKeyword when (select count(*) from TTSearchKeyword)>1 BEGIN delete from TTSearchKeyword where id in (select id from TTSearchKeyword order by id limit 0,1);END;";
+                BOOL triggerUpdate = [self.fmDataBase executeUpdate:sql];
+            }else{
+                NSLog(@"keyword数据插入失败");
+            }
         }
-        NSString *sql = @"INSERT INTO TTSearchKeyword(keyword) VALUES (?)";
-        BOOL executeInsertDB = [self.fmDataBase executeUpdate:sql,data];
-        if(executeInsertDB){
-            NSLog(@"keyword数据插入成功");
-        }else{
-            NSLog(@"keyword数据插入失败");
-        }
+        
     } @catch (NSException *exception) {
         isRollBack = YES;
         [self.fmDataBase rollback];

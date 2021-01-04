@@ -10,6 +10,7 @@
 #import "TTTabBarController.h"
 #import <WXApi.h>
 #import "otherLoginTypeView.h"
+#import <realm/Realm.h>
 
 @interface AppDelegate ()<WXApiDelegate,RespToWXDelegate>
 {
@@ -49,7 +50,14 @@
       NSDate *installDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:urlToDocumentsFolder.path error:&error] objectForKey:NSFileCreationDate];
 
       NSLog(@"This app was installed by the user on %@ %f", installDate, [installDate timeIntervalSince1970]);
-	
+    
+    RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
+    config.schemaVersion = 1;
+    config.migrationBlock = ^(RLMMigration *migration, uint64_t oldSchemaVersion) {
+        
+    };
+    [RLMRealmConfiguration setDefaultConfiguration:config];
+    
 	return YES;
 }
 #pragma mark -

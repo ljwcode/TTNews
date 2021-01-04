@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(BOOL)IsExistsKeywordCacheTable;
 
--(void)InsertSearchKeywordWithDB;
+-(void)InsertSearchKeywordWithDB:(NSArray *)dataArray;
 
 -(NSMutableArray *)queryDBTableWithVideoContent;
 

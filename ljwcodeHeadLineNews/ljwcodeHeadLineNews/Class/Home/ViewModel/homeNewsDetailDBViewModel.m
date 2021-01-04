@@ -22,10 +22,23 @@
 @implementation homeNewsDetailDBViewModel
 
 -(void)TT_saveHomeNewsDetailModel:(NSArray *)array TT_DetailCategory:(NSString *)category{
+    
+    NSString *dbPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString *dbName = [NSString stringWithFormat:@"TT_NewsDetail_%@.realm",category];
+    NSString *filePath = [dbPath stringByAppendingPathComponent:dbName];
+    RLMRealmConfiguration *dbConfig = [RLMRealmConfiguration defaultConfiguration];
+    dbConfig.fileURL = [NSURL URLWithString:filePath];
+    dbConfig.readOnly = NO;
+    int currentVersion = 1.0;
+    dbConfig.schemaVersion = currentVersion;
+    [RLMRealmConfiguration setDefaultConfiguration:dbConfig];
+    
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        RLMRealm *realm = [RLMRealm defaultRealm];
+        RLMRealm *realm = [RLMRealm realmWithURL:[NSURL URLWithString:filePath]];
         [realm beginWriteTransaction];
-        
+        if(array.count == 0){
+            return;
+        }
         if([category isEqualToString:@"essay_joke"]){
             for(homeJokeModel *jokeModel in array){
                 NSDictionary *dic = [jokeModel mj_keyValues];
@@ -45,7 +58,7 @@
                 }
             }
         }else{
-            for(homeNewsModel *newsModel in array){
+            for(homeNewsSummaryModel *newsModel in array){
                 NSDictionary *dic = [newsModel mj_keyValues];
                 NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dic requiringSecureCoding:YES error:nil];
                 if(data){
@@ -59,8 +72,16 @@
 }
 
 -(NSMutableArray *)TT_quertNewsDetailData:(NSString *)category{
-    RLMResults *result = [homeNewsDetailDBCacheModel allObjects];
+    NSString *dbPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString *dbName = [NSString stringWithFormat:@"TT_NewsDetail_%@.realm",category];
+    NSString *filePath = [dbPath stringByAppendingPathComponent:dbName];
+    RLMRealm *realm = [RLMRealm realmWithURL:[NSURL URLWithString:filePath]];
+    
+    RLMResults *result = [homeNewsDetailDBCacheModel allObjectsInRealm:realm];
     NSMutableArray *dataArray = [[NSMutableArray alloc]init];
+    if(result.count == 0){
+        return dataArray;
+    }
     for(homeNewsDetailDBCacheModel *model in result){
         NSMutableDictionary *dic = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:model.data error:nil];
         if([category isEqualToString:@"essay_joke"]){
@@ -70,14 +91,11 @@
             videoContentModel *videoModel = [[[videoContentModel alloc]init]mj_setKeyValues:dic];
             [dataArray addObject:videoModel];
         }else{
-            homeNewsModel *newsModel = [[[homeNewsModel alloc]init]mj_setKeyValues:dic];
+            homeNewsSummaryModel *newsModel = [[[homeNewsSummaryModel alloc]init]mj_setKeyValues:dic];
             [dataArray addObject:newsModel];
         }
     }
     return dataArray;
 }
-
-
-
 
 @end
