@@ -59,6 +59,8 @@
 		63422C5E24A88F020091FEE1 /* channelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5D24A88F020091FEE1 /* channelButton.m */; };
 		634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */; };
 		634AF04A254C20580013EE56 /* articlev60.html in Resources */ = {isa = PBXBuildFile; fileRef = 634AF049254C20580013EE56 /* articlev60.html */; };
+		634DA02D25A45C4200236458 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 634DA02C25A45C4200236458 /* Settings.bundle */; };
+		634DA04325A48C0800236458 /* TTSystemConfigureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 634DA04225A48C0800236458 /* TTSystemConfigureHelper.m */; };
 		634ECB092576416200DBCC15 /* TTArticleSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 634ECB082576416200DBCC15 /* TTArticleSearchCell.m */; };
 		634ECB0D25764A6500DBCC15 /* TTArticleSearchInboxFourWordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 634ECB0C25764A6500DBCC15 /* TTArticleSearchInboxFourWordsCell.m */; };
 		634ECB112576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 634ECB102576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.m */; };
@@ -108,7 +110,6 @@
 		63BE352524DAD63A001ADFDD /* newsDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE352424DAD63A001ADFDD /* newsDetailFooterView.m */; };
 		63BE5E792546B90D00381E38 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE5E782546B90D00381E38 /* SettingViewController.m */; };
 		63BF78F12594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BF78F02594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m */; };
-		63BF78F525947A64007C8C98 /* TTSearchKeywordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BF78F425947A64007C8C98 /* TTSearchKeywordModel.m */; };
 		63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */; };
 		63C4FA8D24EBC1C800CF9850 /* TTHorizontalPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4FA8C24EBC1C800CF9850 /* TTHorizontalPageViewController.m */; };
 		63C4FA9024EBC20400CF9850 /* TTPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4FA8F24EBC20400CF9850 /* TTPageViewController.m */; };
@@ -127,7 +128,6 @@
 		63DEE600254AC12200D356D4 /* TTCheckNetWorkStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DEE5FF254AC12200D356D4 /* TTCheckNetWorkStatus.m */; };
 		63E6CB5E24C02CE800E0126C /* TTSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E6CB5D24C02CE800E0126C /* TTSearchViewController.m */; };
 		63E7177324F9F430003A690E /* TTSearchSuggestionRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */; };
-		63E7177624F9F4A0003A690E /* TTSearchSuggestionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E7177524F9F4A0003A690E /* TTSearchSuggestionViewModel.m */; };
 		63E8079924FD218A00C58406 /* showAllMsgChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8079824FD218A00C58406 /* showAllMsgChannelView.m */; };
 		63E8C373256796E100F69701 /* TTWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C372256796E100F69701 /* TTWebView.m */; };
 		63E8C3782567B29600F69701 /* TTHomeMoreShareVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C3772567B29600F69701 /* TTHomeMoreShareVIew.m */; };
@@ -251,6 +251,9 @@
 		634A581324BD9B7D00CDF423 /* baseBadgeLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseBadgeLabel.h; sourceTree = "<group>"; };
 		634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseBadgeLabel.m; sourceTree = "<group>"; };
 		634AF049254C20580013EE56 /* articlev60.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = articlev60.html; sourceTree = "<group>"; };
+		634DA02C25A45C4200236458 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		634DA04125A48C0800236458 /* TTSystemConfigureHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTSystemConfigureHelper.h; sourceTree = "<group>"; };
+		634DA04225A48C0800236458 /* TTSystemConfigureHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSystemConfigureHelper.m; sourceTree = "<group>"; };
 		634ECB072576416200DBCC15 /* TTArticleSearchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTArticleSearchCell.h; sourceTree = "<group>"; };
 		634ECB082576416200DBCC15 /* TTArticleSearchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTArticleSearchCell.m; sourceTree = "<group>"; };
 		634ECB0B25764A6500DBCC15 /* TTArticleSearchInboxFourWordsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTArticleSearchInboxFourWordsCell.h; sourceTree = "<group>"; };
@@ -344,8 +347,6 @@
 		63BE5E782546B90D00381E38 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		63BF78EF2594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTDBCacheSearchKeywordViewModel.h; sourceTree = "<group>"; };
 		63BF78F02594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTDBCacheSearchKeywordViewModel.m; sourceTree = "<group>"; };
-		63BF78F325947A64007C8C98 /* TTSearchKeywordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTSearchKeywordModel.h; sourceTree = "<group>"; };
-		63BF78F425947A64007C8C98 /* TTSearchKeywordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSearchKeywordModel.m; sourceTree = "<group>"; };
 		63C4729F24B0566D0030C84B /* NetworkSpeedMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkSpeedMonitor.h; sourceTree = "<group>"; };
 		63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkSpeedMonitor.m; sourceTree = "<group>"; };
 		63C4FA8B24EBC1C800CF9850 /* TTHorizontalPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTHorizontalPageViewController.h; sourceTree = "<group>"; };
@@ -382,8 +383,6 @@
 		63E6CB5D24C02CE800E0126C /* TTSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSearchViewController.m; sourceTree = "<group>"; };
 		63E7177124F9F430003A690E /* TTSearchSuggestionRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TTSearchSuggestionRequestModel.h; path = ljwcodeHeadLineNews/Class/Base/model/TTSearchSuggestionRequestModel.h; sourceTree = SOURCE_ROOT; };
 		63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TTSearchSuggestionRequestModel.m; path = ljwcodeHeadLineNews/Class/Base/model/TTSearchSuggestionRequestModel.m; sourceTree = SOURCE_ROOT; };
-		63E7177424F9F4A0003A690E /* TTSearchSuggestionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTSearchSuggestionViewModel.h; sourceTree = "<group>"; };
-		63E7177524F9F4A0003A690E /* TTSearchSuggestionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSearchSuggestionViewModel.m; sourceTree = "<group>"; };
 		63E8079724FD218A00C58406 /* showAllMsgChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showAllMsgChannelView.h; sourceTree = "<group>"; };
 		63E8079824FD218A00C58406 /* showAllMsgChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showAllMsgChannelView.m; sourceTree = "<group>"; };
 		63E8C371256796E100F69701 /* TTWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTWebView.h; sourceTree = "<group>"; };
@@ -511,10 +510,10 @@
 		63265C2D256F5DA200AACBC6 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				634ECB0F2576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.h */,
+				634ECB102576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.m */,
 				63E7177124F9F430003A690E /* TTSearchSuggestionRequestModel.h */,
 				63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */,
-				63BF78F325947A64007C8C98 /* TTSearchKeywordModel.h */,
-				63BF78F425947A64007C8C98 /* TTSearchKeywordModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -572,8 +571,6 @@
 		633368DB25761A4D00F47A91 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				634ECB0F2576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.h */,
-				634ECB102576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -581,8 +578,6 @@
 		633368DC25761A5600F47A91 /* viewModel */ = {
 			isa = PBXGroup;
 			children = (
-				638A1A5A25778BA00002F50B /* TTArticleSearchWordViewModel.h */,
-				638A1A5B25778BA00002F50B /* TTArticleSearchWordViewModel.m */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -671,6 +666,15 @@
 				634AF049254C20580013EE56 /* articlev60.html */,
 			);
 			path = ios_asset;
+			sourceTree = "<group>";
+		};
+		634DA02B25A45C1700236458 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				634DA04125A48C0800236458 /* TTSystemConfigureHelper.h */,
+				634DA04225A48C0800236458 /* TTSystemConfigureHelper.m */,
+			);
+			path = viewModel;
 			sourceTree = "<group>";
 		};
 		6352491E2544294E009AECF2 /* QRCodeTool */ = {
@@ -766,8 +770,8 @@
 			children = (
 				637C5C0824A35C0800D7C0E0 /* TTBaseViewModel.h */,
 				637C5C0924A35C0800D7C0E0 /* TTBaseViewModel.m */,
-				63E7177424F9F4A0003A690E /* TTSearchSuggestionViewModel.h */,
-				63E7177524F9F4A0003A690E /* TTSearchSuggestionViewModel.m */,
+				638A1A5A25778BA00002F50B /* TTArticleSearchWordViewModel.h */,
+				638A1A5B25778BA00002F50B /* TTArticleSearchWordViewModel.m */,
 				63BF78EF2594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.h */,
 				63BF78F02594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m */,
 			);
@@ -810,13 +814,6 @@
 			sourceTree = "<group>";
 		};
 		6390EEC42589B3E80081093E /* viewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = viewModel;
-			sourceTree = "<group>";
-		};
-		6390EEC52589B3FE0081093E /* viewModel */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -1105,10 +1102,11 @@
 		8209790A1BD3AB0600CF9D0C /* mine */ = {
 			isa = PBXGroup;
 			children = (
-				6390EEC52589B3FE0081093E /* viewModel */,
+				634DA02B25A45C1700236458 /* viewModel */,
 				6355CFF224BF0F86002D3815 /* Controller */,
 				6355CFF024BF0F77002D3815 /* model */,
 				6355CFEF24BF0F70002D3815 /* view */,
+				634DA02C25A45C4200236458 /* Settings.bundle */,
 			);
 			path = mine;
 			sourceTree = "<group>";
@@ -1238,6 +1236,7 @@
 				633368E225761AC900F47A91 /* TTArticleSearchTagCell.xib in Resources */,
 				949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */,
 				6390EEBC2589B3670081093E /* LICENSE in Resources */,
+				634DA02D25A45C4200236458 /* Settings.bundle in Resources */,
 				637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */,
 				63F30EF62564CAEB000CE908 /* LaunchScreen.storyboard in Resources */,
 				63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */,
@@ -1315,7 +1314,6 @@
 				63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */,
 				637BAF2224F3A07F00711003 /* ScreenHallVideoDetailViewController.m in Sources */,
 				8209791F1BD3AFDB00CF9D0C /* VideoViewController.m in Sources */,
-				63E7177624F9F4A0003A690E /* TTSearchSuggestionViewModel.m in Sources */,
 				634ECB092576416200DBCC15 /* TTArticleSearchCell.m in Sources */,
 				6328F611249DEA8C00C767A8 /* TTEmitterHelper.m in Sources */,
 				63F1F8ED24AF3AB600D687ED /* videoContentRequestModel.m in Sources */,
@@ -1323,7 +1321,6 @@
 				820979281BD3B28700CF9D0C /* TTTabBarController.m in Sources */,
 				63422C5E24A88F020091FEE1 /* channelButton.m in Sources */,
 				63CBA20E258B58680020511C /* homeNewsDetailDBViewModel.m in Sources */,
-				63BF78F525947A64007C8C98 /* TTSearchKeywordModel.m in Sources */,
 				631BC91225481950001B82AB /* TTMethodSWizzle.m in Sources */,
 				63F1F8E724AF347600D687ED /* videoTitleViewModel.m in Sources */,
 				637C2D2C24A9CF630009274C /* homeTitleViewModel.m in Sources */,
@@ -1382,6 +1379,7 @@
 				63BE32FD2547F3D000607EBA /* PrivacyViewController.m in Sources */,
 				63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */,
 				631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */,
+				634DA04325A48C0800236458 /* TTSystemConfigureHelper.m in Sources */,
 				63E8C373256796E100F69701 /* TTWebView.m in Sources */,
 				63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */,
 				63BF78F12594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m in Sources */,

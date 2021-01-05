@@ -9,20 +9,16 @@
 #import "TTBaseViewController.h"
 #import "TTSearchViewController.h"
 #import "TTNavigationBar.h"
-#import "TTSearchSuggestionViewModel.h"
 #import "TTReportArticleView.h"
 #import <FBLPromises/FBLPromise.h>
 #import <FBLPromises/FBLPromises.h>
 #import "TTArticleSearchInboxFourWordsModel.h"
 #import "TTArticleSearchWordViewModel.h"
 #import "TTDBCacheSearchKeywordViewModel.h"
-#import "TTSearchKeywordModel.h"
 
-@interface TTBaseViewController ()<UIGestureRecognizerDelegate,UISearchBarDelegate>
+@interface TTBaseViewController ()<UIGestureRecognizerDelegate,UISearchBarDelegate,TTReportArticleViewDelegate>
 
 @property(nonatomic,strong)TTNavigationBar *naviBar;
-
-@property(nonatomic,strong)TTSearchSuggestionViewModel *viewModel;
 
 @property(nonatomic,strong)TTReportArticleView *ReportArticleView;
 
@@ -36,8 +32,6 @@
 
 @property(nonatomic,strong)UIImageView *leftView;
 
-@property(nonatomic,strong)NSArray *keywordModelArray;
-
 @end
 
 @implementation TTBaseViewController
@@ -50,9 +44,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if([self.SearchCacheViewModel IsExistsKeywordCacheTable]){
-      self.keywordModelArray = [self.SearchCacheViewModel queryDBTableWithVideoContent];
-    }
 }
 
 -(void)createSearchBar{
@@ -87,10 +78,26 @@
 
 -(FBLPromise *)getPlaceholderText{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
-        [[self.viewModel.SearchSuggestionCommand execute:@"title"]subscribeNext:^(id  _Nullable x) {
-            TTSearchKeywordModel *model = x;
-            NSArray *array = [model.homepage_search_suggest componentsSeparatedByString:@"|"];
-            NSString *keyword = [NSString stringWithFormat:@"%@ | %@",array[0],array[1]];
+//        NSArray *dataArray = [self.SearchCacheViewModel queryDBTableWithVideoContent];
+//        NSMutableArray *keywordArray = [[NSMutableArray alloc]init];
+//        for(TTArticleSearchInboxFourWordsModel *model in dataArray){
+//            [keywordArray addObject:[[model mj_keyValues]objectForKey:@"word"]];
+//        }
+//        NSString *keyword = [NSString stringWithFormat:@"%@ | %@",keywordArray[0],keywordArray[1]];
+//        fulfill(keyword);
+        [[self.keywordViewModel.searchWordCommand execute:@"title"]subscribeNext:^(id  _Nullable x) {
+            NSArray *dataArray = x;
+            NSMutableArray *keywordArray = [[NSMutableArray alloc]init];
+            for(TTArticleSearchInboxFourWordsModel *model in dataArray){
+                [keywordArray addObject:[[model mj_keyValues] objectForKey:@"word"]];
+            }
+            if([self.SearchCacheViewModel IsExistsKeywordCacheTable]){
+                [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
+            }else{
+                [self.SearchCacheViewModel createDBWithSearchKeywordTable];
+                [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
+            }
+            NSString *keyword = [NSString stringWithFormat:@"%@ | %@",keywordArray[0],keywordArray[1]];
             fulfill(keyword);
         }];
     }];
@@ -150,6 +157,13 @@
     [self.view endEditing:YES];
 }
 
+#pragma mark ---- TTReportArticleViewDelegate
+
+-(void)TT_deallocReportArticleView{
+    [self.ReportArticleView removeFromSuperview];
+    self.ReportArticleView = nil;
+}
+
 #pragma mark ---- 响应事件
 
 -(void)reportHandle:(UIButton *)sender{
@@ -182,16 +196,10 @@
     if(!_ReportArticleView){
         _ReportArticleView = [[TTReportArticleView alloc]initWithFrame:CGRectMake(0, kScreenHeight * 0.5, kScreenWidth, kScreenHeight * 0.5)];
         _ReportArticleView.backgroundColor = [UIColor whiteColor];
+        _ReportArticleView.delegate = self;
         _ReportArticleView.layer.cornerRadius = 5.f;
     }
     return _ReportArticleView;
-}
-
--(TTSearchSuggestionViewModel *)viewModel{
-    if(!_viewModel){
-        _viewModel = [[TTSearchSuggestionViewModel alloc]init];
-    }
-    return _viewModel;
 }
 
 -(TTArticleSearchWordViewModel *)keywordViewModel{
@@ -207,14 +215,6 @@
     }
     return _SearchCacheViewModel;
 }
-
--(NSArray *)keywordModelArray{
-    if(!_keywordModelArray){
-        _keywordModelArray = [[NSArray alloc]init];
-    }
-    return _keywordModelArray;
-}
-
 -(TTSearchViewController *)searchVC{
     if(!_searchVC){
         NSArray *hotSeaches = @[@"Swift", @"Python", @"Objective-C", @"Java", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];

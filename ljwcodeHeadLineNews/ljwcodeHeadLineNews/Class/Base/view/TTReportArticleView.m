@@ -23,8 +23,6 @@
 
 @property(nonatomic,strong)NSArray *writeDescriptionArray;
 
-@property(nonatomic,strong)UIView *tableFooterView;
-
 @end
 
 @implementation TTReportArticleView
@@ -75,42 +73,103 @@
 
 #pragma mark ----- UITableViewDatasource && UITableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    if(section == 0 || section == 2){
+        return 1;
+    }else{
+        return 2;
+    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 3;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if(!cell){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.textLabel.text = self.writeTitleArray[indexPath.row];
-        UIButton *writeHotBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [writeHotBtn setFrame:CGRectMake(0, 0, CGRectGetWidth(cell.frame) * 0.3, CGRectGetHeight(cell.frame) * 0.5)];
-        [writeHotBtn setTitle:self.writeDescriptionArray[indexPath.row] forState:UIControlStateNormal];
-        [writeHotBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [writeHotBtn setImage:[UIImage imageNamed:@"arrow_right_setup"] forState:UIControlStateNormal];
-        writeHotBtn.titleLabel.font = [UIFont systemFontOfSize:13.f];
-        writeHotBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-        writeHotBtn.imageEdgeInsets = UIEdgeInsetsMake(0, writeHotBtn.titleLabel.intrinsicContentSize.width, 0, -writeHotBtn.titleLabel.intrinsicContentSize.width);
-        writeHotBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -writeHotBtn.imageView.intrinsicContentSize.width, 0, writeHotBtn.imageView.intrinsicContentSize.width);
-        cell.accessoryView = writeHotBtn;
-        
-        UIView *lineView = [[UIView alloc]init];
-        lineView.backgroundColor = [UIColor grayColor];
-        [cell addSubview:lineView];
-        
-        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(hSpace);
-            make.right.mas_equalTo(-hSpace);
-            make.bottom.mas_equalTo(cell.mas_bottom).offset(0);
-            make.height.mas_equalTo(1);
-        }];
+    UITableViewCell *resultCell = nil;
+    if(indexPath.section == 0){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if(!cell){
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            [cell.contentView addSubview:self.tableHeaderView];
+        }
+        resultCell = cell;
+    }else if(indexPath.section == 1){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if(!cell){
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            cell.textLabel.text = self.writeTitleArray[indexPath.row];
+            UIButton *writeHotBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [writeHotBtn setFrame:CGRectMake(0, 0, CGRectGetWidth(cell.frame) * 0.3, CGRectGetHeight(cell.frame) * 0.5)];
+            [writeHotBtn setTitle:self.writeDescriptionArray[indexPath.row] forState:UIControlStateNormal];
+            [writeHotBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [writeHotBtn setImage:[UIImage imageNamed:@"arrow_right_setup"] forState:UIControlStateNormal];
+            writeHotBtn.titleLabel.font = [UIFont systemFontOfSize:13.f];
+            writeHotBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+            writeHotBtn.imageEdgeInsets = UIEdgeInsetsMake(0, writeHotBtn.titleLabel.intrinsicContentSize.width, 0, -writeHotBtn.titleLabel.intrinsicContentSize.width);
+            writeHotBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -writeHotBtn.imageView.intrinsicContentSize.width, 0, writeHotBtn.imageView.intrinsicContentSize.width);
+            cell.accessoryView = writeHotBtn;
+            
+            UIView *lineView = [[UIView alloc]init];
+            lineView.backgroundColor = [UIColor grayColor];
+            lineView.alpha = 0.1;
+            [cell addSubview:lineView];
+            
+            [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(hSpace);
+                make.right.mas_equalTo(-hSpace);
+                make.bottom.mas_equalTo(cell.mas_bottom).offset(0);
+                make.height.mas_equalTo(1);
+            }];
+        }
+        resultCell = cell;
+    }else{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if(!cell){
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            UIButton *closeBtn = [[UIButton alloc]init];
+            [closeBtn setImage:[UIImage imageNamed:@"close_channel"] forState:UIControlStateNormal];
+            [closeBtn addTarget:self action:@selector(closeHandle:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:closeBtn];
+            
+            [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.centerY.mas_equalTo(cell.contentView);
+                make.width.height.mas_equalTo(20);
+            }];
+        }
+        resultCell = cell;
     }
-    return cell;
+    return resultCell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if(section == 0 || section == 2){
+        return 0.01;
+    }else{
+        return 10;
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return [[UIView alloc]init];
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc]init];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0){
+        return kScreenHeight * 0.2;
+    }else if(indexPath.section == 2){
+        return kScreenHeight * 0.1 - 10;
+    }else{
+        return kScreenHeight * 0.1;
+    }
 }
 
 #pragma mark ---- 响应事件
@@ -121,7 +180,9 @@
 }
 
 -(void)closeHandle:(UIButton *)sender{
-    [self removeFromSuperview];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_deallocReportArticleView)]){
+        [self.delegate TT_deallocReportArticleView];
+    }
 }
 
 #pragma mark ---- lazy load
@@ -142,12 +203,11 @@
 
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:self.bounds style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.bounces = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.tableHeaderView = self.tableHeaderView;
-        _tableView.tableFooterView = self.tableFooterView;
     }
     return _tableView;
 }
@@ -171,18 +231,6 @@
         _writeDescriptionArray = [NSArray arrayWithObjects:@"平台热点，立即参与",@"参与活动，赢取奖励", nil];
     }
     return _writeDescriptionArray;
-}
-
--(UIView *)tableFooterView{
-    if(!_tableFooterView){
-        _tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.2)];
-        UIButton *closeBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
-        closeBtn.center = _tableFooterView.center;
-        [closeBtn setImage:[UIImage imageNamed:@"close_channel"] forState:UIControlStateNormal];
-        [closeBtn addTarget:self action:@selector(closeHandle:) forControlEvents:UIControlEventTouchUpInside];
-        [_tableFooterView addSubview:closeBtn];
-    }
-    return _tableFooterView;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -20,8 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(NSMutableArray *)queryDBTableWithVideoContent;
 
--(void)createDBFilePath;
-
 @end
 
 NS_ASSUME_NONNULL_END

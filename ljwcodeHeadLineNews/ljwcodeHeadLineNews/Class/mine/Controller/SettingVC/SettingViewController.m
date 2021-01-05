@@ -19,8 +19,6 @@
 
 @property(nonatomic,strong)UIView *footerView;
 
-@property(nonatomic,strong)UISwitch *switchOnNight;
-
 @property(nonatomic,strong)NSArray *fontSizeArray;
 
 @end
@@ -99,9 +97,10 @@
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
                 if(indexPath.row == 0){
                     cell.textLabel.text = @"夜间模式";
-                    self.switchOnNight = [[UISwitch alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.1, cell.frame.size.height/2)];
-                    self.switchOnNight.on = false;
-                    cell.accessoryView = self.switchOnNight;
+                    UISwitch *switchOnNight = [[UISwitch alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.1, cell.frame.size.height/2)];
+                    [switchOnNight setRestorationIdentifier:@"TT_NightSwitchID"];
+                    switchOnNight.on = NO;
+                    cell.accessoryView = switchOnNight;
                 }else if(indexPath.row == 1){
                     cell.textLabel.text = @"字体大小";
                     UIButton *chooseFontSizeBtn = [UIButton buttonWithType:UIButtonTypeCustom];

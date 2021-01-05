@@ -57,7 +57,7 @@
         
     };
     [RLMRealmConfiguration setDefaultConfiguration:config];
-    
+    [[TTSystemConfigureHelper shareInstance]TT_ConfigurePreference];
 	return YES;
 }
 #pragma mark -
@@ -73,6 +73,7 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    [[TTSystemConfigureHelper shareInstance]TT_ConfigurePreference];
 	// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 

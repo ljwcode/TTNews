@@ -51,38 +51,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    @weakify(self);
-//    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-//        @strongify(self);
-//        [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-//            NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
-//            [self.datasArray addObjectsFromArray:datasArray];
-//            homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
-//            [dbViewModel TT_saveHomeNewsDetailModel:datasArray TT_DetailCategory:self.titleModel.category];
-//
-//            [self.detailTableView reloadData];
-//            [self.detailTableView.mj_header endRefreshing];
-//        }];
-//    }];
-//    [self.detailTableView.mj_header beginRefreshing];
+    @weakify(self);
+    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        @strongify(self);
+        [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
+            NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
+            [self.datasArray addObjectsFromArray:datasArray];
+            homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
+            [dbViewModel TT_saveHomeNewsDetailModel:datasArray TT_DetailCategory:self.titleModel.category];
+            
+            [self.detailTableView reloadData];
+            [self.detailTableView.mj_header endRefreshing];
+        }];
+    }];
+    [self.detailTableView.mj_header beginRefreshing];
     // Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    @weakify(self);
-    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        @strongify(self);
-        homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
-        NSArray *dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
-        if(dataArray.count == 0){
-            return;
-        }
-        [self.datasArray addObjectsFromArray:dataArray];
-        [self.detailTableView reloadData];
-        [self.detailTableView.mj_header endRefreshing];
-    }];
-    [self.detailTableView.mj_header beginRefreshing];
+//    @weakify(self);
+//    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+//        @strongify(self);
+//        homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
+//        NSArray *dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
+//        if(dataArray.count == 0){
+//            return;
+//        }
+//        [self.datasArray addObjectsFromArray:dataArray];
+//        [self.detailTableView reloadData];
+//        [self.detailTableView.mj_header endRefreshing];
+//    }];
+//    [self.detailTableView.mj_header beginRefreshing];
 }
 
 -(NSArray *)modelArrayWithCategory:(NSString *)category fromModel:(id)model{

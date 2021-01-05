@@ -9,7 +9,7 @@
 #import "TTDBCacheSearchKeywordViewModel.h"
 #import <FMDB/FMDB.h>
 #import <MJExtension/MJExtension.h>
-#import "TTSearchKeywordModel.h"
+#import "TTArticleSearchInboxFourWordsModel.h"
 
 @interface TTDBCacheSearchKeywordViewModel()
 
@@ -18,13 +18,6 @@
 @end
 
 @implementation TTDBCacheSearchKeywordViewModel
-
--(instancetype)init{
-    if(self = [super init]){
-        [self.fmDataBase open];
-    }
-    return self;
-}
 
 -(void)createDBWithSearchKeywordTable{
     if(![self.fmDataBase open]){
@@ -64,7 +57,7 @@
     [self.fmDataBase beginTransaction];
     BOOL isRollBack = NO;
     @try {
-        for(TTSearchKeywordModel *model in dataArray){
+        for(TTArticleSearchInboxFourWordsModel *model in dataArray){
             NSDictionary *dataDic = [model mj_keyValues];
             NSError *Error = nil;
             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dataDic requiringSecureCoding:YES error:&Error];
@@ -75,7 +68,7 @@
             BOOL executeInsertDB = [self.fmDataBase executeUpdate:sql,data];
             if(executeInsertDB){
                 NSLog(@"keyword数据插入成功");
-                NSString *sql = @"CREATE TRIGGER IF NOT EXISTS Trl AFTER INSERT ON TTSearchKeyword when (select count(*) from TTSearchKeyword)>1 BEGIN delete from TTSearchKeyword where id in (select id from TTSearchKeyword order by id limit 0,1);END;";
+                NSString *sql = @"CREATE TRIGGER IF NOT EXISTS Trl AFTER INSERT ON TTSearchKeyword when (select count(*) from TTSearchKeyword)>4 BEGIN delete from TTSearchKeyword where id in (select id from TTSearchKeyword order by id limit 0,1);END;";
                 BOOL triggerUpdate = [self.fmDataBase executeUpdate:sql];
             }else{
                 NSLog(@"keyword数据插入失败");
@@ -93,6 +86,7 @@
 }
 
 -(NSMutableArray *)queryDBTableWithVideoContent{
+    [self.fmDataBase open];
     NSString *sql = @"select * from TTSearchKeyword";
     FMResultSet *result = [self.fmDataBase executeQuery:sql];
     NSMutableArray *array = [NSMutableArray array];
@@ -102,38 +96,23 @@
         NSDictionary *dic;
         dic = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSDictionary class] fromData:data error:&Error];
         if(dic){
-            TTSearchKeywordModel *model = [[TTSearchKeywordModel alloc]mj_setKeyValues:dic];
+            TTArticleSearchInboxFourWordsModel *model = [[[TTArticleSearchInboxFourWordsModel alloc]init]mj_setKeyValues:dic];
             [array addObject:model];
         }
     }
     return array;
 }
 
--(void)updateVideoCache{
-    /*
-     首次安装启动app开始缓存当前界面的数据，以防下次启动到开界面时展示空白界面
-     设置分类存储离线数据，单个类别最大数据量为20行，当插入新数据时，删除队尾数据（最旧的数据）
-     db 1 2 3
-     table 1 1 1
-     */
-    NSString *sql = @"update";
-}
-
--(void)createDBFilePath{
-    NSString *DBPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
-    NSString *DBName = [NSString stringWithFormat:@"TTDB_SearchKeyword.sqlite"];
-    NSString *DBFile =[DBPath stringByAppendingPathComponent:DBName];
-    NSLog(@"DBPath = %@",DBPath);
-    self.fmDataBase = [FMDatabase databaseWithPath:DBFile];
-    [self.fmDataBase open];
-    NSLog(@"数据库已打开");
-}
-
 #pragma mark ------- lazy load
 
 -(FMDatabase *)fmDataBase{
     if(!_fmDataBase){
-        _fmDataBase = [[FMDatabase alloc]init];
+        NSString *dbPath = [[NSString alloc]init];
+        dbPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSLog(@"数据库地址为%@",dbPath);
+        NSString *dbFileName = [dbPath stringByAppendingPathComponent:@"TTDB_SearchKeyword.sqlite"];//设置数据库名称
+        _fmDataBase = [FMDatabase databaseWithPath:dbFileName];//创建并获取数据库信息
+        [_fmDataBase open];
     }
     return _fmDataBase;
 }

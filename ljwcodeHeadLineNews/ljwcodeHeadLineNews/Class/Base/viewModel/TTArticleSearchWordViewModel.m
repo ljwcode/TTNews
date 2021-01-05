@@ -28,16 +28,17 @@
                 
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     NSDictionary *responseDic = [(NSDictionary *)response objectForKey:@"data"];
-                    NSMutableArray *wordArray = [NSMutableArray array];
                     if(responseDic.count > 0){
                         NSArray *array = [responseDic objectForKey:@"suggest_words"];
+                        NSMutableArray *dataArray = [[NSMutableArray alloc]init];
                         for(int i = 0;i < array.count;i++){
                             TTArticleSearchInboxFourWordsModel *model = [[TTArticleSearchInboxFourWordsModel new]mj_setKeyValues:array[i]];
-                            [wordArray addObject:model];
+                            [dataArray addObject:model];
                         }
+                        [subscriber sendNext:dataArray];
+                        [subscriber sendCompleted];
                     }
-                    [subscriber sendNext:wordArray];
-                    [subscriber sendCompleted];
+                    
                 } failHandle:^(NSError * _Nonnull error) {
                     NSLog(@"search title request error");
                 }];

@@ -75,7 +75,7 @@
     [params addEntriesFromDictionary:self.mj_keyValues];
     
     if ([params.allKeys containsObject:@"isPost"]) {
-        [params removeObjectForKey:@"isPost"];
+        [params removeObjectForKey:@"isPost"]; 
     }
     if ([params.allKeys containsObject:@"urlString"]) {
         [params removeObjectForKey:@"urlString"];
