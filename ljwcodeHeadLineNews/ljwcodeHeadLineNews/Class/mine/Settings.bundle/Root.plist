@@ -8,11 +8,23 @@
 	<array>
 		<dict>
 			<key>Type</key>
+			<string>PSSliderSpecifier</string>
+			<key>Key</key>
+			<string>TT_slider</string>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+			<key>MinimumValue</key>
+			<integer>0</integer>
+			<key>MaximumValue</key>
+			<integer>10</integer>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>夜间模式</string>
+			<string>安全模式</string>
 			<key>Key</key>
-			<string>TT_NightSwitchID</string>
+			<string>TT_SafeSwitchID</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>

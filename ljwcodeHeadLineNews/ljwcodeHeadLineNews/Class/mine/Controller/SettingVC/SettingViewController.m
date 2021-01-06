@@ -85,7 +85,14 @@
             if(!cell){
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
                 cell.textLabel.text = @"隐私设置";
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                UIImageView *rightArrowImgView = [[UIImageView alloc]init];
+                [rightArrowImgView setImage:[UIImage imageNamed:@"arrow_right_setup"]];
+                [cell addSubview:rightArrowImgView];
+                [rightArrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.right.mas_equalTo(-2 * hSpace);
+                    make.centerY.mas_equalTo(cell);
+                    make.width.height.mas_equalTo(20);
+                }];
             }
             ResultCell = cell;
         }
@@ -96,25 +103,61 @@
             if(!cell){
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
                 if(indexPath.row == 0){
-                    cell.textLabel.text = @"夜间模式";
-                    UISwitch *switchOnNight = [[UISwitch alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.1, cell.frame.size.height/2)];
-                    [switchOnNight setRestorationIdentifier:@"TT_NightSwitchID"];
-                    switchOnNight.on = NO;
-                    cell.accessoryView = switchOnNight;
+                    if(@available(iOS 13.0,*)){
+                        cell.textLabel.text = @"深色模式";
+                        UILabel *darkModelTipLabel = [[UILabel alloc]init];
+                        darkModelTipLabel.text = @"已关闭";
+                        darkModelTipLabel.textColor = [UIColor grayColor];
+                        darkModelTipLabel.font = [UIFont systemFontOfSize:13.f];
+                        darkModelTipLabel.textAlignment = NSTextAlignmentCenter;
+                        [cell addSubview:darkModelTipLabel];
+                        [darkModelTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.centerY.mas_equalTo(cell);
+                            make.right.mas_equalTo(-5 * hSpace);
+                            make.width.mas_equalTo(3 * hSpace);
+                            make.height.mas_equalTo(2 * hSpace);
+                        }];
+                        
+                        UIImageView *rightArrowImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrow_right_setup"]];
+                        [cell addSubview:rightArrowImgView];
+                        [rightArrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.left.mas_equalTo(darkModelTipLabel.mas_right).mas_equalTo(hSpace);
+                            make.right.mas_equalTo(-2 * hSpace);
+                            make.centerY.mas_equalTo(cell);
+                            make.width.height.mas_equalTo(20);
+                        }];
+                    }else{
+                       
+                        cell.textLabel.text = @"夜间模式";
+                        UISwitch *switchOnNight = [[UISwitch alloc]init];
+                        switchOnNight.on = [[NSUserDefaults standardUserDefaults]objectForKey:@"TT_NightSwitchID"];
+                        [switchOnNight addTarget:self action:@selector(switchOnNightHandle:) forControlEvents:UIControlEventTouchUpInside];
+                        [cell addSubview:switchOnNight];
+                        [switchOnNight mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.right.mas_equalTo(-2 * hSpace);
+                            make.centerY.mas_equalTo(cell);
+                        }];
+                    }
                 }else if(indexPath.row == 1){
                     cell.textLabel.text = @"字体大小";
-                    UIButton *chooseFontSizeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-                    [chooseFontSizeBtn setTag:10031];
-                    chooseFontSizeBtn.frame = CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.1, cell.frame.size.height/2);
-                    [chooseFontSizeBtn setImage:[UIImage imageNamed:@"arrow_right_setup"] forState:UIControlStateNormal];
-                    [chooseFontSizeBtn setTitle:@"中" forState:UIControlStateNormal];
-                    [chooseFontSizeBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-                    chooseFontSizeBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-                    chooseFontSizeBtn.imageEdgeInsets = UIEdgeInsetsMake(0, chooseFontSizeBtn.titleLabel.intrinsicContentSize.width, 0, -chooseFontSizeBtn.titleLabel.intrinsicContentSize.width);
-                    chooseFontSizeBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -chooseFontSizeBtn.imageView.intrinsicContentSize.width, 0, chooseFontSizeBtn.imageView.intrinsicContentSize.width);
-                    [chooseFontSizeBtn addTarget:self action:@selector(chooseFontSizeHandle:) forControlEvents:UIControlEventTouchUpInside];
-                    cell.accessoryView = chooseFontSizeBtn;
-                   
+                    UILabel *fontSizeTipLabel = [[UILabel alloc]init];
+                    fontSizeTipLabel.text = @"中";
+                    fontSizeTipLabel.font = [UIFont systemFontOfSize:13.f];
+                    fontSizeTipLabel.textColor = [UIColor grayColor];
+                    fontSizeTipLabel.textAlignment = NSTextAlignmentCenter;
+                    [cell addSubview:fontSizeTipLabel];
+                    [fontSizeTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.centerY.mas_equalTo(cell);
+                        make.right.mas_equalTo(-5 * hSpace);
+                        make.width.height.mas_equalTo(2 * hSpace);
+                    }];
+                    UIImageView *rightArrowImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrow_right_setup"]];
+                    [cell addSubview:rightArrowImgView];
+                    [rightArrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.centerY.mas_equalTo(cell);
+                        make.right.mas_equalTo(-2 * hSpace);
+                        make.width.height.mas_equalTo(2 * hSpace);
+                    }];
                 }
             }
             ResultCell = cell;
@@ -126,26 +169,20 @@
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
                 if(indexPath.row == 0){
                     cell.textLabel.text = @"清除缓存";
-                    UIButton *clearCacheBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-                    clearCacheBtn.frame = CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.2, cell.frame.size.height/2);
+                    UILabel *clearCacheTipLabel = [[UILabel alloc]init];
                     NSString *CachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
                     [UIView animateWithDuration:2.f animations:^{
-                        [clearCacheBtn setTitle:@"计算中..." forState:UIControlStateNormal];
+                        clearCacheTipLabel.text = @"计算中...";
                     } completion:^(BOOL finished) {
                         if(finished){
-                            [clearCacheBtn setTitle:[NSString stringWithFormat:@"%@MB",[clearCacheTools getCacheSizeWithFilePath:CachePath]] forState:UIControlStateNormal];
+                            clearCacheTipLabel.text = [NSString stringWithFormat:@"%@MB",[clearCacheTools getCacheSizeWithFilePath:CachePath]];
                         }
                     }];
+                    clearCacheTipLabel.textColor = [UIColor grayColor];
+                    clearCacheTipLabel.textAlignment = NSTextAlignmentCenter;
+                    clearCacheTipLabel.font = [UIFont systemFontOfSize:13.f];
+                    [cell addSubview:clearCacheTipLabel];
                     
-                    clearCacheBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-                    clearCacheBtn.titleLabel.font = [UIFont systemFontOfSize:12.f];
-                    [clearCacheBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-                    [clearCacheBtn setImage:[UIImage imageNamed:@"arrow_right_setup"] forState:UIControlStateNormal];
-                    clearCacheBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -clearCacheBtn.imageView.intrinsicContentSize.width, 0, clearCacheBtn.imageView.intrinsicContentSize.width);
-                    clearCacheBtn.imageEdgeInsets = UIEdgeInsetsMake(0, clearCacheBtn.titleLabel.intrinsicContentSize.width, 0, -clearCacheBtn.titleLabel.intrinsicContentSize.width);
-                    [clearCacheBtn setTag:10011];
-                    [clearCacheBtn addTarget:self action:@selector(clearCacheHandle:) forControlEvents:UIControlEventTouchUpInside];
-                    cell.accessoryView = clearCacheBtn;
                 }else if(indexPath.row == 1){
                     cell.textLabel.text = @"网络设置";
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -187,7 +224,7 @@
                 if(indexPath.row == 0){
                     cell.textLabel.text = @"检查版本";
                     UIButton *checkUpdataBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-                    checkUpdataBtn.frame = CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.15, cell.frame.size.height/2);
+                    checkUpdataBtn.frame = CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.2, cell.frame.size.height);
                     [checkUpdataBtn setTitle:@"7.9.3" forState:UIControlStateNormal];
                     checkUpdataBtn.titleLabel.font = [UIFont systemFontOfSize:12.f];
                     checkUpdataBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -293,12 +330,18 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)chooseFontSizeHandle:(UIButton *)sender{
-    
-}
-
--(void)clearCacheHandle:(UIButton *)sender{
-    
+-(void)switchOnNightHandle:(UISwitch *)sender{
+    sender.selected = !sender.selected;
+    if(sender.selected){
+        sender.on = YES;
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"TT_NightSwitchID"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }else{
+        sender.on = NO;
+        [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"TT_NightSwitchID"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }
+    NSLog(@"switch = %@",[[NSUserDefaults standardUserDefaults]objectForKey:@"TT_NightSwitchID"]);
 }
 
 #pragma mark ------ lazy load
