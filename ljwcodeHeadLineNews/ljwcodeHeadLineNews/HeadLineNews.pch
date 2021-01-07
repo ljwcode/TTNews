@@ -85,4 +85,6 @@
 //播放完成颜色
 #define PlayFinishColor   [UIColor whiteColor]
 
+#define TT_ScreenScale [[UIScreen mainScreen] scale]
+
 #endif /* ljwcodeHeadLineNews_h */

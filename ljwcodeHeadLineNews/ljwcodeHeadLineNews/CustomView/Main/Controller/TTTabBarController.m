@@ -101,7 +101,7 @@
 
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
-    if(self.selectedViewController == viewController && self.selectedViewController == _homeNavi)
+    if(self.selectedViewController == viewController && self.selectedViewController == self.homeNavi)
     {
         if([self.selectedImageView.layer animationForKey:@"rotationAnimation"])
         {

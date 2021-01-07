@@ -12,6 +12,7 @@
 #import "clearCacheTools.h"
 #import "NetWorkConfigureViewController.h"
 #import "PushNotificationSettingViewController.h"
+#import "TT_ClickHightLightTableViewCell.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -78,12 +79,12 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
-    UITableViewCell *ResultCell = nil;
+    TT_ClickHightLightTableViewCell *ResultCell = nil;
     switch(indexPath.section){
         case 0:{
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+            TT_ClickHightLightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
             if(!cell){
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+                cell = [[TT_ClickHightLightTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
                 cell.textLabel.text = @"隐私设置";
                 UIImageView *rightArrowImgView = [[UIImageView alloc]init];
                 [rightArrowImgView setImage:[UIImage imageNamed:@"arrow_right_setup"]];
@@ -99,9 +100,9 @@
             break;
             
         case 1:{
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+            TT_ClickHightLightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
             if(!cell){
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+                cell = [[TT_ClickHightLightTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
                 if(indexPath.row == 0){
                     if(@available(iOS 13.0,*)){
                         cell.textLabel.text = @"深色模式";
@@ -141,6 +142,7 @@
                 }else if(indexPath.row == 1){
                     cell.textLabel.text = @"字体大小";
                     UILabel *fontSizeTipLabel = [[UILabel alloc]init];
+                    [fontSizeTipLabel setTag:10031];
                     fontSizeTipLabel.text = @"中";
                     fontSizeTipLabel.font = [UIFont systemFontOfSize:13.f];
                     fontSizeTipLabel.textColor = [UIColor grayColor];
@@ -164,9 +166,9 @@
         }
             break;
         case 2:{
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+            TT_ClickHightLightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
             if(!cell){
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+                cell = [[TT_ClickHightLightTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
                 if(indexPath.row == 0){
                     cell.textLabel.text = @"清除缓存";
                     UILabel *clearCacheTipLabel = [[UILabel alloc]init];
@@ -178,65 +180,129 @@
                             clearCacheTipLabel.text = [NSString stringWithFormat:@"%@MB",[clearCacheTools getCacheSizeWithFilePath:CachePath]];
                         }
                     }];
+                    [clearCacheTipLabel setTag:10032];
                     clearCacheTipLabel.textColor = [UIColor grayColor];
                     clearCacheTipLabel.textAlignment = NSTextAlignmentCenter;
                     clearCacheTipLabel.font = [UIFont systemFontOfSize:13.f];
                     [cell addSubview:clearCacheTipLabel];
+                    [clearCacheTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.right.mas_equalTo(-4 * hSpace);
+                        make.centerY.mas_equalTo(cell);
+                        make.width.mas_equalTo(6 * hSpace);
+                        make.height.mas_equalTo(2 * hSpace);
+                    }];
+                    
+                    UIImageView *rightArrowImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrow_right_setup"]];
+                    [cell addSubview:rightArrowImgView];
+                    [rightArrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.centerY.mas_equalTo(cell);
+                        make.right.mas_equalTo(-2 * hSpace);
+                        make.width.height.mas_equalTo(2 * hSpace);
+                    }];
+                    
                     
                 }else if(indexPath.row == 1){
                     cell.textLabel.text = @"网络设置";
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    UIImageView *rightArrowImgView = [[UIImageView alloc]init];
+                    [rightArrowImgView setImage:[UIImage imageNamed:@"arrow_right_setup"]];
+                    [cell addSubview:rightArrowImgView];
+                    [rightArrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.right.mas_equalTo(-2 * hSpace);
+                        make.centerY.mas_equalTo(cell);
+                        make.width.height.mas_equalTo(20);
+                    }];
                 }else if(indexPath.row == 2){
                     cell.textLabel.text = @"推送通知设置";
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    UIImageView *rightArrowImgView = [[UIImageView alloc]init];
+                    [rightArrowImgView setImage:[UIImage imageNamed:@"arrow_right_setup"]];
+                    [cell addSubview:rightArrowImgView];
+                    [rightArrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.right.mas_equalTo(-2 * hSpace);
+                        make.centerY.mas_equalTo(cell);
+                        make.width.height.mas_equalTo(20);
+                    }];
                 }else if(indexPath.row == 3){
                     cell.textLabel.text = @"提示音开关";
-                    UISwitch *tipSoundSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.1, cell.frame.size.height/2)];
-                    tipSoundSwitch.on = false;
-                    cell.accessoryView = tipSoundSwitch;
+                    UISwitch *tipSoundSwitch = [[UISwitch alloc]init];
+                    tipSoundSwitch.on = [[NSUserDefaults standardUserDefaults]objectForKey:@"TT_tipSoundSwitchID"];
+                    [tipSoundSwitch addTarget:self action:@selector(tipSoundSwitchHandle:) forControlEvents:UIControlEventTouchUpInside];
+                    [cell addSubview:tipSoundSwitch];
+                    [tipSoundSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.right.mas_equalTo(-2 * hSpace);
+                        make.centerY.mas_equalTo(cell);
+                    }];
                 }
             }
             ResultCell = cell;
         }
             break;
         case 3:{
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+            TT_ClickHightLightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
             if(!cell){
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+                cell = [[TT_ClickHightLightTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
                 if(indexPath.row == 0){
                     cell.textLabel.text = @"H5广告过滤";
                     cell.detailTextLabel.text = @"智能过滤网站广告,为你节省更多流量";
-                    UISwitch *adSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.1, cell.frame.size.height/2)];
-                    adSwitch.on = false;
-                    cell.accessoryView = adSwitch;
+                    UISwitch *adSwitch = [[UISwitch alloc]init];
+                    adSwitch.on = [[NSUserDefaults standardUserDefaults]objectForKey:@"TT_tipSoundSwitchID"];
+                    [adSwitch addTarget:self action:@selector(adSwitchHandle:) forControlEvents:UIControlEventTouchUpInside];
+                    [cell addSubview:adSwitch];
+                    [adSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.right.mas_equalTo(-2 * hSpace);
+                        make.centerY.mas_equalTo(cell);
+                    }];
                 }else if(indexPath.row == 1){
                     cell.textLabel.text = @"头条封面";
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    UIImageView *rightArrowImgView = [[UIImageView alloc]init];
+                    [rightArrowImgView setImage:[UIImage imageNamed:@"arrow_right_setup"]];
+                    [cell addSubview:rightArrowImgView];
+                    [rightArrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.right.mas_equalTo(-2 * hSpace);
+                        make.centerY.mas_equalTo(cell);
+                        make.width.height.mas_equalTo(20);
+                    }];
                 }
             }
             ResultCell = cell;
         }
             break;
         case 4:{
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+            TT_ClickHightLightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
             if(!cell){
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+                cell = [[TT_ClickHightLightTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
                 if(indexPath.row == 0){
                     cell.textLabel.text = @"检查版本";
-                    UIButton *checkUpdataBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-                    checkUpdataBtn.frame = CGRectMake(0, 0, CGRectGetWidth(cell.frame)*0.2, cell.frame.size.height);
-                    [checkUpdataBtn setTitle:@"7.9.3" forState:UIControlStateNormal];
-                    checkUpdataBtn.titleLabel.font = [UIFont systemFontOfSize:12.f];
-                    checkUpdataBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-                    [checkUpdataBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-                    [checkUpdataBtn setImage:[UIImage imageNamed:@"arrow_right_setup"] forState:UIControlStateNormal];
-                    checkUpdataBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -checkUpdataBtn.imageView.intrinsicContentSize.width, 0, checkUpdataBtn.imageView.intrinsicContentSize.width);
-                    checkUpdataBtn.imageEdgeInsets = UIEdgeInsetsMake(0, checkUpdataBtn.titleLabel.intrinsicContentSize.width, 0, -checkUpdataBtn.titleLabel.intrinsicContentSize.width);
-                    [checkUpdataBtn addTarget:self action:@selector(clearCacheHandle:) forControlEvents:UIControlEventTouchUpInside];
-                    cell.accessoryView = checkUpdataBtn;
+                    UILabel *TTVersionTipLabel = [[UILabel alloc]init];
+                    TTVersionTipLabel.text = @"7.9.3";
+                    TTVersionTipLabel.textColor = [UIColor grayColor];
+                    TTVersionTipLabel.font = [UIFont systemFontOfSize:13.f];
+                    TTVersionTipLabel.textAlignment = NSTextAlignmentCenter;
+                    [cell addSubview:TTVersionTipLabel];
+                    [TTVersionTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.right.mas_equalTo(-4 * hSpace);
+                        make.centerY.mas_equalTo(cell);
+                        make.width.mas_equalTo(4 * hSpace);
+                        make.height.mas_equalTo(2 * hSpace);
+                    }];
+                    
+                    UIImageView *rightArrowImgView = [[UIImageView alloc]init];
+                    [rightArrowImgView setImage:[UIImage imageNamed:@"arrow_right_setup"]];
+                    [cell addSubview:rightArrowImgView];
+                    [rightArrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.right.mas_equalTo(-2 * hSpace);
+                        make.centerY.mas_equalTo(cell);
+                        make.width.height.mas_equalTo(20);
+                    }];
                 }else if(indexPath.row == 1){
                     cell.textLabel.text = @"关于头条";
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    UIImageView *rightArrowImgView = [[UIImageView alloc]init];
+                    [rightArrowImgView setImage:[UIImage imageNamed:@"arrow_right_setup"]];
+                    [cell addSubview:rightArrowImgView];
+                    [rightArrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.right.mas_equalTo(-2 * hSpace);
+                        make.centerY.mas_equalTo(cell);
+                        make.width.height.mas_equalTo(20);
+                    }];
                 }
             }
             ResultCell = cell;
@@ -244,13 +310,15 @@
             break;
         
     }
-    
     return ResultCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-   
-    return 8;
+    if(section == 4){
+        return 0;
+    }else{
+        return 8;
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 8;
@@ -278,8 +346,8 @@
                 UIAlertController *configureFontVC = [UIAlertController alertControllerWithTitle:@"" message:@"设置字体大小" preferredStyle:UIAlertControllerStyleActionSheet];
                 for(int i = 0;i < self.fontSizeArray.count;i++){
                     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:self.fontSizeArray[i] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                        UIButton *btn = (UIButton *)[tableView viewWithTag:10031];
-                        [btn setTitle:self.fontSizeArray[i] forState:UIControlStateNormal];
+                        UILabel *label = (UILabel *)[tableView viewWithTag:10031];
+                        [label setText:self.fontSizeArray[i]];
                     }];
                     [configureFontVC addAction:alertAction];
                 }
@@ -299,8 +367,8 @@
                     [UIView animateWithDuration:1.f animations:^{
                         [clearCacheTools clearCacheWithFilePath:CachePath];
                     } completion:^(BOOL finished) {
-                        UIButton *clearBtn = (UIButton *)[self.tableView viewWithTag:10011];
-                        [clearBtn setTitle:@"0.00MB" forState:UIControlStateNormal];
+                        UILabel *cacheTipLabel = (UILabel *)[self.tableView viewWithTag:10032];
+                        [cacheTipLabel setText:@"0.00MB"];
                     }];
                 }];
                 UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
@@ -326,6 +394,7 @@
 }
 
 #pragma mark ---------- 事件响应
+
 -(void)backToParentVCHandle:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -350,6 +419,7 @@
         UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         tableView.delegate = self;
         tableView.dataSource = self;
+        tableView.separatorColor  = [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1];
         _tableView = tableView;
         _tableView.tableFooterView = self.footerView;
     }
@@ -358,14 +428,19 @@
 
 -(UIView *)footerView{
     if(!_footerView){
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
-        view.backgroundColor = [UIColor whiteColor];
-        UILabel *tipLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(view.frame)/2, 20)];
-        tipLabel.center = view.center;
-        tipLabel.text = @"All Rights Reserved By Toutiao.com";
-        tipLabel.textColor = [UIColor lightGrayColor];
-        tipLabel.textAlignment = NSTextAlignmentCenter;
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.1)];
+        view.backgroundColor = [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1];
+        UILabel *tipLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+        CGSize Size = CGSizeMake(CGRectGetWidth(view.frame), MAXFLOAT);
+        NSString *context = @"All Rights Reserved By Toutiao.com";
+        NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:13.f]};
+        CGSize size = [context boundingRectWithSize:Size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+        tipLabel.textColor = [UIColor grayColor];
+        tipLabel.text = context;
         tipLabel.font = [UIFont systemFontOfSize:13.f];
+        tipLabel.textAlignment = NSTextAlignmentCenter;
+        [tipLabel setFrame:CGRectMake(0, 0, size.width, size.height)];
+        tipLabel.center = view.center;
         [view addSubview:tipLabel];
         _footerView = view;
     }

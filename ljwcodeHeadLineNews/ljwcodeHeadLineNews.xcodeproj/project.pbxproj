@@ -31,6 +31,7 @@
 		631BC92525481E8B001B82AB /* TTThemeNightTag.plist in Resources */ = {isa = PBXBuildFile; fileRef = 631BC92425481E8B001B82AB /* TTThemeNightTag.plist */; };
 		631BC92A25482A9A001B82AB /* clearCacheTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC92925482A9A001B82AB /* clearCacheTools.m */; };
 		631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC92D25483D8D001B82AB /* NetWorkConfigureViewController.m */; };
+		631C7B4E25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.m in Sources */ = {isa = PBXBuildFile; fileRef = 631C7B4D25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.m */; };
 		631CFA6824E5276A0082B941 /* focusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA6724E5276A0082B941 /* focusViewController.m */; };
 		631CFA7124E567250082B941 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA7024E567240082B941 /* MessageViewController.m */; };
 		63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63231B9024A08F110059FD5F /* TTNavigationBar.m */; };
@@ -88,6 +89,7 @@
 		637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 637E3CA624C7E65200FA5447 /* AreaCode.plist */; };
 		638481EC24BEEB85002F4C5F /* VideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638481EB24BEEB85002F4C5F /* VideoDetailViewController.m */; };
 		638A1A5C25778BA00002F50B /* TTArticleSearchWordViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 638A1A5B25778BA00002F50B /* TTArticleSearchWordViewModel.m */; };
+		638D3ECD25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 638D3ECC25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.m */; };
 		638E977424CAB4A4005ADF42 /* TTMineNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977324CAB4A4005ADF42 /* TTMineNavigationController.m */; };
 		638E977D24CADB90005ADF42 /* commonSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977C24CADB90005ADF42 /* commonSettingTableViewCell.m */; };
 		638E978024CAF04B005ADF42 /* moreSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977F24CAF04B005ADF42 /* moreSettingTableViewCell.m */; };
@@ -201,6 +203,8 @@
 		631BC92925482A9A001B82AB /* clearCacheTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = clearCacheTools.m; sourceTree = "<group>"; };
 		631BC92C25483D8D001B82AB /* NetWorkConfigureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWorkConfigureViewController.h; sourceTree = "<group>"; };
 		631BC92D25483D8D001B82AB /* NetWorkConfigureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWorkConfigureViewController.m; sourceTree = "<group>"; };
+		631C7B4C25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TT_familyFontSizeConfigura.h"; sourceTree = "<group>"; };
+		631C7B4D25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TT_familyFontSizeConfigura.m"; sourceTree = "<group>"; };
 		631CFA6624E5276A0082B941 /* focusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = focusViewController.h; sourceTree = "<group>"; };
 		631CFA6724E5276A0082B941 /* focusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = focusViewController.m; sourceTree = "<group>"; };
 		631CFA6F24E567240082B941 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
@@ -306,6 +310,8 @@
 		638481EB24BEEB85002F4C5F /* VideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoDetailViewController.m; sourceTree = "<group>"; };
 		638A1A5A25778BA00002F50B /* TTArticleSearchWordViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTArticleSearchWordViewModel.h; sourceTree = "<group>"; };
 		638A1A5B25778BA00002F50B /* TTArticleSearchWordViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTArticleSearchWordViewModel.m; sourceTree = "<group>"; };
+		638D3ECB25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_ClickHightLightTableViewCell.h; sourceTree = "<group>"; };
+		638D3ECC25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_ClickHightLightTableViewCell.m; sourceTree = "<group>"; };
 		638E977224CAB4A4005ADF42 /* TTMineNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTMineNavigationController.h; sourceTree = "<group>"; };
 		638E977324CAB4A4005ADF42 /* TTMineNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTMineNavigationController.m; sourceTree = "<group>"; };
 		638E977B24CADB90005ADF42 /* commonSettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = commonSettingTableViewCell.h; sourceTree = "<group>"; };
@@ -546,6 +552,8 @@
 				63E8C372256796E100F69701 /* TTWebView.m */,
 				63167B9E2569170200B967B2 /* UIView+Frame.h */,
 				63167B9F2569170200B967B2 /* UIView+Frame.m */,
+				631C7B4C25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.h */,
+				631C7B4D25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.m */,
 			);
 			path = ljwcodeTools;
 			sourceTree = "<group>";
@@ -711,6 +719,8 @@
 				638E977F24CAF04B005ADF42 /* moreSettingTableViewCell.m */,
 				63BB1C202563DD00004E97E7 /* TTCloseNotificationTipView.h */,
 				63BB1C212563DD00004E97E7 /* TTCloseNotificationTipView.m */,
+				638D3ECB25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.h */,
+				638D3ECC25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1327,6 +1337,7 @@
 				637C2D3924A9DDA10009274C /* homeTitleRequestModel.m in Sources */,
 				63422BE024A839960091FEE1 /* WMMenuItem.m in Sources */,
 				949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */,
+				631C7B4E25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.m in Sources */,
 				63F1F8E224AF315E00D687ED /* videoContentModel.m in Sources */,
 				63422BE324A839960091FEE1 /* WMProgressView.m in Sources */,
 				63F1F8EA24AF3A3500D687ED /* videoContentViewModel.m in Sources */,
@@ -1375,6 +1386,7 @@
 				636EA80924C9977B00765F5C /* videoInfoTableView.m in Sources */,
 				63C73D6C259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.m in Sources */,
 				6313651E258C842900FCAAA9 /* videoDetailCacheDBViewModel.m in Sources */,
+				638D3ECD25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.m in Sources */,
 				63CBA1FB258B39FD0020511C /* videoTitleDBViewModel.m in Sources */,
 				63BE32FD2547F3D000607EBA /* PrivacyViewController.m in Sources */,
 				63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */,
