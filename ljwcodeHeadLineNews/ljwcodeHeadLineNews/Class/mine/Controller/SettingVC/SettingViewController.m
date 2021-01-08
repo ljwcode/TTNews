@@ -24,6 +24,8 @@
 
 @end
 
+static float changeFontSize = 2;
+
 @implementation SettingViewController
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -348,8 +350,10 @@
                     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:self.fontSizeArray[i] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         UILabel *label = (UILabel *)[tableView viewWithTag:10031];
                         [label setText:self.fontSizeArray[i]];
+                        [self TT_CalcFontSize];
                     }];
                     [configureFontVC addAction:alertAction];
+                    
                 }
                 UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
                 [configureFontVC addAction:cancelAction];
@@ -391,6 +395,18 @@
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
     return YES;
+}
+
+#pragma mark ---------- calc/select fontSize
+
+-(void)TT_CalcFontSize{
+    float defaultSize = TT_USERDEFAULT_float(TT_DEFAULT_FONT);
+    for(int i = 0;i < self.fontSizeArray.count;i++){
+        defaultSize += changeFontSize;
+    }
+    [[NSUserDefaults standardUserDefaults]setFloat:defaultSize forKey:TT_DEFAULT_FONT];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    [[NSNotificationCenter defaultCenter]postNotificationName:TT_ALL_FONT_CHANGE object:nil];
 }
 
 #pragma mark ---------- 事件响应

@@ -31,7 +31,6 @@
 		631BC92525481E8B001B82AB /* TTThemeNightTag.plist in Resources */ = {isa = PBXBuildFile; fileRef = 631BC92425481E8B001B82AB /* TTThemeNightTag.plist */; };
 		631BC92A25482A9A001B82AB /* clearCacheTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC92925482A9A001B82AB /* clearCacheTools.m */; };
 		631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC92D25483D8D001B82AB /* NetWorkConfigureViewController.m */; };
-		631C7B4E25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.m in Sources */ = {isa = PBXBuildFile; fileRef = 631C7B4D25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.m */; };
 		631CFA6824E5276A0082B941 /* focusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA6724E5276A0082B941 /* focusViewController.m */; };
 		631CFA7124E567250082B941 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA7024E567240082B941 /* MessageViewController.m */; };
 		63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63231B9024A08F110059FD5F /* TTNavigationBar.m */; };
@@ -124,6 +123,8 @@
 		63CBA1FB258B39FD0020511C /* videoTitleDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CBA1FA258B39FD0020511C /* videoTitleDBViewModel.m */; };
 		63CBA20E258B58680020511C /* homeNewsDetailDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CBA20D258B58680020511C /* homeNewsDetailDBViewModel.m */; };
 		63D4FF9F24D96FC40035F561 /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D4FF9E24D96FC40035F561 /* NewsDetailViewController.m */; };
+		63D835FD25A860E3005DB303 /* TTChangeFontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D835FC25A860E3005DB303 /* TTChangeFontViewController.m */; };
+		63D8360225A86A7B005DB303 /* TT_AutoLayoutLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D8360125A86A7B005DB303 /* TT_AutoLayoutLabel.m */; };
 		63DB0D182501E3F900B9FA0A /* parseVideoRealURLViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DB0D172501E3F900B9FA0A /* parseVideoRealURLViewModel.m */; };
 		63DB0D1B2501F19200B9FA0A /* videoRealURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DB0D1A2501F19200B9FA0A /* videoRealURLRequestModel.m */; };
 		63DEE5FC254ABA8F00D356D4 /* PushNotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DEE5FB254ABA8F00D356D4 /* PushNotificationSettingViewController.m */; };
@@ -203,8 +204,6 @@
 		631BC92925482A9A001B82AB /* clearCacheTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = clearCacheTools.m; sourceTree = "<group>"; };
 		631BC92C25483D8D001B82AB /* NetWorkConfigureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWorkConfigureViewController.h; sourceTree = "<group>"; };
 		631BC92D25483D8D001B82AB /* NetWorkConfigureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetWorkConfigureViewController.m; sourceTree = "<group>"; };
-		631C7B4C25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TT_familyFontSizeConfigura.h"; sourceTree = "<group>"; };
-		631C7B4D25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TT_familyFontSizeConfigura.m"; sourceTree = "<group>"; };
 		631CFA6624E5276A0082B941 /* focusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = focusViewController.h; sourceTree = "<group>"; };
 		631CFA6724E5276A0082B941 /* focusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = focusViewController.m; sourceTree = "<group>"; };
 		631CFA6F24E567240082B941 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
@@ -377,6 +376,11 @@
 		63CBA20D258B58680020511C /* homeNewsDetailDBViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsDetailDBViewModel.m; sourceTree = "<group>"; };
 		63D4FF9D24D96FC40035F561 /* NewsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsDetailViewController.h; sourceTree = "<group>"; };
 		63D4FF9E24D96FC40035F561 /* NewsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsDetailViewController.m; sourceTree = "<group>"; };
+		63D835F925A85A81005DB303 /* TTFontSizeChangeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTFontSizeChangeHeader.h; sourceTree = "<group>"; };
+		63D835FB25A860E3005DB303 /* TTChangeFontViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTChangeFontViewController.h; sourceTree = "<group>"; };
+		63D835FC25A860E3005DB303 /* TTChangeFontViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTChangeFontViewController.m; sourceTree = "<group>"; };
+		63D8360025A86A7B005DB303 /* TT_AutoLayoutLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_AutoLayoutLabel.h; sourceTree = "<group>"; };
+		63D8360125A86A7B005DB303 /* TT_AutoLayoutLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_AutoLayoutLabel.m; sourceTree = "<group>"; };
 		63DB0D162501E3F900B9FA0A /* parseVideoRealURLViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parseVideoRealURLViewModel.h; sourceTree = "<group>"; };
 		63DB0D172501E3F900B9FA0A /* parseVideoRealURLViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = parseVideoRealURLViewModel.m; sourceTree = "<group>"; };
 		63DB0D192501F19200B9FA0A /* videoRealURLRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoRealURLRequestModel.h; sourceTree = "<group>"; };
@@ -527,6 +531,9 @@
 		6328F60B249DABDA00C767A8 /* ljwcodeTools */ = {
 			isa = PBXGroup;
 			children = (
+				63D835FF25A86A52005DB303 /* UILabel */,
+				63D835F825A8592A005DB303 /* ChangeFontSize */,
+				63D835F725A8590F005DB303 /* NetworkTool */,
 				634AF048254C203F0013EE56 /* ios_asset */,
 				63BE334D254815BD00607EBA /* ThemeManager */,
 				6352491E2544294E009AECF2 /* QRCodeTool */,
@@ -536,8 +543,6 @@
 				637C2D3A24A9F1BA0009274C /* MBProgressHUD+Add.m */,
 				6328F60F249DEA8C00C767A8 /* TTEmitterHelper.h */,
 				6328F610249DEA8C00C767A8 /* TTEmitterHelper.m */,
-				63C4729F24B0566D0030C84B /* NetworkSpeedMonitor.h */,
-				63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */,
 				637A97F224C04B45000F7405 /* UIImage+cropPicture.h */,
 				637A97F324C04B45000F7405 /* UIImage+cropPicture.m */,
 				637BAF2324F3A2AD00711003 /* TTScreen.h */,
@@ -546,14 +551,10 @@
 				63722D0624F63E8B000121AD /* NSData+CRC32.m */,
 				631BC92825482A9A001B82AB /* clearCacheTools.h */,
 				631BC92925482A9A001B82AB /* clearCacheTools.m */,
-				63DEE5FE254AC12200D356D4 /* TTCheckNetWorkStatus.h */,
-				63DEE5FF254AC12200D356D4 /* TTCheckNetWorkStatus.m */,
 				63E8C371256796E100F69701 /* TTWebView.h */,
 				63E8C372256796E100F69701 /* TTWebView.m */,
 				63167B9E2569170200B967B2 /* UIView+Frame.h */,
 				63167B9F2569170200B967B2 /* UIView+Frame.m */,
-				631C7B4C25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.h */,
-				631C7B4D25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.m */,
 			);
 			path = ljwcodeTools;
 			sourceTree = "<group>";
@@ -955,6 +956,36 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		63D835F725A8590F005DB303 /* NetworkTool */ = {
+			isa = PBXGroup;
+			children = (
+				63C4729F24B0566D0030C84B /* NetworkSpeedMonitor.h */,
+				63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */,
+				63DEE5FE254AC12200D356D4 /* TTCheckNetWorkStatus.h */,
+				63DEE5FF254AC12200D356D4 /* TTCheckNetWorkStatus.m */,
+			);
+			path = NetworkTool;
+			sourceTree = "<group>";
+		};
+		63D835F825A8592A005DB303 /* ChangeFontSize */ = {
+			isa = PBXGroup;
+			children = (
+				63D835F925A85A81005DB303 /* TTFontSizeChangeHeader.h */,
+				63D835FB25A860E3005DB303 /* TTChangeFontViewController.h */,
+				63D835FC25A860E3005DB303 /* TTChangeFontViewController.m */,
+			);
+			path = ChangeFontSize;
+			sourceTree = "<group>";
+		};
+		63D835FF25A86A52005DB303 /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				63D8360025A86A7B005DB303 /* TT_AutoLayoutLabel.h */,
+				63D8360125A86A7B005DB303 /* TT_AutoLayoutLabel.m */,
+			);
+			path = UILabel;
+			sourceTree = "<group>";
+		};
 		63F1F8D424AF27CF00D687ED /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1337,7 +1368,6 @@
 				637C2D3924A9DDA10009274C /* homeTitleRequestModel.m in Sources */,
 				63422BE024A839960091FEE1 /* WMMenuItem.m in Sources */,
 				949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */,
-				631C7B4E25A7313C0056B960 /* UIViewController+TT_familyFontSizeConfigura.m in Sources */,
 				63F1F8E224AF315E00D687ED /* videoContentModel.m in Sources */,
 				63422BE324A839960091FEE1 /* WMProgressView.m in Sources */,
 				63F1F8EA24AF3A3500D687ED /* videoContentViewModel.m in Sources */,
@@ -1390,6 +1420,7 @@
 				63CBA1FB258B39FD0020511C /* videoTitleDBViewModel.m in Sources */,
 				63BE32FD2547F3D000607EBA /* PrivacyViewController.m in Sources */,
 				63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */,
+				63D835FD25A860E3005DB303 /* TTChangeFontViewController.m in Sources */,
 				631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */,
 				634DA04325A48C0800236458 /* TTSystemConfigureHelper.m in Sources */,
 				63E8C373256796E100F69701 /* TTWebView.m in Sources */,
@@ -1412,6 +1443,7 @@
 				63422BDF24A839960091FEE1 /* WMPageController.m in Sources */,
 				6390EEEF2589B7660081093E /* homeTitleDBViewModel.m in Sources */,
 				63E8C3782567B29600F69701 /* TTHomeMoreShareVIew.m in Sources */,
+				63D8360225A86A7B005DB303 /* TT_AutoLayoutLabel.m in Sources */,
 				63BE33592548165200607EBA /* UITabBar+ThemeChange.m in Sources */,
 				6390EEC82589B4290081093E /* TTCarouselView.m in Sources */,
 				63C4FA9C24EBDFC900CF9850 /* TTPageMenuView.m in Sources */,

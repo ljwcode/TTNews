@@ -1,8 +1,8 @@
 //
-//  UIViewController+TT_familyFontSizeConfigura.h
+//  TT_AutoLayoutLabel.h
 //  ljwcodeHeadLineNews
 //
-//  Created by 1 on 2021/1/7.
+//  Created by 1 on 2021/1/8.
 //  Copyright © 2021 ljwcode. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIViewController (TT_familyFontSizeConfigura)
+@interface TT_AutoLayoutLabel : UILabel
 
 @end
 

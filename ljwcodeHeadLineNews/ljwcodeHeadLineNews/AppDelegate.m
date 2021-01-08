@@ -58,9 +58,22 @@
     };
     [RLMRealmConfiguration setDefaultConfiguration:config];
     [[TTSystemConfigureHelper shareInstance]TT_ConfigurePreference];
+    [self TT_InitFontSize];
 	return YES;
 }
-#pragma mark -
+#pragma mark - changeFontSize
+
+-(void)TT_InitFontSize{
+    float defaultFont = TT_USERDEFAULT_float(TT_DEFAULT_FONT);
+    if(defaultFont){
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            NSUserDefaults *userDefaules = [NSUserDefaults standardUserDefaults];
+            [userDefaules setFloat:TT_DEFAULT_FONT_SIZE forKey:TT_DEFAULT_FONT];
+            [userDefaules synchronize];
+        });
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
 	// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

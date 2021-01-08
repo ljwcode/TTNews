@@ -11,6 +11,8 @@
 #import "UIView+Frame.h"
 #import "MBProgressHUD+Add.h"
 #import "TTSystemConfigureHelper.h"
+#import "TTFontSizeChangeHeader.h"
+#import "TTChangeFontViewController.h"
 #ifndef ljwcodeHeadLineNews_h
 #define ljwcodeHeadLineNews_h
 
