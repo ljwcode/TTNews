@@ -12,12 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TTNavigationController : UINavigationController
 
-@property(nonatomic,strong)UIImage *defaultImage;
-
--(void)startGestureRecnozier;
-
--(void)stopGestureRecnozier;
-
 @end
 
 

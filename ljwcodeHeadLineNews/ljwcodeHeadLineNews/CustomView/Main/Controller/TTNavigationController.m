@@ -8,23 +8,19 @@
 
 #import "TTNavigationController.h"
 
-@interface TTNavigationController ()<UIGestureRecognizerDelegate,UIBarPositioningDelegate>
+@interface TTNavigationController ()<UIBarPositioningDelegate>
 
-@property(nonatomic,strong)UIPanGestureRecognizer *pan;
+@property(nonatomic,strong)UIImage *defaultImage;
 
 @end
 
 @implementation TTNavigationController
 
--(void)viewWillAppear:(BOOL)animated
-{
+-(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
 }
 
-+(void)initialize
-{
-    
++(void)initialize{
     [[UINavigationBar appearance]setTranslucent:NO];//不透明
     [[UINavigationBar appearance]setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:16.f],NSFontAttributeName, nil]];
     
@@ -36,8 +32,7 @@
 }
 
 
-+(UIImage *)drawImageContext:(UIColor *)color
-{
++(UIImage *)drawImageContext:(UIColor *)color{
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -47,40 +42,16 @@
     UIGraphicsEndImageContext();
     return image;
 }
--(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    if(self.childViewControllers.count >= 1)
-    {
+-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if(self.childViewControllers.count >= 1){
         viewController.hidesBottomBarWhenPushed = YES;
     }
     [super pushViewController:viewController animated:YES];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
     _defaultImage = [self.class drawImageContext:[UIColor colorWithRed:0.83 green:0.24 blue:0.24 alpha:1]];
-    [self addGedtureRec];
     // Do any additional setup after loading the view.
-}
-
--(void)addGedtureRec
-{
-    id target = self.interactivePopGestureRecognizer.delegate;
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
-    _pan = pan;
-    pan.delegate = self;
-    [self.view addGestureRecognizer:pan];
-    self.interactivePopGestureRecognizer.enabled = NO;
-}
-
--(void)startGestureRecnozier
-{
-    [self.view addGestureRecognizer:_pan];
-}
-
--(void)stopGestureRecnozier
-{
-    [self.view removeGestureRecognizer:_pan];
 }
 
 /*

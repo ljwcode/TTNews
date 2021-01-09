@@ -65,7 +65,7 @@
 
 -(void)TT_InitFontSize{
     float defaultFont = TT_USERDEFAULT_float(TT_DEFAULT_FONT);
-    if(defaultFont){
+    if(defaultFont == 0){
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             NSUserDefaults *userDefaules = [NSUserDefaults standardUserDefaults];

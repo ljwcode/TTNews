@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6302B4D625A9B35E00818EBB /* TT_CustomerTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6302B4D525A9B35E00818EBB /* TT_CustomerTabBar.m */; };
 		6305043A256525B000CB910D /* TTReportArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63050439256525B000CB910D /* TTReportArticleView.m */; };
 		630A976624CFC463003029C3 /* countryCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A976424CFC462003029C3 /* countryCodeView.m */; };
 		6313651E258C842900FCAAA9 /* videoDetailCacheDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6313651D258C842900FCAAA9 /* videoDetailCacheDBViewModel.m */; };
@@ -162,6 +163,8 @@
 
 /* Begin PBXFileReference section */
 		293C19CEC52458542FCA55CC /* Pods-ljwcodeHeadLineNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.release.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.release.xcconfig"; sourceTree = "<group>"; };
+		6302B4D425A9B35E00818EBB /* TT_CustomerTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_CustomerTabBar.h; sourceTree = "<group>"; };
+		6302B4D525A9B35E00818EBB /* TT_CustomerTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_CustomerTabBar.m; sourceTree = "<group>"; };
 		63050438256525B000CB910D /* TTReportArticleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTReportArticleView.h; sourceTree = "<group>"; };
 		63050439256525B000CB910D /* TTReportArticleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTReportArticleView.m; sourceTree = "<group>"; };
 		630A976424CFC462003029C3 /* countryCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countryCodeView.m; sourceTree = "<group>"; };
@@ -469,6 +472,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		6302B4D325A9B32000818EBB /* UITabBar */ = {
+			isa = PBXGroup;
+			children = (
+				6302B4D425A9B35E00818EBB /* TT_CustomerTabBar.h */,
+				6302B4D525A9B35E00818EBB /* TT_CustomerTabBar.m */,
+			);
+			path = UITabBar;
+			sourceTree = "<group>";
+		};
 		631BC909254818DB001B82AB /* UIColorExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,6 +543,7 @@
 		6328F60B249DABDA00C767A8 /* ljwcodeTools */ = {
 			isa = PBXGroup;
 			children = (
+				6302B4D325A9B32000818EBB /* UITabBar */,
 				63D835FF25A86A52005DB303 /* UILabel */,
 				63D835F825A8592A005DB303 /* ChangeFontSize */,
 				63D835F725A8590F005DB303 /* NetworkTool */,
@@ -1388,6 +1401,7 @@
 				820979101BD3AB2800CF9D0C /* homeViewController.m in Sources */,
 				63422BE124A839960091FEE1 /* WMScrollView.m in Sources */,
 				63C4FA9924EBCE2E00CF9850 /* TTPageDecorateView.m in Sources */,
+				6302B4D625A9B35E00818EBB /* TT_CustomerTabBar.m in Sources */,
 				63BB1C222563DD00004E97E7 /* TTCloseNotificationTipView.m in Sources */,
 				63C4FA9324EBC2DE00CF9850 /* TTPageDecorateItemView.m in Sources */,
 				63F1F8DF24AF2FD200D687ED /* videoTitleRequestModel.m in Sources */,

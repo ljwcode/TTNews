@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TT_AutoLayoutLabel : UILabel
 
+-(instancetype)initWithFrame:(CGRect)frame withContent:(NSString *)text withTextColor:(UIColor *)color WithSuperView:(UIView *)superView;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -20,8 +20,6 @@
 
 @property(nonatomic,strong)UIView *footerView;
 
-@property(nonatomic,strong)NSArray *fontSizeArray;
-
 @end
 
 static float changeFontSize = 2;
@@ -346,17 +344,29 @@ static float changeFontSize = 2;
                 
             }else if(indexPath.row == 1){
                 UIAlertController *configureFontVC = [UIAlertController alertControllerWithTitle:@"" message:@"设置字体大小" preferredStyle:UIAlertControllerStyleActionSheet];
-                for(int i = 0;i < self.fontSizeArray.count;i++){
-                    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:self.fontSizeArray[i] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                        UILabel *label = (UILabel *)[tableView viewWithTag:10031];
-                        [label setText:self.fontSizeArray[i]];
-                        [self TT_CalcFontSize];
-                    }];
-                    [configureFontVC addAction:alertAction];
-                    
-                }
+                UILabel *label = (UILabel *)[self.view viewWithTag:10031];
+                UIAlertAction *smallFontAction = [UIAlertAction actionWithTitle:@"小" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self TT_CalcFontSize:11.f];
+                    label.text = @"小";
+                }];
+                UIAlertAction *middleFontAction = [UIAlertAction actionWithTitle:@"中" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self TT_CalcFontSize:13.f];
+                    label.text = @"中";
+                }];
+                UIAlertAction *bigFontAction = [UIAlertAction actionWithTitle:@"大" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self TT_CalcFontSize:15.f];
+                    label.text = @"大";
+                }];
+                UIAlertAction *moreBigFontAction  = [UIAlertAction actionWithTitle:@"特大" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self TT_CalcFontSize:17.f];
+                    label.text = @"特大";
+                }];
                 UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
                 [configureFontVC addAction:cancelAction];
+                [configureFontVC addAction:smallFontAction];
+                [configureFontVC addAction:middleFontAction];
+                [configureFontVC addAction:bigFontAction];
+                [configureFontVC addAction:moreBigFontAction];
                 [self presentViewController:configureFontVC  animated:YES completion:nil];
                 
             }
@@ -399,14 +409,18 @@ static float changeFontSize = 2;
 
 #pragma mark ---------- calc/select fontSize
 
--(void)TT_CalcFontSize{
-    float defaultSize = TT_USERDEFAULT_float(TT_DEFAULT_FONT);
-    for(int i = 0;i < self.fontSizeArray.count;i++){
-        defaultSize += changeFontSize;
-    }
-    [[NSUserDefaults standardUserDefaults]setFloat:defaultSize forKey:TT_DEFAULT_FONT];
+-(void)TT_CalcFontSize:(float)fontSize{
+    
+    [[NSUserDefaults standardUserDefaults]setFloat:fontSize forKey:TT_DEFAULT_FONT];
     [[NSUserDefaults standardUserDefaults]synchronize];
     [[NSNotificationCenter defaultCenter]postNotificationName:TT_ALL_FONT_CHANGE object:nil];
+        
+}
+
+-(void)TTFontChangeHandle{
+//    self.tipLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
+    TT_AutoLayoutLabel *label = (TT_AutoLayoutLabel *)[self.footerView viewWithTag:10025];
+    label.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
 }
 
 #pragma mark ---------- 事件响应
@@ -446,28 +460,13 @@ static float changeFontSize = 2;
     if(!_footerView){
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.1)];
         view.backgroundColor = [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1];
-        UILabel *tipLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-        CGSize Size = CGSizeMake(CGRectGetWidth(view.frame), MAXFLOAT);
-        NSString *context = @"All Rights Reserved By Toutiao.com";
-        NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:13.f]};
-        CGSize size = [context boundingRectWithSize:Size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-        tipLabel.textColor = [UIColor grayColor];
-        tipLabel.text = context;
-        tipLabel.font = [UIFont systemFontOfSize:13.f];
-        tipLabel.textAlignment = NSTextAlignmentCenter;
-        [tipLabel setFrame:CGRectMake(0, 0, size.width, size.height)];
+        TT_AutoLayoutLabel *tipLabel = [[TT_AutoLayoutLabel alloc]initWithFrame:CGRectZero withContent:@"All Rights Reserved By Toutiao.com" withTextColor:[UIColor grayColor] WithSuperView:view];
+        [tipLabel setTag:10025];
         tipLabel.center = view.center;
         [view addSubview:tipLabel];
         _footerView = view;
     }
     return _footerView;
-}
-
--(NSArray *)fontSizeArray{
-    if(!_fontSizeArray){
-        _fontSizeArray = [NSArray arrayWithObjects:@"小",@"中",@"大",@"特大", nil];
-    }
-    return _fontSizeArray;
 }
 
 /*

@@ -35,8 +35,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    TTNavigationController *nav = (TTNavigationController *)self.navigationController;
-    [nav startGestureRecnozier];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 //

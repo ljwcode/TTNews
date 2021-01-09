@@ -27,9 +27,9 @@
 
 @implementation TTTabBarController
 
--(void)viewDidLoad
-{
+-(void)viewDidLoad{
     [super viewDidLoad];
+    
     _homeNavi = [self addChildViewController:[homeViewController class] normalImage:@"new_home_tabbar" selectedImage:@"new_home_tabbar_press" title:@"首页"];
     [self addChildViewController:[VideoViewController class] normalImage:@"video_tabbar" selectedImage:@"video_tabbar_press" title:@"西瓜视频"];
     [self addChildViewController:[ScreeningHallViewController class] normalImage:@"long_video_tabbar" selectedImage:@"long_video_tabbar_press" title:@"放映厅"];
@@ -59,21 +59,17 @@
 
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+-(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
-+(void)initialize
-{
++(void)initialize{
     
     [[UITabBar appearance]setTranslucent:NO];
     [[UITabBar appearance]setBarTintColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1]];
-    
 //    normal
     UITabBarItem *item = [UITabBarItem appearance];
-
     item.titlePositionAdjustment = UIOffsetMake(0, -5);//titile 和 image的位置
     NSMutableDictionary *normalDic = [NSMutableDictionary dictionary];
     normalDic[NSFontAttributeName] = [UIFont systemFontOfSize:10.f];
@@ -99,12 +95,9 @@
     return nav;
 }
 
--(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
-{
-    if(self.selectedViewController == viewController && self.selectedViewController == self.homeNavi)
-    {
-        if([self.selectedImageView.layer animationForKey:@"rotationAnimation"])
-        {
+-(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+    if(self.selectedViewController == viewController && self.selectedViewController == self.homeNavi){
+        if([self.selectedImageView.layer animationForKey:@"rotationAnimation"]){
             return YES;
         }
         self.homeNavi.tabBarItem.image = [[UIImage imageNamed:@"home_tabbar"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -113,11 +106,9 @@
         self.homeNavi.tabBarItem.image = [[UIImage imageNamed:@"home_tabbar"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         self.homeNavi.tabBarItem.selectedImage = [[UIImage imageNamed:@"home_tabbar_press"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
-    if(self.selectedViewController == viewController)
-    {
+    if(self.selectedViewController == viewController){
         TTNavigationController *Navi = (TTNavigationController *)viewController;
-        if([Navi.viewControllers.firstObject respondsToSelector:@selector(needRefreshTableViewData)])
-        {
+        if([Navi.viewControllers.firstObject respondsToSelector:@selector(needRefreshTableViewData)]){
             [Navi.viewControllers.firstObject needRefreshTableViewData];
         }
     }

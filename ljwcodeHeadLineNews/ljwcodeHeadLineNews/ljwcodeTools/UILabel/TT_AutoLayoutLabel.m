@@ -15,24 +15,17 @@
 
 @implementation TT_AutoLayoutLabel
 
-/*
- UILabel *tipLabel = [[UILabel alloc]initWithFrame:CGRectZero];
- CGSize Size = CGSizeMake(CGRectGetWidth(view.frame), MAXFLOAT);
- NSString *context = @"All Rights Reserved By Toutiao.com";
- NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:13.f]};
- CGSize size = [context boundingRectWithSize:Size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
- tipLabel.textColor = [UIColor grayColor];
- tipLabel.text = context;
- tipLabel.font = [UIFont systemFontOfSize:13.f];
- tipLabel.textAlignment = NSTextAlignmentCenter;
- [tipLabel setFrame:CGRectMake(0, 0, size.width, size.height)];
- tipLabel.center = view.center;
- [view addSubview:tipLabel];
- */
-
--(instancetype)initWithFrame:(CGRect)frame{
+-(instancetype)initWithFrame:(CGRect)frame withContent:(NSString *)text withTextColor:(UIColor *)color WithSuperView:(UIView *)superView{
     if(self = [super initWithFrame:frame]){
-        
+        self.frame = frame;
+        self.text = text;
+        self.textColor = color;
+        self.textAlignment = NSTextAlignmentCenter;
+        CGSize size = CGSizeMake(CGRectGetWidth(superView.frame), MAXFLOAT);
+        NSDictionary *attributes = @{NSFontAttributeName : [UIFont systemFontOfSize:TT_DEFAULT_FONT_SIZE]};
+        CGSize labelSize = [text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+        self.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
+        [self setFrame:CGRectMake(0, 0, labelSize.width, labelSize.height)];
     }
     return self;
 }

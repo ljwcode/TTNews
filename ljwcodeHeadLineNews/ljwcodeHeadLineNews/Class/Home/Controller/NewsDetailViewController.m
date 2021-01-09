@@ -55,8 +55,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    TTNavigationController *nav = (TTNavigationController *)self.navigationController;
-    [nav startGestureRecnozier];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 }
 
@@ -195,8 +193,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    TTNavigationController *nav = (TTNavigationController *)self.navigationController;
-    [nav startGestureRecnozier];
     UIImage *image = [self.navigationController valueForKeyPath:@"defaultImage"];
     [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
 }
