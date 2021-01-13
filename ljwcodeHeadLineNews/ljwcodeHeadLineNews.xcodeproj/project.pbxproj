@@ -34,6 +34,9 @@
 		631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC92D25483D8D001B82AB /* NetWorkConfigureViewController.m */; };
 		631CFA6824E5276A0082B941 /* focusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA6724E5276A0082B941 /* focusViewController.m */; };
 		631CFA7124E567250082B941 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA7024E567240082B941 /* MessageViewController.m */; };
+		6322ED2D25AE9C5D00D01578 /* TTItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6322ED2C25AE9C5C00D01578 /* TTItemButton.m */; };
+		6322ED3125AE9D0700D01578 /* TTTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6322ED3025AE9D0700D01578 /* TTTabBarView.m */; };
+		6322ED3725AEC91F00D01578 /* TT_tabBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6322ED3625AEC91F00D01578 /* TT_tabBarViewModel.m */; };
 		63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63231B9024A08F110059FD5F /* TTNavigationBar.m */; };
 		63265C43256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63265C41256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.m */; };
 		63265C4B256F9FF100AACBC6 /* TTChannelMyHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63265C4A256F9FF100AACBC6 /* TTChannelMyHeaderView.xib */; };
@@ -98,6 +101,7 @@
 		6390EEBF2589B3670081093E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6390EEB82589B3670081093E /* README.md */; };
 		6390EEC82589B4290081093E /* TTCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6390EEC72589B4290081093E /* TTCarouselView.m */; };
 		6390EEEF2589B7660081093E /* homeTitleDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6390EEEE2589B7660081093E /* homeTitleDBViewModel.m */; };
+		6393A2D825AD438F002BB19E /* TT_tabBarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6393A2D725AD438F002BB19E /* TT_tabBarModel.m */; };
 		63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4E00924C83E8B0042473D /* otherLoginTypeView.m */; };
 		63A4E00D24C863C10042473D /* CircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4E00C24C863C10042473D /* CircleButton.m */; };
 		63ABADD624DBF48F0087453E /* discussEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABADD524DBF48F0087453E /* discussEditView.m */; };
@@ -211,6 +215,13 @@
 		631CFA6724E5276A0082B941 /* focusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = focusViewController.m; sourceTree = "<group>"; };
 		631CFA6F24E567240082B941 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		631CFA7024E567240082B941 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		6322ED2B25AE9C5C00D01578 /* TTItemButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTItemButton.h; sourceTree = "<group>"; };
+		6322ED2C25AE9C5C00D01578 /* TTItemButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTItemButton.m; sourceTree = "<group>"; };
+		6322ED2F25AE9D0700D01578 /* TTTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTTabBarView.h; sourceTree = "<group>"; };
+		6322ED3025AE9D0700D01578 /* TTTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTTabBarView.m; sourceTree = "<group>"; };
+		6322ED3325AE9F7700D01578 /* TTTabBar.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TTTabBar.json; sourceTree = "<group>"; };
+		6322ED3525AEC91F00D01578 /* TT_tabBarViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_tabBarViewModel.h; sourceTree = "<group>"; };
+		6322ED3625AEC91F00D01578 /* TT_tabBarViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_tabBarViewModel.m; sourceTree = "<group>"; };
 		63231B8F24A08F110059FD5F /* TTNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNavigationBar.h; sourceTree = "<group>"; };
 		63231B9024A08F110059FD5F /* TTNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTNavigationBar.m; sourceTree = "<group>"; };
 		63265C40256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTChannelRecommendHeaderView.h; sourceTree = "<group>"; };
@@ -328,6 +339,8 @@
 		6390EEC72589B4290081093E /* TTCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTCarouselView.m; sourceTree = "<group>"; };
 		6390EEED2589B7660081093E /* homeTitleDBViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeTitleDBViewModel.h; sourceTree = "<group>"; };
 		6390EEEE2589B7660081093E /* homeTitleDBViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeTitleDBViewModel.m; sourceTree = "<group>"; wrapsLines = 0; };
+		6393A2D625AD438F002BB19E /* TT_tabBarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_tabBarModel.h; sourceTree = "<group>"; };
+		6393A2D725AD438F002BB19E /* TT_tabBarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_tabBarModel.m; sourceTree = "<group>"; };
 		63A4E00824C83E8B0042473D /* otherLoginTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = otherLoginTypeView.h; sourceTree = "<group>"; };
 		63A4E00924C83E8B0042473D /* otherLoginTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = otherLoginTypeView.m; sourceTree = "<group>"; };
 		63A4E00B24C863C10042473D /* CircleButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleButton.h; sourceTree = "<group>"; };
@@ -529,6 +542,17 @@
 			path = TTHorizontalCateoryTabBar;
 			sourceTree = "<group>";
 		};
+		6322ED2A25AE9C1300D01578 /* TTCustomerTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				6322ED2B25AE9C5C00D01578 /* TTItemButton.h */,
+				6322ED2C25AE9C5C00D01578 /* TTItemButton.m */,
+				6322ED2F25AE9D0700D01578 /* TTTabBarView.h */,
+				6322ED3025AE9D0700D01578 /* TTTabBarView.m */,
+			);
+			path = TTCustomerTabBar;
+			sourceTree = "<group>";
+		};
 		63265C2D256F5DA200AACBC6 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,22 +576,14 @@
 				6352491E2544294E009AECF2 /* QRCodeTool */,
 				631CFA6524E51BEF0082B941 /* TTHorizontalCateoryTabBar */,
 				63403E8024C96AE30024A362 /* UIButton */,
-				637C2D3B24A9F1BA0009274C /* MBProgressHUD+Add.h */,
-				637C2D3A24A9F1BA0009274C /* MBProgressHUD+Add.m */,
 				6328F60F249DEA8C00C767A8 /* TTEmitterHelper.h */,
 				6328F610249DEA8C00C767A8 /* TTEmitterHelper.m */,
-				637A97F224C04B45000F7405 /* UIImage+cropPicture.h */,
-				637A97F324C04B45000F7405 /* UIImage+cropPicture.m */,
 				637BAF2324F3A2AD00711003 /* TTScreen.h */,
 				637BAF2424F3A2AD00711003 /* TTScreen.m */,
-				63722D0524F63E8B000121AD /* NSData+CRC32.h */,
-				63722D0624F63E8B000121AD /* NSData+CRC32.m */,
 				631BC92825482A9A001B82AB /* clearCacheTools.h */,
 				631BC92925482A9A001B82AB /* clearCacheTools.m */,
 				63E8C371256796E100F69701 /* TTWebView.h */,
 				63E8C372256796E100F69701 /* TTWebView.m */,
-				63167B9E2569170200B967B2 /* UIView+Frame.h */,
-				63167B9F2569170200B967B2 /* UIView+Frame.m */,
 			);
 			path = ljwcodeTools;
 			sourceTree = "<group>";
@@ -575,6 +591,7 @@
 		633368DA25761A4300F47A91 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				6322ED2A25AE9C1300D01578 /* TTCustomerTabBar */,
 				63231B8F24A08F110059FD5F /* TTNavigationBar.h */,
 				63231B9024A08F110059FD5F /* TTNavigationBar.m */,
 				633368DE25761AC900F47A91 /* TTArticleSearchTagCell.h */,
@@ -593,6 +610,9 @@
 		633368DB25761A4D00F47A91 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6393A2D625AD438F002BB19E /* TT_tabBarModel.h */,
+				6393A2D725AD438F002BB19E /* TT_tabBarModel.m */,
+				6322ED3325AE9F7700D01578 /* TTTabBar.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -600,6 +620,8 @@
 		633368DC25761A5600F47A91 /* viewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6322ED3525AEC91F00D01578 /* TT_tabBarViewModel.h */,
+				6322ED3625AEC91F00D01578 /* TT_tabBarViewModel.m */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -954,7 +976,6 @@
 			isa = PBXGroup;
 			children = (
 				63BE334F2548160500607EBA /* UILabel+ThemeChange.h */,
-				63BE33502548160500607EBA /* UILabel+ThemeChange.m */,
 				63BE33532548163100607EBA /* UIView+ThemeChange.h */,
 				63BE33542548163100607EBA /* UIView+ThemeChange.m */,
 				63BE33572548165200607EBA /* UITabBar+ThemeChange.h */,
@@ -965,6 +986,15 @@
 				631BC902254818AE001B82AB /* UITableView+ThemeChange.m */,
 				631BC905254818C6001B82AB /* UITableViewCell+ThemeChange.h */,
 				631BC906254818C6001B82AB /* UITableViewCell+ThemeChange.m */,
+				63BE33502548160500607EBA /* UILabel+ThemeChange.m */,
+				637C2D3B24A9F1BA0009274C /* MBProgressHUD+Add.h */,
+				637C2D3A24A9F1BA0009274C /* MBProgressHUD+Add.m */,
+				637A97F224C04B45000F7405 /* UIImage+cropPicture.h */,
+				637A97F324C04B45000F7405 /* UIImage+cropPicture.m */,
+				63722D0524F63E8B000121AD /* NSData+CRC32.h */,
+				63722D0624F63E8B000121AD /* NSData+CRC32.m */,
+				63167B9E2569170200B967B2 /* UIView+Frame.h */,
+				63167B9F2569170200B967B2 /* UIView+Frame.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1396,9 +1426,11 @@
 				637C2D3024A9D1600009274C /* TTNetworkBaseModel.m in Sources */,
 				630A976624CFC463003029C3 /* countryCodeView.m in Sources */,
 				63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */,
+				6322ED3125AE9D0700D01578 /* TTTabBarView.m in Sources */,
 				637C2D2924A9CDE30009274C /* homeTitleModel.m in Sources */,
 				63722D0724F63E8B000121AD /* NSData+CRC32.m in Sources */,
 				820979101BD3AB2800CF9D0C /* homeViewController.m in Sources */,
+				6322ED3725AEC91F00D01578 /* TT_tabBarViewModel.m in Sources */,
 				63422BE124A839960091FEE1 /* WMScrollView.m in Sources */,
 				63C4FA9924EBCE2E00CF9850 /* TTPageDecorateView.m in Sources */,
 				6302B4D625A9B35E00818EBB /* TT_CustomerTabBar.m in Sources */,
@@ -1471,8 +1503,10 @@
 				820979151BD3AEA800CF9D0C /* ScreeningHallViewController.m in Sources */,
 				820978E81BD3A37600CF9D0C /* main.m in Sources */,
 				633BEA5C2587602E00423C39 /* TTSlider.m in Sources */,
+				6393A2D825AD438F002BB19E /* TT_tabBarModel.m in Sources */,
 				63E7177324F9F430003A690E /* TTSearchSuggestionRequestModel.m in Sources */,
 				637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */,
+				6322ED2D25AE9C5D00D01578 /* TTItemButton.m in Sources */,
 				63422C4A24A875D40091FEE1 /* NewsChannelViewController.m in Sources */,
 				949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */,
 				8209791A1BD3AFAC00CF9D0C /* MineViewController.m in Sources */,

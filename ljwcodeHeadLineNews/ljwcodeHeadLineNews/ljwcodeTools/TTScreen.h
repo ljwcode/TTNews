@@ -50,6 +50,8 @@ static inline CGRect UIRectAdapter(x,y,width,height){
 // iphonex
 + (CGSize)sizeFor58Inch;
 
++ (BOOL)TT_isPhoneX;
+
 @end
 
 NS_ASSUME_NONNULL_END

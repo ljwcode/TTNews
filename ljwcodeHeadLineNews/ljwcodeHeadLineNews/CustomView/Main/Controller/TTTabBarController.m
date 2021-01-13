@@ -15,6 +15,7 @@
 #import "ScreeningHallViewController.h"
 #import "MineViewController.h"
 #import "VideoViewController.h"
+#import "TTTabBarView.h"
 
 
 @interface TTTabBarController()<UITabBarControllerDelegate>
@@ -29,12 +30,20 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    
-    _homeNavi = [self addChildViewController:[homeViewController class] normalImage:@"new_home_tabbar" selectedImage:@"new_home_tabbar_press" title:@"首页"];
-    [self addChildViewController:[VideoViewController class] normalImage:@"video_tabbar" selectedImage:@"video_tabbar_press" title:@"西瓜视频"];
-    [self addChildViewController:[ScreeningHallViewController class] normalImage:@"long_video_tabbar" selectedImage:@"long_video_tabbar_press" title:@"放映厅"];
-    [self addChildViewController:[MineViewController class] normalImage:@"mine_tabbar" selectedImage:@"mine_tabbar_press" title:@"我"];
-    
+    TTTabBarView *tabBarView = [[TTTabBarView alloc]init];
+    tabBarView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 49, [UIScreen mainScreen].bounds.size.width, 49);
+    [self.view addSubview:tabBarView];
+    [tabBarView TT_itemButton:4 itemBlock:^(NSInteger item) {
+        self.selectedIndex = item - 100;
+    }];
+//    _homeNavi = [self addChildViewController:[homeViewController class] normalImage:@"new_home_tabbar" selectedImage:@"new_home_tabbar_press" title:@"首页"];
+//    [self addChildViewController:[VideoViewController class] normalImage:@"video_tabbar" selectedImage:@"video_tabbar_press" title:@"西瓜视频"];
+//    [self addChildViewController:[ScreeningHallViewController class] normalImage:@"long_video_tabbar" selectedImage:@"long_video_tabbar_press" title:@"放映厅"];
+//    [self addChildViewController:[MineViewController class] normalImage:@"mine_tabbar" selectedImage:@"mine_tabbar_press" title:@"我"];
+    _homeNavi = [self TT_addChildViewController:[homeViewController class]];
+    [self TT_addChildViewController:[VideoViewController class]];
+    [self TT_addChildViewController:[ScreeningHallViewController class]];
+    [self TT_addChildViewController:[MineViewController class]];
     self.delegate = self;
     
     @weakify(self)
@@ -91,6 +100,13 @@
     nav.tabBarItem.title = title;
     nav.tabBarItem.image = [[UIImage imageNamed:normalImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     nav.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self addChildViewController:nav];
+    return nav;
+}
+
+-(TTNavigationController *)TT_addChildViewController:(Class)class{
+    UIViewController *VC = [[class alloc]init];
+    TTNavigationController *nav = [[TTNavigationController alloc]initWithRootViewController:VC];
     [self addChildViewController:nav];
     return nav;
 }

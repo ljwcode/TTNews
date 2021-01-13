@@ -80,6 +80,8 @@
 
 #define TableViewCellBackgroundColorTag 13
 
+#define TT_isIphoneX [TTScreen TT_isPhoneX]
+
 //顶部底部工具条高度
 #define ToolBarHeight     40
 //进度条颜色
