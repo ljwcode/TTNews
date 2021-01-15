@@ -16,8 +16,7 @@ typedef void(^TTItemButtonBlock)(NSInteger item);
 
 @property(nonatomic,copy)TTItemButtonBlock block;
 
--(void)TT_itemButton:(NSInteger)item itemBlock:(TTItemButtonBlock)itemBlock;
-
+-(void)TT_itemButton:(NSInteger)itemCount itemBlock:(TTItemButtonBlock)itemBlock withDataArray:(NSArray *)dataArray;
 @end
 
 NS_ASSUME_NONNULL_END

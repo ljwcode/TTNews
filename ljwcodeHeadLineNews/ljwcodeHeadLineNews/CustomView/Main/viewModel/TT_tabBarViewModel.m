@@ -21,10 +21,11 @@
     if(self = [super init]){
         _tabBarCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"TTTabBar" ofType:@"json"];
-                NSData *jsonData = [NSData dataWithContentsOfFile:jsonPath];
-                NSError *error = nil;
-                NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
+                NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"TTTabBarModel" ofType:@"json"];
+                NSString *jsonString = [NSString stringWithContentsOfFile:jsonPath encoding:NSUTF8StringEncoding error:nil];
+                NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:nil];
+                
                 NSArray *dataArray = [jsonDic objectForKey:@"data"];
                 NSMutableArray *modelArray = [[NSMutableArray alloc]init];
                 for(int i = 0; i < dataArray.count;i++){

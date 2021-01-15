@@ -1,0 +1,25 @@
+{
+"data" : [
+        {
+            "titleName" : "头条",
+            "normalImg" : "new_home_tabbar",
+            "selectedImg" : "new_home_tabbar_press"
+        },
+        {
+            "titleName" : "西瓜视频",
+            "normalImg" : "video_tabbar",
+            "selectedImg" : "video_tabbar_press"
+        },
+        {
+            "titleName" : "放映厅",
+            "normalImg" : "long_video_tabbar",
+            "selectedImg" : "long_video_tabbar_press"
+        },
+        {
+            "titleName" : "未登录",
+            "normalImg" : "mine_tabbar",
+            "selectedImg" : "mine_tabbar_press"
+        }
+        ]
+}
+

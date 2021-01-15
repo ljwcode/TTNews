@@ -12,8 +12,8 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
-        [self setImageEdgeInsets:UIEdgeInsetsMake(-self.titleLabel.intrinsicContentSize.height, 0, 0, -self.titleLabel.intrinsicContentSize.width)];
-        [self setTitleEdgeInsets:UIEdgeInsetsMake(self.currentImage.size.height, -self.currentImage.size.width, 0, 0)];
+        [self setImageEdgeInsets:UIEdgeInsetsMake(-self.titleLabel.intrinsicContentSize.height-10, 0, 0, -self.titleLabel.intrinsicContentSize.width)];
+        [self setTitleEdgeInsets:UIEdgeInsetsMake(self.imageView.intrinsicContentSize.height, -self.imageView.intrinsicContentSize.width, 0, 0)];
         [self setTitleColor:[UIColor colorWithRed:0.31 green:0.31 blue:0.31 alpha:1] forState:UIControlStateNormal];
         [self setTitleColor:[UIColor colorWithRed:0.97 green:0.35 blue:0.35 alpha:1] forState:UIControlStateSelected];
     }

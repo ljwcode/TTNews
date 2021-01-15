@@ -127,6 +127,7 @@
 		63C73D6C259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C73D6B259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.m */; };
 		63CBA1FB258B39FD0020511C /* videoTitleDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CBA1FA258B39FD0020511C /* videoTitleDBViewModel.m */; };
 		63CBA20E258B58680020511C /* homeNewsDetailDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CBA20D258B58680020511C /* homeNewsDetailDBViewModel.m */; };
+		63D2869225AFF73D00D87A10 /* TTTabBarModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 63D2869125AFF73D00D87A10 /* TTTabBarModel.json */; };
 		63D4FF9F24D96FC40035F561 /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D4FF9E24D96FC40035F561 /* NewsDetailViewController.m */; };
 		63D835FD25A860E3005DB303 /* TTChangeFontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D835FC25A860E3005DB303 /* TTChangeFontViewController.m */; };
 		63D8360225A86A7B005DB303 /* TT_AutoLayoutLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D8360125A86A7B005DB303 /* TT_AutoLayoutLabel.m */; };
@@ -219,7 +220,6 @@
 		6322ED2C25AE9C5C00D01578 /* TTItemButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTItemButton.m; sourceTree = "<group>"; };
 		6322ED2F25AE9D0700D01578 /* TTTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTTabBarView.h; sourceTree = "<group>"; };
 		6322ED3025AE9D0700D01578 /* TTTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTTabBarView.m; sourceTree = "<group>"; };
-		6322ED3325AE9F7700D01578 /* TTTabBar.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TTTabBar.json; sourceTree = "<group>"; };
 		6322ED3525AEC91F00D01578 /* TT_tabBarViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_tabBarViewModel.h; sourceTree = "<group>"; };
 		6322ED3625AEC91F00D01578 /* TT_tabBarViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_tabBarViewModel.m; sourceTree = "<group>"; };
 		63231B8F24A08F110059FD5F /* TTNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNavigationBar.h; sourceTree = "<group>"; };
@@ -390,6 +390,7 @@
 		63CBA1FA258B39FD0020511C /* videoTitleDBViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoTitleDBViewModel.m; sourceTree = "<group>"; };
 		63CBA20C258B58680020511C /* homeNewsDetailDBViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsDetailDBViewModel.h; sourceTree = "<group>"; };
 		63CBA20D258B58680020511C /* homeNewsDetailDBViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsDetailDBViewModel.m; sourceTree = "<group>"; };
+		63D2869125AFF73D00D87A10 /* TTTabBarModel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TTTabBarModel.json; sourceTree = "<group>"; };
 		63D4FF9D24D96FC40035F561 /* NewsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsDetailViewController.h; sourceTree = "<group>"; };
 		63D4FF9E24D96FC40035F561 /* NewsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsDetailViewController.m; sourceTree = "<group>"; };
 		63D835F925A85A81005DB303 /* TTFontSizeChangeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTFontSizeChangeHeader.h; sourceTree = "<group>"; };
@@ -612,7 +613,7 @@
 			children = (
 				6393A2D625AD438F002BB19E /* TT_tabBarModel.h */,
 				6393A2D725AD438F002BB19E /* TT_tabBarModel.m */,
-				6322ED3325AE9F7700D01578 /* TTTabBar.json */,
+				63D2869125AFF73D00D87A10 /* TTTabBarModel.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -975,7 +976,6 @@
 		63BE334E254815DB00607EBA /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				63BE334F2548160500607EBA /* UILabel+ThemeChange.h */,
 				63BE33532548163100607EBA /* UIView+ThemeChange.h */,
 				63BE33542548163100607EBA /* UIView+ThemeChange.m */,
 				63BE33572548165200607EBA /* UITabBar+ThemeChange.h */,
@@ -987,6 +987,7 @@
 				631BC905254818C6001B82AB /* UITableViewCell+ThemeChange.h */,
 				631BC906254818C6001B82AB /* UITableViewCell+ThemeChange.m */,
 				63BE33502548160500607EBA /* UILabel+ThemeChange.m */,
+				63BE334F2548160500607EBA /* UILabel+ThemeChange.h */,
 				637C2D3B24A9F1BA0009274C /* MBProgressHUD+Add.h */,
 				637C2D3A24A9F1BA0009274C /* MBProgressHUD+Add.m */,
 				637A97F224C04B45000F7405 /* UIImage+cropPicture.h */,
@@ -1328,6 +1329,7 @@
 				63167ABA24AB63E2002CB4EF /* homeTitleChannelModel in Resources */,
 				631BC92525481E8B001B82AB /* TTThemeNightTag.plist in Resources */,
 				6355CFEE24BEFC19002D3815 /* videoTitileModel in Resources */,
+				63D2869225AFF73D00D87A10 /* TTTabBarModel.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
