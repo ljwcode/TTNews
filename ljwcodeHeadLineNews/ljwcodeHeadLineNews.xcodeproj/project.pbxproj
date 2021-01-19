@@ -34,8 +34,6 @@
 		631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC92D25483D8D001B82AB /* NetWorkConfigureViewController.m */; };
 		631CFA6824E5276A0082B941 /* focusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA6724E5276A0082B941 /* focusViewController.m */; };
 		631CFA7124E567250082B941 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA7024E567240082B941 /* MessageViewController.m */; };
-		6322ED2D25AE9C5D00D01578 /* TTItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6322ED2C25AE9C5C00D01578 /* TTItemButton.m */; };
-		6322ED3125AE9D0700D01578 /* TTTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6322ED3025AE9D0700D01578 /* TTTabBarView.m */; };
 		6322ED3725AEC91F00D01578 /* TT_tabBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6322ED3625AEC91F00D01578 /* TT_tabBarViewModel.m */; };
 		63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63231B9024A08F110059FD5F /* TTNavigationBar.m */; };
 		63265C43256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63265C41256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.m */; };
@@ -104,6 +102,8 @@
 		6393A2D825AD438F002BB19E /* TT_tabBarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6393A2D725AD438F002BB19E /* TT_tabBarModel.m */; };
 		63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4E00924C83E8B0042473D /* otherLoginTypeView.m */; };
 		63A4E00D24C863C10042473D /* CircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4E00C24C863C10042473D /* CircleButton.m */; };
+		63A6F6A425B6DD2000BBFA5D /* TTTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A6F6A325B6DD2000BBFA5D /* TTTabBarItem.m */; };
+		63A6F6A825B6FE7100BBFA5D /* TTTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A6F6A725B6FE7100BBFA5D /* TTTabBar.m */; };
 		63ABADD624DBF48F0087453E /* discussEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABADD524DBF48F0087453E /* discussEditView.m */; };
 		63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AD1AB924AC61D1007EC745 /* homeJokeModel.m */; };
 		63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */; };
@@ -216,10 +216,6 @@
 		631CFA6724E5276A0082B941 /* focusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = focusViewController.m; sourceTree = "<group>"; };
 		631CFA6F24E567240082B941 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		631CFA7024E567240082B941 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
-		6322ED2B25AE9C5C00D01578 /* TTItemButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTItemButton.h; sourceTree = "<group>"; };
-		6322ED2C25AE9C5C00D01578 /* TTItemButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTItemButton.m; sourceTree = "<group>"; };
-		6322ED2F25AE9D0700D01578 /* TTTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTTabBarView.h; sourceTree = "<group>"; };
-		6322ED3025AE9D0700D01578 /* TTTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTTabBarView.m; sourceTree = "<group>"; };
 		6322ED3525AEC91F00D01578 /* TT_tabBarViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_tabBarViewModel.h; sourceTree = "<group>"; };
 		6322ED3625AEC91F00D01578 /* TT_tabBarViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_tabBarViewModel.m; sourceTree = "<group>"; };
 		63231B8F24A08F110059FD5F /* TTNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNavigationBar.h; sourceTree = "<group>"; };
@@ -345,6 +341,10 @@
 		63A4E00924C83E8B0042473D /* otherLoginTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = otherLoginTypeView.m; sourceTree = "<group>"; };
 		63A4E00B24C863C10042473D /* CircleButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleButton.h; sourceTree = "<group>"; };
 		63A4E00C24C863C10042473D /* CircleButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleButton.m; sourceTree = "<group>"; };
+		63A6F6A225B6DD2000BBFA5D /* TTTabBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTTabBarItem.h; sourceTree = "<group>"; };
+		63A6F6A325B6DD2000BBFA5D /* TTTabBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTTabBarItem.m; sourceTree = "<group>"; };
+		63A6F6A625B6FE7100BBFA5D /* TTTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTTabBar.h; sourceTree = "<group>"; };
+		63A6F6A725B6FE7100BBFA5D /* TTTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTTabBar.m; sourceTree = "<group>"; };
 		63ABADD424DBF48F0087453E /* discussEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = discussEditView.h; sourceTree = "<group>"; };
 		63ABADD524DBF48F0087453E /* discussEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = discussEditView.m; sourceTree = "<group>"; };
 		63AD1AB824AC61D1007EC745 /* homeJokeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeJokeModel.h; sourceTree = "<group>"; };
@@ -546,10 +546,10 @@
 		6322ED2A25AE9C1300D01578 /* TTCustomerTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				6322ED2B25AE9C5C00D01578 /* TTItemButton.h */,
-				6322ED2C25AE9C5C00D01578 /* TTItemButton.m */,
-				6322ED2F25AE9D0700D01578 /* TTTabBarView.h */,
-				6322ED3025AE9D0700D01578 /* TTTabBarView.m */,
+				63A6F6A225B6DD2000BBFA5D /* TTTabBarItem.h */,
+				63A6F6A325B6DD2000BBFA5D /* TTTabBarItem.m */,
+				63A6F6A625B6FE7100BBFA5D /* TTTabBar.h */,
+				63A6F6A725B6FE7100BBFA5D /* TTTabBar.m */,
 			);
 			path = TTCustomerTabBar;
 			sourceTree = "<group>";
@@ -1403,6 +1403,7 @@
 				634ECB092576416200DBCC15 /* TTArticleSearchCell.m in Sources */,
 				6328F611249DEA8C00C767A8 /* TTEmitterHelper.m in Sources */,
 				63F1F8ED24AF3AB600D687ED /* videoContentRequestModel.m in Sources */,
+				63A6F6A825B6FE7100BBFA5D /* TTTabBar.m in Sources */,
 				63C4FA9624EBC83C00CF9850 /* TTPageMenuItem.m in Sources */,
 				820979281BD3B28700CF9D0C /* TTTabBarController.m in Sources */,
 				63422C5E24A88F020091FEE1 /* channelButton.m in Sources */,
@@ -1411,6 +1412,7 @@
 				63F1F8E724AF347600D687ED /* videoTitleViewModel.m in Sources */,
 				637C2D2C24A9CF630009274C /* homeTitleViewModel.m in Sources */,
 				637C2D3924A9DDA10009274C /* homeTitleRequestModel.m in Sources */,
+				63A6F6A425B6DD2000BBFA5D /* TTTabBarItem.m in Sources */,
 				63422BE024A839960091FEE1 /* WMMenuItem.m in Sources */,
 				949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */,
 				63F1F8E224AF315E00D687ED /* videoContentModel.m in Sources */,
@@ -1428,7 +1430,6 @@
 				637C2D3024A9D1600009274C /* TTNetworkBaseModel.m in Sources */,
 				630A976624CFC463003029C3 /* countryCodeView.m in Sources */,
 				63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */,
-				6322ED3125AE9D0700D01578 /* TTTabBarView.m in Sources */,
 				637C2D2924A9CDE30009274C /* homeTitleModel.m in Sources */,
 				63722D0724F63E8B000121AD /* NSData+CRC32.m in Sources */,
 				820979101BD3AB2800CF9D0C /* homeViewController.m in Sources */,
@@ -1508,7 +1509,6 @@
 				6393A2D825AD438F002BB19E /* TT_tabBarModel.m in Sources */,
 				63E7177324F9F430003A690E /* TTSearchSuggestionRequestModel.m in Sources */,
 				637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */,
-				6322ED2D25AE9C5D00D01578 /* TTItemButton.m in Sources */,
 				63422C4A24A875D40091FEE1 /* NewsChannelViewController.m in Sources */,
 				949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */,
 				8209791A1BD3AFAC00CF9D0C /* MineViewController.m in Sources */,

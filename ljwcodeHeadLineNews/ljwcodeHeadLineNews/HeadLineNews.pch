@@ -93,4 +93,6 @@
 
 #define TT_ScreenScale [[UIScreen mainScreen] scale]
 
+
+
 #endif /* ljwcodeHeadLineNews_h */

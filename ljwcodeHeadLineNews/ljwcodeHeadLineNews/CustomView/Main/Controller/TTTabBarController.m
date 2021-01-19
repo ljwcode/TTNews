@@ -15,12 +15,16 @@
 #import "ScreeningHallViewController.h"
 #import "MineViewController.h"
 #import "VideoViewController.h"
-#import "TTTabBarView.h"
 #import "TT_tabBarViewModel.h"
 #import <FBLPromises/FBLPromises.h>
 #import <FBLPromises/FBLPromise.h>
+#import "TTTabBarItem.h"
+#import "TTTabBar.h"
+#import "TT_tabBarModel.h"
 
-@interface TTTabBarController()<UITabBarControllerDelegate>
+@interface TTTabBarController()<UITabBarControllerDelegate>{
+    TTTabBar *tabBar;
+}
 
 @property(nonatomic,weak)TTNavigationController *homeNavi;
 
@@ -30,8 +34,6 @@
 
 @property(nonatomic,strong)NSMutableArray *dataArray;
 
-@property(nonatomic,strong)TTTabBarView *tabBarView;
-
 @end
 
 @implementation TTTabBarController
@@ -39,18 +41,8 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(TTFontChangeHandle) name:TT_ALL_FONT_CHANGE object:nil];
-//    [self.view addSubview:self.tabBarView];
-//    [self TT_TabBarPromise];
-
-    _homeNavi = [self addChildViewController:[homeViewController class] normalImage:@"new_home_tabbar" selectedImage:@"new_home_tabbar_press" title:@"首页"];
-    [self addChildViewController:[VideoViewController class] normalImage:@"video_tabbar" selectedImage:@"video_tabbar_press" title:@"西瓜视频"];
-    [self addChildViewController:[ScreeningHallViewController class] normalImage:@"long_video_tabbar" selectedImage:@"long_video_tabbar_press" title:@"放映厅"];
-    [self addChildViewController:[MineViewController class] normalImage:@"mine_tabbar" selectedImage:@"mine_tabbar_press" title:@"我"];
+    [self TT_TabBarPromise];
     
-//    _homeNavi = [self TT_addChildViewController:[homeViewController class]];
-//    [self TT_addChildViewController:[VideoViewController class]];
-//    [self TT_addChildViewController:[ScreeningHallViewController class]];
-//    [self TT_addChildViewController:[MineViewController class]];
     self.delegate = self;
     
     @weakify(self)
@@ -75,6 +67,32 @@
 
 }
 
+-(void)addRooTViewController{
+    CGFloat itemH = TT_USERDEFAULT_float(TabBarViewHeight);
+    tabBar = [[TTTabBar alloc]initWithFrame:CGRectMake(0, kScreenHeight - itemH, kScreenWidth, itemH)];
+    [self setValue:tabBar forKey:@"tabBar"];
+    for(int i = 0;i < self.dataArray.count;i++){
+        TT_tabBarModel *model = self.dataArray[i];
+        TTTabBarItem *item = [[TTTabBarItem alloc]initWithItemTitle:model.titleName normalImg:model.normalImg selectedImg:model.selectedImg imgSize:CGSizeMake(TT_USERDEFAULT_float(TabBarImgWidth), TT_USERDEFAULT_float(TabBarImgHeight))];
+        [tabBar.tabBarItemArray addObject:item];
+    }
+    homeViewController *homeVC = [[homeViewController alloc]init];
+    TTNavigationController *homeNav = [[TTNavigationController alloc]initWithRootViewController:homeVC];
+    
+    VideoViewController *videoVC = [[VideoViewController alloc]init];
+    TTNavigationController *videoNav = [[TTNavigationController alloc]initWithRootViewController:videoVC];
+    
+    ScreeningHallViewController *screenHallVC = [[ScreeningHallViewController alloc]init];
+    TTNavigationController *screenHallNav = [[TTNavigationController alloc]initWithRootViewController:screenHallVC];
+    
+    MineViewController *mineVC = [[MineViewController alloc]init];
+    TTNavigationController *mineNav = [[TTNavigationController alloc]initWithRootViewController:mineVC];
+    
+    NSArray *viewControllers = [NSArray arrayWithObjects:homeNav,videoNav,screenHallNav,mineNav, nil];
+    self.viewControllers = viewControllers;
+    
+}
+
 -(void)TT_TabBarPromise{
     [[FBLPromise do:^id _Nullable{
         return [self TT_getTabBarDataModel];
@@ -95,9 +113,8 @@
 
 -(FBLPromise *)TT_TabBarItem:(id)dataArray{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
-        [self.tabBarView TT_itemButton:4 itemBlock:^(NSInteger item) {
-            self.selectedIndex = item - 100;
-        } withDataArray:dataArray];
+        self.dataArray = dataArray;
+        [self addRooTViewController];
     }];
 }
 
@@ -129,24 +146,6 @@
 
 -(void)TTFontChangeHandle{
     
-}
-
--(TTNavigationController *)addChildViewController:(Class)class normalImage:(NSString *)normalImage selectedImage:(NSString *)selectedImage title:(NSString *)title
-{
-    UIViewController *VC = [[class alloc]init];
-    TTNavigationController *nav = [[TTNavigationController alloc]initWithRootViewController:VC];
-    nav.tabBarItem.title = title;
-    nav.tabBarItem.image = [[UIImage imageNamed:normalImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    nav.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [self addChildViewController:nav];
-    return nav;
-}
-
--(TTNavigationController *)TT_addChildViewController:(Class)class{
-    UIViewController *VC = [[class alloc]init];
-    TTNavigationController *nav = [[TTNavigationController alloc]initWithRootViewController:VC];
-    [self addChildViewController:nav];
-    return nav;
 }
 
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
@@ -187,14 +186,6 @@
         _viewModel = [[TT_tabBarViewModel alloc]init];
     }
     return _viewModel;
-}
-
--(TTTabBarView *)tabBarView{
-    if(!_tabBarView){
-        _tabBarView = [[TTTabBarView alloc]init];
-        [_tabBarView setFrame: CGRectMake(0, kScreenHeight - 49, kScreenWidth, 49)];
-    }
-    return _tabBarView;
 }
 
 @end

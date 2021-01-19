@@ -13,7 +13,19 @@
 
 #define TT_ALL_FONT_CHANGE @"TT_ALL_FONT_CHANGE"
 
+#define TabBarViewHeight @"tabBarHeight"
+
+#define TabBarImgWidth @"TabBarImgWidth"
+
+#define TabBarImgHeight @"TabBarImgHeight"
+
 static float TT_DEFAULT_FONT_SIZE = 15.f;
+
+static float TabBarHeight_SIZE  = 49.0;
+
+static CGFloat tabBarImgWidth_SIZE = 20;
+
+static CGFloat tabBarImgHeight_SIZE = 20;
 
 #define TTFont(FontSize) [UIFont systemFontOfSize:(FontSize)]
 
