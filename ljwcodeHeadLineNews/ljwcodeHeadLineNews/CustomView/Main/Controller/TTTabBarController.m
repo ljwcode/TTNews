@@ -40,7 +40,6 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(TTFontChangeHandle) name:TT_ALL_FONT_CHANGE object:nil];
     [self TT_TabBarPromise];
     
     self.delegate = self;
@@ -53,29 +52,30 @@
     [[RACScheduler mainThreadScheduler]afterDelay:1.5*60 schedule:^{
         [self.tabBar showBadgeWithItemIndex:0 bageNumber:28];//1.5秒后显示28个红点
     }];
-
+    
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:KHomeStopRefreshNot object:nil]subscribeNext:^(NSNotification * _Nullable x) {
         @strongify(self)
         [self.tabBar hideBadgeWithItemIndex:0];
-        if(self.selectedImageView)
-        {
+        if(self.selectedImageView){
             [self.selectedImageView stopAnimating];
         }
         self.homeNavi.tabBarItem.image = [[UIImage imageNamed:@"new_home_tabbar"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         self.homeNavi.tabBarItem.selectedImage = [[UIImage imageNamed:@"new_home_tabbar_press"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }];
-
+    
 }
 
 -(void)addRooTViewController{
     CGFloat itemH = TT_USERDEFAULT_float(TabBarViewHeight);
     tabBar = [[TTTabBar alloc]initWithFrame:CGRectMake(0, kScreenHeight - itemH, kScreenWidth, itemH)];
     [self setValue:tabBar forKey:@"tabBar"];
+    NSMutableArray *array = [NSMutableArray array];
     for(int i = 0;i < self.dataArray.count;i++){
         TT_tabBarModel *model = self.dataArray[i];
-        TTTabBarItem *item = [[TTTabBarItem alloc]initWithItemTitle:model.titleName normalImg:model.normalImg selectedImg:model.selectedImg imgSize:CGSizeMake(TT_USERDEFAULT_float(TabBarImgWidth), TT_USERDEFAULT_float(TabBarImgHeight))];
-        [tabBar.tabBarItemArray addObject:item];
+        TTTabBarItem *item = [[TTTabBarItem alloc]initWithItemTitle:model.titleName normalImg:model.normalImg selectedImg:model.selectedImg];
+        [array addObject:item];
     }
+    tabBar.tabBarItemArray = [NSMutableArray arrayWithArray:array];
     homeViewController *homeVC = [[homeViewController alloc]init];
     TTNavigationController *homeNav = [[TTNavigationController alloc]initWithRootViewController:homeVC];
     
@@ -103,11 +103,11 @@
 
 -(FBLPromise *)TT_getTabBarDataModel{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
-            [[self.viewModel.tabBarCommand execute:@"tabBar"]subscribeNext:^(id  _Nullable x) {
-                NSMutableArray *array = (NSMutableArray *)x;
-                self.dataArray = array;
-                fulfill(self.dataArray);
-            }];
+        [[self.viewModel.tabBarCommand execute:@"tabBar"]subscribeNext:^(id  _Nullable x) {
+            NSMutableArray *array = (NSMutableArray *)x;
+            self.dataArray = array;
+            fulfill(self.dataArray);
+        }];
     }];
 }
 
@@ -124,28 +124,12 @@
 }
 
 +(void)initialize{
-    
     [[UITabBar appearance]setTranslucent:NO];
     [[UITabBar appearance]setBarTintColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1]];
-//    normal
-    UITabBarItem *item = [UITabBarItem appearance];
-    item.titlePositionAdjustment = UIOffsetMake(0, -5);//titile 和 image的位置
-    NSMutableDictionary *normalDic = [NSMutableDictionary dictionary];
-    normalDic[NSFontAttributeName] = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
-    normalDic[NSForegroundColorAttributeName] = [UIColor colorWithRed:0.31 green:0.31 blue:0.31 alpha:1];
-    [item setTitleTextAttributes:normalDic forState:UIControlStateNormal];
-    
-    //selected
-    NSMutableDictionary *selectedDic = [NSMutableDictionary dictionary];
-    selectedDic[NSFontAttributeName] = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
-    selectedDic[NSForegroundColorAttributeName] = [UIColor colorWithRed:0.97 green:0.35 blue:0.35 alpha:1];
-    [item setTitleTextAttributes:selectedDic forState:UIControlStateSelected];
-    [item setTag:10010];
-
 }
 
--(void)TTFontChangeHandle{
-    
+-(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    [tabBar setCurrentIndex:tabBarController.selectedIndex];
 }
 
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
@@ -170,13 +154,9 @@
 }
 
 - (void)viewWillLayoutSubviews{
-
     CGRect tabFrame = self.tabBar.frame;
-
-    tabFrame.size.height = 83;
-
-    tabFrame.origin.y = self.view.frame.size.height - 83;
-
+    tabFrame.size.height = TT_USERDEFAULT_float(TabBarViewHeight);
+    tabFrame.origin.y = self.view.frame.size.height - TT_USERDEFAULT_float(TabBarViewHeight);
     self.tabBar.frame = tabFrame;
 }
 

@@ -15,17 +15,11 @@
 
 #define TabBarViewHeight @"tabBarHeight"
 
-#define TabBarImgWidth @"TabBarImgWidth"
+#define TT_DEFAULT_FONT_SIZE 11
 
-#define TabBarImgHeight @"TabBarImgHeight"
+#define TabBarHeight_SIZE 49
 
-static float TT_DEFAULT_FONT_SIZE = 15.f;
-
-static float TabBarHeight_SIZE  = 49.0;
-
-static CGFloat tabBarImgWidth_SIZE = 20;
-
-static CGFloat tabBarImgHeight_SIZE = 20;
+#define IPhoneXTabBarHeight_SIZE 83
 
 #define TTFont(FontSize) [UIFont systemFontOfSize:(FontSize)]
 

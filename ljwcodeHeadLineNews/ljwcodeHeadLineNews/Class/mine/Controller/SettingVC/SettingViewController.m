@@ -13,6 +13,7 @@
 #import "NetWorkConfigureViewController.h"
 #import "PushNotificationSettingViewController.h"
 #import "TT_ClickHightLightTableViewCell.h"
+#import "TTFontSizeChangeViewModel.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -21,8 +22,6 @@
 @property(nonatomic,strong)UIView *footerView;
 
 @end
-
-static float changeFontSize = 2;
 
 @implementation SettingViewController
 
@@ -346,19 +345,19 @@ static float changeFontSize = 2;
                 UIAlertController *configureFontVC = [UIAlertController alertControllerWithTitle:@"" message:@"设置字体大小" preferredStyle:UIAlertControllerStyleActionSheet];
                 UILabel *label = (UILabel *)[self.view viewWithTag:10031];
                 UIAlertAction *smallFontAction = [UIAlertAction actionWithTitle:@"小" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    [self TT_CalcFontSize:11.f];
+                    [self TT_CalcFontSize:@"Small"];
                     label.text = @"小";
                 }];
                 UIAlertAction *middleFontAction = [UIAlertAction actionWithTitle:@"中" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    [self TT_CalcFontSize:13.f];
+                    [self TT_CalcFontSize:@"Middle"];
                     label.text = @"中";
                 }];
                 UIAlertAction *bigFontAction = [UIAlertAction actionWithTitle:@"大" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    [self TT_CalcFontSize:15.f];
+                    [self TT_CalcFontSize:@"Big"];
                     label.text = @"大";
                 }];
                 UIAlertAction *moreBigFontAction  = [UIAlertAction actionWithTitle:@"特大" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    [self TT_CalcFontSize:17.f];
+                    [self TT_CalcFontSize:@"Bigger"];
                     label.text = @"特大";
                 }];
                 UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
@@ -409,16 +408,17 @@ static float changeFontSize = 2;
 
 #pragma mark ---------- calc/select fontSize
 
--(void)TT_CalcFontSize:(float)fontSize{
-    
-    [[NSUserDefaults standardUserDefaults]setFloat:fontSize forKey:TT_DEFAULT_FONT];
-    [[NSUserDefaults standardUserDefaults]synchronize];
+-(void)TT_CalcFontSize:(NSString *)key{
+    TTFontSizeChangeViewModel *viewModel = [[TTFontSizeChangeViewModel alloc]init];
+    TTFontSizeChangeModel *model = [viewModel TT_getFontSizeJSONModelWithKey:key];
+    [[NSUserDefaults standardUserDefaults]setFloat:model.fontSize forKey:TT_DEFAULT_FONT];
+    [[NSUserDefaults standardUserDefaults]setFloat:TT_isIphoneX ? model.iPhoneXTabBarViewHeight : model.tabBarViewHeight forKey:TabBarViewHeight];
     [[NSNotificationCenter defaultCenter]postNotificationName:TT_ALL_FONT_CHANGE object:nil];
-        
+    [[NSNotificationCenter defaultCenter]postNotificationName:TabBarViewHeight object:nil];
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 -(void)TTFontChangeHandle{
-//    self.tipLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
     TT_AutoLayoutLabel *label = (TT_AutoLayoutLabel *)[self.footerView viewWithTag:10025];
     label.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
 }

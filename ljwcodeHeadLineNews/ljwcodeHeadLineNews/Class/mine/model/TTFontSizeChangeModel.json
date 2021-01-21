@@ -1,0 +1,23 @@
+{
+    "Small" : {
+            "fontSize" : 11,
+            "tabBarViewHeight" : 49,
+            "iPhoneXTabBarViewHeight" : 83
+        },
+    "Middle" : {
+            "fontSize" : 13,
+            "tabBarViewHeight" : 54,
+            "iPhoneXTabBarViewHeight" : 83
+        },
+    "Big" : {
+            "fontSize" : 15,
+            "tabBarViewHeight" : 59,
+            "iPhoneXTabBarViewHeight" : 88
+        },
+    "Bigger" : {
+            "fontSize" : 17,
+            "tabBarViewHeight" : 64,
+            "iPhoneXTabBarViewHeight" : 93
+        }
+    
+}

@@ -16,13 +16,6 @@
 
 @implementation TTTabBar
 
--(instancetype)initWithFrame:(CGRect)frame{
-    if(self = [super initWithFrame:frame]){
-        self.translucent = NO;
-    }
-    return self;
-}
-
 -(void)TT_ClearView{
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 }

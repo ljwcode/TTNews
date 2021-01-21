@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TTTabBarItem : UIView
 
--(instancetype)initWithItemTitle:(NSString *)ItemTitle normalImg:(NSString *)normalImg selectedImg:(NSString *)selectedImg imgSize:(CGSize)imgSize;
+-(instancetype)initWithItemTitle:(NSString *)ItemTitle normalImg:(NSString *)normalImg selectedImg:(NSString *)selectedImg;
 
 -(void)tabBarItemSelected:(BOOL)selected selectedIndex:(NSInteger)index;
 

@@ -23,21 +23,21 @@
 
 -(instancetype)init{
     if(self = [super init]){
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(tabBarViewHeight) name:@"tabBarViewHeight" object:nil];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(fontSizeChange) name:TT_ALL_FONT_CHANGE object:nil];
-        itemWidth = kScreenWidth / 4;
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(tabBarViewHeight) name:TabBarViewHeight object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(TTFontChangeHandle) name:TT_ALL_FONT_CHANGE object:nil];
     }
     return self;
 }
 
 -(void)CreateUI{
+    itemWidth = kScreenWidth / 4;
     titleLabel = [[UILabel alloc] init];
     titleLabel.text = @"  ";
     [self addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self).offset(-2);
         make.centerX.equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(itemWidth, TT_USERDEFAULT_float(TabBarViewHeight)/2-2));
+        make.size.mas_equalTo(CGSizeMake(itemWidth, TT_USERDEFAULT_float(TabBarViewHeight)/3-2));
     }];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
@@ -46,13 +46,13 @@
     TTitemImage.image = [UIImage imageNamed:@""];
     [self addSubview:TTitemImage];
     [TTitemImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(TT_USERDEFAULT_float(TabBarImgWidth), TT_USERDEFAULT_float(TabBarImgHeight)));
+        make.top.mas_equalTo(5);
         make.bottom.equalTo(titleLabel.mas_top).offset(-4);
         make.centerX.equalTo(self);
     }];
 }
 
--(instancetype)initWithItemTitle:(NSString *)ItemTitle normalImg:(NSString *)normalImg selectedImg:(NSString *)selectedImg imgSize:(CGSize)imgSize{
+-(instancetype)initWithItemTitle:(NSString *)ItemTitle normalImg:(NSString *)normalImg selectedImg:(NSString *)selectedImg{
     if(self = [super init]){
         [self CreateUI];
         TTselectedImg = [UIImage imageNamed:selectedImg];
@@ -60,7 +60,7 @@
         titleLabel.text = ItemTitle;
         [TTitemImage setImage:TTselectedImg];
         [TTitemImage mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(imgSize);
+            make.top.mas_equalTo(5);
             make.bottom.equalTo(titleLabel.mas_top).offset(-4);
             make.centerX.equalTo(self);
         }];
@@ -89,6 +89,7 @@
 #pragma mark ---- notification
 
 -(void)tabBarViewHeight{
+    itemWidth = kScreenWidth / 4;
     [titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self).offset(-2);
         make.centerX.equalTo(self);
@@ -96,8 +97,9 @@
     }];
 }
 
--(void)fontSizeChange{
+-(void)TTFontChangeHandle{
     titleLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
+    [self layoutIfNeeded];
 }
 
 /*
