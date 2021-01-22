@@ -100,6 +100,10 @@
     [self callback_webViewDidStartLoad];
 }
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    [webView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='none';" completionHandler:nil];
+    [webView evaluateJavaScript:@"document.activeElement.blur();" completionHandler:nil];
+    // 适当增大字体大小
+    [webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '150%'" completionHandler:nil];
     webView.allowsBackForwardNavigationGestures = YES;
     [self callback_webViewDidFinishLoad];
 }

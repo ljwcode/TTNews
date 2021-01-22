@@ -20,14 +20,20 @@
 #pragma mark - Public Methods
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(TTFontChangeHandle) name:TT_ALL_FONT_CHANGE object:nil];
         self.normalColor   = [UIColor blackColor];
         self.selectedColor = [UIColor blackColor];
-        self.normalSize    = 15;
-        self.selectedSize  = 18;
+        self.normalSize    = TT_USERDEFAULT_float(TT_DEFAULT_FONT);
+        self.selectedSize  = TT_USERDEFAULT_float(TT_DEFAULT_FONT);
         self.numberOfLines = 0;
         [self setupGestureRecognizer];
     }
     return self;
+}
+
+-(void)TTFontChangeHandle{
+    self.normalSize = TT_USERDEFAULT_float(TT_DEFAULT_FONT);
+    self.selectedSize = TT_USERDEFAULT_float(TT_DEFAULT_FONT);
 }
 
 - (CGFloat)speedFactor {

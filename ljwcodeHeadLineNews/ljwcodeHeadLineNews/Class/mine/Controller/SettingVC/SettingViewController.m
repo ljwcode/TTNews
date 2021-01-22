@@ -14,6 +14,7 @@
 #import "PushNotificationSettingViewController.h"
 #import "TT_ClickHightLightTableViewCell.h"
 #import "TTFontSizeChangeViewModel.h"
+#import "UILabel+Frame.h"
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -142,15 +143,17 @@
                     cell.textLabel.text = @"字体大小";
                     UILabel *fontSizeTipLabel = [[UILabel alloc]init];
                     [fontSizeTipLabel setTag:10031];
-                    fontSizeTipLabel.text = @"中";
+                    fontSizeTipLabel.text = TT_USERDEFAULT_object(TT_FONTSIZE_TIP);
                     fontSizeTipLabel.font = [UIFont systemFontOfSize:13.f];
                     fontSizeTipLabel.textColor = [UIColor grayColor];
                     fontSizeTipLabel.textAlignment = NSTextAlignmentCenter;
+                    [fontSizeTipLabel TTContentFitWidth];
+                    [fontSizeTipLabel TTContentFitHeight];
                     [cell addSubview:fontSizeTipLabel];
                     [fontSizeTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.centerY.mas_equalTo(cell);
-                        make.right.mas_equalTo(-5 * hSpace);
-                        make.width.height.mas_equalTo(2 * hSpace);
+                        make.right.mas_equalTo(-4 * hSpace);
+                        make.width.height.mas_equalTo(4 * hSpace);
                     }];
                     UIImageView *rightArrowImgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrow_right_setup"]];
                     [cell addSubview:rightArrowImgView];
@@ -360,6 +363,9 @@
                     [self TT_CalcFontSize:@"Bigger"];
                     label.text = @"特大";
                 }];
+                TT_USERDEFAULT_object(label.text);
+                [label TTContentFitWidth];
+                [label TTContentFitHeight];
                 UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
                 [configureFontVC addAction:cancelAction];
                 [configureFontVC addAction:smallFontAction];
@@ -411,6 +417,7 @@
 -(void)TT_CalcFontSize:(NSString *)key{
     TTFontSizeChangeViewModel *viewModel = [[TTFontSizeChangeViewModel alloc]init];
     TTFontSizeChangeModel *model = [viewModel TT_getFontSizeJSONModelWithKey:key];
+    [[NSUserDefaults standardUserDefaults]setObject:model.tip forKey:TT_FONTSIZE_TIP];
     [[NSUserDefaults standardUserDefaults]setFloat:model.fontSize forKey:TT_DEFAULT_FONT];
     [[NSUserDefaults standardUserDefaults]setFloat:TT_isIphoneX ? model.iPhoneXTabBarViewHeight : model.tabBarViewHeight forKey:TabBarViewHeight];
     [[NSNotificationCenter defaultCenter]postNotificationName:TT_ALL_FONT_CHANGE object:nil];
@@ -419,8 +426,10 @@
 }
 
 -(void)TTFontChangeHandle{
-    TT_AutoLayoutLabel *label = (TT_AutoLayoutLabel *)[self.footerView viewWithTag:10025];
+    UILabel *label = (UILabel *)[self.footerView viewWithTag:10025];
     label.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
+    [label TTContentFitWidth];
+    [label TTContentFitHeight];
 }
 
 #pragma mark ---------- 事件响应
@@ -460,10 +469,20 @@
     if(!_footerView){
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.1)];
         view.backgroundColor = [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1];
-        TT_AutoLayoutLabel *tipLabel = [[TT_AutoLayoutLabel alloc]initWithFrame:CGRectZero withContent:@"All Rights Reserved By Toutiao.com" withTextColor:[UIColor grayColor] WithSuperView:view];
+        UILabel *tipLabel = [[UILabel alloc]init];
+        tipLabel.text = @"All Rights Reserved By Toutiao.com";
+        tipLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
+        tipLabel.textColor = [UIColor grayColor];
+        tipLabel.textAlignment = NSTextAlignmentCenter;
         [tipLabel setTag:10025];
-        tipLabel.center = view.center;
+        [tipLabel TTContentFitHeight];
+        [tipLabel TTContentFitWidth];
         [view addSubview:tipLabel];
+        [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.centerY.mas_equalTo(view);
+            make.width.mas_equalTo(kScreenWidth);
+            make.height.mas_equalTo(CGRectGetHeight(view.frame));
+        }];
         _footerView = view;
     }
     return _footerView;

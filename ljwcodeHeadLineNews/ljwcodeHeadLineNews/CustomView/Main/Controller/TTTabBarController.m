@@ -62,6 +62,7 @@
         self.homeNavi.tabBarItem.image = [[UIImage imageNamed:@"new_home_tabbar"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         self.homeNavi.tabBarItem.selectedImage = [[UIImage imageNamed:@"new_home_tabbar_press"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(tabBarViewHeight) name:TabBarViewHeight object:nil];
     
 }
 
@@ -166,6 +167,11 @@
         _viewModel = [[TT_tabBarViewModel alloc]init];
     }
     return _viewModel;
+}
+
+-(void)tabBarViewHeight{
+    CGFloat itemH = TT_USERDEFAULT_float(TabBarViewHeight);
+    tabBar = [[TTTabBar alloc]initWithFrame:CGRectMake(0, kScreenHeight - itemH, kScreenWidth, itemH)];
 }
 
 @end

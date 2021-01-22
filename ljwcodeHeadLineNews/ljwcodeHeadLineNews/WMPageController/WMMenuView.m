@@ -20,6 +20,13 @@ static NSInteger const WMBadgeViewTagOffset = 1212;
 
 @implementation WMMenuView
 
+-(instancetype)init{
+    if(self = [super init]){
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(TTFontChangeHandle) name:TT_ALL_FONT_CHANGE object:nil];
+    }
+    return self;
+}
+
 #pragma mark - Setter
 
 - (void)setLayoutMode:(WMMenuViewLayoutMode)layoutMode {
@@ -152,7 +159,13 @@ static NSInteger const WMBadgeViewTagOffset = 1212;
     if ([self.delegate respondsToSelector:@selector(menuView:titleSizeForState:atIndex:)]) {
         return [self.delegate menuView:self titleSizeForState:state atIndex:index];
     }
-    return 15.0;
+    return TT_USERDEFAULT_float(TT_DEFAULT_FONT);
+}
+
+-(void)TTFontChangeHandle{
+    WMMenuItem *item = [[WMMenuItem alloc] init];
+    item.normalSize    =  TT_USERDEFAULT_float(TT_DEFAULT_FONT);
+    item.selectedSize  = TT_USERDEFAULT_float(TT_DEFAULT_FONT);
 }
 
 - (UIView *)badgeViewAtIndex:(NSInteger)index {
@@ -447,8 +460,8 @@ static NSInteger const WMBadgeViewTagOffset = 1212;
         item.textAlignment = NSTextAlignmentCenter;
         item.userInteractionEnabled = YES;
         item.backgroundColor = [UIColor clearColor];
-        item.normalSize    = [self sizeForState:WMMenuItemStateNormal atIndex:i];
-        item.selectedSize  = [self sizeForState:WMMenuItemStateSelected atIndex:i];
+        item.normalSize = TT_USERDEFAULT_float(TT_DEFAULT_FONT);
+        item.selectedSize = TT_USERDEFAULT_float(TT_DEFAULT_FONT);
         item.normalColor   = [self colorForState:WMMenuItemStateNormal atIndex:i];
         item.selectedColor = [self colorForState:WMMenuItemStateSelected atIndex:i];
         item.speedFactor   = self.speedFactor;

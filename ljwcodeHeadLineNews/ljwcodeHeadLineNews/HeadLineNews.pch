@@ -13,7 +13,6 @@
 #import "TTSystemConfigureHelper.h"
 #import "TTFontSizeChangeHeader.h"
 #import "TTChangeFontViewController.h"
-#import "TT_AutoLayoutLabel.h"
 #import "TTScreen.h"
 
 #ifndef ljwcodeHeadLineNews_h

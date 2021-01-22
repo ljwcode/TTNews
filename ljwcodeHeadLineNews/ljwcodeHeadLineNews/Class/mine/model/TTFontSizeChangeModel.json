@@ -1,20 +1,24 @@
 {
     "Small" : {
+            "tip" : "小",
             "fontSize" : 11,
             "tabBarViewHeight" : 49,
             "iPhoneXTabBarViewHeight" : 83
         },
     "Middle" : {
+            "tip" : "中",
             "fontSize" : 13,
             "tabBarViewHeight" : 54,
             "iPhoneXTabBarViewHeight" : 83
         },
     "Big" : {
+            "tip"  :  "大",
             "fontSize" : 15,
             "tabBarViewHeight" : 59,
             "iPhoneXTabBarViewHeight" : 88
         },
     "Bigger" : {
+            "tip" : "特大",
             "fontSize" : 17,
             "tabBarViewHeight" : 64,
             "iPhoneXTabBarViewHeight" : 93

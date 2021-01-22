@@ -9,6 +9,8 @@
 #ifndef TTFontSizeChangeHeader_h
 #define TTFontSizeChangeHeader_h
 
+#define TT_FONTSIZE_TIP @"TT_FONTSIZE_TIP"
+
 #define TT_DEFAULT_FONT @"TT_DEFAULT_FONT"
 
 #define TT_ALL_FONT_CHANGE @"TT_ALL_FONT_CHANGE"

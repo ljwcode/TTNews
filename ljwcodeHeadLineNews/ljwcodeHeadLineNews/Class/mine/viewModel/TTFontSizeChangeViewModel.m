@@ -7,6 +7,7 @@
 //
 
 #import "TTFontSizeChangeViewModel.h"
+#import <MJExtension/MJExtension.h>
 
 @implementation TTFontSizeChangeViewModel
 
@@ -15,9 +16,8 @@
     NSString *jsonString = [NSString stringWithContentsOfFile:jsonPath encoding:NSUTF8StringEncoding error:nil];
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:nil];
-    NSNumber *number = [[jsonDic objectForKey:key]objectForKey:@"fontSize"];
-    float f = [number floatValue];
-    TTFontSizeChangeModel *model = [jsonDic objectForKey:key];
+    NSDictionary *responseDic = [jsonDic objectForKey:key];
+    TTFontSizeChangeModel *model = [[[TTFontSizeChangeModel alloc]init]mj_setKeyValues:responseDic];
     
     return model;
     

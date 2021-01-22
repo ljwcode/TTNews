@@ -59,6 +59,8 @@
 		63422C5624A87EA30091FEE1 /* TTChannelMyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5524A87EA30091FEE1 /* TTChannelMyHeaderView.m */; };
 		63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5A24A88BB40091FEE1 /* newsChannelModel.m */; };
 		63422C5E24A88F020091FEE1 /* channelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5D24A88F020091FEE1 /* channelButton.m */; };
+		634518F125BAB27E00782DA6 /* UILabel+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 634518F025BAB27E00782DA6 /* UILabel+Frame.m */; };
+		6345190525BABAD300782DA6 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6345190425BABAD300782DA6 /* SettingViewController.m */; };
 		634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */; };
 		634AF04A254C20580013EE56 /* articlev60.html in Resources */ = {isa = PBXBuildFile; fileRef = 634AF049254C20580013EE56 /* articlev60.html */; };
 		634DA02D25A45C4200236458 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 634DA02C25A45C4200236458 /* Settings.bundle */; };
@@ -115,7 +117,6 @@
 		63BE33552548163100607EBA /* UIView+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE33542548163100607EBA /* UIView+ThemeChange.m */; };
 		63BE33592548165200607EBA /* UITabBar+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE33582548165200607EBA /* UITabBar+ThemeChange.m */; };
 		63BE352524DAD63A001ADFDD /* newsDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE352424DAD63A001ADFDD /* newsDetailFooterView.m */; };
-		63BE5E792546B90D00381E38 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE5E782546B90D00381E38 /* SettingViewController.m */; };
 		63BF78F12594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BF78F02594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m */; };
 		63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C472A024B0566D0030C84B /* NetworkSpeedMonitor.m */; };
 		63C4FA8D24EBC1C800CF9850 /* TTHorizontalPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4FA8C24EBC1C800CF9850 /* TTHorizontalPageViewController.m */; };
@@ -131,7 +132,6 @@
 		63D2869225AFF73D00D87A10 /* TTTabBarModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 63D2869125AFF73D00D87A10 /* TTTabBarModel.json */; };
 		63D4FF9F24D96FC40035F561 /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D4FF9E24D96FC40035F561 /* NewsDetailViewController.m */; };
 		63D835FD25A860E3005DB303 /* TTChangeFontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D835FC25A860E3005DB303 /* TTChangeFontViewController.m */; };
-		63D8360225A86A7B005DB303 /* TT_AutoLayoutLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D8360125A86A7B005DB303 /* TT_AutoLayoutLabel.m */; };
 		63DB0D182501E3F900B9FA0A /* parseVideoRealURLViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DB0D172501E3F900B9FA0A /* parseVideoRealURLViewModel.m */; };
 		63DB0D1B2501F19200B9FA0A /* videoRealURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DB0D1A2501F19200B9FA0A /* videoRealURLRequestModel.m */; };
 		63DEE5FC254ABA8F00D356D4 /* PushNotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DEE5FB254ABA8F00D356D4 /* PushNotificationSettingViewController.m */; };
@@ -264,6 +264,9 @@
 		63422C5A24A88BB40091FEE1 /* newsChannelModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newsChannelModel.m; sourceTree = "<group>"; };
 		63422C5C24A88F020091FEE1 /* channelButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = channelButton.h; sourceTree = "<group>"; };
 		63422C5D24A88F020091FEE1 /* channelButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = channelButton.m; sourceTree = "<group>"; };
+		634518EF25BAB27E00782DA6 /* UILabel+Frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Frame.h"; sourceTree = "<group>"; };
+		634518F025BAB27E00782DA6 /* UILabel+Frame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Frame.m"; sourceTree = "<group>"; };
+		6345190425BABAD300782DA6 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		634A581324BD9B7D00CDF423 /* baseBadgeLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseBadgeLabel.h; sourceTree = "<group>"; };
 		634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseBadgeLabel.m; sourceTree = "<group>"; };
 		634AF049254C20580013EE56 /* articlev60.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = articlev60.html; sourceTree = "<group>"; };
@@ -369,7 +372,6 @@
 		63BE352324DAD63A001ADFDD /* newsDetailFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newsDetailFooterView.h; sourceTree = "<group>"; };
 		63BE352424DAD63A001ADFDD /* newsDetailFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newsDetailFooterView.m; sourceTree = "<group>"; };
 		63BE5E772546B90D00381E38 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
-		63BE5E782546B90D00381E38 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		63BF78EF2594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTDBCacheSearchKeywordViewModel.h; sourceTree = "<group>"; };
 		63BF78F02594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTDBCacheSearchKeywordViewModel.m; sourceTree = "<group>"; };
 		63C4729F24B0566D0030C84B /* NetworkSpeedMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkSpeedMonitor.h; sourceTree = "<group>"; };
@@ -400,8 +402,6 @@
 		63D835F925A85A81005DB303 /* TTFontSizeChangeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTFontSizeChangeHeader.h; sourceTree = "<group>"; };
 		63D835FB25A860E3005DB303 /* TTChangeFontViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTChangeFontViewController.h; sourceTree = "<group>"; };
 		63D835FC25A860E3005DB303 /* TTChangeFontViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTChangeFontViewController.m; sourceTree = "<group>"; };
-		63D8360025A86A7B005DB303 /* TT_AutoLayoutLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_AutoLayoutLabel.h; sourceTree = "<group>"; };
-		63D8360125A86A7B005DB303 /* TT_AutoLayoutLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_AutoLayoutLabel.m; sourceTree = "<group>"; };
 		63DB0D162501E3F900B9FA0A /* parseVideoRealURLViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parseVideoRealURLViewModel.h; sourceTree = "<group>"; };
 		63DB0D172501E3F900B9FA0A /* parseVideoRealURLViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = parseVideoRealURLViewModel.m; sourceTree = "<group>"; };
 		63DB0D192501F19200B9FA0A /* videoRealURLRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoRealURLRequestModel.h; sourceTree = "<group>"; };
@@ -962,7 +962,7 @@
 			isa = PBXGroup;
 			children = (
 				63BE5E772546B90D00381E38 /* SettingViewController.h */,
-				63BE5E782546B90D00381E38 /* SettingViewController.m */,
+				6345190425BABAD300782DA6 /* SettingViewController.m */,
 				63BE32FB2547F3D000607EBA /* PrivacyViewController.h */,
 				63BE32FC2547F3D000607EBA /* PrivacyViewController.m */,
 				631BC92C25483D8D001B82AB /* NetWorkConfigureViewController.h */,
@@ -1037,8 +1037,8 @@
 		63D835FF25A86A52005DB303 /* UILabel */ = {
 			isa = PBXGroup;
 			children = (
-				63D8360025A86A7B005DB303 /* TT_AutoLayoutLabel.h */,
-				63D8360125A86A7B005DB303 /* TT_AutoLayoutLabel.m */,
+				634518EF25BAB27E00782DA6 /* UILabel+Frame.h */,
+				634518F025BAB27E00782DA6 /* UILabel+Frame.m */,
 			);
 			path = UILabel;
 			sourceTree = "<group>";
@@ -1411,11 +1411,13 @@
 				6390EEBD2589B3670081093E /* UIScrollView+EmptyDataSet.m in Sources */,
 				63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */,
 				631CFA7124E567250082B941 /* MessageViewController.m in Sources */,
+				6345190525BABAD300782DA6 /* SettingViewController.m in Sources */,
 				63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */,
 				637BAF2224F3A07F00711003 /* ScreenHallVideoDetailViewController.m in Sources */,
 				8209791F1BD3AFDB00CF9D0C /* VideoViewController.m in Sources */,
 				634ECB092576416200DBCC15 /* TTArticleSearchCell.m in Sources */,
 				6328F611249DEA8C00C767A8 /* TTEmitterHelper.m in Sources */,
+				634518F125BAB27E00782DA6 /* UILabel+Frame.m in Sources */,
 				63F1F8ED24AF3AB600D687ED /* videoContentRequestModel.m in Sources */,
 				63A6F6A825B6FE7100BBFA5D /* TTTabBar.m in Sources */,
 				63C4FA9624EBC83C00CF9850 /* TTPageMenuItem.m in Sources */,
@@ -1508,7 +1510,6 @@
 				6390EEEF2589B7660081093E /* homeTitleDBViewModel.m in Sources */,
 				63EEAB4225B96AD400ACDB7D /* TTFontSizeChangeViewModel.m in Sources */,
 				63E8C3782567B29600F69701 /* TTHomeMoreShareVIew.m in Sources */,
-				63D8360225A86A7B005DB303 /* TT_AutoLayoutLabel.m in Sources */,
 				63BE33592548165200607EBA /* UITabBar+ThemeChange.m in Sources */,
 				6390EEC82589B4290081093E /* TTCarouselView.m in Sources */,
 				63C4FA9C24EBDFC900CF9850 /* TTPageMenuView.m in Sources */,
@@ -1516,7 +1517,6 @@
 				6352492125442980009AECF2 /* QRCodeManager.m in Sources */,
 				63422BE224A839960091FEE1 /* WMMenuView.m in Sources */,
 				6355CFF524BF1078002D3815 /* TTloginView.m in Sources */,
-				63BE5E792546B90D00381E38 /* SettingViewController.m in Sources */,
 				634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */,
 				63403E7C24C969FB0024A362 /* screeningHallTableViewCell.m in Sources */,
 				820979151BD3AEA800CF9D0C /* ScreeningHallViewController.m in Sources */,
