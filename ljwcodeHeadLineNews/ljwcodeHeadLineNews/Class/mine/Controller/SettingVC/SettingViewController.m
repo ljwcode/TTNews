@@ -420,8 +420,10 @@
     [[NSUserDefaults standardUserDefaults]setObject:model.tip forKey:TT_FONTSIZE_TIP];
     [[NSUserDefaults standardUserDefaults]setFloat:model.fontSize forKey:TT_DEFAULT_FONT];
     [[NSUserDefaults standardUserDefaults]setFloat:TT_isIphoneX ? model.iPhoneXTabBarViewHeight : model.tabBarViewHeight forKey:TabBarViewHeight];
+    [[NSUserDefaults standardUserDefaults]setObject:model.webViewFontSizeScale forKey:TTWebViewFontSizeScale];
     [[NSNotificationCenter defaultCenter]postNotificationName:TT_ALL_FONT_CHANGE object:nil];
     [[NSNotificationCenter defaultCenter]postNotificationName:TabBarViewHeight object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:TTWebViewFontSizeScale object:nil];
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
 

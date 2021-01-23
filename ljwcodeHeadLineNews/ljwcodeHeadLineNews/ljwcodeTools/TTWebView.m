@@ -37,6 +37,7 @@
 }
 - (instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(WebViewFontSizeScale) name:TTWebViewFontSizeScale object:nil];
         [self initSelf];
     }
     return self;
@@ -103,7 +104,8 @@
     [webView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='none';" completionHandler:nil];
     [webView evaluateJavaScript:@"document.activeElement.blur();" completionHandler:nil];
     // 适当增大字体大小
-    [webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '150%'" completionHandler:nil];
+    NSString *js = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%@%%'",TT_USERDEFAULT_object(TTWebViewFontSizeScale)];
+    [webView evaluateJavaScript:js completionHandler:nil];
     webView.allowsBackForwardNavigationGestures = YES;
     [self callback_webViewDidFinishLoad];
 }
@@ -319,5 +321,13 @@
     [_realWebView removeFromSuperview];
     _realWebView = nil;
 }
+
+#pragma mark ---- NSNotification
+
+-(void)WebViewFontSizeScale{
+    NSString *js = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%@%%'",TT_USERDEFAULT_object(TTWebViewFontSizeScale)];
+    [self.realWebView evaluateJavaScript:js completionHandler:nil];
+}
+
 @end
 

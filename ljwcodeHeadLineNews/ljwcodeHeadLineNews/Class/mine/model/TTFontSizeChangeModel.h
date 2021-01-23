@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TTFontSizeChangeModel : NSObject
 
+@property(nonatomic,copy)NSString *webViewFontSizeScale;
+
 @property(nonatomic,copy)NSString *tip;
 
 @property(nonatomic,assign)float fontSize;

@@ -72,6 +72,7 @@
             [userDefaules setFloat:TT_DEFAULT_FONT_SIZE forKey:TT_DEFAULT_FONT];
             [userDefaules setFloat:TT_isIphoneX ? IPhoneXTabBarHeight_SIZE : TabBarHeight_SIZE forKey:TabBarViewHeight];
             [userDefaules setObject:@"中" forKey:TT_FONTSIZE_TIP];
+            [userDefaules setObject:@"180" forKey:TTWebViewFontSizeScale];
             [userDefaules synchronize];
         });
     }

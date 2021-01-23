@@ -1,23 +1,27 @@
 {
     "Small" : {
+            "webViewFontSizeScale" : "80",
             "tip" : "小",
             "fontSize" : 11,
             "tabBarViewHeight" : 49,
             "iPhoneXTabBarViewHeight" : 83
         },
     "Middle" : {
+            "webViewFontSizeScale" : "100",
             "tip" : "中",
             "fontSize" : 13,
             "tabBarViewHeight" : 54,
             "iPhoneXTabBarViewHeight" : 83
         },
     "Big" : {
+            "webViewFontSizeScale" : "130",
             "tip"  :  "大",
             "fontSize" : 15,
             "tabBarViewHeight" : 59,
             "iPhoneXTabBarViewHeight" : 88
         },
     "Bigger" : {
+            "webViewFontSizeScale" : "160",
             "tip" : "特大",
             "fontSize" : 17,
             "tabBarViewHeight" : 64,

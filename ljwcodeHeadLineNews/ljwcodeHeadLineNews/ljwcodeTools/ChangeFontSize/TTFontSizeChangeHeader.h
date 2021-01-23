@@ -17,6 +17,8 @@
 
 #define TabBarViewHeight @"tabBarHeight"
 
+#define TTWebViewFontSizeScale @"TTWebViewFontSizeScale"
+
 #define TT_DEFAULT_FONT_SIZE 11
 
 #define TabBarHeight_SIZE 49
