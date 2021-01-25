@@ -39,13 +39,14 @@ static CGFloat itemSpace = 5;
     _newsSummaryModel = newsSummaryModel;
     
     _NewsTitleLabel.text = newsSummaryModel.infoModel.title;
+    [_NewsImgView sd_setImageWithURL:[NSURL URLWithString:newsSummaryModel.infoModel.middle_image.url]];
+    
     if (newsSummaryModel.infoModel.middle_image) {
         CGFloat width = (kScreenWidth - 2 * itemSpace) / 3.0;
         _NewsImgView.hidden = NO;
-        [_NewsImgView sd_setImageWithURL:[NSURL URLWithString:newsSummaryModel.infoModel.middle_image.url]];
         _NewsImgViewWidth.constant = width;
-        _NewsTitleLabelWithImageSpace.constant  = 10;
-        _NewsBtnWithImageSpace.constant = 10;
+        _NewsTitleLabelWithImageSpace.constant  = -5;
+        _NewsBtnWithImageSpace.constant = -5;
     }else {
         _NewsImgViewWidth.constant = 0;
         _NewsTitleLabelWithImageSpace.constant  = 0;
