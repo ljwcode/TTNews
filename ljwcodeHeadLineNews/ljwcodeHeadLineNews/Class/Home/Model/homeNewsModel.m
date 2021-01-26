@@ -33,6 +33,11 @@
 
 @end
 
+@implementation filter_words
+
+
+@end
+
 @implementation homeNewsSummaryModel
 
 -(homeNewsInfoModel *)infoModel{

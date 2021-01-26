@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "videoContentModel.h"
+#import "TT_ClickHightLightTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class TVVideoPlayerViewCell;
@@ -19,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface TVVideoPlayerViewCell : UITableViewCell
+@interface TVVideoPlayerViewCell : TT_ClickHightLightTableViewCell
 
 @property(nonatomic,assign)CGRect videoFrame;
 

@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "homeNewsModel.h"
+#import "TT_ClickHightLightTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface homeNewsTableViewCell : UITableViewCell
+@interface homeNewsTableViewCell : TT_ClickHightLightTableViewCell
 
 @property(nonatomic,strong)homeNewsSummaryModel *summaryModel;
 

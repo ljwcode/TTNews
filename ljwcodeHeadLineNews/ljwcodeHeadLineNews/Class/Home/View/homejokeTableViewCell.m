@@ -11,28 +11,6 @@
 
 @interface homejokeTableViewCell()
 
-@property (weak, nonatomic) IBOutlet UIButton *NewsHeadImgBtn;
-
-@property (weak, nonatomic) IBOutlet UILabel *NewsAuthNameLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *NewsAuthInfoLabel;
-
-@property (weak, nonatomic) IBOutlet UIButton *NewsFocusBtn;
-
-@property (weak, nonatomic) IBOutlet UILabel *NewsInfoLabel;
-
-@property (weak, nonatomic) IBOutlet UIImageView *NewsInfoImgView;
-
-@property (weak, nonatomic) IBOutlet UIButton *NewsShareBtn;
-
-@property (weak, nonatomic) IBOutlet UILabel *NewsLocalInfoLabel;
-
-@property (weak, nonatomic) IBOutlet UIButton *NewsCommentBtn;
-
-@property (weak, nonatomic) IBOutlet UIButton *NewsRepeatBtn;
-
-@property (weak, nonatomic) IBOutlet UIButton *NewsDelBtn;
-
 
 @end
 

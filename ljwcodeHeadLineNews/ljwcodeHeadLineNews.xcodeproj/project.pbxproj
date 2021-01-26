@@ -111,6 +111,7 @@
 		63AFDD2525B839EB00AD13C9 /* TTFontSizeChangeModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 63AFDD2425B839EB00AD13C9 /* TTFontSizeChangeModel.json */; };
 		63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */; };
 		63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */; };
+		63B435AF25BFB53200547403 /* TTFeedDislikeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B435AE25BFB53200547403 /* TTFeedDislikeView.m */; };
 		63BB1C222563DD00004E97E7 /* TTCloseNotificationTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BB1C212563DD00004E97E7 /* TTCloseNotificationTipView.m */; };
 		63BE32FD2547F3D000607EBA /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE32FC2547F3D000607EBA /* PrivacyViewController.m */; };
 		63BE33512548160500607EBA /* UILabel+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BE33502548160500607EBA /* UILabel+ThemeChange.m */; };
@@ -359,6 +360,8 @@
 		63B07BEF24A1DD5600C7CD6F /* homeNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsTableViewCell.h; sourceTree = "<group>"; };
 		63B07BF024A1DD5600C7CD6F /* homeNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsTableViewCell.m; sourceTree = "<group>"; };
 		63B07BF124A1DD5600C7CD6F /* homeNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homeNewsTableViewCell.xib; sourceTree = "<group>"; };
+		63B435AD25BFB53200547403 /* TTFeedDislikeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTFeedDislikeView.h; sourceTree = "<group>"; };
+		63B435AE25BFB53200547403 /* TTFeedDislikeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFeedDislikeView.m; sourceTree = "<group>"; };
 		63BB1C202563DD00004E97E7 /* TTCloseNotificationTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTCloseNotificationTipView.h; sourceTree = "<group>"; };
 		63BB1C212563DD00004E97E7 /* TTCloseNotificationTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTCloseNotificationTipView.m; sourceTree = "<group>"; };
 		63BE32FB2547F3D000607EBA /* PrivacyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
@@ -916,6 +919,8 @@
 				63F6751E254C22DC009F9AB7 /* TTShowShareConfigureView.m */,
 				63E8C3762567B29600F69701 /* TTHomeMoreShareVIew.h */,
 				63E8C3772567B29600F69701 /* TTHomeMoreShareVIew.m */,
+				63B435AD25BFB53200547403 /* TTFeedDislikeView.h */,
+				63B435AE25BFB53200547403 /* TTFeedDislikeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1489,6 +1494,7 @@
 				631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */,
 				634DA04325A48C0800236458 /* TTSystemConfigureHelper.m in Sources */,
 				63E8C373256796E100F69701 /* TTWebView.m in Sources */,
+				63B435AF25BFB53200547403 /* TTFeedDislikeView.m in Sources */,
 				63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */,
 				63BF78F12594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m in Sources */,
 				637C2D2624A9C1E60009274C /* UIButton+extend.m in Sources */,

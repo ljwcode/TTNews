@@ -61,7 +61,7 @@
                         </constraints>
                         <state key="normal" image="ask_close"/>
                         <connections>
-                            <action selector="NewsDelHandle:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cX3-Zi-Fxk"/>
+                            <action selector="TT_NewsDelHandle:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XZf-Kn-SSv"/>
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q95-4X-4kk">
@@ -92,7 +92,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="NewsDelBtn" destination="WWR-sC-SOw" id="CAQ-I2-SWo"/>
+                <outlet property="NewsDelBtn" destination="WWR-sC-SOw" id="5Ma-LK-cSF"/>
                 <outlet property="NewsImgStackView" destination="c12-mj-ZQc" id="tbl-Mg-fWd"/>
                 <outlet property="NewsInfoLabel" destination="KzJ-4x-gry" id="e5N-V0-U7U"/>
                 <outlet property="NewsLeftImgView" destination="abw-Tm-Cbk" id="3cn-tZ-WNp"/>

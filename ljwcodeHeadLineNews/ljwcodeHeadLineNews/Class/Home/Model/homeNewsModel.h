@@ -26,6 +26,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/*
+ \"filter_words\":[{\"id\":\"8:0\",\"name\":\"\U770b\U8fc7\U4e86\",\"is_selected\":false},{\"id\":\"9:1\",\"name\":\"\U5185\U5bb9\U592a\U6c34\",\"is_selected\":false},{\"id\":\"5:1247756413\",\"name\":\"\U62c9\U9ed1\U4f5c\U8005:\U65b0\U534e\U878d\U5a92\U65b0\U6d88\U8d39\",\"is_selected\":false},{\"id\":\"1:1641\",\"name\":\"\U4e0d\U60f3\U770b:\U65f6\U653f\",\"is_selected\":false},{\"id\":\"6:47749\",\"name\":\"\U4e0d\U60f3\U770b:\U5185\U8499\U53e4\",\"is_selected\":false}],
+ */
+
+@interface filter_words : NSObject
+
+@property(nonatomic,copy)NSString *name;
+
+@end
+
 @interface homeNewsImageModel : NSObject
 
 @property(nonatomic,copy)NSString *type;
@@ -64,8 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *avatar_url;
 
-@property(nonatomic,copy)NSString *description;
-
+@property(nonatomic,strong)filter_words *filterWords;
 
 @end
 

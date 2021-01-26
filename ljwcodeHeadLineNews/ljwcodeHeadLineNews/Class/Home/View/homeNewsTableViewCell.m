@@ -8,6 +8,7 @@
 
 #import "homeNewsTableViewCell.h"
 #import <UIImageView+WebCache.h>
+#import "TTFeedDislikeView.h"
 
 @interface homeNewsTableViewCell()
 
@@ -26,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *NewsRightImgView;
 
 @property(nonatomic,strong)NSArray *imageViews;
+
+@property(nonatomic,strong)TTFeedDislikeView *dislikeView;
 
 @end
 
@@ -68,5 +71,22 @@
 -(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
     return;
 }
+
+-(TTFeedDislikeView *)dislikeView{
+    if(!_dislikeView){
+        _dislikeView = [[TTFeedDislikeView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth * 0.8, kScreenWidth * 0.8)];
+        _dislikeView.center = [self getCurrentWindow].center;
+    }
+    return _dislikeView;
+}
+
+- (IBAction)TT_NewsDelHandle:(id)sender {
+    [[self getCurrentWindow] addSubview:self.dislikeView];
+//    [self.dislikeView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.centerY.mas_equalTo([self getCurrentWindow]);
+//        make.width.height.mas_equalTo(kScreenWidth * 0.8);
+//    }];
+}
+
 
 @end
