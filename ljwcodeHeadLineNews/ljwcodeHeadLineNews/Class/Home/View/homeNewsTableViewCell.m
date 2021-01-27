@@ -10,7 +10,7 @@
 #import <UIImageView+WebCache.h>
 #import "TTFeedDislikeView.h"
 
-@interface homeNewsTableViewCell()
+@interface homeNewsTableViewCell()<UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *NewsTitleLabel;
 
@@ -29,6 +29,8 @@
 @property(nonatomic,strong)NSArray *imageViews;
 
 @property(nonatomic,strong)TTFeedDislikeView *dislikeView;
+
+@property(nonatomic,strong)UITapGestureRecognizer *tapGes;
 
 @end
 
@@ -74,19 +76,39 @@
 
 -(TTFeedDislikeView *)dislikeView{
     if(!_dislikeView){
-        _dislikeView = [[TTFeedDislikeView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth * 0.8, kScreenWidth * 0.8)];
-        _dislikeView.center = [self getCurrentWindow].center;
+        _dislikeView = [[TTFeedDislikeView alloc]init];
     }
     return _dislikeView;
 }
 
 - (IBAction)TT_NewsDelHandle:(id)sender {
-    [[self getCurrentWindow] addSubview:self.dislikeView];
-//    [self.dislikeView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.centerY.mas_equalTo([self getCurrentWindow]);
-//        make.width.height.mas_equalTo(kScreenWidth * 0.8);
-//    }];
+    _tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(TT_tapOtherLocationHandle:)];
+    [[self getCurrentWindow].rootViewController.view addGestureRecognizer:_tapGes];
+    _tapGes.delegate = self;
+    _dislikeView = [[TTFeedDislikeView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth * 0.8, kScreenWidth * 0.8)];
+    _dislikeView.center = [self getCurrentWindow].center;
+    [[self getCurrentWindow].rootViewController.view addSubview:self.dislikeView];
 }
 
+#pragma mark ------ UIGestureRecognizerDelegate
+
+-(void)TT_tapOtherLocationHandle:(UITapGestureRecognizer *)tap{
+    if (tap.state == UIGestureRecognizerStateEnded){
+        CGPoint tapPoint = [tap locationInView:[self getCurrentWindow].rootViewController.view];
+        CGRect dislikeViewRect = self.dislikeView.bounds;
+        if (self.dislikeView && !CGRectContainsPoint(dislikeViewRect, tapPoint)){
+            [self TT_disMissView];
+        }
+    }
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    return YES;
+}
+
+-(void)TT_disMissView{
+    [self.dislikeView removeFromSuperview];
+    self.dislikeView = NULL;
+}
 
 @end

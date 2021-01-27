@@ -24,7 +24,7 @@
 #import "TTPlayerView.h"
 #import "homeNewsDetailDBViewModel.h"
 
-@interface homeDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource>
+@interface homeDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource,UIGestureRecognizerDelegate>
 
 @property(nonatomic,weak)UITableView *detailTableView;
 
@@ -296,6 +296,12 @@
         }];
     }];
     [self.detailTableView.mj_header beginRefreshing];
+}
+
+#pragma mark ----- UIGestureRecognizerDelegate
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    return YES;
 }
 
 #pragma mark -- private method
