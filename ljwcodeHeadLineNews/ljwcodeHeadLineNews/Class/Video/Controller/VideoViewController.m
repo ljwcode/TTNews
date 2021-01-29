@@ -9,7 +9,7 @@
 #import "VideoViewController.h"
 #import "TTHeader.h"
 #import "videoTitleViewModel.h"
-#import "VideoDetailViewController.h"
+#import "VideoTableViewController.h"
 #import "videoTitleModel.h"
 #import "videoTitleDBViewModel.h"
 
@@ -88,10 +88,10 @@
 - (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index{
     
     if (index > self.titleArray.count - 1) {
-        return  [[VideoDetailViewController alloc]init];
+        return  [[VideoTableViewController alloc]init];
     }
     videoTitleModel *model = self.titleArray[index];
-    VideoDetailViewController *detail = [[VideoDetailViewController alloc]init];
+    VideoTableViewController *detail = [[VideoTableViewController alloc]init];
     detail.titleModel = model;
     return detail;
 
@@ -134,7 +134,7 @@
 }
 
 -(void)needRefreshTableViewData{
-    VideoDetailViewController *videoDetailVC = (VideoDetailViewController *)self.currentViewController;
+    VideoTableViewController *videoDetailVC = (VideoTableViewController *)self.currentViewController;
     [videoDetailVC needRefreshTableViewData];
 }
 

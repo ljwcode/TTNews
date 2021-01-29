@@ -9,6 +9,7 @@
 #import "homeNewsTableViewCell.h"
 #import <UIImageView+WebCache.h>
 #import "TTFeedDislikeView.h"
+#import "TT_TimeIntervalConverString.h"
 
 @interface homeNewsTableViewCell()<UIGestureRecognizerDelegate>
 
@@ -61,7 +62,8 @@
         _NewsMiddleImgView.hidden = YES;
         _NewsRightImgView.hidden = YES;
     }
-    _NewsInfoLabel.text = [NSString stringWithFormat:@"%@   %d阅读了 0 分钟前",_summaryModel.infoModel.media_name,_summaryModel.infoModel.read_count];
+    NSString *publish_time = [NSString stringWithFormat:@"%@",[TT_TimeIntervalConverString TT_converTimeIntervalToString:_summaryModel.infoModel.publish_time]];
+    _NewsInfoLabel.text = [NSString stringWithFormat:@"%@   %d阅读 %@",_summaryModel.infoModel.media_name,_summaryModel.infoModel.read_count,publish_time];
 }
 
 

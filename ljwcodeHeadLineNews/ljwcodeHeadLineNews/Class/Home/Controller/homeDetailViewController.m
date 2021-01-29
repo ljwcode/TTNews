@@ -57,8 +57,8 @@
         [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
             [self.datasArray addObjectsFromArray:datasArray];
-//            homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
-//            [dbViewModel TT_saveHomeNewsDetailModel:datasArray TT_DetailCategory:self.titleModel.category];
+            //            homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
+            //            [dbViewModel TT_saveHomeNewsDetailModel:datasArray TT_DetailCategory:self.titleModel.category];
             
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];

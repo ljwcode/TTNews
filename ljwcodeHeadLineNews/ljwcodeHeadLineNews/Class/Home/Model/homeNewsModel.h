@@ -50,6 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface homeNewsInfoModel : NSObject
 
+@property(nonatomic,assign)NSTimeInterval publish_time;
+
 @property(nonatomic,copy)NSString *abstract; //文章摘要
 
 @property(nonatomic,copy)NSString *media_name;

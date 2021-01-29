@@ -1,5 +1,5 @@
 //
-//  VideoDetailViewController.h
+//  TTVideoDetailHeaderView.h
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2021/1/29.
@@ -10,9 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface VideoDetailViewController : UIViewController
-
-@property(nonatomic,copy)NSString *videoURL;
+@interface TTVideoDetailHeaderView : UIView
 
 @end
 

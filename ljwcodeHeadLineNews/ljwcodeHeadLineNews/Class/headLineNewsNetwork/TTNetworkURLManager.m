@@ -9,7 +9,6 @@
 #import "TTNetworkURLManager.h"
 #import "TTHeader.h"
 #import "NSData+CRC32.h"
-#import "VideoDetailViewController.h"
 
 @implementation TTNetworkURLManager
 
@@ -62,6 +61,11 @@
 
 +(NSString *)searchSuggestionUrl{
     NSString *url = [NSString stringWithFormat:@"%@search/suggest/homepage_suggest/?",ljwcode_Base_url];
+    return url;
+}
+
++(NSString *)videoDetailURL{
+    NSString *url = [NSString stringWithFormat:@"%@2/article/information/v23/?",ljwcode_Base_url];
     return url;
 }
 
