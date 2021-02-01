@@ -15,6 +15,7 @@
 #import "parseVideoRealURLViewModel.h"
 #import "TTPlayerView.h"
 #import "videoDetailCacheDBViewModel.h"
+#import "videoDetailViewModel.h"
 
 @interface VideoTableViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate,UIScrollViewDelegate>
 
@@ -24,7 +25,7 @@
 
 @property(nonatomic,strong)NSMutableArray *dataArray;
 
-@property(nonatomic,strong)videoContentModel *videoPlayModel;
+@property(nonatomic,strong)videoContentModel *videoContentModel;
 
 @property(nonatomic,strong)parseVideoRealURLViewModel *realURLViewModel;
 
@@ -35,6 +36,8 @@
 @property(nonatomic,copy)NSString *videoURL;
 
 @property(nonatomic,strong)videoDetailCacheDBViewModel *videoDBViewModel;
+
+@property(nonatomic,strong)videoDetailViewModel *detailViewModel;
 
 @end
 
@@ -108,20 +111,19 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"number of rows %lu",(unsigned long)self.dataArray.count);
     return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.videoPlayModel = self.dataArray[indexPath.row];
+    self.videoContentModel = self.dataArray[indexPath.row];
     TVVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
     if(!cell){
         cell = [[TVVideoPlayerViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
     }
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.contentModel = self.videoPlayModel;
+    cell.contentModel = self.videoContentModel;
     [cell setDelegate:self withIndexPath:indexPath];
-    NSLog(@"cell for rows %lu",(unsigned long)self.dataArray.count);
     return cell;
 }
 
@@ -135,6 +137,7 @@
      */
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self playTheVideoAtIndexPath:indexPath];
+    [videoDetailViewModel TT_videoUserDetailNormalComment:self.videoContentModel.detailModel.group_id withCount:20 withoffset:0];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -159,7 +162,7 @@
 #pragma mark -- private method
 
 - (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
-    self.videoPlayModel = self.dataArray[indexPath.row];
+    self.videoContentModel = self.dataArray[indexPath.row];
     [[FBLPromise do:^id _Nullable{
         return [self getVideoURL];
     }]then:^id _Nullable(id  _Nullable value) {
@@ -171,13 +174,13 @@
 
 -(FBLPromise *)getVideoURL{
     return [[[FBLPromise do:^id _Nullable{
-        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
+        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoContentModel.detailModel.video_detail_info.video_id];
     }]then:^id _Nullable(id  _Nullable value) {
         return [self GetVideoParseData:value];
     }]then:^id _Nullable(id  _Nullable value) {
-        self.videoPlayModel = value;
-        NSLog(@"video url = %@",self.videoPlayModel.video_list.video_1.main_url);
-        return self.videoPlayModel.video_list.video_1.main_url;
+        self.videoContentModel = value;
+        NSLog(@"video url = %@",self.videoContentModel.video_list.video_1.main_url);
+        return self.videoContentModel.video_list.video_1.main_url;
     }];
 }
 
@@ -364,7 +367,19 @@
     return _videoDBViewModel;
 }
 
+-(videoDetailViewModel *)detailViewModel{
+    if(!_detailViewModel){
+        _detailViewModel = [[videoDetailViewModel alloc]init];
+    }
+    return _detailViewModel;
+}
 
+-(void)videoCommentHandle:(UIButton *)sender{
+//    [[self.detailViewModel.videoDetailCommand execute:@"videoDetail"]subscribeNext:^(id  _Nullable x) {
+//        NSLog(@"x = %@",x);
+//    }];
+    [videoDetailViewModel TT_videoUserDetailNormalComment:6845123595815879182 withCount:20 withoffset:0];
+}
 /*
  #pragma mark - Navigation
  

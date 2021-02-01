@@ -36,6 +36,7 @@
 		631CFA7124E567250082B941 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA7024E567240082B941 /* MessageViewController.m */; };
 		6322ED3725AEC91F00D01578 /* TT_tabBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6322ED3625AEC91F00D01578 /* TT_tabBarViewModel.m */; };
 		63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63231B9024A08F110059FD5F /* TTNavigationBar.m */; };
+		6325352125C7E7BD005007A0 /* TTVideoDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6325352025C7E7BD005007A0 /* TTVideoDetailView.m */; };
 		63265C43256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63265C41256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.m */; };
 		63265C4B256F9FF100AACBC6 /* TTChannelMyHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63265C4A256F9FF100AACBC6 /* TTChannelMyHeaderView.xib */; };
 		63265C4E256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63265C4D256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib */; };
@@ -229,6 +230,8 @@
 		6322ED3625AEC91F00D01578 /* TT_tabBarViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_tabBarViewModel.m; sourceTree = "<group>"; };
 		63231B8F24A08F110059FD5F /* TTNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNavigationBar.h; sourceTree = "<group>"; };
 		63231B9024A08F110059FD5F /* TTNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTNavigationBar.m; sourceTree = "<group>"; };
+		6325351F25C7E7BD005007A0 /* TTVideoDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTVideoDetailView.h; sourceTree = "<group>"; };
+		6325352025C7E7BD005007A0 /* TTVideoDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTVideoDetailView.m; sourceTree = "<group>"; };
 		63265C40256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTChannelRecommendHeaderView.h; sourceTree = "<group>"; };
 		63265C41256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTChannelRecommendHeaderView.m; sourceTree = "<group>"; };
 		63265C4A256F9FF100AACBC6 /* TTChannelMyHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTChannelMyHeaderView.xib; sourceTree = "<group>"; };
@@ -1078,6 +1081,8 @@
 				633BEA632587640700423C39 /* TTPlayerMaskView.m */,
 				63A8E3E525C404960067369F /* TTVideoDetailHeaderView.h */,
 				63A8E3E625C404960067369F /* TTVideoDetailHeaderView.m */,
+				6325351F25C7E7BD005007A0 /* TTVideoDetailView.h */,
+				6325352025C7E7BD005007A0 /* TTVideoDetailView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1566,6 +1571,7 @@
 				8209791A1BD3AFAC00CF9D0C /* MineViewController.m in Sources */,
 				63DB0D1B2501F19200B9FA0A /* videoRealURLRequestModel.m in Sources */,
 				634ECB112576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.m in Sources */,
+				6325352125C7E7BD005007A0 /* TTVideoDetailView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -65,7 +65,7 @@
 }
 
 +(NSString *)videoDetailURL{
-    NSString *url = [NSString stringWithFormat:@"%@2/article/information/v23/?",ljwcode_Base_url];
+    NSString *url = [NSString stringWithFormat:@"%@article/v2/tab_comments/",ljwcode_Base_url];
     return url;
 }
 

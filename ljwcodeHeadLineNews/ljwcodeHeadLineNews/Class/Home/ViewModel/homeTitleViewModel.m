@@ -26,9 +26,16 @@
                     responseDic = responseDic[@"data"];
                     NSMutableArray *models = [NSMutableArray array];
                     if (responseDic.count > 0) {
-                        NSArray *dicArr = responseDic[@"data"];
-                        for (int i = 0; i < [dicArr count]; i++) {
-                            homeTitleModel *model = [[homeTitleModel new] mj_setKeyValues:dicArr[i]];
+                        NSString *raccomand = @"{\"category\": \"recommend\", \"name\": \"推荐\"}";
+                        NSArray *dicArr = [[NSArray alloc]init];
+                        dicArr = responseDic[@"data"];
+                        NSMutableArray *array = [[NSMutableArray alloc]init];
+                        [array addObject:raccomand];
+
+                        [array addObjectsFromArray:dicArr];
+
+                        for (int i = 0; i < [array count]; i++) {
+                            homeTitleModel *model = [[homeTitleModel new] mj_setKeyValues:array[i]];
                             [models addObject:model];
                         }
                         [subscriber sendNext:models];

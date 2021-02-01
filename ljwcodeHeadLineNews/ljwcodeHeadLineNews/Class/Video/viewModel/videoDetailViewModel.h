@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)RACCommand *videoDetailCommand;
 
++(void)TT_videoUserDetailNormalComment:(float)group_id withCount:(float)count withoffset:(float)offset;
+
 @end
 
 NS_ASSUME_NONNULL_END

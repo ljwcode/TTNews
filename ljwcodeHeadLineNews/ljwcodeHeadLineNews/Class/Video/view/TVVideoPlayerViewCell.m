@@ -29,8 +29,6 @@
 
 @property (weak, nonatomic)UIButton *authorFocusBtn;
 
-@property (weak, nonatomic)UIButton *videoCommitRepeatBtn;
-
 @property (weak, nonatomic)UIButton *videoMoreBtn;
 
 @property(nonatomic,strong)NSIndexPath *indexPath;
@@ -97,14 +95,23 @@
             make.width.mas_equalTo(80);
         }];
         
+        UIView *lineView = [[UIView alloc]init];
+        lineView.backgroundColor = [UIColor lightGrayColor];
+        [self.authorBgView addSubview:lineView];
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.videoAuthHeadBtn.mas_right).offset(hSpace/2);
+            make.width.mas_equalTo(1);
+            make.centerY.mas_equalTo(self.authorBgView);
+            make.height.mas_equalTo(10);
+        }];
         
         [self.authorFocusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.videoAuthHeadBtn.mas_right).offset(hSpace);
+            make.left.mas_equalTo(lineView.mas_right).offset(hSpace/2);
             make.centerY.mas_equalTo(self.authorBgView);
             make.height.width.mas_equalTo(40);
         }];
         
-        [self.videoCommitRepeatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.videoCommentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_lessThanOrEqualTo(self.authorFocusBtn.mas_right).offset(5 * hSpace);
             make.centerY.mas_equalTo(self.authorFocusBtn);
             make.height.mas_equalTo(self.authorFocusBtn);
@@ -113,7 +120,7 @@
         
         [self.videoMoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-hSpace);
-            make.left.mas_equalTo(self.videoCommitRepeatBtn.mas_right).offset(hSpace);
+            make.left.mas_equalTo(self.videoCommentBtn.mas_right).offset(hSpace);
             make.centerY.mas_equalTo(self.authorBgView);
             make.height.width.mas_equalTo(self.authorFocusBtn);
         }];
@@ -145,6 +152,7 @@
     self.videoPlayCountLabel.text = [NSString stringWithFormat:@"%d次播放",contentModel.detailModel.video_detail_info.video_watch_count];
     self.videoTimeLabel.text = [NSString stringWithFormat:@"%d:%d",contentModel.detailModel.video_duration/60,contentModel.detailModel.video_duration%60];
     self.videoFrame = CGRectMake(0, 0, kScreenWidth,175);
+    [self.videoCommentBtn setTitle:contentModel.detailModel.comment_count forState:UIControlStateNormal];
 }
 
 
@@ -238,7 +246,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:@"关注" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:13.f];
+        btn.titleLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
         [btn addTarget:self action:@selector(focusHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self.authorBgView addSubview:btn];
         _authorFocusBtn = btn;
@@ -246,25 +254,24 @@
     return _authorFocusBtn;
 }
 
--(UIButton *)videoCommitRepeatBtn{
-    if(!_videoCommitRepeatBtn){
+-(UIButton *)videoCommentBtn{
+    if(!_videoCommentBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"评论" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [btn setImage:[UIImage imageNamed:@"comment_24x24_"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"tab_comment"] forState:UIControlStateNormal];
         [btn.titleLabel sizeToFit];
-        btn.titleLabel.font = [UIFont systemFontOfSize:13.f];
-        [btn addTarget:self action:@selector(commitRepesatHandle:) forControlEvents:UIControlEventTouchUpInside];
+        btn.titleLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
+        [btn addTarget:self action:@selector(commentHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self.authorBgView addSubview:btn];
-        _videoCommitRepeatBtn = btn;
+        _videoCommentBtn = btn;
     }
-    return _videoCommitRepeatBtn;
+    return _videoCommentBtn;
 }
 
 -(UIButton *)videoMoreBtn{
     if(!_videoMoreBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setImage:[UIImage imageNamed:@"More_24x24_"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"new_more_titlebar"] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(moreHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self.authorBgView addSubview:btn];
         _videoMoreBtn = btn;
@@ -298,8 +305,10 @@
     
 }
 
--(void)commitRepesatHandle:(UIButton *)sender{
-    
+-(void)commentHandle:(UIButton *)sender{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_playCurrentIndexView:)]){
+        [self.delegate TT_playCurrentIndexView:0];
+    }
 }
 
 -(void)moreHandle:(UIButton *)sender{

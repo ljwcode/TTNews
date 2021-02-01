@@ -11,6 +11,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface videoDetailRequestModel : TTNetworkBaseModel
 
+@property(nonatomic,copy)NSString *forum_id;
+
+@property(nonatomic,assign)float group_id;
+
+@property(nonatomic,assign)float count;
+
+@property(nonatomic,assign)float offset;
+
 @property(nonatomic,copy)NSString *device_id;
 
 @property(nonatomic,copy)NSString *iid;

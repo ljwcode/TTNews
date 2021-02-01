@@ -90,6 +90,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface videoDetailModel : NSObject
 
+@property(nonatomic,copy)NSString *comment_count;
+
 @property(nonatomic,copy)NSString *media_name;
 
 @property(nonatomic,copy)NSString *title;
@@ -105,6 +107,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)int video_duration;
 
 @property(nonatomic,strong)video_list *video_list;
+
+@property(nonatomic,assign)int group_id;
 
 @end
 
