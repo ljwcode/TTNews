@@ -293,9 +293,6 @@
 
 #pragma mark -- 点击事件响应
 -(void)clickPlayHandle:(id)sender{
-//    if([self.delegate respondsToSelector:@selector(VideoPlayerAtIndexPath:)]){
-//        [self.delegate VideoPlayerAtIndexPath:self.indexPath];
-//    }
     if(self.delegate && [self.delegate respondsToSelector:@selector(initPlayerView:playClick:)]){
         [self.delegate initPlayerView:self playClick:self.contentModel];
     }
@@ -306,8 +303,8 @@
 }
 
 -(void)commentHandle:(UIButton *)sender{
-    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_playCurrentIndexView:)]){
-        [self.delegate TT_playCurrentIndexView:0];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_commentDetail)]){
+        [self.delegate TT_commentDetail];
     }
 }
 

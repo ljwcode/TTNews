@@ -20,6 +20,8 @@
 
 @property(nonatomic,strong)UIScrollView *TTVVideoDetailContainerScrollView;
 
+@property(nonatomic,strong)NSArray *dataArray;
+
 @end
 
 @implementation VideoDetailViewController
@@ -28,15 +30,51 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+
+}
+
+-(void)createUI{
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backBtn setImage:[UIImage imageNamed:@"lefterbackicon_titlebar_dark"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(PopHandle:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backBtn];
+    [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.mas_equalTo(hSpace);
+        make.width.height.mas_equalTo(20);
+    }];
+}
+
+-(BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.playerView];
+    [self createUI];
     [self.view addSubview:self.TTVVideoDetailContainerScrollView];
     
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self->_playerView.url = [NSURL URLWithString:self.videoURL];
+        [self->_playerView playVideo];
+    });
+    //返回按钮点击事件回调
+    [_playerView backButton:^(UIButton *button) {
+        NSLog(@"返回按钮被点击");
+    }];
+    //播放完成回调
+    [_playerView endPlay:^{
+        [self->_playerView destroyPlayer];
+        self->_playerView = nil;
+        NSLog(@"播放完成");
+    }];
     // Do any additional setup after loading the view.
 }
+
+#pragma mark ----- UITableViewDelegate && UITableViewDataSource
+
+
 
 #pragma mark ----- lazy load
 
@@ -97,6 +135,11 @@
        }
 }
 
+
+#pragma mark ------- 响应事件
+-(void)PopHandle:(UIButton *)sender{
+    
+}
 
 /*
 #pragma mark - Navigation

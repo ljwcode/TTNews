@@ -16,6 +16,7 @@
 #import "TTPlayerView.h"
 #import "videoDetailCacheDBViewModel.h"
 #import "videoDetailViewModel.h"
+#import "VideoDetailViewController.h"
 
 @interface VideoTableViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate,UIScrollViewDelegate>
 
@@ -137,7 +138,6 @@
      */
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self playTheVideoAtIndexPath:indexPath];
-    [videoDetailViewModel TT_videoUserDetailNormalComment:self.videoContentModel.detailModel.group_id withCount:20 withoffset:0];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -224,12 +224,10 @@
     }
     //播放第一个视频
     [self initPlayerView:firstCell playClick:firstCell.contentModel];
-
 }
 
 
 #pragma mark -- TVVideoPlayerCellDelegate
-
 
 - (void)initPlayerView:(TVVideoPlayerViewCell *)cell playClick:(videoContentModel *)convention{
     self.playingCell = cell;
@@ -238,28 +236,28 @@
     
     TTPlayerView *playerView = [[TTPlayerView alloc] initWithFrame:cell.videoFrame];
     _playerView = playerView;
-    
     [cell.contentView addSubview:_playerView];
-    
     //视频地址
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self->_playerView.url = [NSURL URLWithString:self.videoURL];
-        //播放
         [self->_playerView playVideo];
-        
     });
-    
     //返回按钮点击事件回调
     [_playerView backButton:^(UIButton *button) {
         NSLog(@"返回按钮被点击");
     }];
-    
     //播放完成回调
     [_playerView endPlay:^{
         [self->_playerView destroyPlayer];
         self->_playerView = nil;
         NSLog(@"播放完成");
     }];
+}
+
+-(void)TT_commentDetail{
+    VideoDetailViewController *videoDetailVC = [[VideoDetailViewController alloc]init];
+    [self.navigationController pushViewController:videoDetailVC animated:YES];
+    videoDetailVC.videoURL = self.videoURL;
 }
 
 #pragma mark ---- UIScrollview delegate
@@ -274,56 +272,54 @@
     }
 }
 
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-//    [self handleScrollPlaying:scrollView];
-//}
-//
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-//    if (!decelerate){
-//        [self handleScrollPlaying:scrollView];
-//    }
-//}
-//
-//- (void)handleScrollPlaying:(UIScrollView *)scrollView{
-//    TVVideoPlayerViewCell *finnalCell = nil;
-//    NSArray *visiableCells = [self.detailTableView visibleCells];
-//
-//    NSMutableArray *tempVideoCells = [NSMutableArray array];
-//    for (int i = 0; i < visiableCells.count; i++) {
-//        UITableViewCell *cell = visiableCells[i];
-//
-//        if ([cell isKindOfClass:[TVVideoPlayerViewCell class]]) {
-//            [tempVideoCells addObject:cell];
-//        }
-//    }
-//
-//    NSMutableArray *indexPaths = [NSMutableArray array];
-//    CGFloat gap = MAXFLOAT;
-//    for (TVVideoPlayerViewCell *cell in tempVideoCells) {
-//
-//        [indexPaths addObject:[self.detailTableView indexPathForCell:cell]];
-//
-//        CGPoint coorCentre = [cell.superview convertPoint:cell.center toView:nil];
-//        CGFloat delta = fabs(coorCentre.y-[UIScreen mainScreen].bounds.size.height*0.5);
-//        if (delta < gap) {
-//            gap = delta;
-//            finnalCell = cell;
-//        }
-//
-//    }
-//    if (finnalCell != nil && self.playingCell != finnalCell)  {
-//        if (_playerView) {
-//            [_playerView destroyPlayer];
-//            _playerView = nil;
-//        }
-//
-//        [self initPlayerView:finnalCell playClick:finnalCell.contentModel];
-//
-//        self.playingCell = finnalCell;
-//        return;
-//    }
-//}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [self handleScrollPlaying:scrollView];
+}
 
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (!decelerate){
+        [self handleScrollPlaying:scrollView];
+    }
+}
+
+- (void)handleScrollPlaying:(UIScrollView *)scrollView{
+    TVVideoPlayerViewCell *finnalCell = nil;
+    NSArray *visiableCells = [self.detailTableView visibleCells];
+    
+    NSMutableArray *tempVideoCells = [NSMutableArray array];
+    for (int i = 0; i < visiableCells.count; i++) {
+        UITableViewCell *cell = visiableCells[i];
+        if ([cell isKindOfClass:[TVVideoPlayerViewCell class]]) {
+            [tempVideoCells addObject:cell];
+        }
+    }
+    
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    CGFloat gap = MAXFLOAT;
+    for (TVVideoPlayerViewCell *cell in tempVideoCells) {
+        
+        [indexPaths addObject:[self.detailTableView indexPathForCell:cell]];
+        
+        CGPoint coorCentre = [cell.superview convertPoint:cell.center toView:nil];
+        CGFloat delta = fabs(coorCentre.y-[UIScreen mainScreen].bounds.size.height*0.5);
+        if (delta < gap) {
+            gap = delta;
+            finnalCell = cell;
+        }
+        
+    }
+    if (finnalCell != nil && self.playingCell != finnalCell)  {
+        if (_playerView) {
+            [_playerView destroyPlayer];
+            _playerView = nil;
+        }
+        
+        [self initPlayerView:finnalCell playClick:finnalCell.contentModel];
+        
+        self.playingCell = finnalCell;
+        return;
+    }
+}
 
 #pragma mark ---- lazy load
 
@@ -372,13 +368,6 @@
         _detailViewModel = [[videoDetailViewModel alloc]init];
     }
     return _detailViewModel;
-}
-
--(void)videoCommentHandle:(UIButton *)sender{
-//    [[self.detailViewModel.videoDetailCommand execute:@"videoDetail"]subscribeNext:^(id  _Nullable x) {
-//        NSLog(@"x = %@",x);
-//    }];
-    [videoDetailViewModel TT_videoUserDetailNormalComment:6845123595815879182 withCount:20 withoffset:0];
 }
 /*
  #pragma mark - Navigation

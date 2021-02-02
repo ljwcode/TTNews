@@ -103,6 +103,10 @@
 		6390EEC82589B4290081093E /* TTCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6390EEC72589B4290081093E /* TTCarouselView.m */; };
 		6390EEEF2589B7660081093E /* homeTitleDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6390EEEE2589B7660081093E /* homeTitleDBViewModel.m */; };
 		6393A2D825AD438F002BB19E /* TT_tabBarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6393A2D725AD438F002BB19E /* TT_tabBarModel.m */; };
+		63A3130225C9060500AF1056 /* TTRecommandVideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A3130025C9060500AF1056 /* TTRecommandVideoTableViewCell.m */; };
+		63A3130325C9060500AF1056 /* TTRecommandVideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63A3130125C9060500AF1056 /* TTRecommandVideoTableViewCell.xib */; };
+		63A3131825C95C8E00AF1056 /* TT_UserCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A3131625C95C8E00AF1056 /* TT_UserCommentTableViewCell.m */; };
+		63A3131925C95C8E00AF1056 /* TT_UserCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63A3131725C95C8E00AF1056 /* TT_UserCommentTableViewCell.xib */; };
 		63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4E00924C83E8B0042473D /* otherLoginTypeView.m */; };
 		63A4E00D24C863C10042473D /* CircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4E00C24C863C10042473D /* CircleButton.m */; };
 		63A6F6A425B6DD2000BBFA5D /* TTTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A6F6A325B6DD2000BBFA5D /* TTTabBarItem.m */; };
@@ -352,6 +356,12 @@
 		6390EEEE2589B7660081093E /* homeTitleDBViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeTitleDBViewModel.m; sourceTree = "<group>"; wrapsLines = 0; };
 		6393A2D625AD438F002BB19E /* TT_tabBarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_tabBarModel.h; sourceTree = "<group>"; };
 		6393A2D725AD438F002BB19E /* TT_tabBarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_tabBarModel.m; sourceTree = "<group>"; };
+		63A312FF25C9060500AF1056 /* TTRecommandVideoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTRecommandVideoTableViewCell.h; sourceTree = "<group>"; };
+		63A3130025C9060500AF1056 /* TTRecommandVideoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTRecommandVideoTableViewCell.m; sourceTree = "<group>"; };
+		63A3130125C9060500AF1056 /* TTRecommandVideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TTRecommandVideoTableViewCell.xib; sourceTree = "<group>"; };
+		63A3131525C95C8E00AF1056 /* TT_UserCommentTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_UserCommentTableViewCell.h; sourceTree = "<group>"; };
+		63A3131625C95C8E00AF1056 /* TT_UserCommentTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_UserCommentTableViewCell.m; sourceTree = "<group>"; };
+		63A3131725C95C8E00AF1056 /* TT_UserCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TT_UserCommentTableViewCell.xib; sourceTree = "<group>"; };
 		63A4E00824C83E8B0042473D /* otherLoginTypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = otherLoginTypeView.h; sourceTree = "<group>"; };
 		63A4E00924C83E8B0042473D /* otherLoginTypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = otherLoginTypeView.m; sourceTree = "<group>"; };
 		63A4E00B24C863C10042473D /* CircleButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleButton.h; sourceTree = "<group>"; };
@@ -1083,6 +1093,12 @@
 				63A8E3E625C404960067369F /* TTVideoDetailHeaderView.m */,
 				6325351F25C7E7BD005007A0 /* TTVideoDetailView.h */,
 				6325352025C7E7BD005007A0 /* TTVideoDetailView.m */,
+				63A312FF25C9060500AF1056 /* TTRecommandVideoTableViewCell.h */,
+				63A3130025C9060500AF1056 /* TTRecommandVideoTableViewCell.m */,
+				63A3130125C9060500AF1056 /* TTRecommandVideoTableViewCell.xib */,
+				63A3131525C95C8E00AF1056 /* TT_UserCommentTableViewCell.h */,
+				63A3131625C95C8E00AF1056 /* TT_UserCommentTableViewCell.m */,
+				63A3131725C95C8E00AF1056 /* TT_UserCommentTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1360,8 +1376,10 @@
 				949E779524A39605000C446E /* homejokeTableViewCell.xib in Resources */,
 				6390EEBF2589B3670081093E /* README.md in Resources */,
 				631BC92225481E7D001B82AB /* TTThemeNight.plist in Resources */,
+				63A3131925C95C8E00AF1056 /* TT_UserCommentTableViewCell.xib in Resources */,
 				6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */,
 				63AFDD2525B839EB00AD13C9 /* TTFontSizeChangeModel.json in Resources */,
+				63A3130325C9060500AF1056 /* TTRecommandVideoTableViewCell.xib in Resources */,
 				63167AB824AB6380002CB4EF /* homeListModel in Resources */,
 				63265C4B256F9FF100AACBC6 /* TTChannelMyHeaderView.xib in Resources */,
 				63265C4E256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib in Resources */,
@@ -1464,6 +1482,7 @@
 				637C2D2C24A9CF630009274C /* homeTitleViewModel.m in Sources */,
 				637C2D3924A9DDA10009274C /* homeTitleRequestModel.m in Sources */,
 				63A6F6A425B6DD2000BBFA5D /* TTTabBarItem.m in Sources */,
+				63A3131825C95C8E00AF1056 /* TT_UserCommentTableViewCell.m in Sources */,
 				63422BE024A839960091FEE1 /* WMMenuItem.m in Sources */,
 				949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */,
 				63F1F8E224AF315E00D687ED /* videoContentModel.m in Sources */,
@@ -1517,6 +1536,7 @@
 				633BEA602587607900423C39 /* TTPlayerView.m in Sources */,
 				636EA80924C9977B00765F5C /* videoInfoTableView.m in Sources */,
 				63C73D6C259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.m in Sources */,
+				63A3130225C9060500AF1056 /* TTRecommandVideoTableViewCell.m in Sources */,
 				6313651E258C842900FCAAA9 /* videoDetailCacheDBViewModel.m in Sources */,
 				638D3ECD25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.m in Sources */,
 				63CBA1FB258B39FD0020511C /* videoTitleDBViewModel.m in Sources */,
