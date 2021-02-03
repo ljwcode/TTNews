@@ -26,11 +26,12 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
+        
         [self addSubview:self.headImgView];
         [self.headImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(hSpace);
-            make.centerY.mas_offset(self);
-            make.height.width.mas_equalTo(CGRectGetHeight(self.frame) - 2 * vSpace);
+            make.centerY.mas_equalTo(self);
+            make.height.width.mas_equalTo(20);
         }];
         
         UIView *authorView = [[UIView alloc]init];
@@ -47,7 +48,7 @@
             make.left.mas_equalTo(0);
             make.top.mas_equalTo(0);
             make.height.mas_equalTo(CGRectGetHeight(authorView.frame)/2);
-            make.width.mas_equalTo(authorView);
+            make.width.mas_equalTo(kScreenWidth * 0.4);
         }];
         
         [authorView addSubview:self.fansNumLabel];
@@ -55,7 +56,7 @@
             make.left.mas_equalTo(0);
             make.top.mas_equalTo(self.authorNameLabel.mas_bottom).offset(0);
             make.height.mas_equalTo(self.authorNameLabel);
-            make.width.mas_equalTo(authorView);
+            make.width.mas_equalTo(kScreenWidth * 0.4);
         }];
         
         [self addSubview:self.focusBtn];
@@ -106,8 +107,10 @@
     if(!_focusBtn){
         _focusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_focusBtn setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
-        [_focusBtn setBackgroundColor:[UIColor redColor]];
+        [_focusBtn setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:85.0/255.0 blue:86.0/255.0 alpha:1]];
         _focusBtn.titleLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
+        [_focusBtn setTitle:@"关注" forState:UIControlStateNormal];
+        _focusBtn.layer.cornerRadius = 3.f;
         [_focusBtn.titleLabel TTContentFitWidth];
         [_focusBtn.titleLabel TTContentFitHeight];
     }

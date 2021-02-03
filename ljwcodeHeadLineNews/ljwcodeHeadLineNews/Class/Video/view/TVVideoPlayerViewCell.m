@@ -10,6 +10,7 @@
 #import <UIImageView+WebCache.h>
 #import "UIImage+cropPicture.h"
 #import <SDWebImageManager.h>
+#import "UILabel+Frame.h"
 
 @interface TVVideoPlayerViewCell()
 
@@ -259,9 +260,10 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:@"tab_comment"] forState:UIControlStateNormal];
-        [btn.titleLabel sizeToFit];
-        btn.titleLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
+        btn.titleLabel.font = [UIFont systemFontOfSize:12.f];
         [btn addTarget:self action:@selector(commentHandle:) forControlEvents:UIControlEventTouchUpInside];
+        [btn.titleLabel TTContentFitWidth];
+        [btn.titleLabel TTContentFitHeight];
         [self.authorBgView addSubview:btn];
         _videoCommentBtn = btn;
     }

@@ -32,6 +32,7 @@
                     NSDictionary *responseDic = (NSDictionary *)response;
                     NSLog(@"连接成功 = %@",responseDic);
                 } failHandle:^(NSError * _Nonnull error) {
+                    [MBProgressHUD showSuccess:@"网络请求失败"];
                     NSLog(@"连接失败");
                 }];
                 return nil;

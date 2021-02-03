@@ -11,7 +11,7 @@
 		6305043A256525B000CB910D /* TTReportArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63050439256525B000CB910D /* TTReportArticleView.m */; };
 		630A976624CFC463003029C3 /* countryCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A976424CFC462003029C3 /* countryCodeView.m */; };
 		6313651E258C842900FCAAA9 /* videoDetailCacheDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6313651D258C842900FCAAA9 /* videoDetailCacheDBViewModel.m */; };
-		63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AAC24AAE3C2002CB4EF /* homeDetailViewController.m */; };
+		63167AAD24AAE3C2002CB4EF /* homeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AAC24AAE3C2002CB4EF /* homeTableViewController.m */; };
 		63167AB024AB5FEE002CB4EF /* homeNewsCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AAF24AB5FEE002CB4EF /* homeNewsCellViewModel.m */; };
 		63167AB324AB6091002CB4EF /* homeNewsRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AB224AB6091002CB4EF /* homeNewsRequestModel.m */; };
 		63167AB624AB6182002CB4EF /* homeNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AB524AB6182002CB4EF /* homeNewsModel.m */; };
@@ -190,8 +190,8 @@
 		630A976524CFC463003029C3 /* countryCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = countryCodeView.h; sourceTree = "<group>"; };
 		6313651C258C842900FCAAA9 /* videoDetailCacheDBViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoDetailCacheDBViewModel.h; sourceTree = "<group>"; };
 		6313651D258C842900FCAAA9 /* videoDetailCacheDBViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoDetailCacheDBViewModel.m; sourceTree = "<group>"; };
-		63167AAB24AAE3C2002CB4EF /* homeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeDetailViewController.h; sourceTree = "<group>"; };
-		63167AAC24AAE3C2002CB4EF /* homeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeDetailViewController.m; sourceTree = "<group>"; };
+		63167AAB24AAE3C2002CB4EF /* homeTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeTableViewController.h; sourceTree = "<group>"; };
+		63167AAC24AAE3C2002CB4EF /* homeTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeTableViewController.m; sourceTree = "<group>"; };
 		63167AAE24AB5FEE002CB4EF /* homeNewsCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsCellViewModel.h; sourceTree = "<group>"; };
 		63167AAF24AB5FEE002CB4EF /* homeNewsCellViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsCellViewModel.m; sourceTree = "<group>"; };
 		63167AB124AB6091002CB4EF /* homeNewsRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsRequestModel.h; sourceTree = "<group>"; };
@@ -919,8 +919,8 @@
 			children = (
 				8209790D1BD3AB2800CF9D0C /* homeViewController.h */,
 				8209790E1BD3AB2800CF9D0C /* homeViewController.m */,
-				63167AAB24AAE3C2002CB4EF /* homeDetailViewController.h */,
-				63167AAC24AAE3C2002CB4EF /* homeDetailViewController.m */,
+				63167AAB24AAE3C2002CB4EF /* homeTableViewController.h */,
+				63167AAC24AAE3C2002CB4EF /* homeTableViewController.m */,
 				63D4FF9D24D96FC40035F561 /* NewsDetailViewController.h */,
 				63D4FF9E24D96FC40035F561 /* NewsDetailViewController.m */,
 				63422C4824A875D40091FEE1 /* NewsChannelViewController.h */,
@@ -1465,7 +1465,7 @@
 				63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */,
 				631CFA7124E567250082B941 /* MessageViewController.m in Sources */,
 				6345190525BABAD300782DA6 /* SettingViewController.m in Sources */,
-				63167AAD24AAE3C2002CB4EF /* homeDetailViewController.m in Sources */,
+				63167AAD24AAE3C2002CB4EF /* homeTableViewController.m in Sources */,
 				637BAF2224F3A07F00711003 /* ScreenHallVideoDetailViewController.m in Sources */,
 				8209791F1BD3AFDB00CF9D0C /* VideoViewController.m in Sources */,
 				634ECB092576416200DBCC15 /* TTArticleSearchCell.m in Sources */,

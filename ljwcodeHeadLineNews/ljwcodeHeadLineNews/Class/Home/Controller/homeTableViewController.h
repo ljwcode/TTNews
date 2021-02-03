@@ -1,5 +1,5 @@
 //
-//  homeDetailViewController.h
+//  homeTableViewController.h
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/6/30.
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface homeDetailViewController : TTBaseViewController
+@interface homeTableViewController : TTBaseViewController
 
 @property(nonatomic,strong)homeTitleModel *titleModel;
 

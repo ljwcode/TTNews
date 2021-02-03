@@ -9,7 +9,7 @@
 #import "channelButton.h"
 #import <RACSubject.h>
 #import "homeTitleViewModel.h"
-#import "homeDetailViewController.h"
+#import "homeTableViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import "homeTitleDBViewModel.h"
 
@@ -25,26 +25,26 @@
 
 @implementation homeViewController
 
-//-(instancetype)init{
-//    if(self = [super init]){
-//        if([self.titleDb DBTableISExist]){
-//            self.titleArray = [self.titleDb queryDBWithTitle];
-//        }else{
-//            @weakify(self)
-//            [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
-//                @strongify(self);
-//                self.titleArray = x;
-//                [self.titleDb createTitleCacheDb];
-//                for(int i = 0;i < self.titleArray.count;i++){
-//                    homeTitleModel *model = self.titleArray[i];
-//                    [self.titleDb InsertDataWithDB:model];
-//                }
-//                [self reloadData];
-//            }];
-//        }
-//    }
-//    return self;
-//}
+-(instancetype)init{
+    if(self = [super init]){
+        if([self.titleDb DBTableISExist]){
+            self.titleArray = [self.titleDb queryDBWithTitle];
+        }else{
+            @weakify(self)
+            [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
+                @strongify(self);
+                self.titleArray = x;
+                [self.titleDb createTitleCacheDb];
+                for(int i = 0;i < self.titleArray.count;i++){
+                    homeTitleModel *model = self.titleArray[i];
+                    [self.titleDb InsertDataWithDB:model];
+                }
+                [self reloadData];
+            }];
+        }
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,18 +55,18 @@
     [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         self.titleArray = x;
-//        [self.titleDb createTitleCacheDb];
-//        for(int i = 0;i < self.titleArray.count;i++){
-//            homeTitleModel *model = self.titleArray[i];
-//            [self.titleDb InsertDataWithDB:model];
-//        }
+        [self.titleDb createTitleCacheDb];
+        for(int i = 0;i < self.titleArray.count;i++){
+            homeTitleModel *model = self.titleArray[i];
+            [self.titleDb InsertDataWithDB:model];
+        }
         [self reloadData];
     }];
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)needRefreshTableViewData{
-    homeDetailViewController *detailVC = (homeDetailViewController *)self.currentViewController;
+    homeTableViewController *detailVC = (homeTableViewController *)self.currentViewController;
     [detailVC needRefreshTableViewData];
 }
 
@@ -95,9 +95,9 @@
 #pragma mark -----  pageMenuView
 
 -(void)PageMenuView{
-    UIButton *addChannelBtn = UIButton.buttonType(UIButtonTypeCustom).showImage([UIImage imageNamed:@"add_channel_titlbar_thin_new"],UIControlStateNormal).bgImage([UIImage imageNamed:@"shadow_add_titlebar_new3_52x36_"],UIControlStateNormal);
-    
-    addChannelBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-52, 0, 52, 35);
+    UIButton *addChannelBtn = UIButton.buttonType(UIButtonTypeCustom).showImage([UIImage imageNamed:@"add_channel_titlbar_thin_new"],UIControlStateNormal);
+    addChannelBtn.backgroundColor = [UIColor whiteColor];
+    addChannelBtn.frame = CGRectMake(kScreenWidth - 52, 0, 52, 35);
     addChannelBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
     [self.menuView addSubview:addChannelBtn];
     
@@ -105,11 +105,10 @@
     [RACObserve(self.scrollView, contentOffset) subscribeNext:^(id x) {
         @strongify(self);
         CGPoint offset = [x CGPointValue];
-        if (offset.x > [UIScreen mainScreen].bounds.size.width * (self.titleArray.count - 1)) {
-            self.scrollView.contentOffset = CGPointMake([UIScreen mainScreen].bounds.size.width * (self.titleArray.count - 1), 0);
+        if (offset.x > kScreenWidth * (self.titleArray.count - 1)) {
+            self.scrollView.contentOffset = CGPointMake(kScreenWidth * (self.titleArray.count - 1), 0);
         }
     }];
-    
 }
 
 #pragma mark - WMPageController delelgate && datasource
@@ -124,10 +123,10 @@
 - (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index{
     
     if (index > self.titleArray.count - 1) {
-        return  [[homeDetailViewController alloc]init];
+        return  [[homeTableViewController alloc]init];
     }
     homeTitleModel *model = self.titleArray[index];
-    homeDetailViewController *detial = [[homeDetailViewController alloc]init];
+    homeTableViewController *detial = [[homeTableViewController alloc]init];
     detial.titleModel = model;
     return detial;
     
@@ -150,7 +149,6 @@
     }else{
         [super menuView:menu didSelesctedIndex:index currentIndex:currentIndex];
     }
-    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

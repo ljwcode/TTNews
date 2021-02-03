@@ -40,9 +40,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self.navigationController.navigationBar setBackgroundImage:[self drawImageContext:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 

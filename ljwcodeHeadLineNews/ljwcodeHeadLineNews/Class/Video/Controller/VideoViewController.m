@@ -28,7 +28,7 @@
 -(instancetype)init{
     if(self = [super init]){
         if([self.titleDBViewModel DBTableIsExists]){
-           self.titleArray = [self.titleDBViewModel queryDataBase];
+            self.titleArray = [self.titleDBViewModel queryDataBase];
         }else{
             @weakify(self)
             [[self.titleViewModle.videoCommand execute:@"video"] subscribeNext:^(id  _Nullable x) {
@@ -65,16 +65,14 @@
 }
 
 -(void)setPageMenuView{
-
     @weakify(self)
     [RACObserve(self.scrollView, contentOffset) subscribeNext:^(id x) {
         @strongify(self);
         CGPoint offset = [x CGPointValue];
-        if (offset.x > [UIScreen mainScreen].bounds.size.width * (self.titleArray.count - 1)) {
-            self.scrollView.contentOffset = CGPointMake([UIScreen mainScreen].bounds.size.width * (self.titleArray.count - 1), 0);
+        if (offset.x > kScreenWidth * (self.titleArray.count - 1)) {
+            self.scrollView.contentOffset = CGPointMake(kScreenWidth * (self.titleArray.count - 1), 0);
         }
     }];
-    
 }
 
 #pragma mark - WMPageController delelgate && datasource
@@ -114,7 +112,6 @@
     }else{
         [super menuView:menu didSelesctedIndex:index currentIndex:currentIndex];
     }
-    
 }
 
 #pragma mark ----- lazy load

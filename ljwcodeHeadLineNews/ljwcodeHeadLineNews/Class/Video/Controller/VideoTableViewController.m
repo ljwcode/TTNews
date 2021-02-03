@@ -46,33 +46,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 //    @weakify(self);
-//    self.detailTableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+//    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
 //        @strongify(self);
-//        NSArray *array = [self.videoDBViewModel TT_queryVideoDataModel];
-//        [self.dataArray addObjectsFromArray:array];
-//        [self.detailTableView reloadData];
-//        [self.detailTableView.mj_header endRefreshing];
+//        [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
+//            [self.dataArray addObjectsFromArray:x];
+//            NSArray *array = x;
+//            [self.videoDBViewModel TT_saveVideoDataModel:array];
+//            [self.detailTableView reloadData];
+//            [self.detailTableView.mj_header endRefreshing];
+//        }];
 //    }];
 //    [self.detailTableView.mj_header beginRefreshing];
-    @weakify(self);
-    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        @strongify(self);
-        [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-            [self.dataArray addObjectsFromArray:x];
-            NSArray *array = x;
-            [self.videoDBViewModel TT_saveVideoDataModel:array];
-            [self.detailTableView reloadData];
-            [self.detailTableView.mj_header endRefreshing];
-        }];
-
-    }];
-    [self.detailTableView.mj_header beginRefreshing];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    @weakify(self);
+    self.detailTableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        @strongify(self);
+        NSArray *array = [self.videoDBViewModel TT_queryVideoDataModel];
+        [self.dataArray addObjectsFromArray:array];
+        [self.detailTableView reloadData];
+        [self.detailTableView.mj_header endRefreshing];
+    }];
+    [self.detailTableView.mj_header beginRefreshing];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -231,30 +230,32 @@
 
 - (void)initPlayerView:(TVVideoPlayerViewCell *)cell playClick:(videoContentModel *)convention{
     self.playingCell = cell;
-    [_playerView destroyPlayer];
-    _playerView = nil;
+    [self.playerView destroyPlayer];
+    self.playerView = nil;
     
-    TTPlayerView *playerView = [[TTPlayerView alloc] initWithFrame:cell.videoFrame];
-    _playerView = playerView;
-    [cell.contentView addSubview:_playerView];
+    TTPlayerView *playerView = [[TTPlayerView alloc]initWithFrame:cell.videoFrame];
+    self.playerView = playerView;
+    [cell.contentView addSubview:self.playerView];
     //视频地址
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self->_playerView.url = [NSURL URLWithString:self.videoURL];
-        [self->_playerView playVideo];
+        self.playerView.url = [NSURL URLWithString:self.videoURL];
+        [self.playerView playVideo];
     });
     //返回按钮点击事件回调
-    [_playerView backButton:^(UIButton *button) {
+    [self.playerView backButton:^(UIButton *button) {
         NSLog(@"返回按钮被点击");
     }];
     //播放完成回调
-    [_playerView endPlay:^{
-        [self->_playerView destroyPlayer];
-        self->_playerView = nil;
+    [self.playerView endPlay:^{
+        [self.playerView destroyPlayer];
+        self.playerView = nil;
         NSLog(@"播放完成");
     }];
 }
 
 -(void)TT_commentDetail{
+    [self.playerView destroyPlayer];
+    self.playerView = nil;
     VideoDetailViewController *videoDetailVC = [[VideoDetailViewController alloc]init];
     [self.navigationController pushViewController:videoDetailVC animated:YES];
     videoDetailVC.videoURL = self.videoURL;
@@ -306,7 +307,6 @@
             gap = delta;
             finnalCell = cell;
         }
-        
     }
     if (finnalCell != nil && self.playingCell != finnalCell)  {
         if (_playerView) {
@@ -315,7 +315,6 @@
         }
         
         [self initPlayerView:finnalCell playClick:finnalCell.contentModel];
-        
         self.playingCell = finnalCell;
         return;
     }

@@ -85,10 +85,10 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
 }
 
 #pragma mark - 显示网速Label
+
 - (UILabel *)speedTextLabel {
     if (!_speedTextLabel) {
         _speedTextLabel = [UILabel new];
-        
         _speedTextLabel.textColor = [UIColor whiteColor];
         _speedTextLabel.font = [UIFont systemFontOfSize:12.0];
         _speedTextLabel.textAlignment = NSTextAlignmentCenter;
@@ -105,17 +105,9 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
         _maskView.delegate = self;
         [_maskView addTarget:self action:@selector(disappearAction:) forControlEvents:UIControlEventTouchUpInside];
         //计时器，循环执行
-        _sliderTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
-                                                        target:self
-                                                      selector:@selector(timeStack)
-                                                      userInfo:nil
-                                                       repeats:YES];
+        _sliderTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(timeStack) userInfo:nil repeats:YES];
         //定时器，工具条消失
-        _timer = [NSTimer scheduledTimerWithTimeInterval:DisappearTime
-                                                  target:self
-                                                selector:@selector(disappear)
-                                                userInfo:nil
-                                                 repeats:NO];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:DisappearTime target:self selector:@selector(disappear) userInfo:nil repeats:NO];
     }
     return _maskView;
 }
@@ -123,28 +115,21 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
 #pragma mark - 初始化
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]){
-        _isFullScreen   = NO;
+        _isFullScreen = NO;
         _autoFullScreen = YES;
-        _repeatPlay     = NO;
-        _isLandscape    = NO;
-        _landscape      = NO;
-        _isDisappear    = NO;
-        _isUserPlay     = NO;
+        _repeatPlay = NO;
+        _isLandscape = NO;
+        _landscape = NO;
+        _isDisappear = NO;
+        _isUserPlay = NO;
         //开启
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
         //注册屏幕旋转通知
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientChange:)
-                                                     name:UIDeviceOrientationDidChangeNotification
-                                                   object:[UIDevice currentDevice]];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(orientChange:) name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
         //APP运行状态通知，将要被挂起 crash:
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterBackground:)
-                                                     name:UIApplicationWillResignActiveNotification
-                                                   object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(appDidEnterBackground:) name:UIApplicationWillResignActiveNotification object:nil];
         // app进入前台
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(appDidEnterPlayground:)
-                                                     name:UIApplicationDidBecomeActiveNotification object:nil];
-        
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(appDidEnterPlayground:) name:UIApplicationDidBecomeActiveNotification object:nil];
         [self creatUI];
     }
     return self;
@@ -174,7 +159,7 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
 
 -(void)setIsLandscape:(BOOL)isLandscape{
     _isLandscape = isLandscape;
-    _landscape   = isLandscape;
+    _landscape  = isLandscape;
 }
 
 - (void)setRepeatPlay:(BOOL)repeatPlay{
@@ -182,18 +167,18 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
 }
 
 - (void)setUrl:(NSURL *)url{
-    _url                      = url;
-    self.playerItem           = [AVPlayerItem playerItemWithAsset:[AVAsset assetWithURL:_url]];
+    _url = url;
+    self.playerItem = [AVPlayerItem playerItemWithAsset:[AVAsset assetWithURL:_url]];
     //创建
-    _player                   = [AVPlayer playerWithPlayerItem:_playerItem];
-    _playerLayer              = [AVPlayerLayer playerLayerWithPlayer:_player];
+    _player = [AVPlayer playerWithPlayerItem:_playerItem];
+    _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
     //全屏拉伸
     _playerLayer.videoGravity = AVLayerVideoGravityResize;
     //设置静音模式播放声音
-    AVAudioSession * session  = [AVAudioSession sharedInstance];
+    AVAudioSession *session  = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     [session setActive:YES error:nil];
-//    _player.volume = 0; //默认为静音
+    //    _player.volume = 0; //默认为静音
     if (_videoFillMode){
         _playerLayer.videoGravity = _videoFillMode;
     }
@@ -211,11 +196,9 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
 }
 
 -(void)setPlayerItem:(AVPlayerItem *)playerItem{
-    
     if (_playerItem == playerItem){
         return;
     }
-    
     if (_playerItem) {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:_playerItem];
         [_playerItem removeObserver:self forKeyPath:@"status"];
@@ -237,14 +220,12 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
     _state = state;
     if (state == TTPlayerStateBuffering) {
         [self.maskView.activity startAnimating];
-        
     }else if (state == TTPlayerStateFailed){
         [self.maskView.activity stopAnimating];
         NSLog(@"加载失败");
         self.maskView.failButton.hidden = NO;
     }else{
         [self.maskView.activity stopAnimating];
-        
         if (_isUserPlay) {
             [self playVideo];
         }
@@ -275,7 +256,6 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     if ([keyPath isEqualToString:@"status"]) {
-        
         if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay) {
             self.state = TTPlayerStatePlaying;
         }
@@ -285,10 +265,10 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
     } else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
         // 计算缓冲进度
         NSTimeInterval timeInterval = [self availableDuration];
-        CMTime duration             = self.playerItem.duration;
-        CGFloat totalDuration       = CMTimeGetSeconds(duration);
+        CMTime duration = self.playerItem.duration;
+        CGFloat totalDuration = CMTimeGetSeconds(duration);
         [self.maskView.progress setProgress:timeInterval / totalDuration animated:NO];
-
+        
     } else if ([keyPath isEqualToString:@"playbackBufferEmpty"]) {
         // 当缓冲是空的时候
         if (self.playerItem.playbackBufferEmpty) {
@@ -309,7 +289,7 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
 //卡顿时会走这里
 - (void)bufferingSomeSecond{
     self.state = TTPlayerStateBuffering;
-
+    
     __block BOOL isBuffering = NO;
     if (isBuffering) return;
     isBuffering = YES;
@@ -323,16 +303,15 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
         if (!self.playerItem.isPlaybackLikelyToKeepUp) {
             [self bufferingSomeSecond];
         }
-        
     });
 }
 //计算缓冲进度
 - (NSTimeInterval)availableDuration{
     NSArray *loadedTimeRanges = [[_player currentItem] loadedTimeRanges];
-    CMTimeRange timeRange     = [loadedTimeRanges.firstObject CMTimeRangeValue];// 获取缓冲区域
-    float startSeconds        = CMTimeGetSeconds(timeRange.start);
-    float durationSeconds     = CMTimeGetSeconds(timeRange.duration);
-    NSTimeInterval result     = startSeconds + durationSeconds;// 计算缓冲总进度
+    CMTimeRange timeRange = [loadedTimeRanges.firstObject CMTimeRangeValue];// 获取缓冲区域
+    float startSeconds = CMTimeGetSeconds(timeRange.start);
+    float durationSeconds = CMTimeGetSeconds(timeRange.duration);
+    NSTimeInterval result = startSeconds + durationSeconds;// 计算缓冲总进度
     return result;
 }
 #pragma mark ---- TTPlayerMaskViewDelegate
@@ -346,11 +325,7 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
 -(void)TT_progressSliderTouchEnded:(TTSlider *)slider{
     //继续播放
     [self playVideo];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:DisappearTime
-                                              target:self
-                                            selector:@selector(disappear)
-                                            userInfo:nil
-                                             repeats:NO];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:DisappearTime target:self selector:@selector(disappear) userInfo:nil repeats:NO];
 }
 //拖拽中
 -(void)TT_progressSliderValueChanged:(TTSlider *)slider{
@@ -427,16 +402,12 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
     [self destroyTimer];
     if (_isDisappear == NO){
         [UIView animateWithDuration:0.5 animations:^{
-            self.maskView.topToolBar.alpha    = 0;
+            self.maskView.topToolBar.alpha = 0;
             self.maskView.bottomToolBar.alpha = 0;
         }];
     }else{
         //添加定时消失
-        _timer = [NSTimer scheduledTimerWithTimeInterval:DisappearTime
-                                                  target:self
-                                                selector:@selector(disappear)
-                                                userInfo:nil
-                                                 repeats:NO];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:DisappearTime target:self selector:@selector(disappear) userInfo:nil repeats:NO];
         
         [UIView animateWithDuration:0.5 animations:^{
             self.maskView.topToolBar.alpha    = 1.0;
@@ -499,7 +470,7 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
     [_player.currentItem.asset cancelLoading];
     //移除
     [self removeFromSuperview];
-
+    
 }
 
 //销毁所有定时器
@@ -507,7 +478,7 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
     [_sliderTimer invalidate];
     [_timer invalidate];
     _sliderTimer = nil;
-    _timer       = nil;
+    _timer = nil;
 }
 //销毁定时消失定时器
 - (void)destroyTimer{
@@ -597,7 +568,6 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
 
 #pragma mark - 根据Cell位置判断是否销毁
 - (void)calculateScrollOffset:(UITableView *)tableView cell:(UITableViewCell *)cell{
-
     NSArray *visableCells = tableView.visibleCells;
     if ([visableCells containsObject:cell]) {
         //在屏幕上
@@ -605,13 +575,10 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
         //不在屏幕上
         [self destroyPlayer];
     }
-    
-    
-    
 }
 -(void)layoutSubviews{
     [super layoutSubviews];
-    self.playerLayer.frame        = self.bounds;
+    self.playerLayer.frame = self.bounds;
     self.maskView.frame = self.bounds;
 }
 #pragma mark - dealloc
@@ -623,27 +590,20 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
     [_playerItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
     [_playerItem removeObserver:self forKeyPath:@"playbackBufferEmpty"];
     [_playerItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:AVPlayerItemDidPlayToEndTimeNotification
-                                                  object:_player.currentItem];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIDeviceOrientationDidChangeNotification
-                                                  object:[UIDevice currentDevice]];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIApplicationWillResignActiveNotification
-                                                  object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIApplicationDidBecomeActiveNotification
-                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
     NSLog(@"播放器被销毁了");
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end

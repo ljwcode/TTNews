@@ -1,12 +1,12 @@
 //
-//  homeDetailViewController.m
+//  homeTableViewController.m
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/6/30.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "homeDetailViewController.h"
+#import "homeTableViewController.h"
 #import "homeNewsTableViewCell.h"
 #import "homejokeTableViewCell.h"
 #import "homeContentNewsTableViewCell.h"
@@ -24,7 +24,7 @@
 #import "TTPlayerView.h"
 #import "homeNewsDetailDBViewModel.h"
 
-@interface homeDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource,UIGestureRecognizerDelegate>
+@interface homeTableViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource,UIGestureRecognizerDelegate>
 
 @property(nonatomic,weak)UITableView *detailTableView;
 
@@ -46,7 +46,7 @@
 
 @end
 
-@implementation homeDetailViewController
+@implementation homeTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,9 +57,6 @@
         [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
             [self.datasArray addObjectsFromArray:datasArray];
-            //            homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
-            //            [dbViewModel TT_saveHomeNewsDetailModel:datasArray TT_DetailCategory:self.titleModel.category];
-            
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
         }];
@@ -75,9 +72,9 @@
 //        @strongify(self);
 //        homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
 //        NSArray *dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
-//        if(dataArray.count == 0){
-//            return;
-//        }
+////        if(dataArray.count == 0){
+////            return;
+////        }
 //        [self.datasArray addObjectsFromArray:dataArray];
 //        [self.detailTableView reloadData];
 //        [self.detailTableView.mj_header endRefreshing];
@@ -124,9 +121,7 @@
 }
 
 -(UITableView *)detailTableView{
-    
     if(!_detailTableView){
-        
         UITableView *tableView = [[UITableView alloc]init];
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -223,7 +218,6 @@
 #pragma mark - UITableViewDelegate && UITableViewDatasource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
     return 1;
 }
 
@@ -275,7 +269,6 @@
         webVC.urlString = _model.infoModel.article_url;
         [self.navigationController pushViewController:webVC animated:YES];
     }
-    
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -313,7 +306,6 @@
     }]then:^id _Nullable(id  _Nullable value) {
         return [self playVideoWithURL:value videoIndexPath:indexPath];
     }];
-    
 }
 
 -(FBLPromise *)getVideoURL{

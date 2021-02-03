@@ -9,12 +9,13 @@
 #import "VideoDetailViewController.h"
 #import <Masonry/Masonry.h>
 #import "TTPlayerView.h"
+#import "TTVideoDetailHeaderView.h"
 
 @interface  VideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
 @property(nonatomic,strong)TTPlayerView *playerView;
 
-@property(nonatomic,strong)UIView *authorHeaderView;
+@property(nonatomic,strong)TTVideoDetailHeaderView *authorHeaderView;
 
 @property(nonatomic,strong)UITableView *TTThemedTableView;
 
@@ -22,15 +23,15 @@
 
 @property(nonatomic,strong)NSArray *dataArray;
 
+@property(nonatomic,assign)CGFloat minY;
+
 @end
 
 @implementation VideoDetailViewController
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-
 }
 
 -(void)createUI{
@@ -50,23 +51,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.playerView = [[TTPlayerView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.3)];
     [self.view addSubview:self.playerView];
-    [self createUI];
     [self.view addSubview:self.TTVVideoDetailContainerScrollView];
-    
+    [self createUI];
+    [self createAuthorView];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self->_playerView.url = [NSURL URLWithString:self.videoURL];
-        [self->_playerView playVideo];
+        NSLog(@"videoURL = %@",self.videoURL);
+        self.playerView.url = [NSURL URLWithString:self.videoURL];
+        [self.playerView playVideo];
     });
     //返回按钮点击事件回调
-    [_playerView backButton:^(UIButton *button) {
+    [self.playerView backButton:^(UIButton *button) {
         NSLog(@"返回按钮被点击");
     }];
     //播放完成回调
-    [_playerView endPlay:^{
-        [self->_playerView destroyPlayer];
-        self->_playerView = nil;
+    [self.playerView endPlay:^{
+        [self.playerView destroyPlayer];
+        self.playerView = nil;
         NSLog(@"播放完成");
     }];
     // Do any additional setup after loading the view.
@@ -78,17 +81,10 @@
 
 #pragma mark ----- lazy load
 
--(TTPlayerView *)playerView{
-    if(!_playerView){
-        _playerView = [[TTPlayerView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.3)];
-        _playerView.url = [NSURL URLWithString:self.videoURL];
-    }
-    return _playerView;
-}
-
--(UIView *)authorHeaderView{
+-(TTVideoDetailHeaderView *)authorHeaderView{
     if(!_authorHeaderView){
-        _authorHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.playerView.frame), kScreenWidth, kScreenHeight * 0.1)];
+        _authorHeaderView = [[TTVideoDetailHeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.1)];
+        _minY = 0;
     }
     return _authorHeaderView;
 }
@@ -106,39 +102,25 @@
 
 -(void)createAuthorView{
     [self.TTVVideoDetailContainerScrollView addSubview:self.authorHeaderView];
-    [self.authorHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(kScreenHeight * 0.1);
-    }];
-    
-    
 }
 
 #pragma mark ----- UIScrollViewDelegate
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-       CGFloat playerViewH = self.playerView.frame.size.height;
-       //scrollView的滚动的Y值
-       CGFloat offsetY = scrollView.contentOffset.y;
-       if (offsetY >= playerViewH) {
-           //当向上滑动到状态栏边缘的时候，将红色控件添加到控制器View中
-           CGRect redFrame = self.authorHeaderView.frame;
-           redFrame.origin.y = 0;
-           self.authorHeaderView.frame = redFrame;
-           [self.view addSubview:self.authorHeaderView];
-       }else {
-           //下拉到scrollView顶部时候，将红色控件添加到控制器scrollView中
-           CGRect redFrame = self.authorHeaderView.frame;
-           redFrame.origin.y = playerViewH;
-           self.authorHeaderView.frame = redFrame;
-           [self.TTVVideoDetailContainerScrollView addSubview:self.authorHeaderView];
-       }
+    CGFloat offsetY = scrollView.contentOffset.y;
+    CGRect frame = self.authorHeaderView.frame;
+    if (offsetY >= _minY) {
+        frame.origin.y = offsetY;
+    }else{
+        frame.origin.y = _minY;
+    }
+    self.authorHeaderView.frame = frame;
 }
 
 
 #pragma mark ------- 响应事件
 -(void)PopHandle:(UIButton *)sender{
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*

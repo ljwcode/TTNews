@@ -37,6 +37,7 @@
                     [subscriber sendNext:array];
                     [subscriber sendCompleted];
                 } failHandle:^(NSError * _Nonnull error) {
+                    [MBProgressHUD showSuccess:@"网络请求失败"];
                     NSLog(@"请求失败");
                 }];
                 return nil;
