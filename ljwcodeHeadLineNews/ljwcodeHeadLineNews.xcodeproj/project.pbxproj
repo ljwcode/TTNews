@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630131F125CBE6DE00DC0391 /* TT_requestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 630131F025CBE6DE00DC0391 /* TT_requestModel.m */; };
 		6302B4D625A9B35E00818EBB /* TT_CustomerTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6302B4D525A9B35E00818EBB /* TT_CustomerTabBar.m */; };
 		6305043A256525B000CB910D /* TTReportArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63050439256525B000CB910D /* TTReportArticleView.m */; };
 		630A976624CFC463003029C3 /* countryCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A976424CFC462003029C3 /* countryCodeView.m */; };
@@ -182,6 +183,8 @@
 
 /* Begin PBXFileReference section */
 		293C19CEC52458542FCA55CC /* Pods-ljwcodeHeadLineNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.release.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.release.xcconfig"; sourceTree = "<group>"; };
+		630131EF25CBE6DE00DC0391 /* TT_requestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_requestModel.h; sourceTree = "<group>"; };
+		630131F025CBE6DE00DC0391 /* TT_requestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_requestModel.m; sourceTree = "<group>"; };
 		6302B4D425A9B35E00818EBB /* TT_CustomerTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_CustomerTabBar.h; sourceTree = "<group>"; };
 		6302B4D525A9B35E00818EBB /* TT_CustomerTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_CustomerTabBar.m; sourceTree = "<group>"; };
 		63050438256525B000CB910D /* TTReportArticleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTReportArticleView.h; sourceTree = "<group>"; };
@@ -600,6 +603,8 @@
 				634ECB102576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.m */,
 				63E7177124F9F430003A690E /* TTSearchSuggestionRequestModel.h */,
 				63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */,
+				630131EF25CBE6DE00DC0391 /* TT_requestModel.h */,
+				630131F025CBE6DE00DC0391 /* TT_requestModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1462,6 +1467,7 @@
 				63F6751F254C22DC009F9AB7 /* TTShowShareConfigureView.m in Sources */,
 				631BC92A25482A9A001B82AB /* clearCacheTools.m in Sources */,
 				6390EEBD2589B3670081093E /* UIScrollView+EmptyDataSet.m in Sources */,
+				630131F125CBE6DE00DC0391 /* TT_requestModel.m in Sources */,
 				63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */,
 				631CFA7124E567250082B941 /* MessageViewController.m in Sources */,
 				6345190525BABAD300782DA6 /* SettingViewController.m in Sources */,

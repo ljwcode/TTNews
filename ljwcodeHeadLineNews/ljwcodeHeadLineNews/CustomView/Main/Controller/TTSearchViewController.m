@@ -214,7 +214,7 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
     titleView.layer.cornerRadius = 12.f;
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:titleView.bounds];
     [titleView addSubview:searchBar];
-    if (systemVersion >= 11.0) { // iOS 11
+    if (TT_systemVersion >= 11.0) { // iOS 11
         [NSLayoutConstraint activateConstraints:@[
             [searchBar.topAnchor constraintEqualToAnchor:titleView.topAnchor],
             [searchBar.leftAnchor constraintEqualToAnchor:titleView.leftAnchor],

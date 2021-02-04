@@ -12,6 +12,7 @@
 #import "TTHeader.h"
 #import <MJExtension.h>
 #import "videoTitleModel.h"
+#import "TT_requestModel.h"
 
 @interface videoTitleViewModel()
 
@@ -27,50 +28,45 @@
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 
                 videoTitleRequestModel *request = [videoTitleRequestModel initWithNetworkModelWithUrlString:TTNetworkURLManager.videoTitlesURLString isPost:NO];
-                request.device_id = LJWCODE_DEVICE_ID;
-                request.iid = LJWCODE_IID;
-                request.device_platform = @"iPhone 11 Pro";
-                request.version_code = @"7.7.0";
-                request.input = input;
+                /*
+                 https://api5-normal-c-lq.snssdk.com/video_api/get_category/v3/?version_code=8.0.9&tma_jssdk_version=1.95.0.19&app_name=news_article&app_version=8.0.9&vid=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&device_id=157930857702792&channel=App%20Store&resolution=750*1334&aid=13&update_version_code=80919&cdid=EDDBEF16-CAA0-4624-8789-5BA3E024EF5E&idfv=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&ac=WIFI&os_version=12.4.8&ssmix=a&device_platform=iphone&iid=1513346564108847&device_type=iPhone%206&ab_client=a1,f2,f7,e1&idfa=00000000-0000-0000-0000-000000000000
+                 */
+                request.version_code = [TT_requestModel version_code];
+                request.tma_jssdk_version = [TT_requestModel tma_jssdk_version];
+                request.app_name = [TT_requestModel app_name];
+                request.app_version = [TT_requestModel app_version];
+                request.vid = [TT_requestModel vid];
+                request.device_id = [TT_requestModel device_id];
+                request.channel = [TT_requestModel channel];
+                request.resolution = [TT_requestModel resolution];
+                request.aid = [TT_requestModel aid];
+                request.update_version_code = [TT_requestModel update_version_code];
+                request.cdid = [TT_requestModel cdid];
+                request.idfv = [TT_requestModel idfv];
+                request.ac = [TT_requestModel ac];
+                request.os_version = [TT_requestModel os_version];
+                request.ssmix = [TT_requestModel ssmix];
+                request.device_platform = [TT_requestModel device_platform];
+                request.iid = [TT_requestModel iid];
+                request.device_type = [TT_requestModel device_type];
+                request.ab_client = [TT_requestModel ab_client];
+                request.idfa = [TT_requestModel idfa];
                 
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
-                    /*
-                    category = "subv_tt_video_sports";
-                    "category_type" = 0;
-                    flags = 0;
-                    "icon_url" = "";
-                    name = "\U4f53\U80b2";
-                    "tip_new" = 0;
-                    type = 4;
-                    "web_url" = "";
-                    */
-//                    NSMutableDictionary *jsonDic = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"{\"category\": \"video\", \"name\": \"推荐\"}", nil];
-//                    NSString *jsonStr = @"{\"category\": \"video\", \"name\": \"推荐\"}";
-                    
                     NSDictionary *responseDic = (NSDictionary *)response;
-                    responseDic = [responseDic objectForKey:@"data"];
-                    
-                    NSMutableDictionary *videoDic = [[NSMutableDictionary alloc]init];
-                    videoDic[@"category"] = @"video";
-                    videoDic[@"category_type"] = @"0";
-                    videoDic[@"flags"] = @"0";
-                    videoDic[@"icon_url"] = @"";
-                    videoDic[@"name"] = @"推荐";
-                    videoDic[@"tip_new"] = @"0";
-                    videoDic[@"type"] = @"4";
-                    videoDic[@"web_url"] = @"";
-                    
-                    NSMutableArray *modelArray = [[NSMutableArray alloc]init];
-                    if(responseDic.count > 0){
-                        NSMutableArray *responseArray = [NSMutableArray array];
-                        responseArray = (NSMutableArray *)responseDic.mutableCopy;
-                        [responseArray insertObject:videoDic atIndex:0];
-                        for(int i = 0;i < responseArray.count;i++){
-                            videoTitleModel *titleModel = [[videoTitleModel new]mj_setKeyValues:responseArray[i]];
-                            [modelArray addObject:titleModel];
+                    NSArray *dicArr = [[NSArray alloc]init];
+                    dicArr = responseDic[@"data"];
+                    NSMutableArray *models = [NSMutableArray array];
+                    if (dicArr.count > 0) {
+                        for (int i = 0; i < [dicArr count]; i++) {
+                            videoTitleModel *model = [[videoTitleModel new] mj_setKeyValues:dicArr[i]];
+                            [models addObject:model];
                         }
-                        [subscriber sendNext:modelArray];
+                        [subscriber sendNext:models];
                         [subscriber sendCompleted];
+                        
+                    }else {
+                        [MBProgressHUD showError: server_error toView:nil];
                     }
                 } failHandle:^(NSError * _Nonnull error) {
                     [MBProgressHUD showSuccess:@"网络请求失败"];

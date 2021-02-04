@@ -25,26 +25,26 @@
 
 @implementation homeViewController
 
--(instancetype)init{
-    if(self = [super init]){
-        if([self.titleDb DBTableISExist]){
-            self.titleArray = [self.titleDb queryDBWithTitle];
-        }else{
-            @weakify(self)
-            [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
-                @strongify(self);
-                self.titleArray = x;
-                [self.titleDb createTitleCacheDb];
-                for(int i = 0;i < self.titleArray.count;i++){
-                    homeTitleModel *model = self.titleArray[i];
-                    [self.titleDb InsertDataWithDB:model];
-                }
-                [self reloadData];
-            }];
-        }
-    }
-    return self;
-}
+//-(instancetype)init{
+//    if(self = [super init]){
+//        if([self.titleDb DBTableISExist]){
+//            self.titleArray = [self.titleDb queryDBWithTitle];
+//        }else{
+//            @weakify(self)
+//            [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
+//                @strongify(self);
+//                self.titleArray = x;
+//                [self.titleDb createTitleCacheDb];
+//                for(int i = 0;i < self.titleArray.count;i++){
+//                    homeTitleModel *model = self.titleArray[i];
+//                    [self.titleDb InsertDataWithDB:model];
+//                }
+//                [self reloadData];
+//            }];
+//        }
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

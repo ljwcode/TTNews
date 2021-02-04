@@ -49,7 +49,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    @weakify(self)
+    [[self.titleViewModle.videoCommand execute:@"video"] subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        self.titleArray = x;  //x返回一个列表名称数组
+        if(![self.titleDBViewModel DBTableIsExists]){
+            [self.titleDBViewModel createDBCacheTable];
+        }
+        for(int i = 0;i < self.titleArray.count;i++){
+            videoTitleModel *model = self.titleArray[i];
+            [self.titleDBViewModel InsertDBWithModel:model];
+        }
+    }];
     [self configureUI];
     [self reloadData];
     [self setPageMenuView];

@@ -78,28 +78,28 @@
 
 -(FBLPromise *)getPlaceholderText{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
-        NSArray *dataArray = [self.SearchCacheViewModel queryDBTableWithVideoContent];
-        NSMutableArray *keywordArray = [[NSMutableArray alloc]init];
-        for(TTArticleSearchInboxFourWordsModel *model in dataArray){
-            [keywordArray addObject:[[model mj_keyValues]objectForKey:@"word"]];
-        }
-        NSString *keyword = [NSString stringWithFormat:@"%@ | %@",keywordArray[0],keywordArray[1]];
-        fulfill(keyword);
-//        [[self.keywordViewModel.searchWordCommand execute:@"title"]subscribeNext:^(id  _Nullable x) {
-//            NSArray *dataArray = x;
-//            NSMutableArray *keywordArray = [[NSMutableArray alloc]init];
-//            for(TTArticleSearchInboxFourWordsModel *model in dataArray){
-//                [keywordArray addObject:[[model mj_keyValues] objectForKey:@"word"]];
-//            }
-//            if([self.SearchCacheViewModel IsExistsKeywordCacheTable]){
-//                [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
-//            }else{
-//                [self.SearchCacheViewModel createDBWithSearchKeywordTable];
-//                [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
-//            }
-//            NSString *keyword = [NSString stringWithFormat:@"%@ | %@",keywordArray[0],keywordArray[1]];
-//            fulfill(keyword);
-//        }];
+//        NSArray *dataArray = [self.SearchCacheViewModel queryDBTableWithVideoContent];
+//        NSMutableArray *keywordArray = [[NSMutableArray alloc]init];
+//        for(TTArticleSearchInboxFourWordsModel *model in dataArray){
+//            [keywordArray addObject:[[model mj_keyValues]objectForKey:@"word"]];
+//        }
+//        NSString *keyword = [NSString stringWithFormat:@"%@ | %@",keywordArray[0],keywordArray[1]];
+//        fulfill(keyword);
+        [[self.keywordViewModel.searchWordCommand execute:@"title"]subscribeNext:^(id  _Nullable x) {
+            NSArray *dataArray = x;
+            NSMutableArray *keywordArray = [[NSMutableArray alloc]init];
+            for(TTArticleSearchInboxFourWordsModel *model in dataArray){
+                [keywordArray addObject:[[model mj_keyValues] objectForKey:@"word"]];
+            }
+            if([self.SearchCacheViewModel IsExistsKeywordCacheTable]){
+                [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
+            }else{
+                [self.SearchCacheViewModel createDBWithSearchKeywordTable];
+                [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
+            }
+            NSString *keyword = [NSString stringWithFormat:@"%@ | %@",keywordArray[0],keywordArray[1]];
+            fulfill(keyword);
+        }];
     }];
 }
 

@@ -66,7 +66,7 @@
     CGFloat keyboarHeight = keyboardFrame.size.height;
     [UIView animateWithDuration:0.25 animations:^{
         [self.tiktokLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.mas_left).offset(systemVersion >= 13.0 ? self.width/3 : self.width*2/5);
+            make.left.mas_equalTo(self.mas_left).offset(TT_systemVersion >= 13.0 ? self.width/3 : self.width*2/5);
             make.bottom.mas_equalTo(self.mas_bottom).offset(-(20+keyboarHeight));
             make.width.height.mas_equalTo(self.width * 0.1);
         }];
@@ -77,7 +77,7 @@
 -(void)keyboardHide:(NSNotification *)noti{
     [UIView animateWithDuration:0.25 animations:^{
         [self.tiktokLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.mas_left).offset(systemVersion >= 13.0 ? self.width/3 : self.width*2/5);
+            make.left.mas_equalTo(self.mas_left).offset(TT_systemVersion >= 13.0 ? self.width/3 : self.width*2/5);
             make.bottom.mas_equalTo(self.mas_bottom).offset(-(20));
             make.width.height.mas_equalTo(self.width * 0.1);
         }];
@@ -240,7 +240,7 @@
     _tiktokLoginBtn = tiktokLoginBtn;
 
     [tiktokLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.mas_left).offset(systemVersion >= 13.0 ? self.width/3 : self.width*2/5);
+        make.left.mas_equalTo(self.mas_left).offset(TT_systemVersion >= 13.0 ? self.width/3 : self.width*2/5);
         make.bottom.mas_equalTo(self.mas_bottom).offset(-20);
         make.width.height.mas_equalTo(self.width * 0.1);
     }];
@@ -248,7 +248,7 @@
     UIButton *appleLogin = [UIButton buttonWithType:UIButtonTypeSystem];
     [appleLogin setImage:[UIImage imageNamed:@"login_v3_apple"] forState:UIControlStateNormal];
     [self addSubview:appleLogin];
-    appleLogin.hidden = systemVersion >= 13.0 ? NO : YES;
+    appleLogin.hidden = TT_systemVersion >= 13.0 ? NO : YES;
     [appleLogin mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(tiktokLoginBtn.mas_right).offset(5);
         make.bottom.mas_equalTo(tiktokLoginBtn);
@@ -261,7 +261,7 @@
     [self addSubview:moreLoginType];
 
     [moreLoginType mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(systemVersion >= 13.0 ? appleLogin.mas_right : tiktokLoginBtn.mas_right).offset(10);
+        make.left.mas_equalTo(TT_systemVersion >= 13.0 ? appleLogin.mas_right : tiktokLoginBtn.mas_right).offset(10);
         make.bottom.mas_equalTo(tiktokLoginBtn);
         make.width.height.mas_equalTo(tiktokLoginBtn);
     }];
