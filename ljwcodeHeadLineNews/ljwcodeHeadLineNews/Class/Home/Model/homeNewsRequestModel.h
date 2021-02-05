@@ -52,6 +52,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *idfa;
 
+@property(nonatomic,copy)NSString *category;
+
 @end
 
 NS_ASSUME_NONNULL_END

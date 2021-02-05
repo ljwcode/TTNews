@@ -41,6 +41,7 @@
                 request.device_type = [TT_requestModel device_type];
                 request.ab_client = [TT_requestModel ab_client];
                 request.idfa = [TT_requestModel idfa];
+                request.category = input;
                 
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     NSDictionary *responseDic = (NSDictionary *)response;

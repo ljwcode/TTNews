@@ -11,6 +11,35 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*
+ \"pread_params\":\"{\\\"group_id\\\":6898974656468877838,\\\"item_id\\\":6898974656468877838,\\\"media_id\\\":1636917158242308,\\\"channel_id\\\":3431225546,\\\"category_tag\\\":\\\"video_movie\\\",\\\"from_category\\\":\\\"video\\\",\\\"is_gov_article\\\":false,\\\"display_flags\\\":0,\\\"review_comment_mode\\\":0,\\\"group_source\\\":2,\\\"categories\\\":[\\\"video_movie\\\"],\\\"video_duration\\\":1163,\\\"rec_quality\\\":0,\\\"title\\\":\\\"\U6b8a\U6b7b\Uff1a\U5973\U7279\U52a1\U5047\U626e\U6210\U8001\U4e5e\U4e10\Uff0c\U5c06\U72d9\U51fb\U67aa\U85cf\U5728\U7af9\U7aff\U91cc\Uff0c\U8c01\U77e5\U9ad8\U5174\U65e9\U4e86\\\"}\
+ */
+
+@interface pread_params : NSObject
+
+@property(nonatomic,copy)NSString *group_id;
+
+@property(nonatomic,assign)float item_id;
+
+@property(nonatomic,assign)float media_id;
+
+@property(nonatomic,assign)float channel_id;
+
+@property(nonatomic,copy)NSString *category_tag;
+
+@property(nonatomic,copy)NSString *from_category;
+
+@property(nonatomic,assign)BOOL is_gov_article;
+
+@property(nonatomic,assign)float display_flags;
+
+@property(nonatomic,assign)float review_comment_mode;
+
+@property(nonatomic,copy)NSString *categories;
+
+@property(nonatomic,copy)NSString *title;
+
+@end
 
 @interface MediaInfoModel : NSObject
 
@@ -108,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)video_list *video_list;
 
-@property(nonatomic,assign)int group_id;
+@property(nonatomic,strong)pread_params *pread_params;
 
 @end
 
@@ -126,6 +155,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *content;
 
 @property(nonatomic,strong)videoDetailModel *detailModel;
+
+@property(nonatomic,strong)pread_params *pread_params;
+
 
 @end
 

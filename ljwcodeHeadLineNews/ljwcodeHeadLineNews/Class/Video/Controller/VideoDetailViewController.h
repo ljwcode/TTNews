@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *videoURL;
 
+@property(nonatomic,assign)float group_id;
+
 @end
 
 NS_ASSUME_NONNULL_END

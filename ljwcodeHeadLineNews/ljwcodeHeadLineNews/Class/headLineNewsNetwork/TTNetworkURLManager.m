@@ -77,13 +77,7 @@
     return url;
 }
 
-+(NSString *)videoDetailURL{
-    
-    NSString *url = [NSString stringWithFormat:@"%@article/v2/tab_comments/",ljwcode_Base_url];
-    return url;
-}
-
-+(NSString *)videoDetailRecommendVideoInfoURL{
++(NSString *)videoDetailInfoURL{
     /*
      https://api3-normal-c-lq.snssdk.com/video/app/article/information/v25/?version_code=8.0.9&tma_jssdk_version=1.95.0.19&app_name=news_article&app_version=8.0.9&vid=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&device_id=157930857702792&channel=App%20Store&resolution=750*1334&aid=13&update_version_code=80919&cdid=EDDBEF16-CAA0-4624-8789-5BA3E024EF5E&idfv=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&ac=WIFI&os_version=12.4.8&ssmix=a&device_platform=iphone&iid=1513346564108847&device_type=iPhone%206&ab_client=a1,f2,f7,e1&idfa=00000000-0000-0000-0000-000000000000&from=click_video&article_page=1&group_id=6924996500489830919
      */

@@ -89,7 +89,7 @@
     self.dataSource = self;
     self.automaticallyCalculatesItemWidths = YES;
     self.itemMargin = 10;
-    self.selectIndex = 0;
+    self.selectIndex = 1;
 }
 
 #pragma mark -----  pageMenuView

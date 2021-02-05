@@ -135,6 +135,8 @@
     /*
      点击视频播放/跳转播放
      */
+    videoContentModel *model = self.dataArray[indexPath.row];
+    [videoDetailViewModel TT_videoUserDetailNormalComment:model.detailModel.pread_params.group_id];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self playTheVideoAtIndexPath:indexPath];
 }
@@ -254,8 +256,6 @@
 }
 
 -(void)TT_commentDetail{
-    [self.playerView destroyPlayer];
-    self.playerView = nil;
     VideoDetailViewController *videoDetailVC = [[VideoDetailViewController alloc]init];
     [self.navigationController pushViewController:videoDetailVC animated:YES];
     videoDetailVC.videoURL = self.videoURL;

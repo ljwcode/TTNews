@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSString *)searchSuggestionUrl;
 
-+(NSString *)videoDetailURL;
++(NSString *)videoDetailInfoURL;
 
 @end
 
