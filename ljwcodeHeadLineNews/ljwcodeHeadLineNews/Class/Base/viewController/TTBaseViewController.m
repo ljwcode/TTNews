@@ -91,12 +91,12 @@
             for(TTArticleSearchInboxFourWordsModel *model in dataArray){
                 [keywordArray addObject:[[model mj_keyValues] objectForKey:@"word"]];
             }
-            if([self.SearchCacheViewModel IsExistsKeywordCacheTable]){
-                [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
-            }else{
-                [self.SearchCacheViewModel createDBWithSearchKeywordTable];
-                [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
-            }
+//            if([self.SearchCacheViewModel IsExistsKeywordCacheTable]){
+//                [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
+//            }else{
+//                [self.SearchCacheViewModel createDBWithSearchKeywordTable];
+//                [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
+//            }
             NSString *keyword = [NSString stringWithFormat:@"%@ | %@",keywordArray[0],keywordArray[1]];
             fulfill(keyword);
         }];

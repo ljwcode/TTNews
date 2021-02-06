@@ -7,12 +7,14 @@
 //
 
 #import "TTBaseViewModel.h"
+#import <RACCommand.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface videoDetailViewModel : TTBaseViewModel
 
-+(void)TT_videoUserDetailNormalComment:(NSString *)group_id;
+@property(nonatomic,strong)RACCommand *videoDetailCommand;
+
 @end
 
 NS_ASSUME_NONNULL_END
