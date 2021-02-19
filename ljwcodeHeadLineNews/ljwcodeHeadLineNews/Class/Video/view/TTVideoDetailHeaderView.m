@@ -9,6 +9,8 @@
 #import "TTVideoDetailHeaderView.h"
 #import <Masonry/Masonry.h>
 #import "UILabel+Frame.h"
+#import "UIImage+cropPicture.h"
+#import <UIImageView+WebCache.h>
 
 @interface TTVideoDetailHeaderView()
 
@@ -31,7 +33,7 @@
         [self.headImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(hSpace);
             make.centerY.mas_equalTo(self);
-            make.height.width.mas_equalTo(20);
+            make.height.width.mas_equalTo(50);
         }];
         
         UIView *authorView = [[UIView alloc]init];
@@ -45,15 +47,15 @@
         
         [authorView addSubview:self.authorNameLabel];
         [self.authorNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(0);
+            make.left.mas_equalTo(self.headImgView.mas_right).offset(hSpace/2);
             make.top.mas_equalTo(0);
-            make.height.mas_equalTo(CGRectGetHeight(authorView.frame)/2);
+            make.height.mas_equalTo(50/2);
             make.width.mas_equalTo(kScreenWidth * 0.4);
         }];
         
         [authorView addSubview:self.fansNumLabel];
         [self.fansNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(0);
+            make.left.mas_equalTo(self.headImgView.mas_right).offset(hSpace/2);
             make.top.mas_equalTo(self.authorNameLabel.mas_bottom).offset(0);
             make.height.mas_equalTo(self.authorNameLabel);
             make.width.mas_equalTo(kScreenWidth * 0.4);
@@ -70,6 +72,17 @@
     return self;
 }
 
+-(void)setDetailModel:(TT_VideoDetailModel *)detailModel{
+    _detailModel = detailModel;
+    [self.headImgView sd_setImageWithURL:[NSURL URLWithString:detailModel.user_info.avatar_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if(image){
+            self.headImgView.image = [image cropPictureWithRoundedCorner:self.headImgView.image.size.width size:self.headImgView.frame.size];
+        }
+    }];
+    self.authorNameLabel.text = detailModel.user_info.name;
+    self.fansNumLabel.text = [NSString stringWithFormat:@"%@粉丝",detailModel.user_info.fans_count];
+}
+
 #pragma mark ----- lazy load
 
 -(UIImageView *)headImgView{
@@ -84,7 +97,7 @@
         _authorNameLabel = [[UILabel alloc]init];
         _authorNameLabel.textColor = [UIColor blackColor];
         _authorNameLabel.textAlignment = NSTextAlignmentLeft;
-        _authorNameLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
+        _authorNameLabel.font = [UIFont systemFontOfSize:15.f];
         [_authorNameLabel TTContentFitWidth];
         [_authorNameLabel TTContentFitHeight];
     }

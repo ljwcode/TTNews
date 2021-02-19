@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TT_VideoDetailModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TTVideoDetailHeaderView : UIView
+
+@property(nonatomic,strong)TT_VideoDetailModel *detailModel;
 
 @end
 

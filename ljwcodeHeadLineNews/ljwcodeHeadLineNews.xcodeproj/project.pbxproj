@@ -73,8 +73,9 @@
 		6352492125442980009AECF2 /* QRCodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6352492025442980009AECF2 /* QRCodeManager.m */; };
 		63524924254429DD009AECF2 /* QRCodePreviewVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 63524923254429DD009AECF2 /* QRCodePreviewVIew.m */; };
 		6352492725442F76009AECF2 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6352492625442F76009AECF2 /* QRCodeViewController.m */; };
-		6355CFEE24BEFC19002D3815 /* videoTitileModel in Resources */ = {isa = PBXBuildFile; fileRef = 6355CFED24BEFC19002D3815 /* videoTitileModel */; };
 		6355CFF524BF1078002D3815 /* TTloginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6355CFF424BF1078002D3815 /* TTloginView.m */; };
+		635BB45425DFC5E300449953 /* TT_VideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 635BB45325DFC5E300449953 /* TT_VideoDetailModel.m */; };
+		635BB45725DFC64700449953 /* videoDetailModel in Resources */ = {isa = PBXBuildFile; fileRef = 635BB45625DFC64700449953 /* videoDetailModel */; };
 		635E8C3D24E29328000345C4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635E8C3C24E29328000345C4 /* WebKit.framework */; };
 		636EA80624C9924500765F5C /* screeningHollHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA80524C9924500765F5C /* screeningHollHistoryModel.m */; };
 		636EA80924C9977B00765F5C /* videoInfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 636EA80824C9977B00765F5C /* videoInfoTableView.m */; };
@@ -160,7 +161,6 @@
 		63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8DB24AF2D7700D687ED /* videoTitleModel.m */; };
 		63F1F8DF24AF2FD200D687ED /* videoTitleRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8DE24AF2FD200D687ED /* videoTitleRequestModel.m */; };
 		63F1F8E224AF315E00D687ED /* videoContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8E124AF315E00D687ED /* videoContentModel.m */; };
-		63F1F8E424AF31D300D687ED /* videoListModel in Resources */ = {isa = PBXBuildFile; fileRef = 63F1F8E324AF31D300D687ED /* videoListModel */; };
 		63F1F8E724AF347600D687ED /* videoTitleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8E624AF347600D687ED /* videoTitleViewModel.m */; };
 		63F1F8EA24AF3A3500D687ED /* videoContentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8E924AF3A3500D687ED /* videoContentViewModel.m */; };
 		63F1F8ED24AF3AB600D687ED /* videoContentRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8EC24AF3AB600D687ED /* videoContentRequestModel.m */; };
@@ -301,9 +301,11 @@
 		63524923254429DD009AECF2 /* QRCodePreviewVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodePreviewVIew.m; sourceTree = "<group>"; };
 		6352492525442F76009AECF2 /* QRCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
 		6352492625442F76009AECF2 /* QRCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
-		6355CFED24BEFC19002D3815 /* videoTitileModel */ = {isa = PBXFileReference; lastKnownFileType = text; path = videoTitileModel; sourceTree = "<group>"; };
 		6355CFF324BF1078002D3815 /* TTloginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTloginView.h; sourceTree = "<group>"; };
 		6355CFF424BF1078002D3815 /* TTloginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTloginView.m; sourceTree = "<group>"; };
+		635BB45225DFC5E300449953 /* TT_VideoDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_VideoDetailModel.h; sourceTree = "<group>"; };
+		635BB45325DFC5E300449953 /* TT_VideoDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_VideoDetailModel.m; sourceTree = "<group>"; };
+		635BB45625DFC64700449953 /* videoDetailModel */ = {isa = PBXFileReference; lastKnownFileType = text; path = videoDetailModel; sourceTree = "<group>"; };
 		635E8C3C24E29328000345C4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		636EA80424C9924500765F5C /* screeningHollHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = screeningHollHistoryModel.h; sourceTree = "<group>"; };
 		636EA80524C9924500765F5C /* screeningHollHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = screeningHollHistoryModel.m; sourceTree = "<group>"; };
@@ -467,7 +469,6 @@
 		63F1F8DE24AF2FD200D687ED /* videoTitleRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoTitleRequestModel.m; sourceTree = "<group>"; };
 		63F1F8E024AF315E00D687ED /* videoContentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoContentModel.h; sourceTree = "<group>"; };
 		63F1F8E124AF315E00D687ED /* videoContentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoContentModel.m; sourceTree = "<group>"; };
-		63F1F8E324AF31D300D687ED /* videoListModel */ = {isa = PBXFileReference; lastKnownFileType = text; path = videoListModel; sourceTree = "<group>"; };
 		63F1F8E524AF347600D687ED /* videoTitleViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoTitleViewModel.h; sourceTree = "<group>"; };
 		63F1F8E624AF347600D687ED /* videoTitleViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoTitleViewModel.m; sourceTree = "<group>"; };
 		63F1F8E824AF3A3500D687ED /* videoContentViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoContentViewModel.h; sourceTree = "<group>"; };
@@ -1121,12 +1122,13 @@
 				63F1F8EC24AF3AB600D687ED /* videoContentRequestModel.m */,
 				63DB0D192501F19200B9FA0A /* videoRealURLRequestModel.h */,
 				63DB0D1A2501F19200B9FA0A /* videoRealURLRequestModel.m */,
-				63F1F8E324AF31D300D687ED /* videoListModel */,
-				6355CFED24BEFC19002D3815 /* videoTitileModel */,
 				63C73D56259DAA6D00EC1DC9 /* TTVideoDetailArrayModel.h */,
 				63C73D57259DAA6D00EC1DC9 /* TTVideoDetailArrayModel.m */,
 				63A8E3EA25C416340067369F /* videoDetailRequestModel.h */,
 				63A8E3EB25C416340067369F /* videoDetailRequestModel.m */,
+				635BB45225DFC5E300449953 /* TT_VideoDetailModel.h */,
+				635BB45325DFC5E300449953 /* TT_VideoDetailModel.m */,
+				635BB45625DFC64700449953 /* videoDetailModel */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1389,7 +1391,6 @@
 				63265C4B256F9FF100AACBC6 /* TTChannelMyHeaderView.xib in Resources */,
 				63265C4E256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib in Resources */,
 				634AF04A254C20580013EE56 /* articlev60.html in Resources */,
-				63F1F8E424AF31D300D687ED /* videoListModel in Resources */,
 				633368E225761AC900F47A91 /* TTArticleSearchTagCell.xib in Resources */,
 				949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */,
 				6390EEBC2589B3670081093E /* LICENSE in Resources */,
@@ -1397,10 +1398,10 @@
 				637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */,
 				63F30EF62564CAEB000CE908 /* LaunchScreen.storyboard in Resources */,
 				63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */,
+				635BB45725DFC64700449953 /* videoDetailModel in Resources */,
 				631BC91F25481E66001B82AB /* TTThemeDefaultTag.plist in Resources */,
 				63167ABA24AB63E2002CB4EF /* homeTitleChannelModel in Resources */,
 				631BC92525481E8B001B82AB /* TTThemeNightTag.plist in Resources */,
-				6355CFEE24BEFC19002D3815 /* videoTitileModel in Resources */,
 				63D2869225AFF73D00D87A10 /* TTTabBarModel.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1589,6 +1590,7 @@
 				820978E81BD3A37600CF9D0C /* main.m in Sources */,
 				633BEA5C2587602E00423C39 /* TTSlider.m in Sources */,
 				6393A2D825AD438F002BB19E /* TT_tabBarModel.m in Sources */,
+				635BB45425DFC5E300449953 /* TT_VideoDetailModel.m in Sources */,
 				63E7177324F9F430003A690E /* TTSearchSuggestionRequestModel.m in Sources */,
 				637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */,
 				63422C4A24A875D40091FEE1 /* NewsChannelViewController.m in Sources */,

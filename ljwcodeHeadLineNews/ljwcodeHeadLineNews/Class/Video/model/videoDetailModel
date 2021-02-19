@@ -1,0 +1,170 @@
+{
+    data =     {
+        "ab_path" = 6e88d83e9d6e323103965ace76ba8ec8;
+        activity =         {
+            "tt_xg_anchor" =             {
+                "anchor_group" = v1;
+                title = "\U6253\U5f00\U897f\U74dc\U89c6\U9891APP\Uff0c\U770b\U5168\U7f51\U8d85\U6e05\U89c6\U9891";
+            };
+        };
+        ad =         {
+            "is_preview" = 0;
+            mixed =             {
+                "button_text" = "\U7acb\U5373\U54a8\U8be2";
+                dislike =                 (
+                                        {
+                        name = "\U4e3a\U4ec0\U4e48\U770b\U5230\U6b64\U5e7f\U544a";
+                        "open_url" = "sslocal://webview?url=https%3a%2f%2fi.snssdk.com%2fapi%2fad%2ffeedback%2fprivacy%2fpage%3ftype%3dad_dislike&hide_more=1&title=\U4e3a\U4ec0\U4e48\U770b\U5230\U6b64\U5e7f\U544a";
+                    }
+                );
+                "display_subtype" = 3;
+                "filter_words" =                 (
+                                        {
+                        id = "4:2";
+                        "is_selected" = 0;
+                        name = "\U770b\U8fc7\U4e86";
+                    },
+                                        {
+                        id = "2:0";
+                        "is_selected" = 0;
+                        name = "\U5c4f\U853d:\U4fe1\U8a89\U76ca\U5bb6\U00b7\U9884\U7ea688\U6298\U7684\U5e7f\U544a";
+                    },
+                                        {
+                        id = "1:16";
+                        "is_selected" = 0;
+                        name = "\U5c4f\U853d:\U751f\U6d3b\U7528\U54c1\U7c7b\U5e7f\U544a";
+                    },
+                                        {
+                        id = "1:101";
+                        "is_selected" = 0;
+                        name = "\U5c4f\U853d:\U5bb6\U5c45\U65e5\U7528\U7c7b\U5e7f\U544a";
+                    }
+                );
+                id = 1686838590194747;
+                image = "https://sf6-ttcdn-tos.pstatp.com/img/web.business.image/202009135d0d8b7fc2a3706a43329a2c~noop.webp?from=ad";
+                "image_height" = 1440;
+                "image_width" = 2560;
+                "intercept_flag" = 2;
+                "is_tongtou_ad" = 1;
+                label = "\U5e7f\U544a";
+                "log_extra" = "{\"ad_price\":\"YC-Lu__5nu9gL4u7__me7zWRVPWZH87QS9LUAA\",\"bdid\":\"01087135e24bac1ce35061831c2f69633b0f6c844b2da713357621f184ff3257\",\"card_id\":0,\"clickid\":\"ELuI2be7xf8CGMPKrLSbAiCIy7ClsvQjMAw4A0IiMjAyMTAyMTkxNzU4MTkwMTAxMzUxNjgwOTM0QTAwOThDMkgBkAEA\",\"content_group_id\":6930895784904753678,\"convert_component_suspend\":0,\"convert_id\":1686834104617991,\"dc\":1,\"dc_words\":\"\U5929\U6cb3\",\"external_action\":100,\"hyrule_atype\":[],\"is_pack_v2\":true,\"item_id\":0,\"item_id_str\":\"0\",\"media_id\":1685569733063691,\"orit\":1,\"req_id\":\"202102191758190101351680934A0098C2\",\"rit\":3,\"style_id\":612,\"style_ids\":[612]}";
+                "open_url" = "";
+                "share_info" =                 {
+                    "share_desc" = "\U672c\U533a\U968f\U53eb\U968f\U5230\U7684\U6e17\U6f0f\U6c34\U7ef4\U4fee\Uff0c\U514d\U8d39\U4e0a\U95e8\U52d8\U5bdf\Uff0c\U6ee1\U610f\U518d\U4ed8\U6b3e\Uff01";
+                    "share_icon" = "http://sf6-ttcdn-tos.pstatp.com/obj/web.business.image/202008215d0d23f467d37519413b9a92?from=ad";
+                    "share_title" = "\U672c\U533a\U968f\U53eb\U968f\U5230\U7684\U6e17\U6f0f\U6c34\U7ef4\U4fee\Uff0c\U514d\U8d39\U4e0a\U95e8\U52d8\U5bdf\Uff0c\U6ee1\U610f\U518d\U4ed8\U6b3e\Uff01";
+                    "share_url" = "https://adshare.toutiao.com/s/53fgqNs5-hob5npy0M7U1h2pKv3caDTJWb4BWfb_jvAIWcnUiaNwZ9B-0-FGdaA6VovmsOE0Wh8pg=";
+                };
+                "show_dislike" = 1;
+                "source_name" = "\U4fe1\U8a89\U76ca\U5bb6\U00b7\U9884\U7ea688\U6298";
+                title = "\U5929\U6cb3\U968f\U53eb\U968f\U5230\U7684\U6e17\U6f0f\U6c34\U7ef4\U4fee\Uff0c\U514d\U8d39\U4e0a\U95e8\U52d8\U5bdf\Uff0c\U6ee1\U610f\U518d\U4ed8\U6b3e\Uff01";
+                "track_url" = "";
+                "track_url_list" =                 (
+                );
+                type = web;
+                "ui_style" =                 {
+                    "button_color" = "#f85959";
+                    "button_color_night" = "#935656";
+                };
+                "web_title" = "";
+                "web_url" = "https://www.chengzijianzhan.com/tetris/page/6906390576090841102/?adid=1686834104006669&creativeid=1686838590194747&creativetype=3&clickid=ELuI2be7xf8CGMPKrLSbAiCIy7ClsvQjMAw4A0IiMjAyMTAyMTkxNzU4MTkwMTAxMzUxNjgwOTM0QTAwOThDMkgBkAEA&ad_id=1686834104006669&cid=1686838590194747&req_id=202102191758190101351680934A0098C2";
+            };
+        };
+        "ban_bury" = 0;
+        "ban_comment" = 0;
+        "ban_danmaku" = 1;
+        "ban_digg" = 0;
+        "bury_count" = 0;
+        categories =         (
+            "video_movie"
+        );
+        "detail_show_flags" = 0;
+        "digg_count" = 61;
+        "display_url" = "http://toutiao.com/group/6930895784904753678/";
+        "group_id" = 6930895784904753678;
+        "is_key_video" = 1;
+        "log_pb" =         {
+            "impr_id" = 202102191758190101351680934A0098C2;
+        };
+        "media_info" =         {
+            "avatar_url" = "http://p6-tt-ipv6.byteimg.com/large/pgc-image/ca307d5b4b784405b2139c435d0cbb26";
+            description = "\U65b0\U95fb\U4e8b\U4ef6\U4e00\U7ebf\U6d88\U606f\Uff0c\U6211\U4eec\U4f1a\U572824\U5c0f\U65f6\U5185\U53ca\U65f6\U7206\U6599";
+            "media_id" = 1685569733063691;
+            name = "\U793e\U4f1a\U4e00\U7ebf\U7ad9";
+            "special_column" =             (
+            );
+            "user_auth_info" = "{\"auth_info\":\"\U300a\U793e\U4f1a\U4e00\U7ebf\U7ad9\U300b\U680f\U76ee\U5b98\U65b9\U8d26\U53f7\",\"auth_type\":\"0\"}";
+            "user_id" = 4186583865496695;
+            "user_verified" = 0;
+        };
+        "ordered_info" =         (
+                        {
+                "ad_data" = "{\"is_preview\":false,\"mixed\":{\"button_text\":\"\U7acb\U5373\U54a8\U8be2\",\"dislike\":[{\"name\":\"\U4e3a\U4ec0\U4e48\U770b\U5230\U6b64\U5e7f\U544a\",\"open_url\":\"sslocal://webview?url=https%3a%2f%2fi.snssdk.com%2fapi%2fad%2ffeedback%2fprivacy%2fpage%3ftype%3dad_dislike\\u0026hide_more=1\\u0026title=\U4e3a\U4ec0\U4e48\U770b\U5230\U6b64\U5e7f\U544a\"}],\"display_subtype\":3,\"filter_words\":[{\"id\":\"4:2\",\"is_selected\":false,\"name\":\"\U770b\U8fc7\U4e86\"},{\"id\":\"2:0\",\"is_selected\":false,\"name\":\"\U5c4f\U853d:\U4fe1\U8a89\U76ca\U5bb6\U00b7\U9884\U7ea688\U6298\U7684\U5e7f\U544a\"},{\"id\":\"1:16\",\"is_selected\":false,\"name\":\"\U5c4f\U853d:\U751f\U6d3b\U7528\U54c1\U7c7b\U5e7f\U544a\"},{\"id\":\"1:101\",\"is_selected\":false,\"name\":\"\U5c4f\U853d:\U5bb6\U5c45\U65e5\U7528\U7c7b\U5e7f\U544a\"}],\"id\":1686838590194747,\"image\":\"https://sf6-ttcdn-tos.pstatp.com/img/web.business.image/202009135d0d8b7fc2a3706a43329a2c~noop.webp?from=ad\",\"image_height\":1440,\"image_width\":2560,\"intercept_flag\":2,\"is_tongtou_ad\":true,\"label\":\"\U5e7f\U544a\",\"log_extra\":\"{\\\"ad_price\\\":\\\"YC-Lu__5nu9gL4u7__me7zWRVPWZH87QS9LUAA\\\",\\\"bdid\\\":\\\"01087135e24bac1ce35061831c2f69633b0f6c844b2da713357621f184ff3257\\\",\\\"card_id\\\":0,\\\"clickid\\\":\\\"ELuI2be7xf8CGMPKrLSbAiCIy7ClsvQjMAw4A0IiMjAyMTAyMTkxNzU4MTkwMTAxMzUxNjgwOTM0QTAwOThDMkgBkAEA\\\",\\\"content_group_id\\\":6930895784904753678,\\\"convert_component_suspend\\\":0,\\\"convert_id\\\":1686834104617991,\\\"dc\\\":1,\\\"dc_words\\\":\\\"\U5929\U6cb3\\\",\\\"external_action\\\":100,\\\"hyrule_atype\\\":[],\\\"is_pack_v2\\\":true,\\\"item_id\\\":0,\\\"item_id_str\\\":\\\"0\\\",\\\"media_id\\\":1685569733063691,\\\"orit\\\":1,\\\"req_id\\\":\\\"202102191758190101351680934A0098C2\\\",\\\"rit\\\":3,\\\"style_id\\\":612,\\\"style_ids\\\":[612]}\",\"open_url\":\"\",\"share_info\":{\"share_desc\":\"\U672c\U533a\U968f\U53eb\U968f\U5230\U7684\U6e17\U6f0f\U6c34\U7ef4\U4fee\Uff0c\U514d\U8d39\U4e0a\U95e8\U52d8\U5bdf\Uff0c\U6ee1\U610f\U518d\U4ed8\U6b3e\Uff01\",\"share_icon\":\"http://sf6-ttcdn-tos.pstatp.com/obj/web.business.image/202008215d0d23f467d37519413b9a92?from=ad\",\"share_title\":\"\U672c\U533a\U968f\U53eb\U968f\U5230\U7684\U6e17\U6f0f\U6c34\U7ef4\U4fee\Uff0c\U514d\U8d39\U4e0a\U95e8\U52d8\U5bdf\Uff0c\U6ee1\U610f\U518d\U4ed8\U6b3e\Uff01\",\"share_url\":\"https://adshare.toutiao.com/s/53fgqNs5-hob5npy0M7U1h2pKv3caDTJWb4BWfb_jvAIWcnUiaNwZ9B-0-FGdaA6VovmsOE0Wh8pg=\"},\"show_dislike\":1,\"source_name\":\"\U4fe1\U8a89\U76ca\U5bb6\U00b7\U9884\U7ea688\U6298\",\"title\":\"\U5929\U6cb3\U968f\U53eb\U968f\U5230\U7684\U6e17\U6f0f\U6c34\U7ef4\U4fee\Uff0c\U514d\U8d39\U4e0a\U95e8\U52d8\U5bdf\Uff0c\U6ee1\U610f\U518d\U4ed8\U6b3e\Uff01\",\"track_url\":\"\",\"track_url_list\":[],\"type\":\"web\",\"ui_style\":{\"button_color\":\"#f85959\",\"button_color_night\":\"#935656\"},\"web_title\":\"\",\"web_url\":\"https://www.chengzijianzhan.com/tetris/page/6906390576090841102/?adid=1686834104006669\\u0026creativeid=1686838590194747\\u0026creativetype=3\\u0026clickid=ELuI2be7xf8CGMPKrLSbAiCIy7ClsvQjMAw4A0IiMjAyMTAyMTkxNzU4MTkwMTAxMzUxNjgwOTM0QTAwOThDMkgBkAEA\\u0026ad_id=1686834104006669\\u0026cid=1686838590194747\\u0026req_id=202102191758190101351680934A0098C2\"}}";
+                name = ad;
+            }
+        );
+        "read_count" = 896;
+        "related_video_section" = 0;
+        "related_video_toutiao" =         (
+        );
+        "repin_count" = 27;
+        rewards = "<null>";
+        "share_info" =         {
+            "share_type" =             {
+                pyq = 0;
+                qq = 0;
+                qzone = 0;
+                wx = 0;
+            };
+            "share_url" = "https://m.toutiaoimg.cn/group/6930895784904753678/?app=news_article&timestamp=1613728700&group_id=6930895784904753678";
+            title = "\U6bdb\U4e3b\U5e2d\U73cd\U8d35\U539f\U58f0\U8bb2\U8bdd\Uff1a\U4f60\U4eec\U50cf\U516b\U4e5d\U70b9\U949f\U7684\U592a\U9633\Uff0c\U5e0c\U671b\U5bc4\U6258\U5728\U4f60\U4eec\U8eab\U4e0a - \U4eca\U65e5\U5934\U6761";
+            "token_type" = 1;
+            "weixin_cover_image" =             {
+                height = 974;
+                uri = "large/tos-cn-i-0000/993d5da8-7291-11eb-94a8-ac1f6b0c3fce";
+                url = "http://p26.toutiaoimg.com/large/tos-cn-i-0000/993d5da8-7291-11eb-94a8-ac1f6b0c3fce";
+                "url_list" =                 (
+                                        {
+                        url = "http://p26.toutiaoimg.com/large/tos-cn-i-0000/993d5da8-7291-11eb-94a8-ac1f6b0c3fce";
+                    },
+                                        {
+                        url = "http://p6.toutiaoimg.com/large/tos-cn-i-0000/993d5da8-7291-11eb-94a8-ac1f6b0c3fce";
+                    },
+                                        {
+                        url = "http://p.pstatp.com/large/tos-cn-i-0000/993d5da8-7291-11eb-94a8-ac1f6b0c3fce";
+                    }
+                );
+                width = 1125;
+            };
+        };
+        "share_type" = 2;
+        "share_url" = "https://m.toutiaoimg.cn/group/6930895784904753678/?app=news_article&timestamp=1613728700&group_id=6930895784904753678";
+        source = "\U793e\U4f1a\U4e00\U7ebf\U7ad9";
+        "ug_install_aid" = 0;
+        url = "http://toutiao.com/group/6930895784904753678/";
+        "user_bury" = 0;
+        "user_digg" = 0;
+        "user_info" =         {
+            "avatar_url" = "http://p6.toutiaoimg.com/img/pgc-image/ca307d5b4b784405b2139c435d0cbb26~tplv-resize:120:120.webp?from=xigua";
+            "fans_count" = 45109;
+            follow = 0;
+            "live_business_type" = 0;
+            "live_info_type" = 1;
+            name = "\U793e\U4f1a\U4e00\U7ebf\U7ad9";
+            "room_schema" = "";
+            schema = "sslocal://profile?uid=4186583865496695&refer=video";
+            "sec_user_id" = "MS4wLjABAAAANKcpYLz3bG-P6wStn1PfHHAXgU_P0mlqqFmbUBJHWEEm-E3Wy5h5rS8QvjqdLTuQ";
+            subcribed = 0;
+            "user_auth_info" = "{\"auth_info\":\"\U300a\U793e\U4f1a\U4e00\U7ebf\U7ad9\U300b\U680f\U76ee\U5b98\U65b9\U8d26\U53f7\",\"auth_type\":\"0\"}";
+            "user_decoration" = "";
+            "user_id" = 4186583865496695;
+            "user_verified" = 1;
+        };
+        "user_repin" = 0;
+        "video_label_html" = "";
+        "video_watch_count" = 2987;
+        "xi_related" = 0;
+    };
+    message = success;
+}
+

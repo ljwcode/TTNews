@@ -305,8 +305,8 @@
 }
 
 -(void)commentHandle:(UIButton *)sender{
-    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_commentDetail)]){
-        [self.delegate TT_commentDetail];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_commentDetail:)]){
+        [self.delegate TT_commentDetail:self.currentIndexPath];
     }
 }
 

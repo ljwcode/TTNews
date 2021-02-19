@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)initPlayerView:(TVVideoPlayerViewCell *)cell playClick:(videoContentModel *)convention;
 
--(void)TT_commentDetail;
+-(void)TT_commentDetail:(NSIndexPath *)indexPath;
 
 @end
 
@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)void(^imgViewCallBack)(UIView *parentView);
 
 @property(nonatomic,assign)id<TVVideoPlayerCellDelegate,NSObject>delegate;
+
+@property(nonatomic,strong)NSIndexPath *currentIndexPath;
 
 -(void)setDelegate:(id<TVVideoPlayerCellDelegate,NSObject> _Nonnull)delegate withIndexPath:(NSIndexPath *)indexPath;
 

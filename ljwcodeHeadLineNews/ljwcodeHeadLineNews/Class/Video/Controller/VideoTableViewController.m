@@ -177,9 +177,8 @@
     }]then:^id _Nullable(id  _Nullable value) {
         return [self GetVideoParseData:value];
     }]then:^id _Nullable(id  _Nullable value) {
-        self.videoContentModel = value;
-        NSLog(@"video url = %@",self.videoContentModel.video_list.video_1.main_url);
-        return self.videoContentModel.video_list.video_1.main_url;
+        NSLog(@"video url = %@",value);
+        return value;
     }];
 }
 
@@ -253,9 +252,10 @@
     }];
 }
 
--(void)TT_commentDetail{
+-(void)TT_commentDetail:(NSIndexPath *)indexPath{
     VideoDetailViewController *videoDetailVC = [[VideoDetailViewController alloc]init];
     [self.navigationController pushViewController:videoDetailVC animated:YES];
+    videoDetailVC.group_id = self.videoContentModel.detailModel.pread_params.group_id;
     videoDetailVC.videoURL = self.videoURL;
    
 }
@@ -301,7 +301,7 @@
         [indexPaths addObject:[self.detailTableView indexPathForCell:cell]];
         
         CGPoint coorCentre = [cell.superview convertPoint:cell.center toView:nil];
-        CGFloat delta = fabs(coorCentre.y-[UIScreen mainScreen].bounds.size.height*0.5);
+        CGFloat delta = fabs(coorCentre.y-kScreenHeight*0.5);
         if (delta < gap) {
             gap = delta;
             finnalCell = cell;
@@ -312,9 +312,6 @@
             [_playerView destroyPlayer];
             _playerView = nil;
         }
-        
-        [self initPlayerView:finnalCell playClick:finnalCell.contentModel];
-        self.playingCell = finnalCell;
         return;
     }
 }

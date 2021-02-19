@@ -10,6 +10,8 @@
 #import <Masonry/Masonry.h>
 #import "TTPlayerView.h"
 #import "TTVideoDetailHeaderView.h"
+#import "videoDetailViewModel.h"
+#import "TT_VideoDetailModel.h"
 
 @interface  VideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
@@ -24,6 +26,10 @@
 @property(nonatomic,strong)NSArray *dataArray;
 
 @property(nonatomic,assign)CGFloat minY;
+
+@property(nonatomic,strong)videoDetailViewModel *viewModel;
+
+@property(nonatomic,strong)TT_VideoDetailModel *videoDetailModel;
 
 @end
 
@@ -51,9 +57,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self TT_PlayVideo];
+    self.TTThemedTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [[self.viewModel.videoDetailCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
+            NSLog(@"x = %@",x);
+            self.videoDetailModel = x;
+            self.authorHeaderView.detailModel = self.videoDetailModel;
+            [self.TTThemedTableView.mj_header endRefreshing];
+        }];
+    }];
+    [self.TTThemedTableView.mj_header beginRefreshing];
+    
+    // Do any additional setup after loading the view.
+}
+
+-(void)TT_PlayVideo{
     self.playerView = [[TTPlayerView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.3)];
     [self.view addSubview:self.playerView];
     [self.view addSubview:self.TTVVideoDetailContainerScrollView];
+    [self.TTVVideoDetailContainerScrollView addSubview:self.TTThemedTableView];
     [self createUI];
     [self createAuthorView];
     
@@ -72,7 +94,6 @@
         self.playerView = nil;
         NSLog(@"播放完成");
     }];
-    // Do any additional setup after loading the view.
 }
 
 #pragma mark ----- UITableViewDelegate && UITableViewDataSource
@@ -96,6 +117,20 @@
         _TTVVideoDetailContainerScrollView.delegate = self;
     }
     return _TTVVideoDetailContainerScrollView;
+}
+
+-(videoDetailViewModel *)viewModel{
+    if(!_viewModel){
+        _viewModel = [[videoDetailViewModel alloc]init];
+    }
+    return _viewModel;
+}
+
+-(UITableView *)TTThemedTableView{
+    if(!_TTThemedTableView){
+        _TTThemedTableView = [[UITableView alloc]initWithFrame:self.TTVVideoDetailContainerScrollView.bounds style:UITableViewStylePlain];
+    }
+    return _TTThemedTableView;
 }
 
 #pragma mark ----- createUI

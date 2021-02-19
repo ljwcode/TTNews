@@ -156,8 +156,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)videoDetailModel *detailModel;
 
-@property(nonatomic,strong)pread_params *pread_params;
-
 
 @end
 

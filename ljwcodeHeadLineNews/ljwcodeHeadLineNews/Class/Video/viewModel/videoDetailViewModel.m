@@ -10,6 +10,7 @@
 #import "TTNetworkURLManager.h"
 #import "videoDetailRequestModel.h"
 #import "TT_requestModel.h"
+#import "TT_VideoDetailModel.h"
 
 @implementation videoDetailViewModel
 
@@ -43,7 +44,12 @@
                 request.group_id = input;
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     NSDictionary *responseDic = (NSDictionary *)response;
+                    responseDic = [responseDic objectForKey:@"data"];
+                    TT_VideoDetailModel *model = [[[TT_VideoDetailModel alloc]init]mj_setKeyValues:responseDic];
+                    [subscriber sendNext:model];
+                    [subscriber sendCompleted];
                     NSLog(@"连接成功 = %@",responseDic);
+                    
                 } failHandle:^(NSError * _Nonnull error) {
                     NSLog(@"连接失败");
                 }];

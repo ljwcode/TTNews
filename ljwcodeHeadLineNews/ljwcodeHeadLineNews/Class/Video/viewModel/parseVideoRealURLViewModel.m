@@ -24,7 +24,7 @@
                     NSDictionary *responseDic = (NSDictionary *)response;
                     NSDictionary *responseArray = [responseDic objectForKey:@"data"];
                     videoContentModel *model = [[[videoContentModel alloc]init]mj_setKeyValues:responseArray];
-                    [subscriber sendNext:model];
+                    [subscriber sendNext:model.video_list.video_1.main_url];
                     [subscriber sendCompleted];
                 } failHandle:^(NSError * _Nonnull error) {
                     [MBProgressHUD showSuccess:@"网络请求失败"];
