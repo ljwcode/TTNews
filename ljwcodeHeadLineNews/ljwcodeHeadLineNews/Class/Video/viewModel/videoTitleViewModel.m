@@ -56,13 +56,13 @@
                     NSDictionary *responseDic = (NSDictionary *)response;
                     NSArray *dicArr = [[NSArray alloc]init];
                     dicArr = responseDic[@"data"];
-                    NSMutableArray *models = [NSMutableArray array];
+                    NSMutableArray *modelArray = [NSMutableArray array];
                     if (dicArr.count > 0) {
                         for (int i = 0; i < [dicArr count]; i++) {
                             videoTitleModel *model = [[videoTitleModel new] mj_setKeyValues:dicArr[i]];
-                            [models addObject:model];
+                            [modelArray addObject:model];
                         }
-                        [subscriber sendNext:models];
+                        [subscriber sendNext:modelArray];
                         [subscriber sendCompleted];
                         
                     }else {

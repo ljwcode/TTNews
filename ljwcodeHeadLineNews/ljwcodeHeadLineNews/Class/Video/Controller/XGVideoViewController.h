@@ -1,5 +1,5 @@
 //
-//  VideoViewController.m
+//  XGVideoViewController.m
 //
 //
 //  Created by ljwcode on 2020/6/18.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "WMPageController.h"
 
-@interface VideoViewController : WMPageController
+@interface XGVideoViewController : WMPageController
 
 @end

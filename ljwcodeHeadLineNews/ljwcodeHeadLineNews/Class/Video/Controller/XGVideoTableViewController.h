@@ -1,5 +1,5 @@
 //
-//  VideoTableViewController.h
+//  XGVideoTableViewController.h
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/7/15.
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface VideoTableViewController : TTBaseViewController
+@interface XGVideoTableViewController : TTBaseViewController
 
 @property(nonatomic,strong)videoTitleModel *titleModel;
 

@@ -22,15 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSString *)videoListURLString;
 
-+(NSString *)microHeadlineURLString;
-
-+(NSString *)microVideoURLString;
-
 -(NSString *)parseVideoRealURLWithVideo_id:(NSString *)video_id;
 
 +(NSString *)searchSuggestionUrl;
 
 +(NSString *)videoDetailInfoURL;
+
++(NSString *)TableCommentURL;
 
 @end
 

@@ -1,19 +1,21 @@
 //
-//  VideoDetailViewController.m
+//  XGVideoDetailViewController.m
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2021/1/29.
 //  Copyright © 2021 ljwcode. All rights reserved.
 //
 
-#import "VideoDetailViewController.h"
+#import "XGVideoDetailViewController.h"
 #import <Masonry/Masonry.h>
 #import "TTPlayerView.h"
 #import "TTVideoDetailHeaderView.h"
 #import "videoDetailViewModel.h"
 #import "TT_VideoDetailModel.h"
+#import "TTVideoDetailView.h"
+#import "TTRecommandVideoTableViewCell.h"
 
-@interface  VideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
+@interface  XGVideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
 @property(nonatomic,strong)TTPlayerView *playerView;
 
@@ -23,7 +25,9 @@
 
 @property(nonatomic,strong)UIScrollView *TTVVideoDetailContainerScrollView;
 
-@property(nonatomic,strong)NSArray *dataArray;
+@property(nonatomic,strong)NSArray *RecommendVideoDataArray;
+
+@property(nonatomic,strong)NSArray *UserCommentDataArray;
 
 @property(nonatomic,assign)CGFloat minY;
 
@@ -31,9 +35,11 @@
 
 @property(nonatomic,strong)TT_VideoDetailModel *videoDetailModel;
 
+@property(nonatomic,strong)TTVideoDetailView *detailView;
+
 @end
 
-@implementation VideoDetailViewController
+@implementation XGVideoDetailViewController
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -60,9 +66,10 @@
     [self TT_PlayVideo];
     self.TTThemedTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [[self.viewModel.videoDetailCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
-            NSLog(@"x = %@",x);
             self.videoDetailModel = x;
+            NSDictionary *modelDic = [self.videoDetailModel mj_keyValues];
             self.authorHeaderView.detailModel = self.videoDetailModel;
+            self.detailView.detailModel = self.videoDetailModel;
             [self.TTThemedTableView.mj_header endRefreshing];
         }];
     }];
@@ -76,6 +83,7 @@
     [self.view addSubview:self.playerView];
     [self.view addSubview:self.TTVVideoDetailContainerScrollView];
     [self.TTVVideoDetailContainerScrollView addSubview:self.TTThemedTableView];
+    [self.TTVVideoDetailContainerScrollView addSubview:self.detailView];
     [self createUI];
     [self createAuthorView];
     
@@ -98,13 +106,40 @@
 
 #pragma mark ----- UITableViewDelegate && UITableViewDataSource
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if(section == 0){
+        return self.RecommendVideoDataArray.count;
+    }else{
+        return self.UserCommentDataArray.count;
+    }
+}
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *resultCell= nil;
+    
+    
+    return resultCell;
+}
 
 #pragma mark ----- lazy load
+
+-(TTVideoDetailView *)detailView{
+    if(!_detailView){
+        _detailView = [[TTVideoDetailView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.authorHeaderView.frame), kScreenWidth, kScreenHeight * 0.2)];
+    }
+    return _detailView;
+}
 
 -(TTVideoDetailHeaderView *)authorHeaderView{
     if(!_authorHeaderView){
         _authorHeaderView = [[TTVideoDetailHeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.1)];
+        _authorHeaderView.backgroundColor = [UIColor whiteColor];
+        _authorHeaderView.layer.borderColor = [UIColor grayColor].CGColor;
+        _authorHeaderView.layer.borderWidth = 0.5f;
         _minY = 0;
     }
     return _authorHeaderView;
@@ -128,7 +163,8 @@
 
 -(UITableView *)TTThemedTableView{
     if(!_TTThemedTableView){
-        _TTThemedTableView = [[UITableView alloc]initWithFrame:self.TTVVideoDetailContainerScrollView.bounds style:UITableViewStylePlain];
+        _TTThemedTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.detailView.frame), kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+        _TTThemedTableView.separatorColor = [UIColor clearColor];
     }
     return _TTThemedTableView;
 }

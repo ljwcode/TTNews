@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="388" height="140"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzG-AX-4jx" userLabel="TitleLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzG-AX-4jx" userLabel="TitleLabel">
                         <rect key="frame" x="10" y="10" width="225" height="90"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="225" id="1qW-GS-L6n"/>
@@ -27,7 +27,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kd-z5-tA3" userLabel="InfoLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kd-z5-tA3" userLabel="InfoLabel">
                         <rect key="frame" x="10" y="110" width="225" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Q2i-Eu-dR5"/>
@@ -39,13 +39,25 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RPA-us-Gel">
                         <rect key="frame" x="255" y="10" width="123" height="120"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4n-Oe-vfZ">
+                        <rect key="frame" x="308" y="109" width="60" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="Zix-Cm-77p"/>
+                            <constraint firstAttribute="height" constant="20" id="et9-Mg-WA3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="E4n-Oe-vfZ" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="1pg-Q0-JkL"/>
                     <constraint firstItem="9kd-z5-tA3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="56t-v4-h5H"/>
                     <constraint firstItem="jzG-AX-4jx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="8OT-bI-ebF"/>
                     <constraint firstItem="RPA-us-Gel" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Dvx-op-3nK"/>
                     <constraint firstItem="jzG-AX-4jx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="E2P-Fr-si4"/>
                     <constraint firstAttribute="trailing" secondItem="RPA-us-Gel" secondAttribute="trailing" constant="10" id="JA6-dA-r8z"/>
+                    <constraint firstItem="E4n-Oe-vfZ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="MPR-8J-v0u"/>
                     <constraint firstItem="RPA-us-Gel" firstAttribute="leading" secondItem="jzG-AX-4jx" secondAttribute="trailing" constant="20" id="UrO-Ql-5lO"/>
                     <constraint firstAttribute="bottom" secondItem="RPA-us-Gel" secondAttribute="bottom" constant="10" id="ahP-Tf-M3G"/>
                     <constraint firstItem="9kd-z5-tA3" firstAttribute="top" secondItem="jzG-AX-4jx" secondAttribute="bottom" constant="10" id="eCs-vd-4Nq"/>
@@ -57,6 +69,7 @@
             <connections>
                 <outlet property="TT_VideoCoverImgView" destination="RPA-us-Gel" id="kBE-KJ-ef5"/>
                 <outlet property="TT_VideoInfoLabel" destination="9kd-z5-tA3" id="lfP-ki-vCY"/>
+                <outlet property="TT_VideoTimeLabel" destination="E4n-Oe-vfZ" id="hbE-38-Jvf"/>
                 <outlet property="TT_VideoTitleLabel" destination="jzG-AX-4jx" id="fW0-Ue-4fb"/>
             </connections>
             <point key="canvasLocation" x="-27.536231884057973" y="101.11607142857143"/>

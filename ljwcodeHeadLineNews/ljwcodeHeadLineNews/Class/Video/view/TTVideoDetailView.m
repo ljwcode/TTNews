@@ -32,16 +32,16 @@
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(hSpace);
             make.right.mas_equalTo(-4 * hSpace);
-            make.top.mas_equalTo(vSpace/2);
+            make.top.mas_equalTo(vSpace);
             make.height.mas_greaterThanOrEqualTo(2 * vSpace);
         }];
         
         [self addSubview:self.openUpBtn];
         [self.openUpBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.titleLabel.mas_right).offset(2 * hSpace);
+            make.left.mas_equalTo(self.titleLabel.mas_right).offset(hSpace);
             make.right.mas_equalTo(-hSpace);
             make.width.height.mas_equalTo(hSpace);
-            make.top.mas_equalTo(self.titleLabel);
+            make.top.mas_equalTo(vSpace);
         }];
         
         [self addSubview:self.authorVideoInfoLabel];
@@ -49,7 +49,7 @@
             make.left.mas_equalTo(hSpace);
             make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(vSpace);
             make.height.mas_equalTo(vSpace);
-            make.width.mas_equalTo(CGRectGetWidth(self.titleLabel.frame) * 0.5);
+            make.width.mas_equalTo(kScreenWidth * 0.4);
         }];
         
         [self addSubview:self.videoInfoLabel];
@@ -68,10 +68,10 @@
             actionBtn.layer.cornerRadius = 8.f;
             actionBtn.layer.masksToBounds = YES;
             [self addSubview:actionBtn];
-            
+            actionBtn.layer.borderColor = [UIColor grayColor].CGColor;
+            actionBtn.layer.borderWidth = 0.5f;
             [actionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(hSpace + (i * (kScreenWidth - 4 * hSpace)/3 + hSpace));
-                make.right.mas_equalTo(-hSpace);
+                make.left.mas_equalTo(hSpace + (i * (kScreenWidth - 3 * hSpace)/3 + hSpace));
                 make.width.mas_equalTo((kScreenWidth - 4 * hSpace)/3);
                 make.top.mas_equalTo(self.videoInfoLabel.mas_bottom).offset(vSpace);
                 make.bottom.mas_equalTo(-vSpace);
@@ -81,6 +81,11 @@
     return self;
 }
 
+-(void)setDetailModel:(TT_VideoDetailModel *)detailModel{
+    _detailModel = detailModel;
+    self.titleLabel.text = detailModel.share_info.title;
+    self.authorVideoInfoLabel.text = [NSString stringWithFormat:@"%@次观看",detailModel.video_watch_count];
+}
 
 #pragma mark ----- lazy load
 
@@ -90,7 +95,7 @@
         _titleLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
         _titleLabel.textColor = [UIColor blackColor];
         _titleLabel.numberOfLines = 0;
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.textAlignment = NSTextAlignmentLeft;
         [_titleLabel TTContentFitWidth];
         [_titleLabel TTContentFitHeight];
     }
@@ -100,7 +105,7 @@
 -(UIButton *)openUpBtn{
     if(!_openUpBtn){
         _openUpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_openUpBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [_openUpBtn setImage:[UIImage imageNamed:@"personal_home_recommend_down_black"] forState:UIControlStateNormal];
         [_openUpBtn addTarget:self action:@selector(openUpHandle:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _openUpBtn;
@@ -111,7 +116,7 @@
         _authorVideoInfoLabel = [[UILabel alloc]init];
         _authorVideoInfoLabel.font = [UIFont systemFontOfSize:10.f];
         _authorVideoInfoLabel.textColor = [UIColor lightGrayColor];
-        _authorVideoInfoLabel.textAlignment = NSTextAlignmentCenter;
+        _authorVideoInfoLabel.textAlignment = NSTextAlignmentLeft;
         [_authorVideoInfoLabel TTContentFitWidth];
         [_authorVideoInfoLabel TTContentFitHeight];
     }
@@ -135,6 +140,17 @@
         _imgArray = @[@"like_grey_comment",@"tab_share1",@"details_admire_icon"];
     }
     return _imgArray;
+}
+
+#pragma mark ---- 响应事件
+
+-(void)openUpHandle:(UIButton *)sender{
+    sender.selected = !sender.selected;
+    if(sender){
+        [sender setImage:[UIImage imageNamed:@"personal_home_recommend_up_black"] forState:UIControlStateSelected];
+    }else{
+        [sender setImage:[UIImage imageNamed:@"personal_home_recommend_down_black"] forState:UIControlStateNormal];
+    }
 }
 
 /*

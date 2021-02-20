@@ -48,15 +48,6 @@
      */
     return [NSString stringWithFormat:@"https://api3-normal-c-lq.snssdk.com/api/news/feed/v64/?"];
 }
-
-+ (NSString *)microHeadlineURLString {
-    return [NSString stringWithFormat:@"%@api/news/feed/v54/?",ljwcode_Base_url];
-}
-
-+ (NSString *)microVideoURLString {
-    return [NSString stringWithFormat:@"%@api/news/feed/v75/?",ljwcode_Base_url];
-}
-
 -(NSString *)parseVideoRealURLWithVideo_id:(NSString *)video_id{
     int r = arc4random();
     if(r < 0){
@@ -78,6 +69,9 @@
 }
 
 +(NSString *)videoDetailInfoURL{
+    /*
+     https://api3-normal-c-lq.snssdk.com/video/app/article/information/v25/?caid1=626b60a145e6a3340054b5c6d73c1910&version_code=8.1.4&tma_jssdk_version=1.95.0.24&app_name=news_article&app_version=8.1.4&vid=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&device_id=157930857702792&channel=App%20Store&resolution=750*1334&aid=13&update_version_code=81413&cdid=EDDBEF16-CAA0-4624-8789-5BA3E024EF5E&idfv=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&ac=WIFI&os_version=12.4.8&ssmix=a&device_platform=iphone&iid=3448493436576894&ab_client=a1,f2,f7,e1&device_type=iPhone%206&idfa=00000000-0000-0000-0000-000000000000&from=click_video&article_page=1&group_id=6931191534293516808&aggr_type=1&video_detail_type=-1&client_extra_params=%7B%22playparam%22%3A%22codec_type%3A0%2Cenable_dash%3A1%2Cunwatermark%3A1%22%7D&flags=64&from_category=video&item_id=6931191534293516808
+     */
     /*
      https://api3-normal-c-lq.snssdk.com/video/app/article/information/v25/?version_code=8.0.9&tma_jssdk_version=1.95.0.19&app_name=news_article&app_version=8.0.9&vid=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&device_id=157930857702792&channel=App%20Store&resolution=750*1334&aid=13&update_version_code=80919&cdid=EDDBEF16-CAA0-4624-8789-5BA3E024EF5E&idfv=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&ac=WIFI&os_version=12.4.8&ssmix=a&device_platform=iphone&iid=1513346564108847&device_type=iPhone%206&ab_client=a1,f2,f7,e1&idfa=00000000-0000-0000-0000-000000000000&from=click_video&article_page=1&group_id=6924996500489830919
      */

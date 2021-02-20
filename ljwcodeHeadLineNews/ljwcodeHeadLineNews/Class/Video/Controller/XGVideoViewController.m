@@ -1,19 +1,19 @@
 //
-//  VideoViewController.m
+//  XGVideoViewController.m
 //
 //
 //  Created by ljwcode on 2020/6/18.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "VideoViewController.h"
+#import "XGVideoViewController.h"
 #import "TTHeader.h"
 #import "videoTitleViewModel.h"
-#import "VideoTableViewController.h"
+#import "XGVideoTableViewController.h"
 #import "videoTitleModel.h"
 #import "videoTitleDBViewModel.h"
 
-@interface VideoViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
+@interface XGVideoViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
 @property(nonatomic,strong)videoTitleViewModel *titleViewModle;
 
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation VideoViewController
+@implementation XGVideoViewController
 
 -(instancetype)init{
     if(self = [super init]){
@@ -49,21 +49,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    @weakify(self)
-    [[self.titleViewModle.videoCommand execute:@"video"] subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        self.titleArray = x;  //x返回一个列表名称数组
-        if(![self.titleDBViewModel DBTableIsExists]){
-            [self.titleDBViewModel createDBCacheTable];
-        }
-        for(int i = 0;i < self.titleArray.count;i++){
-            videoTitleModel *model = self.titleArray[i];
-            [self.titleDBViewModel InsertDBWithModel:model];
-        }
-    }];
     [self configureUI];
     [self reloadData];
-    [self setPageMenuView];
+    [self PageMenuView];
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view from its nib.
 }
@@ -73,9 +61,10 @@
     self.dataSource = self;
     self.automaticallyCalculatesItemWidths = YES;
     self.itemMargin = 10;
+    self.selectIndex = 0;
 }
 
--(void)setPageMenuView{
+-(void)PageMenuView{
     @weakify(self)
     [RACObserve(self.scrollView, contentOffset) subscribeNext:^(id x) {
         @strongify(self);
@@ -95,12 +84,11 @@
 }
 //设置每一个分页栏展示的控制器及内容
 - (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index{
-    
     if (index > self.titleArray.count - 1) {
-        return  [[VideoTableViewController alloc]init];
+        return  [[XGVideoTableViewController alloc]init];
     }
     videoTitleModel *model = self.titleArray[index];
-    VideoTableViewController *detail = [[VideoTableViewController alloc]init];
+    XGVideoTableViewController *detail = [[XGVideoTableViewController alloc]init];
     detail.titleModel = model;
     return detail;
 
@@ -142,7 +130,7 @@
 }
 
 -(void)needRefreshTableViewData{
-    VideoTableViewController *videoDetailVC = (VideoTableViewController *)self.currentViewController;
+    XGVideoTableViewController *videoDetailVC = (XGVideoTableViewController *)self.currentViewController;
     [videoDetailVC needRefreshTableViewData];
 }
 

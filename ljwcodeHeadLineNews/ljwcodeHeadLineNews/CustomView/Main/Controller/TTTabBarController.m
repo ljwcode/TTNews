@@ -14,7 +14,7 @@
 #import "homeViewController.h"
 #import "ScreeningHallViewController.h"
 #import "MineViewController.h"
-#import "VideoViewController.h"
+#import "XGVideoViewController.h"
 #import "TT_tabBarViewModel.h"
 #import <FBLPromises/FBLPromises.h>
 #import <FBLPromises/FBLPromise.h>
@@ -80,7 +80,7 @@
     homeViewController *homeVC = [[homeViewController alloc]init];
     TTNavigationController *homeNav = [[TTNavigationController alloc]initWithRootViewController:homeVC];
     
-    VideoViewController *videoVC = [[VideoViewController alloc]init];
+    XGVideoViewController *videoVC = [[XGVideoViewController alloc]init];
     TTNavigationController *videoNav = [[TTNavigationController alloc]initWithRootViewController:videoVC];
     
     ScreeningHallViewController *screenHallVC = [[ScreeningHallViewController alloc]init];

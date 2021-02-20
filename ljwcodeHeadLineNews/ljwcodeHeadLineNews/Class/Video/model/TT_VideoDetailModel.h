@@ -7,28 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "videoContentModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface user_info : NSObject
-/*
- {
-     "avatar_url" = "http://p6.toutiaoimg.com/img/pgc-image/ca307d5b4b784405b2139c435d0cbb26~tplv-resize:120:120.webp?from=xigua";
-     "fans_count" = 45109;
-     follow = 0;
-     "live_business_type" = 0;
-     "live_info_type" = 1;
-     name = "\U793e\U4f1a\U4e00\U7ebf\U7ad9";
-     "room_schema" = "";
-     schema = "sslocal://profile?uid=4186583865496695&refer=video";
-     "sec_user_id" = "MS4wLjABAAAANKcpYLz3bG-P6wStn1PfHHAXgU_P0mlqqFmbUBJHWEEm-E3Wy5h5rS8QvjqdLTuQ";
-     subcribed = 0;
-     "user_auth_info" = "{\"auth_info\":\"\U300a\U793e\U4f1a\U4e00\U7ebf\U7ad9\U300b\U680f\U76ee\U5b98\U65b9\U8d26\U53f7\",\"auth_type\":\"0\"}";
-     "user_decoration" = "";
-     "user_id" = 4186583865496695;
-     "user_verified" = 1;
- }
- */
 
 @property(nonatomic,copy)NSString *avatar_url;
 
@@ -43,19 +25,43 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface detailInfoModel : NSObject
+@interface tt_xg_anchor : NSObject
 
-@property(nonatomic,strong)user_info *user_info;
+@end
+
+@interface activity : NSObject
+
+@end
+
+@interface share_info : NSObject
+
+@property(nonatomic,copy)NSString *title;
+
+@end
+
+@interface related_video_toutiao : NSObject
+
+@property(nonatomic,copy)NSString *media_name;
+
+@property(nonatomic,copy)NSString *title;
+
+@property(nonatomic,assign)int video_duration;
+
+@property(nonatomic,strong)video_detail_info *video_detail_info;
 
 @end
 
 @interface TT_VideoDetailModel : NSObject
 
-@property(nonatomic,strong)detailInfoModel *detailInfoModel;
+@property(nonatomic,strong)user_info *user_info;
+
+@property(nonatomic,copy)NSString *video_watch_count;
+
+@property(nonatomic,strong)share_info *share_info;
+
+@property(nonatomic,strong)related_video_toutiao *related_video_toutiao;
 
 @property(nonatomic,strong)NSData *data;
-
-@property(nonatomic,strong)user_info *user_info;
 
 @end
 

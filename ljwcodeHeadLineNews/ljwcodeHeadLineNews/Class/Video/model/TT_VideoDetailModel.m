@@ -9,25 +9,18 @@
 #import "TT_VideoDetailModel.h"
 #import <MJExtension/MJExtension.h>
 
-@implementation user_info
+@implementation share_info
 
--(instancetype)init{
-    if(self = [super init]){
-        
-    }
-    return self;
-}
 
 @end
 
-@implementation detailInfoModel
+@implementation user_info
 
--(instancetype)init{
-    if(self = [super init]){
-        
-    }
-    return self;
-}
+
+@end
+
+@implementation related_video_toutiao
+
 
 @end
 

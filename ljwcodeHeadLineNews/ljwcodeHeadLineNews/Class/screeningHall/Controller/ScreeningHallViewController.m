@@ -10,7 +10,7 @@
 #import "TTHeader.h"
 #import "videoTitleViewModel.h"
 #import "videoTitleModel.h"
-//#import "ScreenHallVideoDetailViewController.h"
+//#import "ScreenHallXGVideoDetailViewController.h"
 
 @interface ScreeningHallViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
@@ -31,7 +31,7 @@
            @strongify(self);
            self.titleArray = x;
            [self reloadData];
-           [self setPageMenuView];
+           [self PageMenuView];
        }];
        
        self.view.backgroundColor = [UIColor whiteColor];
@@ -45,7 +45,7 @@
     self.itemMargin = 10;
 }
 
--(void)setPageMenuView{
+-(void)PageMenuView{
 
     @weakify(self)
     [RACObserve(self.scrollView, contentOffset) subscribeNext:^(id x) {
@@ -70,10 +70,10 @@
     
     return [[UIViewController alloc]init];
 //    if (index > self.titleArray.count - 1) {
-//        return  [[ScreenHallVideoDetailViewController alloc]init];
+//        return  [[ScreenHallXGVideoDetailViewController alloc]init];
 //    }
 //    videoTitleModel *model = self.titleArray[index];
-//    ScreenHallVideoDetailViewController *detail = [[ScreenHallVideoDetailViewController alloc]init];
+//    ScreenHallXGVideoDetailViewController *detail = [[ScreenHallXGVideoDetailViewController alloc]init];
 //    detail.titleModel = model;
 //    return detail;
 
@@ -107,7 +107,7 @@
 }
 
 -(void)needRefreshTableViewData{
-//    ScreenHallVideoDetailViewController *videoDetailVC = (ScreenHallVideoDetailViewController *)self.currentViewController;
+//    ScreenHallXGVideoDetailViewController *videoDetailVC = (ScreenHallXGVideoDetailViewController *)self.currentViewController;
 //    [videoDetailVC needRefreshTableViewData];
 }
 

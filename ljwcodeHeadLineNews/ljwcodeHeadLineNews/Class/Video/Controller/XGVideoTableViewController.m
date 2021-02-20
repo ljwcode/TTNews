@@ -1,12 +1,12 @@
 //
-//  VideoTableViewController.m
+//  XGVideoTableViewController.m
 //  ljwcodeHeadLineNews
 //
 //  Created by 1 on 2020/7/15.
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 
-#import "VideoTableViewController.h"
+#import "XGVideoTableViewController.h"
 #import "TVVideoPlayerViewCell.h"
 #import "videoContentViewModel.h"
 #import "TTHeader.h"
@@ -16,9 +16,9 @@
 #import "TTPlayerView.h"
 #import "videoDetailCacheDBViewModel.h"
 #import "videoDetailViewModel.h"
-#import "VideoDetailViewController.h"
+#import "XGVideoDetailViewController.h"
 
-@interface VideoTableViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate,UIScrollViewDelegate>
+@interface XGVideoTableViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate,UIScrollViewDelegate>
 
 @property(nonatomic,strong)UITableView *detailTableView;
 
@@ -42,7 +42,7 @@
 
 @end
 
-@implementation VideoTableViewController
+@implementation XGVideoTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,8 +51,8 @@
         @strongify(self);
         [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             [self.dataArray addObjectsFromArray:x];
-            NSArray *array = x;
-            [self.videoDBViewModel TT_saveVideoDataModel:array];
+//            NSArray *array = x;
+//            [self.videoDBViewModel TT_saveVideoDataModel:array];
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
         }];
@@ -253,7 +253,7 @@
 }
 
 -(void)TT_commentDetail:(NSIndexPath *)indexPath{
-    VideoDetailViewController *videoDetailVC = [[VideoDetailViewController alloc]init];
+    XGVideoDetailViewController *videoDetailVC = [[XGVideoDetailViewController alloc]init];
     [self.navigationController pushViewController:videoDetailVC animated:YES];
     videoDetailVC.group_id = self.videoContentModel.detailModel.pread_params.group_id;
     videoDetailVC.videoURL = self.videoURL;
