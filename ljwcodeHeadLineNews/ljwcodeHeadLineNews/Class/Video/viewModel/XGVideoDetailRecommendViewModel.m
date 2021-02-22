@@ -1,24 +1,27 @@
 //
-//  videoDetailViewModel.m
+//  XGVideoDetailRecommendViewModel.m
 //  ljwcodeHeadLineNews
 //
-//  Created by 1 on 2021/1/29.
+//  Created by 1 on 2021/2/22.
 //  Copyright © 2021 ljwcode. All rights reserved.
 //
 
-#import "videoDetailViewModel.h"
-#import "TTNetworkURLManager.h"
+#import "XGVideoDetailRecommendViewModel.h"
+#import <MJExtension/MJExtension.h>
 #import "videoDetailRequestModel.h"
 #import "TT_requestModel.h"
-#import "TT_VideoDetailModel.h"
+#import "videoContentModel.h"
+#import "MBProgressHUD+Add.h"
 
-@implementation videoDetailViewModel
+@implementation XGVideoDetailRecommendViewModel
 
 -(instancetype)init{
     if(self = [super init]){
-        _videoDetailCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+        _videoRecCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                videoDetailRequestModel *request = [videoDetailRequestModel initWithNetworkModelWithUrlString:[TTNetworkURLManager videoDetailInfoURL] isPost:NO];
+                videoDetailRequestModel *request = [videoDetailRequestModel initWithNetworkModelWithUrlString:[TTNetworkURLManager videoRecommendURL] isPost:NO];
+                
+                request.caid1 = @"626b60a145e6a3340054b5c6d73c1910";
                 request.version_code = [TT_requestModel version_code];
                 request.tma_jssdk_version = [TT_requestModel tma_jssdk_version];
                 request.app_name = [TT_requestModel app_name];
@@ -39,20 +42,20 @@
                 request.device_type = [TT_requestModel device_type];
                 request.ab_client = [TT_requestModel ab_client];
                 request.idfa = [TT_requestModel idfa];
-                request.from = @"click_video";
-                request.article_page = 1;
-                request.group_id = input;
+                request.category = input;
                 
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     NSDictionary *responseDic = (NSDictionary *)response;
-                    responseDic = [responseDic objectForKey:@"data"];
-                    TT_VideoDetailModel *model = [[[TT_VideoDetailModel alloc]init]mj_setKeyValues:responseDic];
-                    [subscriber sendNext:model];
+                    NSArray *dataArray  = responseDic[@"data"];
+                    NSMutableArray *array = [NSMutableArray array];
+                    for(int i = 0;i < dataArray.count;i++){
+                        videoContentModel *model = [[[videoContentModel alloc]init]mj_setKeyValues:dataArray[i]];
+                        [array addObject:model];
+                    }
+                    [subscriber sendNext:array];
                     [subscriber sendCompleted];
-                    NSLog(@"连接成功 = %@",responseDic);
-                    
                 } failHandle:^(NSError * _Nonnull error) {
-                    NSLog(@"连接失败");
+                    [MBProgressHUD showSuccess:@"请求失败"];
                 }];
                 return nil;
             }];
@@ -60,4 +63,5 @@
     }
     return self;
 }
+
 @end

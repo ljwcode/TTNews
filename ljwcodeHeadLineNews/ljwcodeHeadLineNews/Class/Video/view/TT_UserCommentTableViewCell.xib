@@ -24,15 +24,6 @@
                             <constraint firstAttribute="height" constant="40" id="syi-MY-keW"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19K-6q-ebp" userLabel="UserNameLabel">
-                        <rect key="frame" x="60" y="10" width="41.5" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="TPT-g5-lIZ"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzy-I0-6Rj" userLabel="LikeButton">
                         <rect key="frame" x="313" y="10" width="50" height="30"/>
                         <constraints>
@@ -47,10 +38,7 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dly-iG-yZD">
-                        <rect key="frame" x="60" y="30" width="153" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="9NG-u3-cfq"/>
-                        </constraints>
+                        <rect key="frame" x="60" y="10" width="153" height="40"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -99,20 +87,18 @@
                     <constraint firstAttribute="trailing" secondItem="02N-Wh-z1y" secondAttribute="trailing" constant="10" id="DPP-lL-UaV"/>
                     <constraint firstAttribute="trailing" secondItem="kzy-I0-6Rj" secondAttribute="trailing" constant="10" id="DQR-mS-RWz"/>
                     <constraint firstItem="kzy-I0-6Rj" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Dly-iG-yZD" secondAttribute="trailing" constant="100" id="E89-rf-Frp"/>
+                    <constraint firstItem="Dly-iG-yZD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Gb2-4k-RnS"/>
                     <constraint firstItem="kzy-I0-6Rj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="MFw-2X-eV8"/>
-                    <constraint firstItem="19K-6q-ebp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Op1-Yi-f6f"/>
-                    <constraint firstItem="19K-6q-ebp" firstAttribute="leading" secondItem="4Gl-ZT-JBP" secondAttribute="trailing" constant="10" id="RBZ-jI-lee"/>
                     <constraint firstAttribute="bottom" secondItem="ACs-HM-B52" secondAttribute="bottom" constant="2" id="UZJ-qE-P33"/>
                     <constraint firstItem="4Gl-ZT-JBP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="W2V-my-f5e"/>
                     <constraint firstAttribute="bottom" secondItem="qHB-RV-5yi" secondAttribute="bottom" constant="10" id="aiD-ff-ShZ"/>
-                    <constraint firstItem="Dly-iG-yZD" firstAttribute="top" secondItem="19K-6q-ebp" secondAttribute="bottom" id="eEk-Cc-w4r"/>
                     <constraint firstItem="qHB-RV-5yi" firstAttribute="top" secondItem="02N-Wh-z1y" secondAttribute="bottom" constant="10" id="k2s-M6-tgC"/>
                     <constraint firstItem="qHB-RV-5yi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="kDy-6w-WMw"/>
                     <constraint firstItem="Dly-iG-yZD" firstAttribute="leading" secondItem="4Gl-ZT-JBP" secondAttribute="trailing" constant="10" id="ksq-bc-D7B"/>
                     <constraint firstItem="chu-jX-yhR" firstAttribute="leading" secondItem="qHB-RV-5yi" secondAttribute="trailing" constant="10" id="mSW-hg-Xdn"/>
                     <constraint firstItem="4Gl-ZT-JBP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="olM-NE-vFo"/>
-                    <constraint firstItem="kzy-I0-6Rj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="19K-6q-ebp" secondAttribute="trailing" constant="100" id="p6g-em-NLI"/>
                     <constraint firstAttribute="trailing" secondItem="ACs-HM-B52" secondAttribute="trailing" constant="10" id="qhb-5f-Ayt"/>
+                    <constraint firstItem="Dly-iG-yZD" firstAttribute="height" secondItem="4Gl-ZT-JBP" secondAttribute="height" id="u1c-6w-tGV"/>
                     <constraint firstItem="02N-Wh-z1y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="whm-fd-w7T"/>
                 </constraints>
             </tableViewCellContentView>
@@ -125,7 +111,6 @@
                 <outlet property="TT_LikeBtn" destination="kzy-I0-6Rj" id="HF5-Nv-wfN"/>
                 <outlet property="TT_TimeLabel" destination="chu-jX-yhR" id="bzT-NO-oyk"/>
                 <outlet property="TT_UserInfoLabel" destination="Dly-iG-yZD" id="Qx9-On-2Ka"/>
-                <outlet property="TT_UserNameLabel" destination="19K-6q-ebp" id="5ur-BX-6T9"/>
             </connections>
             <point key="canvasLocation" x="60.14492753623189" y="105.46875"/>
         </tableViewCell>

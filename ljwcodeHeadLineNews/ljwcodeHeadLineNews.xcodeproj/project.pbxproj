@@ -102,6 +102,9 @@
 		6390EEC82589B4290081093E /* TTCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6390EEC72589B4290081093E /* TTCarouselView.m */; };
 		6390EEEF2589B7660081093E /* homeTitleDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6390EEEE2589B7660081093E /* homeTitleDBViewModel.m */; };
 		6393A2D825AD438F002BB19E /* TT_tabBarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6393A2D725AD438F002BB19E /* TT_tabBarModel.m */; };
+		639A830025E35C890021F62E /* 视频详情 in Resources */ = {isa = PBXBuildFile; fileRef = 639A82FF25E35C890021F62E /* 视频详情 */; };
+		639A831425E387B20021F62E /* XGVideoDetailRecommendViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 639A831325E387B20021F62E /* XGVideoDetailRecommendViewModel.m */; };
+		639A831825E3D8C90021F62E /* TT_UserCommnetScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 639A831725E3D8C90021F62E /* TT_UserCommnetScrollView.m */; };
 		63A3130225C9060500AF1056 /* TTRecommandVideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A3130025C9060500AF1056 /* TTRecommandVideoTableViewCell.m */; };
 		63A3130325C9060500AF1056 /* TTRecommandVideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63A3130125C9060500AF1056 /* TTRecommandVideoTableViewCell.xib */; };
 		63A3131825C95C8E00AF1056 /* TT_UserCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A3131625C95C8E00AF1056 /* TT_UserCommentTableViewCell.m */; };
@@ -355,6 +358,11 @@
 		6390EEEE2589B7660081093E /* homeTitleDBViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeTitleDBViewModel.m; sourceTree = "<group>"; wrapsLines = 0; };
 		6393A2D625AD438F002BB19E /* TT_tabBarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_tabBarModel.h; sourceTree = "<group>"; };
 		6393A2D725AD438F002BB19E /* TT_tabBarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_tabBarModel.m; sourceTree = "<group>"; };
+		639A82FF25E35C890021F62E /* 视频详情 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "视频详情"; sourceTree = "<group>"; };
+		639A831225E387B20021F62E /* XGVideoDetailRecommendViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGVideoDetailRecommendViewModel.h; sourceTree = "<group>"; };
+		639A831325E387B20021F62E /* XGVideoDetailRecommendViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGVideoDetailRecommendViewModel.m; sourceTree = "<group>"; };
+		639A831625E3D8C90021F62E /* TT_UserCommnetScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_UserCommnetScrollView.h; sourceTree = "<group>"; };
+		639A831725E3D8C90021F62E /* TT_UserCommnetScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_UserCommnetScrollView.m; sourceTree = "<group>"; };
 		63A312FF25C9060500AF1056 /* TTRecommandVideoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTRecommandVideoTableViewCell.h; sourceTree = "<group>"; };
 		63A3130025C9060500AF1056 /* TTRecommandVideoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTRecommandVideoTableViewCell.m; sourceTree = "<group>"; };
 		63A3130125C9060500AF1056 /* TTRecommandVideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TTRecommandVideoTableViewCell.xib; sourceTree = "<group>"; };
@@ -1097,6 +1105,8 @@
 				63A3131525C95C8E00AF1056 /* TT_UserCommentTableViewCell.h */,
 				63A3131625C95C8E00AF1056 /* TT_UserCommentTableViewCell.m */,
 				63A3131725C95C8E00AF1056 /* TT_UserCommentTableViewCell.xib */,
+				639A831625E3D8C90021F62E /* TT_UserCommnetScrollView.h */,
+				639A831725E3D8C90021F62E /* TT_UserCommnetScrollView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1120,6 +1130,7 @@
 				63A8E3EB25C416340067369F /* videoDetailRequestModel.m */,
 				635BB45225DFC5E300449953 /* TT_VideoDetailModel.h */,
 				635BB45325DFC5E300449953 /* TT_VideoDetailModel.m */,
+				639A82FF25E35C890021F62E /* 视频详情 */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1139,6 +1150,8 @@
 				6313651D258C842900FCAAA9 /* videoDetailCacheDBViewModel.m */,
 				63A8E3EE25C417AF0067369F /* videoDetailViewModel.h */,
 				63A8E3EF25C417AF0067369F /* videoDetailViewModel.m */,
+				639A831225E387B20021F62E /* XGVideoDetailRecommendViewModel.h */,
+				639A831325E387B20021F62E /* XGVideoDetailRecommendViewModel.m */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -1386,6 +1399,7 @@
 				6390EEBC2589B3670081093E /* LICENSE in Resources */,
 				634DA02D25A45C4200236458 /* Settings.bundle in Resources */,
 				637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */,
+				639A830025E35C890021F62E /* 视频详情 in Resources */,
 				63F30EF62564CAEB000CE908 /* LaunchScreen.storyboard in Resources */,
 				63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */,
 				631BC91F25481E66001B82AB /* TTThemeDefaultTag.plist in Resources */,
@@ -1556,6 +1570,7 @@
 				63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */,
 				638E977424CAB4A4005ADF42 /* TTMineNavigationController.m in Sources */,
 				63167AB624AB6182002CB4EF /* homeNewsModel.m in Sources */,
+				639A831425E387B20021F62E /* XGVideoDetailRecommendViewModel.m in Sources */,
 				631BC907254818C6001B82AB /* UITableViewCell+ThemeChange.m in Sources */,
 				636EA80624C9924500765F5C /* screeningHollHistoryModel.m in Sources */,
 				63EEAB2825B92F2A00ACDB7D /* TTFontSizeChangeModel.m in Sources */,
@@ -1568,6 +1583,7 @@
 				63BE33592548165200607EBA /* UITabBar+ThemeChange.m in Sources */,
 				6390EEC82589B4290081093E /* TTCarouselView.m in Sources */,
 				63C4FA9C24EBDFC900CF9850 /* TTPageMenuView.m in Sources */,
+				639A831825E3D8C90021F62E /* TT_UserCommnetScrollView.m in Sources */,
 				638E977D24CADB90005ADF42 /* commonSettingTableViewCell.m in Sources */,
 				6352492125442980009AECF2 /* QRCodeManager.m in Sources */,
 				63422BE224A839960091FEE1 /* WMMenuView.m in Sources */,

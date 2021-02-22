@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TT_VideoDetailModel.h"
+#import "videoContentModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TTRecommandVideoTableViewCell : UITableViewCell
 
-@property(nonatomic,strong)TT_VideoDetailModel *detailModel;
+@property(nonatomic,strong)videoContentModel *contentModel;
 
 @end
 

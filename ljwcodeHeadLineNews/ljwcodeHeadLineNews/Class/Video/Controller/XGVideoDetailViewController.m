@@ -14,6 +14,7 @@
 #import "TT_VideoDetailModel.h"
 #import "TTVideoDetailView.h"
 #import "TTRecommandVideoTableViewCell.h"
+#import "XGVideoDetailRecommendViewModel.h"
 
 @interface  XGVideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
@@ -25,7 +26,7 @@
 
 @property(nonatomic,strong)UIScrollView *TTVVideoDetailContainerScrollView;
 
-@property(nonatomic,strong)NSArray *RecommendVideoDataArray;
+@property(nonatomic,strong)NSMutableArray *RecommendVideoDataArray;
 
 @property(nonatomic,strong)NSArray *UserCommentDataArray;
 
@@ -36,6 +37,8 @@
 @property(nonatomic,strong)TT_VideoDetailModel *videoDetailModel;
 
 @property(nonatomic,strong)TTVideoDetailView *detailView;
+
+@property(nonatomic,strong)XGVideoDetailRecommendViewModel *VideoRecommendViewModel;
 
 @end
 
@@ -70,6 +73,12 @@
             NSDictionary *modelDic = [self.videoDetailModel mj_keyValues];
             self.authorHeaderView.detailModel = self.videoDetailModel;
             self.detailView.detailModel = self.videoDetailModel;
+        }];
+        
+        [[self.VideoRecommendViewModel.videoRecCommand execute:@"video"]subscribeNext:^(id  _Nullable x) {
+            NSLog(@"x = %@",x);
+            [self.RecommendVideoDataArray addObjectsFromArray:x];
+            [self.TTThemedTableView reloadData];
             [self.TTThemedTableView.mj_header endRefreshing];
         }];
     }];
@@ -83,7 +92,8 @@
     [self.view addSubview:self.playerView];
     [self.view addSubview:self.TTVVideoDetailContainerScrollView];
     [self.TTVVideoDetailContainerScrollView addSubview:self.TTThemedTableView];
-    [self.TTVVideoDetailContainerScrollView addSubview:self.detailView];
+//    [self.TTVVideoDetailContainerScrollView addSubview:self.detailView];
+    self.TTThemedTableView.tableHeaderView = self.detailView;
     [self createUI];
     [self createAuthorView];
     
@@ -107,29 +117,41 @@
 #pragma mark ----- UITableViewDelegate && UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(section == 0){
-        return self.RecommendVideoDataArray.count;
-    }else{
-        return self.UserCommentDataArray.count;
-    }
+    return self.RecommendVideoDataArray.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *resultCell= nil;
+    NSString *cellID = NSStringFromClass([TTRecommandVideoTableViewCell class]);
+    TTRecommandVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if(!cell){
+        cell = [[TTRecommandVideoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    videoContentModel *model = self.RecommendVideoDataArray[indexPath.row];
+    cell.contentModel = model;
     
-    
-    return resultCell;
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
 }
 
 #pragma mark ----- lazy load
 
+-(NSMutableArray *)RecommendVideoDataArray{
+    if(!_RecommendVideoDataArray){
+        _RecommendVideoDataArray = [[NSMutableArray alloc]init];
+    }
+    return _RecommendVideoDataArray;
+}
+
 -(TTVideoDetailView *)detailView{
     if(!_detailView){
-        _detailView = [[TTVideoDetailView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.authorHeaderView.frame), kScreenWidth, kScreenHeight * 0.2)];
+        _detailView = [[TTVideoDetailView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.2)];
     }
     return _detailView;
 }
@@ -161,10 +183,21 @@
     return _viewModel;
 }
 
+-(XGVideoDetailRecommendViewModel *)VideoRecommendViewModel{
+    if(!_VideoRecommendViewModel){
+        _VideoRecommendViewModel = [[XGVideoDetailRecommendViewModel alloc]init];
+    }
+    return _VideoRecommendViewModel;
+}
+
 -(UITableView *)TTThemedTableView{
     if(!_TTThemedTableView){
-        _TTThemedTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.detailView.frame), kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+        _TTThemedTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.authorHeaderView.frame), kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
         _TTThemedTableView.separatorColor = [UIColor clearColor];
+        _TTThemedTableView.delegate = self;
+        _TTThemedTableView.dataSource = self;
+        UINib *VideoRecNib = [UINib nibWithNibName:NSStringFromClass([TTRecommandVideoTableViewCell class]) bundle:nil];
+        [_TTThemedTableView registerNib:VideoRecNib forCellReuseIdentifier:NSStringFromClass([TTRecommandVideoTableViewCell class])];
     }
     return _TTThemedTableView;
 }
@@ -181,7 +214,7 @@
     CGFloat offsetY = scrollView.contentOffset.y;
     CGRect frame = self.authorHeaderView.frame;
     if (offsetY >= _minY) {
-        frame.origin.y = offsetY;
+        frame.origin.y = 0;
     }else{
         frame.origin.y = _minY;
     }

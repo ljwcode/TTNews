@@ -22,6 +22,8 @@
 
 @property(nonatomic,strong)NSArray *imgArray;
 
+@property(nonatomic,strong)NSArray *ActivityArray;
+
 @end
 
 @implementation TTVideoDetailView
@@ -65,18 +67,29 @@
             actionBtn.titleLabel.font = [UIFont systemFontOfSize:10.f];
             [actionBtn setTag:i];
             [actionBtn setImage:[UIImage imageNamed:self.imgArray[i]] forState:UIControlStateNormal];
-            actionBtn.layer.cornerRadius = 8.f;
-            actionBtn.layer.masksToBounds = YES;
+            [actionBtn setTitle:self.ActivityArray[i] forState:UIControlStateNormal];
+            actionBtn.imageEdgeInsets = UIEdgeInsetsMake(-actionBtn.titleLabel.intrinsicContentSize.height, 0, 0, -actionBtn.titleLabel.intrinsicContentSize.width);
+            
+            actionBtn.titleEdgeInsets = UIEdgeInsetsMake(actionBtn.imageView.intrinsicContentSize.height, -actionBtn.imageView.intrinsicContentSize.width, 0, 0);
             [self addSubview:actionBtn];
-            actionBtn.layer.borderColor = [UIColor grayColor].CGColor;
-            actionBtn.layer.borderWidth = 0.5f;
             [actionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(hSpace + (i * (kScreenWidth - 3 * hSpace)/3 + hSpace));
-                make.width.mas_equalTo((kScreenWidth - 4 * hSpace)/3);
+                make.left.mas_equalTo(hSpace + (i * (kScreenWidth - 3 * hSpace)/4 + hSpace));
+                make.width.mas_equalTo((kScreenWidth - 4 * hSpace)/4);
                 make.top.mas_equalTo(self.videoInfoLabel.mas_bottom).offset(vSpace);
                 make.bottom.mas_equalTo(-vSpace);
             }];
         }
+        
+        UIView *lineView = [[UIView alloc]init];
+        lineView.backgroundColor = [UIColor grayColor];
+        lineView.alpha = 0.2;
+        [self addSubview:lineView];
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(hSpace);
+            make.right.mas_equalTo(-hSpace);
+            make.height.mas_equalTo(1);
+            make.bottom.mas_equalTo(5);
+        }];
     }
     return self;
 }
@@ -137,9 +150,16 @@
 
 -(NSArray *)imgArray{
     if(!_imgArray){
-        _imgArray = @[@"like_grey_comment",@"tab_share1",@"details_admire_icon"];
+        _imgArray = @[@"tab_share3",@"profile_v2_my_favorite",@"tab_comment",@"feed_like"];
     }
     return _imgArray;
+}
+
+-(NSArray *)ActivityArray{
+    if(!_ActivityArray){
+        _ActivityArray = @[@"分享",@"收藏",@"评论",@"点赞"];
+    }
+    return _ActivityArray;
 }
 
 #pragma mark ---- 响应事件

@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface videoDetailRequestModel : TTNetworkBaseModel
 
+@property(nonatomic,copy)NSString *caid1;
+
 @property(nonatomic,copy)NSString *version_code;
 
 @property(nonatomic,copy)NSString *tma_jssdk_version;
@@ -56,6 +58,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)int article_page;
 
 @property(nonatomic,copy)NSString *group_id;
+
+@property(nonatomic,copy)NSString *category;
 
 @end
 

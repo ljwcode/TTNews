@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSString *)TableCommentURL;
 
++(NSString *)videoRecommendURL;
+
 @end
 
 NS_ASSUME_NONNULL_END
