@@ -10,7 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TT_UserCommnetScrollView : UIScrollView
+@interface TT_UserCommnetScrollView : UIView
+
+@property(nonatomic,strong)NSArray *dataArray;
 
 @end
 

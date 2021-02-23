@@ -61,6 +61,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *category;
 
+@property(nonatomic,assign)int offset;
+
+@property(nonatomic,assign)int count;
+
+@property(nonatomic,copy)NSString *forum_id;
+
 @end
 
 NS_ASSUME_NONNULL_END

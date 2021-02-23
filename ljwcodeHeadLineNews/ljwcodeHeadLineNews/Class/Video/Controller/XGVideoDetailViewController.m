@@ -15,6 +15,8 @@
 #import "TTVideoDetailView.h"
 #import "TTRecommandVideoTableViewCell.h"
 #import "XGVideoDetailRecommendViewModel.h"
+#import "TT_UserCommnetScrollView.h"
+#import "XGVideoCommentViewModel.h"
 
 @interface  XGVideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
@@ -39,6 +41,10 @@
 @property(nonatomic,strong)TTVideoDetailView *detailView;
 
 @property(nonatomic,strong)XGVideoDetailRecommendViewModel *VideoRecommendViewModel;
+
+@property(nonatomic,strong)TT_UserCommnetScrollView *commentScrollView;
+
+@property(nonatomic,strong)XGVideoCommentViewModel *commentViewModel;
 
 @end
 
@@ -70,9 +76,11 @@
     self.TTThemedTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [[self.viewModel.videoDetailCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
             self.videoDetailModel = x;
-            NSDictionary *modelDic = [self.videoDetailModel mj_keyValues];
             self.authorHeaderView.detailModel = self.videoDetailModel;
             self.detailView.detailModel = self.videoDetailModel;
+        }];
+        
+        [[self.commentViewModel.ComRacCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
         }];
         
         [[self.VideoRecommendViewModel.videoRecCommand execute:@"video"]subscribeNext:^(id  _Nullable x) {
@@ -90,9 +98,10 @@
 -(void)TT_PlayVideo{
     self.playerView = [[TTPlayerView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.3)];
     [self.view addSubview:self.playerView];
+    [self.view addSubview:self.commentScrollView];
     [self.view addSubview:self.TTVVideoDetailContainerScrollView];
     [self.TTVVideoDetailContainerScrollView addSubview:self.TTThemedTableView];
-//    [self.TTVVideoDetailContainerScrollView addSubview:self.detailView];
+    [self.TTVVideoDetailContainerScrollView addSubview:self.detailView];
     self.TTThemedTableView.tableHeaderView = self.detailView;
     [self createUI];
     [self createAuthorView];
@@ -141,6 +150,20 @@
 }
 
 #pragma mark ----- lazy load
+
+-(XGVideoCommentViewModel *)commentViewModel{
+    if(!_commentViewModel){
+        _commentViewModel = [[XGVideoCommentViewModel alloc]init];
+    }
+    return _commentViewModel;
+}
+
+-(TT_UserCommnetScrollView *)commentScrollView{
+    if(!_commentScrollView){
+        _commentScrollView = [[TT_UserCommnetScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.playerView.frame), kScreenWidth, kScreenHeight * 0.7)];
+    }
+    return _commentScrollView;
+}
 
 -(NSMutableArray *)RecommendVideoDataArray{
     if(!_RecommendVideoDataArray){

@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TT_VideoCommentModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TT_UserCommentTableViewCell : UITableViewCell
+
+@property(nonatomic,strong)TT_VideoCommentModel *commentModel;
 
 @end
 
