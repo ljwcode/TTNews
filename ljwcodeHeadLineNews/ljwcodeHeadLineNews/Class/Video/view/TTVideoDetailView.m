@@ -66,10 +66,11 @@
             [actionBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             actionBtn.titleLabel.font = [UIFont systemFontOfSize:10.f];
             [actionBtn setTag:i];
+            [actionBtn addTarget:self action:@selector(TT_ActionHandle:) forControlEvents:UIControlEventTouchUpInside];
             [actionBtn setImage:[UIImage imageNamed:self.imgArray[i]] forState:UIControlStateNormal];
             [actionBtn setTitle:self.ActivityArray[i] forState:UIControlStateNormal];
             actionBtn.imageEdgeInsets = UIEdgeInsetsMake(-actionBtn.titleLabel.intrinsicContentSize.height, 0, 0, -actionBtn.titleLabel.intrinsicContentSize.width);
-            
+            actionBtn.restorationIdentifier = [NSString stringWithFormat:@"%@%d",@"actionBtnRestorationID",i];
             actionBtn.titleEdgeInsets = UIEdgeInsetsMake(actionBtn.imageView.intrinsicContentSize.height, -actionBtn.imageView.intrinsicContentSize.width, 0, 0);
             [self addSubview:actionBtn];
             [actionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -170,6 +171,14 @@
         [sender setImage:[UIImage imageNamed:@"personal_home_recommend_up_black"] forState:UIControlStateSelected];
     }else{
         [sender setImage:[UIImage imageNamed:@"personal_home_recommend_down_black"] forState:UIControlStateNormal];
+    }
+}
+
+-(void)TT_ActionHandle:(UIButton *)sender{
+    if([sender.restorationIdentifier isEqualToString:@"actionBtnRestorationID2"]){
+        if(self.delegate && [self.delegate respondsToSelector:@selector(TT_VideoDetailCommentView)]){
+            [self.delegate TT_VideoDetailCommentView];
+        }
     }
 }
 

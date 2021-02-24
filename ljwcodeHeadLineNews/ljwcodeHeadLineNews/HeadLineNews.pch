@@ -93,6 +93,6 @@
 
 #define TT_ScreenScale [[UIScreen mainScreen] scale]
 
-
+#define TT_XGVideoPOSTGroup_ID @"XGVideoPostGroupID"
 
 #endif /* ljwcodeHeadLineNews_h */

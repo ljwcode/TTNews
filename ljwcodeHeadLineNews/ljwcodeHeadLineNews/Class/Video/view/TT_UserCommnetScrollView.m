@@ -10,6 +10,8 @@
 #import <Masonry/Masonry.h>
 #import "TT_UserCommentTableViewCell.h"
 #import "TT_VideoCommentModel.h"
+#import <FBLPromises/FBLPromises.h>
+#import <FBLPromises/FBLPromise.h>
 
 @interface TT_UserCommnetScrollView()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
@@ -23,13 +25,23 @@
 
 @property(nonatomic,strong)UILabel *titleLabel;
 
+@property(nonatomic,assign)CGFloat minY;
+
+@property(nonatomic,copy)NSString *group_id;
+
+@property(nonatomic,strong)NSArray *dataArray;
+
 @end
 
 @implementation TT_UserCommnetScrollView
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
-        
+        __strong typeof(self) strongSelf = self;
+        self.commentBlock = ^(NSArray * _Nonnull modelArray) {
+            NSLog(@"modelArray = %@",modelArray);
+            strongSelf.dataArray = modelArray;
+        };
         [self addSubview:self.TT_CommentScrollView];
         [self.TT_CommentScrollView addSubview:self.TT_UserCommentHeaderView];
         
@@ -37,6 +49,7 @@
         
         UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [closeBtn setImage:[UIImage imageNamed:@"close_comment"] forState:UIControlStateNormal];
+        [closeBtn addTarget:self action:@selector(TT_closeHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self.TT_UserCommentHeaderView addSubview:closeBtn];
         [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(hSpace);
@@ -44,13 +57,9 @@
             make.width.mas_equalTo(30);
         }];
         
-        _titleLabel = [[UILabel alloc]init];
-        _titleLabel.textColor = [UIColor blackColor];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = [UIFont systemFontOfSize:13.f];
-        [self.TT_UserCommentHeaderView addSubview:_titleLabel];
+        [self.TT_UserCommentHeaderView addSubview:self.titleLabel];
         
-        [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.centerY.mas_equalTo(self.TT_UserCommentHeaderView);
             make.top.mas_equalTo(vSpace/2);
             make.bottom.mas_equalTo(-vSpace/2);
@@ -86,6 +95,8 @@
             make.bottom.mas_equalTo(-10);
         }];
         
+        self.TT_UserCommnetTableView.delegate = self;
+        self.TT_UserCommnetTableView.dataSource = self;
     }
     return self;
 }
@@ -119,10 +130,31 @@
 #pragma mark ------ UIScrollViewDelegate
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
+    CGFloat offsetY = scrollView.contentOffset.y;
+    CGRect HeaderFrame = self.TT_UserCommentHeaderView.frame;
+    CGRect footerFrame = self.TT_CommentFooterView.frame;
+    if (offsetY >= _minY) {
+        HeaderFrame.origin.y = 0;
+        footerFrame.origin.y = CGRectGetHeight(self.frame) * 0.9;
+    }else{
+        HeaderFrame.origin.y = _minY;
+        footerFrame.origin.y = CGRectGetHeight(self.frame) * 0.9;
+    }
+    self.TT_UserCommentHeaderView.frame = HeaderFrame;
+    self.TT_CommentFooterView.frame = footerFrame;
 }
 
 #pragma mark ------ lazy load
+
+-(UILabel *)titleLabel{
+    if(!_titleLabel){
+        _titleLabel = [[UILabel alloc]init];
+        _titleLabel.textColor = [UIColor blackColor];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.font = [UIFont systemFontOfSize:13.f];
+    }
+    return _titleLabel;
+}
 
 -(NSArray *)dataArray{
     if(!_dataArray){
@@ -136,6 +168,7 @@
         _TT_UserCommentHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.1)];
         _TT_UserCommentHeaderView.layer.borderColor = [UIColor grayColor].CGColor;
         _TT_UserCommentHeaderView.layer.borderWidth = 1.f;
+        _minY = 0;
     }
     return _TT_UserCommentHeaderView;
 }
@@ -143,7 +176,7 @@
 -(UIView *)TT_CommentFooterView{
     if(!_TT_CommentFooterView){
         _TT_CommentFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.frame) * 0.9, kScreenWidth, CGRectGetHeight(self.frame) * 0.1)];
-        _TT_CommentFooterView.layer.borderColor = [UIColor grayColor].CGColor;
+        _TT_CommentFooterView.layer.borderColor = [UIColor redColor].CGColor;
         _TT_CommentFooterView.layer.borderWidth = 1.f;
     }
     return _TT_CommentFooterView;
@@ -151,9 +184,7 @@
 
 -(UITableView *)TT_UserCommnetTableView{
     if(!_TT_UserCommnetTableView){
-        _TT_UserCommnetTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.TT_UserCommentHeaderView.frame), kScreenWidth, CGRectGetHeight(self.frame) - CGRectGetHeight(self.TT_UserCommentHeaderView.frame)) style:UITableViewStylePlain];
-        _TT_UserCommnetTableView.delegate = self;
-        _TT_UserCommnetTableView.dataSource = self;
+        _TT_UserCommnetTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.TT_UserCommentHeaderView.frame), kScreenWidth, CGRectGetHeight(self.frame) - CGRectGetHeight(self.TT_UserCommentHeaderView.frame)-CGRectGetHeight(self.TT_CommentFooterView.frame)) style:UITableViewStylePlain];
         
         UINib *userCommentNib = [UINib nibWithNibName:NSStringFromClass([TT_UserCommentTableViewCell class]) bundle:nil];
         [_TT_UserCommnetTableView registerNib:userCommentNib forCellReuseIdentifier:NSStringFromClass([TT_UserCommentTableViewCell class])];
@@ -165,17 +196,23 @@
     if(!_TT_CommentScrollView){
         _TT_CommentScrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
         _TT_CommentScrollView.delegate = self;
-        _TT_CommentScrollView.contentSize = CGSizeMake(kScreenWidth, kScreenHeight);
+        _TT_CommentScrollView.contentSize = CGSizeMake(kScreenWidth, CGRectGetHeight(self.frame));
         
     }
     return _TT_CommentScrollView;
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+
+#pragma mark ---- 响应事件
+
+-(void)TT_closeHandle:(UIButton *)sender{
+    [self removeFromSuperview];
 }
-*/
+/*
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end

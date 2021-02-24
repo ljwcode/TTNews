@@ -12,7 +12,7 @@
 #import <SDWebImageManager.h>
 #import "UILabel+Frame.h"
 
-@interface TVVideoPlayerViewCell()
+@interface TVVideoPlayerViewCell()<UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic)UIImageView *videoBgImgView;
 
@@ -81,6 +81,9 @@
             make.bottom.mas_equalTo(0);
             make.height.mas_equalTo(50);
         }];
+        
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapPushHandle:)];
+        [self.authorBgView addGestureRecognizer:tapGes];
         
         [self.authorBgView addSubview:self.authHeadImgView];
         [self.authHeadImgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -305,8 +308,8 @@
 }
 
 -(void)commentHandle:(UIButton *)sender{
-    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_commentDetail:)]){
-        [self.delegate TT_commentDetail:self.currentIndexPath];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_commentDetail)]){
+        [self.delegate TT_commentDetail];
     }
 }
 
@@ -316,6 +319,12 @@
 
 -(void)setNormalModel{
     self.videoBgImgView.hidden = YES;
+}
+
+-(void)tapPushHandle:(UITapGestureRecognizer *)tap{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_TapPushHandle:)]){
+        [self.delegate TT_TapPushHandle:self.contentModel];
+    }
 }
 /*
 // Only override drawRect: if you perform custom drawing.

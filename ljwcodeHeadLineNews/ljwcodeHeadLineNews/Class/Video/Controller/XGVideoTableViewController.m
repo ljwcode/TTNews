@@ -51,8 +51,8 @@
         @strongify(self);
         [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             [self.dataArray addObjectsFromArray:x];
-//            NSArray *array = x;
-//            [self.videoDBViewModel TT_saveVideoDataModel:array];
+            //            NSArray *array = x;
+            //            [self.videoDBViewModel TT_saveVideoDataModel:array];
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
         }];
@@ -62,15 +62,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    @weakify(self);
-//    self.detailTableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
-//        @strongify(self);
-//        NSArray *array = [self.videoDBViewModel TT_queryVideoDataModel];
-//        [self.dataArray addObjectsFromArray:array];
-//        [self.detailTableView reloadData];
-//        [self.detailTableView.mj_header endRefreshing];
-//    }];
-//    [self.detailTableView.mj_header beginRefreshing];
+    //    @weakify(self);
+    //    self.detailTableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+    //        @strongify(self);
+    //        NSArray *array = [self.videoDBViewModel TT_queryVideoDataModel];
+    //        [self.dataArray addObjectsFromArray:array];
+    //        [self.detailTableView reloadData];
+    //        [self.detailTableView.mj_header endRefreshing];
+    //    }];
+    //    [self.detailTableView.mj_header beginRefreshing];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
@@ -158,17 +158,19 @@
     [self.detailTableView.mj_footer beginRefreshing];
 }
 
-#pragma mark -- private method
-
 - (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
-    self.videoContentModel = self.dataArray[indexPath.row];
     [[FBLPromise do:^id _Nullable{
         return [self getVideoURL];
     }]then:^id _Nullable(id  _Nullable value) {
-//        return [self playVideo:value];
         return [self playVideoWithURL:value videoIndexPath:indexPath];
     }];
     
+}
+
+-(void)converPlayVideoAtIndexPath{
+    [FBLPromise do:^id _Nullable{
+        return [self getVideoURL];
+    }];
 }
 
 -(FBLPromise *)getVideoURL{
@@ -178,16 +180,8 @@
         return [self GetVideoParseData:value];
     }]then:^id _Nullable(id  _Nullable value) {
         NSLog(@"video url = %@",value);
+        self.videoURL = value;
         return value;
-    }];
-}
-
-/// 播放当前列表第一个视频 同时需要打开下面UIScrollerView的注释
-/// @param url 视频的真实URL
--(FBLPromise *)playVideo:(NSString *)url{
-    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
-        self.videoURL = url;
-        [self playVideoInVisiableCells];
     }];
 }
 
@@ -208,23 +202,6 @@
     }];
 }
 
-//进入这个界面就自动播放
--(void)playVideoInVisiableCells{
-    TVVideoPlayerViewCell *firstCell = nil;
-    NSArray *visiableCells = [self.detailTableView visibleCells];
-    
-    for (int i = 0; i < visiableCells.count; i++) {
-        UITableViewCell *cell = visiableCells[i];
-        if ([cell isKindOfClass:[TVVideoPlayerViewCell class]]) {
-            firstCell = (TVVideoPlayerViewCell *)cell;
-            break;
-        }
-    }
-    //播放第一个视频
-    [self initPlayerView:firstCell playClick:firstCell.contentModel];
-}
-
-
 #pragma mark -- TVVideoPlayerCellDelegate
 
 - (void)initPlayerView:(TVVideoPlayerViewCell *)cell playClick:(videoContentModel *)convention{
@@ -235,16 +212,16 @@
     TTPlayerView *playerView = [[TTPlayerView alloc]initWithFrame:cell.videoFrame];
     self.playerView = playerView;
     [cell.contentView addSubview:self.playerView];
-    //视频地址
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.playerView.url = [NSURL URLWithString:self.videoURL];
         [self.playerView playVideo];
     });
-    //返回按钮点击事件回调
+   
     [self.playerView backButton:^(UIButton *button) {
         NSLog(@"返回按钮被点击");
     }];
-    //播放完成回调
+    
     [self.playerView endPlay:^{
         [self.playerView destroyPlayer];
         self.playerView = nil;
@@ -252,12 +229,20 @@
     }];
 }
 
--(void)TT_commentDetail:(NSIndexPath *)indexPath{
+-(void)TT_commentDetail{
+    
+}
+
+-(void)TT_TapPushHandle:(videoContentModel *)model{
     XGVideoDetailViewController *videoDetailVC = [[XGVideoDetailViewController alloc]init];
-    [self.navigationController pushViewController:videoDetailVC animated:YES];
-    videoDetailVC.group_id = self.videoContentModel.detailModel.pread_params.group_id;
+    if(self.playerView){
+        [self.playerView destroyPlayer];
+        self.playerView = nil;
+    }
+    videoDetailVC.group_id = model.detailModel.pread_params.group_id;
+    [self converPlayVideoAtIndexPath];
     videoDetailVC.videoURL = self.videoURL;
-   
+    [self.navigationController pushViewController:videoDetailVC animated:YES];
 }
 
 #pragma mark ---- UIScrollview delegate

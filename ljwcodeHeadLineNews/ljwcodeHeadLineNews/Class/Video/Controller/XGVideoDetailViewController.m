@@ -18,7 +18,7 @@
 #import "TT_UserCommnetScrollView.h"
 #import "XGVideoCommentViewModel.h"
 
-@interface  XGVideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
+@interface  XGVideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,TT_VideoDetailViewDelegate>
 
 @property(nonatomic,strong)TTPlayerView *playerView;
 
@@ -30,7 +30,7 @@
 
 @property(nonatomic,strong)NSMutableArray *RecommendVideoDataArray;
 
-@property(nonatomic,strong)NSArray *UserCommentDataArray;
+@property(nonatomic,strong)NSMutableArray *UserCommentDataArray;
 
 @property(nonatomic,assign)CGFloat minY;
 
@@ -61,7 +61,7 @@
     [backBtn addTarget:self action:@selector(PopHandle:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.mas_equalTo(hSpace);
+        make.left.top.mas_greaterThanOrEqualTo(hSpace);
         make.width.height.mas_equalTo(20);
     }];
 }
@@ -73,14 +73,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self TT_PlayVideo];
+    [self.TTVVideoDetailContainerScrollView addSubview:self.commentScrollView];
+    
+    [[self.commentViewModel.ComRacCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
+        NSLog(@"x = %@",x);
+        [self.UserCommentDataArray addObjectsFromArray:x];
+        self.commentScrollView.commentBlock(self.UserCommentDataArray);
+    }];
+    
     self.TTThemedTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [[self.viewModel.videoDetailCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
             self.videoDetailModel = x;
             self.authorHeaderView.detailModel = self.videoDetailModel;
             self.detailView.detailModel = self.videoDetailModel;
-        }];
-        
-        [[self.commentViewModel.ComRacCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
         }];
         
         [[self.VideoRecommendViewModel.videoRecCommand execute:@"video"]subscribeNext:^(id  _Nullable x) {
@@ -98,16 +103,16 @@
 -(void)TT_PlayVideo{
     self.playerView = [[TTPlayerView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.3)];
     [self.view addSubview:self.playerView];
-    [self.view addSubview:self.commentScrollView];
+    
     [self.view addSubview:self.TTVVideoDetailContainerScrollView];
     [self.TTVVideoDetailContainerScrollView addSubview:self.TTThemedTableView];
     [self.TTVVideoDetailContainerScrollView addSubview:self.detailView];
     self.TTThemedTableView.tableHeaderView = self.detailView;
+    [self.TTVVideoDetailContainerScrollView addSubview:self.authorHeaderView];
+    
     [self createUI];
-    [self createAuthorView];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSLog(@"videoURL = %@",self.videoURL);
         self.playerView.url = [NSURL URLWithString:self.videoURL];
         [self.playerView playVideo];
     });
@@ -160,7 +165,10 @@
 
 -(TT_UserCommnetScrollView *)commentScrollView{
     if(!_commentScrollView){
-        _commentScrollView = [[TT_UserCommnetScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.playerView.frame), kScreenWidth, kScreenHeight * 0.7)];
+        _commentScrollView = [[TT_UserCommnetScrollView alloc]initWithFrame:self.TTVVideoDetailContainerScrollView.bounds];
+        _commentScrollView.backgroundColor = [UIColor whiteColor];
+        _commentScrollView.layer.borderColor = [UIColor blueColor].CGColor;
+        _commentScrollView.layer.borderWidth = 1.f;
     }
     return _commentScrollView;
 }
@@ -172,9 +180,17 @@
     return _RecommendVideoDataArray;
 }
 
+-(NSMutableArray *)UserCommentDataArray{
+    if(!_UserCommentDataArray){
+        _UserCommentDataArray = [[NSMutableArray alloc]init];
+    }
+    return _UserCommentDataArray;
+}
+
 -(TTVideoDetailView *)detailView{
     if(!_detailView){
         _detailView = [[TTVideoDetailView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.2)];
+        _detailView.delegate = self;
     }
     return _detailView;
 }
@@ -195,6 +211,8 @@
         _TTVVideoDetailContainerScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.playerView.frame), kScreenWidth, kScreenHeight - CGRectGetHeight(self.playerView.frame))];
         _TTVVideoDetailContainerScrollView.contentSize = CGSizeMake(kScreenWidth, kScreenHeight);
         _TTVVideoDetailContainerScrollView.delegate = self;
+        _TTVVideoDetailContainerScrollView.layer.borderColor = [UIColor blueColor].CGColor;
+        _TTVVideoDetailContainerScrollView.layer.borderWidth = 1.f;
     }
     return _TTVVideoDetailContainerScrollView;
 }
@@ -225,12 +243,6 @@
     return _TTThemedTableView;
 }
 
-#pragma mark ----- createUI
-
--(void)createAuthorView{
-    [self.TTVVideoDetailContainerScrollView addSubview:self.authorHeaderView];
-}
-
 #pragma mark ----- UIScrollViewDelegate
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -247,17 +259,26 @@
 
 #pragma mark ------- 响应事件
 -(void)PopHandle:(UIButton *)sender{
+    if(self.playerView){
+        [self.playerView destroyPlayer];
+        self.playerView = nil;
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark ------- TT_VideoDetailViewDelegate
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)TT_VideoDetailCommentView{
+    [self.TTVVideoDetailContainerScrollView addSubview:self.commentScrollView];
 }
-*/
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

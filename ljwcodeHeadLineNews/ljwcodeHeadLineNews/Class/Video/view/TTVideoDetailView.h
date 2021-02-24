@@ -11,9 +11,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol TT_VideoDetailViewDelegate <NSObject>
+
+-(void)TT_VideoDetailCommentView;
+
+@end
+
 @interface TTVideoDetailView : UIView
 
 @property(nonatomic,strong)TT_VideoDetailModel *detailModel;
+
+@property(nonatomic,weak)id<TT_VideoDetailViewDelegate>delegate;
 
 @end
 

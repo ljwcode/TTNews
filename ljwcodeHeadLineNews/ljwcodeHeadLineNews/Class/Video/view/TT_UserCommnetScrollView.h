@@ -10,9 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^TT_UserCommentBlock)(NSArray *modelArray);
+
+@protocol TT_UserCommentDelegate <NSObject>
+
+@end
+
 @interface TT_UserCommnetScrollView : UIView
 
-@property(nonatomic,strong)NSArray *dataArray;
+@property(nonatomic,copy)TT_UserCommentBlock commentBlock;
 
 @end
 
