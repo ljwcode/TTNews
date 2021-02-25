@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *user_profile_image_url;
 
-@property(nonatomic,copy)NSString *create_time;
+@property(nonatomic,assign)NSTimeInterval create_time;
 
 @property(nonatomic,copy)NSString *reply_count;
 
@@ -28,11 +28,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TT_VideoCommentModel : NSObject
 
-@property(nonatomic,strong)comment *commentDetailModel;
+@property(nonatomic,assign)int cell_type;
+
+@property(nonatomic,assign)int id;
+
+@property(nonatomic,strong)comment *comment;
 
 @property(nonatomic,copy)NSString *total_number;
 
-@property(nonatomic,copy)NSString *comment;
 
 @end
 

@@ -11,9 +11,9 @@
 
 @implementation comment
 
-
 @end
 
 @implementation TT_VideoCommentModel
+
 
 @end

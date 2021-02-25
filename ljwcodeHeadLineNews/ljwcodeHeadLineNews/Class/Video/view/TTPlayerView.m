@@ -124,11 +124,11 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
         _isUserPlay = NO;
         //开启
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-        //注册屏幕旋转通知
+      
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(orientChange:) name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
-        //APP运行状态通知，将要被挂起 crash:
+       
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(appDidEnterBackground:) name:UIApplicationWillResignActiveNotification object:nil];
-        // app进入前台
+       
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(appDidEnterPlayground:) name:UIApplicationDidBecomeActiveNotification object:nil];
         [self creatUI];
     }

@@ -11,7 +11,8 @@
 #import "TT_UserCommentTableViewCell.h"
 #import "TT_VideoCommentModel.h"
 #import <FBLPromises/FBLPromises.h>
-#import <FBLPromises/FBLPromise.h>
+#import <MJExtension/MJExtension.h>
+#import "UILabel+Frame.h"
 
 @interface TT_UserCommnetScrollView()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
@@ -35,68 +36,101 @@
 
 @implementation TT_UserCommnetScrollView
 
--(instancetype)initWithFrame:(CGRect)frame{
-    if(self = [super initWithFrame:frame]){
+-(FBLPromise *)TT_getDataArray{
+    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
         __strong typeof(self) strongSelf = self;
         self.commentBlock = ^(NSArray * _Nonnull modelArray) {
             NSLog(@"modelArray = %@",modelArray);
             strongSelf.dataArray = modelArray;
+            fulfill(modelArray);
         };
-        [self addSubview:self.TT_CommentScrollView];
-        [self.TT_CommentScrollView addSubview:self.TT_UserCommentHeaderView];
-        
-        [self addSubview:self.TT_UserCommnetTableView];
-        
-        UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [closeBtn setImage:[UIImage imageNamed:@"close_comment"] forState:UIControlStateNormal];
-        [closeBtn addTarget:self action:@selector(TT_closeHandle:) forControlEvents:UIControlEventTouchUpInside];
-        [self.TT_UserCommentHeaderView addSubview:closeBtn];
-        [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(hSpace);
-            make.centerY.mas_equalTo(self.TT_UserCommentHeaderView);
-            make.width.mas_equalTo(30);
-        }];
-        
-        [self.TT_UserCommentHeaderView addSubview:self.titleLabel];
-        
-        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.centerY.mas_equalTo(self.TT_UserCommentHeaderView);
-            make.top.mas_equalTo(vSpace/2);
-            make.bottom.mas_equalTo(-vSpace/2);
-            make.width.mas_greaterThanOrEqualTo(kScreenWidth * 0.2);
-        }];
-        
-        [self.TT_CommentScrollView addSubview:self.TT_CommentFooterView];
-        
-        UITextField *CommentTextField = [[UITextField alloc]init];
-        CommentTextField.layer.borderColor = [UIColor grayColor].CGColor;
-        CommentTextField.layer.borderWidth = 1.f;
-        CommentTextField.layer.cornerRadius = 10.f;
-        
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:@"写评论..." attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:11.f],NSForegroundColorAttributeName : [UIColor blackColor]}];
-        CommentTextField.attributedText = attrString;
-        CommentTextField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
-        UIImageView *leftImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
-        leftImgView.image = [UIImage imageNamed:@"hts_vp_write_new"];
-        CommentTextField.leftViewMode = UITextFieldViewModeAlways;
-        [CommentTextField.leftView addSubview:leftImgView];
-        
-        CommentTextField.rightView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
-        UIImageView *rightImgView = [[UIImageView alloc]initWithFrame:CommentTextField.rightView.bounds];
-        rightImgView.image = [UIImage imageNamed:@"tsv_comment_footer_emoji"];
-        [CommentTextField.rightView addSubview:rightImgView];
-        CommentTextField.rightViewMode = UITextFieldViewModeAlways;
-        
-        [self.TT_CommentFooterView addSubview:CommentTextField];
-        [CommentTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(hSpace * 2);
-            make.right.mas_equalTo(-hSpace * 2);
-            make.top.mas_equalTo(10);
-            make.bottom.mas_equalTo(-10);
-        }];
-        
-        self.TT_UserCommnetTableView.delegate = self;
-        self.TT_UserCommnetTableView.dataSource = self;
+    }];
+}
+
+-(void)TT_getModelArray{
+    [self createUI];
+    [[FBLPromise do:^id _Nullable{
+        return [self TT_getDataArray];
+    }]then:^id _Nullable(id  _Nullable value) {
+        [self.TT_UserCommnetTableView reloadData];
+        self.titleLabel.text = [NSString stringWithFormat:@"%lu条评论",(unsigned long)self.dataArray.count];
+        if(self.dataArray.count == 0){
+            [self.TT_UserCommnetTableView removeFromSuperview];
+            UILabel *tipLabl = [[UILabel alloc]init];
+            tipLabl.text = @"暂无评论，点击抢沙发";
+            tipLabl.textColor = [UIColor blackColor];
+            tipLabl.textAlignment = NSTextAlignmentCenter;
+            tipLabl.font = [UIFont systemFontOfSize:13.f];
+            tipLabl.adjustsFontSizeToFitWidth = YES;
+            [self.TT_CommentScrollView addSubview:tipLabl];
+            
+            [tipLabl mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.centerX.mas_equalTo(self.TT_CommentScrollView);
+                make.width.mas_equalTo(100);
+                make.height.mas_equalTo(30);
+            }];
+        }
+        return self.dataArray = value;
+    }];
+}
+
+-(void)createUI{
+    [self addSubview:self.TT_CommentScrollView];
+    [self.TT_CommentScrollView addSubview:self.TT_UserCommentHeaderView];
+    
+    [self addSubview:self.TT_UserCommnetTableView];
+    
+    UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [closeBtn setImage:[UIImage imageNamed:@"close_comment"] forState:UIControlStateNormal];
+    [closeBtn addTarget:self action:@selector(TT_closeHandle:) forControlEvents:UIControlEventTouchUpInside];
+    [self.TT_UserCommentHeaderView addSubview:closeBtn];
+    [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(hSpace);
+        make.centerY.mas_equalTo(self.TT_UserCommentHeaderView);
+        make.width.mas_equalTo(30);
+    }];
+    
+    [self.TT_UserCommentHeaderView addSubview:self.titleLabel];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.centerY.mas_equalTo(self.TT_UserCommentHeaderView);
+        make.top.mas_equalTo(vSpace/2);
+        make.bottom.mas_equalTo(-vSpace/2);
+        make.width.mas_greaterThanOrEqualTo(kScreenWidth * 0.2);
+    }];
+    
+    [self.TT_CommentScrollView addSubview:self.TT_CommentFooterView];
+    
+    UITextField *CommentTextField = [[UITextField alloc]init];
+    CommentTextField.layer.borderColor = [UIColor grayColor].CGColor;
+    CommentTextField.layer.borderWidth = 1.f;
+    CommentTextField.layer.cornerRadius = 10.f;
+    
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:@"写评论..." attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:11.f],NSForegroundColorAttributeName : [UIColor blackColor]}];
+    CommentTextField.attributedText = attrString;
+    CommentTextField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    UIImageView *leftImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    leftImgView.image = [UIImage imageNamed:@"hts_vp_write_new"];
+    CommentTextField.leftViewMode = UITextFieldViewModeAlways;
+    [CommentTextField.leftView addSubview:leftImgView];
+    
+    CommentTextField.rightView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    UIImageView *rightImgView = [[UIImageView alloc]initWithFrame:CommentTextField.rightView.bounds];
+    rightImgView.image = [UIImage imageNamed:@"tsv_comment_footer_emoji"];
+    [CommentTextField.rightView addSubview:rightImgView];
+    CommentTextField.rightViewMode = UITextFieldViewModeAlways;
+    
+    [self.TT_CommentFooterView addSubview:CommentTextField];
+    [CommentTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(hSpace * 2);
+        make.right.mas_equalTo(-hSpace * 2);
+        make.top.mas_equalTo(10);
+        make.bottom.mas_equalTo(-10);
+    }];
+}
+-(instancetype)initWithFrame:(CGRect)frame{
+    if(self = [super initWithFrame:frame]){
+        [self TT_getModelArray];
     }
     return self;
 }
@@ -119,7 +153,7 @@
     }
     TT_VideoCommentModel *model = self.dataArray[indexPath.row];
     cell.commentModel = model;
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -151,7 +185,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.textColor = [UIColor blackColor];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = [UIFont systemFontOfSize:13.f];
+        _titleLabel.font = [UIFont systemFontOfSize:16.f weight:UIFontWeightBold];
     }
     return _titleLabel;
 }
@@ -176,7 +210,7 @@
 -(UIView *)TT_CommentFooterView{
     if(!_TT_CommentFooterView){
         _TT_CommentFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.frame) * 0.9, kScreenWidth, CGRectGetHeight(self.frame) * 0.1)];
-        _TT_CommentFooterView.layer.borderColor = [UIColor redColor].CGColor;
+        _TT_CommentFooterView.layer.borderColor = [UIColor grayColor].CGColor;
         _TT_CommentFooterView.layer.borderWidth = 1.f;
     }
     return _TT_CommentFooterView;
@@ -185,7 +219,9 @@
 -(UITableView *)TT_UserCommnetTableView{
     if(!_TT_UserCommnetTableView){
         _TT_UserCommnetTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.TT_UserCommentHeaderView.frame), kScreenWidth, CGRectGetHeight(self.frame) - CGRectGetHeight(self.TT_UserCommentHeaderView.frame)-CGRectGetHeight(self.TT_CommentFooterView.frame)) style:UITableViewStylePlain];
-        
+        _TT_UserCommnetTableView.delegate = self;
+        _TT_UserCommnetTableView.dataSource = self;
+        _TT_UserCommnetTableView.separatorColor = [UIColor whiteColor];
         UINib *userCommentNib = [UINib nibWithNibName:NSStringFromClass([TT_UserCommentTableViewCell class]) bundle:nil];
         [_TT_UserCommnetTableView registerNib:userCommentNib forCellReuseIdentifier:NSStringFromClass([TT_UserCommentTableViewCell class])];
     }
@@ -197,7 +233,6 @@
         _TT_CommentScrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
         _TT_CommentScrollView.delegate = self;
         _TT_CommentScrollView.contentSize = CGSizeMake(kScreenWidth, CGRectGetHeight(self.frame));
-        
     }
     return _TT_CommentScrollView;
 }

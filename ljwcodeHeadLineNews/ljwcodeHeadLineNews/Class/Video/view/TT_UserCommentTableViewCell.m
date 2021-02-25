@@ -9,6 +9,8 @@
 #import "TT_UserCommentTableViewCell.h"
 #import "UIImage+cropPicture.h"
 #import <UIImageView+WebCache.h>
+#import "TT_TimeIntervalConverString.h"
+#import "UILabel+Frame.h"
 
 @interface TT_UserCommentTableViewCell()
 
@@ -32,21 +34,29 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.TT_CommentCountLabel.layer.cornerRadius = 12.f;
+    self.TT_CommentCountLabel.layer.masksToBounds = YES;
+    self.TT_CommentCountLabel.textAlignment = NSTextAlignmentCenter;
+    self.TT_CommentCountLabel.backgroundColor = TT_ColorWithRed(248, 248, 248, 1);
     // Initialization code
 }
 
 -(void)setCommentModel:(TT_VideoCommentModel *)commentModel{
     _commentModel = commentModel;
-    [self.TT_HeadImgView sd_setImageWithURL:[NSURL URLWithString:commentModel.commentDetailModel.user_profile_image_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [self.TT_HeadImgView sd_setImageWithURL:[NSURL URLWithString:commentModel.comment.user_profile_image_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if(image){
             self.TT_HeadImgView.image = [image cropPictureWithRoundedCorner:self.TT_HeadImgView.image.size.width size:self.TT_HeadImgView.frame.size];
         }
     }];
-    [self.TT_LikeBtn setTitle:commentModel.commentDetailModel.digg_count forState:UIControlStateNormal];
-    self.TT_UserInfoLabel.text = commentModel.commentDetailModel.user_name;
-    self.TT_CommentContentLabel.text = commentModel.commentDetailModel.text;
-    self.TT_CommentCountLabel.text = [NSString stringWithFormat:@"%@回复",commentModel.commentDetailModel.reply_count];
-    self.TT_TimeLabel.text = commentModel.commentDetailModel.create_time;
+    if(![commentModel.comment.digg_count isEqualToString:@""]){
+        [self.TT_LikeBtn setTitle:commentModel.comment.digg_count forState:UIControlStateNormal];
+    }else{
+        [self.TT_LikeBtn setTitle:@"赞" forState:UIControlStateNormal];
+    }
+    self.TT_UserInfoLabel.text = commentModel.comment.user_name;
+    self.TT_CommentContentLabel.text = commentModel.comment.text;
+    self.TT_CommentCountLabel.text = [NSString stringWithFormat:@"%@回复",commentModel.comment.reply_count];
+    self.TT_TimeLabel.text = [TT_TimeIntervalConverString TT_converTimeIntervalToString:commentModel.comment.create_time];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

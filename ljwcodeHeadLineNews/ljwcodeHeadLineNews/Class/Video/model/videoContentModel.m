@@ -60,12 +60,6 @@
 
 @implementation video_detail_info
 
--(instancetype)init{
-    if(self = [super init]){
-        
-    }
-    return self;
-}
 
 @end
 

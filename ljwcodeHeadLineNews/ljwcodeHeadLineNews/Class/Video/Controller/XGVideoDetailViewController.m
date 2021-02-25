@@ -167,8 +167,6 @@
     if(!_commentScrollView){
         _commentScrollView = [[TT_UserCommnetScrollView alloc]initWithFrame:self.TTVVideoDetailContainerScrollView.bounds];
         _commentScrollView.backgroundColor = [UIColor whiteColor];
-        _commentScrollView.layer.borderColor = [UIColor blueColor].CGColor;
-        _commentScrollView.layer.borderWidth = 1.f;
     }
     return _commentScrollView;
 }
@@ -209,10 +207,9 @@
 -(UIScrollView *)TTVVideoDetailContainerScrollView{
     if(!_TTVVideoDetailContainerScrollView){
         _TTVVideoDetailContainerScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.playerView.frame), kScreenWidth, kScreenHeight - CGRectGetHeight(self.playerView.frame))];
-        _TTVVideoDetailContainerScrollView.contentSize = CGSizeMake(kScreenWidth, kScreenHeight);
+        _TTVVideoDetailContainerScrollView.contentSize = CGSizeMake(kScreenWidth, kScreenHeight - CGRectGetHeight(self.playerView.frame));
         _TTVVideoDetailContainerScrollView.delegate = self;
-        _TTVVideoDetailContainerScrollView.layer.borderColor = [UIColor blueColor].CGColor;
-        _TTVVideoDetailContainerScrollView.layer.borderWidth = 1.f;
+
     }
     return _TTVVideoDetailContainerScrollView;
 }
