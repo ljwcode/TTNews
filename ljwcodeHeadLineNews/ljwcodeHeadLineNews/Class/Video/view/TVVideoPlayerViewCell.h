@@ -18,9 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)initPlayerView:(TVVideoPlayerViewCell *)cell playClick:(videoContentModel *)model;
 
--(void)TT_commentDetail;
+-(void)TT_commentDetail:(videoContentModel *)model;
 
 -(void)TT_TapPushHandle:(videoContentModel *)model;
+
+-(void)TT_moreHandle;
 
 @end
 

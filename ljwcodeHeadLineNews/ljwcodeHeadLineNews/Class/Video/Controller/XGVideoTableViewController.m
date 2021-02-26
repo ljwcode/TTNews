@@ -17,6 +17,7 @@
 #import "videoDetailCacheDBViewModel.h"
 #import "videoDetailViewModel.h"
 #import "XGVideoDetailViewController.h"
+#import "TTHomeMoreShareVIew.h"
 
 @interface XGVideoTableViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate,UIScrollViewDelegate>
 
@@ -39,6 +40,8 @@
 @property(nonatomic,strong)videoDetailCacheDBViewModel *videoDBViewModel;
 
 @property(nonatomic,strong)videoDetailViewModel *detailViewModel;
+
+@property(nonatomic,strong)XGVideoDetailViewController *videoDetailVC;
 
 @end
 
@@ -132,9 +135,6 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    /*
-     点击视频播放/跳转播放
-     */
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self playTheVideoAtIndexPath:indexPath];
 }
@@ -169,9 +169,21 @@
 
 -(void)converPlayVideoAtIndexPath{
     [FBLPromise do:^id _Nullable{
-        return [self getVideoURL];
+        return [self getVideoURLWithBlock];
     }];
 }
+
+-(FBLPromise *)getVideoURLWithBlock{
+    return [[[FBLPromise do:^id _Nullable{
+        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoContentModel.detailModel.video_detail_info.video_id];
+    }]then:^id _Nullable(id  _Nullable value) {
+        return [self GetVideoParseData:value];
+    }]then:^id _Nullable(id  _Nullable value) {
+        self.videoDetailVC.VideoDetailBlock(value);
+        return value;
+    }];
+}
+
 
 -(FBLPromise *)getVideoURL{
     return [[[FBLPromise do:^id _Nullable{
@@ -179,7 +191,6 @@
     }]then:^id _Nullable(id  _Nullable value) {
         return [self GetVideoParseData:value];
     }]then:^id _Nullable(id  _Nullable value) {
-        NSLog(@"video url = %@",value);
         self.videoURL = value;
         return value;
     }];
@@ -229,20 +240,31 @@
     }];
 }
 
--(void)TT_commentDetail{
-    
+-(void)TT_commentDetail:(videoContentModel *)model{
+    if(self.playerView){
+        [self.playerView pausePlay];
+    }
+    self.videoDetailVC.group_id = model.detailModel.pread_params.group_id;
+    [self converPlayVideoAtIndexPath];
+    [self.navigationController pushViewController:self.videoDetailVC animated:YES];
 }
 
 -(void)TT_TapPushHandle:(videoContentModel *)model{
-    XGVideoDetailViewController *videoDetailVC = [[XGVideoDetailViewController alloc]init];
     if(self.playerView){
-        [self.playerView destroyPlayer];
-        self.playerView = nil;
+        [self.playerView pausePlay];
     }
-    videoDetailVC.group_id = model.detailModel.pread_params.group_id;
+    self.videoDetailVC.group_id = model.detailModel.pread_params.group_id;
     [self converPlayVideoAtIndexPath];
-    videoDetailVC.videoURL = self.videoURL;
-    [self.navigationController pushViewController:videoDetailVC animated:YES];
+    [self.navigationController pushViewController:self.videoDetailVC animated:YES];
+}
+
+-(void)TT_moreHandle{
+    TTHomeMoreShareVIew *moreShareView = [[TTHomeMoreShareVIew alloc]initWithFrame:CGRectMake(0, kScreenHeight * 0.5, kScreenWidth, kScreenHeight * 0.5)];
+    moreShareView.backgroundColor = [UIColor whiteColor];
+    moreShareView.layer.cornerRadius = 8.f;
+    moreShareView.layer.masksToBounds = YES;
+    [[self.view getCurrentWindow] addSubview:moreShareView];
+    
 }
 
 #pragma mark ---- UIScrollview delegate
@@ -302,6 +324,13 @@
 }
 
 #pragma mark ---- lazy load
+
+-(XGVideoDetailViewController *)videoDetailVC{
+    if(!_videoDetailVC){
+        _videoDetailVC = [[XGVideoDetailViewController alloc]init];
+    }
+    return _videoDetailVC;
+}
 
 -(parseVideoRealURLViewModel *)realURLViewModel{
     if(!_realURLViewModel){

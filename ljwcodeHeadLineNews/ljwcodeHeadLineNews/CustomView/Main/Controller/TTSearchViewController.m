@@ -428,7 +428,7 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
                                     [NSIndexPath indexPathForRow:0 inSection:1],
                                     nil];
 //    [self.baseSearchTableView deleteSections:deleteIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.baseSearchTableView deleteSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationFade];
+//    [self.baseSearchTableView deleteSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationFade];
     
 }
 

@@ -17,6 +17,9 @@
 #import "XGVideoDetailRecommendViewModel.h"
 #import "TT_UserCommnetScrollView.h"
 #import "XGVideoCommentViewModel.h"
+#import "TTHomeMoreShareVIew.h"
+#import "TTSearchViewController.h"
+#import <FBLPromises/FBLPromises.h>
 
 @interface  XGVideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,TT_VideoDetailViewDelegate>
 
@@ -64,15 +67,52 @@
         make.left.top.mas_greaterThanOrEqualTo(hSpace);
         make.width.height.mas_equalTo(20);
     }];
+    
+    UIButton *MoreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [MoreBtn setImage:[UIImage imageNamed:@"new_morewhite_titlebar"] forState:UIControlStateNormal];
+    [MoreBtn addTarget:self action:@selector(MoreHandle:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:MoreBtn];
+    [MoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(backBtn);
+        make.right.mas_equalTo(-hSpace);
+        make.width.height.mas_equalTo(20);
+    }];
+    
+    UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [searchBtn setImage:[UIImage imageNamed:@"tsv_overlaytop_search"] forState:UIControlStateNormal];
+    [searchBtn addTarget:self action:@selector(searchHandle:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:searchBtn];
+    [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(MoreBtn);
+        make.right.mas_equalTo(MoreBtn.mas_left).offset(-hSpace * 2);
+        make.width.height.mas_equalTo(20);
+    }];
 }
 
 -(BOOL)prefersStatusBarHidden{
     return YES;
 }
 
+-(FBLPromise *)TT_videoURLBlock{
+    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
+        self.VideoDetailBlock = ^(NSString * _Nonnull videoURL) {
+            fulfill(videoURL);
+        };
+    }];
+}
+
+-(void)TT_getVideoURLToPlay{
+    [[FBLPromise do:^id _Nullable{
+        return [self TT_videoURLBlock];
+    }]then:^id _Nullable(id  _Nullable value) {
+        [self TT_PlayVideo:value];
+        return self.videoURL = value;
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self TT_PlayVideo];
+    [self TT_getVideoURLToPlay];
     [self.TTVVideoDetailContainerScrollView addSubview:self.commentScrollView];
     
     [[self.commentViewModel.ComRacCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
@@ -100,8 +140,7 @@
     // Do any additional setup after loading the view.
 }
 
--(void)TT_PlayVideo{
-    self.playerView = [[TTPlayerView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.3)];
+-(void)TT_PlayVideo:(NSString *)URL{
     [self.view addSubview:self.playerView];
     
     [self.view addSubview:self.TTVVideoDetailContainerScrollView];
@@ -113,7 +152,7 @@
     [self createUI];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.playerView.url = [NSURL URLWithString:self.videoURL];
+        self.playerView.url = [NSURL URLWithString:URL];
         [self.playerView playVideo];
     });
     //返回按钮点击事件回调
@@ -155,6 +194,13 @@
 }
 
 #pragma mark ----- lazy load
+
+-(TTPlayerView *)playerView{
+    if(!_playerView){
+        _playerView = [[TTPlayerView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.3)];
+    }
+    return _playerView;
+}
 
 -(XGVideoCommentViewModel *)commentViewModel{
     if(!_commentViewModel){
@@ -209,7 +255,6 @@
         _TTVVideoDetailContainerScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.playerView.frame), kScreenWidth, kScreenHeight - CGRectGetHeight(self.playerView.frame))];
         _TTVVideoDetailContainerScrollView.contentSize = CGSizeMake(kScreenWidth, kScreenHeight - CGRectGetHeight(self.playerView.frame));
         _TTVVideoDetailContainerScrollView.delegate = self;
-
     }
     return _TTVVideoDetailContainerScrollView;
 }
@@ -255,9 +300,23 @@
 
 
 #pragma mark ------- 响应事件
+
+-(void)MoreHandle:(UIButton *)sender{
+    TTHomeMoreShareVIew *moreShareView = [[TTHomeMoreShareVIew alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.5, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.5)];
+    moreShareView.backgroundColor = [UIColor whiteColor];
+    moreShareView.layer.cornerRadius = 8.f;
+    moreShareView.layer.masksToBounds = YES;
+    [self.view addSubview:moreShareView];
+}
+
+-(void)searchHandle:(UIButton *)sender{
+    TTSearchViewController *searchVC = [[TTSearchViewController alloc]init];
+    [self.navigationController pushViewController:searchVC animated:YES];
+}
+
 -(void)PopHandle:(UIButton *)sender{
     if(self.playerView){
-        [self.playerView destroyPlayer];
+        [self.playerView pausePlay];
         self.playerView = nil;
     }
     [self.navigationController popViewControllerAnimated:YES];

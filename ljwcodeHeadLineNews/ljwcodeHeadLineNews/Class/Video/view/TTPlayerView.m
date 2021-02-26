@@ -101,7 +101,7 @@ typedef NS_ENUM(NSInteger, TTPlayerState) {
 //遮罩
 - (TTPlayerMaskView *) maskView{
     if (!_maskView){
-        _maskView          = [[TTPlayerMaskView alloc] init];
+        _maskView = [[TTPlayerMaskView alloc] init];
         _maskView.delegate = self;
         [_maskView addTarget:self action:@selector(disappearAction:) forControlEvents:UIControlEventTouchUpInside];
         //计时器，循环执行

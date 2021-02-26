@@ -308,13 +308,15 @@
 }
 
 -(void)commentHandle:(UIButton *)sender{
-    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_commentDetail)]){
-        [self.delegate TT_commentDetail];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_commentDetail:)]){
+        [self.delegate TT_commentDetail:self.contentModel];
     }
 }
 
 -(void)moreHandle:(UIButton *)sender{
-    
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_moreHandle)]){
+        [self.delegate TT_moreHandle];
+    }
 }
 
 -(void)setNormalModel{

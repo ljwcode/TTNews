@@ -74,7 +74,8 @@
             [configureBtn setImage:[UIImage imageNamed:self.configureImgArray[i]] forState:UIControlStateNormal];
             configureBtn.titleLabel.font = [UIFont systemFontOfSize:12.f];
             configureBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-            configureBtn.imageEdgeInsets = UIEdgeInsetsMake(-configureBtn.titleLabel.intrinsicContentSize.height/2 - 20, 0, 0, 0);
+            configureBtn.imageEdgeInsets = UIEdgeInsetsMake(-configureBtn.titleLabel.intrinsicContentSize.height, 0, 0, -configureBtn.titleLabel.intrinsicContentSize.width);
+            
             configureBtn.titleEdgeInsets = UIEdgeInsetsMake(configureBtn.imageView.intrinsicContentSize.height, -configureBtn.imageView.intrinsicContentSize.width, 0, 0);
             configureBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
             [self.configureMenuScrollView addSubview:configureBtn];
@@ -85,8 +86,6 @@
                 make.width.mas_equalTo(kMenuWidth);
                 make.height.mas_equalTo(kMenuHeight);
             }];
-            configureBtn.layer.borderColor = [UIColor redColor].CGColor;
-            configureBtn.layer.borderWidth = 2.f;
         }
         
         [self addSubview:self.footerView];
@@ -114,7 +113,7 @@
 -(UIScrollView *)menuScrollView{
     if(!_menuScrollView){
         _menuScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, CGRectGetHeight(self.frame) * 0.4)];
-        _menuScrollView.backgroundColor = [UIColor colorWithRed:235.0/255.0 green:249.0/255.0 blue:233.0/255.0 alpha:1];
+        _menuScrollView.backgroundColor = TT_ColorWithRed(248, 248, 248, 1);
         _menuScrollView.delegate = self;
         _menuScrollView.contentSize = CGSizeMake(kMenuWidth * 9 + hSpace * 10, CGRectGetHeight(self.frame) * 0.3);
         _menuScrollView.showsVerticalScrollIndicator = NO;
@@ -128,14 +127,14 @@
 
 -(NSArray *)titleArray{
     if(!_titleArray){
-        _titleArray = [NSArray arrayWithObjects:@"转发到头条",@"截图分享",@"微信",@"朋友圈",@"QQ",@"QQ空间",@"私信",@"系统分享",@"复制链接", nil];
+        _titleArray = [NSArray arrayWithObjects:@"转发到头条",@"微信",@"朋友圈",@"QQ",@"QQ空间",@"私信",@"系统分享",@"复制链接", nil];
     }
     return _titleArray;
 }
 
 -(NSArray *)ImgArray{
     if(!_ImgArray){
-        _ImgArray = [NSArray arrayWithObjects:@"avatar_toutiao",@"avatar_toutiao",@"weixin_newShare",@"pyq_newShare",@"qq_newShare",@"qqkj_newShare",@"mail_allshare",@"airdrop_newShare",@"copy_newShare", nil];
+        _ImgArray = [NSArray arrayWithObjects:@"avatar_toutiao",@"weixin_newShare",@"pyq_newShare",@"qq_newShare",@"qqkj_newShare",@"mail_allshare",@"airdrop_newShare",@"copy_newShare", nil];
     }
     return _ImgArray;
 }
@@ -143,9 +142,9 @@
 -(UIScrollView *)configureMenuScrollView{
     if(!_configureMenuScrollView){
         _configureMenuScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.menuScrollView.frame)+2, kScreenWidth, CGRectGetHeight(self.menuScrollView.frame))];
-        _configureMenuScrollView.backgroundColor = [UIColor colorWithRed:235.0/255.0 green:249.0/255.0 blue:233.0/255.0 alpha:1];
+        _configureMenuScrollView.backgroundColor = TT_ColorWithRed(248, 248, 248, 0.5);
         _configureMenuScrollView.delegate = self;
-        _configureMenuScrollView.contentSize = CGSizeMake(kScreenWidth * 1.2 , CGRectGetHeight(self.menuScrollView.frame));
+        _configureMenuScrollView.contentSize = CGSizeMake(self.configureImgArray.count * kMenuWidth , CGRectGetHeight(self.menuScrollView.frame));
         _configureMenuScrollView.showsVerticalScrollIndicator = NO;
         _configureMenuScrollView.showsHorizontalScrollIndicator = NO;
         _configureMenuScrollView.bounces = NO;
@@ -171,7 +170,7 @@
 
 -(NSArray *)configureImgArray{
     if(!_configureImgArray){
-        _configureImgArray = [NSArray arrayWithObjects:@"ugc_icon_report",@"icon_details_collect",@"nighticon_profile",@"font-size-2", nil];
+        _configureImgArray = [NSArray arrayWithObjects:@"ugc_icon_report",@"tab_collect",@"night",@"font-size-2", nil];
     }
     return _configureImgArray;
 }

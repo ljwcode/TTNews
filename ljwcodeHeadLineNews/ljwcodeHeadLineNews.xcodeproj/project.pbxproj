@@ -33,6 +33,7 @@
 		631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC92D25483D8D001B82AB /* NetWorkConfigureViewController.m */; };
 		631CFA6824E5276A0082B941 /* focusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA6724E5276A0082B941 /* focusViewController.m */; };
 		631CFA7124E567250082B941 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631CFA7024E567240082B941 /* MessageViewController.m */; };
+		632251AE25E8952000CE8D96 /* VideoDetail in Resources */ = {isa = PBXBuildFile; fileRef = 632251AD25E8952000CE8D96 /* VideoDetail */; };
 		6322ED3725AEC91F00D01578 /* TT_tabBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6322ED3625AEC91F00D01578 /* TT_tabBarViewModel.m */; };
 		63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63231B9024A08F110059FD5F /* TTNavigationBar.m */; };
 		6325352125C7E7BD005007A0 /* TTVideoDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6325352025C7E7BD005007A0 /* TTVideoDetailView.m */; };
@@ -62,7 +63,6 @@
 		634518F125BAB27E00782DA6 /* UILabel+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 634518F025BAB27E00782DA6 /* UILabel+Frame.m */; };
 		6345190525BABAD300782DA6 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6345190425BABAD300782DA6 /* SettingViewController.m */; };
 		634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */; };
-		634AF04A254C20580013EE56 /* articlev60.html in Resources */ = {isa = PBXBuildFile; fileRef = 634AF049254C20580013EE56 /* articlev60.html */; };
 		634DA02D25A45C4200236458 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 634DA02C25A45C4200236458 /* Settings.bundle */; };
 		634DA04325A48C0800236458 /* TTSystemConfigureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 634DA04225A48C0800236458 /* TTSystemConfigureHelper.m */; };
 		634ECB092576416200DBCC15 /* TTArticleSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 634ECB082576416200DBCC15 /* TTArticleSearchCell.m */; };
@@ -232,6 +232,7 @@
 		631CFA6724E5276A0082B941 /* focusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = focusViewController.m; sourceTree = "<group>"; };
 		631CFA6F24E567240082B941 /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		631CFA7024E567240082B941 /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		632251AD25E8952000CE8D96 /* VideoDetail */ = {isa = PBXFileReference; lastKnownFileType = text; path = VideoDetail; sourceTree = "<group>"; };
 		6322ED3525AEC91F00D01578 /* TT_tabBarViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_tabBarViewModel.h; sourceTree = "<group>"; };
 		6322ED3625AEC91F00D01578 /* TT_tabBarViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_tabBarViewModel.m; sourceTree = "<group>"; };
 		63231B8F24A08F110059FD5F /* TTNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNavigationBar.h; sourceTree = "<group>"; };
@@ -284,7 +285,6 @@
 		6345190425BABAD300782DA6 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		634A581324BD9B7D00CDF423 /* baseBadgeLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseBadgeLabel.h; sourceTree = "<group>"; };
 		634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseBadgeLabel.m; sourceTree = "<group>"; };
-		634AF049254C20580013EE56 /* articlev60.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = articlev60.html; sourceTree = "<group>"; };
 		634DA02C25A45C4200236458 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		634DA04125A48C0800236458 /* TTSystemConfigureHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTSystemConfigureHelper.h; sourceTree = "<group>"; };
 		634DA04225A48C0800236458 /* TTSystemConfigureHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSystemConfigureHelper.m; sourceTree = "<group>"; };
@@ -762,7 +762,6 @@
 		634AF048254C203F0013EE56 /* ios_asset */ = {
 			isa = PBXGroup;
 			children = (
-				634AF049254C20580013EE56 /* articlev60.html */,
 			);
 			path = ios_asset;
 			sourceTree = "<group>";
@@ -1136,6 +1135,7 @@
 				635BB45325DFC5E300449953 /* TT_VideoDetailModel.m */,
 				63D8AE7825E5059800AFD1A4 /* TT_VideoCommentModel.h */,
 				63D8AE7925E5059800AFD1A4 /* TT_VideoCommentModel.m */,
+				632251AD25E8952000CE8D96 /* VideoDetail */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1400,7 +1400,7 @@
 				63A3130325C9060500AF1056 /* TTRecommandVideoTableViewCell.xib in Resources */,
 				63265C4B256F9FF100AACBC6 /* TTChannelMyHeaderView.xib in Resources */,
 				63265C4E256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib in Resources */,
-				634AF04A254C20580013EE56 /* articlev60.html in Resources */,
+				632251AE25E8952000CE8D96 /* VideoDetail in Resources */,
 				633368E225761AC900F47A91 /* TTArticleSearchTagCell.xib in Resources */,
 				949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */,
 				6390EEBC2589B3670081093E /* LICENSE in Resources */,
