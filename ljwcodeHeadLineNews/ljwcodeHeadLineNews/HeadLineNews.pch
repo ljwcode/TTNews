@@ -14,6 +14,7 @@
 #import "TTFontSizeChangeHeader.h"
 #import "TTChangeFontViewController.h"
 #import "TTScreen.h"
+#import <MJRefresh/MJRefresh.h>
 
 #ifndef ljwcodeHeadLineNews_h
 #define ljwcodeHeadLineNews_h
@@ -94,5 +95,7 @@
 #define TT_ScreenScale [[UIScreen mainScreen] scale]
 
 #define TT_XGVideoPOSTGroup_ID @"XGVideoPostGroupID"
+
+#define TT_HomeStopRefresh @"TT_HomeStopRefresh"
 
 #endif /* ljwcodeHeadLineNews_h */

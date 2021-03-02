@@ -7,7 +7,6 @@
 //
 
 #import "ScreenHallVideoDetailViewController.h"
-#import "TTHeader.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "videoContentViewModel.h"
 

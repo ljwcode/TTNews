@@ -7,7 +7,6 @@
 //
 
 #import "videoContentViewModel.h"
-#import "TTHeader.h"
 #import "videoContentRequestModel.h"
 #import <MJExtension.h>
 #import "videoContentModel.h"

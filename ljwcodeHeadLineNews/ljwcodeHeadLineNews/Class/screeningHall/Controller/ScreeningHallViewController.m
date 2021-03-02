@@ -7,7 +7,6 @@
 //
 
 #import "ScreeningHallViewController.h"
-#import "TTHeader.h"
 #import "videoTitleViewModel.h"
 #import "videoTitleModel.h"
 //#import "ScreenHallXGVideoDetailViewController.h"

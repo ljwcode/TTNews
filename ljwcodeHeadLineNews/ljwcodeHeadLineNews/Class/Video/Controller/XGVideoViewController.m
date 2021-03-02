@@ -7,7 +7,6 @@
 //
 
 #import "XGVideoViewController.h"
-#import "TTHeader.h"
 #import "videoTitleViewModel.h"
 #import "XGVideoTableViewController.h"
 #import "videoTitleModel.h"

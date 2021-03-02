@@ -9,7 +9,6 @@
 #import "XGVideoTableViewController.h"
 #import "TVVideoPlayerViewCell.h"
 #import "videoContentViewModel.h"
-#import "TTHeader.h"
 #import <FBLPromises/FBLPromises.h>
 #import <FBLPromises/FBLPromise.h>
 #import "parseVideoRealURLViewModel.h"

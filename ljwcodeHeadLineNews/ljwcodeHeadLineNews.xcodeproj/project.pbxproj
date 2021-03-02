@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		630131F125CBE6DE00DC0391 /* TT_requestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 630131F025CBE6DE00DC0391 /* TT_requestModel.m */; };
 		6302B4D625A9B35E00818EBB /* TT_CustomerTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6302B4D525A9B35E00818EBB /* TT_CustomerTabBar.m */; };
 		6305043A256525B000CB910D /* TTReportArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63050439256525B000CB910D /* TTReportArticleView.m */; };
 		630A976624CFC463003029C3 /* countryCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A976424CFC462003029C3 /* countryCodeView.m */; };
@@ -17,7 +16,6 @@
 		63167AB324AB6091002CB4EF /* homeNewsRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AB224AB6091002CB4EF /* homeNewsRequestModel.m */; };
 		63167AB624AB6182002CB4EF /* homeNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AB524AB6182002CB4EF /* homeNewsModel.m */; };
 		63167BA02569170200B967B2 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167B9F2569170200B967B2 /* UIView+Frame.m */; };
-		631BAEE8249B63D700639CD2 /* UITabBar+TTTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BAEE7249B63D700639CD2 /* UITabBar+TTTabBarItem.m */; };
 		631BAEEB249B751D00639CD2 /* TTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BAEEA249B751D00639CD2 /* TTNavigationController.m */; };
 		631BC8FF25481893001B82AB /* UINavigationBar+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC8FE25481893001B82AB /* UINavigationBar+ThemeChange.m */; };
 		631BC903254818AE001B82AB /* UITableView+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 631BC902254818AE001B82AB /* UITableView+ThemeChange.m */; };
@@ -41,7 +39,6 @@
 		63265C4B256F9FF100AACBC6 /* TTChannelMyHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63265C4A256F9FF100AACBC6 /* TTChannelMyHeaderView.xib */; };
 		63265C4E256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63265C4D256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib */; };
 		6328F611249DEA8C00C767A8 /* TTEmitterHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F610249DEA8C00C767A8 /* TTEmitterHelper.m */; };
-		6328F614249E111F00C767A8 /* TTHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6328F613249E111F00C767A8 /* TTHeader.m */; };
 		6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 820978F21BD3A37700CF9D0C /* Assets.xcassets */; };
 		633368E125761AC900F47A91 /* TTArticleSearchTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 633368DF25761AC900F47A91 /* TTArticleSearchTagCell.m */; };
 		633368E225761AC900F47A91 /* TTArticleSearchTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 633368E025761AC900F47A91 /* TTArticleSearchTagCell.xib */; };
@@ -62,12 +59,10 @@
 		63422C5E24A88F020091FEE1 /* channelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 63422C5D24A88F020091FEE1 /* channelButton.m */; };
 		634518F125BAB27E00782DA6 /* UILabel+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 634518F025BAB27E00782DA6 /* UILabel+Frame.m */; };
 		6345190525BABAD300782DA6 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6345190425BABAD300782DA6 /* SettingViewController.m */; };
-		634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */; };
 		634DA02D25A45C4200236458 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 634DA02C25A45C4200236458 /* Settings.bundle */; };
 		634DA04325A48C0800236458 /* TTSystemConfigureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 634DA04225A48C0800236458 /* TTSystemConfigureHelper.m */; };
 		634ECB092576416200DBCC15 /* TTArticleSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 634ECB082576416200DBCC15 /* TTArticleSearchCell.m */; };
 		634ECB0D25764A6500DBCC15 /* TTArticleSearchInboxFourWordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 634ECB0C25764A6500DBCC15 /* TTArticleSearchInboxFourWordsCell.m */; };
-		634ECB112576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 634ECB102576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.m */; };
 		6352492125442980009AECF2 /* QRCodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6352492025442980009AECF2 /* QRCodeManager.m */; };
 		63524924254429DD009AECF2 /* QRCodePreviewVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 63524923254429DD009AECF2 /* QRCodePreviewVIew.m */; };
 		6352492725442F76009AECF2 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6352492625442F76009AECF2 /* QRCodeViewController.m */; };
@@ -91,9 +86,14 @@
 		637C5C0A24A35C0800D7C0E0 /* TTBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637C5C0924A35C0800D7C0E0 /* TTBaseViewModel.m */; };
 		637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 637E3CA624C7E65200FA5447 /* AreaCode.plist */; };
 		638481EC24BEEB85002F4C5F /* XGVideoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638481EB24BEEB85002F4C5F /* XGVideoTableViewController.m */; };
+		63879C4E25EDE534001DE258 /* TTArticleSearchInboxFourWordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63879C4825EDE534001DE258 /* TTArticleSearchInboxFourWordsModel.m */; };
+		63879C4F25EDE534001DE258 /* TT_requestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63879C4C25EDE534001DE258 /* TT_requestModel.m */; };
+		63879C5025EDE534001DE258 /* TTSearchSuggestionRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63879C4D25EDE534001DE258 /* TTSearchSuggestionRequestModel.m */; };
+		63879C6625EE11F3001DE258 /* TT_recommendSearchKeywordRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63879C6525EE11F3001DE258 /* TT_recommendSearchKeywordRequestModel.m */; };
+		63879C6A25EE14B5001DE258 /* TT_RecommendSearchKeywordViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63879C6925EE14B5001DE258 /* TT_RecommendSearchKeywordViewModel.m */; };
+		63879C6E25EE1A0D001DE258 /* TT_RecKeywordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63879C6D25EE1A0D001DE258 /* TT_RecKeywordModel.m */; };
 		638A1A5C25778BA00002F50B /* TTArticleSearchWordViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 638A1A5B25778BA00002F50B /* TTArticleSearchWordViewModel.m */; };
 		638D3ECD25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 638D3ECC25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.m */; };
-		638E977424CAB4A4005ADF42 /* TTMineNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977324CAB4A4005ADF42 /* TTMineNavigationController.m */; };
 		638E977D24CADB90005ADF42 /* commonSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977C24CADB90005ADF42 /* commonSettingTableViewCell.m */; };
 		638E978024CAF04B005ADF42 /* moreSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 638E977F24CAF04B005ADF42 /* moreSettingTableViewCell.m */; };
 		6390EEBC2589B3670081093E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6390EEB32589B3670081093E /* LICENSE */; };
@@ -151,7 +151,6 @@
 		63DEE600254AC12200D356D4 /* TTCheckNetWorkStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DEE5FF254AC12200D356D4 /* TTCheckNetWorkStatus.m */; };
 		63E26EA125C2DC070045CFDB /* TT_TimeIntervalConverString.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E26EA025C2DC070045CFDB /* TT_TimeIntervalConverString.m */; };
 		63E6CB5E24C02CE800E0126C /* TTSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E6CB5D24C02CE800E0126C /* TTSearchViewController.m */; };
-		63E7177324F9F430003A690E /* TTSearchSuggestionRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */; };
 		63E8079924FD218A00C58406 /* showAllMsgChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8079824FD218A00C58406 /* showAllMsgChannelView.m */; };
 		63E8C373256796E100F69701 /* TTWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C372256796E100F69701 /* TTWebView.m */; };
 		63E8C3782567B29600F69701 /* TTHomeMoreShareVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C3772567B29600F69701 /* TTHomeMoreShareVIew.m */; };
@@ -184,8 +183,6 @@
 
 /* Begin PBXFileReference section */
 		293C19CEC52458542FCA55CC /* Pods-ljwcodeHeadLineNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.release.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.release.xcconfig"; sourceTree = "<group>"; };
-		630131EF25CBE6DE00DC0391 /* TT_requestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_requestModel.h; sourceTree = "<group>"; };
-		630131F025CBE6DE00DC0391 /* TT_requestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_requestModel.m; sourceTree = "<group>"; };
 		6302B4D425A9B35E00818EBB /* TT_CustomerTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_CustomerTabBar.h; sourceTree = "<group>"; };
 		6302B4D525A9B35E00818EBB /* TT_CustomerTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_CustomerTabBar.m; sourceTree = "<group>"; };
 		63050438256525B000CB910D /* TTReportArticleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTReportArticleView.h; sourceTree = "<group>"; };
@@ -204,8 +201,6 @@
 		63167AB524AB6182002CB4EF /* homeNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsModel.m; sourceTree = "<group>"; };
 		63167B9E2569170200B967B2 /* UIView+Frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		63167B9F2569170200B967B2 /* UIView+Frame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
-		631BAEE6249B63D700639CD2 /* UITabBar+TTTabBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+TTTabBarItem.h"; sourceTree = "<group>"; };
-		631BAEE7249B63D700639CD2 /* UITabBar+TTTabBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+TTTabBarItem.m"; sourceTree = "<group>"; };
 		631BAEE9249B751D00639CD2 /* TTNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNavigationController.h; sourceTree = "<group>"; };
 		631BAEEA249B751D00639CD2 /* TTNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTNavigationController.m; sourceTree = "<group>"; };
 		631BC8FD25481893001B82AB /* UINavigationBar+ThemeChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+ThemeChange.h"; sourceTree = "<group>"; };
@@ -245,8 +240,6 @@
 		63265C4D256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTChannelRecommendHeaderView.xib; sourceTree = "<group>"; };
 		6328F60F249DEA8C00C767A8 /* TTEmitterHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTEmitterHelper.h; sourceTree = "<group>"; };
 		6328F610249DEA8C00C767A8 /* TTEmitterHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTEmitterHelper.m; sourceTree = "<group>"; };
-		6328F612249E111F00C767A8 /* TTHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTHeader.h; sourceTree = "<group>"; };
-		6328F613249E111F00C767A8 /* TTHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTHeader.m; sourceTree = "<group>"; };
 		633368DE25761AC900F47A91 /* TTArticleSearchTagCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTArticleSearchTagCell.h; sourceTree = "<group>"; };
 		633368DF25761AC900F47A91 /* TTArticleSearchTagCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTArticleSearchTagCell.m; sourceTree = "<group>"; };
 		633368E025761AC900F47A91 /* TTArticleSearchTagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TTArticleSearchTagCell.xib; sourceTree = "<group>"; };
@@ -283,8 +276,6 @@
 		634518EF25BAB27E00782DA6 /* UILabel+Frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Frame.h"; sourceTree = "<group>"; };
 		634518F025BAB27E00782DA6 /* UILabel+Frame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Frame.m"; sourceTree = "<group>"; };
 		6345190425BABAD300782DA6 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		634A581324BD9B7D00CDF423 /* baseBadgeLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseBadgeLabel.h; sourceTree = "<group>"; };
-		634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseBadgeLabel.m; sourceTree = "<group>"; };
 		634DA02C25A45C4200236458 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		634DA04125A48C0800236458 /* TTSystemConfigureHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTSystemConfigureHelper.h; sourceTree = "<group>"; };
 		634DA04225A48C0800236458 /* TTSystemConfigureHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSystemConfigureHelper.m; sourceTree = "<group>"; };
@@ -292,8 +283,6 @@
 		634ECB082576416200DBCC15 /* TTArticleSearchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTArticleSearchCell.m; sourceTree = "<group>"; };
 		634ECB0B25764A6500DBCC15 /* TTArticleSearchInboxFourWordsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTArticleSearchInboxFourWordsCell.h; sourceTree = "<group>"; };
 		634ECB0C25764A6500DBCC15 /* TTArticleSearchInboxFourWordsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTArticleSearchInboxFourWordsCell.m; sourceTree = "<group>"; };
-		634ECB0F2576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTArticleSearchInboxFourWordsModel.h; sourceTree = "<group>"; };
-		634ECB102576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTArticleSearchInboxFourWordsModel.m; sourceTree = "<group>"; };
 		6352491F25442980009AECF2 /* QRCodeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodeManager.h; sourceTree = "<group>"; };
 		6352492025442980009AECF2 /* QRCodeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeManager.m; sourceTree = "<group>"; };
 		63524922254429DD009AECF2 /* QRCodePreviewVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodePreviewVIew.h; sourceTree = "<group>"; };
@@ -339,12 +328,22 @@
 		637E3CA624C7E65200FA5447 /* AreaCode.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = AreaCode.plist; sourceTree = "<group>"; };
 		638481EA24BEEB85002F4C5F /* XGVideoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGVideoTableViewController.h; sourceTree = "<group>"; };
 		638481EB24BEEB85002F4C5F /* XGVideoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGVideoTableViewController.m; sourceTree = "<group>"; };
+		63879C4825EDE534001DE258 /* TTArticleSearchInboxFourWordsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTArticleSearchInboxFourWordsModel.m; sourceTree = "<group>"; };
+		63879C4925EDE534001DE258 /* TT_requestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TT_requestModel.h; sourceTree = "<group>"; };
+		63879C4A25EDE534001DE258 /* TTSearchSuggestionRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSearchSuggestionRequestModel.h; sourceTree = "<group>"; };
+		63879C4B25EDE534001DE258 /* TTArticleSearchInboxFourWordsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTArticleSearchInboxFourWordsModel.h; sourceTree = "<group>"; };
+		63879C4C25EDE534001DE258 /* TT_requestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TT_requestModel.m; sourceTree = "<group>"; };
+		63879C4D25EDE534001DE258 /* TTSearchSuggestionRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSearchSuggestionRequestModel.m; sourceTree = "<group>"; };
+		63879C6425EE11F3001DE258 /* TT_recommendSearchKeywordRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_recommendSearchKeywordRequestModel.h; sourceTree = "<group>"; };
+		63879C6525EE11F3001DE258 /* TT_recommendSearchKeywordRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_recommendSearchKeywordRequestModel.m; sourceTree = "<group>"; };
+		63879C6825EE14B5001DE258 /* TT_RecommendSearchKeywordViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_RecommendSearchKeywordViewModel.h; sourceTree = "<group>"; };
+		63879C6925EE14B5001DE258 /* TT_RecommendSearchKeywordViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_RecommendSearchKeywordViewModel.m; sourceTree = "<group>"; };
+		63879C6C25EE1A0D001DE258 /* TT_RecKeywordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_RecKeywordModel.h; sourceTree = "<group>"; };
+		63879C6D25EE1A0D001DE258 /* TT_RecKeywordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_RecKeywordModel.m; sourceTree = "<group>"; };
 		638A1A5A25778BA00002F50B /* TTArticleSearchWordViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTArticleSearchWordViewModel.h; sourceTree = "<group>"; };
 		638A1A5B25778BA00002F50B /* TTArticleSearchWordViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTArticleSearchWordViewModel.m; sourceTree = "<group>"; };
 		638D3ECB25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_ClickHightLightTableViewCell.h; sourceTree = "<group>"; };
 		638D3ECC25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_ClickHightLightTableViewCell.m; sourceTree = "<group>"; };
-		638E977224CAB4A4005ADF42 /* TTMineNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTMineNavigationController.h; sourceTree = "<group>"; };
-		638E977324CAB4A4005ADF42 /* TTMineNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTMineNavigationController.m; sourceTree = "<group>"; };
 		638E977B24CADB90005ADF42 /* commonSettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = commonSettingTableViewCell.h; sourceTree = "<group>"; };
 		638E977C24CADB90005ADF42 /* commonSettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = commonSettingTableViewCell.m; sourceTree = "<group>"; };
 		638E977E24CAF04B005ADF42 /* moreSettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moreSettingTableViewCell.h; sourceTree = "<group>"; };
@@ -454,8 +453,6 @@
 		63E26EA025C2DC070045CFDB /* TT_TimeIntervalConverString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_TimeIntervalConverString.m; sourceTree = "<group>"; };
 		63E6CB5C24C02CE800E0126C /* TTSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTSearchViewController.h; sourceTree = "<group>"; };
 		63E6CB5D24C02CE800E0126C /* TTSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSearchViewController.m; sourceTree = "<group>"; };
-		63E7177124F9F430003A690E /* TTSearchSuggestionRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TTSearchSuggestionRequestModel.h; path = ljwcodeHeadLineNews/Class/Base/model/TTSearchSuggestionRequestModel.h; sourceTree = SOURCE_ROOT; };
-		63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TTSearchSuggestionRequestModel.m; path = ljwcodeHeadLineNews/Class/Base/model/TTSearchSuggestionRequestModel.m; sourceTree = SOURCE_ROOT; };
 		63E8079724FD218A00C58406 /* showAllMsgChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showAllMsgChannelView.h; sourceTree = "<group>"; };
 		63E8079824FD218A00C58406 /* showAllMsgChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showAllMsgChannelView.m; sourceTree = "<group>"; };
 		63E8C371256796E100F69701 /* TTWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTWebView.h; sourceTree = "<group>"; };
@@ -603,22 +600,10 @@
 			path = TTCustomerTabBar;
 			sourceTree = "<group>";
 		};
-		63265C2D256F5DA200AACBC6 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				634ECB0F2576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.h */,
-				634ECB102576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.m */,
-				63E7177124F9F430003A690E /* TTSearchSuggestionRequestModel.h */,
-				63E7177224F9F430003A690E /* TTSearchSuggestionRequestModel.m */,
-				630131EF25CBE6DE00DC0391 /* TT_requestModel.h */,
-				630131F025CBE6DE00DC0391 /* TT_requestModel.m */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
 		6328F60B249DABDA00C767A8 /* ljwcodeTools */ = {
 			isa = PBXGroup;
 			children = (
+				637C2D2D24A9D1120009274C /* headLineNewsNetwork */,
 				63BE334E254815DB00607EBA /* Category */,
 				6302B4D325A9B32000818EBB /* UITabBar */,
 				63D835FF25A86A52005DB303 /* UILabel */,
@@ -690,8 +675,6 @@
 				820979271BD3B28700CF9D0C /* TTTabBarController.m */,
 				631BAEE9249B751D00639CD2 /* TTNavigationController.h */,
 				631BAEEA249B751D00639CD2 /* TTNavigationController.m */,
-				638E977224CAB4A4005ADF42 /* TTMineNavigationController.h */,
-				638E977324CAB4A4005ADF42 /* TTMineNavigationController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -862,8 +845,6 @@
 		637C5C0624A35B6C00D7C0E0 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				634A581324BD9B7D00CDF423 /* baseBadgeLabel.h */,
-				634A581424BD9B7D00CDF423 /* baseBadgeLabel.m */,
 				63050438256525B000CB910D /* TTReportArticleView.h */,
 				63050439256525B000CB910D /* TTReportArticleView.m */,
 			);
@@ -879,8 +860,27 @@
 				638A1A5B25778BA00002F50B /* TTArticleSearchWordViewModel.m */,
 				63BF78EF2594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.h */,
 				63BF78F02594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m */,
+				63879C6825EE14B5001DE258 /* TT_RecommendSearchKeywordViewModel.h */,
+				63879C6925EE14B5001DE258 /* TT_RecommendSearchKeywordViewModel.m */,
 			);
 			path = viewModel;
+			sourceTree = "<group>";
+		};
+		63879C4725EDE534001DE258 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				63879C4925EDE534001DE258 /* TT_requestModel.h */,
+				63879C4C25EDE534001DE258 /* TT_requestModel.m */,
+				63879C4825EDE534001DE258 /* TTArticleSearchInboxFourWordsModel.m */,
+				63879C4B25EDE534001DE258 /* TTArticleSearchInboxFourWordsModel.h */,
+				63879C4A25EDE534001DE258 /* TTSearchSuggestionRequestModel.h */,
+				63879C4D25EDE534001DE258 /* TTSearchSuggestionRequestModel.m */,
+				63879C6425EE11F3001DE258 /* TT_recommendSearchKeywordRequestModel.h */,
+				63879C6525EE11F3001DE258 /* TT_recommendSearchKeywordRequestModel.m */,
+				63879C6C25EE1A0D001DE258 /* TT_RecKeywordModel.h */,
+				63879C6D25EE1A0D001DE258 /* TT_RecKeywordModel.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		6390EEB12589B3670081093E /* DZNEmptyDataSet */ = {
@@ -1200,7 +1200,8 @@
 			children = (
 				63422BBA24A838720091FEE1 /* 3rd */,
 				6328F60B249DABDA00C767A8 /* ljwcodeTools */,
-				820979241BD3B1CC00CF9D0C /* CustomView */,
+				820979251BD3B1CC00CF9D0C /* Main */,
+				820979241BD3B1CC00CF9D0C /* Base */,
 				820978FD1BD3A94100CF9D0C /* Class */,
 				820978E91BD3A37700CF9D0C /* AppDelegate.h */,
 				820978EA1BD3A37700CF9D0C /* AppDelegate.m */,
@@ -1223,25 +1224,12 @@
 		820978FD1BD3A94100CF9D0C /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				637C2D2D24A9D1120009274C /* headLineNewsNetwork */,
-				820979041BD3AA9400CF9D0C /* Base */,
 				820979081BD3AB0600CF9D0C /* Home */,
 				820979091BD3AB0600CF9D0C /* screeningHall */,
 				8209790A1BD3AB0600CF9D0C /* mine */,
 				8209790C1BD3AB0600CF9D0C /* Video */,
 			);
 			path = Class;
-			sourceTree = "<group>";
-		};
-		820979041BD3AA9400CF9D0C /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				63265C2D256F5DA200AACBC6 /* model */,
-				637C5C0724A35B7B00D7C0E0 /* viewModel */,
-				637C5C0624A35B6C00D7C0E0 /* view */,
-				94A4A6E724A252CF002A6CA3 /* viewController */,
-			);
-			path = Base;
 			sourceTree = "<group>";
 		};
 		820979081BD3AB0600CF9D0C /* Home */ = {
@@ -1299,12 +1287,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		820979241BD3B1CC00CF9D0C /* CustomView */ = {
+		820979241BD3B1CC00CF9D0C /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				820979251BD3B1CC00CF9D0C /* Main */,
+				63879C4725EDE534001DE258 /* model */,
+				637C5C0724A35B7B00D7C0E0 /* viewModel */,
+				637C5C0624A35B6C00D7C0E0 /* view */,
+				94A4A6E724A252CF002A6CA3 /* viewController */,
 			);
-			path = CustomView;
+			path = Base;
 			sourceTree = "<group>";
 		};
 		820979251BD3B1CC00CF9D0C /* Main */ = {
@@ -1314,10 +1305,6 @@
 				633368DC25761A5600F47A91 /* viewModel */,
 				633368DB25761A4D00F47A91 /* Model */,
 				633368DA25761A4300F47A91 /* view */,
-				631BAEE6249B63D700639CD2 /* UITabBar+TTTabBarItem.h */,
-				631BAEE7249B63D700639CD2 /* UITabBar+TTTabBarItem.m */,
-				6328F612249E111F00C767A8 /* TTHeader.h */,
-				6328F613249E111F00C767A8 /* TTHeader.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1469,14 +1456,13 @@
 				634ECB0D25764A6500DBCC15 /* TTArticleSearchInboxFourWordsCell.m in Sources */,
 				637C5C0A24A35C0800D7C0E0 /* TTBaseViewModel.m in Sources */,
 				63167AB324AB6091002CB4EF /* homeNewsRequestModel.m in Sources */,
-				631BAEE8249B63D700639CD2 /* UITabBar+TTTabBarItem.m in Sources */,
+				63879C5025EDE534001DE258 /* TTSearchSuggestionRequestModel.m in Sources */,
 				63E6CB5E24C02CE800E0126C /* TTSearchViewController.m in Sources */,
 				633368E125761AC900F47A91 /* TTArticleSearchTagCell.m in Sources */,
 				638481EC24BEEB85002F4C5F /* XGVideoTableViewController.m in Sources */,
 				63F6751F254C22DC009F9AB7 /* TTShowShareConfigureView.m in Sources */,
 				631BC92A25482A9A001B82AB /* clearCacheTools.m in Sources */,
 				6390EEBD2589B3670081093E /* UIScrollView+EmptyDataSet.m in Sources */,
-				630131F125CBE6DE00DC0391 /* TT_requestModel.m in Sources */,
 				63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */,
 				631CFA7124E567250082B941 /* MessageViewController.m in Sources */,
 				6345190525BABAD300782DA6 /* SettingViewController.m in Sources */,
@@ -1501,6 +1487,7 @@
 				63422BE024A839960091FEE1 /* WMMenuItem.m in Sources */,
 				949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */,
 				63F1F8E224AF315E00D687ED /* videoContentModel.m in Sources */,
+				63879C4F25EDE534001DE258 /* TT_requestModel.m in Sources */,
 				63422BE324A839960091FEE1 /* WMProgressView.m in Sources */,
 				63F1F8EA24AF3A3500D687ED /* videoContentViewModel.m in Sources */,
 				631BC918254819AA001B82AB /* TTThemeManager.m in Sources */,
@@ -1515,6 +1502,7 @@
 				637C2D3024A9D1600009274C /* TTNetworkBaseModel.m in Sources */,
 				630A976624CFC463003029C3 /* countryCodeView.m in Sources */,
 				63B07BF224A1DD5600C7CD6F /* homeNewsTableViewCell.m in Sources */,
+				63879C6625EE11F3001DE258 /* TT_recommendSearchKeywordRequestModel.m in Sources */,
 				637C2D2924A9CDE30009274C /* homeTitleModel.m in Sources */,
 				63722D0724F63E8B000121AD /* NSData+CRC32.m in Sources */,
 				820979101BD3AB2800CF9D0C /* homeViewController.m in Sources */,
@@ -1533,6 +1521,7 @@
 				63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */,
 				63D8AE7A25E5059800AFD1A4 /* TT_VideoCommentModel.m in Sources */,
 				63DEE600254AC12200D356D4 /* TTCheckNetWorkStatus.m in Sources */,
+				63879C6E25EE1A0D001DE258 /* TT_RecKeywordModel.m in Sources */,
 				63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */,
 				631CFA6824E5276A0082B941 /* focusViewController.m in Sources */,
 				631BC90C25481905001B82AB /* UIColor+TTColorTools.m in Sources */,
@@ -1543,6 +1532,7 @@
 				638E978024CAF04B005ADF42 /* moreSettingTableViewCell.m in Sources */,
 				637A97F424C04B45000F7405 /* UIImage+cropPicture.m in Sources */,
 				63BE33512548160500607EBA /* UILabel+ThemeChange.m in Sources */,
+				63879C4E25EDE534001DE258 /* TTArticleSearchInboxFourWordsModel.m in Sources */,
 				63C4FA9024EBC20400CF9850 /* TTPageViewController.m in Sources */,
 				94A4A6EA24A25331002A6CA3 /* TTBaseViewController.m in Sources */,
 				63167AB024AB5FEE002CB4EF /* homeNewsCellViewModel.m in Sources */,
@@ -1563,6 +1553,7 @@
 				631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */,
 				634DA04325A48C0800236458 /* TTSystemConfigureHelper.m in Sources */,
 				63E8C373256796E100F69701 /* TTWebView.m in Sources */,
+				63879C6A25EE14B5001DE258 /* TT_RecommendSearchKeywordViewModel.m in Sources */,
 				63B435AF25BFB53200547403 /* TTFeedDislikeView.m in Sources */,
 				63231B9124A08F110059FD5F /* TTNavigationBar.m in Sources */,
 				63BF78F12594749C007C8C98 /* TTDBCacheSearchKeywordViewModel.m in Sources */,
@@ -1576,13 +1567,11 @@
 				633BEA642587640700423C39 /* TTPlayerMaskView.m in Sources */,
 				63BE352524DAD63A001ADFDD /* newsDetailFooterView.m in Sources */,
 				63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */,
-				638E977424CAB4A4005ADF42 /* TTMineNavigationController.m in Sources */,
 				63167AB624AB6182002CB4EF /* homeNewsModel.m in Sources */,
 				639A831425E387B20021F62E /* XGVideoDetailRecommendViewModel.m in Sources */,
 				631BC907254818C6001B82AB /* UITableViewCell+ThemeChange.m in Sources */,
 				636EA80624C9924500765F5C /* screeningHollHistoryModel.m in Sources */,
 				63EEAB2825B92F2A00ACDB7D /* TTFontSizeChangeModel.m in Sources */,
-				6328F614249E111F00C767A8 /* TTHeader.m in Sources */,
 				63422BDF24A839960091FEE1 /* WMPageController.m in Sources */,
 				6390EEEF2589B7660081093E /* homeTitleDBViewModel.m in Sources */,
 				63EEAB4225B96AD400ACDB7D /* TTFontSizeChangeViewModel.m in Sources */,
@@ -1596,21 +1585,18 @@
 				6352492125442980009AECF2 /* QRCodeManager.m in Sources */,
 				63422BE224A839960091FEE1 /* WMMenuView.m in Sources */,
 				6355CFF524BF1078002D3815 /* TTloginView.m in Sources */,
-				634A581524BD9B7D00CDF423 /* baseBadgeLabel.m in Sources */,
 				63403E7C24C969FB0024A362 /* screeningHallTableViewCell.m in Sources */,
 				820979151BD3AEA800CF9D0C /* ScreeningHallViewController.m in Sources */,
 				820978E81BD3A37600CF9D0C /* main.m in Sources */,
 				633BEA5C2587602E00423C39 /* TTSlider.m in Sources */,
 				6393A2D825AD438F002BB19E /* TT_tabBarModel.m in Sources */,
 				635BB45425DFC5E300449953 /* TT_VideoDetailModel.m in Sources */,
-				63E7177324F9F430003A690E /* TTSearchSuggestionRequestModel.m in Sources */,
 				637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */,
 				63422C4A24A875D40091FEE1 /* NewsChannelViewController.m in Sources */,
 				63A8E3E725C404960067369F /* TTVideoDetailHeaderView.m in Sources */,
 				949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */,
 				8209791A1BD3AFAC00CF9D0C /* MineViewController.m in Sources */,
 				63DB0D1B2501F19200B9FA0A /* videoRealURLRequestModel.m in Sources */,
-				634ECB112576509C00DBCC15 /* TTArticleSearchInboxFourWordsModel.m in Sources */,
 				6325352125C7E7BD005007A0 /* TTVideoDetailView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1753,7 +1739,7 @@
 					"-all_load",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = gmail.ljwcodeHeadLineNews;
+				PRODUCT_BUNDLE_IDENTIFIER = ljwcode.gmail.ljwcodeHeadLineNews;
 				PRODUCT_NAME = "今日头条";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1790,7 +1776,7 @@
 					"-all_load",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = gmail.ljwcodeHeadLineNews;
+				PRODUCT_BUNDLE_IDENTIFIER = ljwcode.gmail.ljwcodeHeadLineNews;
 				PRODUCT_NAME = "今日头条";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

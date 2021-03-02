@@ -1,0 +1,96 @@
+//
+//  ljwcodeNavigationController.m
+//
+//
+//  Created by ljwcode on 2020/6/18.
+//  Copyright © 2020 ljwcode. All rights reserved.
+//
+
+#import "TTNavigationController.h"
+
+@interface TTNavigationController ()<UIBarPositioningDelegate,UIGestureRecognizerDelegate>
+
+@property(nonatomic,strong)UIImage *defaultImage;
+
+@end
+
+@implementation TTNavigationController
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+
++(void)initialize{
+    [[UINavigationBar appearance]setTranslucent:NO];//不透明
+    [[UINavigationBar appearance]setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:16.f],NSFontAttributeName, nil]];
+    
+    UIBarButtonItem *item = [UIBarButtonItem appearance];
+    [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15.f],NSFontAttributeName, nil] forState:UIControlStateNormal];
+    
+    [[UINavigationBar appearance]setBackgroundImage:[self drawImageContext:[UIColor colorWithRed:0.83 green:0.24 blue:0.24 alpha:1.0]] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance]setHidden:YES];
+}
+
+
++(UIImage *)drawImageContext:(UIColor *)color{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if(self.childViewControllers.count >= 1){
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
+    [super pushViewController:viewController animated:YES];
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    _defaultImage = [self.class drawImageContext:[UIColor colorWithRed:0.83 green:0.24 blue:0.24 alpha:1]];
+    
+    id target = self.interactivePopGestureRecognizer.delegate;
+    SEL handler = NSSelectorFromString(@"handleNavigationTransition:");
+    // 获取添加系统边缘触发手势的View
+    UIView *targetView = self.interactivePopGestureRecognizer.view;
+    // 创建pan手势 作用范围是全屏
+    UIPanGestureRecognizer *fullScreenGes = [[UIPanGestureRecognizer alloc]initWithTarget:target action:handler];
+    fullScreenGes.delegate = self;
+    [targetView addGestureRecognizer:fullScreenGes];
+    // 关闭边缘触发手势 防止和原有边缘手势冲突（也可不用关闭）
+    [self.interactivePopGestureRecognizer setEnabled:NO];
+    __weak typeof(self) weakself = self;
+    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.interactivePopGestureRecognizer.delegate = (id)weakself;
+    }
+    // Do any additional setup after loading the view.
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+//这个方法是在手势将要激活前调用：返回YES允许右滑手势的激活，返回NO不允许右滑手势的激活
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    if (gestureRecognizer == self.interactivePopGestureRecognizer) {
+        //屏蔽调用rootViewController的滑动返回手势，避免右滑返回手势引起死机问题
+        if (self.viewControllers.count < 2 ||
+ self.visibleViewController == [self.viewControllers objectAtIndex:0]) {
+            return NO;
+        }
+    }
+    //这里就是非右滑手势调用的方法啦，统一允许激活
+    return YES;
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

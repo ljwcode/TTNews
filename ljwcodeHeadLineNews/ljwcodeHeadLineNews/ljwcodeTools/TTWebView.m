@@ -104,7 +104,7 @@
     [webView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='none';" completionHandler:nil];
     [webView evaluateJavaScript:@"document.activeElement.blur();" completionHandler:nil];
     // 适当增大字体大小
-    NSString *js = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%@%%'",TT_USERDEFAULT_object(TTWebViewFontSizeScale)];
+    NSString *js = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%%'"];
     [webView evaluateJavaScript:js completionHandler:nil];
     webView.allowsBackForwardNavigationGestures = YES;
     [self callback_webViewDidFinishLoad];

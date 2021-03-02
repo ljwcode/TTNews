@@ -1,40 +1,32 @@
 //
-//  videoTitleViewModel.m
+//  TT_RecommendSearchKeywordViewModel.m
 //  ljwcodeHeadLineNews
 //
-//  Created by 1 on 2020/7/3.
-//  Copyright © 2020 ljwcode. All rights reserved.
+//  Created by 1 on 2021/3/2.
+//  Copyright © 2021 ljwcode. All rights reserved.
 //
 
-#import "videoTitleViewModel.h"
-#import "videoTitleRequestModel.h"
-#import "videoTitleModel.h"
-#import <MJExtension.h>
-#import "videoTitleModel.h"
+#import "TT_RecommendSearchKeywordViewModel.h"
 #import "TT_requestModel.h"
+#import "TT_recommendSearchKeywordRequestModel.h"
+#import "TT_RecKeywordModel.h"
+#import <MJExtension.h>
 
-@interface videoTitleViewModel()
-
-@end
-
-
-@implementation videoTitleViewModel
+@implementation TT_RecommendSearchKeywordViewModel
 
 -(instancetype)init{
     if(self = [super init]){
-        
-        _videoCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+        _recSearchViewModel = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                TT_recommendSearchKeywordRequestModel *request = [TT_recommendSearchKeywordRequestModel initWithNetworkModelWithUrlString:[TTNetworkURLManager TT_SearchRecommendKeywordURL] isPost:NO];
                 
-                videoTitleRequestModel *request = [videoTitleRequestModel initWithNetworkModelWithUrlString:TTNetworkURLManager.videoTitlesURLString isPost:NO];
-                /*
-                 https://api5-normal-c-lq.snssdk.com/video_api/get_category/v3/?version_code=8.0.9&tma_jssdk_version=1.95.0.19&app_name=news_article&app_version=8.0.9&vid=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&device_id=157930857702792&channel=App%20Store&resolution=750*1334&aid=13&update_version_code=80919&cdid=EDDBEF16-CAA0-4624-8789-5BA3E024EF5E&idfv=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&ac=WIFI&os_version=12.4.8&ssmix=a&device_platform=iphone&iid=1513346564108847&device_type=iPhone%206&ab_client=a1,f2,f7,e1&idfa=00000000-0000-0000-0000-000000000000
-                 */
+                request.caid1 = @"9b2daaee7d9878931768ff8f8e010c81";
                 request.version_code = [TT_requestModel version_code];
                 request.tma_jssdk_version = [TT_requestModel tma_jssdk_version];
                 request.app_name = [TT_requestModel app_name];
                 request.app_version = [TT_requestModel app_version];
                 request.vid = [TT_requestModel vid];
+                request.carrier_region = @"CN";
                 request.device_id = [TT_requestModel device_id];
                 request.channel = [TT_requestModel channel];
                 request.resolution = [TT_requestModel resolution];
@@ -50,36 +42,37 @@
                 request.device_type = [TT_requestModel device_type];
                 request.ab_client = [TT_requestModel ab_client];
                 request.idfa = [TT_requestModel idfa];
+                request.app_id = @"13";
+                request.tab_name = @"stream";
+                request.query = @"";
+                request.penetrate_params = @"%7B%22homepage_search_suggest%22%3A%5B%22%E5%AE%8B%E8%BD%B6%E5%8F%91%E6%96%87%E9%81%93%E6%AD%89%22%2C%22%E4%BC%9F%E5%A4%A7%E7%9A%84%E8%BD%AC%E6%8A%98%E7%94%B5%E8%A7%86%E5%89%A7%22%5D%7D";
+                request.search_position = @"search_bar";
+                request.category_name = [NSString stringWithFormat:@"__all__"];
+                request.business_id = @"10000";
+                request.from_group_id = @"0";
                 
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     NSDictionary *responseDic = (NSDictionary *)response;
-                    NSArray *dicArr = [[NSArray alloc]init];
-                    dicArr = responseDic[@"data"];
-                    NSMutableArray *modelArray = [NSMutableArray array];
-                    if (dicArr.count > 0) {
-                        for (int i = 0; i < [dicArr count]; i++) {
-                            videoTitleModel *model = [[videoTitleModel new] mj_setKeyValues:dicArr[i]];
+                    NSArray *dataArray = [[responseDic objectForKey:@"data"]objectForKey:@"words"];
+                    NSMutableArray *modelArray = [[NSMutableArray alloc]init];
+                    if(dataArray.count > 0){
+                        for(int i = 0;i <dataArray.count;i++){
+                            TT_RecKeywordModel *model = [[[TT_RecKeywordModel alloc]init]mj_setKeyValues:dataArray[i]];
                             [modelArray addObject:model];
                         }
                         [subscriber sendNext:modelArray];
                         [subscriber sendCompleted];
-                        
-                    }else {
-                        [MBProgressHUD showError: @"网络异常" toView:nil];
                     }
+                    
                 } failHandle:^(NSError * _Nonnull error) {
                     [MBProgressHUD showSuccess:@"网络请求失败"];
-                    NSLog(@"request video title fail");
                 }];
                 
                 return nil;
             }];
         }];
-
     }
-    
     return self;
 }
-
 
 @end

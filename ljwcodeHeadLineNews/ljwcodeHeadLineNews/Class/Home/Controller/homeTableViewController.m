@@ -13,7 +13,6 @@
 #import "homeNewsModel.h"
 #import "homeNewsCellViewModel.h"
 #import "homeJokeModel.h"
-#import "TTHeader.h"
 #import "NewsDetailViewController.h"
 #import "TVVideoPlayerViewCell.h"
 #import "videoContentModel.h"

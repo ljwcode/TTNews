@@ -6,7 +6,6 @@
 //  Copyright © 2020 ljwcode. All rights reserved.
 //
 #import "NewsDetailViewController.h"
-#import "TTHeader.h"
 #import <WebKit/WebKit.h>
 #import "TTNavigationController.h"
 #import <RACSubject.h>
