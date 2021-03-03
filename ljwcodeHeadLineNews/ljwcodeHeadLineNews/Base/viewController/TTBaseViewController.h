@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol TTBaseViewControllerDelegate<NSObject>
 
+@optional
 -(void)needRefreshTableViewData;
 
 -(void)rightItemAction;

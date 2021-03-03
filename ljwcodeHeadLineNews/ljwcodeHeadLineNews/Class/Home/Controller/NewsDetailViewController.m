@@ -13,6 +13,7 @@
 #import "TTSearchViewController.h"
 #import "TTWebView.h"
 #import "TTHomeMoreShareVIew.h"
+#import <Masonry/Masonry.h>
 
 
 @interface NewsDetailViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,TTWebViewDelegate>
@@ -29,39 +30,64 @@
 
 @property(nonatomic, strong)NSMutableArray *imageArray;
 
+@property(nonatomic,strong)UIView *headerView;
+
 @end
 
 @implementation NewsDetailViewController
 
 -(void)setNaviBarItem{
-    self.navigationItem.title = @"今日头条";
-    
-    UIImage *moreImg = [[UIImage imageNamed:@"new_more_titlebar"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *moreBarBtn = [[UIBarButtonItem alloc]initWithImage:moreImg style:UIBarButtonItemStylePlain target:self action:@selector(moreBarHandle:)];
-    
-    UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    fixedSpaceBarButtonItem.width = 2 * hSpace;
-    
-    UIImage *searchImg = [[UIImage imageNamed:@"search_mine_tab"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *searchBarBtn = [[UIBarButtonItem alloc]initWithImage:searchImg style:UIBarButtonItemStylePlain target:self action:@selector(searchBarHandle:)];
 
-    self.navigationItem.rightBarButtonItems = @[moreBarBtn,searchBarBtn];
+    UIButton *BackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [BackBtn setImage:[UIImage imageNamed:@"lefterbackicon_titlebar"] forState:UIControlStateNormal];
+    [BackBtn addTarget:self action:@selector(leftBackHandle:) forControlEvents:UIControlEventTouchUpInside];
+    [self.headerView addSubview:BackBtn];
+    [BackBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(2 * hSpace);
+        make.centerY.mas_equalTo(self.headerView);
+        make.width.height.mas_equalTo(20);
+    }];
     
-    UIImage *leftImg = [[UIImage imageNamed:@"lefterbackicon_titlebar"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *leftBarBtn = [[UIBarButtonItem alloc]initWithImage:leftImg style:UIBarButtonItemStylePlain target:self action:@selector(leftBackHandle:)];
-    self.navigationItem.leftBarButtonItem = leftBarBtn;
+    UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [moreBtn setImage:[UIImage imageNamed:@"new_more_titlebar"] forState:UIControlStateNormal];
+    [moreBtn addTarget:self action:@selector(moreBarHandle:) forControlEvents:UIControlEventTouchUpInside];
+    [self.headerView addSubview:moreBtn];
+    [moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-2 * hSpace);
+        make.centerY.mas_equalTo(self.headerView);
+        make.width.height.mas_equalTo(20);
+    }];
+    
+    UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [searchBtn setImage:[UIImage imageNamed:@"search_mine_tab"] forState:UIControlStateNormal];
+    [searchBtn addTarget:self action:@selector(searchBarHandle:) forControlEvents:UIControlEventTouchUpInside];
+    [self.headerView addSubview:searchBtn];
+    [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(moreBtn.mas_left).offset(-2 * hSpace);
+        make.centerY.mas_equalTo(self.headerView);
+        make.height.width.mas_equalTo(20);
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.webViewHeight = 0.0;
-    [self setNaviBarItem];
+    
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.headerView];
+
+    [self setNaviBarItem];
+
+    NSURL *URL = [NSURL URLWithString:self.urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    [self.webView loadRequest:request];
 }
 
 #pragma mark ---- UITableViewDelegate && UITableViewDatasource
@@ -79,90 +105,40 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if(!cell){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        [cell.contentView addSubview:self.webView];
-        NSURL *URL = [NSURL URLWithString:_urlString];
-        NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-        [self.webView loadRequest:request];
     }
     return cell;
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if(section == 0){
+        return self.webView;
+    }
+    return [UIView new];
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return _webViewHeight;
+    return 100;
 }
 
 #pragma mark ---- TTWebViewDelegate
 
 -(void)webViewDidFinishLoad:(TTWebView *)webView{
-    [self.webView evaluateJavaScript:@"document.documentElement.scrollHeight" completionHandler:^(id object, NSError *error) {
-        CGFloat height = [object integerValue];
-        if (error != nil) {
-        }else{
-            self->_webViewHeight = height;
-            [self->_tableView beginUpdates];
-            self.webView.frame = CGRectMake(self.webView.frame.origin.x,self.webView.frame.origin.y, self->_tableView.frame.size.width, self->_webViewHeight );
-        }
-        [self->_tableView endUpdates];
-    }];
-    
-//    插入js代码，对图片进行点击操作
-    [webView evaluateJavaScript:@"function assignImageClickAction(){var imgs=document.getElementsByTagName('img');var length=imgs.length;for(var i=0; i < length;i++){img=imgs[i];if(\"ad\" ==img.getAttribute(\"flag\")){var parent = this.parentNode;if(parent.nodeName.toLowerCase() != \"a\")return;}img.onclick=function(){window.location.href='image-preview:'+this.src}}}" completionHandler:^(id object, NSError *error) {
-    }];
-    [webView evaluateJavaScript:@"assignImageClickAction();" completionHandler:^(id object, NSError *error) {
-        
-    }];
-    [self getImgs];
-}
-
--(BOOL)webView:(TTWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    
-    if ([request.URL isEqual:@"about:blank"]){
-        return true;
-    }
-    if ([request.URL.scheme isEqualToString: @"image-preview"]){
-        return NO;
-    }
-    //    用户点击文章详情中的链接
-    if ( navigationType == UIWebViewNavigationTypeLinkClicked ) {
-        return NO;
-    }
-        return YES;
-}
-
-#pragma mark -- 获取文章中的图片个数
-
-- (NSArray *)getImgs{
-    NSMutableArray *arrImgURL = [[NSMutableArray alloc] init];
-    for (int i = 0; i < [self nodeCountOfTag:@"img"]; i++) {
-        NSString *jsString = [NSString stringWithFormat:@"document.getElementsByTagName('img')[%d].src", i];
-        [self.webView evaluateJavaScript:jsString completionHandler:^(NSString *str, NSError *error) {
-            if (error ==nil) {
-                [arrImgURL addObject:str];
-            }
-        }];
-    }
-    _imageArray = [NSMutableArray arrayWithArray:arrImgURL];
-    
-    
-    return arrImgURL;
-}
-
-// 获取某个标签的结点个数
-- (NSInteger)nodeCountOfTag:(NSString *)tag{
-    NSString *jsString = [NSString stringWithFormat:@"document.getElementsByTagName('%@').length", tag];
- 
-    __block int count;
-    [self.webView evaluateJavaScript:jsString completionHandler:^(id result, NSError *error) {
-        count = (int)result;
-    }];
-    return count;
+    self.webView.height = self.webView.scrollView.contentSize.height;
+    [self.tableView reloadData];
 }
 
 #pragma mark ---- lazy load
 
+-(UIView *)headerView{
+    if(!_headerView){
+        _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, TT_statuBarHeight, kScreenWidth, TT_statuBarHeight)];
+    }
+    return _headerView;
+}
+
 -(TTWebView *)webView{
     if(!_webView){
-        _webView = [[TTWebView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 1)];
+        _webView = [[TTWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth,300)];
         _webView.delegate = self;
         _webView.scrollView.scrollEnabled = NO;
         _webView.scrollView.bounces = NO;
@@ -173,10 +149,13 @@
 
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), kScreenWidth, kScreenHeight - CGRectGetHeight(self.headerView.frame)) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.layer.borderColor = [UIColor redColor].CGColor;
+        _tableView.layer.borderWidth = 1.f;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.contentSize = CGSizeMake(kScreenWidth, CGFLOAT_MAX);
     }
     return _tableView;
 }
@@ -194,6 +173,7 @@
     [super viewWillDisappear:animated];
     UIImage *image = [self.navigationController valueForKeyPath:@"defaultImage"];
     [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 #pragma mark - WKUIDelegate WKNavigationDelegate

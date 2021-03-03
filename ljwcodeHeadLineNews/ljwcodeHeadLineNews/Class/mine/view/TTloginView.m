@@ -93,7 +93,7 @@
     
     [closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
-        make.top.mas_equalTo(statuBarHeight);
+        make.top.mas_equalTo(TT_statuBarHeight);
         make.height.width.mas_equalTo(30);
     }];
     

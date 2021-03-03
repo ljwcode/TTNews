@@ -37,7 +37,7 @@
 
 #define isRecomChannelFrame(index) CGRectMake(itemSpace+(index%columns)*(itemSpace+_labelWidth), _headerViewOne_frame.size.height+CGRectGetMaxY(_newsModel.frame)+lineSpace+(index/columns)*(lineSpace+labelHeight), _labelWidth, labelHeight)
 
-#define statuBarHeight [UIScreen mainScreen].bounds.size.height == 812?44:20
+#define TT_statuBarHeight [TTScreen getStatusBarHight]
 
 #define SEARCH_MARGIN 10
 

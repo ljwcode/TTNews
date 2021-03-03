@@ -266,6 +266,7 @@
         [self playTheVideoAtIndexPath:indexPath];
     }else{
         webVC.urlString = _model.infoModel.article_url;
+        webVC.item_id = _model.infoModel.item_id;
         [self.navigationController pushViewController:webVC animated:YES];
     }
 }

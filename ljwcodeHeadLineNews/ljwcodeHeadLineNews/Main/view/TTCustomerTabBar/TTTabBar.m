@@ -53,9 +53,9 @@
     CGFloat itemW = w / count;
     CGFloat itemH = h;
 
-    for (int index = 0; index < count; index++) {
-        TTTabBarItem *tabBarItem = self.tabBarItemArray[index];
-        CGFloat itemX = index * itemW;
+    for (int i = 0; i < count; i++) {
+        TTTabBarItem *tabBarItem = self.tabBarItemArray[i];
+        CGFloat itemX = i * itemW;
         tabBarItem.frame = CGRectMake(itemX, itemY, itemW, itemH);
     }
 }

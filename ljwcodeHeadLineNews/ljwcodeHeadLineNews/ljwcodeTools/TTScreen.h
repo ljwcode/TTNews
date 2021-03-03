@@ -52,6 +52,8 @@ static inline CGRect UIRectAdapter(x,y,width,height){
 
 + (BOOL)TT_isPhoneX;
 
++ (CGFloat)getStatusBarHight;
+
 @end
 
 NS_ASSUME_NONNULL_END

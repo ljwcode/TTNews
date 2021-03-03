@@ -178,6 +178,7 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.searchBar resignFirstResponder];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 -(void)setup{

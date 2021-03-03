@@ -34,20 +34,22 @@
     titleLabel = [[UILabel alloc] init];
     titleLabel.text = @"  ";
     [self addSubview:titleLabel];
+    
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self).offset(-2);
         make.centerX.equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(itemWidth, TT_USERDEFAULT_float(TabBarViewHeight)/3-2));
+        make.centerY.mas_equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(itemWidth, TT_USERDEFAULT_float(TabBarViewHeight)/5-2));
     }];
+    titleLabel.contentMode = UIViewContentModeScaleToFill;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
     
     TTitemImage = [[UIImageView alloc] init];
     TTitemImage.image = [UIImage imageNamed:@""];
+    TTitemImage.contentMode = UIViewContentModeScaleToFill;
     [self addSubview:TTitemImage];
     [TTitemImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(5);
-        make.bottom.equalTo(titleLabel.mas_top).offset(-4);
+        make.bottom.equalTo(titleLabel.mas_top).offset(0);
         make.centerX.equalTo(self);
     }];
 }

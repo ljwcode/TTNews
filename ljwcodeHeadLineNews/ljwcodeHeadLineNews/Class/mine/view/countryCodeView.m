@@ -76,7 +76,7 @@ static NSString *cellID = @"cellID";
         [self.headerView addSubview:closeButton];
         [closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(space);
-            make.top.mas_equalTo(statuBarHeight);
+            make.top.mas_equalTo(TT_statuBarHeight);
             make.width.height.mas_equalTo(30);
         }];
         [closeButton addTarget:self action:@selector(closeHandle:) forControlEvents:UIControlEventTouchUpInside];

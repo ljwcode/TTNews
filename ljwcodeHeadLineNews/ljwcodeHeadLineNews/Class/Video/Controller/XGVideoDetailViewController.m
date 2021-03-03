@@ -21,7 +21,7 @@
 #import "TTSearchViewController.h"
 #import <FBLPromises/FBLPromises.h>
 
-@interface  XGVideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,TT_VideoDetailViewDelegate>
+@interface  XGVideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,TT_VideoDetailViewDelegate,UIGestureRecognizerDelegate>
 
 @property(nonatomic,strong)TTPlayerView *playerView;
 
@@ -87,6 +87,10 @@
         make.right.mas_equalTo(MoreBtn.mas_left).offset(-hSpace * 2);
         make.width.height.mas_equalTo(20);
     }];
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    return YES;
 }
 
 -(BOOL)prefersStatusBarHidden{
@@ -253,7 +257,7 @@
 -(UIScrollView *)TTVVideoDetailContainerScrollView{
     if(!_TTVVideoDetailContainerScrollView){
         _TTVVideoDetailContainerScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.playerView.frame), kScreenWidth, kScreenHeight - CGRectGetHeight(self.playerView.frame))];
-        _TTVVideoDetailContainerScrollView.contentSize = CGSizeMake(kScreenWidth, kScreenHeight - CGRectGetHeight(self.playerView.frame));
+        _TTVVideoDetailContainerScrollView.contentSize = CGSizeMake(kScreenWidth, 3 * kScreenHeight - CGRectGetHeight(self.playerView.frame));
         _TTVVideoDetailContainerScrollView.delegate = self;
     }
     return _TTVVideoDetailContainerScrollView;

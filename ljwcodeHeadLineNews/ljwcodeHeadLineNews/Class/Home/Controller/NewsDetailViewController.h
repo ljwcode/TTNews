@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *urlString;
 
+@property(nonatomic,copy)NSString *item_id;
+
 @end
 
 NS_ASSUME_NONNULL_END
