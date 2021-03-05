@@ -17,7 +17,7 @@
     if(self = [super init]){
         _titleCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                homeTitleRequestModel *request = [homeTitleRequestModel initWithNetworkModelWithUrlString:TTNetworkURLManager.homeTitleUrlString isPost:NO];
+                homeTitleRequestModel *request = [homeTitleRequestModel initWithNetworkModelWithUrlString:TTNetworkURLManager.TT_homeNewsTitleURL isPost:NO];
        
                 request.version_code = [TT_requestModel version_code];
                 request.tma_jssdk_version = [TT_requestModel tma_jssdk_version];

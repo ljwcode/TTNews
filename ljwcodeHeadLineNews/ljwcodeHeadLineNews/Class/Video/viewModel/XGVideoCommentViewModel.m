@@ -25,7 +25,7 @@
                     @"group_id" : input,
                     @"caid1" : @"626b60a145e6a3340054b5c6d73c1910"
                 };
-                [manager POST:[TTNetworkURLManager TableCommentURL] parameters:dict headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                [manager POST:[TTNetworkURLManager TT_TableCommentURL] parameters:dict headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     NSDictionary *responseDic = (NSDictionary *)responseObject;
                     NSArray *dataArray = [responseDic objectForKey:@"data"];
                     NSMutableArray *modelArray = [[NSMutableArray alloc]init];

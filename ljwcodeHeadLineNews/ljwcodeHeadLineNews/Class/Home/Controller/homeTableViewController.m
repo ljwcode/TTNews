@@ -66,19 +66,19 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    @weakify(self);
-//    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-//        @strongify(self);
-//        homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
-//        NSArray *dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
-////        if(dataArray.count == 0){
-////            return;
-////        }
-//        [self.datasArray addObjectsFromArray:dataArray];
-//        [self.detailTableView reloadData];
-//        [self.detailTableView.mj_header endRefreshing];
-//    }];
-//    [self.detailTableView.mj_header beginRefreshing];
+    //    @weakify(self);
+    //    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+    //        @strongify(self);
+    //        homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
+    //        NSArray *dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
+    ////        if(dataArray.count == 0){
+    ////            return;
+    ////        }
+    //        [self.datasArray addObjectsFromArray:dataArray];
+    //        [self.detailTableView reloadData];
+    //        [self.detailTableView.mj_header endRefreshing];
+    //    }];
+    //    [self.detailTableView.mj_header beginRefreshing];
 }
 
 -(NSArray *)modelArrayWithCategory:(NSString *)category fromModel:(id)model{
@@ -129,7 +129,7 @@
         tableView.emptyDataSetDelegate = self;
         tableView.estimatedRowHeight = UITableViewAutomaticDimension;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-       
+        
         [self.view addSubview:tableView];
         [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
@@ -200,7 +200,7 @@
         [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
             [self.datasArray addObjectsFromArray:datasArray];
-        
+            
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             [self.detailTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
             [self.detailTableView.mj_header endRefreshing];
@@ -243,7 +243,7 @@
         resultCell = cell;
         
     }else{
-       _model = self.datasArray[indexPath.row];
+        _model = self.datasArray[indexPath.row];
         if(_model.infoModel.image_list){
             homeNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeNewsTableViewCell class])];
             cell.summaryModel = _model;
@@ -267,6 +267,7 @@
     }else{
         webVC.urlString = _model.infoModel.article_url;
         webVC.item_id = _model.infoModel.item_id;
+        webVC.group_id = _model.infoModel.group_id;
         [self.navigationController pushViewController:webVC animated:YES];
     }
 }
@@ -346,7 +347,6 @@
     }];
 }
 
-//进入这个界面就自动播放
 -(void)playVideoInVisiableCells{
     TVVideoPlayerViewCell *firstCell = nil;
     NSArray *visiableCells = [self.detailTableView visibleCells];
@@ -358,9 +358,8 @@
             break;
         }
     }
-    //播放第一个视频
     [self initPlayerView:firstCell playClick:firstCell.contentModel];
-
+    
 }
 
 
@@ -377,20 +376,16 @@
     
     [cell.contentView addSubview:_playerView];
     
-    //视频地址
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self->_playerView.url = [NSURL URLWithString:self.videoURL];
-        //播放
-        [self->_playerView playVideo];
+        self.playerView.url = [NSURL URLWithString:self.videoURL];
+        [self.playerView playVideo];
         
     });
     
-    //返回按钮点击事件回调
     [_playerView backButton:^(UIButton *button) {
         NSLog(@"返回按钮被点击");
     }];
     
-    //播放完成回调
     [_playerView endPlay:^{
         [self->_playerView destroyPlayer];
         self->_playerView = nil;
@@ -412,13 +407,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

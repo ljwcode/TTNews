@@ -18,7 +18,7 @@
     if(self = [super init]){
         _videoDetailCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                videoDetailRequestModel *request = [videoDetailRequestModel initWithNetworkModelWithUrlString:[TTNetworkURLManager videoDetailInfoURL] isPost:NO];
+                videoDetailRequestModel *request = [videoDetailRequestModel initWithNetworkModelWithUrlString:[TTNetworkURLManager TT_videoDetailInfoURL] isPost:NO];
                 request.version_code = [TT_requestModel version_code];
                 request.tma_jssdk_version = [TT_requestModel tma_jssdk_version];
                 request.app_name = [TT_requestModel app_name];

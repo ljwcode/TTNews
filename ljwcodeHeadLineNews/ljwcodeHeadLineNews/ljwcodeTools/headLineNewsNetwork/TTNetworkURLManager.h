@@ -14,13 +14,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(TTNetworkURLManager *)shareInstance;
 
-+(NSString *)homeTitleUrlString;
++(NSString *)TT_homeNewsTitleURL;
 
-+(NSString *)homeListUrlString;
++(NSString *)TT_homeNewsListURL;
 
-+(NSString *)videoTitlesURLString;
++(NSString *)TT_newsDetailRecURL;
 
-+(NSString *)videoListURLString;
++(NSString *)TT_articleContentURL:(NSString *)group_id;
+
++(NSString *)TT_videoTitlesURL;
+
++(NSString *)TT_videoListURL;
 
 -(NSString *)parseVideoRealURLWithVideo_id:(NSString *)video_id;
 
@@ -28,11 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSString *)TT_SearchRecommendKeywordURL;
 
-+(NSString *)videoDetailInfoURL;
++(NSString *)TT_videoDetailInfoURL;
 
-+(NSString *)TableCommentURL;
++(NSString *)TT_TableCommentURL;
 
-+(NSString *)videoRecommendURL;
++(NSString *)TT_videoRecommendURL;
 
 @end
 

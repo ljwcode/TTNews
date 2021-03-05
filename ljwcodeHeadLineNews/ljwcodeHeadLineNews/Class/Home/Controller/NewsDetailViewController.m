@@ -14,9 +14,10 @@
 #import "TTWebView.h"
 #import "TTHomeMoreShareVIew.h"
 #import <Masonry/Masonry.h>
+#import "homeNewsDetailRecSearchViewModel.h"
+#import "homeArticleContentViewModel.h"
 
-
-@interface NewsDetailViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,TTWebViewDelegate>
+@interface NewsDetailViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)MBProgressHUD *hud;
 
@@ -26,11 +27,15 @@
 
 @property(nonatomic,strong)UITableView *tableView;
 
-@property(nonatomic,strong)TTWebView *webView;
+@property(nonatomic,strong)WKWebView *webView;
 
 @property(nonatomic, strong)NSMutableArray *imageArray;
 
 @property(nonatomic,strong)UIView *headerView;
+
+@property(nonatomic,strong)homeNewsDetailRecSearchViewModel *newsRecViewModel;
+
+@property(nonatomic,strong)homeArticleContentViewModel *ArticleContentViewModel;
 
 @end
 
@@ -75,19 +80,30 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.webView.navigationDelegate = self;
+    self.webView.UIDelegate = self;
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.headerView];
 
     [self setNaviBarItem];
+    [[self.newsRecViewModel.recSearchCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
+        
+    }];
 
-    NSURL *URL = [NSURL URLWithString:self.urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    [self.webView loadRequest:request];
+    [[self.ArticleContentViewModel.ArticleContentCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
+        
+    } completed:^{
+        [self.webView loadHTMLString:[self.ArticleContentViewModel TT_getHTMLString] baseURL:nil];
+    }];
+    
+    
+    self.webView.layer.borderColor = [UIColor redColor].CGColor;
+    self.webView.layer.borderWidth = 1.f;
+    
+    self.webView.scrollView.contentInsetAdjustmentBehavior = NO;
+    self.webView.scrollView.delegate = self;
 }
 
 #pragma mark ---- UITableViewDelegate && UITableViewDatasource
@@ -103,10 +119,10 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if(!cell){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }
-    return cell;
+//    if(!cell){
+//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+//    }
+    return [UITableViewCell new];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -117,17 +133,38 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    return CGFLOAT_MIN;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section{
+    if(section == 0){
+        return self.webView.height;
+    }
+    return CGFLOAT_MIN;
 }
 
 #pragma mark ---- TTWebViewDelegate
 
--(void)webViewDidFinishLoad:(TTWebView *)webView{
-    self.webView.height = self.webView.scrollView.contentSize.height;
-    [self.tableView reloadData];
-}
+//-(void)webViewDidFinishLoad:(WKWebView *)webView{
+//    self.webView.height = self.webView.scrollView.contentSize.height;
+//    [self.tableView reloadData];
+//}
 
 #pragma mark ---- lazy load
+
+-(homeArticleContentViewModel *)ArticleContentViewModel{
+    if(!_ArticleContentViewModel){
+        _ArticleContentViewModel = [[homeArticleContentViewModel alloc]init];
+    }
+    return _ArticleContentViewModel;
+}
+
+-(homeNewsDetailRecSearchViewModel *)newsRecViewModel{
+    if(!_newsRecViewModel){
+        _newsRecViewModel = [[homeNewsDetailRecSearchViewModel alloc]init];
+    }
+    return _newsRecViewModel;
+}
 
 -(UIView *)headerView{
     if(!_headerView){
@@ -136,10 +173,9 @@
     return _headerView;
 }
 
--(TTWebView *)webView{
+-(WKWebView *)webView{
     if(!_webView){
-        _webView = [[TTWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth,300)];
-        _webView.delegate = self;
+        _webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth,kScreenHeight)];
         _webView.scrollView.scrollEnabled = NO;
         _webView.scrollView.bounces = NO;
         _webView.opaque = NO;
@@ -149,13 +185,13 @@
 
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), kScreenWidth, kScreenHeight - CGRectGetHeight(self.headerView.frame)) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.layer.borderColor = [UIColor redColor].CGColor;
+        _tableView.layer.borderColor = [UIColor blueColor].CGColor;
         _tableView.layer.borderWidth = 1.f;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.contentSize = CGSizeMake(kScreenWidth, CGFLOAT_MAX);
+//        _tableView.contentSize = CGSizeMake(kScreenWidth, CGFLOAT_MAX);
     }
     return _tableView;
 }
@@ -183,6 +219,8 @@
 }
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    self.webView.height = self.webView.scrollView.contentSize.height;
+    [self.tableView reloadData];
     [_hud hideAnimated:YES];
 }
 

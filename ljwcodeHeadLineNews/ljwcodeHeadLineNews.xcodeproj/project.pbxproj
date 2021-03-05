@@ -10,6 +10,8 @@
 		6302B4D625A9B35E00818EBB /* TT_CustomerTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6302B4D525A9B35E00818EBB /* TT_CustomerTabBar.m */; };
 		6305043A256525B000CB910D /* TTReportArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63050439256525B000CB910D /* TTReportArticleView.m */; };
 		630A976624CFC463003029C3 /* countryCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A976424CFC462003029C3 /* countryCodeView.m */; };
+		630D069C25F2149100DF1D44 /* ios_asset.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 630D069B25F2149100DF1D44 /* ios_asset.bundle */; };
+		630D06BC25F233FB00DF1D44 /* TTArticleContent.css in Resources */ = {isa = PBXBuildFile; fileRef = 630D06BB25F233FB00DF1D44 /* TTArticleContent.css */; };
 		6313651E258C842900FCAAA9 /* videoDetailCacheDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6313651D258C842900FCAAA9 /* videoDetailCacheDBViewModel.m */; };
 		63167AAD24AAE3C2002CB4EF /* homeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AAC24AAE3C2002CB4EF /* homeTableViewController.m */; };
 		63167AB024AB5FEE002CB4EF /* homeNewsCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AAF24AB5FEE002CB4EF /* homeNewsCellViewModel.m */; };
@@ -138,6 +140,10 @@
 		63C4FA9C24EBDFC900CF9850 /* TTPageMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4FA9B24EBDFC900CF9850 /* TTPageMenuView.m */; };
 		63C73D58259DAA6D00EC1DC9 /* TTVideoDetailArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C73D57259DAA6D00EC1DC9 /* TTVideoDetailArrayModel.m */; };
 		63C73D6C259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C73D6B259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.m */; };
+		63C8038525F0C3B900B1EB99 /* homeNewsDetailRecSearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C8038425F0C3B900B1EB99 /* homeNewsDetailRecSearchViewModel.m */; };
+		63C8039925F0CA9D00B1EB99 /* homeNewsDetailRecSearchRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C8039825F0CA9D00B1EB99 /* homeNewsDetailRecSearchRequestModel.m */; };
+		63C8039E25F0FEE400B1EB99 /* homeArticleContentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C8039D25F0FEE400B1EB99 /* homeArticleContentViewModel.m */; };
+		63C803B225F103A800B1EB99 /* homeArticleContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C803B125F103A800B1EB99 /* homeArticleContentModel.m */; };
 		63CBA1FB258B39FD0020511C /* videoTitleDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CBA1FA258B39FD0020511C /* videoTitleDBViewModel.m */; };
 		63CBA20E258B58680020511C /* homeNewsDetailDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CBA20D258B58680020511C /* homeNewsDetailDBViewModel.m */; };
 		63D2869225AFF73D00D87A10 /* TTTabBarModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 63D2869125AFF73D00D87A10 /* TTTabBarModel.json */; };
@@ -189,6 +195,8 @@
 		63050439256525B000CB910D /* TTReportArticleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTReportArticleView.m; sourceTree = "<group>"; };
 		630A976424CFC462003029C3 /* countryCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countryCodeView.m; sourceTree = "<group>"; };
 		630A976524CFC463003029C3 /* countryCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = countryCodeView.h; sourceTree = "<group>"; };
+		630D069B25F2149100DF1D44 /* ios_asset.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ios_asset.bundle; sourceTree = "<group>"; };
+		630D06BB25F233FB00DF1D44 /* TTArticleContent.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = TTArticleContent.css; sourceTree = "<group>"; };
 		6313651C258C842900FCAAA9 /* videoDetailCacheDBViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoDetailCacheDBViewModel.h; sourceTree = "<group>"; };
 		6313651D258C842900FCAAA9 /* videoDetailCacheDBViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoDetailCacheDBViewModel.m; sourceTree = "<group>"; };
 		63167AAB24AAE3C2002CB4EF /* homeTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeTableViewController.h; sourceTree = "<group>"; };
@@ -427,6 +435,14 @@
 		63C73D57259DAA6D00EC1DC9 /* TTVideoDetailArrayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTVideoDetailArrayModel.m; sourceTree = "<group>"; };
 		63C73D6A259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsDetailDBCacheModel.h; sourceTree = "<group>"; };
 		63C73D6B259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsDetailDBCacheModel.m; sourceTree = "<group>"; };
+		63C8038325F0C3B900B1EB99 /* homeNewsDetailRecSearchViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsDetailRecSearchViewModel.h; sourceTree = "<group>"; };
+		63C8038425F0C3B900B1EB99 /* homeNewsDetailRecSearchViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsDetailRecSearchViewModel.m; sourceTree = "<group>"; };
+		63C8039725F0CA9D00B1EB99 /* homeNewsDetailRecSearchRequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsDetailRecSearchRequestModel.h; sourceTree = "<group>"; };
+		63C8039825F0CA9D00B1EB99 /* homeNewsDetailRecSearchRequestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsDetailRecSearchRequestModel.m; sourceTree = "<group>"; };
+		63C8039C25F0FEE400B1EB99 /* homeArticleContentViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeArticleContentViewModel.h; sourceTree = "<group>"; };
+		63C8039D25F0FEE400B1EB99 /* homeArticleContentViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeArticleContentViewModel.m; sourceTree = "<group>"; };
+		63C803B025F103A800B1EB99 /* homeArticleContentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeArticleContentModel.h; sourceTree = "<group>"; };
+		63C803B125F103A800B1EB99 /* homeArticleContentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeArticleContentModel.m; sourceTree = "<group>"; };
 		63CBA1F9258B39FC0020511C /* videoTitleDBViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoTitleDBViewModel.h; sourceTree = "<group>"; };
 		63CBA1FA258B39FD0020511C /* videoTitleDBViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoTitleDBViewModel.m; sourceTree = "<group>"; };
 		63CBA20C258B58680020511C /* homeNewsDetailDBViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsDetailDBViewModel.h; sourceTree = "<group>"; };
@@ -481,7 +497,7 @@
 		63F30EF52564CAEB000CE908 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63F6751D254C22DC009F9AB7 /* TTShowShareConfigureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTShowShareConfigureView.h; sourceTree = "<group>"; };
 		63F6751E254C22DC009F9AB7 /* TTShowShareConfigureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTShowShareConfigureView.m; sourceTree = "<group>"; };
-		820978E31BD3A37600CF9D0C /* 今日头条.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "今日头条.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		820978E31BD3A37600CF9D0C /* TTNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		820978E71BD3A37600CF9D0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		820978E91BD3A37700CF9D0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		820978EA1BD3A37700CF9D0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -984,6 +1000,10 @@
 				63AD1AB924AC61D1007EC745 /* homeJokeModel.m */,
 				63C73D6A259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.h */,
 				63C73D6B259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.m */,
+				63C8039725F0CA9D00B1EB99 /* homeNewsDetailRecSearchRequestModel.h */,
+				63C8039825F0CA9D00B1EB99 /* homeNewsDetailRecSearchRequestModel.m */,
+				63C803B025F103A800B1EB99 /* homeArticleContentModel.h */,
+				63C803B125F103A800B1EB99 /* homeArticleContentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -999,6 +1019,11 @@
 				6390EEEE2589B7660081093E /* homeTitleDBViewModel.m */,
 				63CBA20C258B58680020511C /* homeNewsDetailDBViewModel.h */,
 				63CBA20D258B58680020511C /* homeNewsDetailDBViewModel.m */,
+				63C8038325F0C3B900B1EB99 /* homeNewsDetailRecSearchViewModel.h */,
+				63C8038425F0C3B900B1EB99 /* homeNewsDetailRecSearchViewModel.m */,
+				63C8039C25F0FEE400B1EB99 /* homeArticleContentViewModel.h */,
+				63C8039D25F0FEE400B1EB99 /* homeArticleContentViewModel.m */,
+				630D06BB25F233FB00DF1D44 /* TTArticleContent.css */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1190,7 +1215,7 @@
 		820978E41BD3A37600CF9D0C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				820978E31BD3A37600CF9D0C /* 今日头条.app */,
+				820978E31BD3A37600CF9D0C /* TTNews.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1208,6 +1233,7 @@
 				637C2D2224A995F70009274C /* HeadLineNews.pch */,
 				820978F21BD3A37700CF9D0C /* Assets.xcassets */,
 				820978E61BD3A37600CF9D0C /* Supporting Files */,
+				630D069B25F2149100DF1D44 /* ios_asset.bundle */,
 			);
 			path = ljwcodeHeadLineNews;
 			sourceTree = "<group>";
@@ -1337,7 +1363,7 @@
 			);
 			name = ljwcodeHeadLineNews;
 			productName = LLRiseTabBarDemo;
-			productReference = 820978E31BD3A37600CF9D0C /* 今日头条.app */;
+			productReference = 820978E31BD3A37600CF9D0C /* TTNews.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1387,6 +1413,7 @@
 				63A3130325C9060500AF1056 /* TTRecommandVideoTableViewCell.xib in Resources */,
 				63265C4B256F9FF100AACBC6 /* TTChannelMyHeaderView.xib in Resources */,
 				63265C4E256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib in Resources */,
+				630D069C25F2149100DF1D44 /* ios_asset.bundle in Resources */,
 				632251AE25E8952000CE8D96 /* VideoDetail in Resources */,
 				633368E225761AC900F47A91 /* TTArticleSearchTagCell.xib in Resources */,
 				949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */,
@@ -1396,6 +1423,7 @@
 				63F30EF62564CAEB000CE908 /* LaunchScreen.storyboard in Resources */,
 				63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */,
 				631BC91F25481E66001B82AB /* TTThemeDefaultTag.plist in Resources */,
+				630D06BC25F233FB00DF1D44 /* TTArticleContent.css in Resources */,
 				631BC92525481E8B001B82AB /* TTThemeNightTag.plist in Resources */,
 				63D2869225AFF73D00D87A10 /* TTTabBarModel.json in Resources */,
 			);
@@ -1459,9 +1487,11 @@
 				63879C5025EDE534001DE258 /* TTSearchSuggestionRequestModel.m in Sources */,
 				63E6CB5E24C02CE800E0126C /* TTSearchViewController.m in Sources */,
 				633368E125761AC900F47A91 /* TTArticleSearchTagCell.m in Sources */,
+				63C8038525F0C3B900B1EB99 /* homeNewsDetailRecSearchViewModel.m in Sources */,
 				638481EC24BEEB85002F4C5F /* XGVideoTableViewController.m in Sources */,
 				63F6751F254C22DC009F9AB7 /* TTShowShareConfigureView.m in Sources */,
 				631BC92A25482A9A001B82AB /* clearCacheTools.m in Sources */,
+				63C803B225F103A800B1EB99 /* homeArticleContentModel.m in Sources */,
 				6390EEBD2589B3670081093E /* UIScrollView+EmptyDataSet.m in Sources */,
 				63C472A124B0566D0030C84B /* NetworkSpeedMonitor.m in Sources */,
 				631CFA7124E567250082B941 /* MessageViewController.m in Sources */,
@@ -1540,6 +1570,7 @@
 				638A1A5C25778BA00002F50B /* TTArticleSearchWordViewModel.m in Sources */,
 				6305043A256525B000CB910D /* TTReportArticleView.m in Sources */,
 				631BAEEB249B751D00639CD2 /* TTNavigationController.m in Sources */,
+				63C8039E25F0FEE400B1EB99 /* homeArticleContentViewModel.m in Sources */,
 				633BEA602587607900423C39 /* TTPlayerView.m in Sources */,
 				636EA80924C9977B00765F5C /* videoInfoTableView.m in Sources */,
 				63C73D6C259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.m in Sources */,
@@ -1588,6 +1619,7 @@
 				63403E7C24C969FB0024A362 /* screeningHallTableViewCell.m in Sources */,
 				820979151BD3AEA800CF9D0C /* ScreeningHallViewController.m in Sources */,
 				820978E81BD3A37600CF9D0C /* main.m in Sources */,
+				63C8039925F0CA9D00B1EB99 /* homeNewsDetailRecSearchRequestModel.m in Sources */,
 				633BEA5C2587602E00423C39 /* TTSlider.m in Sources */,
 				6393A2D825AD438F002BB19E /* TT_tabBarModel.m in Sources */,
 				635BB45425DFC5E300449953 /* TT_VideoDetailModel.m in Sources */,
@@ -1740,7 +1772,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ljwcode.gmail.ljwcodeHeadLineNews;
-				PRODUCT_NAME = "今日头条";
+				PRODUCT_NAME = TTNews;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wno-ambiguous-macro";
@@ -1777,7 +1809,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ljwcode.gmail.ljwcodeHeadLineNews;
-				PRODUCT_NAME = "今日头条";
+				PRODUCT_NAME = TTNews;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wno-ambiguous-macro";

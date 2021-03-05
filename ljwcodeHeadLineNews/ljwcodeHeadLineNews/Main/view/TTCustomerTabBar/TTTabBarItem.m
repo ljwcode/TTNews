@@ -13,7 +13,7 @@
     CGFloat itemWidth;
     UILabel *titleLabel;
     UIImage *TTnormalImg,*TTselectedImg;
-    UIImageView *TTitemImage;
+    UIImageView *itemImage;
 }
 
 
@@ -31,27 +31,28 @@
 
 -(void)CreateUI{
     itemWidth = kScreenWidth / 4;
+    
+    itemImage = [[UIImageView alloc] init];
+    itemImage.image = [UIImage imageNamed:@""];
+    [self addSubview:itemImage];
+   
+    [itemImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(2);
+        make.centerX.mas_equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(itemWidth, 49/2));
+    }];
+    
     titleLabel = [[UILabel alloc] init];
     titleLabel.text = @"  ";
     [self addSubview:titleLabel];
-    
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
-        make.centerY.mas_equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(itemWidth, TT_USERDEFAULT_float(TabBarViewHeight)/5-2));
+        make.top.mas_equalTo(itemImage.mas_bottom).offset(1);
     }];
-    titleLabel.contentMode = UIViewContentModeScaleToFill;
+    
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
     
-    TTitemImage = [[UIImageView alloc] init];
-    TTitemImage.image = [UIImage imageNamed:@""];
-    TTitemImage.contentMode = UIViewContentModeScaleToFill;
-    [self addSubview:TTitemImage];
-    [TTitemImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(titleLabel.mas_top).offset(0);
-        make.centerX.equalTo(self);
-    }];
 }
 
 -(instancetype)initWithItemTitle:(NSString *)ItemTitle normalImg:(NSString *)normalImg selectedImg:(NSString *)selectedImg{
@@ -60,11 +61,17 @@
         TTselectedImg = [UIImage imageNamed:selectedImg];
         TTnormalImg = [UIImage imageNamed: normalImg];
         titleLabel.text = ItemTitle;
-        [TTitemImage setImage:TTselectedImg];
-        [TTitemImage mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(5);
-            make.bottom.equalTo(titleLabel.mas_top).offset(-4);
-            make.centerX.equalTo(self);
+        [itemImage setImage:TTselectedImg];
+        [itemImage mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(2);
+            make.centerX.mas_equalTo(self);
+            make.width.height.mas_equalTo(49 * 2 / 3);
+        }];
+
+        [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(itemImage.mas_bottom).offset(2);
+            make.centerX.mas_equalTo(self);
+            make.bottom.mas_equalTo(TT_isIphoneX ? -34 - 2 : -2);
         }];
         titleLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
     }
@@ -74,17 +81,17 @@
 -(void)tabBarItemSelected:(BOOL)selected selectedIndex:(NSInteger)index{
     if(selected && index == 0){
         titleLabel.hidden = NO;
-        TTitemImage.hidden = NO;
+        itemImage.hidden = NO;
     }else{
         titleLabel.hidden = !YES;
-        TTitemImage.hidden = !YES;
+        itemImage.hidden = !YES;
     }
     if(selected){
-        TTitemImage.image = TTselectedImg;
-        titleLabel.textColor = [UIColor colorWithRed:0.97 green:0.35 blue:0.35 alpha:1];
+        itemImage.image = TTselectedImg;
+        titleLabel.textColor = TT_ColorWithRed(0.97, 0.35, 0.35, 1);
     }else{
-        TTitemImage.image = TTnormalImg;
-        titleLabel.textColor = [UIColor colorWithRed:0.31 green:0.31 blue:0.31 alpha:1];
+        itemImage.image = TTnormalImg;
+        titleLabel.textColor = TT_ColorWithRed(0.31, 0.31, 0.31, 1);
     }
 }
 
@@ -93,9 +100,9 @@
 -(void)tabBarViewHeight{
     itemWidth = kScreenWidth / 4;
     [titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self).offset(-2);
+        make.top.equalTo(itemImage.mas_bottom).offset(2);
         make.centerX.equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(itemWidth, TT_USERDEFAULT_float(TabBarViewHeight)/2-2));
+        make.bottom.mas_equalTo(TT_isIphoneX ? -34 - 2 : -2);
     }];
 }
 

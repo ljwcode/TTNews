@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *item_id;
 
+@property(nonatomic,copy)NSString *group_id;
+
 @end
 
 NS_ASSUME_NONNULL_END

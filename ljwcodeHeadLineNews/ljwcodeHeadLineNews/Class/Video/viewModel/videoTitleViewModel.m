@@ -26,7 +26,7 @@
         _videoCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 
-                videoTitleRequestModel *request = [videoTitleRequestModel initWithNetworkModelWithUrlString:TTNetworkURLManager.videoTitlesURLString isPost:NO];
+                videoTitleRequestModel *request = [videoTitleRequestModel initWithNetworkModelWithUrlString:TTNetworkURLManager.TT_videoTitlesURL isPost:NO];
                 /*
                  https://api5-normal-c-lq.snssdk.com/video_api/get_category/v3/?version_code=8.0.9&tma_jssdk_version=1.95.0.19&app_name=news_article&app_version=8.0.9&vid=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&device_id=157930857702792&channel=App%20Store&resolution=750*1334&aid=13&update_version_code=80919&cdid=EDDBEF16-CAA0-4624-8789-5BA3E024EF5E&idfv=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&ac=WIFI&os_version=12.4.8&ssmix=a&device_platform=iphone&iid=1513346564108847&device_type=iPhone%206&ab_client=a1,f2,f7,e1&idfa=00000000-0000-0000-0000-000000000000
                  */

@@ -20,20 +20,31 @@
     return Instance;
 }
 
-+(NSString *)homeTitleUrlString{
++(NSString *)TT_homeNewsTitleURL{
     return @"https://api5-normal-c-lq.snssdk.com/article/category/get_subscribed/v4/?";
 }
 
-+(NSString *)homeListUrlString{
++(NSString *)TT_homeNewsListURL{
     return [NSString stringWithFormat:@"https://api5-normal-c-lq.snssdk.com/api/news/feed/v88/?"];
 }
 
-+ (NSString *)videoTitlesURLString {
++(NSString *)TT_newsDetailRecURL{
+    return [NSString stringWithFormat:@"https://api5-normal-c-lq.snssdk.com/2/article/information/v27/?"];
+}
+
++(NSString *)TT_articleContentURL:(NSString *)group_id{
+    return [NSString stringWithFormat:@"https://a3-ipv6.pstatp.com/article/content/25/2/%@/%@/1/0/0/",group_id,group_id];
+}
+
++ (NSString *)TT_videoTitlesURL {
     return [NSString stringWithFormat:@"https://api5-normal-c-lq.snssdk.com/video_api/get_category/v3/?"];
 }
-+ (NSString *)videoListURLString {
++ (NSString *)TT_videoListURL {
     return [NSString stringWithFormat:@"https://api5-normal-c-lq.snssdk.com/api/news/feed/v64/?"];
 }
+
+///  真实视频URL解析
+/// @param video_id 当前视频video_id
 -(NSString *)parseVideoRealURLWithVideo_id:(NSString *)video_id{
     int r = arc4random();
     if(r < 0){
@@ -60,15 +71,15 @@
     return URL;
 }
 
-+(NSString *)videoDetailInfoURL{
++(NSString *)TT_videoDetailInfoURL{
     return [NSString stringWithFormat:@"https://api5-normal-c-lq.snssdk.com/video/app/article/information/v25/?"];
 }
 
-+(NSString *)videoRecommendURL{
++(NSString *)TT_videoRecommendURL{
     return [NSString stringWithFormat:@"https://api5-normal-c-lq.snssdk.com/api/news/feed/v64/?"];
 }
 
-+(NSString *)TableCommentURL{
++(NSString *)TT_TableCommentURL{
     return [NSString stringWithFormat:@"https://api5-normal-c-lq.snssdk.com/article/v4/tab_comments/"];
 }
 

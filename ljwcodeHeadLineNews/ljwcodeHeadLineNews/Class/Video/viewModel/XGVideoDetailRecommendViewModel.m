@@ -19,7 +19,7 @@
     if(self = [super init]){
         _videoRecCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                videoDetailRequestModel *request = [videoDetailRequestModel initWithNetworkModelWithUrlString:[TTNetworkURLManager videoRecommendURL] isPost:NO];
+                videoDetailRequestModel *request = [videoDetailRequestModel initWithNetworkModelWithUrlString:[TTNetworkURLManager TT_videoRecommendURL] isPost:NO];
                 
                 request.caid1 = @"626b60a145e6a3340054b5c6d73c1910";
                 request.version_code = [TT_requestModel version_code];
