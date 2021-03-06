@@ -14,41 +14,38 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - DouyinOpenSDK (4.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - libwebp (1.1.0):
-    - libwebp/demux (= 1.1.0)
-    - libwebp/mux (= 1.1.0)
-    - libwebp/webp (= 1.1.0)
-  - libwebp/demux (1.1.0):
+  - libwebp (1.2.0):
+    - libwebp/demux (= 1.2.0)
+    - libwebp/mux (= 1.2.0)
+    - libwebp/webp (= 1.2.0)
+  - libwebp/demux (1.2.0):
     - libwebp/webp
-  - libwebp/mux (1.1.0):
+  - libwebp/mux (1.2.0):
     - libwebp/demux
-  - libwebp/webp (1.1.0)
+  - libwebp/webp (1.2.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
-  - MJExtension (3.2.2)
+  - MJExtension (3.2.4)
   - MJRefresh (3.5.0)
   - PromisesObjC (1.2.12)
   - ReactiveObjC (3.1.1)
-  - Realm (10.5.0):
-    - Realm/Headers (= 10.5.0)
-  - Realm/Headers (10.5.0)
+  - Realm (10.7.1):
+    - Realm/Headers (= 10.7.1)
+  - Realm/Headers (10.7.1)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
   - SDWebImage/WebP (4.0.0):
     - libwebp
     - SDWebImage/Core
-  - WechatOpenSDK (1.8.7.1)
   - YYCache (1.0.4)
   - YYText (1.0.7)
 
 DEPENDENCIES:
   - AFNetworking
-  - DouyinOpenSDK
   - FMDB (~> 2.7.5)
   - Masonry
   - MBProgressHUD
@@ -59,14 +56,12 @@ DEPENDENCIES:
   - Realm
   - SDWebImage (~> 4.0.0)
   - SDWebImage/WebP
-  - WechatOpenSDK
   - YYCache
   - YYText
 
 SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - AFNetworking
-    - DouyinOpenSDK
     - FMDB
     - libwebp
     - Masonry
@@ -77,27 +72,24 @@ SPEC REPOS:
     - ReactiveObjC
     - Realm
     - SDWebImage
-    - WechatOpenSDK
     - YYCache
     - YYText
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  DouyinOpenSDK: 370f429928f1433547f296ccb2e47c2a85fddc0d
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
+  libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
+  MJExtension: 88e0900751b6cac8de1cf724ca9838a0b28d5acb
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  Realm: e1c22c3d83b229afb70ebc10e1771c91e9542d12
+  Realm: 55bae3a2f42186360b54fd8783e884ae8656ab05
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 3cba0511300f12616dce260a887671aba5ee287e
+PODFILE CHECKSUM: 7b5b7eb1333f044773b9d4a9d8d41e8e4add5ff9
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

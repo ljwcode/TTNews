@@ -7,9 +7,8 @@
 //
 
 #import "otherLoginTypeView.h"
-#import <WXApi.h>
 
-@interface otherLoginTypeView()<UITableViewDelegate,UITableViewDataSource,WXApiDelegate>
+@interface otherLoginTypeView()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)UITableView *alertSheetView;
 
@@ -89,7 +88,6 @@ static NSString *cellID = @"OtherLoginCellID";
         case 2:
             break;
         case 3:
-            [self respToWechat];
             break;
             default:
             break;
@@ -97,24 +95,6 @@ static NSString *cellID = @"OtherLoginCellID";
     }
 }
 
-#pragma mark -- 跳转到WX
-
--(void)respToWechat{
-    [WXApi registerApp:AppId universalLink:UniversalLink];
-    if(self.delegate){
-        [self.delegate RespToWX];
-    }
-    [self.getCurrentViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark -- WXApiDelegate
--(void)onReq:(BaseReq *)req{
-    
-}
-
--(void)onResp:(BaseResp *)resp{
-    
-}
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.

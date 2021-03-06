@@ -16,8 +16,6 @@ pod 'Masonry'
 pod 'YYText'
 pod 'SDWebImage/WebP'
 pod 'SDWebImage’,’~> 4.0.0’
-pod 'DouyinOpenSDK'
-pod 'WechatOpenSDK'
 pod 'PromisesObjC'
 pod 'FMDB', '~> 2.7.5'
 pod 'Realm'
