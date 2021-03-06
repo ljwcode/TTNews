@@ -10,8 +10,6 @@
 		6302B4D625A9B35E00818EBB /* TT_CustomerTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6302B4D525A9B35E00818EBB /* TT_CustomerTabBar.m */; };
 		6305043A256525B000CB910D /* TTReportArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63050439256525B000CB910D /* TTReportArticleView.m */; };
 		630A976624CFC463003029C3 /* countryCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A976424CFC462003029C3 /* countryCodeView.m */; };
-		630D069C25F2149100DF1D44 /* ios_asset.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 630D069B25F2149100DF1D44 /* ios_asset.bundle */; };
-		630D06BC25F233FB00DF1D44 /* TTArticleContent.css in Resources */ = {isa = PBXBuildFile; fileRef = 630D06BB25F233FB00DF1D44 /* TTArticleContent.css */; };
 		6313651E258C842900FCAAA9 /* videoDetailCacheDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6313651D258C842900FCAAA9 /* videoDetailCacheDBViewModel.m */; };
 		63167AAD24AAE3C2002CB4EF /* homeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AAC24AAE3C2002CB4EF /* homeTableViewController.m */; };
 		63167AB024AB5FEE002CB4EF /* homeNewsCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63167AAF24AB5FEE002CB4EF /* homeNewsCellViewModel.m */; };
@@ -157,6 +155,7 @@
 		63DEE600254AC12200D356D4 /* TTCheckNetWorkStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DEE5FF254AC12200D356D4 /* TTCheckNetWorkStatus.m */; };
 		63E26EA125C2DC070045CFDB /* TT_TimeIntervalConverString.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E26EA025C2DC070045CFDB /* TT_TimeIntervalConverString.m */; };
 		63E6CB5E24C02CE800E0126C /* TTSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E6CB5D24C02CE800E0126C /* TTSearchViewController.m */; };
+		63E7A83025F3894800BDEB08 /* TTArticleContent.css in Resources */ = {isa = PBXBuildFile; fileRef = 63E7A82F25F3894800BDEB08 /* TTArticleContent.css */; };
 		63E8079924FD218A00C58406 /* showAllMsgChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8079824FD218A00C58406 /* showAllMsgChannelView.m */; };
 		63E8C373256796E100F69701 /* TTWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C372256796E100F69701 /* TTWebView.m */; };
 		63E8C3782567B29600F69701 /* TTHomeMoreShareVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C3772567B29600F69701 /* TTHomeMoreShareVIew.m */; };
@@ -195,8 +194,6 @@
 		63050439256525B000CB910D /* TTReportArticleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTReportArticleView.m; sourceTree = "<group>"; };
 		630A976424CFC462003029C3 /* countryCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countryCodeView.m; sourceTree = "<group>"; };
 		630A976524CFC463003029C3 /* countryCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = countryCodeView.h; sourceTree = "<group>"; };
-		630D069B25F2149100DF1D44 /* ios_asset.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ios_asset.bundle; sourceTree = "<group>"; };
-		630D06BB25F233FB00DF1D44 /* TTArticleContent.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = TTArticleContent.css; sourceTree = "<group>"; };
 		6313651C258C842900FCAAA9 /* videoDetailCacheDBViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoDetailCacheDBViewModel.h; sourceTree = "<group>"; };
 		6313651D258C842900FCAAA9 /* videoDetailCacheDBViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoDetailCacheDBViewModel.m; sourceTree = "<group>"; };
 		63167AAB24AAE3C2002CB4EF /* homeTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeTableViewController.h; sourceTree = "<group>"; };
@@ -469,6 +466,7 @@
 		63E26EA025C2DC070045CFDB /* TT_TimeIntervalConverString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_TimeIntervalConverString.m; sourceTree = "<group>"; };
 		63E6CB5C24C02CE800E0126C /* TTSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTSearchViewController.h; sourceTree = "<group>"; };
 		63E6CB5D24C02CE800E0126C /* TTSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTSearchViewController.m; sourceTree = "<group>"; };
+		63E7A82F25F3894800BDEB08 /* TTArticleContent.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = TTArticleContent.css; sourceTree = "<group>"; };
 		63E8079724FD218A00C58406 /* showAllMsgChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showAllMsgChannelView.h; sourceTree = "<group>"; };
 		63E8079824FD218A00C58406 /* showAllMsgChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showAllMsgChannelView.m; sourceTree = "<group>"; };
 		63E8C371256796E100F69701 /* TTWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTWebView.h; sourceTree = "<group>"; };
@@ -1023,7 +1021,7 @@
 				63C8038425F0C3B900B1EB99 /* homeNewsDetailRecSearchViewModel.m */,
 				63C8039C25F0FEE400B1EB99 /* homeArticleContentViewModel.h */,
 				63C8039D25F0FEE400B1EB99 /* homeArticleContentViewModel.m */,
-				630D06BB25F233FB00DF1D44 /* TTArticleContent.css */,
+				63E7A82F25F3894800BDEB08 /* TTArticleContent.css */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1233,7 +1231,6 @@
 				637C2D2224A995F70009274C /* HeadLineNews.pch */,
 				820978F21BD3A37700CF9D0C /* Assets.xcassets */,
 				820978E61BD3A37600CF9D0C /* Supporting Files */,
-				630D069B25F2149100DF1D44 /* ios_asset.bundle */,
 			);
 			path = ljwcodeHeadLineNews;
 			sourceTree = "<group>";
@@ -1413,7 +1410,6 @@
 				63A3130325C9060500AF1056 /* TTRecommandVideoTableViewCell.xib in Resources */,
 				63265C4B256F9FF100AACBC6 /* TTChannelMyHeaderView.xib in Resources */,
 				63265C4E256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib in Resources */,
-				630D069C25F2149100DF1D44 /* ios_asset.bundle in Resources */,
 				632251AE25E8952000CE8D96 /* VideoDetail in Resources */,
 				633368E225761AC900F47A91 /* TTArticleSearchTagCell.xib in Resources */,
 				949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */,
@@ -1423,7 +1419,7 @@
 				63F30EF62564CAEB000CE908 /* LaunchScreen.storyboard in Resources */,
 				63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */,
 				631BC91F25481E66001B82AB /* TTThemeDefaultTag.plist in Resources */,
-				630D06BC25F233FB00DF1D44 /* TTArticleContent.css in Resources */,
+				63E7A83025F3894800BDEB08 /* TTArticleContent.css in Resources */,
 				631BC92525481E8B001B82AB /* TTThemeNightTag.plist in Resources */,
 				63D2869225AFF73D00D87A10 /* TTTabBarModel.json in Resources */,
 			);

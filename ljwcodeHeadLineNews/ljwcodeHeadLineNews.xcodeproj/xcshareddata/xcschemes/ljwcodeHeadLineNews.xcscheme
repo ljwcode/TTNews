@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "820978E21BD3A37600CF9D0C"
-               BuildableName = "&#x4eca;&#x65e5;&#x5934;&#x6761;.app"
+               BuildableName = "TTNews.app"
                BlueprintName = "ljwcodeHeadLineNews"
                ReferencedContainer = "container:ljwcodeHeadLineNews.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "820978E21BD3A37600CF9D0C"
-            BuildableName = "&#x4eca;&#x65e5;&#x5934;&#x6761;.app"
+            BuildableName = "TTNews.app"
             BlueprintName = "ljwcodeHeadLineNews"
             ReferencedContainer = "container:ljwcodeHeadLineNews.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "820978E21BD3A37600CF9D0C"
-            BuildableName = "&#x4eca;&#x65e5;&#x5934;&#x6761;.app"
+            BuildableName = "TTNews.app"
             BlueprintName = "ljwcodeHeadLineNews"
             ReferencedContainer = "container:ljwcodeHeadLineNews.xcodeproj">
          </BuildableReference>

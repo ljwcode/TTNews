@@ -51,9 +51,9 @@
     [html appendString:@"<script>"];
     [html appendString:@"(function(i,s,o,g,r,a,m){i[\"SlardarMonitorObject\"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date;a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.crossOrigin='anonymous';m.parentNode.insertBefore(a,m);i[r].globalPreCollectError = function () {i[r]('precollect', 'error', arguments);};if (typeof i.addEventListener === 'function') {i.addEventListener('error', i[r].globalPreCollectError, true)}})(window,document,\"script\",\"https://i.snssdk.com/slardar/sdk.js?bid=article_app\",\"Slardar\");"];
     [html appendString:@"</script>"];
-    
-    [html appendFormat:@"<link rel=\"stylesheet\" href=\"%@\">",[[NSBundle mainBundle] URLForResource:@"TTArticleContent.css" withExtension:nil]];
-    
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"TTArticleContent" ofType:@"css"];
+    [html appendFormat:@"<link rel=\"stylesheet\" type=\"text/css\" href=\"%@\">",path];
+
     [html appendString:@"</head>"];
     
     [html appendString:@"<body style=\"background:#ffffff\">"];
