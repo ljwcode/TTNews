@@ -3114,7 +3114,7 @@ header .follow-button.following.disabled:after {
 
 .author-bar {
 	overflow: hidden;
-	height: 100%
+	height: 10%
 }
 
 .author-bar:after {

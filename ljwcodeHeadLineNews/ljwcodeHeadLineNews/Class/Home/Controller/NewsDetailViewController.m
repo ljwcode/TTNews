@@ -85,7 +85,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.webView.navigationDelegate = self;
+    self.webView.UIDelegate = self;
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.headerView];
 
@@ -97,7 +98,8 @@
     [[self.ArticleContentViewModel.ArticleContentCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
         
     } completed:^{
-        [self.webView loadHTMLString:[self.ArticleContentViewModel TT_getHTMLString] baseURL:nil];
+        NSURL *baseUrl = [NSURL URLWithString:@"file:///assets/"];
+        [self.webView loadHTMLString:[self.ArticleContentViewModel TT_getHTMLString] baseURL:baseUrl];
     }];
 }
 
@@ -125,10 +127,13 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0){
+        return 126;
+    }
     return CGFLOAT_MIN;
 }
 
--(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section{
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if(section == 0){
         return self.webView.height;
     }
@@ -164,8 +169,6 @@
         _webView.scrollView.scrollEnabled = NO;
         _webView.scrollView.bounces = NO;
         _webView.opaque = NO;
-        _webView.navigationDelegate = self;
-        _webView.UIDelegate = self;
     }
     return _webView;
 }
@@ -193,10 +196,6 @@
 
 #pragma mark - WKUIDelegate WKNavigationDelegate
 
--(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
-    _hud = [MBProgressHUD showMessag:@"loading..." toView:nil];
-}
-
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     [webView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='none';" completionHandler:nil];
     [webView evaluateJavaScript:@"document.activeElement.blur();" completionHandler:nil];
@@ -207,7 +206,6 @@
     
     self.webView.height = self.webView.scrollView.contentSize.height;
     [self.tableView reloadData];
-    [_hud hideAnimated:YES];
 }
 
 -(void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error{
@@ -217,7 +215,7 @@
 
 #pragma mark - 点击事件响应
 
--(void)moreBarHandle:(UIBarButtonItem *)sender{
+-(void)moreBarHandle:(id)sender{
     TTHomeMoreShareVIew *moreShareView = [[TTHomeMoreShareVIew alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.5, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.5)];
     moreShareView.backgroundColor = [UIColor whiteColor];
     moreShareView.layer.cornerRadius = 8.f;
@@ -225,12 +223,12 @@
     [self.view addSubview:moreShareView];
 }
 
--(void)searchBarHandle:(UIBarButtonItem *)sender{
+-(void)searchBarHandle:(id)sender{
     TTSearchViewController *searchVC = [[TTSearchViewController alloc]init];
     [self.navigationController pushViewController:searchVC animated:YES];
 }
 
--(void)leftBackHandle:(UIBarButtonItem *)sender{
+-(void)leftBackHandle:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -265,8 +265,6 @@
         NSLog(@"播放视频");
         [self playTheVideoAtIndexPath:indexPath];
     }else{
-        webVC.urlString = _model.infoModel.article_url;
-        webVC.item_id = _model.infoModel.item_id;
         webVC.group_id = _model.infoModel.group_id;
         [self.navigationController pushViewController:webVC animated:YES];
     }

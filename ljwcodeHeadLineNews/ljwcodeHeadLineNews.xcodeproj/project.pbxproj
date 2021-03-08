@@ -157,9 +157,9 @@
 		63E6CB5E24C02CE800E0126C /* TTSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E6CB5D24C02CE800E0126C /* TTSearchViewController.m */; };
 		63E8079924FD218A00C58406 /* showAllMsgChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8079824FD218A00C58406 /* showAllMsgChannelView.m */; };
 		63E8C3782567B29600F69701 /* TTHomeMoreShareVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E8C3772567B29600F69701 /* TTHomeMoreShareVIew.m */; };
+		63EB675525F634C3004BF64B /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 63EB675425F634C3004BF64B /* assets */; };
 		63EEAB2825B92F2A00ACDB7D /* TTFontSizeChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63EEAB2725B92F2A00ACDB7D /* TTFontSizeChangeModel.m */; };
 		63EEAB4225B96AD400ACDB7D /* TTFontSizeChangeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63EEAB4125B96AD400ACDB7D /* TTFontSizeChangeViewModel.m */; };
-		63F1E5B725F616FA00260D99 /* TTArticleContent.css in Resources */ = {isa = PBXBuildFile; fileRef = 63F1E5B625F616FA00260D99 /* TTArticleContent.css */; };
 		63F1F8D024AF219400D687ED /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F1F8CF24AF219400D687ED /* AVFoundation.framework */; };
 		63F1F8D324AF223200D687ED /* TVVideoPlayerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8D224AF223200D687ED /* TVVideoPlayerViewCell.m */; };
 		63F1F8DC24AF2D7700D687ED /* videoTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F1F8DB24AF2D7700D687ED /* videoTitleModel.m */; };
@@ -469,11 +469,11 @@
 		63E8079824FD218A00C58406 /* showAllMsgChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showAllMsgChannelView.m; sourceTree = "<group>"; };
 		63E8C3762567B29600F69701 /* TTHomeMoreShareVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTHomeMoreShareVIew.h; sourceTree = "<group>"; };
 		63E8C3772567B29600F69701 /* TTHomeMoreShareVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTHomeMoreShareVIew.m; sourceTree = "<group>"; };
+		63EB675425F634C3004BF64B /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		63EEAB2625B92F2A00ACDB7D /* TTFontSizeChangeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTFontSizeChangeModel.h; sourceTree = "<group>"; };
 		63EEAB2725B92F2A00ACDB7D /* TTFontSizeChangeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFontSizeChangeModel.m; sourceTree = "<group>"; };
 		63EEAB4025B96AD400ACDB7D /* TTFontSizeChangeViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTFontSizeChangeViewModel.h; sourceTree = "<group>"; };
 		63EEAB4125B96AD400ACDB7D /* TTFontSizeChangeViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFontSizeChangeViewModel.m; sourceTree = "<group>"; };
-		63F1E5B625F616FA00260D99 /* TTArticleContent.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = TTArticleContent.css; sourceTree = "<group>"; };
 		63F1F8CF24AF219400D687ED /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		63F1F8D124AF223200D687ED /* TVVideoPlayerViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVVideoPlayerViewCell.h; sourceTree = "<group>"; };
 		63F1F8D224AF223200D687ED /* TVVideoPlayerViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVVideoPlayerViewCell.m; sourceTree = "<group>"; };
@@ -1016,7 +1016,6 @@
 				63C8038425F0C3B900B1EB99 /* homeNewsDetailRecSearchViewModel.m */,
 				63C8039C25F0FEE400B1EB99 /* homeArticleContentViewModel.h */,
 				63C8039D25F0FEE400B1EB99 /* homeArticleContentViewModel.m */,
-				63F1E5B625F616FA00260D99 /* TTArticleContent.css */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1197,6 +1196,7 @@
 		820978DA1BD3A37600CF9D0C = {
 			isa = PBXGroup;
 			children = (
+				63EB675425F634C3004BF64B /* assets */,
 				63F30EF52564CAEB000CE908 /* LaunchScreen.storyboard */,
 				820978E51BD3A37600CF9D0C /* ljwcodeHeadLineNews */,
 				820979211BD3B0FE00CF9D0C /* Frameworks */,
@@ -1409,10 +1409,10 @@
 				633368E225761AC900F47A91 /* TTArticleSearchTagCell.xib in Resources */,
 				949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */,
 				6390EEBC2589B3670081093E /* LICENSE in Resources */,
-				63F1E5B725F616FA00260D99 /* TTArticleContent.css in Resources */,
 				634DA02D25A45C4200236458 /* Settings.bundle in Resources */,
 				637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */,
 				63F30EF62564CAEB000CE908 /* LaunchScreen.storyboard in Resources */,
+				63EB675525F634C3004BF64B /* assets in Resources */,
 				63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */,
 				631BC91F25481E66001B82AB /* TTThemeDefaultTag.plist in Resources */,
 				631BC92525481E8B001B82AB /* TTThemeNightTag.plist in Resources */,
