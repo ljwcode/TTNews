@@ -148,9 +148,6 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
     self.recommendSearchArray = [NSMutableArray arrayWithArray:self.keywordArray];
     
     self.sectionArray = [NSMutableArray arrayWithObject:@""];
-    /*
-     11 22 33 44 55 66
-     */
     [self.navigationController.navigationBar setBackgroundImage:[self drawImageContext:[UIColor whiteColor]]  forBarMetrics:UIBarMetricsDefault];
     
     if(self.cancelBtnWidth == 0){
@@ -166,8 +163,7 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-//    self.view.layer.borderColor = [UIColor blueColor].CGColor;
-//    self.view.layer.borderWidth = 2.f;
+    self.definesPresentationContext = YES;
     [self setup];
 }
 
@@ -178,6 +174,7 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.searchBar resignFirstResponder];
+    [self.navigationController.navigationBar setBackgroundImage:[self drawImageContext:[UIColor colorWithRed:0.83 green:0.24 blue:0.24 alpha:1.0]]  forBarMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
@@ -403,23 +400,18 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
 
 
 -(void)cancelButtonHandle:(UIButton *)sender{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.searchBar resignFirstResponder];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)privateHandle:(UISwitch *)sender{
     sender.selected = !sender.selected;
     if(sender.on == true){
         [MBProgressHUD showSuccess:@"无痕搜索模式已开启"];
-        [self delAllSection];
         [self createPrivateView];
     }else{
         [MBProgressHUD showSuccess:@"无痕搜索模式已关闭"];
     }
-}
-
-
--(void)delAllSection{
-    
 }
 
 -(void)keyBoardDidShow:(NSNotification *)noti{

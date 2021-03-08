@@ -11,7 +11,6 @@
 #import <RACSubject.h>
 #import "newsDetailFooterView.h"
 #import "TTSearchViewController.h"
-#import "TTWebView.h"
 #import "TTHomeMoreShareVIew.h"
 #import <Masonry/Masonry.h>
 #import "homeNewsDetailRecSearchViewModel.h"
@@ -76,19 +75,22 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.webView.navigationDelegate = self;
-    self.webView.UIDelegate = self;
+    
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.headerView];
 
     [self setNaviBarItem];
-    [[self.newsRecViewModel.recSearchCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
+    [[self.newsRecViewModel.recSearchCommand execute:self.group_id]subscribeNext:^(id  _Nullable x)  {
         
     }];
 
@@ -97,13 +99,6 @@
     } completed:^{
         [self.webView loadHTMLString:[self.ArticleContentViewModel TT_getHTMLString] baseURL:nil];
     }];
-    
-    
-    self.webView.layer.borderColor = [UIColor redColor].CGColor;
-    self.webView.layer.borderWidth = 1.f;
-    
-    self.webView.scrollView.contentInsetAdjustmentBehavior = NO;
-    self.webView.scrollView.delegate = self;
 }
 
 #pragma mark ---- UITableViewDelegate && UITableViewDatasource
@@ -118,10 +113,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-//    if(!cell){
-//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-//    }
+    
     return [UITableViewCell new];
 }
 
@@ -142,13 +134,6 @@
     }
     return CGFLOAT_MIN;
 }
-
-#pragma mark ---- TTWebViewDelegate
-
-//-(void)webViewDidFinishLoad:(WKWebView *)webView{
-//    self.webView.height = self.webView.scrollView.contentSize.height;
-//    [self.tableView reloadData];
-//}
 
 #pragma mark ---- lazy load
 
@@ -179,6 +164,8 @@
         _webView.scrollView.scrollEnabled = NO;
         _webView.scrollView.bounces = NO;
         _webView.opaque = NO;
+        _webView.navigationDelegate = self;
+        _webView.UIDelegate = self;
     }
     return _webView;
 }
@@ -191,7 +178,6 @@
         _tableView.layer.borderColor = [UIColor blueColor].CGColor;
         _tableView.layer.borderWidth = 1.f;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//        _tableView.contentSize = CGSizeMake(kScreenWidth, CGFLOAT_MAX);
     }
     return _tableView;
 }
@@ -205,13 +191,6 @@
     return _footerView;
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    UIImage *image = [self.navigationController valueForKeyPath:@"defaultImage"];
-    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-}
-
 #pragma mark - WKUIDelegate WKNavigationDelegate
 
 -(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
@@ -219,6 +198,13 @@
 }
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    [webView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='none';" completionHandler:nil];
+    [webView evaluateJavaScript:@"document.activeElement.blur();" completionHandler:nil];
+    // 适当增大字体大小
+    NSString *js = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%%'"];
+    [webView evaluateJavaScript:js completionHandler:nil];
+    webView.allowsBackForwardNavigationGestures = YES;
+    
     self.webView.height = self.webView.scrollView.contentSize.height;
     [self.tableView reloadData];
     [_hud hideAnimated:YES];
