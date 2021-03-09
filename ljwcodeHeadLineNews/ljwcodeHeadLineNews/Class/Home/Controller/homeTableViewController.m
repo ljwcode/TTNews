@@ -260,12 +260,13 @@
 //点击news cell跳转到新闻显示界面
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NewsDetailViewController *webVC = [[NewsDetailViewController alloc]init];
-    _model  = self.datasArray[indexPath.row];
+    self.model  = self.datasArray[indexPath.row];
     if([self.titleModel.category isEqualToString:@"video"]){
         NSLog(@"播放视频");
         [self playTheVideoAtIndexPath:indexPath];
     }else{
         webVC.group_id = _model.infoModel.group_id;
+        NSLog(@"articleURL = %@",_model.infoModel.article_url);
         [self.navigationController pushViewController:webVC animated:YES];
     }
 }
@@ -314,8 +315,7 @@
         return [self GetVideoParseData:value];
     }]then:^id _Nullable(id  _Nullable value) {
         self.videoPlayModel = value;
-        NSLog(@"video url = %@",self.videoPlayModel.video_list.video_1.main_url);
-        return self.videoPlayModel.video_list.video_1.main_url;
+        return value;
     }];
 }
 

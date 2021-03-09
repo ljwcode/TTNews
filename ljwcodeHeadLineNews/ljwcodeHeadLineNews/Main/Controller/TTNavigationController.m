@@ -51,36 +51,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _defaultImage = [self.class drawImageContext:[UIColor colorWithRed:0.83 green:0.24 blue:0.24 alpha:1]];
-    
+
     id target = self.interactivePopGestureRecognizer.delegate;
-    SEL handler = NSSelectorFromString(@"handleNavigationTransition:");
-    // 获取添加系统边缘触发手势的View
-    UIView *targetView = self.interactivePopGestureRecognizer.view;
-    // 创建pan手势 作用范围是全屏
-    UIPanGestureRecognizer *fullScreenGes = [[UIPanGestureRecognizer alloc]initWithTarget:target action:handler];
-    fullScreenGes.delegate = self;
-    [targetView addGestureRecognizer:fullScreenGes];
-    // 关闭边缘触发手势 防止和原有边缘手势冲突（也可不用关闭）
-    [self.interactivePopGestureRecognizer setEnabled:NO];
-    __weak typeof(self) weakself = self;
-    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.interactivePopGestureRecognizer.delegate = (id)weakself;
-    }
+    self.interactivePopGestureRecognizer.enabled = NO;
+    SEL selector = NSSelectorFromString(@"handleNavigationTransition:");
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:target action:selector];
+    [self.view addGestureRecognizer:pan];
+    pan.delegate = self;
     // Do any additional setup after loading the view.
 }
 
 #pragma mark - UIGestureRecognizerDelegate
-//这个方法是在手势将要激活前调用：返回YES允许右滑手势的激活，返回NO不允许右滑手势的激活
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-    if (gestureRecognizer == self.interactivePopGestureRecognizer) {
-        //屏蔽调用rootViewController的滑动返回手势，避免右滑返回手势引起死机问题
-        if (self.viewControllers.count < 2 ||
- self.visibleViewController == [self.viewControllers objectAtIndex:0]) {
-            return NO;
-        }
-    }
-    //这里就是非右滑手势调用的方法啦，统一允许激活
-    return YES;
+       BOOL open = self.viewControllers.count > 1;
+       return open;
 }
 
 /*

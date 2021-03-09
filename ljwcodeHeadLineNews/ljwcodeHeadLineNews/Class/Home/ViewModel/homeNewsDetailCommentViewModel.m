@@ -1,23 +1,22 @@
 //
-//  XGVideoCommentViewModel.m
+//  homeNewsDetailCommentViewModel.m
 //  ljwcodeHeadLineNews
 //
-//  Created by 1 on 2021/2/23.
+//  Created by 1 on 2021/3/9.
 //  Copyright © 2021 ljwcode. All rights reserved.
 //
 
-#import "XGVideoCommentViewModel.h"
+#import "homeNewsDetailCommentViewModel.h"
 #import <MJExtension/MJExtension.h>
-#import "videoDetailRequestModel.h"
-#import "TT_requestModel.h"
-#import <AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
+#import "TTNetworkURLManager.h"
 #import "TT_UserCommentModel.h"
 
-@implementation XGVideoCommentViewModel
+@implementation homeNewsDetailCommentViewModel
 
 -(instancetype)init{
     if(self = [super init]){
-        _ComRacCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+        _newsDetailCommend = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
                 

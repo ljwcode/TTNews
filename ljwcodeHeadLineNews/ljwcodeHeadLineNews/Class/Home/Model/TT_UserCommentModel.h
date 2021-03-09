@@ -1,8 +1,8 @@
 //
-//  TT_VideoCommentModel.h
+//  TT_UserCommentModel.h
 //  ljwcodeHeadLineNews
 //
-//  Created by 1 on 2021/2/23.
+//  Created by 1 on 2021/3/9.
 //  Copyright © 2021 ljwcode. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface comment : NSObject
+@interface TT_comment : NSObject
 
 @property(nonatomic,copy)NSString *text;
 
@@ -26,16 +26,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface TT_VideoCommentModel : NSObject
+@interface TT_UserCommentModel : NSObject
 
 @property(nonatomic,assign)int cell_type;
 
 @property(nonatomic,assign)int id;
 
-@property(nonatomic,strong)comment *comment;
+@property(nonatomic,strong)TT_comment *comment;
 
 @property(nonatomic,copy)NSString *total_number;
-
 
 @end
 

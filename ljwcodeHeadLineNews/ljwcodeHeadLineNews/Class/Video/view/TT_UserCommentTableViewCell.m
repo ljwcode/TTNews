@@ -41,7 +41,7 @@
     // Initialization code
 }
 
--(void)setCommentModel:(TT_VideoCommentModel *)commentModel{
+-(void)setCommentModel:(TT_UserCommentModel *)commentModel{
     _commentModel = commentModel;
     [self.TT_HeadImgView sd_setImageWithURL:[NSURL URLWithString:commentModel.comment.user_profile_image_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if(image){

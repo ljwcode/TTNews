@@ -15,6 +15,10 @@
 #import <Masonry/Masonry.h>
 #import "homeNewsDetailRecSearchViewModel.h"
 #import "homeArticleContentViewModel.h"
+#import "TT_UserCommentTableViewCell.h"
+#import <ReactiveObjC/ReactiveObjC.h>
+#import "homeNewsDetailCommentViewModel.h"
+#import "TT_UserCommentModel.h"
 
 @interface NewsDetailViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -32,15 +36,56 @@
 
 @property(nonatomic,strong)UIView *headerView;
 
+@property(nonatomic,strong)NSArray *userCommentArray;
+
+@property(nonatomic,strong)UIView *TT_CommentFooterView;
+
 @property(nonatomic,strong)homeNewsDetailRecSearchViewModel *newsRecViewModel;
 
 @property(nonatomic,strong)homeArticleContentViewModel *ArticleContentViewModel;
+
+@property(nonatomic,strong)homeNewsDetailCommentViewModel *CommentViewModel;
 
 @end
 
 @implementation NewsDetailViewController
 
--(void)setNaviBarItem{
+#pragma mark -------- get USER Comment Data
+
+
+-(void)createFooterView{
+    
+    [self.view addSubview:self.TT_CommentFooterView];
+    
+    UITextField *CommentTextField = [[UITextField alloc]init];
+    CommentTextField.layer.borderColor = [UIColor grayColor].CGColor;
+    CommentTextField.layer.borderWidth = 1.f;
+    CommentTextField.layer.cornerRadius = 10.f;
+    
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:@"写评论..." attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:11.f],NSForegroundColorAttributeName : [UIColor blackColor]}];
+    CommentTextField.attributedText = attrString;
+    CommentTextField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    UIImageView *leftImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    leftImgView.image = [UIImage imageNamed:@"hts_vp_write_new"];
+    CommentTextField.leftViewMode = UITextFieldViewModeAlways;
+    [CommentTextField.leftView addSubview:leftImgView];
+    
+    CommentTextField.rightView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    UIImageView *rightImgView = [[UIImageView alloc]initWithFrame:CommentTextField.rightView.bounds];
+    rightImgView.image = [UIImage imageNamed:@"tsv_comment_footer_emoji"];
+    [CommentTextField.rightView addSubview:rightImgView];
+    CommentTextField.rightViewMode = UITextFieldViewModeAlways;
+    
+    [self.TT_CommentFooterView addSubview:CommentTextField];
+    [CommentTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(hSpace * 2);
+        make.right.mas_equalTo(-hSpace * 2);
+        make.top.mas_equalTo(10);
+        make.bottom.mas_equalTo(-10);
+    }];
+}
+
+-(void)TT_NaviBarItem{
 
     UIButton *BackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [BackBtn setImage:[UIImage imageNamed:@"lefterbackicon_titlebar"] forState:UIControlStateNormal];
@@ -85,14 +130,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.webView.navigationDelegate = self;
-    self.webView.UIDelegate = self;
-    [self.view addSubview:self.tableView];
     [self.view addSubview:self.headerView];
 
-    [self setNaviBarItem];
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.headerView.mas_bottom).offset(0);
+        make.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(self.mas_bottomLayoutGuideTop).offset(-34);
+    }];
+    self.tableView.tableHeaderView = self.webView;
+    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.webView];
+    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.headerView.mas_bottom).offset(0);
+        make.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(self.mas_bottomLayoutGuideTop).offset(-34);
+    }];
+    [self TT_NaviBarItem];
     [[self.newsRecViewModel.recSearchCommand execute:self.group_id]subscribeNext:^(id  _Nullable x)  {
-        
+
     }];
 
     [[self.ArticleContentViewModel.ArticleContentCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
@@ -101,12 +157,16 @@
         NSURL *baseUrl = [NSURL URLWithString:@"file:///assets/"];
         [self.webView loadHTMLString:[self.ArticleContentViewModel TT_getHTMLString] baseURL:baseUrl];
     }];
+    
+    [[self.CommentViewModel.newsDetailCommend execute:self.group_id]subscribeNext:^(id  _Nullable x) {
+        self.userCommentArray = x;
+    }];
 }
 
 #pragma mark ---- UITableViewDelegate && UITableViewDatasource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return self.userCommentArray.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -114,33 +174,87 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellID = @"cellID";
+    TT_UserCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TT_UserCommentTableViewCell class])];
+    if(!cell){
+        cell = [[TT_UserCommentTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([TT_UserCommentTableViewCell class])];
+    }
+    TT_UserCommentModel *model = self.userCommentArray[indexPath.row];
+    cell.commentModel = model;
     
-    return [UITableViewCell new];
+    return cell;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        return self.webView;
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 20)];
+        titleLabel.text = @"评论";
+        titleLabel.font = [UIFont systemFontOfSize:13.f weight:6.f];
+        titleLabel.textColor = [UIColor blackColor];
+        return titleLabel;
     }
     return [UIView new];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section == 0){
-        return 126;
+        if(indexPath.row == 0){
+            return 60;
+        }else{
+            return 81;
+        }
     }
     return CGFLOAT_MIN;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        return self.webView.height;
+        return self.userCommentArray.count > 0 ? 40 : CGFLOAT_MIN;
     }
     return CGFLOAT_MIN;
 }
 
+#pragma mark ------- UIScrollViewDelegate
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if([scrollView isEqual:self.tableView]){
+        CGFloat OffSetY = scrollView.contentOffset.y;
+        if(OffSetY <= 0){
+            self.webView.scrollView.scrollEnabled = YES;
+            self.tableView.bounces = NO;
+        }else{
+            self.webView.scrollView.scrollEnabled = NO;
+            self.tableView.bounces = YES;
+        }
+    }
+}
+
+#pragma mark - WKUIDelegate WKNavigationDelegate
+
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    [webView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='none';" completionHandler:nil];
+    [webView evaluateJavaScript:@"document.activeElement.blur();" completionHandler:nil];
+    // 适当增大字体大小
+    NSString *js = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%%'"];
+    [webView evaluateJavaScript:js completionHandler:nil];
+    webView.allowsBackForwardNavigationGestures = YES;
+    
+    self.webView.height = self.webView.scrollView.contentSize.height;
+    [self.tableView reloadData];
+}
+
 #pragma mark ---- lazy load
+
+-(UITableView *)tableView{
+    if(!_tableView){
+        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        
+        UINib *TT_userCommentNib = [UINib nibWithNibName:NSStringFromClass([TT_UserCommentTableViewCell class]) bundle:nil];
+        [_tableView registerNib:TT_userCommentNib forCellReuseIdentifier:NSStringFromClass([TT_UserCommentTableViewCell class])];
+    }
+    return _tableView;
+}
 
 -(homeArticleContentViewModel *)ArticleContentViewModel{
     if(!_ArticleContentViewModel){
@@ -166,23 +280,10 @@
 -(WKWebView *)webView{
     if(!_webView){
         _webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth,kScreenHeight)];
-        _webView.scrollView.scrollEnabled = NO;
-        _webView.scrollView.bounces = NO;
-        _webView.opaque = NO;
+        _webView.navigationDelegate = self;
+        _webView.UIDelegate = self;
     }
     return _webView;
-}
-
--(UITableView *)tableView{
-    if(!_tableView){
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.layer.borderColor = [UIColor blueColor].CGColor;
-        _tableView.layer.borderWidth = 1.f;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    }
-    return _tableView;
 }
 
 -(newsDetailFooterView *)footerView{
@@ -194,23 +295,27 @@
     return _footerView;
 }
 
-#pragma mark - WKUIDelegate WKNavigationDelegate
-
--(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-    [webView evaluateJavaScript:@"document.documentElement.style.webkitUserSelect='none';" completionHandler:nil];
-    [webView evaluateJavaScript:@"document.activeElement.blur();" completionHandler:nil];
-    // 适当增大字体大小
-    NSString *js = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%%'"];
-    [webView evaluateJavaScript:js completionHandler:nil];
-    webView.allowsBackForwardNavigationGestures = YES;
-    
-    self.webView.height = self.webView.scrollView.contentSize.height;
-    [self.tableView reloadData];
+-(UIView *)TT_CommentFooterView{
+    if(!_TT_CommentFooterView){
+        _TT_CommentFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.9, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.1)];
+        _TT_CommentFooterView.layer.borderColor = [UIColor grayColor].CGColor;
+        _TT_CommentFooterView.layer.borderWidth = 1.f;
+    }
+    return _TT_CommentFooterView;
 }
 
--(void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error{
-    [_hud hideAnimated:YES];
-    [MBProgressHUD showMessag:@"loading fail..." toView:nil];
+-(homeNewsDetailCommentViewModel *)CommentViewModel{
+    if(!_CommentViewModel){
+        _CommentViewModel = [[homeNewsDetailCommentViewModel alloc]init];
+    }
+    return _CommentViewModel;
+}
+
+-(NSArray *)userCommentArray{
+    if(!_userCommentArray){
+        _userCommentArray = [[NSArray alloc]init];
+    }
+    return _userCommentArray;
 }
 
 #pragma mark - 点击事件响应

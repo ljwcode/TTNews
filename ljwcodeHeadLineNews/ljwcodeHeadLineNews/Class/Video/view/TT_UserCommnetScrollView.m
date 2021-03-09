@@ -9,7 +9,7 @@
 #import "TT_UserCommnetScrollView.h"
 #import <Masonry/Masonry.h>
 #import "TT_UserCommentTableViewCell.h"
-#import "TT_VideoCommentModel.h"
+#import "TT_UserCommentModel.h"
 #import <FBLPromises/FBLPromises.h>
 #import <MJExtension/MJExtension.h>
 #import "UILabel+Frame.h"
@@ -151,7 +151,7 @@
     if(!cell){
         cell = [[TT_UserCommentTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    TT_VideoCommentModel *model = self.dataArray[indexPath.row];
+    TT_UserCommentModel *model = self.dataArray[indexPath.row];
     cell.commentModel = model;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
