@@ -12,10 +12,16 @@
 #import "TTNetworkURLManager.h"
 #import "MBProgressHUD+Add.h"
 #import "homeArticleContentModel.h"
+#import "RegexKitLite.h"
+#import "TT_NewsContentImgModel.h"
 
 @interface homeArticleContentViewModel()
 
-@property(nonatomic,strong)homeArticleContentModel *model;
+@property(nonatomic,strong)homeArticleContentModel *ContentModel;
+
+@property(nonatomic,strong)TT_NewsContentImgModel *imgModel;
+
+@property(nonatomic,strong)NSMutableArray *imgModelArray;
 
 @end
 
@@ -29,9 +35,17 @@
                 [manager GET:[TTNetworkURLManager TT_articleContentURL:input] parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     NSDictionary *responseDic = (NSDictionary *)responseObject;
                     responseDic = [responseDic objectForKey:@"data"];
-                    self.model = [[[homeArticleContentModel alloc]init]mj_setKeyValues:responseDic];
-                    [subscriber sendNext:self.model];
+                    self.ContentModel = [[[homeArticleContentModel alloc]init]mj_setKeyValues:responseDic];
+                    
+                    NSArray *imgArray = [[responseDic objectForKey:@"image_batch_info"]objectForKey:@"image_detail"];
+                    for(int i = 0;i < imgArray.count;i++){
+                        self.imgModel = [[[TT_NewsContentImgModel alloc]init]mj_setKeyValues:imgArray[i]];
+                        [self.imgModelArray addObject:self.imgModel];
+                    }
+                    [subscriber sendNext:self.ContentModel];
                     [subscriber sendCompleted];
+                    
+                   
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     [MBProgressHUD showSuccess:@"网络请求失败"];
                 }];
@@ -65,8 +79,41 @@
     return html;
 }
 
--(NSString *)TT_getBodyString{
-    return self.model.content;
+
+-(NSArray *)getHtmlImgURL:(NSString *)html{
+    NSString *regex = @"<[a] class=\"image\"+.*?>([\\s\\S]*?)</[a]*?>";
+    NSArray *array = [html arrayOfCaptureComponentsMatchedByRegex:regex];
+    return array;
+}
+
+- (NSString *)TT_getBodyString{
+    NSMutableString *body = [NSMutableString stringWithString:self.ContentModel.content];
+    NSArray *imgPositionArray = [self getHtmlImgURL:self.ContentModel.content];
+    for (int i = 0;i < self.imgModelArray.count;i++) {
+        TT_NewsContentImgModel *model = self.imgModelArray[i];
+        NSMutableString *imgHtml = [NSMutableString string];
+        CGFloat width = model.width;
+        CGFloat height = model.height;
+        
+        CGFloat maxWidth = kScreenWidth * 0.96;
+        if (width > maxWidth) {
+            height = maxWidth / width * height;
+            width = maxWidth;
+        }
+        
+        [imgHtml appendFormat:@"<img class = \"image\" width=\"%f\" height=\"%f\" src=\"%@\">",width,height,model.url];
+        [body replaceOccurrencesOfString:imgPositionArray[i][0] withString:imgHtml options:NSCaseInsensitiveSearch range:NSMakeRange(0, body.length)];
+    }
+    return body;
+}
+
+#pragma mark ---- lazy load
+
+-(NSMutableArray *)imgModelArray{
+    if(!_imgModelArray){
+        _imgModelArray = [[NSMutableArray alloc]init];
+    }
+    return _imgModelArray;
 }
 
 @end

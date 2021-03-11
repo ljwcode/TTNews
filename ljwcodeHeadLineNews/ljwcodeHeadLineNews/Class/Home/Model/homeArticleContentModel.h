@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *content;
 
+@property(nonatomic,strong)NSArray *image_detail;
+
 @end
 
 NS_ASSUME_NONNULL_END

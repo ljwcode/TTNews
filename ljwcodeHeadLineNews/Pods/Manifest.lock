@@ -32,9 +32,9 @@ PODS:
   - MJRefresh (3.5.0)
   - PromisesObjC (1.2.12)
   - ReactiveObjC (3.1.1)
-  - Realm (10.7.1):
-    - Realm/Headers (= 10.7.1)
-  - Realm/Headers (10.7.1)
+  - Realm (10.7.2):
+    - Realm/Headers (= 10.7.2)
+  - Realm/Headers (10.7.2)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -85,11 +85,11 @@ SPEC CHECKSUMS:
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  Realm: 55bae3a2f42186360b54fd8783e884ae8656ab05
+  Realm: e523da9ade306c5ae87e85dc09fdef148d3e1cc1
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
 PODFILE CHECKSUM: 7b5b7eb1333f044773b9d4a9d8d41e8e4add5ff9
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

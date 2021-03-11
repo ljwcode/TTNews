@@ -61,7 +61,7 @@
         UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         tableView.delegate = self;
         tableView.dataSource = self;
-        mineHeaderTableView *headerView = [[mineHeaderTableView alloc]init];
+        mineHeaderTableView *headerView = [[mineHeaderTableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.3)];
         tableView.tableHeaderView = headerView;
         headerView.loginBlock = ^{
             TTloginView *loginV = [[TTloginView alloc]init];

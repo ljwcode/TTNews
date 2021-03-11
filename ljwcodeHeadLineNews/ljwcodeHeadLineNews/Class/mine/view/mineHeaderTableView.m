@@ -18,8 +18,6 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
-        self.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.3);
-        
         UIButton *scanQRCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [scanQRCodeBtn setImage:[UIImage imageNamed:@"profile_scan_code"] forState:UIControlStateNormal];
         [scanQRCodeBtn addTarget:self action:@selector(scanQRCode:) forControlEvents:UIControlEventTouchUpInside];

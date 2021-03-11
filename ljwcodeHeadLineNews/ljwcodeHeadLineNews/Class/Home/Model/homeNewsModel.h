@@ -68,6 +68,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign)int read_count;
 
+@property(nonatomic,assign)int comment_count;
+
 @property(nonatomic,strong)homeNewsImageModel *middle_image;
 
 @property(nonatomic,copy)NSString *avatar_url;

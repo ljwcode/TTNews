@@ -130,23 +130,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.view addSubview:self.headerView];
 
     [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.headerView.mas_bottom).offset(0);
-        make.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(self.mas_bottomLayoutGuideTop).offset(-34);
-    }];
-    self.tableView.tableHeaderView = self.webView;
-    [self.view addSubview:self.tableView];
-    [self.view addSubview:self.webView];
-    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.headerView.mas_bottom).offset(0);
-        make.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(self.mas_bottomLayoutGuideTop).offset(-34);
-    }];
+    
     [self TT_NaviBarItem];
+    [self createFooterView];
     [[self.newsRecViewModel.recSearchCommand execute:self.group_id]subscribeNext:^(id  _Nullable x)  {
 
     }];
@@ -156,8 +146,12 @@
     } completed:^{
         NSURL *baseUrl = [NSURL URLWithString:@"file:///assets/"];
         [self.webView loadHTMLString:[self.ArticleContentViewModel TT_getHTMLString] baseURL:baseUrl];
+        [self TT_commentFeedBack];
     }];
     
+}
+
+-(void)TT_commentFeedBack{
     [[self.CommentViewModel.newsDetailCommend execute:self.group_id]subscribeNext:^(id  _Nullable x) {
         self.userCommentArray = x;
     }];
@@ -238,20 +232,32 @@
     [webView evaluateJavaScript:js completionHandler:nil];
     webView.allowsBackForwardNavigationGestures = YES;
     
-    self.webView.height = self.webView.scrollView.contentSize.height;
-    [self.tableView reloadData];
+//    self.webView.height = self.webView.scrollView.contentSize.height;
+//    [self.tableView reloadData];
 }
 
+#pragma mark ------ kvo
+
+// 计算wkWebView高度，
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    self.webView.height = self.webView.scrollView.contentSize.height;
+    self.tableView.tableHeaderView = self.webView;
+}
 #pragma mark ---- lazy load
 
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), kScreenWidth, kScreenHeight) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
+        if (@available(iOS 11, *)) {
+           _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+        self.automaticallyAdjustsScrollViewInsets = NO;
         UINib *TT_userCommentNib = [UINib nibWithNibName:NSStringFromClass([TT_UserCommentTableViewCell class]) bundle:nil];
         [_tableView registerNib:TT_userCommentNib forCellReuseIdentifier:NSStringFromClass([TT_UserCommentTableViewCell class])];
+        _tableView.tableHeaderView = self.webView;
     }
     return _tableView;
 }
@@ -279,9 +285,17 @@
 
 -(WKWebView *)webView{
     if(!_webView){
-        _webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth,kScreenHeight)];
+        WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc]init];
+        _webView =[[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, self.view.height) configuration:configuration];
+        _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        _webView.allowsBackForwardNavigationGestures = YES;// 浏览器内左右滑动,前进后退页面
         _webView.navigationDelegate = self;
         _webView.UIDelegate = self;
+        [_webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+        [_webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+        if(@available(iOS 11.0, *)) { //重点
+            _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
     }
     return _webView;
 }
@@ -297,7 +311,8 @@
 
 -(UIView *)TT_CommentFooterView{
     if(!_TT_CommentFooterView){
-        _TT_CommentFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.9, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.1)];
+        _TT_CommentFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.9, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.05)];
+        _TT_CommentFooterView.backgroundColor = [UIColor whiteColor];
         _TT_CommentFooterView.layer.borderColor = [UIColor grayColor].CGColor;
         _TT_CommentFooterView.layer.borderWidth = 1.f;
     }

@@ -63,7 +63,7 @@
         _NewsRightImgView.hidden = YES;
     }
     NSString *publish_time = [NSString stringWithFormat:@"%@",[TT_TimeIntervalConverString TT_converTimeIntervalToString:_summaryModel.infoModel.publish_time]];
-    _NewsInfoLabel.text = [NSString stringWithFormat:@"%@   %d阅读 %@",_summaryModel.infoModel.media_name,_summaryModel.infoModel.read_count,publish_time];
+    _NewsInfoLabel.text = [NSString stringWithFormat:@"%@   %d评论 %@",_summaryModel.infoModel.media_name,_summaryModel.infoModel.comment_count,publish_time];
 }
 
 

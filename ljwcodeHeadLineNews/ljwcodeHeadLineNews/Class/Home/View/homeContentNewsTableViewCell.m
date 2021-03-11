@@ -8,6 +8,7 @@
 
 #import "homeContentNewsTableViewCell.h"
 #import <UIImageView+WebCache.h>
+#import "TT_TimeIntervalConverString.h"
 
 @interface homeContentNewsTableViewCell()
 
@@ -53,7 +54,8 @@ static CGFloat itemSpace = 5;
         _NewsBtnWithImageSpace.constant = 0;
         _NewsImgView.hidden = YES;
     }
-    _NewsInfoLabel.text = [NSString stringWithFormat:@"%@   %d阅读  0分钟前",newsSummaryModel.infoModel.media_name,newsSummaryModel.infoModel.read_count];
+    NSString *publish_time = [NSString stringWithFormat:@"%@",[TT_TimeIntervalConverString TT_converTimeIntervalToString:_newsSummaryModel.infoModel.publish_time]];
+    _NewsInfoLabel.text = [NSString stringWithFormat:@"%@   %d评论 %@",newsSummaryModel.infoModel.media_name,newsSummaryModel.infoModel.comment_count,publish_time];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

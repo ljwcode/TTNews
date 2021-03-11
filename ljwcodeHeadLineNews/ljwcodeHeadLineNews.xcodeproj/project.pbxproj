@@ -178,11 +178,16 @@
 		8209791A1BD3AFAC00CF9D0C /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979181BD3AFAC00CF9D0C /* MineViewController.m */; };
 		8209791F1BD3AFDB00CF9D0C /* XGVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8209791D1BD3AFDB00CF9D0C /* XGVideoViewController.m */; };
 		820979281BD3B28700CF9D0C /* TTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979271BD3B28700CF9D0C /* TTTabBarController.m */; };
+		9431F7FF25FA08AE006929EC /* newsContent in Resources */ = {isa = PBXBuildFile; fileRef = 9431F7FE25FA08AE006929EC /* newsContent */; };
+		9431F80325FA090D006929EC /* TT_NewsContentImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9431F80225FA090D006929EC /* TT_NewsContentImgModel.m */; };
 		949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E779224A39605000C446E /* homejokeTableViewCell.m */; };
 		949E779524A39605000C446E /* homejokeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949E779324A39605000C446E /* homejokeTableViewCell.xib */; };
 		949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E779724A39FDE000C446E /* homeContentNewsTableViewCell.m */; };
 		949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949E779824A39FDE000C446E /* homeContentNewsTableViewCell.xib */; };
 		94A4A6EA24A25331002A6CA3 /* TTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A4A6E924A25331002A6CA3 /* TTBaseViewController.m */; };
+		94AF78BE25F8C0370018A522 /* libicucore.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 94AF78BC25F8C0370018A522 /* libicucore.A.tbd */; };
+		94AF78BF25F8C0370018A522 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 94AF78BD25F8C0370018A522 /* libicucore.tbd */; };
+		94AF791725F8C3720018A522 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AF791525F8C3710018A522 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C4AFB7D1D396726EDB50A5DB /* Pods_ljwcodeHeadLineNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */; };
 /* End PBXBuildFile section */
 
@@ -511,6 +516,9 @@
 		8209791D1BD3AFDB00CF9D0C /* XGVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XGVideoViewController.m; sourceTree = "<group>"; };
 		820979261BD3B28700CF9D0C /* TTTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTabBarController.h; sourceTree = "<group>"; };
 		820979271BD3B28700CF9D0C /* TTTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTabBarController.m; sourceTree = "<group>"; };
+		9431F7FE25FA08AE006929EC /* newsContent */ = {isa = PBXFileReference; lastKnownFileType = text; path = newsContent; sourceTree = "<group>"; };
+		9431F80125FA090D006929EC /* TT_NewsContentImgModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_NewsContentImgModel.h; sourceTree = "<group>"; };
+		9431F80225FA090D006929EC /* TT_NewsContentImgModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_NewsContentImgModel.m; sourceTree = "<group>"; };
 		949E779124A39605000C446E /* homejokeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homejokeTableViewCell.h; sourceTree = "<group>"; };
 		949E779224A39605000C446E /* homejokeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homejokeTableViewCell.m; sourceTree = "<group>"; };
 		949E779324A39605000C446E /* homejokeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homejokeTableViewCell.xib; sourceTree = "<group>"; };
@@ -519,6 +527,10 @@
 		949E779824A39FDE000C446E /* homeContentNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homeContentNewsTableViewCell.xib; sourceTree = "<group>"; };
 		94A4A6E824A25331002A6CA3 /* TTBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTBaseViewController.h; sourceTree = "<group>"; };
 		94A4A6E924A25331002A6CA3 /* TTBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTBaseViewController.m; sourceTree = "<group>"; };
+		94AF78BC25F8C0370018A522 /* libicucore.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.A.tbd; path = usr/lib/libicucore.A.tbd; sourceTree = SDKROOT; };
+		94AF78BD25F8C0370018A522 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		94AF791525F8C3710018A522 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		94AF791625F8C3720018A522 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		A2C008BF83355F08C3B5A22B /* Pods-ljwcodeHeadLineNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.debug.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.debug.xcconfig"; sourceTree = "<group>"; };
 		C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ljwcodeHeadLineNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -528,6 +540,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94AF78BE25F8C0370018A522 /* libicucore.A.tbd in Frameworks */,
+				94AF78BF25F8C0370018A522 /* libicucore.tbd in Frameworks */,
 				63F1F8D024AF219400D687ED /* AVFoundation.framework in Frameworks */,
 				C4AFB7D1D396726EDB50A5DB /* Pods_ljwcodeHeadLineNews.framework in Frameworks */,
 				635E8C3D24E29328000345C4 /* WebKit.framework in Frameworks */,
@@ -617,13 +631,14 @@
 		6328F60B249DABDA00C767A8 /* ljwcodeTools */ = {
 			isa = PBXGroup;
 			children = (
+				94AF791625F8C3720018A522 /* RegexKitLite.h */,
+				94AF791525F8C3710018A522 /* RegexKitLite.m */,
 				637C2D2D24A9D1120009274C /* headLineNewsNetwork */,
 				63BE334E254815DB00607EBA /* Category */,
 				6302B4D325A9B32000818EBB /* UITabBar */,
 				63D835FF25A86A52005DB303 /* UILabel */,
 				63D835F825A8592A005DB303 /* ChangeFontSize */,
 				63D835F725A8590F005DB303 /* NetworkTool */,
-				634AF048254C203F0013EE56 /* ios_asset */,
 				63BE334D254815BD00607EBA /* ThemeManager */,
 				6352491E2544294E009AECF2 /* QRCodeTool */,
 				631CFA6524E51BEF0082B941 /* TTHorizontalCateoryTabBar */,
@@ -752,13 +767,6 @@
 				637BAF2124F3A07F00711003 /* ScreenHallVideoDetailViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		634AF048254C203F0013EE56 /* ios_asset */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ios_asset;
 			sourceTree = "<group>";
 		};
 		634DA02B25A45C1700236458 /* viewModel */ = {
@@ -1002,6 +1010,9 @@
 				63C803B125F103A800B1EB99 /* homeArticleContentModel.m */,
 				636CA5D725F7952500C4287F /* TT_UserCommentModel.h */,
 				636CA5D825F7952600C4287F /* TT_UserCommentModel.m */,
+				9431F7FE25FA08AE006929EC /* newsContent */,
+				9431F80125FA090D006929EC /* TT_NewsContentImgModel.h */,
+				9431F80225FA090D006929EC /* TT_NewsContentImgModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1303,6 +1314,8 @@
 		820979211BD3B0FE00CF9D0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94AF78BC25F8C0370018A522 /* libicucore.A.tbd */,
+				94AF78BD25F8C0370018A522 /* libicucore.tbd */,
 				635E8C3C24E29328000345C4 /* WebKit.framework */,
 				63F1F8CF24AF219400D687ED /* AVFoundation.framework */,
 				C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */,
@@ -1412,6 +1425,7 @@
 				63265C4E256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib in Resources */,
 				632251AE25E8952000CE8D96 /* VideoDetail in Resources */,
 				633368E225761AC900F47A91 /* TTArticleSearchTagCell.xib in Resources */,
+				9431F7FF25FA08AE006929EC /* newsContent in Resources */,
 				949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */,
 				6390EEBC2589B3670081093E /* LICENSE in Resources */,
 				634DA02D25A45C4200236458 /* Settings.bundle in Resources */,
@@ -1519,6 +1533,7 @@
 				63F1F8EA24AF3A3500D687ED /* videoContentViewModel.m in Sources */,
 				631BC918254819AA001B82AB /* TTThemeManager.m in Sources */,
 				63BE33552548163100607EBA /* UIView+ThemeChange.m in Sources */,
+				94AF791725F8C3720018A522 /* RegexKitLite.m in Sources */,
 				631BC8FF25481893001B82AB /* UINavigationBar+ThemeChange.m in Sources */,
 				63524924254429DD009AECF2 /* QRCodePreviewVIew.m in Sources */,
 				63D4FF9F24D96FC40035F561 /* NewsDetailViewController.m in Sources */,
@@ -1535,6 +1550,7 @@
 				820979101BD3AB2800CF9D0C /* homeViewController.m in Sources */,
 				6322ED3725AEC91F00D01578 /* TT_tabBarViewModel.m in Sources */,
 				63422BE124A839960091FEE1 /* WMScrollView.m in Sources */,
+				9431F80325FA090D006929EC /* TT_NewsContentImgModel.m in Sources */,
 				63C4FA9924EBCE2E00CF9850 /* TTPageDecorateView.m in Sources */,
 				6302B4D625A9B35E00818EBB /* TT_CustomerTabBar.m in Sources */,
 				63BB1C222563DD00004E97E7 /* TTCloseNotificationTipView.m in Sources */,
