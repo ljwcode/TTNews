@@ -19,6 +19,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "homeNewsDetailCommentViewModel.h"
 #import "TT_UserCommentModel.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface NewsDetailViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -45,6 +46,8 @@
 @property(nonatomic,strong)homeArticleContentViewModel *ArticleContentViewModel;
 
 @property(nonatomic,strong)homeNewsDetailCommentViewModel *CommentViewModel;
+
+@property(nonatomic,strong)UIScrollView *TT_ArticleScrollView;
 
 @end
 
@@ -130,13 +133,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.view addSubview:self.headerView];
+    self.view.backgroundColor = [UIColor whiteColor];
 
-    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.headerView];
+    [self.view addSubview:self.TT_ArticleScrollView];
+    
+    [self.TT_ArticleScrollView addSubview:self.tableView];
+    self.tableView.tableHeaderView = self.webView;
     
     [self TT_NaviBarItem];
-    [self createFooterView];
+    
     [[self.newsRecViewModel.recSearchCommand execute:self.group_id]subscribeNext:^(id  _Nullable x)  {
 
     }];
@@ -146,20 +152,26 @@
     } completed:^{
         NSURL *baseUrl = [NSURL URLWithString:@"file:///assets/"];
         [self.webView loadHTMLString:[self.ArticleContentViewModel TT_getHTMLString] baseURL:baseUrl];
-        [self TT_commentFeedBack];
     }];
-    
+    [self TT_CommentFeedBack];
 }
 
--(void)TT_commentFeedBack{
-    [[self.CommentViewModel.newsDetailCommend execute:self.group_id]subscribeNext:^(id  _Nullable x) {
-        self.userCommentArray = x;
+-(void)TT_CommentFeedBack{
+    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        [[self.CommentViewModel.newsDetailCommend execute:self.group_id]subscribeNext:^(id  _Nullable x) {
+            self.userCommentArray = x;
+            [self.tableView reloadData];
+            NSLog(@"commentArray = %@",self.userCommentArray);
+            [self.tableView.mj_footer endRefreshing];
+        }];
     }];
+    [self.tableView.mj_footer beginRefreshing];
 }
 
 #pragma mark ---- UITableViewDelegate && UITableViewDatasource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"commentArray = %lu",(unsigned long)self.userCommentArray.count);
     return self.userCommentArray.count;
 }
 
@@ -180,24 +192,20 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 20)];
+        UIView *HeaderView = [[UIView alloc]init];
+        HeaderView.backgroundColor = [UIColor whiteColor];
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(hSpace, 0, 60, 20)];
         titleLabel.text = @"评论";
         titleLabel.font = [UIFont systemFontOfSize:13.f weight:6.f];
         titleLabel.textColor = [UIColor blackColor];
-        return titleLabel;
+        [HeaderView addSubview:titleLabel];
+        return HeaderView;
     }
     return [UIView new];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 0){
-        if(indexPath.row == 0){
-            return 60;
-        }else{
-            return 81;
-        }
-    }
-    return CGFLOAT_MIN;
+    return UITableViewAutomaticDimension;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -205,6 +213,16 @@
         return self.userCommentArray.count > 0 ? 40 : CGFLOAT_MIN;
     }
     return CGFLOAT_MIN;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 49)];
+    view.backgroundColor = [UIColor whiteColor];
+    return view;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 49;
 }
 
 #pragma mark ------- UIScrollViewDelegate
@@ -231,36 +249,47 @@
     NSString *js = [NSString stringWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%%'"];
     [webView evaluateJavaScript:js completionHandler:nil];
     webView.allowsBackForwardNavigationGestures = YES;
-    
-//    self.webView.height = self.webView.scrollView.contentSize.height;
-//    [self.tableView reloadData];
 }
+
 
 #pragma mark ------ kvo
 
 // 计算wkWebView高度，
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    self.webView.height = self.webView.scrollView.contentSize.height;
-    self.tableView.tableHeaderView = self.webView;
+    if([keyPath isEqualToString:@"contentSize"]){
+        self.webView.height = self.webView.scrollView.contentSize.height;
+        self.tableView.tableHeaderView = self.webView;
+    }
 }
 #pragma mark ---- lazy load
 
+-(UIScrollView *)TT_ArticleScrollView{
+    if(!_TT_ArticleScrollView){
+        _TT_ArticleScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), kScreenWidth, kScreenHeight)];
+        _TT_ArticleScrollView.delegate = self;
+        _TT_ArticleScrollView.contentSize = CGSizeMake(kScreenWidth,kScreenHeight);
+    }
+    return _TT_ArticleScrollView;
+}
+
+
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), kScreenWidth, kScreenHeight) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - TT_TabBarHeight) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        
         if (@available(iOS 11, *)) {
            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }else{
+            self.automaticallyAdjustsScrollViewInsets = NO;
         }
-        self.automaticallyAdjustsScrollViewInsets = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         UINib *TT_userCommentNib = [UINib nibWithNibName:NSStringFromClass([TT_UserCommentTableViewCell class]) bundle:nil];
         [_tableView registerNib:TT_userCommentNib forCellReuseIdentifier:NSStringFromClass([TT_UserCommentTableViewCell class])];
-        _tableView.tableHeaderView = self.webView;
     }
     return _tableView;
 }
+
 
 -(homeArticleContentViewModel *)ArticleContentViewModel{
     if(!_ArticleContentViewModel){
@@ -279,6 +308,7 @@
 -(UIView *)headerView{
     if(!_headerView){
         _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, TT_statuBarHeight, kScreenWidth, TT_statuBarHeight)];
+        _headerView.backgroundColor = [UIColor whiteColor];
     }
     return _headerView;
 }
@@ -286,14 +316,13 @@
 -(WKWebView *)webView{
     if(!_webView){
         WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc]init];
-        _webView =[[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, self.view.height) configuration:configuration];
+        _webView =[[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 1) configuration:configuration];
         _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        _webView.allowsBackForwardNavigationGestures = YES;// 浏览器内左右滑动,前进后退页面
+        _webView.allowsBackForwardNavigationGestures = YES;
         _webView.navigationDelegate = self;
         _webView.UIDelegate = self;
-        [_webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
         [_webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
-        if(@available(iOS 11.0, *)) { //重点
+        if(@available(iOS 11.0, *)) {
             _webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
     }
@@ -311,8 +340,7 @@
 
 -(UIView *)TT_CommentFooterView{
     if(!_TT_CommentFooterView){
-        _TT_CommentFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.9, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.05)];
-        _TT_CommentFooterView.backgroundColor = [UIColor whiteColor];
+        _TT_CommentFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.9, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.1)];
         _TT_CommentFooterView.layer.borderColor = [UIColor grayColor].CGColor;
         _TT_CommentFooterView.layer.borderWidth = 1.f;
     }

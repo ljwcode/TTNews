@@ -218,7 +218,7 @@
 
 -(UITableView *)TT_UserCommnetTableView{
     if(!_TT_UserCommnetTableView){
-        _TT_UserCommnetTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.TT_UserCommentHeaderView.frame), kScreenWidth, CGRectGetHeight(self.frame) - CGRectGetHeight(self.TT_UserCommentHeaderView.frame)-CGRectGetHeight(self.TT_CommentFooterView.frame)) style:UITableViewStylePlain];
+        _TT_UserCommnetTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.TT_UserCommentHeaderView.frame), kScreenWidth, CGRectGetHeight(self.frame) - TT_TabBarHeight) style:UITableViewStylePlain];
         _TT_UserCommnetTableView.delegate = self;
         _TT_UserCommnetTableView.dataSource = self;
         _TT_UserCommnetTableView.separatorColor = [UIColor whiteColor];

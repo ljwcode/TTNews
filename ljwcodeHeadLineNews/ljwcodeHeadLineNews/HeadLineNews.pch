@@ -12,7 +12,6 @@
 #import "MBProgressHUD+Add.h"
 #import "TTSystemConfigureHelper.h"
 #import "TTFontSizeChangeHeader.h"
-#import "TTChangeFontViewController.h"
 #import "TTScreen.h"
 #import <MJRefresh/MJRefresh.h>
 
@@ -90,6 +89,6 @@
 
 #define TT_HomeStopRefresh @"TT_HomeStopRefresh"
 
-#define TT_TabBarHeight TT_isIphoneX ? 83 : 49
+#define TT_TabBarHeight ((TT_isIphoneX) ? 83 : 49)
 
 #endif /* ljwcodeHeadLineNews_h */

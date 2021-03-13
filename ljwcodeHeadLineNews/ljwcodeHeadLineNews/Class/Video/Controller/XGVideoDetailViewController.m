@@ -49,6 +49,8 @@
 
 @property(nonatomic,strong)XGVideoCommentViewModel *commentViewModel;
 
+@property(nonatomic,strong)UIView *TT_commentSuperView;
+
 @end
 
 @implementation XGVideoDetailViewController
@@ -64,7 +66,8 @@
     [backBtn addTarget:self action:@selector(PopHandle:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.mas_greaterThanOrEqualTo(hSpace);
+        make.left.mas_equalTo(hSpace);
+        make.top.mas_equalTo(44);
         make.width.height.mas_equalTo(20);
     }];
     
@@ -152,7 +155,7 @@
     [self.TTVVideoDetailContainerScrollView addSubview:self.detailView];
     self.TTThemedTableView.tableHeaderView = self.detailView;
     [self.TTVVideoDetailContainerScrollView addSubview:self.authorHeaderView];
-    
+        
     [self createUI];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -199,6 +202,14 @@
 
 #pragma mark ----- lazy load
 
+-(UIView *)TT_commentSuperView{
+    if(!_TT_commentSuperView){
+        _TT_commentSuperView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.playerView.frame), kScreenWidth, CGRectGetHeight(self.view.frame) - TT_TabBarHeight)];
+        _TT_commentSuperView.backgroundColor = [UIColor whiteColor];
+    }
+    return _TT_commentSuperView;
+}
+
 -(TTPlayerView *)playerView{
     if(!_playerView){
         _playerView = [[TTPlayerView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.3)];
@@ -215,7 +226,7 @@
 
 -(TT_UserCommnetScrollView *)commentScrollView{
     if(!_commentScrollView){
-        _commentScrollView = [[TT_UserCommnetScrollView alloc]initWithFrame:self.TTVVideoDetailContainerScrollView.bounds];
+        _commentScrollView = [[TT_UserCommnetScrollView alloc]initWithFrame:self.TT_commentSuperView.bounds];
         _commentScrollView.backgroundColor = [UIColor whiteColor];
     }
     return _commentScrollView;
@@ -257,7 +268,7 @@
 -(UIScrollView *)TTVVideoDetailContainerScrollView{
     if(!_TTVVideoDetailContainerScrollView){
         _TTVVideoDetailContainerScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.playerView.frame), kScreenWidth, kScreenHeight - CGRectGetHeight(self.playerView.frame))];
-        _TTVVideoDetailContainerScrollView.contentSize = CGSizeMake(kScreenWidth, 3 * kScreenHeight - CGRectGetHeight(self.playerView.frame));
+        _TTVVideoDetailContainerScrollView.contentSize = CGSizeMake(kScreenWidth, kScreenHeight);
         _TTVVideoDetailContainerScrollView.delegate = self;
     }
     return _TTVVideoDetailContainerScrollView;
@@ -279,10 +290,12 @@
 
 -(UITableView *)TTThemedTableView{
     if(!_TTThemedTableView){
-        _TTThemedTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.authorHeaderView.frame), kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+        _TTThemedTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.authorHeaderView.frame), kScreenWidth, CGRectGetHeight(self.view.frame) - TT_TabBarHeight) style:UITableViewStylePlain];
         _TTThemedTableView.separatorColor = [UIColor clearColor];
         _TTThemedTableView.delegate = self;
         _TTThemedTableView.dataSource = self;
+        _TTThemedTableView.bounces = NO;
+        _TTThemedTableView.bouncesZoom = NO;
         UINib *VideoRecNib = [UINib nibWithNibName:NSStringFromClass([TTRecommandVideoTableViewCell class]) bundle:nil];
         [_TTThemedTableView registerNib:VideoRecNib forCellReuseIdentifier:NSStringFromClass([TTRecommandVideoTableViewCell class])];
     }
@@ -329,7 +342,8 @@
 #pragma mark ------- TT_VideoDetailViewDelegate
 
 -(void)TT_VideoDetailCommentView{
-    [self.TTVVideoDetailContainerScrollView addSubview:self.commentScrollView];
+    [self.view addSubview:self.TT_commentSuperView];
+    [self.TT_commentSuperView addSubview:self.commentScrollView];
 }
 /*
  #pragma mark - Navigation

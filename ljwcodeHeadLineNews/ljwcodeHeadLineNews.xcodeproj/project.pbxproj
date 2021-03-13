@@ -148,7 +148,6 @@
 		63CBA20E258B58680020511C /* homeNewsDetailDBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CBA20D258B58680020511C /* homeNewsDetailDBViewModel.m */; };
 		63D2869225AFF73D00D87A10 /* TTTabBarModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 63D2869125AFF73D00D87A10 /* TTTabBarModel.json */; };
 		63D4FF9F24D96FC40035F561 /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D4FF9E24D96FC40035F561 /* NewsDetailViewController.m */; };
-		63D835FD25A860E3005DB303 /* TTChangeFontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D835FC25A860E3005DB303 /* TTChangeFontViewController.m */; };
 		63D8AE6625E4D67300AFD1A4 /* XGVideoCommentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D8AE6525E4D67300AFD1A4 /* XGVideoCommentViewModel.m */; };
 		63DB0D182501E3F900B9FA0A /* parseVideoRealURLViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DB0D172501E3F900B9FA0A /* parseVideoRealURLViewModel.m */; };
 		63DB0D1B2501F19200B9FA0A /* videoRealURLRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DB0D1A2501F19200B9FA0A /* videoRealURLRequestModel.m */; };
@@ -180,6 +179,8 @@
 		820979281BD3B28700CF9D0C /* TTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979271BD3B28700CF9D0C /* TTTabBarController.m */; };
 		9431F7FF25FA08AE006929EC /* newsContent in Resources */ = {isa = PBXBuildFile; fileRef = 9431F7FE25FA08AE006929EC /* newsContent */; };
 		9431F80325FA090D006929EC /* TT_NewsContentImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9431F80225FA090D006929EC /* TT_NewsContentImgModel.m */; };
+		9431F82925FB1172006929EC /* TTChangeFontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9431F82725FB1172006929EC /* TTChangeFontViewController.m */; };
+		9475139225FB77020061A7C0 /* videoModel in Resources */ = {isa = PBXBuildFile; fileRef = 9475139125FB77020061A7C0 /* videoModel */; };
 		949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E779224A39605000C446E /* homejokeTableViewCell.m */; };
 		949E779524A39605000C446E /* homejokeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949E779324A39605000C446E /* homejokeTableViewCell.xib */; };
 		949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E779724A39FDE000C446E /* homeContentNewsTableViewCell.m */; };
@@ -457,8 +458,6 @@
 		63D4FF9D24D96FC40035F561 /* NewsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsDetailViewController.h; sourceTree = "<group>"; };
 		63D4FF9E24D96FC40035F561 /* NewsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsDetailViewController.m; sourceTree = "<group>"; };
 		63D835F925A85A81005DB303 /* TTFontSizeChangeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTFontSizeChangeHeader.h; sourceTree = "<group>"; };
-		63D835FB25A860E3005DB303 /* TTChangeFontViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTChangeFontViewController.h; sourceTree = "<group>"; };
-		63D835FC25A860E3005DB303 /* TTChangeFontViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTChangeFontViewController.m; sourceTree = "<group>"; };
 		63D8AE6425E4D67300AFD1A4 /* XGVideoCommentViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGVideoCommentViewModel.h; sourceTree = "<group>"; };
 		63D8AE6525E4D67300AFD1A4 /* XGVideoCommentViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGVideoCommentViewModel.m; sourceTree = "<group>"; };
 		63DB0D162501E3F900B9FA0A /* parseVideoRealURLViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parseVideoRealURLViewModel.h; sourceTree = "<group>"; };
@@ -519,6 +518,9 @@
 		9431F7FE25FA08AE006929EC /* newsContent */ = {isa = PBXFileReference; lastKnownFileType = text; path = newsContent; sourceTree = "<group>"; };
 		9431F80125FA090D006929EC /* TT_NewsContentImgModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_NewsContentImgModel.h; sourceTree = "<group>"; };
 		9431F80225FA090D006929EC /* TT_NewsContentImgModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_NewsContentImgModel.m; sourceTree = "<group>"; };
+		9431F82725FB1172006929EC /* TTChangeFontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTChangeFontViewController.m; sourceTree = "<group>"; };
+		9431F82825FB1172006929EC /* TTChangeFontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTChangeFontViewController.h; sourceTree = "<group>"; };
+		9475139125FB77020061A7C0 /* videoModel */ = {isa = PBXFileReference; lastKnownFileType = text; path = videoModel; sourceTree = "<group>"; };
 		949E779124A39605000C446E /* homejokeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homejokeTableViewCell.h; sourceTree = "<group>"; };
 		949E779224A39605000C446E /* homejokeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homejokeTableViewCell.m; sourceTree = "<group>"; };
 		949E779324A39605000C446E /* homejokeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homejokeTableViewCell.xib; sourceTree = "<group>"; };
@@ -633,7 +635,7 @@
 			children = (
 				94AF791625F8C3720018A522 /* RegexKitLite.h */,
 				94AF791525F8C3710018A522 /* RegexKitLite.m */,
-				637C2D2D24A9D1120009274C /* headLineNewsNetwork */,
+				637C2D2D24A9D1120009274C /* TTNewsNetwork */,
 				63BE334E254815DB00607EBA /* Category */,
 				6302B4D325A9B32000818EBB /* UITabBar */,
 				63D835FF25A86A52005DB303 /* UILabel */,
@@ -849,7 +851,7 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		637C2D2D24A9D1120009274C /* headLineNewsNetwork */ = {
+		637C2D2D24A9D1120009274C /* TTNewsNetwork */ = {
 			isa = PBXGroup;
 			children = (
 				637C2D2E24A9D1600009274C /* TTNetworkBaseModel.h */,
@@ -859,7 +861,7 @@
 				637C2D3424A9D3EA0009274C /* TTNetworkManagerCenter.h */,
 				637C2D3524A9D3EA0009274C /* TTNetworkManagerCenter.m */,
 			);
-			path = headLineNewsNetwork;
+			path = TTNewsNetwork;
 			sourceTree = "<group>";
 		};
 		637C5C0624A35B6C00D7C0E0 /* view */ = {
@@ -1013,6 +1015,7 @@
 				9431F7FE25FA08AE006929EC /* newsContent */,
 				9431F80125FA090D006929EC /* TT_NewsContentImgModel.h */,
 				9431F80225FA090D006929EC /* TT_NewsContentImgModel.m */,
+				9475139125FB77020061A7C0 /* videoModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1106,9 +1109,9 @@
 		63D835F825A8592A005DB303 /* ChangeFontSize */ = {
 			isa = PBXGroup;
 			children = (
+				9431F82825FB1172006929EC /* TTChangeFontViewController.h */,
+				9431F82725FB1172006929EC /* TTChangeFontViewController.m */,
 				63D835F925A85A81005DB303 /* TTFontSizeChangeHeader.h */,
-				63D835FB25A860E3005DB303 /* TTChangeFontViewController.h */,
-				63D835FC25A860E3005DB303 /* TTChangeFontViewController.m */,
 			);
 			path = ChangeFontSize;
 			sourceTree = "<group>";
@@ -1431,6 +1434,7 @@
 				634DA02D25A45C4200236458 /* Settings.bundle in Resources */,
 				637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */,
 				63F30EF62564CAEB000CE908 /* LaunchScreen.storyboard in Resources */,
+				9475139225FB77020061A7C0 /* videoModel in Resources */,
 				63EB675525F634C3004BF64B /* assets in Resources */,
 				63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */,
 				631BC91F25481E66001B82AB /* TTThemeDefaultTag.plist in Resources */,
@@ -1592,7 +1596,6 @@
 				63CBA1FB258B39FD0020511C /* videoTitleDBViewModel.m in Sources */,
 				63BE32FD2547F3D000607EBA /* PrivacyViewController.m in Sources */,
 				63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */,
-				63D835FD25A860E3005DB303 /* TTChangeFontViewController.m in Sources */,
 				631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */,
 				634DA04325A48C0800236458 /* TTSystemConfigureHelper.m in Sources */,
 				63879C6A25EE14B5001DE258 /* TT_RecommendSearchKeywordViewModel.m in Sources */,
@@ -1628,6 +1631,7 @@
 				6352492125442980009AECF2 /* QRCodeManager.m in Sources */,
 				63422BE224A839960091FEE1 /* WMMenuView.m in Sources */,
 				6355CFF524BF1078002D3815 /* TTloginView.m in Sources */,
+				9431F82925FB1172006929EC /* TTChangeFontViewController.m in Sources */,
 				63403E7C24C969FB0024A362 /* screeningHallTableViewCell.m in Sources */,
 				820979151BD3AEA800CF9D0C /* ScreeningHallViewController.m in Sources */,
 				820978E81BD3A37600CF9D0C /* main.m in Sources */,

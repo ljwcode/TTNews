@@ -52,7 +52,7 @@
     }
     NSString *url = [NSString stringWithFormat:@"/video/urls/v/1/toutiao/mp4/%@?r=%d",video_id,r];
     NSData *data = [url dataUsingEncoding:NSUTF8StringEncoding];
-    UInt64 crc32 = data.getCRC32;
+    UInt64 crc32 = [data getCRC32];
     if(crc32 < 0){
         crc32 += 0x100000000;
     }
