@@ -38,6 +38,7 @@
     self.TT_CommentCountLabel.layer.masksToBounds = YES;
     self.TT_CommentCountLabel.textAlignment = NSTextAlignmentCenter;
     self.TT_CommentCountLabel.backgroundColor = TT_ColorWithRed(248, 248, 248, 1);
+    
     // Initialization code
 }
 

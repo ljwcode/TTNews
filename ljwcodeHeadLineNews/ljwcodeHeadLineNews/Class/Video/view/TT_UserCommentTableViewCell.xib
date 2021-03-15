@@ -30,9 +30,9 @@
                             <constraint firstAttribute="height" constant="30" id="1h9-lh-cKu"/>
                             <constraint firstAttribute="width" constant="50" id="8NY-Dh-CH9"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <inset key="titleEdgeInsets" minX="-30" minY="0.0" maxX="0.0" maxY="-5"/>
-                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="-40" maxY="0.0"/>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                        <inset key="titleEdgeInsets" minX="-45" minY="0.0" maxX="0.0" maxY="-5"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="-45" maxY="0.0"/>
                         <state key="normal" title="1" image="details_like_icon">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>

@@ -302,14 +302,15 @@
 - (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
     self.videoPlayModel = self.datasArray[indexPath.row];
     [[FBLPromise do:^id _Nullable{
-        return [self getVideoURL];
+        return [self getVideoURLWithIndexPath:indexPath];
     }]then:^id _Nullable(id  _Nullable value) {
         return [self playVideoWithURL:value videoIndexPath:indexPath];
     }];
 }
 
--(FBLPromise *)getVideoURL{
+-(FBLPromise *)getVideoURLWithIndexPath:(NSIndexPath *)IndexPath{
     return [[[FBLPromise do:^id _Nullable{
+        self.videoPlayModel = self.datasArray[IndexPath.row];
         return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoPlayModel.detailModel.video_detail_info.video_id];
     }]then:^id _Nullable(id  _Nullable value) {
         return [self GetVideoParseData:value];

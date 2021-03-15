@@ -7,22 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TTBaseViewController.h"
-#import "videoContentModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^TT_VideoDetailBlock) (NSString *videoURL);
 
-@interface XGVideoDetailViewController : TTBaseViewController
+@interface XGVideoDetailViewController : UIViewController
 
 @property(nonatomic,copy)NSString *videoURL;
 
-@property(nonatomic,strong)NSIndexPath *currentIndexPath;
-
 @property(nonatomic,copy)NSString *group_id;
-
-@property(nonatomic,strong)videoContentModel *contentModel;
 
 @property(nonatomic,copy)TT_VideoDetailBlock VideoDetailBlock;
 

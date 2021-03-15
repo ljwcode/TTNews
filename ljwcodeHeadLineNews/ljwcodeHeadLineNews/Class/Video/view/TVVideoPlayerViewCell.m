@@ -45,7 +45,7 @@
         
         [self.videoBgImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.mas_equalTo(0);
-            make.height.mas_equalTo(125);
+            make.height.mas_equalTo(220);
         }];
         
         [self.videoTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -155,7 +155,7 @@
     
     self.videoPlayCountLabel.text = [NSString stringWithFormat:@"%d次播放",contentModel.detailModel.video_detail_info.video_watch_count];
     self.videoTimeLabel.text = [NSString stringWithFormat:@"%d:%d",contentModel.detailModel.video_duration/60,contentModel.detailModel.video_duration%60];
-    self.videoFrame = CGRectMake(0, 0, kScreenWidth,175);
+    self.videoFrame = CGRectMake(0, 0, kScreenWidth,220);
     [self.videoCommentBtn setTitle:contentModel.detailModel.comment_count forState:UIControlStateNormal];
 }
 
@@ -324,8 +324,8 @@
 }
 
 -(void)tapPushHandle:(UITapGestureRecognizer *)tap{
-    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_TapPushHandle:)]){
-        [self.delegate TT_TapPushHandle:self.contentModel];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_TapPushHandle:WithIndexPath:)]){
+        [self.delegate TT_TapPushHandle:self.contentModel WithIndexPath:_indexPath];
     }
 }
 /*

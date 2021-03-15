@@ -130,7 +130,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 225;
+    return UITableViewAutomaticDimension;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -159,7 +159,7 @@
 
 - (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
     [[FBLPromise do:^id _Nullable{
-        return [self getVideoURL];
+        return [self getVideoURLWithIndexPath:indexPath];
     }]then:^id _Nullable(id  _Nullable value) {
         return [self playVideoWithURL:value videoIndexPath:indexPath];
     }];
@@ -184,9 +184,11 @@
 }
 
 
--(FBLPromise *)getVideoURL{
+-(FBLPromise *)getVideoURLWithIndexPath:(NSIndexPath *)IndexPath{
     return [[[FBLPromise do:^id _Nullable{
-        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoContentModel.detailModel.video_detail_info.video_id];
+        self.videoContentModel = self.dataArray[IndexPath.row];
+        NSString *video_id = self.videoContentModel.detailModel.video_detail_info.video_id;
+        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:video_id];
     }]then:^id _Nullable(id  _Nullable value) {
         return [self GetVideoParseData:value];
     }]then:^id _Nullable(id  _Nullable value) {
@@ -248,11 +250,12 @@
     [self.navigationController pushViewController:self.videoDetailVC animated:YES];
 }
 
--(void)TT_TapPushHandle:(videoContentModel *)model{
+-(void)TT_TapPushHandle:(videoContentModel *)model WithIndexPath:(nonnull NSIndexPath *)indexPath{
     if(self.playerView){
         [self.playerView pausePlay];
     }
-    self.videoDetailVC.group_id = model.detailModel.pread_params.group_id;
+    self.videoContentModel = self.dataArray[indexPath.row];
+    self.videoDetailVC.group_id = self.videoContentModel.detailModel.pread_params.group_id;
     [self converPlayVideoAtIndexPath];
     [self.navigationController pushViewController:self.videoDetailVC animated:YES];
 }
@@ -291,7 +294,7 @@
 - (void)handleScrollPlaying:(UIScrollView *)scrollView{
     TVVideoPlayerViewCell *finnalCell = nil;
     NSArray *visiableCells = [self.detailTableView visibleCells];
-    
+
     NSMutableArray *tempVideoCells = [NSMutableArray array];
     for (int i = 0; i < visiableCells.count; i++) {
         UITableViewCell *cell = visiableCells[i];
@@ -299,13 +302,13 @@
             [tempVideoCells addObject:cell];
         }
     }
-    
+
     NSMutableArray *indexPaths = [NSMutableArray array];
     CGFloat gap = MAXFLOAT;
     for (TVVideoPlayerViewCell *cell in tempVideoCells) {
-        
+
         [indexPaths addObject:[self.detailTableView indexPathForCell:cell]];
-        
+
         CGPoint coorCentre = [cell.superview convertPoint:cell.center toView:nil];
         CGFloat delta = fabs(coorCentre.y-kScreenHeight*0.5);
         if (delta < gap) {

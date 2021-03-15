@@ -33,7 +33,7 @@
         [self.headImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(hSpace);
             make.centerY.mas_equalTo(self);
-            make.height.width.mas_equalTo(50);
+            make.height.width.mas_equalTo(CGRectGetHeight(self.frame)*2/3);
         }];
         
         UIView *authorView = [[UIView alloc]init];
@@ -49,23 +49,24 @@
         [self.authorNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.headImgView.mas_right).offset(hSpace/2);
             make.top.mas_equalTo(0);
-            make.height.mas_equalTo(50/2);
+            make.height.mas_equalTo(CGRectGetHeight(authorView.frame)/2-5);
             make.width.mas_equalTo(kScreenWidth * 0.4);
         }];
         
         [authorView addSubview:self.fansNumLabel];
         [self.fansNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.headImgView.mas_right).offset(hSpace/2);
-            make.top.mas_equalTo(self.authorNameLabel.mas_bottom).offset(0);
+            make.top.mas_equalTo(self.authorNameLabel.mas_bottom).offset(5);
             make.height.mas_equalTo(self.authorNameLabel);
             make.width.mas_equalTo(kScreenWidth * 0.4);
+            make.bottom.mas_equalTo(0);
         }];
         
         [self addSubview:self.focusBtn];
         [self.focusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-hSpace);
             make.centerY.mas_equalTo(self);
-            make.height.mas_equalTo(CGRectGetHeight(self.frame) - 4 * vSpace);
+            make.height.mas_equalTo(self.headImgView);
             make.width.mas_equalTo(kScreenWidth * 0.2);
         }];
     }

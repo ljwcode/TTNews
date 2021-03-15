@@ -20,8 +20,11 @@
 #import "TTHomeMoreShareVIew.h"
 #import "TTSearchViewController.h"
 #import <FBLPromises/FBLPromises.h>
+#import "TVVideoPlayerViewCell.h"
+#import "parseVideoRealURLViewModel.h"
+#import "videoContentModel.h"
 
-@interface  XGVideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,TT_VideoDetailViewDelegate,UIGestureRecognizerDelegate>
+@interface  XGVideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,TT_VideoDetailViewDelegate,UIGestureRecognizerDelegate,TT_UserCommentDelegate>
 
 @property(nonatomic,strong)TTPlayerView *playerView;
 
@@ -51,6 +54,15 @@
 
 @property(nonatomic,strong)UIView *TT_commentSuperView;
 
+@property(nonatomic,strong)UIView *customerStatusBar;
+
+@property(nonatomic,strong)TVVideoPlayerViewCell *playingCell;
+
+@property(nonatomic,strong)parseVideoRealURLViewModel *realURLViewModel;
+
+@property(nonatomic,strong)videoContentModel *contentModel;
+
+
 @end
 
 @implementation XGVideoDetailViewController
@@ -58,6 +70,37 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self setupStatusBarColor:[UIColor blackColor]];
+    });
+    
+    if (@available(ios 13.0, *)) {
+        if (self.customerStatusBar) {
+            self.customerStatusBar.hidden = NO;
+        }
+    }
+}
+
+//设置状态栏颜色
+- (void)setupStatusBarColor:(UIColor *)color{
+    if (@available(iOS 13.0, *)) {
+        // iOS 13 不能直接获取到statusbar 手动添加个view到window上当做statusbar背景
+        if (!self.customerStatusBar) {
+            UIWindow *keyWindow = [self.view getCurrentWindow];
+            self.customerStatusBar = [[UIView alloc] initWithFrame:keyWindow.windowScene.statusBarManager.statusBarFrame];
+            [keyWindow addSubview:self.customerStatusBar];
+        }
+    } else {
+        self.customerStatusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    }
+    if ([self.customerStatusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        [self.customerStatusBar setBackgroundColor:color];
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
 }
 
 -(void)createUI{
@@ -67,7 +110,7 @@
     [self.view addSubview:backBtn];
     [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(hSpace);
-        make.top.mas_equalTo(44);
+        make.top.mas_equalTo(TT_statuBarHeight);
         make.width.height.mas_equalTo(20);
     }];
     
@@ -97,7 +140,7 @@
 }
 
 -(BOOL)prefersStatusBarHidden{
-    return YES;
+    return NO;
 }
 
 -(FBLPromise *)TT_videoURLBlock{
@@ -117,9 +160,11 @@
     }];
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self TT_getVideoURLToPlay];
+    
     [self.TTVVideoDetailContainerScrollView addSubview:self.commentScrollView];
     
     [[self.commentViewModel.ComRacCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
@@ -155,7 +200,7 @@
     [self.TTVVideoDetailContainerScrollView addSubview:self.detailView];
     self.TTThemedTableView.tableHeaderView = self.detailView;
     [self.TTVVideoDetailContainerScrollView addSubview:self.authorHeaderView];
-        
+    
     [self createUI];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -200,7 +245,84 @@
     return UITableViewAutomaticDimension;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //    [self playTheVideoAtIndexPath:indexPath];
+    [self.navigationController pushViewController:self animated:YES];
+}
+
+- (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
+    [[FBLPromise do:^id _Nullable{
+        return [self getVideoURL];
+    }]then:^id _Nullable(id  _Nullable value) {
+        return [self playVideoWithURL:value videoIndexPath:indexPath];
+    }];
+    
+}
+
+
+-(FBLPromise *)getVideoURL{
+    return [[[FBLPromise do:^id _Nullable{
+        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.contentModel.detailModel.video_detail_info.video_id];
+    }]then:^id _Nullable(id  _Nullable value) {
+        return [self GetVideoParseData:value];
+    }]then:^id _Nullable(id  _Nullable value) {
+        self.videoURL = value;
+        return value;
+    }];
+}
+
+-(FBLPromise *)playVideoWithURL:(NSString *)url videoIndexPath:(NSIndexPath*)indexPath{
+    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
+        self.videoURL = url;
+        TVVideoPlayerViewCell *cell = nil;
+        cell = [self.TTThemedTableView cellForRowAtIndexPath:indexPath];
+        [self initPlayerView:cell playClick:cell.contentModel];
+    }];
+}
+
+-(FBLPromise *)GetVideoParseData:(id)input{
+    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
+        [[self.realURLViewModel.VideoRealURLCommand execute:input]subscribeNext:^(id  _Nullable x) {
+            fulfill(x);
+        }];
+    }];
+}
+
+#pragma mark -- TVVideoPlayerCellDelegate
+
+- (void)initPlayerView:(TVVideoPlayerViewCell *)cell playClick:(videoContentModel *)convention{
+    self.playingCell = cell;
+    [self.playerView destroyPlayer];
+    self.playerView = nil;
+    
+    TTPlayerView *playerView = [[TTPlayerView alloc]initWithFrame:self.playerView.bounds];
+    self.playerView = playerView;
+    [cell.contentView addSubview:self.playerView];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.playerView.url = [NSURL URLWithString:self.videoURL];
+        [self.playerView playVideo];
+    });
+    
+    [self.playerView backButton:^(UIButton *button) {
+        NSLog(@"返回按钮被点击");
+    }];
+    
+    [self.playerView endPlay:^{
+        [self.playerView destroyPlayer];
+        self.playerView = nil;
+        NSLog(@"播放完成");
+    }];
+}
+
 #pragma mark ----- lazy load
+
+-(parseVideoRealURLViewModel *)realURLViewModel{
+    if(!_realURLViewModel){
+        _realURLViewModel = [[parseVideoRealURLViewModel alloc]init];
+    }
+    return _realURLViewModel;
+}
 
 -(UIView *)TT_commentSuperView{
     if(!_TT_commentSuperView){
@@ -212,7 +334,7 @@
 
 -(TTPlayerView *)playerView{
     if(!_playerView){
-        _playerView = [[TTPlayerView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.3)];
+        _playerView = [[TTPlayerView alloc]initWithFrame:CGRectMake(0, TT_statuBarHeight, kScreenWidth, kScreenHeight * 0.3)];
     }
     return _playerView;
 }
@@ -228,6 +350,7 @@
     if(!_commentScrollView){
         _commentScrollView = [[TT_UserCommnetScrollView alloc]initWithFrame:self.TT_commentSuperView.bounds];
         _commentScrollView.backgroundColor = [UIColor whiteColor];
+        _commentScrollView.delegate = self;
     }
     return _commentScrollView;
 }
@@ -256,7 +379,7 @@
 
 -(TTVideoDetailHeaderView *)authorHeaderView{
     if(!_authorHeaderView){
-        _authorHeaderView = [[TTVideoDetailHeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.1)];
+        _authorHeaderView = [[TTVideoDetailHeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.05)];
         _authorHeaderView.backgroundColor = [UIColor whiteColor];
         _authorHeaderView.layer.borderColor = [UIColor grayColor].CGColor;
         _authorHeaderView.layer.borderWidth = 0.5f;
@@ -344,6 +467,15 @@
 -(void)TT_VideoDetailCommentView{
     [self.view addSubview:self.TT_commentSuperView];
     [self.TT_commentSuperView addSubview:self.commentScrollView];
+}
+
+#pragma mark ------- TT_UserCommentDelegate
+-(void)TT_RemoveCommentView{
+    [self.TT_commentSuperView removeFromSuperview];
+}
+
+-(void)dealloc{
+    NSLog(@"videoDetailVC dealloc");
 }
 /*
  #pragma mark - Navigation

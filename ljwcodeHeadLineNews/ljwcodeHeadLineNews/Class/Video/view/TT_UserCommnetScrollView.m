@@ -38,10 +38,10 @@
 
 -(FBLPromise *)TT_getDataArray{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
-        __strong typeof(self) strongSelf = self;
+        __weak typeof(self) weakSelf = self;
         self.commentBlock = ^(NSArray * _Nonnull modelArray) {
             NSLog(@"modelArray = %@",modelArray);
-            strongSelf.dataArray = modelArray;
+            weakSelf.dataArray = modelArray;
             fulfill(modelArray);
         };
     }];
@@ -199,7 +199,7 @@
 
 -(UIView *)TT_UserCommentHeaderView{
     if(!_TT_UserCommentHeaderView){
-        _TT_UserCommentHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.1)];
+        _TT_UserCommentHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.05)];
         _TT_UserCommentHeaderView.layer.borderColor = [UIColor grayColor].CGColor;
         _TT_UserCommentHeaderView.layer.borderWidth = 1.f;
         _minY = 0;
@@ -240,7 +240,9 @@
 #pragma mark ---- 响应事件
 
 -(void)TT_closeHandle:(UIButton *)sender{
-    [self removeFromSuperview];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_RemoveCommentView)]){
+        [self.delegate TT_RemoveCommentView];
+    }
 }
 /*
  // Only override drawRect: if you perform custom drawing.

@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)TT_commentDetail:(videoContentModel *)model;
 
--(void)TT_TapPushHandle:(videoContentModel *)model;
+-(void)TT_TapPushHandle:(videoContentModel *)model WithIndexPath:(NSIndexPath *)indexPath;
 
 -(void)TT_moreHandle;
 

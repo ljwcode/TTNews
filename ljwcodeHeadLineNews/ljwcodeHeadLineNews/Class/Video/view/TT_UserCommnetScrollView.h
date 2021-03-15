@@ -14,11 +14,15 @@ typedef void(^TT_UserCommentBlock)(NSArray *modelArray);
 
 @protocol TT_UserCommentDelegate <NSObject>
 
+-(void)TT_RemoveCommentView;
+
 @end
 
 @interface TT_UserCommnetScrollView : UIView
 
 @property(nonatomic,copy)TT_UserCommentBlock commentBlock;
+
+@property(nonatomic,weak)id<TT_UserCommentDelegate>delegate;
 
 @end
 
