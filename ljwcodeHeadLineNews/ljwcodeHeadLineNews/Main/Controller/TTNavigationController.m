@@ -51,7 +51,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _defaultImage = [self.class drawImageContext:[UIColor colorWithRed:0.83 green:0.24 blue:0.24 alpha:1]];
-
     id target = self.interactivePopGestureRecognizer.delegate;
     self.interactivePopGestureRecognizer.enabled = NO;
     SEL selector = NSSelectorFromString(@"handleNavigationTransition:");
@@ -63,8 +62,8 @@
 
 #pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-       BOOL open = self.viewControllers.count > 1;
-       return open;
+    BOOL open = self.viewControllers.count > 1;
+    return open;
 }
 
 /*

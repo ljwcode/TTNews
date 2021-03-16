@@ -78,6 +78,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [self.playerView destroyPlayer];
+    self.playerView = nil;
 }
 
 - (void)viewWillLayoutSubviews {
@@ -166,14 +168,15 @@
     
 }
 
--(void)converPlayVideoAtIndexPath{
+-(void)converPlayVideoAtIndexPath:(NSIndexPath *)indexPath{
     [FBLPromise do:^id _Nullable{
-        return [self getVideoURLWithBlock];
+        return [self getVideoURLWithBlock:indexPath];
     }];
 }
 
--(FBLPromise *)getVideoURLWithBlock{
+-(FBLPromise *)getVideoURLWithBlock:(NSIndexPath *)indexPath{
     return [[[FBLPromise do:^id _Nullable{
+        self.videoContentModel = self.dataArray[indexPath.row];
         return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoContentModel.detailModel.video_detail_info.video_id];
     }]then:^id _Nullable(id  _Nullable value) {
         return [self GetVideoParseData:value];
@@ -241,22 +244,17 @@
     }];
 }
 
--(void)TT_commentDetail:(videoContentModel *)model{
-    if(self.playerView){
-        [self.playerView pausePlay];
-    }
-    self.videoDetailVC.group_id = model.detailModel.pread_params.group_id;
-    [self converPlayVideoAtIndexPath];
+-(void)TT_commentDetailIndexPath:(NSIndexPath *)indexPath{
+    self.videoContentModel  = self.dataArray[indexPath.row];
+    self.videoDetailVC.group_id = self.videoContentModel.detailModel.pread_params.group_id;
+    [self converPlayVideoAtIndexPath:indexPath];
     [self.navigationController pushViewController:self.videoDetailVC animated:YES];
 }
 
--(void)TT_TapPushHandle:(videoContentModel *)model WithIndexPath:(nonnull NSIndexPath *)indexPath{
-    if(self.playerView){
-        [self.playerView pausePlay];
-    }
+-(void)TT_TapPushHandleIndexPath:(nonnull NSIndexPath *)indexPath{
     self.videoContentModel = self.dataArray[indexPath.row];
     self.videoDetailVC.group_id = self.videoContentModel.detailModel.pread_params.group_id;
-    [self converPlayVideoAtIndexPath];
+    [self converPlayVideoAtIndexPath:indexPath];
     [self.navigationController pushViewController:self.videoDetailVC animated:YES];
 }
 

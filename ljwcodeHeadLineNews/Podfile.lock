@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - FBRetainCycleDetector (0.1.4)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -30,6 +31,8 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MJExtension (3.2.4)
   - MJRefresh (3.5.0)
+  - MLeaksFinder (1.0.0):
+    - FBRetainCycleDetector
   - PromisesObjC (1.2.12)
   - ReactiveObjC (3.1.1)
   - Realm (10.7.2):
@@ -51,6 +54,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJExtension
   - MJRefresh
+  - MLeaksFinder
   - PromisesObjC
   - ReactiveObjC
   - Realm
@@ -62,12 +66,14 @@ DEPENDENCIES:
 SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - AFNetworking
+    - FBRetainCycleDetector
     - FMDB
     - libwebp
     - Masonry
     - MBProgressHUD
     - MJExtension
     - MJRefresh
+    - MLeaksFinder
     - PromisesObjC
     - ReactiveObjC
     - Realm
@@ -77,12 +83,14 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: 88e0900751b6cac8de1cf724ca9838a0b28d5acb
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   Realm: e523da9ade306c5ae87e85dc09fdef148d3e1cc1
@@ -90,6 +98,6 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 7b5b7eb1333f044773b9d4a9d8d41e8e4add5ff9
+PODFILE CHECKSUM: 8611c9005da192e8dc00cfc56eb55c0c03010f2f
 
 COCOAPODS: 1.10.1

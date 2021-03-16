@@ -95,8 +95,6 @@
         [self.videoAuthHeadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.authHeadImgView.mas_right).offset(2);;
             make.centerY.mas_equalTo(self.authorBgView);
-            make.height.mas_equalTo(50);
-            make.width.mas_equalTo(80);
         }];
         
         UIView *lineView = [[UIView alloc]init];
@@ -137,7 +135,12 @@
 -(void)setContentModel:(videoContentModel *)contentModel{
     _contentModel = contentModel;
     [self.videoBgImgView sd_setImageWithURL:[NSURL URLWithString:contentModel.detailModel.video_detail_info.detail_video_large_image.url]];
-    [self.videoAuthHeadBtn setTitle:contentModel.detailModel.media_name forState:UIControlStateNormal];
+    if(contentModel.detailModel.media_name){
+        [self.videoAuthHeadBtn setTitle:contentModel.detailModel.media_name forState:UIControlStateNormal];
+    }else{
+        [self.videoAuthHeadBtn setTitle:@"用户xxxxxxxx" forState:UIControlStateNormal];
+    }
+    
     self.videoTitleLabel.text = contentModel.detailModel.title;
     
     NSString * urlStr = [contentModel.detailModel.media_info.avatar_url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -238,7 +241,7 @@
     if(!_videoAuthHeadBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        btn.titleLabel.adjustsFontSizeToFitWidth = YES;
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         [self.authorBgView addSubview:btn];
         _videoAuthHeadBtn = btn;
     }
@@ -308,8 +311,8 @@
 }
 
 -(void)commentHandle:(UIButton *)sender{
-    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_commentDetail:)]){
-        [self.delegate TT_commentDetail:self.contentModel];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_commentDetailIndexPath:)]){
+        [self.delegate TT_commentDetailIndexPath:_indexPath];
     }
 }
 
@@ -324,8 +327,8 @@
 }
 
 -(void)tapPushHandle:(UITapGestureRecognizer *)tap{
-    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_TapPushHandle:WithIndexPath:)]){
-        [self.delegate TT_TapPushHandle:self.contentModel WithIndexPath:_indexPath];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TT_TapPushHandleIndexPath:)]){
+        [self.delegate TT_TapPushHandleIndexPath:_indexPath];
     }
 }
 /*

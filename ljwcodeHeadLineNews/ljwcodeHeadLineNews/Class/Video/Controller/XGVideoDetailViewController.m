@@ -101,6 +101,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [self.playerView destroyPlayer];
+    self.playerView = nil;
 }
 
 -(void)createUI{
@@ -455,10 +457,6 @@
 }
 
 -(void)PopHandle:(UIButton *)sender{
-    if(self.playerView){
-        [self.playerView pausePlay];
-        self.playerView = nil;
-    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -474,6 +472,12 @@
     [self.TT_commentSuperView removeFromSuperview];
 }
 
+#pragma mark ----- NSNotification observer
+
+-(void)TT_NotifiDestroyPlayer:(NSNotification *)notification{
+    [self.playerView destroyPlayer];
+    self.playerView = nil;
+}
 -(void)dealloc{
     NSLog(@"videoDetailVC dealloc");
 }

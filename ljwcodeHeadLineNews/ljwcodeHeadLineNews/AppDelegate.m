@@ -40,6 +40,7 @@
     [RLMRealmConfiguration setDefaultConfiguration:config];
     [[TTSystemConfigureHelper shareInstance]TT_ConfigurePreference];
     [self TT_InitFontSize];
+    
 	return YES;
 }
 #pragma mark - changeFontSize
