@@ -23,6 +23,7 @@
 #import "TVVideoPlayerViewCell.h"
 #import "parseVideoRealURLViewModel.h"
 #import "videoContentModel.h"
+#import "XGVideoTableViewController.h"
 
 @interface  XGVideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,TT_VideoDetailViewDelegate,UIGestureRecognizerDelegate,TT_UserCommentDelegate>
 
@@ -56,7 +57,7 @@
 
 @property(nonatomic,strong)UIView *customerStatusBar;
 
-@property(nonatomic,strong)TVVideoPlayerViewCell *playingCell;
+@property(nonatomic,strong)TVVideoPlayerViewCell *playerCell;
 
 @property(nonatomic,strong)parseVideoRealURLViewModel *realURLViewModel;
 
@@ -105,7 +106,7 @@
     self.playerView = nil;
 }
 
--(void)createUI{
+-(void)TT_createNaviBar{
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [backBtn setImage:[UIImage imageNamed:@"lefterbackicon_titlebar_dark"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(PopHandle:) forControlEvents:UIControlEventTouchUpInside];
@@ -145,35 +146,20 @@
     return NO;
 }
 
--(FBLPromise *)TT_videoURLBlock{
-    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
-        self.VideoDetailBlock = ^(NSString * _Nonnull videoURL) {
-            fulfill(videoURL);
-        };
-    }];
-}
-
--(void)TT_getVideoURLToPlay{
-    [[FBLPromise do:^id _Nullable{
-        return [self TT_videoURLBlock];
-    }]then:^id _Nullable(id  _Nullable value) {
-        [self TT_PlayVideo:value];
-        return self.videoURL = value;
-    }];
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self TT_getVideoURLToPlay];
     
-    [self.TTVVideoDetailContainerScrollView addSubview:self.commentScrollView];
+    [self.view addSubview:self.playerView];
     
-    [[self.commentViewModel.ComRacCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
-        NSLog(@"x = %@",x);
-        [self.UserCommentDataArray addObjectsFromArray:x];
-        self.commentScrollView.commentBlock(self.UserCommentDataArray);
-    }];
+    [self.view addSubview:self.TTVVideoDetailContainerScrollView];
+    [self.TTVVideoDetailContainerScrollView addSubview:self.TTThemedTableView];
+    [self.TTVVideoDetailContainerScrollView addSubview:self.detailView];
+    self.TTThemedTableView.tableHeaderView = self.detailView;
+    [self.TTVVideoDetailContainerScrollView addSubview:self.authorHeaderView];
+    
+    [self TT_createNaviBar];
+    
+    [self TT_Player];
     
     self.TTThemedTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [[self.viewModel.videoDetailCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
@@ -194,16 +180,7 @@
     // Do any additional setup after loading the view.
 }
 
--(void)TT_PlayVideo:(NSString *)URL{
-    [self.view addSubview:self.playerView];
-    
-    [self.view addSubview:self.TTVVideoDetailContainerScrollView];
-    [self.TTVVideoDetailContainerScrollView addSubview:self.TTThemedTableView];
-    [self.TTVVideoDetailContainerScrollView addSubview:self.detailView];
-    self.TTThemedTableView.tableHeaderView = self.detailView;
-    [self.TTVVideoDetailContainerScrollView addSubview:self.authorHeaderView];
-    
-    [self createUI];
+-(void)TT_PlayVideoWithURL:(NSString *)URL{
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.playerView.url = [NSURL URLWithString:URL];
@@ -218,6 +195,15 @@
         [self.playerView destroyPlayer];
         self.playerView = nil;
         NSLog(@"播放完成");
+    }];
+}
+
+-(void)TT_Player{
+    [[FBLPromise do:^id _Nullable{
+        return [self getVideoURL];
+    }]then:^id _Nullable(id  _Nullable value) {
+        [self TT_PlayVideoWithURL:value];
+        return value;
     }];
 }
 
@@ -249,7 +235,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //    [self playTheVideoAtIndexPath:indexPath];
-    [self.navigationController pushViewController:self animated:YES];
 }
 
 - (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
@@ -264,7 +249,7 @@
 
 -(FBLPromise *)getVideoURL{
     return [[[FBLPromise do:^id _Nullable{
-        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.contentModel.detailModel.video_detail_info.video_id];
+        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.video_id];
     }]then:^id _Nullable(id  _Nullable value) {
         return [self GetVideoParseData:value];
     }]then:^id _Nullable(id  _Nullable value) {
@@ -276,6 +261,7 @@
 -(FBLPromise *)playVideoWithURL:(NSString *)url videoIndexPath:(NSIndexPath*)indexPath{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
         self.videoURL = url;
+        
         TVVideoPlayerViewCell *cell = nil;
         cell = [self.TTThemedTableView cellForRowAtIndexPath:indexPath];
         [self initPlayerView:cell playClick:cell.contentModel];
@@ -293,7 +279,7 @@
 #pragma mark -- TVVideoPlayerCellDelegate
 
 - (void)initPlayerView:(TVVideoPlayerViewCell *)cell playClick:(videoContentModel *)convention{
-    self.playingCell = cell;
+    self.playerCell = cell;
     [self.playerView destroyPlayer];
     self.playerView = nil;
     
@@ -328,7 +314,7 @@
 
 -(UIView *)TT_commentSuperView{
     if(!_TT_commentSuperView){
-        _TT_commentSuperView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.playerView.frame), kScreenWidth, CGRectGetHeight(self.view.frame) - TT_TabBarHeight)];
+        _TT_commentSuperView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.playerView.frame), kScreenWidth, CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.playerView.frame))];
         _TT_commentSuperView.backgroundColor = [UIColor whiteColor];
     }
     return _TT_commentSuperView;
@@ -381,7 +367,7 @@
 
 -(TTVideoDetailHeaderView *)authorHeaderView{
     if(!_authorHeaderView){
-        _authorHeaderView = [[TTVideoDetailHeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.05)];
+        _authorHeaderView = [[TTVideoDetailHeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
         _authorHeaderView.backgroundColor = [UIColor whiteColor];
         _authorHeaderView.layer.borderColor = [UIColor grayColor].CGColor;
         _authorHeaderView.layer.borderWidth = 0.5f;
@@ -465,11 +451,17 @@
 -(void)TT_VideoDetailCommentView{
     [self.view addSubview:self.TT_commentSuperView];
     [self.TT_commentSuperView addSubview:self.commentScrollView];
+    [[self.commentViewModel.ComRacCommand execute:self.group_id]subscribeNext:^(id  _Nullable x) {
+        NSLog(@"x = %@",x);
+        [self.UserCommentDataArray addObjectsFromArray:x];
+        self.commentScrollView.commentBlock(self.UserCommentDataArray);
+    }];
 }
 
 #pragma mark ------- TT_UserCommentDelegate
 -(void)TT_RemoveCommentView{
     [self.TT_commentSuperView removeFromSuperview];
+    [self.commentScrollView removeFromSuperview];
 }
 
 #pragma mark ----- NSNotification observer

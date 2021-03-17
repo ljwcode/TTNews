@@ -157,7 +157,7 @@ static int LimitMaxWord = 100;
 -(UIButton *)checkBoxBtn{
     if(!_checkBoxBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setBackgroundImage:[UIImage imageNamed:@"oauth_unchecked"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"oauth_unchecked"] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(checkBoxHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
         _checkBoxBtn = btn;
@@ -261,10 +261,10 @@ static int LimitMaxWord = 100;
     sender.selected = !sender.selected;
     if(sender){
         _isSelected = YES;
-        [sender setBackgroundImage:[UIImage imageNamed:@"details_choose_ok_icon"] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"details_choose_ok_icon"] forState:UIControlStateNormal];
     }else{
         _isSelected = NO;
-        [sender setBackgroundImage:[UIImage imageNamed:@"oauth_unchecked"] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"oauth_unchecked"] forState:UIControlStateNormal];
     }
 }
 

@@ -20,4 +20,5 @@ pod 'PromisesObjC'
 pod 'FMDB', '~> 2.7.5'
 pod 'Realm'
 pod 'MLeaksFinder'
+pod 'SnapKit'
 end

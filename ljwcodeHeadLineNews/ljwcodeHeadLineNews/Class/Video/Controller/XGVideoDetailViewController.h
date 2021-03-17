@@ -10,15 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^TT_VideoDetailBlock) (NSString *videoURL);
-
 @interface XGVideoDetailViewController : UIViewController
 
 @property(nonatomic,copy)NSString *videoURL;
 
 @property(nonatomic,copy)NSString *group_id;
 
-@property(nonatomic,copy)TT_VideoDetailBlock VideoDetailBlock;
+@property(nonatomic,copy)NSString *video_id;
 
 @end
 

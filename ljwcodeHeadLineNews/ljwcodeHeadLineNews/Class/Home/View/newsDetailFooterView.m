@@ -30,14 +30,14 @@
         
         [self.discussTextField mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(hSpace);
-            make.top.mas_equalTo(vSpace/2);
-            make.height.mas_equalTo(self.height * 0.2);
-            make.width.mas_equalTo(self.width * 0.4);
+            make.top.mas_equalTo(5);
+            make.bottom.mas_equalTo(self.mas_bottom).offset(TT_isIphoneX ? -39 : -15);
+            make.width.mas_equalTo(kScreenWidth * 0.4);
         }];
         
         [self.repeatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(self.discussTextField);
-            make.width.mas_equalTo(self.width * 0.1);
+            make.width.mas_equalTo(kScreenWidth * 0.1);
             make.top.mas_equalTo(self.discussTextField);
             make.bottom.mas_equalTo(self.discussTextField);
             make.left.mas_equalTo(self.discussTextField.mas_right).offset(1 * hSpace);
@@ -79,7 +79,10 @@
         [attr insertAttributedString:attach atIndex:0];
         textfield.attributedPlaceholder = attr;
         textfield.borderStyle = UITextBorderStyleRoundedRect;
-        textfield.layer.cornerRadius = 15.f;
+        textfield.layer.cornerRadius = 20.f;
+        textfield.layer.masksToBounds = YES;
+        textfield.layer.borderColor = [UIColor grayColor].CGColor;
+        textfield.layer.borderWidth = 0.5f;
         [textfield addTarget:self action:@selector(discussHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:textfield];
         _discussTextField = textfield;
@@ -90,7 +93,7 @@
 -(UIButton *)repeatBtn{
     if(!_repeatBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setBackgroundImage:[UIImage imageNamed:@"comment_live_day"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"comment_live_day"] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(repeatHnadle:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
         _repeatBtn = btn;
@@ -101,8 +104,8 @@
 -(UIButton *)collectionBtn{
     if(!_collectionBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setBackgroundImage:[UIImage imageNamed:@"tab_collect"] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"icon_details_collect_press"] forState:UIControlStateSelected];
+        [btn setImage:[UIImage imageNamed:@"tab_collect"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"icon_details_collect_press"] forState:UIControlStateSelected];
         [btn addTarget:self action:@selector(collectionHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
         _collectionBtn = btn;
@@ -113,7 +116,7 @@
 -(UIButton *)likeBtn{
     if(!_likeBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setBackgroundImage:[UIImage imageNamed:@"details_like_icon"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"details_like_icon"] forState:UIControlStateNormal];
         [btn setBackgroundImage:[UIImage imageNamed:@"details_like_icon_press"] forState:UIControlStateSelected];
         [btn addTarget:self action:@selector(likeHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
@@ -125,8 +128,7 @@
 -(UIButton *)transmitBtn{
     if(!_transmitBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setBackgroundImage:[UIImage imageNamed:@"new_share_tabbar"] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"new_share_tabbar_press"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"tab_share3"] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(transmitHandle:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
         _transmitBtn = btn;

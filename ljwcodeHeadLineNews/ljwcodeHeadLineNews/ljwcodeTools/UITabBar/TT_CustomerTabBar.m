@@ -21,8 +21,8 @@
     NSInteger index = 0;
     for (UITabBarItem *tabBarItem in itemArray) {
         UIButton *selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [selectBtn setBackgroundImage:tabBarItem.image forState:UIControlStateNormal];
-        [selectBtn setBackgroundImage:tabBarItem.selectedImage forState:UIControlStateSelected];
+        [selectBtn setImage:tabBarItem.image forState:UIControlStateNormal];
+        [selectBtn setImage:tabBarItem.selectedImage forState:UIControlStateSelected];
         selectBtn.tag = index;
         ++index;
         [selectBtn addTarget:self action:@selector(selectedItemHandle:) forControlEvents:UIControlEventTouchUpInside];

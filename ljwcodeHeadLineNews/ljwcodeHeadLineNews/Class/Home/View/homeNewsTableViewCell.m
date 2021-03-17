@@ -15,8 +15,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *NewsTitleLabel;
 
-@property (weak, nonatomic) IBOutlet UIStackView *NewsImgStackView;
-
 @property (weak, nonatomic) IBOutlet UILabel *NewsInfoLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *NewsDelBtn;

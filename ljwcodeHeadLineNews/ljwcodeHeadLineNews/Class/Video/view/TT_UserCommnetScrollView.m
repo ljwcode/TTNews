@@ -16,8 +16,6 @@
 
 @interface TT_UserCommnetScrollView()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
-@property(nonatomic,strong)UIScrollView *TT_CommentScrollView;
-
 @property(nonatomic,strong)UIView *TT_UserCommentHeaderView;
 
 @property(nonatomic,strong)UIView *TT_CommentFooterView;
@@ -28,8 +26,6 @@
 
 @property(nonatomic,assign)CGFloat minY;
 
-@property(nonatomic,copy)NSString *group_id;
-
 @property(nonatomic,strong)NSArray *dataArray;
 
 @end
@@ -39,7 +35,7 @@
 -(FBLPromise *)TT_getDataArray{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
         __weak typeof(self) weakSelf = self;
-        self.commentBlock = ^(NSArray * _Nonnull modelArray) {
+        weakSelf.commentBlock = ^(NSArray * _Nonnull modelArray) {
             NSLog(@"modelArray = %@",modelArray);
             weakSelf.dataArray = modelArray;
             fulfill(modelArray);
@@ -56,16 +52,25 @@
         self.titleLabel.text = [NSString stringWithFormat:@"%lu条评论",(unsigned long)self.dataArray.count];
         if(self.dataArray.count == 0){
             [self.TT_UserCommnetTableView removeFromSuperview];
+            UIView *emptyView = [[UIView alloc]init];
+            emptyView.backgroundColor = [UIColor whiteColor];
+            [self addSubview:emptyView];
+            [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.mas_equalTo(0);
+                make.top.mas_equalTo(self.TT_UserCommentHeaderView.mas_bottom).offset(0);
+                make.bottom.mas_equalTo(self.TT_CommentFooterView.mas_top).offset(0);
+            }];
+            
             UILabel *tipLabl = [[UILabel alloc]init];
             tipLabl.text = @"暂无评论，点击抢沙发";
             tipLabl.textColor = [UIColor blackColor];
             tipLabl.textAlignment = NSTextAlignmentCenter;
             tipLabl.font = [UIFont systemFontOfSize:13.f];
             tipLabl.adjustsFontSizeToFitWidth = YES;
-            [self.TT_CommentScrollView addSubview:tipLabl];
+            [emptyView addSubview:tipLabl];
             
             [tipLabl mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerY.centerX.mas_equalTo(self.TT_CommentScrollView);
+                make.centerY.centerX.mas_equalTo(emptyView);
                 make.width.mas_equalTo(100);
                 make.height.mas_equalTo(30);
             }];
@@ -75,8 +80,7 @@
 }
 
 -(void)createUI{
-    [self addSubview:self.TT_CommentScrollView];
-    [self.TT_CommentScrollView addSubview:self.TT_UserCommentHeaderView];
+    [self addSubview:self.TT_UserCommentHeaderView];
     
     [self addSubview:self.TT_UserCommnetTableView];
     
@@ -99,12 +103,18 @@
         make.width.mas_greaterThanOrEqualTo(kScreenWidth * 0.2);
     }];
     
-    [self.TT_CommentScrollView addSubview:self.TT_CommentFooterView];
+    [self addSubview:self.TT_CommentFooterView];
+    [self.TT_CommentFooterView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_offset(0);
+        make.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(self.mas_safeAreaLayoutGuideBottom).offset(-15);
+        make.height.mas_equalTo(TT_TabBarHeight);
+    }];
     
     UITextField *CommentTextField = [[UITextField alloc]init];
     CommentTextField.layer.borderColor = [UIColor grayColor].CGColor;
     CommentTextField.layer.borderWidth = 1.f;
-    CommentTextField.layer.cornerRadius = 10.f;
+    CommentTextField.layer.cornerRadius = 20.f;
     
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:@"写评论..." attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:11.f],NSForegroundColorAttributeName : [UIColor blackColor]}];
     CommentTextField.attributedText = attrString;
@@ -124,8 +134,8 @@
     [CommentTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(hSpace * 2);
         make.right.mas_equalTo(-hSpace * 2);
-        make.top.mas_equalTo(10);
-        make.bottom.mas_equalTo(-10);
+        make.top.mas_equalTo(5);
+        make.bottom.mas_equalTo(TT_isIphoneX ? -34 : -10);
     }];
 }
 -(instancetype)initWithFrame:(CGRect)frame{
@@ -161,23 +171,6 @@
     return UITableViewAutomaticDimension;
 }
 
-#pragma mark ------ UIScrollViewDelegate
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGFloat offsetY = scrollView.contentOffset.y;
-    CGRect HeaderFrame = self.TT_UserCommentHeaderView.frame;
-    CGRect footerFrame = self.TT_CommentFooterView.frame;
-    if (offsetY >= _minY) {
-        HeaderFrame.origin.y = 0;
-        footerFrame.origin.y = CGRectGetHeight(self.frame) * 0.9;
-    }else{
-        HeaderFrame.origin.y = _minY;
-        footerFrame.origin.y = CGRectGetHeight(self.frame) * 0.9;
-    }
-    self.TT_UserCommentHeaderView.frame = HeaderFrame;
-    self.TT_CommentFooterView.frame = footerFrame;
-}
-
 #pragma mark ------ lazy load
 
 -(UILabel *)titleLabel{
@@ -199,7 +192,7 @@
 
 -(UIView *)TT_UserCommentHeaderView{
     if(!_TT_UserCommentHeaderView){
-        _TT_UserCommentHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight * 0.05)];
+        _TT_UserCommentHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
         _TT_UserCommentHeaderView.layer.borderColor = [UIColor grayColor].CGColor;
         _TT_UserCommentHeaderView.layer.borderWidth = 1.f;
         _minY = 0;
@@ -209,7 +202,8 @@
 
 -(UIView *)TT_CommentFooterView{
     if(!_TT_CommentFooterView){
-        _TT_CommentFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.frame) * 0.9, kScreenWidth, CGRectGetHeight(self.frame) * 0.1)];
+        _TT_CommentFooterView = [[UIView alloc]init];
+        _TT_CommentFooterView.backgroundColor = [UIColor whiteColor];
         _TT_CommentFooterView.layer.borderColor = [UIColor grayColor].CGColor;
         _TT_CommentFooterView.layer.borderWidth = 1.f;
     }
@@ -226,15 +220,6 @@
         [_TT_UserCommnetTableView registerNib:userCommentNib forCellReuseIdentifier:NSStringFromClass([TT_UserCommentTableViewCell class])];
     }
     return _TT_UserCommnetTableView;
-}
-
--(UIScrollView *)TT_CommentScrollView{
-    if(!_TT_CommentScrollView){
-        _TT_CommentScrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
-        _TT_CommentScrollView.delegate = self;
-        _TT_CommentScrollView.contentSize = CGSizeMake(kScreenWidth, CGRectGetHeight(self.frame));
-    }
-    return _TT_CommentScrollView;
 }
 
 #pragma mark ---- 响应事件

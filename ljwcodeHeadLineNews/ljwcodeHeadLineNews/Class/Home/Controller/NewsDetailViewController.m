@@ -27,8 +27,6 @@
 
 @property(nonatomic,strong)newsDetailFooterView *footerView;
 
-@property(nonatomic,assign)CGFloat webViewHeight;
-
 @property(nonatomic,strong)UITableView *tableView;
 
 @property(nonatomic,strong)WKWebView *webView;
@@ -37,9 +35,7 @@
 
 @property(nonatomic,strong)UIView *headerView;
 
-@property(nonatomic,strong)NSArray *userCommentArray;
-
-@property(nonatomic,strong)UIView *TT_CommentFooterView;
+@property(nonatomic,strong)NSMutableArray *userCommentArray;
 
 @property(nonatomic,strong)homeNewsDetailRecSearchViewModel *newsRecViewModel;
 
@@ -47,46 +43,9 @@
 
 @property(nonatomic,strong)homeNewsDetailCommentViewModel *CommentViewModel;
 
-@property(nonatomic,strong)UIScrollView *TT_ArticleScrollView;
-
 @end
 
 @implementation NewsDetailViewController
-
-#pragma mark -------- get USER Comment Data
-
-
--(void)createFooterView{
-    
-    [self.view addSubview:self.TT_CommentFooterView];
-    
-    UITextField *CommentTextField = [[UITextField alloc]init];
-    CommentTextField.layer.borderColor = [UIColor grayColor].CGColor;
-    CommentTextField.layer.borderWidth = 1.f;
-    CommentTextField.layer.cornerRadius = 10.f;
-    
-    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:@"写评论..." attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:11.f],NSForegroundColorAttributeName : [UIColor blackColor]}];
-    CommentTextField.attributedText = attrString;
-    CommentTextField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
-    UIImageView *leftImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
-    leftImgView.image = [UIImage imageNamed:@"hts_vp_write_new"];
-    CommentTextField.leftViewMode = UITextFieldViewModeAlways;
-    [CommentTextField.leftView addSubview:leftImgView];
-    
-    CommentTextField.rightView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
-    UIImageView *rightImgView = [[UIImageView alloc]initWithFrame:CommentTextField.rightView.bounds];
-    rightImgView.image = [UIImage imageNamed:@"tsv_comment_footer_emoji"];
-    [CommentTextField.rightView addSubview:rightImgView];
-    CommentTextField.rightViewMode = UITextFieldViewModeAlways;
-    
-    [self.TT_CommentFooterView addSubview:CommentTextField];
-    [CommentTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(hSpace * 2);
-        make.right.mas_equalTo(-hSpace * 2);
-        make.top.mas_equalTo(10);
-        make.bottom.mas_equalTo(-10);
-    }];
-}
 
 -(void)TT_NaviBarItem{
 
@@ -136,11 +95,17 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     [self.view addSubview:self.headerView];
-    [self.view addSubview:self.TT_ArticleScrollView];
     
-    [self.TT_ArticleScrollView addSubview:self.tableView];
+    [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = self.webView;
-    
+    [self.webView addSubview:self.footerView];
+
+    [self.footerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(TT_isIphoneX ? 34 : 0);;
+        make.height.mas_equalTo(TT_TabBarHeight);
+    }];
     [self TT_NaviBarItem];
     
     [[self.newsRecViewModel.recSearchCommand execute:self.group_id]subscribeNext:^(id  _Nullable x)  {
@@ -159,7 +124,7 @@
 -(void)TT_CommentFeedBack{
     self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
         [[self.CommentViewModel.newsDetailCommend execute:self.group_id]subscribeNext:^(id  _Nullable x) {
-            self.userCommentArray = x;
+            [self.userCommentArray addObjectsFromArray:x];
             [self.tableView reloadData];
             NSLog(@"commentArray = %@",self.userCommentArray);
             [self.tableView.mj_footer endRefreshing];
@@ -196,7 +161,7 @@
         HeaderView.backgroundColor = [UIColor whiteColor];
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(hSpace, 0, 60, 20)];
         titleLabel.text = @"评论";
-        titleLabel.font = [UIFont systemFontOfSize:13.f weight:6.f];
+        titleLabel.font = [UIFont systemFontOfSize:16.f weight:6.f];
         titleLabel.textColor = [UIColor blackColor];
         [HeaderView addSubview:titleLabel];
         return HeaderView;
@@ -263,19 +228,10 @@
 }
 #pragma mark ---- lazy load
 
--(UIScrollView *)TT_ArticleScrollView{
-    if(!_TT_ArticleScrollView){
-        _TT_ArticleScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), kScreenWidth, kScreenHeight)];
-        _TT_ArticleScrollView.delegate = self;
-        _TT_ArticleScrollView.contentSize = CGSizeMake(kScreenWidth,kScreenHeight);
-    }
-    return _TT_ArticleScrollView;
-}
-
 
 -(UITableView *)tableView{
     if(!_tableView){
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - TT_TabBarHeight) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame), kScreenWidth, kScreenHeight - TT_TabBarHeight) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         if (@available(iOS 11, *)) {
@@ -331,20 +287,12 @@
 
 -(newsDetailFooterView *)footerView{
     if(!_footerView){
-        _footerView = [[newsDetailFooterView alloc]initWithFrame:CGRectMake(0, kScreenHeight * 0.9, kScreenWidth, kScreenHeight * 0.1)];
-        _footerView.layer.borderColor = [UIColor blueColor].CGColor;
-        _footerView.layer.borderWidth = 2.f;
+        _footerView = [[newsDetailFooterView alloc]init];
+        _footerView.layer.borderColor = [UIColor grayColor].CGColor;
+        _footerView.layer.borderWidth = 0.5f;
+        _footerView.backgroundColor = [UIColor whiteColor];
     }
     return _footerView;
-}
-
--(UIView *)TT_CommentFooterView{
-    if(!_TT_CommentFooterView){
-        _TT_CommentFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.9, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.1)];
-        _TT_CommentFooterView.layer.borderColor = [UIColor grayColor].CGColor;
-        _TT_CommentFooterView.layer.borderWidth = 1.f;
-    }
-    return _TT_CommentFooterView;
 }
 
 -(homeNewsDetailCommentViewModel *)CommentViewModel{
@@ -354,9 +302,9 @@
     return _CommentViewModel;
 }
 
--(NSArray *)userCommentArray{
+-(NSMutableArray *)userCommentArray{
     if(!_userCommentArray){
-        _userCommentArray = [[NSArray alloc]init];
+        _userCommentArray = [[NSMutableArray alloc]init];
     }
     return _userCommentArray;
 }

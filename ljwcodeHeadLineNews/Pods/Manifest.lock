@@ -44,6 +44,7 @@ PODS:
   - SDWebImage/WebP (4.0.0):
     - libwebp
     - SDWebImage/Core
+  - SnapKit (5.0.1)
   - YYCache (1.0.4)
   - YYText (1.0.7)
 
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - Realm
   - SDWebImage (~> 4.0.0)
   - SDWebImage/WebP
+  - SnapKit
   - YYCache
   - YYText
 
@@ -78,6 +80,7 @@ SPEC REPOS:
     - ReactiveObjC
     - Realm
     - SDWebImage
+    - SnapKit
     - YYCache
     - YYText
 
@@ -95,9 +98,10 @@ SPEC CHECKSUMS:
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   Realm: e523da9ade306c5ae87e85dc09fdef148d3e1cc1
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 8611c9005da192e8dc00cfc56eb55c0c03010f2f
+PODFILE CHECKSUM: 306b0504b66a1a495d84b3480a76c644dcac8d03
 
 COCOAPODS: 1.10.1

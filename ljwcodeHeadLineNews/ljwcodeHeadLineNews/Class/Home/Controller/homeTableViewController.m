@@ -81,14 +81,14 @@
     //    [self.detailTableView.mj_header beginRefreshing];
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.playerView destroyPlayer];
+    self.playerView = nil;
+}
+
 -(NSArray *)modelArrayWithCategory:(NSString *)category fromModel:(id)model{
-    if([category isEqualToString:@"essay_joke"]){
-        homeJokeModel *jokeModel = (homeJokeModel *)model;
-        return jokeModel.data_array;
-    }else if([category isEqualToString:@"组图"]){
-        homeNewsModel *newsModel = (homeNewsModel *)model;
-        return newsModel.data;;
-    }else if([category isEqualToString:@"video"]){
+    if([category isEqualToString:@"video"]){
         return model;
     }else{
         homeNewsModel *newsModel = (homeNewsModel *)model;
@@ -226,17 +226,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *resultCell = nil;
-    if([self.titleModel.category isEqualToString:@"essay_joke"]){
-        homejokeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homejokeTableViewCell class])];
-        homeJokeSummarymodel *model = self.datasArray[indexPath.row];
-        cell.jokeSummaryModel = model;
-        resultCell = cell;
-    }else if([self.titleModel.category isEqualToString:@"组图"]){
-        homeNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeNewsTableViewCell class])];
-        _model = self.datasArray[indexPath.row];
-        cell.summaryModel = _model;
-        resultCell = cell;
-    }else if([self.titleModel.category isEqualToString:@"video"]){
+    if([self.titleModel.category isEqualToString:@"video"]){
         TVVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
         videoContentModel *model = self.datasArray[indexPath.row];
         cell.contentModel = model;
@@ -246,10 +236,16 @@
         _model = self.datasArray[indexPath.row];
         if(_model.infoModel.image_list){
             homeNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeNewsTableViewCell class])];
+            if(!cell){
+                cell = [[homeNewsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([homeNewsTableViewCell class])];
+            }
             cell.summaryModel = _model;
             resultCell = cell;
         }else{
             homeContentNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeContentNewsTableViewCell class])];
+            if(!cell){
+                cell = [[homeContentNewsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([homeContentNewsTableViewCell class])];
+            }
             cell.newsSummaryModel = _model;
             resultCell = cell;
         }

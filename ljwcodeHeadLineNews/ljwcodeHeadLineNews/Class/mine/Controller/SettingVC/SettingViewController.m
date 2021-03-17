@@ -490,6 +490,10 @@
     return _footerView;
 }
 
+-(void)dealloc{
+    NSLog(@"set dealloc");
+}
+
 /*
 #pragma mark - Navigation
 

@@ -40,7 +40,7 @@
 
 @property(nonatomic,strong)videoDetailViewModel *detailViewModel;
 
-@property(nonatomic,strong)XGVideoDetailViewController *videoDetailVC;
+@property(nonatomic,strong)XGVideoDetailViewController *detailVC;
 
 @end
 
@@ -168,24 +168,6 @@
     
 }
 
--(void)converPlayVideoAtIndexPath:(NSIndexPath *)indexPath{
-    [FBLPromise do:^id _Nullable{
-        return [self getVideoURLWithBlock:indexPath];
-    }];
-}
-
--(FBLPromise *)getVideoURLWithBlock:(NSIndexPath *)indexPath{
-    return [[[FBLPromise do:^id _Nullable{
-        self.videoContentModel = self.dataArray[indexPath.row];
-        return [[TTNetworkURLManager shareInstance]parseVideoRealURLWithVideo_id:self.videoContentModel.detailModel.video_detail_info.video_id];
-    }]then:^id _Nullable(id  _Nullable value) {
-        return [self GetVideoParseData:value];
-    }]then:^id _Nullable(id  _Nullable value) {
-        self.videoDetailVC.VideoDetailBlock(value);
-        return value;
-    }];
-}
-
 
 -(FBLPromise *)getVideoURLWithIndexPath:(NSIndexPath *)IndexPath{
     return [[[FBLPromise do:^id _Nullable{
@@ -245,17 +227,19 @@
 }
 
 -(void)TT_commentDetailIndexPath:(NSIndexPath *)indexPath{
+    XGVideoDetailViewController *videoDetailVC = [[XGVideoDetailViewController alloc]init];
     self.videoContentModel  = self.dataArray[indexPath.row];
-    self.videoDetailVC.group_id = self.videoContentModel.detailModel.pread_params.group_id;
-    [self converPlayVideoAtIndexPath:indexPath];
-    [self.navigationController pushViewController:self.videoDetailVC animated:YES];
+    videoDetailVC.group_id = self.videoContentModel.detailModel.pread_params.group_id;
+    videoDetailVC.video_id = self.videoContentModel.detailModel.video_detail_info.video_id;
+    [self.navigationController pushViewController:videoDetailVC animated:YES];
 }
 
 -(void)TT_TapPushHandleIndexPath:(nonnull NSIndexPath *)indexPath{
+    XGVideoDetailViewController *videoDetailVC = [[XGVideoDetailViewController alloc]init];
     self.videoContentModel = self.dataArray[indexPath.row];
-    self.videoDetailVC.group_id = self.videoContentModel.detailModel.pread_params.group_id;
-    [self converPlayVideoAtIndexPath:indexPath];
-    [self.navigationController pushViewController:self.videoDetailVC animated:YES];
+    videoDetailVC.group_id = self.videoContentModel.detailModel.pread_params.group_id;
+    videoDetailVC.video_id = self.videoContentModel.detailModel.video_detail_info.video_id;
+    [self.navigationController pushViewController:videoDetailVC animated:YES];
 }
 
 -(void)TT_moreHandle{
@@ -325,11 +309,12 @@
 
 #pragma mark ---- lazy load
 
--(XGVideoDetailViewController *)videoDetailVC{
-    if(!_videoDetailVC){
-        _videoDetailVC = [[XGVideoDetailViewController alloc]init];
+-(XGVideoDetailViewController *)detailVC{
+    if(!_detailVC){
+        XGVideoDetailViewController *detailVC = [[XGVideoDetailViewController alloc]init];
+        _detailVC = detailVC;
     }
-    return _videoDetailVC;
+    return _detailVC;
 }
 
 -(parseVideoRealURLViewModel *)realURLViewModel{
