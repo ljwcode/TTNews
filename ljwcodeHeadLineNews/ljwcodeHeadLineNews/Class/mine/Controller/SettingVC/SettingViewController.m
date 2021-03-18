@@ -22,25 +22,53 @@
 
 @property(nonatomic,strong)UIView *footerView;
 
+@property(nonatomic,strong)UIView *NaviHeaderView;
+
 @end
 
 @implementation SettingViewController
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
--(void)viewDidLayoutSubviews{
-    UIBarButtonItem *leftBarBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"tta_backbutton_titlebar"] style:UIBarButtonItemStylePlain target:self action:@selector(backToParentVCHandle:)];
-    self.navigationItem.leftBarButtonItem = leftBarBtn;
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
+-(void)CreateNaviBar{
+    UIButton *BackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [BackBtn setImage:[UIImage imageNamed:@"lefterbackicon_titlebar"] forState:UIControlStateNormal];
+    [BackBtn addTarget:self action:@selector(leftBackHandle:) forControlEvents:UIControlEventTouchUpInside];
+    [self.NaviHeaderView addSubview:BackBtn];
+    [BackBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(2 * hSpace);
+        make.centerY.mas_equalTo(self.NaviHeaderView);
+        make.width.height.mas_equalTo(20);
+    }];
     
-    self.title = @"设置";
+    UILabel *titleLabel = [[UILabel alloc]init];
+    titleLabel.text = @"设置";
+    titleLabel.textColor = [UIColor blackColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.font = [UIFont systemFontOfSize:15.f];
+    [self.NaviHeaderView addSubview:titleLabel];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.centerY.mas_equalTo(self.NaviHeaderView);
+        make.width.mas_equalTo(60);
+        make.height.mas_equalTo(20);
+    }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self.view addSubview:self.NaviHeaderView];
     [self.view addSubview:self.tableView];
+    self.tableView.tableHeaderView = self.NaviHeaderView;
+    [self CreateNaviBar];
+
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.view);
     }];
@@ -455,9 +483,17 @@
 }
 
 #pragma mark ------ lazy load
+
+-(UIView *)NaviHeaderView{
+    if(!_NaviHeaderView){
+        _NaviHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, TT_statuBarHeight, kScreenWidth, TT_statuBarHeight)];
+        _NaviHeaderView.backgroundColor = [UIColor whiteColor];
+    }
+    return _NaviHeaderView;
+}
 -(UITableView *)tableView{
     if(!_tableView){
-        UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.NaviHeaderView.frame), kScreenWidth, kScreenHeight - CGRectGetHeight(self.NaviHeaderView.frame) - TT_TabBarHeight) style:UITableViewStyleGrouped];
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.separatorColor  = [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1];

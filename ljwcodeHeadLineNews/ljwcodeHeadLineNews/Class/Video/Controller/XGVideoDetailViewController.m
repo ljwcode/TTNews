@@ -24,8 +24,9 @@
 #import "parseVideoRealURLViewModel.h"
 #import "videoContentModel.h"
 #import "XGVideoTableViewController.h"
+#import <TTNews-Swift.h>
 
-@interface  XGVideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,TT_VideoDetailViewDelegate,UIGestureRecognizerDelegate,TT_UserCommentDelegate>
+@interface  XGVideoDetailViewController()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,TT_VideoDetailViewDelegate,UIGestureRecognizerDelegate,TT_UserCommentDelegate,TTPlayerEndMaskDelegate>
 
 @property(nonatomic,strong)TTPlayerView *playerView;
 
@@ -62,6 +63,8 @@
 @property(nonatomic,strong)parseVideoRealURLViewModel *realURLViewModel;
 
 @property(nonatomic,strong)videoContentModel *contentModel;
+
+@property(nonatomic,strong)TTPlayerEndMaskView *endMaskView;
 
 
 @end
@@ -102,6 +105,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self setupStatusBarColor:[UIColor clearColor]];
     [self.playerView destroyPlayer];
     self.playerView = nil;
 }
@@ -150,7 +155,6 @@
     [super viewDidLoad];
     
     [self.view addSubview:self.playerView];
-    
     [self.view addSubview:self.TTVVideoDetailContainerScrollView];
     [self.TTVVideoDetailContainerScrollView addSubview:self.TTThemedTableView];
     [self.TTVVideoDetailContainerScrollView addSubview:self.detailView];
@@ -195,6 +199,7 @@
         [self.playerView destroyPlayer];
         self.playerView = nil;
         NSLog(@"播放完成");
+        [self.view addSubview:self.endMaskView];
     }];
 }
 
@@ -325,6 +330,14 @@
         _playerView = [[TTPlayerView alloc]initWithFrame:CGRectMake(0, TT_statuBarHeight, kScreenWidth, kScreenHeight * 0.3)];
     }
     return _playerView;
+}
+
+-(TTPlayerEndMaskView *)endMaskView{
+    if(!_endMaskView){
+        _endMaskView = [[TTPlayerEndMaskView alloc]initWithFrame:CGRectMake(0, TT_statuBarHeight, kScreenWidth, kScreenHeight * 0.3)];
+        _endMaskView.delegate = self;
+    }
+    return _endMaskView;
 }
 
 -(XGVideoCommentViewModel *)commentViewModel{
@@ -470,6 +483,30 @@
     [self.playerView destroyPlayer];
     self.playerView = nil;
 }
+
+#pragma mark ---- TTPlayerEndMaskDelegate
+
+-(void)TT_MoreHandle{
+    TTHomeMoreShareVIew *moreShareView = [[TTHomeMoreShareVIew alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.5, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.5)];
+    moreShareView.backgroundColor = [UIColor whiteColor];
+    moreShareView.layer.cornerRadius = 8.f;
+    moreShareView.layer.masksToBounds = YES;
+    [self.view addSubview:moreShareView];
+}
+
+-(void)TT_SearchHandle{
+    TTSearchViewController *searchVC = [[TTSearchViewController alloc]init];
+    [self.navigationController pushViewController:searchVC animated:YES];
+}
+
+-(void)TT_BackPopHandle{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)TT_ReplayerVideoHandle{
+    
+}
+
 -(void)dealloc{
     NSLog(@"videoDetailVC dealloc");
 }
