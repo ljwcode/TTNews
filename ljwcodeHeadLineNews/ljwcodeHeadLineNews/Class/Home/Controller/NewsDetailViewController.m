@@ -54,9 +54,9 @@
     [BackBtn addTarget:self action:@selector(leftBackHandle:) forControlEvents:UIControlEventTouchUpInside];
     [self.headerView addSubview:BackBtn];
     [BackBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(2 * hSpace);
+        make.left.mas_equalTo(hSpace);
         make.centerY.mas_equalTo(self.headerView);
-        make.width.height.mas_equalTo(20);
+        make.width.height.mas_equalTo(30);
     }];
     
     UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -66,7 +66,7 @@
     [moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-2 * hSpace);
         make.centerY.mas_equalTo(self.headerView);
-        make.width.height.mas_equalTo(20);
+        make.width.height.mas_equalTo(30);
     }];
     
     UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -76,7 +76,7 @@
     [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(moreBtn.mas_left).offset(-2 * hSpace);
         make.centerY.mas_equalTo(self.headerView);
-        make.height.width.mas_equalTo(20);
+        make.height.width.mas_equalTo(30);
     }];
 }
 
@@ -314,7 +314,7 @@
 #pragma mark - 点击事件响应
 
 -(void)moreBarHandle:(id)sender{
-    TTHomeMoreShareVIew *moreShareView = [[TTHomeMoreShareVIew alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.5, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.5)];
+    TTHomeMoreShareVIew *moreShareView = [[TTHomeMoreShareVIew alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.7, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.3)];
     moreShareView.backgroundColor = [UIColor whiteColor];
     moreShareView.layer.cornerRadius = 8.f;
     moreShareView.layer.masksToBounds = YES;

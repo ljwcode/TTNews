@@ -106,12 +106,11 @@
 -(UILabel *)titleLabel{
     if(!_titleLabel){
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.font = TTFont(TT_USERDEFAULT_float(TT_DEFAULT_FONT));
+        _titleLabel.font = [UIFont systemFontOfSize:20.f weight:5.f];
         _titleLabel.textColor = [UIColor blackColor];
         _titleLabel.numberOfLines = 0;
         _titleLabel.textAlignment = NSTextAlignmentLeft;
-        [_titleLabel TTContentFitWidth];
-        [_titleLabel TTContentFitHeight];
+
     }
     return _titleLabel;
 }

@@ -443,7 +443,7 @@
 #pragma mark ------- 响应事件
 
 -(void)MoreHandle:(UIButton *)sender{
-    TTHomeMoreShareVIew *moreShareView = [[TTHomeMoreShareVIew alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.5, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.5)];
+    TTHomeMoreShareVIew *moreShareView = [[TTHomeMoreShareVIew alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) * 0.7, kScreenWidth, CGRectGetHeight(self.view.frame) * 0.3)];
     moreShareView.backgroundColor = [UIColor whiteColor];
     moreShareView.layer.cornerRadius = 8.f;
     moreShareView.layer.masksToBounds = YES;

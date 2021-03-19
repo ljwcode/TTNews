@@ -95,6 +95,7 @@
         [self.videoAuthHeadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.authHeadImgView.mas_right).offset(2);;
             make.centerY.mas_equalTo(self.authorBgView);
+            make.width.mas_greaterThanOrEqualTo(30);
         }];
         
         UIView *lineView = [[UIView alloc]init];
@@ -241,7 +242,8 @@
     if(!_videoAuthHeadBtn){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        btn.titleLabel.font = [UIFont systemFontOfSize:13.f];
         [self.authorBgView addSubview:btn];
         _videoAuthHeadBtn = btn;
     }

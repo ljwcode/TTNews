@@ -35,7 +35,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 -(void)CreateNaviBar{
@@ -44,9 +43,9 @@
     [BackBtn addTarget:self action:@selector(leftBackHandle:) forControlEvents:UIControlEventTouchUpInside];
     [self.NaviHeaderView addSubview:BackBtn];
     [BackBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(2 * hSpace);
+        make.left.mas_equalTo(hSpace);
         make.centerY.mas_equalTo(self.NaviHeaderView);
-        make.width.height.mas_equalTo(20);
+        make.width.height.mas_equalTo(30);
     }];
     
     UILabel *titleLabel = [[UILabel alloc]init];
@@ -64,7 +63,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self.view addSubview:self.NaviHeaderView];
     [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = self.NaviHeaderView;
     [self CreateNaviBar];
@@ -464,7 +462,7 @@
 
 #pragma mark ---------- 事件响应
 
--(void)backToParentVCHandle:(id)sender{
+-(void)leftBackHandle:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 

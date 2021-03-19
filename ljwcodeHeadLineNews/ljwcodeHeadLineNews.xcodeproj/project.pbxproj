@@ -187,6 +187,13 @@
 		94AF78BE25F8C0370018A522 /* libicucore.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 94AF78BC25F8C0370018A522 /* libicucore.A.tbd */; };
 		94AF78BF25F8C0370018A522 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 94AF78BD25F8C0370018A522 /* libicucore.tbd */; };
 		94AF791725F8C3720018A522 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AF791525F8C3710018A522 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		94B79EEF26048CAA0042727A /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B79EE826048CAA0042727A /* 5.png */; };
+		94B79EF026048CAA0042727A /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B79EE926048CAA0042727A /* 4.png */; };
+		94B79EF126048CAA0042727A /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B79EEA26048CAA0042727A /* 2.png */; };
+		94B79EF226048CAA0042727A /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B79EEB26048CAA0042727A /* 6.png */; };
+		94B79EF326048CAA0042727A /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B79EEC26048CAA0042727A /* 3.png */; };
+		94B79EF426048CAA0042727A /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B79EED26048CAA0042727A /* 1.png */; };
+		94B79EF526048CAA0042727A /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B79EEE26048CAA0042727A /* 7.png */; };
 		C4AFB7D1D396726EDB50A5DB /* Pods_ljwcodeHeadLineNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */; };
 /* End PBXBuildFile section */
 
@@ -530,6 +537,13 @@
 		94AF78BD25F8C0370018A522 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		94AF791525F8C3710018A522 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		94AF791625F8C3720018A522 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		94B79EE826048CAA0042727A /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		94B79EE926048CAA0042727A /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		94B79EEA26048CAA0042727A /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		94B79EEB26048CAA0042727A /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		94B79EEC26048CAA0042727A /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		94B79EED26048CAA0042727A /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		94B79EEE26048CAA0042727A /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
 		A2C008BF83355F08C3B5A22B /* Pods-ljwcodeHeadLineNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.debug.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.debug.xcconfig"; sourceTree = "<group>"; };
 		C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ljwcodeHeadLineNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1211,6 +1225,7 @@
 		820978DA1BD3A37600CF9D0C = {
 			isa = PBXGroup;
 			children = (
+				94B79EE726048C540042727A /* 项目截图 */,
 				63EB675425F634C3004BF64B /* assets */,
 				63F30EF52564CAEB000CE908 /* LaunchScreen.storyboard */,
 				820978E51BD3A37600CF9D0C /* ljwcodeHeadLineNews */,
@@ -1353,6 +1368,20 @@
 			path = viewController;
 			sourceTree = "<group>";
 		};
+		94B79EE726048C540042727A /* 项目截图 */ = {
+			isa = PBXGroup;
+			children = (
+				94B79EED26048CAA0042727A /* 1.png */,
+				94B79EEA26048CAA0042727A /* 2.png */,
+				94B79EEC26048CAA0042727A /* 3.png */,
+				94B79EE926048CAA0042727A /* 4.png */,
+				94B79EE826048CAA0042727A /* 5.png */,
+				94B79EEB26048CAA0042727A /* 6.png */,
+				94B79EEE26048CAA0042727A /* 7.png */,
+			);
+			path = "项目截图";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1416,6 +1445,7 @@
 				631BC91C25481E50001B82AB /* TTThemeDefault.plist in Resources */,
 				949E779524A39605000C446E /* homejokeTableViewCell.xib in Resources */,
 				6390EEBF2589B3670081093E /* README.md in Resources */,
+				94B79EF526048CAA0042727A /* 7.png in Resources */,
 				631BC92225481E7D001B82AB /* TTThemeNight.plist in Resources */,
 				63A3131925C95C8E00AF1056 /* TT_UserCommentTableViewCell.xib in Resources */,
 				6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */,
@@ -1424,12 +1454,18 @@
 				63265C4B256F9FF100AACBC6 /* TTChannelMyHeaderView.xib in Resources */,
 				63265C4E256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib in Resources */,
 				633368E225761AC900F47A91 /* TTArticleSearchTagCell.xib in Resources */,
+				94B79EEF26048CAA0042727A /* 5.png in Resources */,
 				949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */,
 				6390EEBC2589B3670081093E /* LICENSE in Resources */,
 				634DA02D25A45C4200236458 /* Settings.bundle in Resources */,
 				637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */,
 				63F30EF62564CAEB000CE908 /* LaunchScreen.storyboard in Resources */,
 				63EB675525F634C3004BF64B /* assets in Resources */,
+				94B79EF426048CAA0042727A /* 1.png in Resources */,
+				94B79EF126048CAA0042727A /* 2.png in Resources */,
+				94B79EF226048CAA0042727A /* 6.png in Resources */,
+				94B79EF026048CAA0042727A /* 4.png in Resources */,
+				94B79EF326048CAA0042727A /* 3.png in Resources */,
 				63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */,
 				631BC91F25481E66001B82AB /* TTThemeDefaultTag.plist in Resources */,
 				631BC92525481E8B001B82AB /* TTThemeNightTag.plist in Resources */,

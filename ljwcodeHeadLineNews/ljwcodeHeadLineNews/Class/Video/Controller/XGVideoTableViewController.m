@@ -243,7 +243,7 @@
 }
 
 -(void)TT_moreHandle{
-    TTHomeMoreShareVIew *moreShareView = [[TTHomeMoreShareVIew alloc]initWithFrame:CGRectMake(0, kScreenHeight * 0.5, kScreenWidth, kScreenHeight * 0.5)];
+    TTHomeMoreShareVIew *moreShareView = [[TTHomeMoreShareVIew alloc]initWithFrame:CGRectMake(0, kScreenHeight * 0.7, kScreenWidth, kScreenHeight * 0.3)];
     moreShareView.backgroundColor = [UIColor whiteColor];
     moreShareView.layer.cornerRadius = 8.f;
     moreShareView.layer.masksToBounds = YES;

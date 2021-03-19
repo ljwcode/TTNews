@@ -234,38 +234,38 @@
         make.right.mas_equalTo(self.mas_right).offset(-20);
     }];
 
-    UIButton *tiktokLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [tiktokLoginBtn setImage:[UIImage imageNamed:@"douyin_sdk_login"] forState:UIControlStateNormal];
-    [self addSubview:tiktokLoginBtn];
-    _tiktokLoginBtn = tiktokLoginBtn;
-
-    [tiktokLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.mas_left).offset(TT_systemVersion >= 13.0 ? self.width/3 : self.width*2/5);
-        make.bottom.mas_equalTo(self.mas_bottom).offset(-20);
-        make.width.height.mas_equalTo(self.width * 0.1);
-    }];
-
-    UIButton *appleLogin = [UIButton buttonWithType:UIButtonTypeSystem];
-    [appleLogin setImage:[UIImage imageNamed:@"login_v3_apple"] forState:UIControlStateNormal];
-    [self addSubview:appleLogin];
-    appleLogin.hidden = TT_systemVersion >= 13.0 ? NO : YES;
-    [appleLogin mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(tiktokLoginBtn.mas_right).offset(5);
-        make.bottom.mas_equalTo(tiktokLoginBtn);
-        make.width.mas_equalTo(tiktokLoginBtn);
-        make.height.mas_equalTo(tiktokLoginBtn);
-    }];
-
-    UIButton *moreLoginType = [UIButton buttonWithType:UIButtonTypeCustom];
-    [moreLoginType setImage:[UIImage imageNamed:@"more_sdk_login"] forState:UIControlStateNormal];
-    [self addSubview:moreLoginType];
-
-    [moreLoginType mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(TT_systemVersion >= 13.0 ? appleLogin.mas_right : tiktokLoginBtn.mas_right).offset(10);
-        make.bottom.mas_equalTo(tiktokLoginBtn);
-        make.width.height.mas_equalTo(tiktokLoginBtn);
-    }];
-    [moreLoginType addTarget:self action:@selector(moreLoginHandle:) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton *tiktokLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [tiktokLoginBtn setImage:[UIImage imageNamed:@"douyin_sdk_login"] forState:UIControlStateNormal];
+//    [self addSubview:tiktokLoginBtn];
+//    _tiktokLoginBtn = tiktokLoginBtn;
+//
+//    [tiktokLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(self.mas_left).offset(TT_systemVersion >= 13.0 ? self.width/3 : self.width*2/5);
+//        make.bottom.mas_equalTo(self.mas_bottom).offset(-20);
+//        make.width.height.mas_equalTo(self.width * 0.1);
+//    }];
+//
+//    UIButton *appleLogin = [UIButton buttonWithType:UIButtonTypeSystem];
+//    [appleLogin setImage:[UIImage imageNamed:@"login_v3_apple"] forState:UIControlStateNormal];
+//    [self addSubview:appleLogin];
+//    appleLogin.hidden = TT_systemVersion >= 13.0 ? NO : YES;
+//    [appleLogin mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(tiktokLoginBtn.mas_right).offset(5);
+//        make.bottom.mas_equalTo(tiktokLoginBtn);
+//        make.width.mas_equalTo(tiktokLoginBtn);
+//        make.height.mas_equalTo(tiktokLoginBtn);
+//    }];
+//
+//    UIButton *moreLoginType = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [moreLoginType setImage:[UIImage imageNamed:@"more_sdk_login"] forState:UIControlStateNormal];
+//    [self addSubview:moreLoginType];
+//
+//    [moreLoginType mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(TT_systemVersion >= 13.0 ? appleLogin.mas_right : tiktokLoginBtn.mas_right).offset(10);
+//        make.bottom.mas_equalTo(tiktokLoginBtn);
+//        make.width.height.mas_equalTo(tiktokLoginBtn);
+//    }];
+//    [moreLoginType addTarget:self action:@selector(moreLoginHandle:) forControlEvents:UIControlEventTouchUpInside];
     
 }
 

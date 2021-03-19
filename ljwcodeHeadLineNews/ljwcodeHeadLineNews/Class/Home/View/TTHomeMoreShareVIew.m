@@ -8,9 +8,9 @@
 
 #import "TTHomeMoreShareVIew.h"
 
-#define kMenuWidth 50
+#define kMenuWidth 60
 
-#define kMenuHeight 50
+#define kMenuHeight 80
 
 @interface TTHomeMoreShareVIew()<UIScrollViewDelegate>
 
@@ -19,12 +19,6 @@
 @property(nonatomic,strong)NSArray *titleArray;
 
 @property(nonatomic,strong)NSArray *ImgArray;
-
-@property(nonatomic,strong)UIScrollView *configureMenuScrollView;
-
-@property(nonatomic,strong)NSArray *configureTitleArray;
-
-@property(nonatomic,strong)NSArray *configureImgArray;
 
 @property(nonatomic,strong)UIView *footerView;
 
@@ -56,40 +50,13 @@
                 make.height.mas_equalTo(kMenuHeight);
             }];
         }
-    
-        UIView *lineView = [[UIView alloc]init];
-        lineView.backgroundColor = [UIColor lightGrayColor];
-        [self addSubview:lineView];
-        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.menuScrollView.mas_bottom).offset(1);
-            make.left.right.mas_equalTo(0);
-            make.height.mas_equalTo(1);
-        }];
-        [self addSubview:self.configureMenuScrollView];
-        
-        for(int i = 0;i < self.configureTitleArray.count;i++){
-            UIButton *configureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [configureBtn setTitle:self.configureTitleArray[i] forState:UIControlStateNormal];
-            [configureBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [configureBtn setImage:[UIImage imageNamed:self.configureImgArray[i]] forState:UIControlStateNormal];
-            configureBtn.titleLabel.font = [UIFont systemFontOfSize:12.f];
-            configureBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-            configureBtn.imageEdgeInsets = UIEdgeInsetsMake(-configureBtn.titleLabel.intrinsicContentSize.height, 0, 0, -configureBtn.titleLabel.intrinsicContentSize.width);
-            
-            configureBtn.titleEdgeInsets = UIEdgeInsetsMake(configureBtn.imageView.intrinsicContentSize.height, -configureBtn.imageView.intrinsicContentSize.width, 0, 0);
-            configureBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-            [self.configureMenuScrollView addSubview:configureBtn];
-            
-            [configureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(hSpace + i * (kMenuWidth + hSpace * 2));
-                make.centerY.mas_equalTo(self.configureMenuScrollView);
-                make.width.mas_equalTo(kMenuWidth);
-                make.height.mas_equalTo(kMenuHeight);
-            }];
-        }
         
         [self addSubview:self.footerView];
-        
+        [self.footerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.menuScrollView.mas_bottom).offset(0);
+            make.bottom.mas_equalTo(0);
+            make.width.mas_equalTo(kScreenWidth);
+        }];
         UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
         [cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -112,7 +79,7 @@
 
 -(UIScrollView *)menuScrollView{
     if(!_menuScrollView){
-        _menuScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, CGRectGetHeight(self.frame) * 0.4)];
+        _menuScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, CGRectGetHeight(self.frame) * 0.7)];
         _menuScrollView.backgroundColor = TT_ColorWithRed(248, 248, 248, 1);
         _menuScrollView.delegate = self;
         _menuScrollView.contentSize = CGSizeMake(kMenuWidth * 9 + hSpace * 10, CGRectGetHeight(self.frame) * 0.3);
@@ -139,40 +106,12 @@
     return _ImgArray;
 }
 
--(UIScrollView *)configureMenuScrollView{
-    if(!_configureMenuScrollView){
-        _configureMenuScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.menuScrollView.frame)+2, kScreenWidth, CGRectGetHeight(self.menuScrollView.frame))];
-        _configureMenuScrollView.backgroundColor = TT_ColorWithRed(248, 248, 248, 0.5);
-        _configureMenuScrollView.delegate = self;
-        _configureMenuScrollView.contentSize = CGSizeMake(self.configureImgArray.count * kMenuWidth , CGRectGetHeight(self.menuScrollView.frame));
-        _configureMenuScrollView.showsVerticalScrollIndicator = NO;
-        _configureMenuScrollView.showsHorizontalScrollIndicator = NO;
-        _configureMenuScrollView.bounces = NO;
-        _configureMenuScrollView.bouncesZoom = NO;
-
-    }
-    return _configureMenuScrollView;
-}
 
 -(UIView *)footerView{
     if(!_footerView){
-        _footerView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.configureMenuScrollView.frame)+1, kScreenWidth, CGRectGetHeight(self.frame) -  CGRectGetHeight(self.configureMenuScrollView.frame)*2)];
+        _footerView = [[UIView alloc]init];
     }
     return _footerView;
-}
-
--(NSArray *)configureTitleArray{
-    if(!_configureTitleArray){
-        _configureTitleArray = [NSArray arrayWithObjects:@"举报",@"收藏",@"夜间模式",@"字体设置", nil];
-    }
-    return _configureTitleArray;
-}
-
--(NSArray *)configureImgArray{
-    if(!_configureImgArray){
-        _configureImgArray = [NSArray arrayWithObjects:@"ugc_icon_report",@"tab_collect",@"night",@"font-size-2", nil];
-    }
-    return _configureImgArray;
 }
 
 #pragma mark ---- 响应事件
