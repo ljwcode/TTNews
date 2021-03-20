@@ -17,6 +17,7 @@
 #import "videoDetailViewModel.h"
 #import "XGVideoDetailViewController.h"
 #import "TTHomeMoreShareVIew.h"
+#import <AFNetworkReachabilityManager.h>
 
 @interface XGVideoTableViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate,UIScrollViewDelegate>
 
@@ -48,13 +49,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusNotReachable:
+                [self TT_loadCacheData];
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                [self TT_OnlineRefreshData];
+            default:
+                break;
+        }
+    }];
+    [manager startMonitoring];
+}
+
+-(void)TT_OnlineRefreshData{
     @weakify(self);
     self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         @strongify(self);
         [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             [self.dataArray addObjectsFromArray:x];
-            //            NSArray *array = x;
-            //            [self.videoDBViewModel TT_saveVideoDataModel:array];
+            [self.videoDBViewModel TT_saveXGVideoListDataModel:x TT_VideoCategory:self.titleModel.category];
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
         }];
@@ -62,17 +80,20 @@
     [self.detailTableView.mj_header beginRefreshing];
 }
 
+-(void)TT_loadCacheData{
+    @weakify(self);
+    self.detailTableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        @strongify(self);
+        NSArray *array = [self.videoDBViewModel TT_quertXGVideoListData:self.titleModel.category];
+        [self.dataArray addObjectsFromArray:array];
+        [self.detailTableView reloadData];
+        [self.detailTableView.mj_header endRefreshing];
+    }];
+    [self.detailTableView.mj_header beginRefreshing];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //    @weakify(self);
-    //    self.detailTableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
-    //        @strongify(self);
-    //        NSArray *array = [self.videoDBViewModel TT_queryVideoDataModel];
-    //        [self.dataArray addObjectsFromArray:array];
-    //        [self.detailTableView reloadData];
-    //        [self.detailTableView.mj_header endRefreshing];
-    //    }];
-    //    [self.detailTableView.mj_header beginRefreshing];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 

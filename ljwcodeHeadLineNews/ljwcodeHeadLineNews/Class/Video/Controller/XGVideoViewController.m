@@ -11,6 +11,9 @@
 #import "XGVideoTableViewController.h"
 #import "videoTitleModel.h"
 #import "videoTitleDBViewModel.h"
+#import <AFNetworkReachabilityManager.h>
+#import <FBLPromises/FBLPromises.h>
+#import <FBLPromises/FBLPromise.h>
 
 @interface XGVideoViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
@@ -26,24 +29,39 @@
 
 -(instancetype)init{
     if(self = [super init]){
-        if([self.titleDBViewModel DBTableIsExists]){
+        [self TT_titleArray];
+    }
+    return self;
+}
+
+-(void)TT_titleArray{
+    [[FBLPromise do:^id _Nullable{
+        return [self getTitleModelDataArray];
+    }] then:^id _Nullable(id  _Nullable value) {
+        return self.titleArray = value;
+    }];
+}
+
+-(FBLPromise *)getTitleModelDataArray{
+    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
+        if([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable || [self.titleDBViewModel DBTableIsExists]){
             self.titleArray = [self.titleDBViewModel queryDataBase];
+            fulfill(self.titleArray);
         }else{
             @weakify(self)
-            [[self.titleViewModle.videoCommand execute:@"video"] subscribeNext:^(id  _Nullable x) {
+            [[self.titleViewModle.videoCommand execute:@13] subscribeNext:^(id  _Nullable x) {
                 @strongify(self);
-                self.titleArray = x;  //x返回一个列表名称数组
-                if(![self.titleDBViewModel DBTableIsExists]){
-                    [self.titleDBViewModel createDBCacheTable];
-                }
+                self.titleArray = x;
+                [self.titleDBViewModel createDBCacheTable];
                 for(int i = 0;i < self.titleArray.count;i++){
                     videoTitleModel *model = self.titleArray[i];
                     [self.titleDBViewModel InsertDBWithModel:model];
                 }
+                [self reloadData];
+                fulfill(self.titleArray);
             }];
         }
-    }
-    return self;
+    }];
 }
 
 - (void)viewDidLoad {
@@ -90,7 +108,7 @@
     XGVideoTableViewController *detail = [[XGVideoTableViewController alloc]init];
     detail.titleModel = model;
     return detail;
-
+    
 }
 //设置每一个channel的title
 -(NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index{
@@ -139,13 +157,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

@@ -15,34 +15,52 @@
 
 @implementation videoDetailCacheDBViewModel
 
--(void)TT_saveVideoDataModel:(NSArray *)array{
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSLog(@"path = %@",path);
+-(void)TT_saveXGVideoListDataModel:(NSArray *)array TT_VideoCategory:(NSString *)category{
+    
+    NSString *dbPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString *dbName = [NSString stringWithFormat:@"TT_XGVideoList_%@.realm",category];
+    NSString *filePath = [dbPath stringByAppendingPathComponent:dbName];
+    RLMRealmConfiguration *dbConfig = [RLMRealmConfiguration defaultConfiguration];
+    dbConfig.fileURL = [NSURL URLWithString:filePath];
+    dbConfig.readOnly = NO;
+    int currentVersion = 1.0;
+    dbConfig.schemaVersion = currentVersion;
+    [RLMRealmConfiguration setDefaultConfiguration:dbConfig];
+    
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        RLMRealm *realm = [RLMRealm defaultRealm];
+        RLMRealm *realm = [RLMRealm realmWithURL:[NSURL URLWithString:filePath]];
         [realm beginWriteTransaction];
-        for (videoContentModel *model in array) {
+        if(array.count == 0){
+            return;
+        }
+        for(videoContentModel *model in array){
             NSDictionary *dic = [model mj_keyValues];
             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dic requiringSecureCoding:YES error:nil];
             if(data){
                 NSString *ID = [[NSUUID UUID]UUIDString];
-                [TTVideoDetailArrayModel createOrUpdateInRealm:realm withValue:@{@"ID" : ID,@"data" : data}];
+                [TTXGVideoListModel createOrUpdateInRealm:realm withValue:@{@"ID" : ID,@"data" : data}];
             }
         }
         [realm commitWriteTransaction];
     });
 }
 
--(NSMutableArray *)TT_queryVideoDataModel{
-    RLMResults *result = [TTVideoDetailArrayModel allObjects];
-    NSLog(@"result = %@",result);
-    NSMutableArray *dataArray = [[NSMutableArray alloc]init];
-    for(TTVideoDetailArrayModel *model in result){
-        NSMutableDictionary *dic = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:model.data error:nil];
-        videoContentModel *contentModel = [[[videoContentModel alloc]init]mj_setKeyValues:dic];
-        [dataArray addObject:contentModel];
-    }
+-(NSMutableArray *)TT_quertXGVideoListData:(NSString *)category{
+    NSString *dbPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString *dbName = [NSString stringWithFormat:@"TT_XGVideoList_%@.realm",category];
+    NSString *filePath = [dbPath stringByAppendingPathComponent:dbName];
+    RLMRealm *realm = [RLMRealm realmWithURL:[NSURL URLWithString:filePath]];
     
+    RLMResults *result = [TTXGVideoListModel allObjectsInRealm:realm];
+    NSMutableArray *dataArray = [[NSMutableArray alloc]init];
+    if(result.count == 0){
+        return dataArray;
+    }
+    for(TTXGVideoListModel *model in result){
+        NSMutableDictionary *dic = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:model.data error:nil];
+        videoContentModel *ContentModel = [[[videoContentModel alloc]init]mj_setKeyValues:dic];
+        [dataArray addObject:ContentModel];
+    }
     return dataArray;
 }
 @end

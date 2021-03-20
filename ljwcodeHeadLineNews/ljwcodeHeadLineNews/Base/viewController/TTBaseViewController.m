@@ -16,8 +16,12 @@
 #import "TTArticleSearchWordViewModel.h"
 #import "TTDBCacheSearchKeywordViewModel.h"
 #import "TT_RecommendSearchKeywordViewModel.h"
+#import "FFSimplePingHelper.h"
+#import <AFNetworkReachabilityManager.h>
 
-@interface TTBaseViewController ()<UIGestureRecognizerDelegate,UISearchBarDelegate,TTReportArticleViewDelegate,TT_NavigationBarDelegate>
+@interface TTBaseViewController ()<UIGestureRecognizerDelegate,UISearchBarDelegate,TTReportArticleViewDelegate,TT_NavigationBarDelegate>{
+    FFSimplePingHelper *pingHelper;
+}
 
 @property(nonatomic,strong)TTNavigationBar *naviBar;
 
@@ -42,6 +46,7 @@
 @implementation TTBaseViewController
 
 - (void)viewDidLoad {
+    [self createNavSearchBarView];
     [super viewDidLoad];
     [self createSearchBar];
     // Do any additional setup after loading the view.
@@ -52,7 +57,6 @@
 }
 
 -(void)createSearchBar{
-    [self createNavSearchBarView];
     [[FBLPromise do:^id _Nullable{
         return [self getPlaceholderText];
     }] then:^id _Nullable(id  _Nullable value) {
@@ -83,77 +87,34 @@
 
 -(FBLPromise *)getPlaceholderText{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
-//        NSArray *dataArray = [self.SearchCacheViewModel queryDBTableWithVideoContent];
-//        NSMutableArray *keywordArray = [[NSMutableArray alloc]init];
-//        for(TTArticleSearchInboxFourWordsModel *model in dataArray){
-//            [keywordArray addObject:[[model mj_keyValues]objectForKey:@"word"]];
-//        }
-//        NSString *keyword = [NSString stringWithFormat:@"%@ | %@",keywordArray[0],keywordArray[1]];
-//        fulfill(keyword);
-        [[self.keywordViewModel.searchWordCommand execute:@"title"]subscribeNext:^(id  _Nullable x) {
-            NSArray *dataArray = x;
+        if(self->pingHelper.isTimeOut || [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable){
+            NSArray *dataArray = [self.SearchCacheViewModel queryDBTableWithVideoContent];
             NSMutableArray *keywordArray = [[NSMutableArray alloc]init];
             for(TTArticleSearchInboxFourWordsModel *model in dataArray){
-                [keywordArray addObject:[[model mj_keyValues] objectForKey:@"word"]];
-            }
-            if([self.SearchCacheViewModel IsExistsKeywordCacheTable]){
-                [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
-            }else{
-                [self.SearchCacheViewModel createDBWithSearchKeywordTable];
-                [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
+                [keywordArray addObject:[[model mj_keyValues]objectForKey:@"word"]];
             }
             NSString *keyword = [NSString stringWithFormat:@"%@ | %@",keywordArray[0],keywordArray[1]];
-            self.keyWord = keywordArray[0];
             fulfill(keyword);
-        }];
+        }else{
+            [[self.keywordViewModel.searchWordCommand execute:@"title"]subscribeNext:^(id  _Nullable x) {
+                NSArray *dataArray = x;
+                NSMutableArray *keywordArray = [[NSMutableArray alloc]init];
+                for(TTArticleSearchInboxFourWordsModel *model in dataArray){
+                    [keywordArray addObject:[[model mj_keyValues] objectForKey:@"word"]];
+                }
+                if([self.SearchCacheViewModel IsExistsKeywordCacheTable]){
+                    [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
+                }else{
+                    [self.SearchCacheViewModel createDBWithSearchKeywordTable];
+                    [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
+                }
+                NSString *keyword = [NSString stringWithFormat:@"%@ | %@",keywordArray[0],keywordArray[1]];
+                self.keyWord = keywordArray[0];
+                fulfill(keyword);
+            }];
+        }
     }];
 }
-
-//图片显示
--(UIBarButtonItem *)createBarButtonItemWithImage:(NSString *)imageName Selector:(SEL)selector{
-    
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:imageName]];
-    imageView.frame = CGRectMake(0, 0, 21, 21);
-    imageView.userInteractionEnabled = YES;
-    [self.view addSubview:imageView];
-    UIPanGestureRecognizer *panGes = [[UIPanGestureRecognizer alloc]initWithTarget:self action:selector];
-    [imageView addGestureRecognizer:panGes];
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:imageView];
-    
-    return item;
-}
-
--(UIBarButtonItem *)TT_configureLeftBarButtonItemWithImage:(NSString *)imageName{
-    return self.navigationItem.leftBarButtonItem = [self createBarButtonItemWithImage:imageName Selector:@selector(leftItemAction)];
-}
-
--(UIBarButtonItem *)configureRightBarButtonItemWithImage:(NSString *)imageName{
-    return self.navigationItem.rightBarButtonItem = [self createBarButtonItemWithImage:imageName Selector:@selector(rightItemAction)];
-}
-
--(void)leftItemAction{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
--(void)rightItemAction{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-//文字显示
--(UIBarButtonItem *)createBarButtonItemWithText:(NSString *)text Selector:(SEL)selector{
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:text style:UIBarButtonItemStylePlain target:self action:selector];
-    return item;
-}
-
--(UIBarButtonItem *)configureLeftBarButtonItemWithText:(NSString *)text{
-    return self.navigationItem.leftBarButtonItem = [self createBarButtonItemWithText:text Selector:@selector(leftItemAction)];
-}
-
--(UIBarButtonItem *)configureRightBarButtonItemWithText:(NSString *)text{
-    return self.navigationItem.rightBarButtonItem = [self createBarButtonItemWithText:text Selector:@selector(rightItemAction)];
-}
-
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }

@@ -13,8 +13,7 @@
 #import "TTSystemConfigureHelper.h"
 #import "TTFontSizeChangeHeader.h"
 #import "TTScreen.h"
-#import <MJRefresh/MJRefresh.h>
-
+#import "MJRefresh.h"
 #ifndef ljwcodeHeadLineNews_h
 #define ljwcodeHeadLineNews_h
 

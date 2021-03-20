@@ -8,7 +8,6 @@
 
 #import "MineViewController.h"
 #import "mineHeaderTableView.h"
-#import <MJRefresh/MJRefresh.h>
 #import "screeningHallTableViewCell.h"
 #import "commonSettingTableViewCell.h"
 #import "moreSettingTableViewCell.h"

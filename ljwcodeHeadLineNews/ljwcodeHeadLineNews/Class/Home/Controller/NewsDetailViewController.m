@@ -19,7 +19,6 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "homeNewsDetailCommentViewModel.h"
 #import "TT_UserCommentModel.h"
-#import <MJRefresh/MJRefresh.h>
 
 @interface NewsDetailViewController ()<WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 

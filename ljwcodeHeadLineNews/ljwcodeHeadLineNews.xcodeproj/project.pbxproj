@@ -137,7 +137,7 @@
 		63C4FA9624EBC83C00CF9850 /* TTPageMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4FA9524EBC83C00CF9850 /* TTPageMenuItem.m */; };
 		63C4FA9924EBCE2E00CF9850 /* TTPageDecorateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4FA9824EBCE2E00CF9850 /* TTPageDecorateView.m */; };
 		63C4FA9C24EBDFC900CF9850 /* TTPageMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C4FA9B24EBDFC900CF9850 /* TTPageMenuView.m */; };
-		63C73D58259DAA6D00EC1DC9 /* TTVideoDetailArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C73D57259DAA6D00EC1DC9 /* TTVideoDetailArrayModel.m */; };
+		63C73D58259DAA6D00EC1DC9 /* TTXGVideoListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C73D57259DAA6D00EC1DC9 /* TTXGVideoListModel.m */; };
 		63C73D6C259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C73D6B259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.m */; };
 		63C8038525F0C3B900B1EB99 /* homeNewsDetailRecSearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C8038425F0C3B900B1EB99 /* homeNewsDetailRecSearchViewModel.m */; };
 		63C8039925F0CA9D00B1EB99 /* homeNewsDetailRecSearchRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C8039825F0CA9D00B1EB99 /* homeNewsDetailRecSearchRequestModel.m */; };
@@ -194,6 +194,33 @@
 		94B79EF326048CAA0042727A /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B79EEC26048CAA0042727A /* 3.png */; };
 		94B79EF426048CAA0042727A /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B79EED26048CAA0042727A /* 1.png */; };
 		94B79EF526048CAA0042727A /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B79EEE26048CAA0042727A /* 7.png */; };
+		94D4446826058EE600FA8C2E /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4446526058EE600FA8C2E /* SimplePing.m */; };
+		94D4446926058EE600FA8C2E /* FFSimplePingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4446726058EE600FA8C2E /* FFSimplePingHelper.m */; };
+		94D4446C260594D600FA8C2E /* TTNetworkStatusChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D4446B260594D600FA8C2E /* TTNetworkStatusChecker.swift */; };
+		94D4451C26059CCA00FA8C2E /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D444E526059CCA00FA8C2E /* UIScrollView+MJRefresh.m */; };
+		94D4451D26059CCA00FA8C2E /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D444E626059CCA00FA8C2E /* MJRefreshConst.m */; };
+		94D4451E26059CCA00FA8C2E /* MJRefreshConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D444E726059CCA00FA8C2E /* MJRefreshConfig.m */; };
+		94D4451F26059CCA00FA8C2E /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 94D444EB26059CCA00FA8C2E /* MJRefresh.bundle */; };
+		94D4452026059CCA00FA8C2E /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D444ED26059CCA00FA8C2E /* UIScrollView+MJExtension.m */; };
+		94D4452126059CCA00FA8C2E /* NSBundle+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D444F126059CCA00FA8C2E /* NSBundle+MJRefresh.m */; };
+		94D4452226059CCA00FA8C2E /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D444F226059CCA00FA8C2E /* UIView+MJExtension.m */; };
+		94D4452326059CCA00FA8C2E /* MJRefreshBackGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D444F926059CCA00FA8C2E /* MJRefreshBackGifFooter.m */; };
+		94D4452426059CCA00FA8C2E /* MJRefreshBackStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D444FA26059CCA00FA8C2E /* MJRefreshBackStateFooter.m */; };
+		94D4452526059CCA00FA8C2E /* MJRefreshBackNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D444FB26059CCA00FA8C2E /* MJRefreshBackNormalFooter.m */; };
+		94D4452626059CCA00FA8C2E /* MJRefreshAutoStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4450026059CCA00FA8C2E /* MJRefreshAutoStateFooter.m */; };
+		94D4452726059CCA00FA8C2E /* MJRefreshAutoGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4450126059CCA00FA8C2E /* MJRefreshAutoGifFooter.m */; };
+		94D4452826059CCA00FA8C2E /* MJRefreshAutoNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4450226059CCA00FA8C2E /* MJRefreshAutoNormalFooter.m */; };
+		94D4452926059CCA00FA8C2E /* MJRefreshStateTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4450526059CCA00FA8C2E /* MJRefreshStateTrailer.m */; };
+		94D4452A26059CCA00FA8C2E /* MJRefreshNormalTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4450626059CCA00FA8C2E /* MJRefreshNormalTrailer.m */; };
+		94D4452B26059CCA00FA8C2E /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4450926059CCA00FA8C2E /* MJRefreshNormalHeader.m */; };
+		94D4452C26059CCA00FA8C2E /* MJRefreshStateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4450D26059CCA00FA8C2E /* MJRefreshStateHeader.m */; };
+		94D4452D26059CCA00FA8C2E /* MJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4450E26059CCA00FA8C2E /* MJRefreshGifHeader.m */; };
+		94D4452E26059CCA00FA8C2E /* MJRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4451026059CCA00FA8C2E /* MJRefreshFooter.m */; };
+		94D4452F26059CCA00FA8C2E /* MJRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4451226059CCA00FA8C2E /* MJRefreshHeader.m */; };
+		94D4453026059CCA00FA8C2E /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4451526059CCA00FA8C2E /* MJRefreshBackFooter.m */; };
+		94D4453126059CCA00FA8C2E /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4451626059CCA00FA8C2E /* MJRefreshAutoFooter.m */; };
+		94D4453226059CCA00FA8C2E /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4451826059CCA00FA8C2E /* MJRefreshComponent.m */; };
+		94D4453326059CCA00FA8C2E /* MJRefreshTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4451B26059CCA00FA8C2E /* MJRefreshTrailer.m */; };
 		C4AFB7D1D396726EDB50A5DB /* Pods_ljwcodeHeadLineNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */; };
 /* End PBXBuildFile section */
 
@@ -442,8 +469,8 @@
 		63C4FA9824EBCE2E00CF9850 /* TTPageDecorateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTPageDecorateView.m; sourceTree = "<group>"; };
 		63C4FA9A24EBDFC900CF9850 /* TTPageMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTPageMenuView.h; sourceTree = "<group>"; };
 		63C4FA9B24EBDFC900CF9850 /* TTPageMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTPageMenuView.m; sourceTree = "<group>"; };
-		63C73D56259DAA6D00EC1DC9 /* TTVideoDetailArrayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTVideoDetailArrayModel.h; sourceTree = "<group>"; };
-		63C73D57259DAA6D00EC1DC9 /* TTVideoDetailArrayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTVideoDetailArrayModel.m; sourceTree = "<group>"; };
+		63C73D56259DAA6D00EC1DC9 /* TTXGVideoListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTXGVideoListModel.h; sourceTree = "<group>"; };
+		63C73D57259DAA6D00EC1DC9 /* TTXGVideoListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTXGVideoListModel.m; sourceTree = "<group>"; };
 		63C73D6A259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsDetailDBCacheModel.h; sourceTree = "<group>"; };
 		63C73D6B259DD51600EC1DC9 /* homeNewsDetailDBCacheModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeNewsDetailDBCacheModel.m; sourceTree = "<group>"; };
 		63C8038325F0C3B900B1EB99 /* homeNewsDetailRecSearchViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsDetailRecSearchViewModel.h; sourceTree = "<group>"; };
@@ -544,6 +571,59 @@
 		94B79EEC26048CAA0042727A /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		94B79EED26048CAA0042727A /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		94B79EEE26048CAA0042727A /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		94D4446426058EE600FA8C2E /* FFSimplePingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSimplePingHelper.h; sourceTree = "<group>"; };
+		94D4446526058EE600FA8C2E /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
+		94D4446626058EE600FA8C2E /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
+		94D4446726058EE600FA8C2E /* FFSimplePingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSimplePingHelper.m; sourceTree = "<group>"; };
+		94D4446B260594D600FA8C2E /* TTNetworkStatusChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTNetworkStatusChecker.swift; sourceTree = "<group>"; };
+		94D444E526059CCA00FA8C2E /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
+		94D444E626059CCA00FA8C2E /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
+		94D444E726059CCA00FA8C2E /* MJRefreshConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConfig.m; sourceTree = "<group>"; };
+		94D444E826059CCA00FA8C2E /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
+		94D444E926059CCA00FA8C2E /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
+		94D444EA26059CCA00FA8C2E /* NSBundle+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+MJRefresh.h"; sourceTree = "<group>"; };
+		94D444EB26059CCA00FA8C2E /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
+		94D444EC26059CCA00FA8C2E /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
+		94D444ED26059CCA00FA8C2E /* UIScrollView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJExtension.m"; sourceTree = "<group>"; };
+		94D444EE26059CCA00FA8C2E /* MJRefreshConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConfig.h; sourceTree = "<group>"; };
+		94D444EF26059CCA00FA8C2E /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
+		94D444F026059CCA00FA8C2E /* UIScrollView+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJRefresh.h"; sourceTree = "<group>"; };
+		94D444F126059CCA00FA8C2E /* NSBundle+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+MJRefresh.m"; sourceTree = "<group>"; };
+		94D444F226059CCA00FA8C2E /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		94D444F626059CCA00FA8C2E /* MJRefreshBackGifFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackGifFooter.h; sourceTree = "<group>"; };
+		94D444F726059CCA00FA8C2E /* MJRefreshBackStateFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackStateFooter.h; sourceTree = "<group>"; };
+		94D444F826059CCA00FA8C2E /* MJRefreshBackNormalFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackNormalFooter.h; sourceTree = "<group>"; };
+		94D444F926059CCA00FA8C2E /* MJRefreshBackGifFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBackGifFooter.m; sourceTree = "<group>"; };
+		94D444FA26059CCA00FA8C2E /* MJRefreshBackStateFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBackStateFooter.m; sourceTree = "<group>"; };
+		94D444FB26059CCA00FA8C2E /* MJRefreshBackNormalFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBackNormalFooter.m; sourceTree = "<group>"; };
+		94D444FD26059CCA00FA8C2E /* MJRefreshAutoStateFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoStateFooter.h; sourceTree = "<group>"; };
+		94D444FE26059CCA00FA8C2E /* MJRefreshAutoNormalFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoNormalFooter.h; sourceTree = "<group>"; };
+		94D444FF26059CCA00FA8C2E /* MJRefreshAutoGifFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoGifFooter.h; sourceTree = "<group>"; };
+		94D4450026059CCA00FA8C2E /* MJRefreshAutoStateFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoStateFooter.m; sourceTree = "<group>"; };
+		94D4450126059CCA00FA8C2E /* MJRefreshAutoGifFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoGifFooter.m; sourceTree = "<group>"; };
+		94D4450226059CCA00FA8C2E /* MJRefreshAutoNormalFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoNormalFooter.m; sourceTree = "<group>"; };
+		94D4450426059CCA00FA8C2E /* MJRefreshNormalTrailer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshNormalTrailer.h; sourceTree = "<group>"; };
+		94D4450526059CCA00FA8C2E /* MJRefreshStateTrailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshStateTrailer.m; sourceTree = "<group>"; };
+		94D4450626059CCA00FA8C2E /* MJRefreshNormalTrailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshNormalTrailer.m; sourceTree = "<group>"; };
+		94D4450726059CCA00FA8C2E /* MJRefreshStateTrailer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshStateTrailer.h; sourceTree = "<group>"; };
+		94D4450926059CCA00FA8C2E /* MJRefreshNormalHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshNormalHeader.m; sourceTree = "<group>"; };
+		94D4450A26059CCA00FA8C2E /* MJRefreshStateHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshStateHeader.h; sourceTree = "<group>"; };
+		94D4450B26059CCA00FA8C2E /* MJRefreshGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshGifHeader.h; sourceTree = "<group>"; };
+		94D4450C26059CCA00FA8C2E /* MJRefreshNormalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshNormalHeader.h; sourceTree = "<group>"; };
+		94D4450D26059CCA00FA8C2E /* MJRefreshStateHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshStateHeader.m; sourceTree = "<group>"; };
+		94D4450E26059CCA00FA8C2E /* MJRefreshGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshGifHeader.m; sourceTree = "<group>"; };
+		94D4451026059CCA00FA8C2E /* MJRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooter.m; sourceTree = "<group>"; };
+		94D4451126059CCA00FA8C2E /* MJRefreshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshComponent.h; sourceTree = "<group>"; };
+		94D4451226059CCA00FA8C2E /* MJRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeader.m; sourceTree = "<group>"; };
+		94D4451326059CCA00FA8C2E /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
+		94D4451426059CCA00FA8C2E /* MJRefreshTrailer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshTrailer.h; sourceTree = "<group>"; };
+		94D4451526059CCA00FA8C2E /* MJRefreshBackFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBackFooter.m; sourceTree = "<group>"; };
+		94D4451626059CCA00FA8C2E /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
+		94D4451726059CCA00FA8C2E /* MJRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeader.h; sourceTree = "<group>"; };
+		94D4451826059CCA00FA8C2E /* MJRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshComponent.m; sourceTree = "<group>"; };
+		94D4451926059CCA00FA8C2E /* MJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooter.h; sourceTree = "<group>"; };
+		94D4451A26059CCA00FA8C2E /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
+		94D4451B26059CCA00FA8C2E /* MJRefreshTrailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshTrailer.m; sourceTree = "<group>"; };
 		A2C008BF83355F08C3B5A22B /* Pods-ljwcodeHeadLineNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.debug.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.debug.xcconfig"; sourceTree = "<group>"; };
 		C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ljwcodeHeadLineNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -644,6 +724,7 @@
 		6328F60B249DABDA00C767A8 /* ljwcodeTools */ = {
 			isa = PBXGroup;
 			children = (
+				948EE92626022AB80088EF4D /* ljwcodeHeadLineNews-Bridging-Header.h */,
 				94AF791625F8C3720018A522 /* RegexKitLite.h */,
 				94AF791525F8C3710018A522 /* RegexKitLite.m */,
 				637C2D2D24A9D1120009274C /* TTNewsNetwork */,
@@ -733,6 +814,7 @@
 		63422BBA24A838720091FEE1 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				94D444E426059CCA00FA8C2E /* MJRefresh */,
 				6390EEB12589B3670081093E /* DZNEmptyDataSet */,
 				63422BD424A839960091FEE1 /* WMPageController */,
 			);
@@ -871,6 +953,11 @@
 				637C2D3224A9D1930009274C /* TTNetworkURLManager.m */,
 				637C2D3424A9D3EA0009274C /* TTNetworkManagerCenter.h */,
 				637C2D3524A9D3EA0009274C /* TTNetworkManagerCenter.m */,
+				94D4446426058EE600FA8C2E /* FFSimplePingHelper.h */,
+				94D4446726058EE600FA8C2E /* FFSimplePingHelper.m */,
+				94D4446626058EE600FA8C2E /* SimplePing.h */,
+				94D4446526058EE600FA8C2E /* SimplePing.m */,
+				94D4446B260594D600FA8C2E /* TTNetworkStatusChecker.swift */,
 			);
 			path = TTNewsNetwork;
 			sourceTree = "<group>";
@@ -1158,7 +1245,6 @@
 				639A831625E3D8C90021F62E /* TT_UserCommnetScrollView.h */,
 				639A831725E3D8C90021F62E /* TT_UserCommnetScrollView.m */,
 				948EE92726022AB80088EF4D /* TTPlayerEndMaskView.swift */,
-				948EE92626022AB80088EF4D /* ljwcodeHeadLineNews-Bridging-Header.h */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1176,8 +1262,8 @@
 				63F1F8EC24AF3AB600D687ED /* videoContentRequestModel.m */,
 				63DB0D192501F19200B9FA0A /* videoRealURLRequestModel.h */,
 				63DB0D1A2501F19200B9FA0A /* videoRealURLRequestModel.m */,
-				63C73D56259DAA6D00EC1DC9 /* TTVideoDetailArrayModel.h */,
-				63C73D57259DAA6D00EC1DC9 /* TTVideoDetailArrayModel.m */,
+				63C73D56259DAA6D00EC1DC9 /* TTXGVideoListModel.h */,
+				63C73D57259DAA6D00EC1DC9 /* TTXGVideoListModel.m */,
 				63A8E3EA25C416340067369F /* videoDetailRequestModel.h */,
 				63A8E3EB25C416340067369F /* videoDetailRequestModel.m */,
 				635BB45225DFC5E300449953 /* TT_VideoDetailModel.h */,
@@ -1382,6 +1468,117 @@
 			path = "项目截图";
 			sourceTree = "<group>";
 		};
+		94D444E426059CCA00FA8C2E /* MJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				94D444E526059CCA00FA8C2E /* UIScrollView+MJRefresh.m */,
+				94D444E626059CCA00FA8C2E /* MJRefreshConst.m */,
+				94D444E726059CCA00FA8C2E /* MJRefreshConfig.m */,
+				94D444E826059CCA00FA8C2E /* UIScrollView+MJExtension.h */,
+				94D444E926059CCA00FA8C2E /* MJRefresh.h */,
+				94D444EA26059CCA00FA8C2E /* NSBundle+MJRefresh.h */,
+				94D444EB26059CCA00FA8C2E /* MJRefresh.bundle */,
+				94D444EC26059CCA00FA8C2E /* UIView+MJExtension.h */,
+				94D444ED26059CCA00FA8C2E /* UIScrollView+MJExtension.m */,
+				94D444EE26059CCA00FA8C2E /* MJRefreshConfig.h */,
+				94D444EF26059CCA00FA8C2E /* MJRefreshConst.h */,
+				94D444F026059CCA00FA8C2E /* UIScrollView+MJRefresh.h */,
+				94D444F126059CCA00FA8C2E /* NSBundle+MJRefresh.m */,
+				94D444F226059CCA00FA8C2E /* UIView+MJExtension.m */,
+				94D444F326059CCA00FA8C2E /* Custom */,
+				94D4450F26059CCA00FA8C2E /* Base */,
+			);
+			path = MJRefresh;
+			sourceTree = "<group>";
+		};
+		94D444F326059CCA00FA8C2E /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				94D444F426059CCA00FA8C2E /* Footer */,
+				94D4450326059CCA00FA8C2E /* Trailer */,
+				94D4450826059CCA00FA8C2E /* Header */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		94D444F426059CCA00FA8C2E /* Footer */ = {
+			isa = PBXGroup;
+			children = (
+				94D444F526059CCA00FA8C2E /* Back */,
+				94D444FC26059CCA00FA8C2E /* Auto */,
+			);
+			path = Footer;
+			sourceTree = "<group>";
+		};
+		94D444F526059CCA00FA8C2E /* Back */ = {
+			isa = PBXGroup;
+			children = (
+				94D444F626059CCA00FA8C2E /* MJRefreshBackGifFooter.h */,
+				94D444F726059CCA00FA8C2E /* MJRefreshBackStateFooter.h */,
+				94D444F826059CCA00FA8C2E /* MJRefreshBackNormalFooter.h */,
+				94D444F926059CCA00FA8C2E /* MJRefreshBackGifFooter.m */,
+				94D444FA26059CCA00FA8C2E /* MJRefreshBackStateFooter.m */,
+				94D444FB26059CCA00FA8C2E /* MJRefreshBackNormalFooter.m */,
+			);
+			path = Back;
+			sourceTree = "<group>";
+		};
+		94D444FC26059CCA00FA8C2E /* Auto */ = {
+			isa = PBXGroup;
+			children = (
+				94D444FD26059CCA00FA8C2E /* MJRefreshAutoStateFooter.h */,
+				94D444FE26059CCA00FA8C2E /* MJRefreshAutoNormalFooter.h */,
+				94D444FF26059CCA00FA8C2E /* MJRefreshAutoGifFooter.h */,
+				94D4450026059CCA00FA8C2E /* MJRefreshAutoStateFooter.m */,
+				94D4450126059CCA00FA8C2E /* MJRefreshAutoGifFooter.m */,
+				94D4450226059CCA00FA8C2E /* MJRefreshAutoNormalFooter.m */,
+			);
+			path = Auto;
+			sourceTree = "<group>";
+		};
+		94D4450326059CCA00FA8C2E /* Trailer */ = {
+			isa = PBXGroup;
+			children = (
+				94D4450426059CCA00FA8C2E /* MJRefreshNormalTrailer.h */,
+				94D4450526059CCA00FA8C2E /* MJRefreshStateTrailer.m */,
+				94D4450626059CCA00FA8C2E /* MJRefreshNormalTrailer.m */,
+				94D4450726059CCA00FA8C2E /* MJRefreshStateTrailer.h */,
+			);
+			path = Trailer;
+			sourceTree = "<group>";
+		};
+		94D4450826059CCA00FA8C2E /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				94D4450926059CCA00FA8C2E /* MJRefreshNormalHeader.m */,
+				94D4450A26059CCA00FA8C2E /* MJRefreshStateHeader.h */,
+				94D4450B26059CCA00FA8C2E /* MJRefreshGifHeader.h */,
+				94D4450C26059CCA00FA8C2E /* MJRefreshNormalHeader.h */,
+				94D4450D26059CCA00FA8C2E /* MJRefreshStateHeader.m */,
+				94D4450E26059CCA00FA8C2E /* MJRefreshGifHeader.m */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		94D4450F26059CCA00FA8C2E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				94D4451026059CCA00FA8C2E /* MJRefreshFooter.m */,
+				94D4451126059CCA00FA8C2E /* MJRefreshComponent.h */,
+				94D4451226059CCA00FA8C2E /* MJRefreshHeader.m */,
+				94D4451326059CCA00FA8C2E /* MJRefreshAutoFooter.h */,
+				94D4451426059CCA00FA8C2E /* MJRefreshTrailer.h */,
+				94D4451526059CCA00FA8C2E /* MJRefreshBackFooter.m */,
+				94D4451626059CCA00FA8C2E /* MJRefreshAutoFooter.m */,
+				94D4451726059CCA00FA8C2E /* MJRefreshHeader.h */,
+				94D4451826059CCA00FA8C2E /* MJRefreshComponent.m */,
+				94D4451926059CCA00FA8C2E /* MJRefreshFooter.h */,
+				94D4451A26059CCA00FA8C2E /* MJRefreshBackFooter.h */,
+				94D4451B26059CCA00FA8C2E /* MJRefreshTrailer.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1465,6 +1662,7 @@
 				94B79EF126048CAA0042727A /* 2.png in Resources */,
 				94B79EF226048CAA0042727A /* 6.png in Resources */,
 				94B79EF026048CAA0042727A /* 4.png in Resources */,
+				94D4451F26059CCA00FA8C2E /* MJRefresh.bundle in Resources */,
 				94B79EF326048CAA0042727A /* 3.png in Resources */,
 				63B07BF324A1DD5600C7CD6F /* homeNewsTableViewCell.xib in Resources */,
 				631BC91F25481E66001B82AB /* TTThemeDefaultTag.plist in Resources */,
@@ -1522,6 +1720,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94D4452526059CCA00FA8C2E /* MJRefreshBackNormalFooter.m in Sources */,
+				94D4452E26059CCA00FA8C2E /* MJRefreshFooter.m in Sources */,
+				94D4452026059CCA00FA8C2E /* UIScrollView+MJExtension.m in Sources */,
 				63F1F8D324AF223200D687ED /* TVVideoPlayerViewCell.m in Sources */,
 				637BAF2524F3A2AD00711003 /* TTScreen.m in Sources */,
 				63A4E00D24C863C10042473D /* CircleButton.m in Sources */,
@@ -1546,11 +1747,16 @@
 				8209791F1BD3AFDB00CF9D0C /* XGVideoViewController.m in Sources */,
 				634ECB092576416200DBCC15 /* TTArticleSearchCell.m in Sources */,
 				6328F611249DEA8C00C767A8 /* TTEmitterHelper.m in Sources */,
+				94D4451D26059CCA00FA8C2E /* MJRefreshConst.m in Sources */,
 				634518F125BAB27E00782DA6 /* UILabel+Frame.m in Sources */,
 				63F1F8ED24AF3AB600D687ED /* videoContentRequestModel.m in Sources */,
 				63A6F6A825B6FE7100BBFA5D /* TTTabBar.m in Sources */,
+				94D4452926059CCA00FA8C2E /* MJRefreshStateTrailer.m in Sources */,
+				94D4453226059CCA00FA8C2E /* MJRefreshComponent.m in Sources */,
+				94D4452C26059CCA00FA8C2E /* MJRefreshStateHeader.m in Sources */,
 				63C4FA9624EBC83C00CF9850 /* TTPageMenuItem.m in Sources */,
 				820979281BD3B28700CF9D0C /* TTTabBarController.m in Sources */,
+				94D4452A26059CCA00FA8C2E /* MJRefreshNormalTrailer.m in Sources */,
 				63422C5E24A88F020091FEE1 /* channelButton.m in Sources */,
 				63CBA20E258B58680020511C /* homeNewsDetailDBViewModel.m in Sources */,
 				631BC91225481950001B82AB /* TTMethodSWizzle.m in Sources */,
@@ -1558,13 +1764,17 @@
 				637C2D2C24A9CF630009274C /* homeTitleViewModel.m in Sources */,
 				637C2D3924A9DDA10009274C /* homeTitleRequestModel.m in Sources */,
 				63A6F6A425B6DD2000BBFA5D /* TTTabBarItem.m in Sources */,
+				94D4452426059CCA00FA8C2E /* MJRefreshBackStateFooter.m in Sources */,
 				63A3131825C95C8E00AF1056 /* TT_UserCommentTableViewCell.m in Sources */,
 				948EE92826022AB80088EF4D /* TTPlayerEndMaskView.swift in Sources */,
 				63422BE024A839960091FEE1 /* WMMenuItem.m in Sources */,
 				949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */,
+				94D4452B26059CCA00FA8C2E /* MJRefreshNormalHeader.m in Sources */,
+				94D4452626059CCA00FA8C2E /* MJRefreshAutoStateFooter.m in Sources */,
 				63F1F8E224AF315E00D687ED /* videoContentModel.m in Sources */,
 				63879C4F25EDE534001DE258 /* TT_requestModel.m in Sources */,
 				63422BE324A839960091FEE1 /* WMProgressView.m in Sources */,
+				94D4451E26059CCA00FA8C2E /* MJRefreshConfig.m in Sources */,
 				63F1F8EA24AF3A3500D687ED /* videoContentViewModel.m in Sources */,
 				631BC918254819AA001B82AB /* TTThemeManager.m in Sources */,
 				63BE33552548163100607EBA /* UIView+ThemeChange.m in Sources */,
@@ -1585,6 +1795,7 @@
 				820979101BD3AB2800CF9D0C /* homeViewController.m in Sources */,
 				6322ED3725AEC91F00D01578 /* TT_tabBarViewModel.m in Sources */,
 				63422BE124A839960091FEE1 /* WMScrollView.m in Sources */,
+				94D4452726059CCA00FA8C2E /* MJRefreshAutoGifFooter.m in Sources */,
 				9431F80325FA090D006929EC /* TT_NewsContentImgModel.m in Sources */,
 				63C4FA9924EBCE2E00CF9850 /* TTPageDecorateView.m in Sources */,
 				6302B4D625A9B35E00818EBB /* TT_CustomerTabBar.m in Sources */,
@@ -1597,6 +1808,7 @@
 				63D8AE6625E4D67300AFD1A4 /* XGVideoCommentViewModel.m in Sources */,
 				6352492725442F76009AECF2 /* QRCodeViewController.m in Sources */,
 				63AD1ABA24AC61D1007EC745 /* homeJokeModel.m in Sources */,
+				94D4446826058EE600FA8C2E /* SimplePing.m in Sources */,
 				63DEE600254AC12200D356D4 /* TTCheckNetWorkStatus.m in Sources */,
 				63879C6E25EE1A0D001DE258 /* TT_RecKeywordModel.m in Sources */,
 				63422C5B24A88BB40091FEE1 /* newsChannelModel.m in Sources */,
@@ -1605,10 +1817,12 @@
 				637C2D3624A9D3EA0009274C /* TTNetworkManagerCenter.m in Sources */,
 				633368E625762F5800F47A91 /* TTArticleSearchHeaderCell.m in Sources */,
 				63A8E3F025C417AF0067369F /* videoDetailViewModel.m in Sources */,
+				94D4452826059CCA00FA8C2E /* MJRefreshAutoNormalFooter.m in Sources */,
 				63E26EA125C2DC070045CFDB /* TT_TimeIntervalConverString.m in Sources */,
 				638E978024CAF04B005ADF42 /* moreSettingTableViewCell.m in Sources */,
 				637A97F424C04B45000F7405 /* UIImage+cropPicture.m in Sources */,
 				63BE33512548160500607EBA /* UILabel+ThemeChange.m in Sources */,
+				94D4446C260594D600FA8C2E /* TTNetworkStatusChecker.swift in Sources */,
 				63879C4E25EDE534001DE258 /* TTArticleSearchInboxFourWordsModel.m in Sources */,
 				63C4FA9024EBC20400CF9850 /* TTPageViewController.m in Sources */,
 				94A4A6EA24A25331002A6CA3 /* TTBaseViewController.m in Sources */,
@@ -1616,6 +1830,7 @@
 				631BC903254818AE001B82AB /* UITableView+ThemeChange.m in Sources */,
 				638A1A5C25778BA00002F50B /* TTArticleSearchWordViewModel.m in Sources */,
 				6305043A256525B000CB910D /* TTReportArticleView.m in Sources */,
+				94D4452D26059CCA00FA8C2E /* MJRefreshGifHeader.m in Sources */,
 				631BAEEB249B751D00639CD2 /* TTNavigationController.m in Sources */,
 				63C8039E25F0FEE400B1EB99 /* homeArticleContentViewModel.m in Sources */,
 				633BEA602587607900423C39 /* TTPlayerView.m in Sources */,
@@ -1637,7 +1852,7 @@
 				63403E7924C963150024A362 /* mineHeaderTableView.m in Sources */,
 				63C4FA8D24EBC1C800CF9850 /* TTHorizontalPageViewController.m in Sources */,
 				636CA5EB25F797C400C4287F /* homeNewsDetailCommentViewModel.m in Sources */,
-				63C73D58259DAA6D00EC1DC9 /* TTVideoDetailArrayModel.m in Sources */,
+				63C73D58259DAA6D00EC1DC9 /* TTXGVideoListModel.m in Sources */,
 				63DEE5FC254ABA8F00D356D4 /* PushNotificationSettingViewController.m in Sources */,
 				63167BA02569170200B967B2 /* UIView+Frame.m in Sources */,
 				63A8E3EC25C416340067369F /* videoDetailRequestModel.m in Sources */,
@@ -1652,8 +1867,12 @@
 				63422BDF24A839960091FEE1 /* WMPageController.m in Sources */,
 				6390EEEF2589B7660081093E /* homeTitleDBViewModel.m in Sources */,
 				63EEAB4225B96AD400ACDB7D /* TTFontSizeChangeViewModel.m in Sources */,
+				94D4452226059CCA00FA8C2E /* UIView+MJExtension.m in Sources */,
 				63A8E3E125C3B9ED0067369F /* XGVideoDetailViewController.m in Sources */,
+				94D4452F26059CCA00FA8C2E /* MJRefreshHeader.m in Sources */,
 				63E8C3782567B29600F69701 /* TTHomeMoreShareVIew.m in Sources */,
+				94D4453326059CCA00FA8C2E /* MJRefreshTrailer.m in Sources */,
+				94D4453126059CCA00FA8C2E /* MJRefreshAutoFooter.m in Sources */,
 				63BE33592548165200607EBA /* UITabBar+ThemeChange.m in Sources */,
 				6390EEC82589B4290081093E /* TTCarouselView.m in Sources */,
 				63C4FA9C24EBDFC900CF9850 /* TTPageMenuView.m in Sources */,
@@ -1661,12 +1880,16 @@
 				638E977D24CADB90005ADF42 /* commonSettingTableViewCell.m in Sources */,
 				6352492125442980009AECF2 /* QRCodeManager.m in Sources */,
 				63422BE224A839960091FEE1 /* WMMenuView.m in Sources */,
+				94D4452126059CCA00FA8C2E /* NSBundle+MJRefresh.m in Sources */,
 				6355CFF524BF1078002D3815 /* TTloginView.m in Sources */,
 				9431F82925FB1172006929EC /* TTChangeFontViewController.m in Sources */,
+				94D4452326059CCA00FA8C2E /* MJRefreshBackGifFooter.m in Sources */,
 				63403E7C24C969FB0024A362 /* screeningHallTableViewCell.m in Sources */,
 				820979151BD3AEA800CF9D0C /* ScreeningHallViewController.m in Sources */,
 				820978E81BD3A37600CF9D0C /* main.m in Sources */,
+				94D4451C26059CCA00FA8C2E /* UIScrollView+MJRefresh.m in Sources */,
 				63C8039925F0CA9D00B1EB99 /* homeNewsDetailRecSearchRequestModel.m in Sources */,
+				94D4453026059CCA00FA8C2E /* MJRefreshBackFooter.m in Sources */,
 				633BEA5C2587602E00423C39 /* TTSlider.m in Sources */,
 				6393A2D825AD438F002BB19E /* TT_tabBarModel.m in Sources */,
 				635BB45425DFC5E300449953 /* TT_VideoDetailModel.m in Sources */,
@@ -1675,6 +1898,7 @@
 				63A8E3E725C404960067369F /* TTVideoDetailHeaderView.m in Sources */,
 				949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */,
 				8209791A1BD3AFAC00CF9D0C /* MineViewController.m in Sources */,
+				94D4446926058EE600FA8C2E /* FFSimplePingHelper.m in Sources */,
 				63DB0D1B2501F19200B9FA0A /* videoRealURLRequestModel.m in Sources */,
 				6325352125C7E7BD005007A0 /* TTVideoDetailView.m in Sources */,
 			);
@@ -1822,7 +2046,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ljwcode.gmail.ljwcodeHeadLineNews;
 				PRODUCT_NAME = TTNews;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "ljwcodeHeadLineNews/Class/Video/view/ljwcodeHeadLineNews-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ljwcodeHeadLineNews/ljwcodeTools/ljwcodeHeadLineNews-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1863,7 +2087,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ljwcode.gmail.ljwcodeHeadLineNews;
 				PRODUCT_NAME = TTNews;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "ljwcodeHeadLineNews/Class/Video/view/ljwcodeHeadLineNews-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ljwcodeHeadLineNews/ljwcodeTools/ljwcodeHeadLineNews-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wno-ambiguous-macro";

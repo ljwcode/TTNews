@@ -10,8 +10,12 @@
 #import "TTTabBarController.h"
 #import "otherLoginTypeView.h"
 #import <realm/Realm.h>
+#import "FFSimplePingHelper.h"
+#import <AFNetworkReachabilityManager.h>
 
-@interface AppDelegate ()
+@interface AppDelegate (){
+    FFSimplePingHelper *pingHelper;
+}
 
 @end
 
@@ -40,6 +44,12 @@
     [RLMRealmConfiguration setDefaultConfiguration:config];
     [[TTSystemConfigureHelper shareInstance]TT_ConfigurePreference];
     [self TT_InitFontSize];
+    
+    pingHelper = [[FFSimplePingHelper alloc]initWithHostName:@"www.baidu.com"];
+    [pingHelper startPing];
+    
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager startMonitoring];
     
 	return YES;
 }
@@ -70,12 +80,14 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    [pingHelper stopPing];
 	// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
 	// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     [[TTSystemConfigureHelper shareInstance]TT_ConfigurePreference];
+    [pingHelper startPing];
 	// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 

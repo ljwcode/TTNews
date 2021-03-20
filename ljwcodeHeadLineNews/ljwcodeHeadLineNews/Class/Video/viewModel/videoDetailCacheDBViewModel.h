@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "videoContentModel.h"
 #import <Realm/Realm.h>
-#import "TTVideoDetailArrayModel.h"
+#import "TTXGVideoListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface videoDetailCacheDBViewModel : NSObject
 
--(void)TT_saveVideoDataModel:(NSArray *)array;
+-(void)TT_saveXGVideoListDataModel:(NSArray *)array TT_VideoCategory:(NSString *)category;
 
--(NSMutableArray *)TT_queryVideoDataModel;
+-(NSMutableArray *)TT_quertXGVideoListData:(NSString *)category;
 
 @end
 

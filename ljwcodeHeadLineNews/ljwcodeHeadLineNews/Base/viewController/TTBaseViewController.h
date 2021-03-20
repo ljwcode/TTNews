@@ -22,14 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TTBaseViewController : UIViewController<TTBaseViewControllerDelegate>
 
--(UIBarButtonItem *)TT_configureLeftBarButtonItemWithImage:(NSString *)imageName;
-
--(UIBarButtonItem *)configureRightBarButtonItemWithImage:(NSString *)imageName;
-
--(UIBarButtonItem *)configureLeftBarButtonItemWithText:(NSString *)text;
-
--(UIBarButtonItem *)configureRightBarButtonItemWithText:(NSString *)text;
-
 
 @end
 

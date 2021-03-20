@@ -29,7 +29,6 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJExtension (3.2.4)
-  - MJRefresh (3.5.0)
   - PromisesObjC (1.2.12)
   - ReactiveObjC (3.1.1)
   - Realm (10.7.2):
@@ -51,7 +50,6 @@ DEPENDENCIES:
   - Masonry
   - MBProgressHUD
   - MJExtension
-  - MJRefresh
   - PromisesObjC
   - ReactiveObjC
   - Realm
@@ -69,7 +67,6 @@ SPEC REPOS:
     - Masonry
     - MBProgressHUD
     - MJExtension
-    - MJRefresh
     - PromisesObjC
     - ReactiveObjC
     - Realm
@@ -85,7 +82,6 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: 88e0900751b6cac8de1cf724ca9838a0b28d5acb
-  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   Realm: e523da9ade306c5ae87e85dc09fdef148d3e1cc1
@@ -94,6 +90,6 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: d99fc3d3e8989fe240f902d8ca313ead6bf78c29
+PODFILE CHECKSUM: 591695f7d1c030ae3b1c5bd042b7cc73e190a533
 
 COCOAPODS: 1.10.1

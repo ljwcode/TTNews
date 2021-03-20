@@ -10,9 +10,11 @@
 #import <RACSubject.h>
 #import "homeTitleViewModel.h"
 #import "homeTableViewController.h"
-#import <MJRefresh/MJRefresh.h>
 #import "homeTitleDBViewModel.h"
 #import "UIButton+extend.h"
+#import <AFNetworkReachabilityManager.h>
+#import <FBLPromises/FBLPromises.h>
+#import <FBLPromises/FBLPromise.h>
 
 @interface homeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
@@ -26,43 +28,48 @@
 
 @implementation homeViewController
 
-//-(instancetype)init{
-//    if(self = [super init]){
-//        if([self.titleDb DBTableISExist]){
-//            self.titleArray = [self.titleDb queryDBWithTitle];
-//        }else{
-//            @weakify(self)
-//            [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
-//                @strongify(self);
-//                self.titleArray = x;
-//                [self.titleDb createTitleCacheDb];
-//                for(int i = 0;i < self.titleArray.count;i++){
-//                    homeTitleModel *model = self.titleArray[i];
-//                    [self.titleDb InsertDataWithDB:model];
-//                }
-//                [self reloadData];
-//            }];
-//        }
-//    }
-//    return self;
-//}
+-(instancetype)init{
+    if(self = [super init]){
+        [self TT_titleArray];
+    }
+    return self;
+}
+
+-(void)TT_titleArray{
+    [[FBLPromise do:^id _Nullable{
+        return [self getTitleModelDataArray];
+    }] then:^id _Nullable(id  _Nullable value) {
+        return self.titleArray = value;
+    }];
+}
+
+-(FBLPromise *)getTitleModelDataArray{
+    return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
+        if([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable || [self.titleDb DBTableISExist]){
+            self.titleArray = [self.titleDb queryDBWithTitle];
+            fulfill(self.titleArray);
+        }else{
+            @weakify(self)
+            [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
+                @strongify(self);
+                self.titleArray = x;
+                [self.titleDb createTitleCacheDb];
+                for(int i = 0;i < self.titleArray.count;i++){
+                    homeTitleModel *model = self.titleArray[i];
+                    [self.titleDb InsertDataWithDB:model];
+                }
+                [self reloadData];
+                fulfill(self.titleArray);
+            }];
+        }
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self PageMenuView];
     [self configureUI];
     self.view.backgroundColor = [UIColor whiteColor];
-    @weakify(self)
-    [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        self.titleArray = x;
-        [self.titleDb createTitleCacheDb];
-        for(int i = 0;i < self.titleArray.count;i++){
-            homeTitleModel *model = self.titleArray[i];
-            [self.titleDb InsertDataWithDB:model];
-        }
-        [self reloadData];
-    }];
     // Do any additional setup after loading the view from its nib.
 }
 

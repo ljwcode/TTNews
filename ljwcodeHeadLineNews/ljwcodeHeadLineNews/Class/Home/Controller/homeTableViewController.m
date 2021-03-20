@@ -22,6 +22,7 @@
 #import "parseVideoRealURLViewModel.h"
 #import "TTPlayerView.h"
 #import "homeNewsDetailDBViewModel.h"
+#import <AFNetworkReachabilityManager.h>
 
 @interface homeTableViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource,UIGestureRecognizerDelegate>
 
@@ -49,36 +50,55 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusNotReachable:
+                [self TT_loadCacheData];
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                [self TT_onLineRefreshData];
+            default:
+                break;
+        }
+    }];
+    [manager startMonitoring];
+    // Do any additional setup after loading the view.
+}
+
+-(void)TT_loadCacheData{
+    @weakify(self);
+    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        @strongify(self);
+        homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
+        NSArray *dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
+        [self.datasArray addObjectsFromArray:dataArray];
+        [self.detailTableView reloadData];
+        [self.detailTableView.mj_header endRefreshing];
+    }];
+    [self.detailTableView.mj_header beginRefreshing];
+}
+
+-(void)TT_onLineRefreshData{
     @weakify(self);
     self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         @strongify(self);
         [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
+            homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
             NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
+            [dbViewModel TT_saveHomeNewsDetailModel:datasArray TT_DetailCategory:self.titleModel.category];
+            
             [self.datasArray addObjectsFromArray:datasArray];
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
         }];
     }];
     [self.detailTableView.mj_header beginRefreshing];
-    // Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //    @weakify(self);
-    //    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-    //        @strongify(self);
-    //        homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
-    //        NSArray *dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
-    ////        if(dataArray.count == 0){
-    ////            return;
-    ////        }
-    //        [self.datasArray addObjectsFromArray:dataArray];
-    //        [self.detailTableView reloadData];
-    //        [self.detailTableView.mj_header endRefreshing];
-    //    }];
-    //    [self.detailTableView.mj_header beginRefreshing];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -161,6 +181,9 @@
 }
 
 -(void)needRefreshTableViewData{
+    if([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable){
+        return;
+    }
     [self.detailTableView setContentOffset:CGPointZero];
     [self.detailTableView.mj_header beginRefreshing];
 }
@@ -168,10 +191,11 @@
 #pragma mark - DZNEmptyDataSetDelegate && DZNEmptyDataSetSource
 
 -(UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView{
-    return [UIImage imageNamed:@"details_slogan01"];
+    return [UIImage imageNamed:@"not_network_loading"];
 }
 
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    
     NSString *text = @"当前网络不可用，点击重试";
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:text];
     [attStr addAttribute:NSFontAttributeName
@@ -194,20 +218,19 @@
  点击重试 重新执行刷新请求
  */
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button {
-    @weakify(self);
-    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        @strongify(self);
-        [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-            NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
-            [self.datasArray addObjectsFromArray:datasArray];
-            
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.detailTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
-            [self.detailTableView.mj_header endRefreshing];
-            [self.detailTableView.mj_footer endRefreshing];
-        }];
-    }];
-    [self.detailTableView.mj_header beginRefreshing];
+//    @weakify(self);
+//    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+//        @strongify(self);
+//        [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
+//            NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
+//            [self.datasArray addObjectsFromArray:datasArray];
+//            [self.detailTableView reloadData];
+//            [self.detailTableView.mj_header endRefreshing];
+//        }];
+//    }];
+//    [self.detailTableView.mj_header beginRefreshing];
+    [self needRefreshTableViewData];
+
 }
 
 - (void)emptyDataSetWillAppear:(UIScrollView *)scrollView {
