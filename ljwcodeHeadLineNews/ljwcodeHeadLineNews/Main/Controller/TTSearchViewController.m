@@ -148,17 +148,9 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
     self.recommendSearchArray = [NSMutableArray arrayWithArray:self.keywordArray];
     
     self.sectionArray = [NSMutableArray arrayWithObject:@""];
-    [self.navigationController.navigationBar setBackgroundImage:[self drawImageContext:[UIColor whiteColor]]  forBarMetrics:UIBarMetricsDefault];
-    
-    if(self.cancelBtnWidth == 0){
-        [self viewDidLayoutSubviews];
-    }
-    [self.navigationController.navigationItem setHidesBackButton:YES];
-    [self.navigationItem setHidesBackButton:YES];
-    [self.navigationController.navigationBar.backItem setHidesBackButton:YES];
-    
-    self.navigationController.navigationBarHidden = NO;
-    
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
+
 }
 
 -(void)viewDidLoad{
@@ -174,8 +166,8 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.searchBar resignFirstResponder];
-    [self.navigationController.navigationBar setBackgroundImage:[self drawImageContext:[UIColor colorWithRed:0.83 green:0.24 blue:0.24 alpha:1.0]]  forBarMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 -(void)setup{
@@ -552,7 +544,7 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
     [self saveSearchCacheWithRefreshView];
 
     if(self.searchBlock){
-        self.searchBlock(self, searchBar, searchBar.text);
+        self.searchBlock(searchBar.text);
         [self saveSearchCacheWithRefreshView];
     }
 }

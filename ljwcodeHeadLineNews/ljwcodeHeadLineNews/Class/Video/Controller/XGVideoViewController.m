@@ -35,28 +35,34 @@
 }
 
 -(void)TT_titleArray{
-    [[FBLPromise do:^id _Nullable{
+    [FBLPromise do:^id _Nullable{
         return [self getTitleModelDataArray];
-    }] then:^id _Nullable(id  _Nullable value) {
-        return self.titleArray = value;
     }];
 }
 
 -(FBLPromise *)getTitleModelDataArray{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
         if([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable || [self.titleDBViewModel DBTableIsExists]){
-            self.titleArray = [self.titleDBViewModel queryDataBase];
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                NSArray *array = [self.titleDBViewModel queryDataBase];
+                for(int i = 0;i < array.count;i++){
+                    homeTitleModel *model = array[i];
+                    [self.titleArray addObject:model];
+                }
+            });
             fulfill(self.titleArray);
         }else{
             @weakify(self)
             [[self.titleViewModle.videoCommand execute:@13] subscribeNext:^(id  _Nullable x) {
                 @strongify(self);
                 self.titleArray = x;
-                [self.titleDBViewModel createDBCacheTable];
-                for(int i = 0;i < self.titleArray.count;i++){
-                    videoTitleModel *model = self.titleArray[i];
-                    [self.titleDBViewModel InsertDBWithModel:model];
-                }
+                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                    [self.titleDBViewModel createDBCacheTable];
+                    for(int i = 0;i < self.titleArray.count;i++){
+                        videoTitleModel *model = self.titleArray[i];
+                        [self.titleDBViewModel InsertDBWithModel:model];
+                    }
+                });
                 [self reloadData];
                 fulfill(self.titleArray);
             }];
@@ -66,19 +72,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureUI];
-    [self reloadData];
-    [self PageMenuView];
-    self.view.backgroundColor = [UIColor whiteColor];
-    // Do any additional setup after loading the view from its nib.
-}
-
--(void)configureUI{
+    
     self.delegate = self;
     self.dataSource = self;
     self.automaticallyCalculatesItemWidths = YES;
     self.itemMargin = 10;
     self.selectIndex = 1;
+    
+    [self reloadData];
+    [self PageMenuView];
+    self.view.backgroundColor = [UIColor whiteColor];
+    // Do any additional setup after loading the view from its nib.
 }
 
 -(void)PageMenuView{
@@ -131,6 +135,13 @@
 }
 
 #pragma mark ----- lazy load
+
+-(NSMutableArray *)titleArray{
+    if(!_titleArray){
+        _titleArray = [[NSMutableArray alloc]init];
+    }
+    return _titleArray;
+}
 
 -(videoTitleDBViewModel *)titleDBViewModel{
     if(!_titleDBViewModel){

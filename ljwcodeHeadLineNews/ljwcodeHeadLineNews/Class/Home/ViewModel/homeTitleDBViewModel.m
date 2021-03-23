@@ -21,11 +21,11 @@
         NSLog(@"数据库打开失败");
         return;
     }
-    BOOL executeUpdate = [self.fmDataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS TTHomeTitle (id integer PRIMARY KEY AUTOINCREMENT,name varchar NOT NULL,category varchar NOT NULL,concern_id varchar NOT NULL,flags integer NOT NULL,default_add integer NOT NULL,icon_url varchar NOT NULL,type integer NOT NULL,tip_new integer NOT NULL);"];
-    if (executeUpdate) {
-        NSLog(@"homeTitle创建表成功");
-    } else {
-        NSLog(@"homeTitle创建表失败");
+    BOOL executeDBUpdate = [self.fmDataBase executeUpdate:@"create table if not exists TTHomeTitle(id integer primary key autoincrement,name varchar NOT NULL,category varchar NOT NULL,category_type integer NOT NULL,flags integer NOT NULL,icon_url varchar NOT NULL,tip_new integer NOT NULL,type integer NOT NULL,web_url varchar NOT NULL)"];
+    if(executeDBUpdate){
+        NSLog(@"HomeTitle创建数据表成功");
+    }else{
+        NSLog(@"HomeTitle创建数据表失败");
     }
 }
 
@@ -34,25 +34,15 @@
         NSLog(@"数据库打开失败");
         return;
     }
-    NSString *concern_id = @"1";
-    NSString *icon_url = @"1";
-    int flags = 1;
-    int default_add = 1;
-    int type = 1;
-    int tip_new = 1;
-    /*
-     注意：在执行fmdb数据插入时，需要严格注意插入的数据类型是否匹配，否则容易产生crash
-     例如int 类型数据插入传值时应该@（int）,而不能直接传如int
-     */
     [self.fmDataBase beginTransaction];
     BOOL isRollBack = NO;
     @try {
-        BOOL results = [self.fmDataBase executeUpdate:@"insert into TTHomeTitle (name,category,concern_id,flags,default_add,icon_url,type,tip_new) VALUES (?,?,?,?,?,?,?,?)",model.name,model.category,concern_id,@(flags),@(default_add),icon_url,@(type),@(tip_new)];
-        if(results){
-            NSLog(@"数据插入成功");
-        }else{
+        BOOL result = [self.fmDataBase executeUpdate:@"insert into TTHomeTitle (name,category,category_type,flags,icon_url,tip_new,type,web_url) values (?,?,?,?,?,?,?,?)",model.name,model.category,@(model.category_type),@(model.flags),model.icon_url,@(model.tip_new),@(model.type),model.web_url];
+        if(!result){
             NSLog(@"数据插入失败");
+            return;
         }
+        NSLog(@"数据插入成功");
     } @catch (NSException *exception) {
         isRollBack = YES;
         [self.fmDataBase rollback];
@@ -77,7 +67,7 @@
     return NO;
 }
 
--(NSMutableArray *)queryDBWithTitle{
+-(NSMutableArray *)queryDataBase{
     NSString *Sql = @"select * from TTHomeTitle";
     FMResultSet *result = [self.fmDataBase executeQuery:Sql];
     NSMutableArray *array = [NSMutableArray array];
@@ -97,7 +87,7 @@
         NSString *dbPath = [[NSString alloc]init];
         dbPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         NSLog(@"数据库地址为%@",dbPath);
-        NSString *dbFileName = [dbPath stringByAppendingPathComponent:@"TTDataBase.sqlite"];//设置数据库名称
+        NSString *dbFileName = [dbPath stringByAppendingPathComponent:@"TT_HomeTitle_DataBase.sqlite"];//设置数据库名称
         _fmDataBase = [FMDatabase databaseWithPath:dbFileName];//创建并获取数据库信息
         [_fmDataBase open];
     }

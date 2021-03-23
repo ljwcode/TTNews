@@ -18,7 +18,7 @@
 
 @interface homeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
-@property(nonatomic,strong)NSArray *titleArray;
+@property(nonatomic,strong)NSMutableArray *titleArray;
 
 @property(nonatomic,strong)homeTitleViewModel *titleViewModle;
 
@@ -36,39 +36,57 @@
 }
 
 -(void)TT_titleArray{
-    [[FBLPromise do:^id _Nullable{
+    [FBLPromise do:^id _Nullable{
         return [self getTitleModelDataArray];
-    }] then:^id _Nullable(id  _Nullable value) {
-        return self.titleArray = value;
     }];
 }
 
 -(FBLPromise *)getTitleModelDataArray{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
-        if([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable || [self.titleDb DBTableISExist]){
-            self.titleArray = [self.titleDb queryDBWithTitle];
-            fulfill(self.titleArray);
-        }else{
-            @weakify(self)
-            [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
-                @strongify(self);
-                self.titleArray = x;
+        @weakify(self)
+        [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
+            @strongify(self);
+            self.titleArray = x;
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
                 [self.titleDb createTitleCacheDb];
                 for(int i = 0;i < self.titleArray.count;i++){
                     homeTitleModel *model = self.titleArray[i];
                     [self.titleDb InsertDataWithDB:model];
                 }
-                [self reloadData];
-                fulfill(self.titleArray);
-            }];
-        }
+            });
+            [self reloadData];
+            fulfill(self.titleArray);
+        }];
+//        if([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable || [self.titleDb DBTableISExist]){
+//            self.titleArray = [self.titleDb queryDataBase];
+//            fulfill(self.titleArray);
+//        }else{
+//            @weakify(self)
+//            [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
+//                @strongify(self);
+//                self.titleArray = x;
+//                [self.titleDb createTitleCacheDb];
+//                for(int i = 0;i < self.titleArray.count;i++){
+//                    homeTitleModel *model = self.titleArray[i];
+//                    [self.titleDb InsertDataWithDB:model];
+//                }
+//                [self reloadData];
+//                fulfill(self.titleArray);
+//            }];
+//        }
     }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self PageMenuView];
-    [self configureUI];
+    
+    self.delegate = self;
+    self.dataSource = self;
+    self.automaticallyCalculatesItemWidths = YES;
+    self.itemMargin = 10;
+    self.selectIndex = 1;
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view from its nib.
 }
@@ -77,6 +95,8 @@
     homeTableViewController *detailVC = (homeTableViewController *)self.currentViewController;
     [detailVC needRefreshTableViewData];
 }
+
+#pragma mark ------ lazy load
 
 -(homeTitleViewModel *)titleViewModle{
     if(!_titleViewModle){
@@ -92,13 +112,6 @@
     return _titleDb;
 }
 
--(void)configureUI{
-    self.delegate = self;
-    self.dataSource = self;
-    self.automaticallyCalculatesItemWidths = YES;
-    self.itemMargin = 10;
-    self.selectIndex = 1;
-}
 
 #pragma mark -----  pageMenuView
 

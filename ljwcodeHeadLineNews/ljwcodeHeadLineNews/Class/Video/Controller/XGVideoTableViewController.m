@@ -71,8 +71,10 @@
     self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         @strongify(self);
         [[self.contentViewModel.videoContentCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-            [self.dataArray addObjectsFromArray:x];
-            [self.videoDBViewModel TT_saveXGVideoListDataModel:x TT_VideoCategory:self.titleModel.category];
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                [self.dataArray addObjectsFromArray:x];
+                [self.videoDBViewModel TT_saveXGVideoListDataModel:x TT_VideoCategory:self.titleModel.category];
+            });
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
         }];
@@ -84,8 +86,10 @@
     @weakify(self);
     self.detailTableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
         @strongify(self);
-        NSArray *array = [self.videoDBViewModel TT_quertXGVideoListData:self.titleModel.category];
-        [self.dataArray addObjectsFromArray:array];
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSArray *array = [self.videoDBViewModel TT_quertXGVideoListData:self.titleModel.category];
+            [self.dataArray addObjectsFromArray:array];
+        });
         [self.detailTableView reloadData];
         [self.detailTableView.mj_header endRefreshing];
     }];

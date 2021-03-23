@@ -12,13 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class TTSearchViewController;
 
-typedef void(^didSearchBlock)(TTSearchViewController *searchController,UISearchBar *searchBar,NSString *searchText);
+typedef void(^didSearchBlock)(NSString *searchText);
 
 @interface TTSearchViewController : UIViewController
 
 @property(nonatomic,strong)NSArray *keywordArray;
-
-+(instancetype)searchViewControllerWithPlaceHolder:(NSString *)placeHolder searchBlock:(didSearchBlock)searchBlock;
 
 @end
 

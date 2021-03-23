@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(BOOL)DBTableISExist;
 
--(NSMutableArray *)queryDBWithTitle;
+-(NSMutableArray *)queryDataBase;
 
 @end
 

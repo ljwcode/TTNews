@@ -10,7 +10,7 @@
 
 @interface videoTitleDBViewModel()
 
-
+@property(nonatomic,strong)FMDatabase *fmDataBase;
 
 @end
 
@@ -44,16 +44,6 @@
 }
 
 -(void)InsertDBWithModel:(videoTitleModel *)model{
-    /*
-     category = "subv_tt_video_sports";
-     "category_type" = 0;
-     flags = 0;
-     "icon_url" = "";
-     name = "\U4f53\U80b2";
-     "tip_new" = 0;
-     type = 4;
-     "web_url" = "";
-     */
     if(![self.fmDataBase open]){
         NSLog(@"数据库打开失败");
         return;
@@ -96,7 +86,7 @@
 -(FMDatabase *)fmDataBase{
     if(!_fmDataBase){
         NSString *dbPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
-        NSString *dbFileName = [dbPath stringByAppendingPathComponent:@"TTDataBase.sqlite"];
+        NSString *dbFileName = [dbPath stringByAppendingPathComponent:@"TT_VideoTitle_DataBase.sqlite"];
         _fmDataBase = [FMDatabase databaseWithPath:dbFileName];
         [_fmDataBase open];
     }

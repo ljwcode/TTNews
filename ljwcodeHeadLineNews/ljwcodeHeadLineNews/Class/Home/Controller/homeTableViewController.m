@@ -72,7 +72,10 @@
     self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         @strongify(self);
         homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
-        NSArray *dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
+        __block NSArray *dataArray = [NSArray array];
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
+        });
         [self.datasArray addObjectsFromArray:dataArray];
         [self.detailTableView reloadData];
         [self.detailTableView.mj_header endRefreshing];
@@ -86,10 +89,13 @@
         @strongify(self);
         [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
-            NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
-            [dbViewModel TT_saveHomeNewsDetailModel:datasArray TT_DetailCategory:self.titleModel.category];
+            __block NSArray *array = [NSArray array];
+            array = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                [dbViewModel TT_saveHomeNewsDetailModel:array TT_DetailCategory:self.titleModel.category];
+            });
             
-            [self.datasArray addObjectsFromArray:datasArray];
+            [self.datasArray addObjectsFromArray:array];
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
         }];

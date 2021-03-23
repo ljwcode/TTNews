@@ -14,8 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface videoTitleDBViewModel : NSObject
 
-@property(nonatomic,strong)FMDatabase *fmDataBase;
-
 -(void)createDBCacheTable;
 
 -(BOOL)DBTableIsExists;

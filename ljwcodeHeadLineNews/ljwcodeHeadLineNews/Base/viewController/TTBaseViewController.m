@@ -102,12 +102,14 @@
                 for(TTArticleSearchInboxFourWordsModel *model in dataArray){
                     [keywordArray addObject:[[model mj_keyValues] objectForKey:@"word"]];
                 }
-                if([self.SearchCacheViewModel IsExistsKeywordCacheTable]){
-                    [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
-                }else{
-                    [self.SearchCacheViewModel createDBWithSearchKeywordTable];
-                    [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
-                }
+                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                    if([self.SearchCacheViewModel IsExistsKeywordCacheTable]){
+                        [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
+                    }else{
+                        [self.SearchCacheViewModel createDBWithSearchKeywordTable];
+                        [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
+                    }
+                });
                 NSString *keyword = [NSString stringWithFormat:@"%@ | %@",keywordArray[0],keywordArray[1]];
                 self.keyWord = keywordArray[0];
                 fulfill(keyword);
@@ -127,7 +129,8 @@
 }
 
 -(void)TT_PushToSearchVC{
-    [self.navigationController pushViewController:self.searchVC animated:YES];
+    self.searchVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.navigationController presentViewController:self.searchVC animated:YES completion:nil];
 }
 
 #pragma mark ---- 响应事件
@@ -184,9 +187,7 @@
 }
 -(TTSearchViewController *)searchVC{
     if(!_searchVC){
-        _searchVC = [TTSearchViewController searchViewControllerWithPlaceHolder:self.keyWord searchBlock:^(TTSearchViewController * _Nonnull searchController, UISearchBar * _Nonnull searchBar, NSString * _Nonnull searchText) {
-            
-        }];
+        _searchVC = [[TTSearchViewController alloc]init];
     }
     return _searchVC;
 }
