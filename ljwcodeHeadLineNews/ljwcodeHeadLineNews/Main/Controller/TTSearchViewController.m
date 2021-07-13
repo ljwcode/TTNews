@@ -88,6 +88,10 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
     return image;
 }
 
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+}
+
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     if(self.currentOrientation != [UIDevice currentDevice].orientation){
@@ -141,6 +145,11 @@ static NSString *const TTArticleSearchCellID = @"TTArticleSearchCell";
 }
 -(BOOL)prefersStatusBarHidden{
     return NO;
+}
+
+
+-(void)loadView{
+    [super loadView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

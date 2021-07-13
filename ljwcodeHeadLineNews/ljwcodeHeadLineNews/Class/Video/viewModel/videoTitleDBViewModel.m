@@ -10,33 +10,38 @@
 
 @interface videoTitleDBViewModel()
 
-@property(nonatomic,strong)FMDatabase *fmDataBase;
+@property(nonatomic,strong)FMDatabaseQueue *dataBaseQueue;
 
 @end
 
 @implementation videoTitleDBViewModel
 
 -(void)createDBCacheTable{
-    if(![self.fmDataBase open]){
-        NSLog(@"数据库打开失败");
-        return;
-    }
-    BOOL executeDBUpdate = [self.fmDataBase executeUpdate:@"create table if not exists TTVideoTitle(id integer primary key autoincrement,name varchar NOT NULL,category varchar NOT NULL,category_type integer NOT NULL,flags integer NOT NULL,icon_url varchar NOT NULL,tip_new integer NOT NULL,type integer NOT NULL,web_url varchar NOT NULL)"];
-    if(executeDBUpdate){
-        NSLog(@"VideoTitle创建数据表成功");
-    }else{
-        NSLog(@"VideoTitle创建数据表失败");
-    }
+    [self.dataBaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        if(![db open]){
+            NSLog(@"数据库打开失败");
+            return;
+        }
+        BOOL executeDBUpdate = [db executeUpdate:@"create table if not exists TTVideoTitle(id integer primary key autoincrement,name varchar NOT NULL,category varchar NOT NULL,category_type integer NOT NULL,flags integer NOT NULL,icon_url varchar NOT NULL,tip_new integer NOT NULL,type integer NOT NULL,web_url varchar NOT NULL)"];
+        if(executeDBUpdate){
+            NSLog(@"VideoTitle创建数据表成功");
+        }else{
+            NSLog(@"VideoTitle创建数据表失败");
+        }
+    }];
 }
 
 -(BOOL)DBTableIsExists{
     NSString *existsSql = [NSString stringWithFormat:@"SELECT COUNT(*) count FROM sqlite_master where type='table' and name='TTVideoTitle'" ];
-    FMResultSet *result = [self.fmDataBase executeQuery:existsSql];
+    __block FMResultSet *result;
+    [self.dataBaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        result = [db executeQuery:existsSql];
+    }];
     if ([result next]) {
         NSInteger count = [result intForColumn:@"count"];
         NSLog(@"The table count: %li", count);
         if (count == 1) {
-            NSLog(@"数据表已存在");
+            NSLog(@"videoTitle数据表已存在");
             return YES;
         }
     }
@@ -44,33 +49,38 @@
 }
 
 -(void)InsertDBWithModel:(videoTitleModel *)model{
-    if(![self.fmDataBase open]){
-        NSLog(@"数据库打开失败");
-        return;
-    }
-    [self.fmDataBase beginTransaction];
-    BOOL isRollBack = NO;
-    @try {
-        BOOL result = [self.fmDataBase executeUpdate:@"insert into TTVideoTitle (name,category,category_type,flags,icon_url,tip_new,type,web_url) values (?,?,?,?,?,?,?,?)",model.name,model.category,@(model.category_type),@(model.flags),model.icon_url,@(model.tip_new),@(model.type),model.web_url];
-        if(!result){
-            NSLog(@"数据插入失败");
+    [self.dataBaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        if(![db open]){
+            NSLog(@"数据库打开失败");
             return;
         }
-        NSLog(@"数据插入成功");
-    } @catch (NSException *exception) {
-        isRollBack = YES;
-        [self.fmDataBase rollback];
-    } @finally {
-        if(!isRollBack){
-            [self.fmDataBase commit];
+        [db beginTransaction];
+        BOOL isRollBack = NO;
+        @try {
+            BOOL result = [db executeUpdate:@"insert into TTVideoTitle (name,category,category_type,flags,icon_url,tip_new,type,web_url) values (?,?,?,?,?,?,?,?)",model.name,model.category,@(model.category_type),@(model.flags),model.icon_url,@(model.tip_new),@(model.type),model.web_url];
+            if(!result){
+                NSLog(@"数据插入失败");
+                return;
+            }
+            NSLog(@"数据插入成功");
+        } @catch (NSException *exception) {
+            isRollBack = YES;
+            [db rollback];
+        } @finally {
+            if(!isRollBack){
+                [db commit];
+            }
         }
-    }
+    }];
     
 }
 
 -(NSMutableArray *)queryDataBase{
     NSString *Sql = @"select * from TTVideoTitle";
-    FMResultSet *result = [self.fmDataBase executeQuery:Sql];
+    __block FMResultSet *result;
+    [self.dataBaseQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        result = [db executeQuery:Sql];
+    }];
     NSMutableArray *array = [NSMutableArray array];
     while ([result next]) {
         videoTitleModel *titleModel = [[videoTitleModel alloc]init];
@@ -83,14 +93,13 @@
 
 #pragma mark ----- lzay load
 
--(FMDatabase *)fmDataBase{
-    if(!_fmDataBase){
+-(FMDatabaseQueue *)dataBaseQueue{
+    if(!_dataBaseQueue){
         NSString *dbPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
         NSString *dbFileName = [dbPath stringByAppendingPathComponent:@"TT_VideoTitle_DataBase.sqlite"];
-        _fmDataBase = [FMDatabase databaseWithPath:dbFileName];
-        [_fmDataBase open];
+        _dataBaseQueue = [FMDatabaseQueue databaseQueueWithPath:dbFileName];
     }
-    return _fmDataBase;
+    return _dataBaseQueue;
 }
 
 @end
