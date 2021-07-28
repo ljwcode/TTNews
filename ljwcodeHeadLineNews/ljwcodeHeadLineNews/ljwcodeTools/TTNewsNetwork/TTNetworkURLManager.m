@@ -83,6 +83,9 @@
     return [NSString stringWithFormat:@"https://api5-normal-c-lq.snssdk.com/article/v4/tab_comments/"];
 }
 
++(NSString *)TT_loginQuestionURL{
+    return [NSString stringWithFormat:@"https://api5-normal-lq.toutiaoapi.com/passport/user/login/faq/?hide_more&version_code=8.3.3&tma_jssdk_version=1.2.2.0&app_name=news_article&vid=F4347D0F-B827-4892-BA07-503018164CCB&device_id=67277920039&channel=App Store&resolution=828*1792&aid=13&ab_version=1859936,668779,2850858,668774,2850852,662176,2850845,662099,2850811,668775,2716807,2850863,2915144,2928549,660830,2850861,2924769,2841882,2850079,2901207&ab_feature=794526,1662483&ab_group=794526,1662483&update_version_code=83320&openudid=622d86d1a146c15622b6f026364f8b62edfddd61&cdid=2CA3EE9D-F644-4297-9072-3F8AD4550327&idfv=F4347D0F-B827-4892-BA07-503018164CCB&ac=WIFI&os_version=14.6&status_bar_height=44&ssmix=a&device_platform=iphone&tt_font_size=m&iid=4398522541809007&ab_client=a1,f2,f7,e1&device_type=iPhone XR&idfa=00000000-0000-0000-0000-000000000000"];
+}
 
 @end
 

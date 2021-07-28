@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSString *)TT_videoRecommendURL;
 
++(NSString *)TT_loginQuestionURL;
+
 @end
 
 NS_ASSUME_NONNULL_END

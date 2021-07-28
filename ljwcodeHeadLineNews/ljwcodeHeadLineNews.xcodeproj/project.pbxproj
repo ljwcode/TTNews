@@ -178,6 +178,7 @@
 		820979281BD3B28700CF9D0C /* TTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979271BD3B28700CF9D0C /* TTTabBarController.m */; };
 		9431F80325FA090D006929EC /* TT_NewsContentImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9431F80225FA090D006929EC /* TT_NewsContentImgModel.m */; };
 		9431F82925FB1172006929EC /* TTChangeFontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9431F82725FB1172006929EC /* TTChangeFontViewController.m */; };
+		947157F5269D963E00A6CE13 /* TT_questionWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 947157F4269D963E00A6CE13 /* TT_questionWebView.m */; };
 		948EE92826022AB80088EF4D /* TTPlayerEndMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948EE92726022AB80088EF4D /* TTPlayerEndMaskView.swift */; };
 		949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E779224A39605000C446E /* homejokeTableViewCell.m */; };
 		949E779524A39605000C446E /* homejokeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949E779324A39605000C446E /* homejokeTableViewCell.xib */; };
@@ -550,6 +551,8 @@
 		9431F80225FA090D006929EC /* TT_NewsContentImgModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_NewsContentImgModel.m; sourceTree = "<group>"; };
 		9431F82725FB1172006929EC /* TTChangeFontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTChangeFontViewController.m; sourceTree = "<group>"; };
 		9431F82825FB1172006929EC /* TTChangeFontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTChangeFontViewController.h; sourceTree = "<group>"; };
+		947157F3269D963E00A6CE13 /* TT_questionWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_questionWebView.h; sourceTree = "<group>"; };
+		947157F4269D963E00A6CE13 /* TT_questionWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_questionWebView.m; sourceTree = "<group>"; };
 		948EE92626022AB80088EF4D /* ljwcodeHeadLineNews-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ljwcodeHeadLineNews-Bridging-Header.h"; sourceTree = "<group>"; };
 		948EE92726022AB80088EF4D /* TTPlayerEndMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTPlayerEndMaskView.swift; sourceTree = "<group>"; };
 		949E779124A39605000C446E /* homejokeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homejokeTableViewCell.h; sourceTree = "<group>"; };
@@ -911,6 +914,8 @@
 				63BB1C212563DD00004E97E7 /* TTCloseNotificationTipView.m */,
 				638D3ECB25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.h */,
 				638D3ECC25A6E41900A53B7E /* TT_ClickHightLightTableViewCell.m */,
+				947157F3269D963E00A6CE13 /* TT_questionWebView.h */,
+				947157F4269D963E00A6CE13 /* TT_questionWebView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1875,6 +1880,7 @@
 				94D4453126059CCA00FA8C2E /* MJRefreshAutoFooter.m in Sources */,
 				63BE33592548165200607EBA /* UITabBar+ThemeChange.m in Sources */,
 				6390EEC82589B4290081093E /* TTCarouselView.m in Sources */,
+				947157F5269D963E00A6CE13 /* TT_questionWebView.m in Sources */,
 				63C4FA9C24EBDFC900CF9850 /* TTPageMenuView.m in Sources */,
 				639A831825E3D8C90021F62E /* TT_UserCommnetScrollView.m in Sources */,
 				638E977D24CADB90005ADF42 /* commonSettingTableViewCell.m in Sources */,
@@ -2022,6 +2028,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ruikun Chen (J7QHLK3FA2)";
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6QUDGT9WP7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

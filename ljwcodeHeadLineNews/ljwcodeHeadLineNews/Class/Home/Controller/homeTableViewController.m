@@ -68,25 +68,19 @@
 }
 
 -(void)TT_loadCacheData{
-    @weakify(self);
-    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        @strongify(self);
-        homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
-        __block NSArray *dataArray = [NSArray array];
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
-        });
-        [self.datasArray addObjectsFromArray:dataArray];
-        [self.detailTableView reloadData];
-        [self.detailTableView.mj_header endRefreshing];
-    }];
-    [self.detailTableView.mj_header beginRefreshing];
+    homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
+    __block NSArray *dataArray = [NSArray array];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
+    });
+    [self.datasArray addObjectsFromArray:dataArray];
+    [self.detailTableView reloadData];
 }
 
+
+
 -(void)TT_onLineRefreshData{
-    @weakify(self);
-    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        @strongify(self);
+    self.detailTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
             __block NSArray *array = [NSArray array];
@@ -94,7 +88,6 @@
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
                 [dbViewModel TT_saveHomeNewsDetailModel:array TT_DetailCategory:self.titleModel.category];
             });
-            
             [self.datasArray addObjectsFromArray:array];
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
@@ -191,7 +184,7 @@
         return;
     }
     [self.detailTableView setContentOffset:CGPointZero];
-    [self.detailTableView.mj_header beginRefreshing];
+//    [self.detailTableView.mj_header beginRefreshing];
 }
 
 #pragma mark - DZNEmptyDataSetDelegate && DZNEmptyDataSetSource
@@ -224,17 +217,6 @@
  点击重试 重新执行刷新请求
  */
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button {
-//    @weakify(self);
-//    self.detailTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-//        @strongify(self);
-//        [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
-//            NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
-//            [self.datasArray addObjectsFromArray:datasArray];
-//            [self.detailTableView reloadData];
-//            [self.detailTableView.mj_header endRefreshing];
-//        }];
-//    }];
-//    [self.detailTableView.mj_header beginRefreshing];
     [self needRefreshTableViewData];
 
 }
@@ -297,9 +279,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == [self.datasArray count] - 1) {
-        [self performSelector:@selector(updateData) withObject:nil afterDelay:1.0f];
-    }
+//    if (indexPath.row == [self.datasArray count] - 1) {
+//        [self performSelector:@selector(updateData) withObject:nil afterDelay:1.0f];
+//    }
 }
 
 -(void)updateData{

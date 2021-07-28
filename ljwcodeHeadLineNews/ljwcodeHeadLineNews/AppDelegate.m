@@ -12,6 +12,7 @@
 #import <realm/Realm.h>
 #import "FFSimplePingHelper.h"
 #import <AFNetworkReachabilityManager.h>
+#import <Bugly/Bugly.h>
 
 @interface AppDelegate (){
     FFSimplePingHelper *pingHelper;
@@ -23,6 +24,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
+    [Bugly startWithAppId:@"39a4a6e9d9"];
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	self.window.backgroundColor = [UIColor whiteColor];
 	[self.window makeKeyAndVisible];

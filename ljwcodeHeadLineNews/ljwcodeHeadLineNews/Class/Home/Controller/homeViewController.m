@@ -57,23 +57,6 @@
             [self reloadData];
             fulfill(self.titleArray);
         }];
-//        if([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable || [self.titleDb DBTableISExist]){
-//            self.titleArray = [self.titleDb queryDataBase];
-//            fulfill(self.titleArray);
-//        }else{
-//            @weakify(self)
-//            [[self.titleViewModle.titleCommand execute:@13] subscribeNext:^(id  _Nullable x) {
-//                @strongify(self);
-//                self.titleArray = x;
-//                [self.titleDb createTitleCacheDb];
-//                for(int i = 0;i < self.titleArray.count;i++){
-//                    homeTitleModel *model = self.titleArray[i];
-//                    [self.titleDb InsertDataWithDB:model];
-//                }
-//                [self reloadData];
-//                fulfill(self.titleArray);
-//            }];
-//        }
     }];
 }
 

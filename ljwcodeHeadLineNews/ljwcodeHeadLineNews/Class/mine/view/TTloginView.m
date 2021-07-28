@@ -10,6 +10,7 @@
 #import <YYText/YYText.h>
 #import "countryCodeView.h"
 #import "otherLoginTypeView.h"
+#import "TT_questionWebView.h"
 
 @interface TTloginView()
 
@@ -97,6 +98,7 @@
     [questionBtn setTitle:@"遇到问题" forState:UIControlStateNormal];
     [questionBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     questionBtn.titleLabel.font = [UIFont systemFontOfSize:14.f];
+    [questionBtn addTarget:self action:@selector(TT_questionHandle:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:questionBtn];
     
     [questionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -247,6 +249,12 @@
     if(sender){
         [self hide];
     }
+}
+
+-(void)TT_questionHandle:(UIButton *)sender{
+    TT_questionWebView *webView = [[TT_questionWebView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    webView.backgroundColor = [UIColor redColor];
+    [[self getCurrentWindow] addSubview:webView];
 }
 
 -(void)show{
