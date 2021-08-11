@@ -4,3 +4,4 @@
 #import "TTPlayerView.h"
 #import "TTScreen.h"
 #import <AFNetworkReachabilityManager.h>
+#import "TTBaseViewController.h"

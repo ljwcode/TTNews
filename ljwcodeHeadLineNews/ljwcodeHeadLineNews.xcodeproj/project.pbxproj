@@ -184,6 +184,8 @@
 		949E779524A39605000C446E /* homejokeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949E779324A39605000C446E /* homejokeTableViewCell.xib */; };
 		949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E779724A39FDE000C446E /* homeContentNewsTableViewCell.m */; };
 		949E779A24A39FDE000C446E /* homeContentNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949E779824A39FDE000C446E /* homeContentNewsTableViewCell.xib */; };
+		94A0DE0626C2703B0043ACC0 /* TTFollowCategoryEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A0DE0526C2703B0043ACC0 /* TTFollowCategoryEmptyView.swift */; };
+		94A0DE0826C284170043ACC0 /* TT_followCategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A0DE0726C284170043ACC0 /* TT_followCategoryController.swift */; };
 		94A4A6EA24A25331002A6CA3 /* TTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A4A6E924A25331002A6CA3 /* TTBaseViewController.m */; };
 		94AF78BE25F8C0370018A522 /* libicucore.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 94AF78BC25F8C0370018A522 /* libicucore.A.tbd */; };
 		94AF78BF25F8C0370018A522 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 94AF78BD25F8C0370018A522 /* libicucore.tbd */; };
@@ -197,7 +199,6 @@
 		94B79EF526048CAA0042727A /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B79EEE26048CAA0042727A /* 7.png */; };
 		94D4446826058EE600FA8C2E /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4446526058EE600FA8C2E /* SimplePing.m */; };
 		94D4446926058EE600FA8C2E /* FFSimplePingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4446726058EE600FA8C2E /* FFSimplePingHelper.m */; };
-		94D4446C260594D600FA8C2E /* TTNetworkStatusChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D4446B260594D600FA8C2E /* TTNetworkStatusChecker.swift */; };
 		94D4451C26059CCA00FA8C2E /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D444E526059CCA00FA8C2E /* UIScrollView+MJRefresh.m */; };
 		94D4451D26059CCA00FA8C2E /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D444E626059CCA00FA8C2E /* MJRefreshConst.m */; };
 		94D4451E26059CCA00FA8C2E /* MJRefreshConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D444E726059CCA00FA8C2E /* MJRefreshConfig.m */; };
@@ -222,6 +223,8 @@
 		94D4453126059CCA00FA8C2E /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4451626059CCA00FA8C2E /* MJRefreshAutoFooter.m */; };
 		94D4453226059CCA00FA8C2E /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4451826059CCA00FA8C2E /* MJRefreshComponent.m */; };
 		94D4453326059CCA00FA8C2E /* MJRefreshTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4451B26059CCA00FA8C2E /* MJRefreshTrailer.m */; };
+		94FC9F1726C3D47300BD7506 /* TT_hotListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FC9F1626C3D47300BD7506 /* TT_hotListViewController.swift */; };
+		94FC9F1926C3D5AF00BD7506 /* TThotListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FC9F1826C3D5AF00BD7506 /* TThotListHeaderView.swift */; };
 		C4AFB7D1D396726EDB50A5DB /* Pods_ljwcodeHeadLineNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */; };
 /* End PBXBuildFile section */
 
@@ -561,6 +564,8 @@
 		949E779624A39FDE000C446E /* homeContentNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeContentNewsTableViewCell.h; sourceTree = "<group>"; };
 		949E779724A39FDE000C446E /* homeContentNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeContentNewsTableViewCell.m; sourceTree = "<group>"; };
 		949E779824A39FDE000C446E /* homeContentNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homeContentNewsTableViewCell.xib; sourceTree = "<group>"; };
+		94A0DE0526C2703B0043ACC0 /* TTFollowCategoryEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTFollowCategoryEmptyView.swift; sourceTree = "<group>"; };
+		94A0DE0726C284170043ACC0 /* TT_followCategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TT_followCategoryController.swift; sourceTree = "<group>"; };
 		94A4A6E824A25331002A6CA3 /* TTBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTBaseViewController.h; sourceTree = "<group>"; };
 		94A4A6E924A25331002A6CA3 /* TTBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTBaseViewController.m; sourceTree = "<group>"; };
 		94AF78BC25F8C0370018A522 /* libicucore.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.A.tbd; path = usr/lib/libicucore.A.tbd; sourceTree = SDKROOT; };
@@ -578,7 +583,6 @@
 		94D4446526058EE600FA8C2E /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
 		94D4446626058EE600FA8C2E /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
 		94D4446726058EE600FA8C2E /* FFSimplePingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSimplePingHelper.m; sourceTree = "<group>"; };
-		94D4446B260594D600FA8C2E /* TTNetworkStatusChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTNetworkStatusChecker.swift; sourceTree = "<group>"; };
 		94D444E526059CCA00FA8C2E /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		94D444E626059CCA00FA8C2E /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
 		94D444E726059CCA00FA8C2E /* MJRefreshConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConfig.m; sourceTree = "<group>"; };
@@ -627,6 +631,8 @@
 		94D4451926059CCA00FA8C2E /* MJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooter.h; sourceTree = "<group>"; };
 		94D4451A26059CCA00FA8C2E /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
 		94D4451B26059CCA00FA8C2E /* MJRefreshTrailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshTrailer.m; sourceTree = "<group>"; };
+		94FC9F1626C3D47300BD7506 /* TT_hotListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TT_hotListViewController.swift; sourceTree = "<group>"; };
+		94FC9F1826C3D5AF00BD7506 /* TThotListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TThotListHeaderView.swift; sourceTree = "<group>"; };
 		A2C008BF83355F08C3B5A22B /* Pods-ljwcodeHeadLineNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ljwcodeHeadLineNews.debug.xcconfig"; path = "Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews.debug.xcconfig"; sourceTree = "<group>"; };
 		C26366D8F2716954E8D15696 /* Pods_ljwcodeHeadLineNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ljwcodeHeadLineNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -962,7 +968,6 @@
 				94D4446726058EE600FA8C2E /* FFSimplePingHelper.m */,
 				94D4446626058EE600FA8C2E /* SimplePing.h */,
 				94D4446526058EE600FA8C2E /* SimplePing.m */,
-				94D4446B260594D600FA8C2E /* TTNetworkStatusChecker.swift */,
 			);
 			path = TTNewsNetwork;
 			sourceTree = "<group>";
@@ -1061,6 +1066,8 @@
 				63D4FF9E24D96FC40035F561 /* NewsDetailViewController.m */,
 				63422C4824A875D40091FEE1 /* NewsChannelViewController.h */,
 				63422C4924A875D40091FEE1 /* NewsChannelViewController.m */,
+				94A0DE0726C284170043ACC0 /* TT_followCategoryController.swift */,
+				94FC9F1626C3D47300BD7506 /* TT_hotListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1088,6 +1095,8 @@
 				63E8C3772567B29600F69701 /* TTHomeMoreShareVIew.m */,
 				63B435AD25BFB53200547403 /* TTFeedDislikeView.h */,
 				63B435AE25BFB53200547403 /* TTFeedDislikeView.m */,
+				94A0DE0526C2703B0043ACC0 /* TTFollowCategoryEmptyView.swift */,
+				94FC9F1826C3D5AF00BD7506 /* TThotListHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1754,6 +1763,7 @@
 				6328F611249DEA8C00C767A8 /* TTEmitterHelper.m in Sources */,
 				94D4451D26059CCA00FA8C2E /* MJRefreshConst.m in Sources */,
 				634518F125BAB27E00782DA6 /* UILabel+Frame.m in Sources */,
+				94A0DE0826C284170043ACC0 /* TT_followCategoryController.swift in Sources */,
 				63F1F8ED24AF3AB600D687ED /* videoContentRequestModel.m in Sources */,
 				63A6F6A825B6FE7100BBFA5D /* TTTabBar.m in Sources */,
 				94D4452926059CCA00FA8C2E /* MJRefreshStateTrailer.m in Sources */,
@@ -1786,6 +1796,7 @@
 				94AF791725F8C3720018A522 /* RegexKitLite.m in Sources */,
 				631BC8FF25481893001B82AB /* UINavigationBar+ThemeChange.m in Sources */,
 				63524924254429DD009AECF2 /* QRCodePreviewVIew.m in Sources */,
+				94FC9F1726C3D47300BD7506 /* TT_hotListViewController.swift in Sources */,
 				63D4FF9F24D96FC40035F561 /* NewsDetailViewController.m in Sources */,
 				63422C5624A87EA30091FEE1 /* TTChannelMyHeaderView.m in Sources */,
 				63265C43256F9E3F00AACBC6 /* TTChannelRecommendHeaderView.m in Sources */,
@@ -1827,7 +1838,6 @@
 				638E978024CAF04B005ADF42 /* moreSettingTableViewCell.m in Sources */,
 				637A97F424C04B45000F7405 /* UIImage+cropPicture.m in Sources */,
 				63BE33512548160500607EBA /* UILabel+ThemeChange.m in Sources */,
-				94D4446C260594D600FA8C2E /* TTNetworkStatusChecker.swift in Sources */,
 				63879C4E25EDE534001DE258 /* TTArticleSearchInboxFourWordsModel.m in Sources */,
 				63C4FA9024EBC20400CF9850 /* TTPageViewController.m in Sources */,
 				94A4A6EA24A25331002A6CA3 /* TTBaseViewController.m in Sources */,
@@ -1860,6 +1870,7 @@
 				63C73D58259DAA6D00EC1DC9 /* TTXGVideoListModel.m in Sources */,
 				63DEE5FC254ABA8F00D356D4 /* PushNotificationSettingViewController.m in Sources */,
 				63167BA02569170200B967B2 /* UIView+Frame.m in Sources */,
+				94A0DE0626C2703B0043ACC0 /* TTFollowCategoryEmptyView.swift in Sources */,
 				63A8E3EC25C416340067369F /* videoDetailRequestModel.m in Sources */,
 				633BEA642587640700423C39 /* TTPlayerMaskView.m in Sources */,
 				63BE352524DAD63A001ADFDD /* newsDetailFooterView.m in Sources */,
@@ -1900,6 +1911,7 @@
 				6393A2D825AD438F002BB19E /* TT_tabBarModel.m in Sources */,
 				635BB45425DFC5E300449953 /* TT_VideoDetailModel.m in Sources */,
 				637C2D3C24A9F1BA0009274C /* MBProgressHUD+Add.m in Sources */,
+				94FC9F1926C3D5AF00BD7506 /* TThotListHeaderView.swift in Sources */,
 				63422C4A24A875D40091FEE1 /* NewsChannelViewController.m in Sources */,
 				63A8E3E725C404960067369F /* TTVideoDetailHeaderView.m in Sources */,
 				949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */,

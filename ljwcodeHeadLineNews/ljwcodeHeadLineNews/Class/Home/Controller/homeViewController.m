@@ -15,6 +15,7 @@
 #import <AFNetworkReachabilityManager.h>
 #import <FBLPromises/FBLPromises.h>
 #import <FBLPromises/FBLPromise.h>
+#import <TTNews-Swift.h>
 
 @interface homeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
 
@@ -128,6 +129,9 @@
     
     if (index > self.titleArray.count - 1) {
         return  [[homeTableViewController alloc]init];
+    }else if(index == 0){
+        TT_followCategoryController *followCategoryVC = [[TT_followCategoryController alloc]init];
+        return followCategoryVC;
     }
     homeTitleModel *model = self.titleArray[index];
     homeTableViewController *detial = [[homeTableViewController alloc]init];

@@ -43,26 +43,22 @@
 -(FBLPromise *)getTitleModelDataArray{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
         if([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable || [self.titleDBViewModel DBTableIsExists]){
-            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                NSArray *array = [self.titleDBViewModel queryDataBase];
-                for(int i = 0;i < array.count;i++){
-                    homeTitleModel *model = array[i];
-                    [self.titleArray addObject:model];
-                }
-            });
+            NSArray *array = [self.titleDBViewModel queryDataBase];
+            for(int i = 0;i < array.count;i++){
+                homeTitleModel *model = array[i];
+                [self.titleArray addObject:model];
+            }
             fulfill(self.titleArray);
         }else{
             @weakify(self)
             [[self.titleViewModle.videoCommand execute:@13] subscribeNext:^(id  _Nullable x) {
                 @strongify(self);
                 self.titleArray = x;
-                dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                    [self.titleDBViewModel createDBCacheTable];
-                    for(int i = 0;i < self.titleArray.count;i++){
-                        videoTitleModel *model = self.titleArray[i];
-                        [self.titleDBViewModel InsertDBWithModel:model];
-                    }
-                });
+                [self.titleDBViewModel createDBCacheTable];
+                for(int i = 0;i < self.titleArray.count;i++){
+                    videoTitleModel *model = self.titleArray[i];
+                    [self.titleDBViewModel InsertDBWithModel:model];
+                }
                 [self reloadData];
                 fulfill(self.titleArray);
             }];
