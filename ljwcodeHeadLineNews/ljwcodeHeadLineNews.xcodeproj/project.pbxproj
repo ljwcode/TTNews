@@ -178,6 +178,7 @@
 		820979281BD3B28700CF9D0C /* TTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979271BD3B28700CF9D0C /* TTTabBarController.m */; };
 		9431F80325FA090D006929EC /* TT_NewsContentImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9431F80225FA090D006929EC /* TT_NewsContentImgModel.m */; };
 		9431F82925FB1172006929EC /* TTChangeFontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9431F82725FB1172006929EC /* TTChangeFontViewController.m */; };
+		9436715026C689DD0082A368 /* TThotListAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436714F26C689DD0082A368 /* TThotListAlertView.swift */; };
 		947157F5269D963E00A6CE13 /* TT_questionWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 947157F4269D963E00A6CE13 /* TT_questionWebView.m */; };
 		948EE92826022AB80088EF4D /* TTPlayerEndMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948EE92726022AB80088EF4D /* TTPlayerEndMaskView.swift */; };
 		949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E779224A39605000C446E /* homejokeTableViewCell.m */; };
@@ -554,6 +555,7 @@
 		9431F80225FA090D006929EC /* TT_NewsContentImgModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_NewsContentImgModel.m; sourceTree = "<group>"; };
 		9431F82725FB1172006929EC /* TTChangeFontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTChangeFontViewController.m; sourceTree = "<group>"; };
 		9431F82825FB1172006929EC /* TTChangeFontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTChangeFontViewController.h; sourceTree = "<group>"; };
+		9436714F26C689DD0082A368 /* TThotListAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TThotListAlertView.swift; sourceTree = "<group>"; };
 		947157F3269D963E00A6CE13 /* TT_questionWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_questionWebView.h; sourceTree = "<group>"; };
 		947157F4269D963E00A6CE13 /* TT_questionWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_questionWebView.m; sourceTree = "<group>"; };
 		948EE92626022AB80088EF4D /* ljwcodeHeadLineNews-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ljwcodeHeadLineNews-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -977,6 +979,7 @@
 			children = (
 				63050438256525B000CB910D /* TTReportArticleView.h */,
 				63050439256525B000CB910D /* TTReportArticleView.m */,
+				9436714F26C689DD0082A368 /* TThotListAlertView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1831,6 +1834,7 @@
 				631CFA6824E5276A0082B941 /* focusViewController.m in Sources */,
 				631BC90C25481905001B82AB /* UIColor+TTColorTools.m in Sources */,
 				637C2D3624A9D3EA0009274C /* TTNetworkManagerCenter.m in Sources */,
+				9436715026C689DD0082A368 /* TThotListAlertView.swift in Sources */,
 				633368E625762F5800F47A91 /* TTArticleSearchHeaderCell.m in Sources */,
 				63A8E3F025C417AF0067369F /* videoDetailViewModel.m in Sources */,
 				94D4452826059CCA00FA8C2E /* MJRefreshAutoNormalFooter.m in Sources */,
