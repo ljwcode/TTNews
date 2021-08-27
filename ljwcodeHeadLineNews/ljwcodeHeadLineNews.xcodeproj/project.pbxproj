@@ -181,6 +181,8 @@
 		9436715026C689DD0082A368 /* TThotListAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436714F26C689DD0082A368 /* TThotListAlertView.swift */; };
 		947157F5269D963E00A6CE13 /* TT_questionWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 947157F4269D963E00A6CE13 /* TT_questionWebView.m */; };
 		948EE92826022AB80088EF4D /* TTPlayerEndMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948EE92726022AB80088EF4D /* TTPlayerEndMaskView.swift */; };
+		9492A19F26D8E5DA004DA489 /* news_hotspot.json in Resources */ = {isa = PBXBuildFile; fileRef = 9492A19E26D8E5DA004DA489 /* news_hotspot.json */; };
+		9492A1A126D8EB1B004DA489 /* homeNewshotSpotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9492A1A026D8EB1B004DA489 /* homeNewshotSpotModel.swift */; };
 		949E779424A39605000C446E /* homejokeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E779224A39605000C446E /* homejokeTableViewCell.m */; };
 		949E779524A39605000C446E /* homejokeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949E779324A39605000C446E /* homejokeTableViewCell.xib */; };
 		949E779924A39FDE000C446E /* homeContentNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E779724A39FDE000C446E /* homeContentNewsTableViewCell.m */; };
@@ -560,6 +562,8 @@
 		947157F4269D963E00A6CE13 /* TT_questionWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_questionWebView.m; sourceTree = "<group>"; };
 		948EE92626022AB80088EF4D /* ljwcodeHeadLineNews-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ljwcodeHeadLineNews-Bridging-Header.h"; sourceTree = "<group>"; };
 		948EE92726022AB80088EF4D /* TTPlayerEndMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTPlayerEndMaskView.swift; sourceTree = "<group>"; };
+		9492A19E26D8E5DA004DA489 /* news_hotspot.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = news_hotspot.json; sourceTree = "<group>"; };
+		9492A1A026D8EB1B004DA489 /* homeNewshotSpotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeNewshotSpotModel.swift; sourceTree = "<group>"; };
 		949E779124A39605000C446E /* homejokeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homejokeTableViewCell.h; sourceTree = "<group>"; };
 		949E779224A39605000C446E /* homejokeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homejokeTableViewCell.m; sourceTree = "<group>"; };
 		949E779324A39605000C446E /* homejokeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = homejokeTableViewCell.xib; sourceTree = "<group>"; };
@@ -1129,6 +1133,7 @@
 				636CA5D825F7952600C4287F /* TT_UserCommentModel.m */,
 				9431F80125FA090D006929EC /* TT_NewsContentImgModel.h */,
 				9431F80225FA090D006929EC /* TT_NewsContentImgModel.m */,
+				9492A1A026D8EB1B004DA489 /* homeNewshotSpotModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1150,6 +1155,7 @@
 				63C8039D25F0FEE400B1EB99 /* homeArticleContentViewModel.m */,
 				636CA5E925F797C400C4287F /* homeNewsDetailCommentViewModel.h */,
 				636CA5EA25F797C400C4287F /* homeNewsDetailCommentViewModel.m */,
+				9492A19E26D8E5DA004DA489 /* news_hotspot.json */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1662,6 +1668,7 @@
 				94B79EF526048CAA0042727A /* 7.png in Resources */,
 				631BC92225481E7D001B82AB /* TTThemeNight.plist in Resources */,
 				63A3131925C95C8E00AF1056 /* TT_UserCommentTableViewCell.xib in Resources */,
+				9492A19F26D8E5DA004DA489 /* news_hotspot.json in Resources */,
 				6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */,
 				63AFDD2525B839EB00AD13C9 /* TTFontSizeChangeModel.json in Resources */,
 				63A3130325C9060500AF1056 /* TTRecommandVideoTableViewCell.xib in Resources */,
@@ -1861,6 +1868,7 @@
 				63CBA1FB258B39FD0020511C /* videoTitleDBViewModel.m in Sources */,
 				63BE32FD2547F3D000607EBA /* PrivacyViewController.m in Sources */,
 				63A4E00A24C83E8B0042473D /* otherLoginTypeView.m in Sources */,
+				9492A1A126D8EB1B004DA489 /* homeNewshotSpotModel.swift in Sources */,
 				631BC92E25483D8D001B82AB /* NetWorkConfigureViewController.m in Sources */,
 				634DA04325A48C0800236458 /* TTSystemConfigureHelper.m in Sources */,
 				63879C6A25EE14B5001DE258 /* TT_RecommendSearchKeywordViewModel.m in Sources */,
@@ -2042,7 +2050,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ruikun Chen (J7QHLK3FA2)";
+				CODE_SIGN_IDENTITY = "Apple Development: Ruikun Chen (J7QHLK3FA2)";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6QUDGT9WP7;
@@ -2068,7 +2076,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ljwcode.gmail.ljwcodeHeadLineNews;
 				PRODUCT_NAME = TTNews;
-				PROVISIONING_PROFILE_SPECIFIER = GeneralCertificate_dev;
+				PROVISIONING_PROFILE_SPECIFIER = gc_dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "ljwcodeHeadLineNews/ljwcodeTools/ljwcodeHeadLineNews-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2084,7 +2092,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ruikun Chen (J7QHLK3FA2)";
+				CODE_SIGN_IDENTITY = "Apple Development: Ruikun Chen (J7QHLK3FA2)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 6QUDGT9WP7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2109,7 +2117,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ljwcode.gmail.ljwcodeHeadLineNews;
 				PRODUCT_NAME = TTNews;
-				PROVISIONING_PROFILE_SPECIFIER = GeneralCertificate_dev;
+				PROVISIONING_PROFILE_SPECIFIER = gc_dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "ljwcodeHeadLineNews/ljwcodeTools/ljwcodeHeadLineNews-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

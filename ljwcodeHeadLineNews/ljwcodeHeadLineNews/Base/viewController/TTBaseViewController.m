@@ -118,7 +118,7 @@
     }];
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.view endEditing:YES];
+    [self.view endEditing:NO];
 }
 
 #pragma mark ---- TTReportArticleViewDelegate

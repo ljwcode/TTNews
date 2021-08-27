@@ -20,4 +20,6 @@ pod 'FMDB', '~> 2.7.5'
 pod 'Realm'
 pod 'SnapKit'
 pod 'Bugly'
+pod 'HandyJSON'
+
 end

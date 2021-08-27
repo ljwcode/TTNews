@@ -18,7 +18,7 @@ struct utsname systemInfo;
 @implementation TT_requestModel
 
 +(NSString *)version_code{
-    return @"8.0.9";
+    return @"8.3.9";
 }
 
 +(NSString *)tma_jssdk_version{
@@ -38,7 +38,7 @@ struct utsname systemInfo;
 }
 
 +(NSString *)device_id{
-    return @"157930857702792";
+    return @"67277920039";
 }
 
 +(NSString *)channel{
@@ -46,7 +46,7 @@ struct utsname systemInfo;
 }
 
 +(NSString *)resolution{
-    return @"750*1334";
+    return @"828*1792";
 }
 
 +(NSString *)aid{

@@ -88,7 +88,8 @@
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
                 [dbViewModel TT_saveHomeNewsDetailModel:array TT_DetailCategory:self.titleModel.category];
             });
-            [self.datasArray addObjectsFromArray:array];
+            NSRange range = NSMakeRange(0, [array count]);
+            [self.datasArray insertObjects:array atIndexes:[NSIndexSet indexSetWithIndexesInRange:range]];
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
         }];

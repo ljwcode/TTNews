@@ -25,7 +25,7 @@
 }
 
 +(NSString *)TT_homeNewsListURL{
-    return [NSString stringWithFormat:@"https://api5-normal-c-lq.snssdk.com/api/news/feed/v88/?"];
+    return [NSString stringWithFormat:@"https://api5-normal-lq.toutiaoapi.com/api/news/feed/v88/?"];
 }
 
 +(NSString *)TT_newsDetailRecURL{
