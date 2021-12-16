@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TT_RecKeywordModel : NSObject
 
-@property(nonatomic,copy)NSString *id;
-
 @property(nonatomic,copy)NSString *word;
 
 @end

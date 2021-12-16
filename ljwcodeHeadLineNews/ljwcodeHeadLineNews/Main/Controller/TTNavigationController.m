@@ -21,14 +21,27 @@
 }
 
 +(void)initialize{
+    
+   
     [[UINavigationBar appearance]setTranslucent:NO];//不透明
     [[UINavigationBar appearance]setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:16.f],NSFontAttributeName, nil]];
-    
+
     UIBarButtonItem *item = [UIBarButtonItem appearance];
     [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15.f],NSFontAttributeName, nil] forState:UIControlStateNormal];
-    
-    [[UINavigationBar appearance]setBackgroundImage:[self drawImageContext:[UIColor colorWithRed:0.83 green:0.24 blue:0.24 alpha:1.0]] forBarMetrics:UIBarMetricsDefault];
+
+    [[UINavigationBar appearance]setBackgroundImage:[self drawImageContext:[UIColor redColor]] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance]setHidden:YES];
+
+    if(@available(iOS 15.0,*)){
+        UINavigationBarAppearance *navBarAppearance = [[UINavigationBarAppearance alloc]init];
+        navBarAppearance.backgroundColor = [UIColor redColor];
+        navBarAppearance.backgroundEffect = nil;
+        navBarAppearance.shadowColor = [UIColor redColor];
+        [navBarAppearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15.f],NSFontAttributeName,[UIColor blueColor],NSForegroundColorAttributeName, nil]];
+        [[UINavigationBar appearance]setScrollEdgeAppearance:navBarAppearance];
+        
+    }
+    
 }
 
 

@@ -14,6 +14,8 @@
 #import "TTFontSizeChangeHeader.h"
 #import "TTScreen.h"
 #import "MJRefresh.h"
+#import <TTNews-Swift.h>
+#import "ljwcodeTools/UITableViewCell/TT_ClickHightLightTableViewCell.h"
 #ifndef ljwcodeHeadLineNews_h
 #define ljwcodeHeadLineNews_h
 

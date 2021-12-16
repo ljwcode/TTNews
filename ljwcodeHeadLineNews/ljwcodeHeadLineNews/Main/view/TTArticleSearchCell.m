@@ -68,6 +68,10 @@
     return self;
 }
 
+-(void)setSearchHistoryArray:(NSArray *)searchHistoryArray{
+    
+}
+
 #pragma mark ------ lazy load
 
 -(UIView *)leftSearchHistoryTagView{
@@ -90,8 +94,9 @@
 -(UIButton *)leftDelTagBtn{
     if(!_leftDelTagBtn){
         _leftDelTagBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _leftDelTagBtn.hidden = YES;
         [_leftDelTagBtn setImage:[UIImage imageNamed:@"ad_form_close"] forState:UIControlStateNormal];
-    }
+     }
     return _leftDelTagBtn;
 }
 
@@ -115,6 +120,7 @@
 -(UIButton *)rightDelTagBtn{
     if(!_rightDelTagBtn){
         _rightDelTagBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _rightDelTagBtn.hidden = YES;
         [_rightDelTagBtn setImage:[UIImage imageNamed:@"ad_form_close"] forState:UIControlStateNormal];
     }
     return _rightDelTagBtn;

@@ -16,7 +16,7 @@
 
 -(instancetype)init{
     if(self = [super init]){
-        _recSearchViewModel = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+        _recSearchCommend = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 TT_recommendSearchKeywordRequestModel *request = [TT_recommendSearchKeywordRequestModel initWithNetworkModelWithUrlString:[TTNetworkURLManager TT_SearchRecommendKeywordURL] isPost:NO];
                 
@@ -50,15 +50,15 @@
                 request.category_name = [NSString stringWithFormat:@"__all__"];
                 request.business_id = @"10000";
                 request.from_group_id = @"0";
-                
+                \
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     NSDictionary *responseDic = (NSDictionary *)response;
-                    NSArray *dataArray = [[responseDic objectForKey:@"data"]objectForKey:@"words"];
+                    NSArray *dataArray = [[responseDic objectForKey:@"data"][0] objectForKey:@"words"];
                     NSMutableArray *modelArray = [[NSMutableArray alloc]init];
                     if(dataArray.count > 0){
                         for(int i = 0;i <dataArray.count;i++){
                             TT_RecKeywordModel *model = [[[TT_RecKeywordModel alloc]init]mj_setKeyValues:dataArray[i]];
-                            [modelArray addObject:model];
+                            [modelArray addObject:model.word];
                         }
                         [subscriber sendNext:modelArray];
                         [subscriber sendCompleted];

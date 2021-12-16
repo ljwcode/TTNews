@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TT_RecommendSearchKeywordViewModel : NSObject
 
-@property(nonatomic,strong)RACCommand *recSearchViewModel;
+@property(nonatomic,strong)RACCommand *recSearchCommend;
 
 @end
 

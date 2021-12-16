@@ -16,7 +16,7 @@ pod 'YYText'
 pod 'SDWebImage/WebP'
 pod 'SDWebImage’,’~> 4.0.0’
 pod 'PromisesObjC'
-pod 'FMDB', '~> 2.7.5'
+pod 'FMDB'
 pod 'Realm'
 pod 'SnapKit'
 pod 'Bugly'

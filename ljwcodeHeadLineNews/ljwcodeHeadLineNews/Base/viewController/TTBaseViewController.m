@@ -18,6 +18,7 @@
 #import "TT_RecommendSearchKeywordViewModel.h"
 #import "FFSimplePingHelper.h"
 #import <AFNetworkReachabilityManager.h>
+#import "TT_RecKeywordModel.h"
 
 @interface TTBaseViewController ()<UIGestureRecognizerDelegate,UISearchBarDelegate,TTReportArticleViewDelegate,TT_NavigationBarDelegate>{
     FFSimplePingHelper *pingHelper;
@@ -99,9 +100,7 @@
             [[self.keywordViewModel.searchWordCommand execute:@"title"]subscribeNext:^(id  _Nullable x) {
                 NSArray *dataArray = x;
                 NSMutableArray *keywordArray = [[NSMutableArray alloc]init];
-                for(TTArticleSearchInboxFourWordsModel *model in dataArray){
-                    [keywordArray addObject:[[model mj_keyValues] objectForKey:@"word"]];
-                }
+                keywordArray = x;
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
                     if([self.SearchCacheViewModel IsExistsKeywordCacheTable]){
                         [self.SearchCacheViewModel InsertSearchKeywordWithDB:dataArray];
@@ -113,6 +112,13 @@
                 NSString *keyword = [NSString stringWithFormat:@"%@ | %@",keywordArray[0],keywordArray[1]];
                 self.keyWord = keywordArray[0];
                 fulfill(keyword);
+            }];
+            
+            [[self.RecViewModel.recSearchCommend execute:@"title"]subscribeNext:^(id  _Nullable x) {
+                NSLog(@"x = %@",x);
+                NSArray *recDataArray = x;
+                [[NSUserDefaults standardUserDefaults]setObject:recDataArray forKey:@"recSearchWords"];
+                
             }];
         }
     }];
@@ -129,8 +135,8 @@
 }
 
 -(void)TT_PushToSearchVC{
-    self.searchVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self.navigationController presentViewController:self.searchVC animated:YES completion:nil];
+//    self.searchVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.navigationController pushViewController:self.searchVC animated:YES];
 }
 
 #pragma mark ---- 响应事件
@@ -177,6 +183,13 @@
         _keywordViewModel = [[TTArticleSearchWordViewModel alloc]init];
     }
     return _keywordViewModel;
+}
+
+-(TT_RecommendSearchKeywordViewModel *)RecViewModel{
+    if(!_RecViewModel){
+        _RecViewModel = [[TT_RecommendSearchKeywordViewModel alloc]init];
+    }
+    return _RecViewModel;
 }
 
 -(TTDBCacheSearchKeywordViewModel *)SearchCacheViewModel{

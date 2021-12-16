@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong)UIButton *rightDelTagBtn;
 
+@property(nonatomic,strong)NSArray *searchHistoryArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

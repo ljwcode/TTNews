@@ -7,24 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "videoContentModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*
- api接口和json转字典模型
- */
-@interface homeNewsModel : NSObject
+@class filter_words;
 
-@property(nonatomic,strong)NSArray *data;
+@interface dataArray : NSObject
 
-@property(nonatomic,copy)NSString *message;
-
-@property(nonatomic,copy)NSString *post_content_hint;
-
-@property(nonatomic,assign)int total_number;
-
+@property(nonatomic,strong)filter_words *filter_words;
 
 @end
+
+@interface large_image_list : NSObject
+
+@property(nonatomic,copy)NSString *url;
+
+@end
+
 
 @interface filter_words : NSObject
 
@@ -41,6 +41,89 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *width;
 
 @property(nonatomic,copy)NSString *height;
+
+@end
+
+@interface url_list : NSObject
+
+@property(nonatomic,copy)NSString *url;
+
+@end
+
+@interface animated_cover_image_list : NSObject
+
+@property(nonatomic,strong)url_list *url_list;
+
+@end
+
+@interface raw_data : NSObject
+
+@property(nonatomic,strong)animated_cover_image_list *animated_list_image_list;
+
+@end
+
+
+@interface superDataArray : NSObject
+
+
+@end
+
+@interface tips : NSObject
+
+@property(nonatomic,copy)NSString *app_name;
+
+@end
+
+@interface shortVideoArray : NSObject
+
+@property(nonatomic,strong)raw_data *raw_data;
+
+@property(nonatomic,strong)animated_cover_image_list *animated_cover_image_list;
+
+@end
+
+@interface microVideoInfoModel : NSObject
+
+@property(nonatomic,strong)NSArray *data;
+
+@property(nonatomic,copy)NSString *card_title;
+
+@end
+
+@interface microVideoDetailModel : NSObject
+
+@property(nonatomic,strong)microVideoInfoModel *microInfoModel;
+
+@property(nonatomic,copy)NSString *content;
+
+
+@end
+
+
+@interface homeNewsMicroVideoModel : NSObject
+
+@property(nonatomic,copy)NSString *message;
+
+@property(nonatomic,strong)tips *tips;
+
+@property(nonatomic,strong)NSArray *data;
+
+
+@end
+
+/*
+ api接口和json转字典模型
+ */
+@interface homeNewsModel : NSObject
+
+@property(nonatomic,strong)NSArray *data;
+
+@property(nonatomic,copy)NSString *message;
+
+@property(nonatomic,copy)NSString *post_content_hint;
+
+@property(nonatomic,assign)int total_number;
+
 
 @end
 
@@ -79,6 +162,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *item_id;
 
 @property(nonatomic,copy)NSString *group_id;
+
+@property(nonatomic,assign)BOOL has_video;
+
+@property(nonatomic,strong)video_detail_info *video_detail_info;
+
+@property(nonatomic,assign)int video_duration;
+
+@property(nonatomic,copy)NSString *card_title;
 
 @end
 

@@ -22,7 +22,9 @@
 #import "parseVideoRealURLViewModel.h"
 #import "TTPlayerView.h"
 #import "homeNewsDetailDBViewModel.h"
+#import "homeMicroVideoRequestViewModel.h"
 #import <AFNetworkReachabilityManager.h>
+#import <TTNews-Swift.h>
 
 @interface homeTableViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource,UIGestureRecognizerDelegate>
 
@@ -34,6 +36,8 @@
 
 @property(nonatomic,strong)homeNewsSummaryModel *model;
 
+@property(nonatomic,strong)microVideoDetailModel *microModel;
+
 @property(nonatomic,strong)videoContentModel *videoPlayModel;
 
 @property(nonatomic,copy)NSString *videoURL;
@@ -43,6 +47,8 @@
 @property(nonatomic,strong)UITableViewCell *playingCell;
 
 @property(nonatomic,strong)TTPlayerView *playerView;
+
+@property(nonatomic,strong)homeMicroVideoRequestViewModel *microVideoViewModel;
 
 @end
 
@@ -93,6 +99,7 @@
             [self.detailTableView reloadData];
             [self.detailTableView.mj_header endRefreshing];
         }];
+        
     }];
     [self.detailTableView.mj_header beginRefreshing];
 }
@@ -111,12 +118,19 @@
     if([category isEqualToString:@"video"]){
         return model;
     }else{
-        homeNewsModel *newsModel = (homeNewsModel *)model;
+        homeNewsMicroVideoModel *newsModel = (homeNewsMicroVideoModel *)model;
         return newsModel.data;
     }
 }
 
 #pragma mark ----- lazy load
+
+-(homeMicroVideoRequestViewModel *)microVideoViewModel{
+    if(!_microVideoViewModel){
+        _microVideoViewModel = [[homeMicroVideoRequestViewModel alloc]init];
+    }
+    return  _microVideoViewModel;
+}
 
 -(parseVideoRealURLViewModel *)realURLViewModel{
     if(!_realURLViewModel){
@@ -167,6 +181,8 @@
         [tableView registerNib:contentNewsCell forCellReuseIdentifier:NSStringFromClass([homeContentNewsTableViewCell class])];
         
         [tableView registerClass:[TVVideoPlayerViewCell class] forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
+        
+        [tableView registerClass:[TT_horizontalCardCell class] forCellReuseIdentifier:NSStringFromClass([TT_horizontalCardCell class])];
         
         _detailTableView = tableView;
     }

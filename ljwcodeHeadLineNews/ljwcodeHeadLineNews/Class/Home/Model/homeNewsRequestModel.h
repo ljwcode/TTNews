@@ -54,6 +54,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *category;
 
+@property(nonatomic,copy)NSString *session_id;
+
+@property(nonatomic,copy)NSString *list_entrance;
+
+@property(nonatomic,copy)NSString *ab_feature;
+
+@property(nonatomic,copy)NSString *caid1;
+
+@property(nonatomic, copy) NSString *strict;
+
 @end
 
 NS_ASSUME_NONNULL_END

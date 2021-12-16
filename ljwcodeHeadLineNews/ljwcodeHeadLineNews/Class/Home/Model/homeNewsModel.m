@@ -9,6 +9,41 @@
 #import "homeNewsModel.h"
 #import <MJExtension/MJExtension.h>
 
+@implementation dataArray
+
+
+@end
+
+@implementation large_image_list
+
+
+
+@end
+
+@implementation filter_words
+
+
+
+@end
+
+@implementation url_list
+
+
+
+@end
+
+@implementation animated_cover_image_list
+
+
+
+@end
+
+@implementation raw_data
+
+
+
+@end
+
 @implementation homeNewsModel
 
 +(NSDictionary *)mj_objectClassInArray{
@@ -23,6 +58,53 @@
 
 @end
 
+@implementation tips
+
+
+@end
+
+@implementation microVideoInfoModel
+
++(NSDictionary *)mj_objectClassInArray{
+    return @{
+        @"data" : @"shortVideoArray"
+    };
+}
+
+@end
+
+@implementation microVideoDetailModel
+
+//+(NSDictionary *)mj_objectClassInArray{
+//    return @{
+//        @"data" : @"shortVideoArray"
+//    };
+//}
+
+-(microVideoInfoModel *)microInfoModel{
+    if(!_microInfoModel){
+        NSData *data = [self.content dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        microVideoInfoModel *model = [[microVideoInfoModel alloc]init];
+        [model mj_setKeyValues:dic];
+        _microInfoModel = model;
+    }
+    return _microInfoModel;
+}
+
+@end
+
+@implementation homeNewsMicroVideoModel
+
++(NSDictionary *)mj_objectClassInArray{
+    return @{
+        @"data" : @"microVideoDetailModel"
+    };
+}
+
+
+@end
+
 @implementation homeNewsInfoModel
 
 +(NSDictionary *)mj_objectClassInArray{
@@ -30,10 +112,6 @@
         @"image_list" : @"homeNewsImageModel"
     };
 }
-
-@end
-
-@implementation filter_words
 
 
 @end

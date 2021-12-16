@@ -306,4 +306,28 @@ struct utsname systemInfo;
     return [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
 }
 
+/*
+ ?device_id=157930857702792&session_id=9D19C3FC-DDA3-46DA-92AA-C8DFB5A80A5C&list_entrance=more_shortvideo&os_version=12.4.8&ab_feature=2985775,794526,1662483&caid1=626b60a145e6a3340054b5c6d73c1910&strict=0&category=hotsoon_video_feed_card&iid=2190651786797647&app_name=news_article&ab_version=662099,3054932,668775,3054984,3083286,3116939,660830,3054982,3100788,1859936,668779,3054979,668774,2958008,3054973,662176,3054966,3107529&last_refresh_sub_entrance_interval=1630490772&ac=WIFI&detail=1&cp=6f1529Ff52095q1&refer=1&st_time=336&ssmix=a&version_code=8.4.0&vid=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&loc_mode=1&channel=App%20Store&image=1&tma_jssdk_version=2.14.0.6&caid2=&count=20&ab_group=2985775,794526,1662483&update_version_code=84020&tt_from=card_draw&idfa=40DCDF8B-488D-4780-A4D6-DCC51DEA861D&idfv=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&device_platform=iphone&device_type=iPhone%206&rerank=0&ad_ui_style=%7B%22van_package%22%3A130000060%2C%22is_crowd_generalization_style%22%3A2%7D&ab_client=a1,f2,f7,e1&LBS_status=authroize&loc_time=1630490702&aid=13&language=zh-Hans-CN&cdid=EDDBEF16-CAA0-4624-8789-5BA3E024EF5E&app_version=8.4.0&resolution=750*1334&min_behot_time=0
+ */
+
++ (NSString *)session_id {
+    return  @"9D19C3FC-DDA3-46DA-92AA-C8DFB5A80A5C";
+}
+
++ (NSString *)list_entrance {
+    return @"more_shortvideo";
+}
+
++ (NSString *)ab_feature{
+    return @"2985775,794526,1662483";
+}
+
++ (NSString *)caid1{
+    return @"626b60a145e6a3340054b5c6d73c1910";
+}
+
++ (NSString *)strict {
+    return @"0";
+}
+
 @end

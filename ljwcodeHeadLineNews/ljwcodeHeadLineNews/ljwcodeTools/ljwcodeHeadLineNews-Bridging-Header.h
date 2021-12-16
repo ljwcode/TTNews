@@ -5,3 +5,7 @@
 #import "TTScreen.h"
 #import <AFNetworkReachabilityManager.h>
 #import "TTBaseViewController.h"
+#import <AFNetworking/AFNetworking.h>
+#import "homeNewsModel.h"
+#import <UIImageView+WebCache.h>
+#import "TT_TimeIntervalConverString.h"

@@ -1,0 +1,329 @@
+{
+    data =     (
+                {
+            params =             {
+                "channel_id" = 94349541582;
+                "extra_info" =                 {
+                    "search_default_tab" = gs;
+                };
+                style = 0;
+                title = "\U731c\U4f60\U60f3\U641c";
+            };
+            source = "recom_search";
+            type = recom;
+            words =             (
+                                {
+                    id = 7010935853929501989;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 0;
+                        };
+                        reason = "local_hot_query_inverted_recall:107";
+                    };
+                    word = "\U5b5f\U665a\U821f\U4e08\U592b\U5927\U558a\U6211\U7231\U4f60";
+                },
+                                {
+                    id = 7010987246959285540;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 0;
+                        };
+                        reason = "viking_simple_base_recall:39";
+                    };
+                    word = "\U9650\U7535\U505c\U4ea7\U5e2d\U537710\U4f59\U7701";
+                },
+                                {
+                    id = 7011043803814286623;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 0;
+                        };
+                        reason = "local_hot_query_inverted_recall:92";
+                    };
+                    word = "\U66dd\U5e7f\U5dde18\U53f7\U7ebf\U5373\U5c06\U5f00\U901a";
+                },
+                                {
+                    id = 7011088914577118500;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 0;
+                        };
+                        reason = "local_hot_query_inverted_recall:65";
+                    };
+                    word = "\U534e\U4e3a\U6210\U7acb\U6df1\U5733\U4e91\U8ba1\U7b97\U516c\U53f8";
+                },
+                                {
+                    id = 6900369804592665869;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 0;
+                        };
+                        reason = "viking_simple_base_recall:178";
+                    };
+                    word = "\U4e4c\U5408\U9e92\U9e9f\U6700\U65b0\U4f5c\U54c1";
+                },
+                                {
+                    id = 6837781997625021703;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 0;
+                        };
+                        reason = "hotwords_recall:46";
+                        "recommend_reason" = "qrec_hot";
+                    };
+                    word = "\U4e91\U5357\U53d1\U73b0\U6781\U5371\U7269\U79cd";
+                    "words_type" = 2;
+                },
+                                {
+                    id = 6978003198641345823;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 0;
+                        };
+                        reason = "hotwords_recall:118";
+                        "recommend_reason" = "qrec_hot";
+                    };
+                    word = "\U8d3a\U519b\U7fd4\U53d1\U6587\U9053\U6b49";
+                    "words_type" = 2;
+                },
+                                {
+                    id = 6722030862025626894;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 0;
+                        };
+                        reason = "viking_simple_cold_recall:32";
+                    };
+                    word = "\U5c0f\U8bf4\U9f99\U795e\U6bbf";
+                },
+                                {
+                    id = 7010577821815461134;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 0;
+                        };
+                        reason = "hotwords_recall:24";
+                        "recommend_reason" = "qrec_hot";
+                    };
+                    word = "\U5e7f\U7535\U603b\U5c40\U8c08\U52a8\U753b\U7247";
+                    "words_type" = 2;
+                },
+                                {
+                    id = 7011103693815485703;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 0;
+                        };
+                        reason = "hotwords_recall:108";
+                    };
+                    word = "\U4e1c\U9e4f\U74f7\U7816\U5ba3\U5e03\U6da8\U4ef7";
+                },
+                                {
+                    id = 6598672859801851143;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 0;
+                        };
+                        reason = "viking_simple_base_recall:594";
+                    };
+                    word = "\U4e0a\U95e8\U5973\U5a7f\U5168\U6587\U9605\U8bfb";
+                },
+                                {
+                    id = 7010669423447430414;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 0;
+                        };
+                        reason = "hotwords_recall:41";
+                    };
+                    word = "\U59da\U5b89\U5a1c\U6b22\U8fce\U59d0\U59d0\U56de\U56fd";
+                }
+            );
+        },
+                {
+            params =             {
+                "channel_id" = 94349541577;
+                "extra_info" =                 {
+                };
+            };
+            source = "search_bar_inner";
+            type = inbox;
+            words =             (
+                                {
+                    id = 7011126210835911966;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 1;
+                        };
+                        reason = "local_hot_query_inverted_recall:417";
+                    };
+                    word = "\U5b5f\U665a\U821f\U673a\U573a\U5531\U300a\U6b4c\U5531\U7956\U56fd\U300b";
+                },
+                                {
+                    id = 7011086464528635143;
+                    params =                     {
+                        "challenge_id" = 0;
+                        "extra_info" =                         {
+                            "enable_prefetch" = 1;
+                        };
+                        reason = "viking_simple_without_gid_recall:106";
+                    };
+                    word = "Chovy\U6216\U5c06\U9762\U4e34\U7981\U8d5b";
+                }
+            );
+        },
+                {
+            source = "frequent_search";
+            type = "frequent_search";
+            words =             (
+            );
+        },
+                {
+            params =             {
+                style = 0;
+                title = "\U4eca\U65e5\U70ed\U641c";
+            };
+            source = "recom_search";
+            type = "recom_hotwords";
+            words =             (
+                                {
+                    id = 7012014373812047363;
+                    params =                     {
+                        "fake_click_cnt" = 11573338;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U6731\U7acb\U4f26\U8c08\U4e24\U5cb8\U5173\U7cfb\Uff1a\U505a\U6bd4\U8bf4\U66f4\U91cd\U8981";
+                    "words_type" = 2;
+                },
+                                {
+                    id = 7011735482803421191;
+                    params =                     {
+                        "fake_click_cnt" = 10471989;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U5b5f\U665a\U821f\U8fd13\U5e74\U90fd\U7ecf\U5386\U4e86\U4ec0\U4e48";
+                    "words_type" = 2;
+                },
+                                {
+                    id = 7011282114884665376;
+                    params =                     {
+                        "fake_click_cnt" = 9475448;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U9650\U7535\U7684\U539f\U56e0\U548c\U76ee\U7684\U662f\U4ec0\U4e48";
+                    "words_type" = 2;
+                },
+                                {
+                    id = 7011805774640840715;
+                    params =                     {
+                        "fake_click_cnt" = 7757840;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U5b5f\U665a\U821f\U5305\U673a\U7ed5\U98de\U5317\U6781\U907f\U5f00\U7f8e\U56fd\U9886\U7a7a";
+                    "words_type" = 2;
+                },
+                                {
+                    id = 7011388805177409549;
+                    params =                     {
+                        "fake_click_cnt" = 7019584;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U4fc4\U7f57\U65af\U56de\U5e94\U4fc4\U4f01\U9ad8\U5b98\U88ab\U7f8e\U902e\U6355";
+                    "words_type" = 2;
+                },
+                                {
+                    id = 7011522513180033061;
+                    params =                     {
+                        "fake_click_cnt" = 6351582;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U6731\U5fb7\U5143\U5e05\U5ae1\U5b59\U6731\U5168\U534e\U901d\U4e16";
+                },
+                                {
+                    id = 7012059298733916190;
+                    params =                     {
+                        "fake_click_cnt" = 5747149;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U6731\U7acb\U4f26\U60e8\U80dc\U80fd\U6d17\U96ea\U4e94\U5e74\U524d\U7684\U803b\U8fb1\U5417";
+                },
+                                {
+                    id = 7012130931674713614;
+                    params =                     {
+                        "fake_click_cnt" = 5200236;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U5218\U4e01\U7855\U95ef\U5165\U5168\U8fd0\U4f1a\U4e52\U4e53\U7403\U7537\U5355\U51b3\U8d5b";
+                },
+                                {
+                    id = 7012050552578129923;
+                    params =                     {
+                        "fake_click_cnt" = 4705368;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U56db\U5ddd\U96c5\U5b89\U66b4\U96e8\U5df2\U81f42\U6b7b12\U5931\U8054";
+                    "words_type" = 1;
+                },
+                                {
+                    id = 7012022435172057095;
+                    params =                     {
+                        "fake_click_cnt" = 4257593;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U201c\U5371\U673a\U603b\U7406\U201d\U9ed8\U514b\U5c14";
+                },
+                                {
+                    id = 7011817007758704651;
+                    params =                     {
+                        "fake_click_cnt" = 8573740;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U5b5f\U665a\U821f\Uff1a\U82e5\U4fe1\U5ff5\U6709\U989c\U8272\U4e00\U5b9a\U662f\U4e2d\U56fd\U7ea2";
+                },
+                                {
+                    id = 7012096944935796744;
+                    params =                     {
+                        "fake_click_cnt" = 3852429;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U60e0\U5dde\U4e2d\U9662\U88c1\U5b9a\U5ba3\U544a\U5149\U8000\U96c6\U56e2\U7834\U4ea7";
+                },
+                                {
+                    id = 7012027074051309572;
+                    params =                     {
+                        "fake_click_cnt" = 3485822;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U5b5f\U665a\U821f\U4e08\U592b\U5927\U558a\U6211\U7231\U4f60";
+                },
+                                {
+                    id = 7012056765940367364;
+                    params =                     {
+                        "fake_click_cnt" = 3154102;
+                        "real_click_cnt" = 0;
+                    };
+                    word = "\U7a0b\U5e8f\U5458\U8f6c\U884c\U5356\U7315\U7334\U6843\U6708\U552e200\U4e07\U65a4";
+                }
+            );
+        }
+    );
+    errno = 0;
+    extra =     {
+        "call_per_refresh" = "";
+    };
+    "log_id" = 20210926182214010133124206298D17BB;
+    msg = success;
+}

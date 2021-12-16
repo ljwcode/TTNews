@@ -53,6 +53,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSString *)idfa;
 
++ (NSString *)session_id;
+
++ (NSString *)list_entrance;
+
++ (NSString *)ab_feature;
+
++ (NSString *)caid1;
+
++ (NSString *)strict;
+
 @end
 
 NS_ASSUME_NONNULL_END

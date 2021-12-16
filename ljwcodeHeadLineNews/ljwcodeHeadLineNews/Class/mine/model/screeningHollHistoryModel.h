@@ -10,23 +10,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface videoDetailModel : NSObject
-
-@property(nonatomic,copy)NSString *media_name;
-
-@property(nonatomic,copy)NSString *title;
-
-@property(nonatomic,copy)NSString *video_play_info;
-
-@end
+//@interface videoDetailModel : NSObject
+//
+//@property(nonatomic,copy)NSString *media_name;
+//
+//@property(nonatomic,copy)NSString *title;
+//
+//@property(nonatomic,copy)NSString *video_play_info;
+//
+//@end
 
 @interface screeningHollHistoryModel : NSObject
 
-@property(nonatomic,readonly)NSString *video_bgImg;
-
-@property(nonatomic,readonly)NSString *avatar_url;
-
-@property(nonatomic,strong)videoDetailModel *detailModel;
+//@property(nonatomic,readonly)NSString *video_bgImg;
+//
+//@property(nonatomic,readonly)NSString *avatar_url;
+//
+//@property(nonatomic,strong)videoDetailModel *detailModel;
 
 @end
 

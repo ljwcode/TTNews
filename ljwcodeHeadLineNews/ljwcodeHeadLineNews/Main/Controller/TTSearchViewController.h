@@ -16,8 +16,6 @@ typedef void(^didSearchBlock)(NSString *searchText);
 
 @interface TTSearchViewController : UIViewController
 
-@property(nonatomic,strong)NSArray *keywordArray;
-
 @end
 
 NS_ASSUME_NONNULL_END

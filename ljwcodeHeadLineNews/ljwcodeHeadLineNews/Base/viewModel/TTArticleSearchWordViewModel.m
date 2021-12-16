@@ -55,10 +55,13 @@
                         NSMutableArray *dataArray = [[NSMutableArray alloc]init];
                         for(int i = 0;i < array.count;i++){
                             TTArticleSearchInboxFourWordsModel *model = [[TTArticleSearchInboxFourWordsModel new]mj_setKeyValues:array[i]];
-                            [dataArray addObject:model];
+                            [dataArray addObject:model.word];
                         }
                         [subscriber sendNext:dataArray];
+                        
+                        [[NSUserDefaults standardUserDefaults] setObject:dataArray forKey:@"recommandSearchWords"];
                         [subscriber sendCompleted];
+                        
                     }
                     
                 } failHandle:^(NSError * _Nonnull error) {

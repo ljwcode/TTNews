@@ -10,15 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol TTArticleSearchHeaderDelegate <NSObject>
+
+@optional
+
+-(void)showMoreSearchHistory;
+
+@end
+
 @interface TTArticleSearchHeaderCell : UITableViewCell
 
-@property(nonatomic,strong)UILabel *titleLabel;
-
-@property(nonatomic,strong)UIButton *actionBtn;
-
-@property(nonatomic,strong)UIButton *delAllBtn;
-
-@property(nonatomic,strong)UIButton *completeBtn;
+@property(nonatomic,copy)id<TTArticleSearchHeaderDelegate> delegate;
 
 @end
 

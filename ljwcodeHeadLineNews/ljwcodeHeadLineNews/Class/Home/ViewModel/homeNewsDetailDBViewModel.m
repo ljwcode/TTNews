@@ -54,7 +54,7 @@
             }
         }
     }else{
-        for(homeNewsSummaryModel *newsModel in array){
+        for(microVideoDetailModel *newsModel in array){
             NSDictionary *dic = [newsModel mj_keyValues];
             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dic requiringSecureCoding:YES error:nil];
             if(data){
