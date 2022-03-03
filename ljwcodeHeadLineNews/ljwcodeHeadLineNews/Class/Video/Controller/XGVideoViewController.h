@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WMPageController.h"
 
-@interface XGVideoViewController : WMPageController
+@interface XGVideoViewController : TTBaseViewController
 
 @end

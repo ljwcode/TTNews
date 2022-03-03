@@ -13,6 +13,7 @@
 #import "FFSimplePingHelper.h"
 #import <AFNetworkReachabilityManager.h>
 #import <Bugly/Bugly.h>
+#import <AppTrackingTransparency/AppTrackingTransparency.h>
 
 @interface AppDelegate (){
     FFSimplePingHelper *pingHelper;
@@ -94,7 +95,15 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    if (@available(iOS 14, *)) {
+        [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+            NSLog(@"status = %lu",(unsigned long)status);
+            if (status == ATTrackingManagerAuthorizationStatusAuthorized) {
+                // 后续操作
+            }
+        }];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

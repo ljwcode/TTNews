@@ -14,8 +14,9 @@
 #import <AFNetworkReachabilityManager.h>
 #import <FBLPromises/FBLPromises.h>
 #import <FBLPromises/FBLPromise.h>
+#import "ljwcodePageViewController.h"
 
-@interface XGVideoViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
+@interface XGVideoViewController ()<ljwcodePageViewControllerDelegate,ljwcodePageViewControllerDataSource>
 
 @property(nonatomic,strong)videoTitleViewModel *titleViewModle;
 
@@ -59,7 +60,7 @@
                     videoTitleModel *model = self.titleArray[i];
                     [self.titleDBViewModel InsertDBWithModel:model];
                 }
-                [self reloadData];
+//                [self reloadData];
                 fulfill(self.titleArray);
             }];
         }
@@ -69,66 +70,70 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.delegate = self;
-    self.dataSource = self;
-    self.automaticallyCalculatesItemWidths = YES;
-    self.itemMargin = 10;
-    self.selectIndex = 1;
-    
-    [self reloadData];
     [self PageMenuView];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    ljwcodePageViewController *pageVC = [[ljwcodePageViewController alloc]initWithConfig:[ljwcodePageViewControllerConfig defaultConfig]];
+    pageVC.delegate = self;
+    pageVC.dataSource = self;
+    pageVC.view.frame = self.view.bounds;
+    [self addChildViewController:pageVC];
+    [self.view addSubview:pageVC.view];
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)PageMenuView{
-    @weakify(self)
-    [RACObserve(self.scrollView, contentOffset) subscribeNext:^(id x) {
-        @strongify(self);
-        CGPoint offset = [x CGPointValue];
-        if (offset.x > kScreenWidth * (self.titleArray.count - 1)) {
-            self.scrollView.contentOffset = CGPointMake(kScreenWidth * (self.titleArray.count - 1), 0);
-        }
-    }];
+//    @weakify(self)
+//    [RACObserve(self.scrollView, contentOffset) subscribeNext:^(id x) {
+//        @strongify(self);
+//        CGPoint offset = [x CGPointValue];
+//        if (offset.x > kScreenWidth * (self.titleArray.count - 1)) {
+//            self.scrollView.contentOffset = CGPointMake(kScreenWidth * (self.titleArray.count - 1), 0);
+//        }
+//    }];
 }
 
-#pragma mark - WMPageController delelgate && datasource
--(NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController{
-    if(self.titleArray.count == 0||!_titleArray){
-        return 0;
+#pragma mark ------- ljwcodePageViewControllerDelegate && ljwcodePageViewControllerDataSource
+
+-(UIViewController *)pageViewController:(ljwcodePageViewController *)pageViewcontroller viewControllerAtIndex:(NSInteger)index {
+    if(index > self.titleArray.count - 1){
+        return [[XGVideoTableViewController alloc]init];
     }
-    return self.titleArray.count+1;
-}
-//设置每一个分页栏展示的控制器及内容
-- (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index{
-    if (index > self.titleArray.count - 1) {
-        return  [[XGVideoTableViewController alloc]init];
-    }
-    videoTitleModel *model = self.titleArray[index];
-    XGVideoTableViewController *detail = [[XGVideoTableViewController alloc]init];
-    detail.titleModel = model;
-    return detail;
+    videoTitleModel *titleModel = self.titleArray[index];
+    XGVideoTableViewController *tableDetailVC = [[XGVideoTableViewController alloc]init];
+    tableDetailVC.titleModel = titleModel;
     
+    return tableDetailVC;
 }
-//设置每一个channel的title
--(NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index{
-    if (index > self.titleArray.count - 1) {
-        return @"       ";
+
+-(NSString *)pageViewController:(ljwcodePageViewController *)pageViewController titleAtIndex:(NSInteger)index {
+    if(index > self.titleArray.count - 1){
+        return  @" " ;
     }else {
-        videoTitleModel *model = self.titleArray[index];
-        return model.name;
+        videoTitleModel *titleModel = self.titleArray[index];
+        return titleModel.name;
     }
+}
+
+-(NSInteger)pageViewControllerNumberOfPage {
+    return self.titleArray.count;
+}
+
+-(void)pageViewController:(ljwcodePageViewController *)pageViewcontroller didSelectedIndex:(NSInteger)index {
+    [pageViewcontroller reloadData];
+    videoTitleModel *titleModel = self.titleArray[index];
+    NSLog(@"切换到了%@",titleModel.name);
 }
 
 #pragma mark - MenuViewDelegate
 
--(void)menuView:(WMMenuView *)menu didSelesctedIndex:(NSInteger)index currentIndex:(NSInteger)currentIndex{
-    if(index == -1){
-        [self needRefreshTableViewData];
-    }else{
-        [super menuView:menu didSelesctedIndex:index currentIndex:currentIndex];
-    }
-}
+//-(void)menuView:(WMMenuView *)menu didSelesctedIndex:(NSInteger)index currentIndex:(NSInteger)currentIndex{
+//    if(index == -1){
+//        [self needRefreshTableViewData];
+//    }else{
+//        [super menuView:menu didSelesctedIndex:index currentIndex:currentIndex];
+//    }
+//}
 
 #pragma mark ----- lazy load
 
@@ -154,7 +159,7 @@
 }
 
 -(void)needRefreshTableViewData{
-    XGVideoTableViewController *videoDetailVC = (XGVideoTableViewController *)self.currentViewController;
+    XGVideoTableViewController *videoDetailVC = (XGVideoTableViewController *)self.getCurrentViewController;
     [videoDetailVC needRefreshTableViewData];
 }
 

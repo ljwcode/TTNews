@@ -123,15 +123,12 @@
 }
 
 -(void)TT_CommentFeedBack{
-    self.tableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
         [[self.CommentViewModel.newsDetailCommend execute:self.group_id]subscribeNext:^(id  _Nullable x) {
             [self.userCommentArray addObjectsFromArray:x];
             [self.tableView reloadData];
             NSLog(@"commentArray = %@",self.userCommentArray);
             [self.tableView.mj_footer endRefreshing];
         }];
-    }];
-    [self.tableView.mj_footer beginRefreshing];
 }
 
 #pragma mark ---- UITableViewDelegate && UITableViewDatasource

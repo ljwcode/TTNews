@@ -9,6 +9,17 @@
 #import "homeNewsModel.h"
 #import <MJExtension/MJExtension.h>
 
+@implementation microToutiaoUserInfo
+
+
+@end
+
+@implementation detail_cover_list
+
+
+
+@end
+
 @implementation dataArray
 
 
@@ -75,12 +86,6 @@
 
 @implementation microVideoDetailModel
 
-//+(NSDictionary *)mj_objectClassInArray{
-//    return @{
-//        @"data" : @"shortVideoArray"
-//    };
-//}
-
 -(microVideoInfoModel *)microInfoModel{
     if(!_microInfoModel){
         NSData *data = [self.content dataUsingEncoding:NSUTF8StringEncoding];
@@ -109,10 +114,17 @@
 
 +(NSDictionary *)mj_objectClassInArray{
     return @{
-        @"image_list" : @"homeNewsImageModel"
+        @"image_list" : @"homeNewsImageModel",
+        @"detail_cover_list" : @"detail_cover_list",
+        @"action_list" : @"action_lsit"
     };
 }
 
++(NSDictionary *)mj_replacedKeyFromPropertyName {
+    return  @{
+        @"microToutiaoUserID" : @"id"
+    };
+}
 
 @end
 

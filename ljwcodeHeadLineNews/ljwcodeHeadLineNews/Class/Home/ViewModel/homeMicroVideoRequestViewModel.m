@@ -9,7 +9,7 @@
 #import "homeMicroVideoRequestViewModel.h"
 #import "homeNewsRequestModel.h"
 #import "homeNewsModel.h"
-#import "homeJokeModel.h"
+#import "homeNewsMiddleCoverViewModel.h"
 #import "videoContentModel.h"
 #import "TT_requestModel.h"
 

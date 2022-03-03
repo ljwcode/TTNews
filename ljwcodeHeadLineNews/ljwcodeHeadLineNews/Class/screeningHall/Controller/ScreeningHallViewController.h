@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TTBaseViewController.h"
-#import "WMPageController.h"
 
-@interface ScreeningHallViewController : WMPageController
+@interface ScreeningHallViewController : TTBaseViewController
 
 @end

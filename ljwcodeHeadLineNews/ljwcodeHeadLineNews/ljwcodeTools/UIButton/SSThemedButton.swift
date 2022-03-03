@@ -9,9 +9,11 @@
 import UIKit
 
 class SSThemedButton : UIButton {
-    override init(frame: CGRect) {
+    @objc init(frame: CGRect,textColor:UIColor,backgroundColor:UIColor,textAlign:NSTextAlignment) {
         super.init(frame: frame)
-        
+        self.setTitleColor(textColor, for: .normal)
+        self.backgroundColor = backgroundColor
+        self.titleLabel?.textAlignment = textAlign
     }
     
     required init?(coder: NSCoder) {

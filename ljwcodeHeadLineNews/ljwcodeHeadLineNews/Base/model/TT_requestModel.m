@@ -18,11 +18,11 @@ struct utsname systemInfo;
 @implementation TT_requestModel
 
 +(NSString *)version_code{
-    return @"8.3.9";
+    return @"8.6.8";
 }
 
 +(NSString *)tma_jssdk_version{
-    return @"1.95.0.19";
+    return @"2.25.0.20";
 }
 
 +(NSString *)app_name{
@@ -30,7 +30,7 @@ struct utsname systemInfo;
 }
 
 +(NSString *)app_version{
-    return @"8.0.9";
+    return @"8.6.8";
 }
 
 +(NSString *)vid{
@@ -38,7 +38,7 @@ struct utsname systemInfo;
 }
 
 +(NSString *)device_id{
-    return @"67277920039";
+    return @"157930857702792";
 }
 
 +(NSString *)channel{
@@ -46,7 +46,7 @@ struct utsname systemInfo;
 }
 
 +(NSString *)resolution{
-    return @"828*1792";
+    return @"750*1334";
 }
 
 +(NSString *)aid{
@@ -54,7 +54,7 @@ struct utsname systemInfo;
 }
 
 +(NSString *)update_version_code{
-    return @"80919";
+    return @"86820";
 }
 
 +(NSString *)cdid{
@@ -101,7 +101,7 @@ struct utsname systemInfo;
 }
 
 +(NSString *)iid{
-    return @"1513346564108847";
+    return @"2115875724858639";
 }
 
 +(NSString *)device_type{
@@ -306,12 +306,11 @@ struct utsname systemInfo;
     return [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
 }
 
-/*
- ?device_id=157930857702792&session_id=9D19C3FC-DDA3-46DA-92AA-C8DFB5A80A5C&list_entrance=more_shortvideo&os_version=12.4.8&ab_feature=2985775,794526,1662483&caid1=626b60a145e6a3340054b5c6d73c1910&strict=0&category=hotsoon_video_feed_card&iid=2190651786797647&app_name=news_article&ab_version=662099,3054932,668775,3054984,3083286,3116939,660830,3054982,3100788,1859936,668779,3054979,668774,2958008,3054973,662176,3054966,3107529&last_refresh_sub_entrance_interval=1630490772&ac=WIFI&detail=1&cp=6f1529Ff52095q1&refer=1&st_time=336&ssmix=a&version_code=8.4.0&vid=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&loc_mode=1&channel=App%20Store&image=1&tma_jssdk_version=2.14.0.6&caid2=&count=20&ab_group=2985775,794526,1662483&update_version_code=84020&tt_from=card_draw&idfa=40DCDF8B-488D-4780-A4D6-DCC51DEA861D&idfv=B3232A5F-0CD1-4E75-9FEA-0A6DB758753F&device_platform=iphone&device_type=iPhone%206&rerank=0&ad_ui_style=%7B%22van_package%22%3A130000060%2C%22is_crowd_generalization_style%22%3A2%7D&ab_client=a1,f2,f7,e1&LBS_status=authroize&loc_time=1630490702&aid=13&language=zh-Hans-CN&cdid=EDDBEF16-CAA0-4624-8789-5BA3E024EF5E&app_version=8.4.0&resolution=750*1334&min_behot_time=0
- */
-
 + (NSString *)session_id {
-    return  @"9D19C3FC-DDA3-46DA-92AA-C8DFB5A80A5C";
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    NSString *UUID = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuid);
+    CFRelease(uuid);
+    return UUID;
 }
 
 + (NSString *)list_entrance {
@@ -319,15 +318,96 @@ struct utsname systemInfo;
 }
 
 + (NSString *)ab_feature{
-    return @"2985775,794526,1662483";
+    return @"794526,3408343,1662483";
 }
 
 + (NSString *)caid1{
-    return @"626b60a145e6a3340054b5c6d73c1910";
+    return @"097e2185d5a6639cdb19eeb2ceb74267";
 }
 
 + (NSString *)strict {
     return @"0";
 }
+
++(NSString *)ab_group{
+    return @"794526,3408343,1662483";
+}
+
++(NSString *)caid2 {
+    return @"";
+}
+
++(NSString *)language {
+    return @"zh-Hans-CN";
+}
+
++(NSString *)image {
+    return @"1";
+}
+
++(NSString *)list_count {
+    return @"18";
+}
+
++(NSString *)count {
+    return @"20";
+}
+
++(NSString *)tt_from {
+    return @"pull";
+}
+
++(NSString *)last_refresh_sub_entrance_interval {
+    return [NSString stringWithFormat:@"%f",[[NSDate date]timeIntervalSince1970]];
+}
+
++(NSString *)loc_time {
+    return [NSString stringWithFormat:@"%f",[[NSDate date]timeIntervalSince1970]];
+}
+
++(NSString *)refer {
+    return @"1";
+}
+
++(NSString *)refresh_reason {
+    return @"1";
+}
+
++(NSString *)concern_id {
+    return @"6286225228934679042";
+}
+
++(NSString *)st_time {
+    return @"8620";
+}
+
++(NSString *)session_refresh_idx {
+    return @"3";
+}
+
++(NSString *)LBS_status{
+    return @"authroize";
+}
+
++(NSString *)rerank {
+    return @"0";
+}
+
++(NSString *)detail {
+    return @"1";
+}
+
++(NSString *)min_behot_time {
+    return [NSString stringWithFormat:@"%f",[[NSDate date]timeIntervalSince1970]];
+}
+
++(NSString *)loc_mode {
+    return @"1";
+}
+
++(NSString *)cp {
+    return @"6e230cEb0dEC3q1";
+}
+
 
 @end

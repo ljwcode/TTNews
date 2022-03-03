@@ -9,12 +9,11 @@
 import UIKit
 
 class SSThemedLabel: UILabel {
-    override init(frame: CGRect) {
+    @objc public init(frame: CGRect,fontColor:UIColor,fontSize:CGFloat,align:NSTextAlignment) {
         super.init(frame: frame)
-        numberOfLines = 1
-        textAlignment = NSTextAlignment.center
-//        lineBreakMode = NSLineBreakMode.byTruncatingTail
-//        backgroundColor = UIColor.clear
+        textAlignment = align
+        textColor = fontColor
+        font = UIFont.systemFont(ofSize: fontSize)
     }
     
     required init?(coder: NSCoder) {

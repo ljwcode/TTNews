@@ -35,7 +35,7 @@ static NSString *const TTChannelRecommendHeaderViewID = @"TTChannelRecommendHead
 
 -(void)viewDidLayoutSubviews{
     UIButton *closePopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [closePopBtn setImage:[UIImage imageNamed:@"close_channel"] forState:UIControlStateNormal];
+    [closePopBtn setImage:[UIImage imageNamed:@"close_grade_small"] forState:UIControlStateNormal];
     [closePopBtn addTarget:self action:@selector(closePopHandle:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:closePopBtn];
     

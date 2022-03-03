@@ -16,6 +16,7 @@
 #import "MJRefresh.h"
 #import <TTNews-Swift.h>
 #import "ljwcodeTools/UITableViewCell/TT_ClickHightLightTableViewCell.h"
+#import "TT_TimeIntervalConverString.h"
 #ifndef ljwcodeHeadLineNews_h
 #define ljwcodeHeadLineNews_h
 

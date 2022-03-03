@@ -36,9 +36,7 @@ class TTHorizontalHuoShanVideoCollectionCell: UICollectionViewCell {
     }()
     
     private lazy var rich_titleLabel : SSThemedLabel = {
-        let titleLabel = SSThemedLabel()
-        titleLabel.textColor = UIColor.white
-        titleLabel.font = UIFont.systemFont(ofSize: 18)
+        let titleLabel = SSThemedLabel.init(frame: .zero, fontColor: UIColor.black, fontSize: 18, align: .center)
         
         return titleLabel
     }()

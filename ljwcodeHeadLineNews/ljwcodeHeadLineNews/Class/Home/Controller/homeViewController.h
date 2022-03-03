@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WMPageController.h"
 
-@interface homeViewController : WMPageController
+@interface homeViewController : TTBaseViewController
 
 @end

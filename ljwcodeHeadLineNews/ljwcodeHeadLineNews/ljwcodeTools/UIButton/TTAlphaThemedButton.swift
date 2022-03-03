@@ -13,7 +13,7 @@ class TTAlphaThemeButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setImage(UIImage.init(named: "tta_close_move_details"), for: .normal)
+        setImage(UIImage.init(named: "close_grade_small"), for: .normal)
     }
     
     required init?(coder: NSCoder) {

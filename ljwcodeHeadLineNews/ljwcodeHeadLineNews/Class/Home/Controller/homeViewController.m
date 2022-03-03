@@ -16,14 +16,17 @@
 #import <FBLPromises/FBLPromises.h>
 #import <FBLPromises/FBLPromise.h>
 #import <TTNews-Swift.h>
+#import "ljwcodePageViewController.h"
 
-@interface homeViewController ()<WMPageControllerDelegate,WMPageControllerDataSource>
+@interface homeViewController ()<ljwcodePageViewControllerDelegate,ljwcodePageViewControllerDataSource>
 
 @property(nonatomic,strong)NSMutableArray *titleArray;
 
 @property(nonatomic,strong)homeTitleViewModel *titleViewModle;
 
 @property(nonatomic,strong)homeTitleDBViewModel *titleDb;
+
+@property(nonatomic,strong)ljwcodePageViewController *pageVC;
 
 @end
 
@@ -55,7 +58,7 @@
                     [self.titleDb InsertDataWithDB:model];
                 }
             });
-            [self reloadData];
+            [self createPageMenu];
             fulfill(self.titleArray);
         }];
     }];
@@ -63,20 +66,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self PageMenuView];
-    
-    self.delegate = self;
-    self.dataSource = self;
-    self.automaticallyCalculatesItemWidths = YES;
-    self.itemMargin = 10;
-    self.selectIndex = 1;
-    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)createPageMenu{
+    self.pageVC = [[ljwcodePageViewController alloc]initWithConfig:[ljwcodePageViewControllerConfig defaultConfig]];
+    self.pageVC.delegate = self;
+    self.pageVC.dataSource = self;
+    self.pageVC.view.frame = self.view.bounds;
+    [self addChildViewController:self.pageVC];
+    [self.view addSubview:self.pageVC.view];
+}
+
 -(void)needRefreshTableViewData{
-    homeTableViewController *detailVC = (homeTableViewController *)self.currentViewController;
+    homeTableViewController *detailVC = (homeTableViewController *)self.getCurrentViewController;
     [detailVC needRefreshTableViewData];
 }
 
@@ -96,68 +99,41 @@
     return _titleDb;
 }
 
+#pragma mark ------ ljwcodePageViewControllerDelegate && ljwcodePageViewControllerDataSource
 
-#pragma mark -----  pageMenuView
-
--(void)PageMenuView{
-    UIButton *addChannelBtn = UIButton.buttonType(UIButtonTypeCustom).showImage([UIImage imageNamed:@"add_channel_titlbar_thin_new"],UIControlStateNormal);
-    addChannelBtn.backgroundColor = [UIColor whiteColor];
-    addChannelBtn.frame = CGRectMake(kScreenWidth - 52, 0, 52, 35);
-    addChannelBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-    [self.menuView addSubview:addChannelBtn];
-    
-    @weakify(self)
-    [RACObserve(self.scrollView, contentOffset) subscribeNext:^(id x) {
-        @strongify(self);
-        CGPoint offset = [x CGPointValue];
-        if (offset.x > kScreenWidth * (self.titleArray.count - 1)) {
-            self.scrollView.contentOffset = CGPointMake(kScreenWidth * (self.titleArray.count - 1), 0);
-        }
-    }];
-}
-
-#pragma mark - WMPageController delelgate && datasource
-
--(NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController{
-    if(self.titleArray.count == 0||!self.titleArray){
-        return 0;
-    }
-    return self.titleArray.count+1;
-}
-//设置每一个分页栏展示的控制器及内容
-- (__kindof UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index{
-    
-    if (index > self.titleArray.count - 1) {
-        return  [[homeTableViewController alloc]init];
+-(UIViewController *)pageViewController:(ljwcodePageViewController *)pageViewcontroller viewControllerAtIndex:(NSInteger)index {
+    if(index > self.titleArray.count - 1){
+        return [[homeTableViewController alloc]init];
     }else if(index == 0){
         TT_followCategoryController *followCategoryVC = [[TT_followCategoryController alloc]init];
         return followCategoryVC;
     }
-    homeTitleModel *model = self.titleArray[index];
-    homeTableViewController *detial = [[homeTableViewController alloc]init];
-    detial.titleModel = model;
-    return detial;
+    homeTitleModel *titleModel = self.titleArray[index];
+    homeTableViewController *tableDetailVC = [[homeTableViewController alloc]init];
+    tableDetailVC.titleModel = titleModel;
     
+    return tableDetailVC;
 }
-//设置每一个channel的title
--(NSString *)pageController:(WMPageController *)pageController titleAtIndex:(NSInteger)index{
-    if (index > self.titleArray.count - 1) {
-        return @" ";
+
+-(NSString *)pageViewController:(ljwcodePageViewController *)pageViewController titleAtIndex:(NSInteger)index {
+    if(index > self.titleArray.count - 1){
+        return  @" " ;
     }else {
-        homeTitleModel *model = self.titleArray[index];
-        return model.name;
+        homeTitleModel *titleModel = self.titleArray[index];
+        return titleModel.name;
     }
 }
 
-#pragma mark - MenuViewDelegate
-
--(void)menuView:(WMMenuView *)menu didSelesctedIndex:(NSInteger)index currentIndex:(NSInteger)currentIndex{
-    if(index == -1){
-        [self needRefreshTableViewData];
-    }else{
-        [super menuView:menu didSelesctedIndex:index currentIndex:currentIndex];
-    }
+-(NSInteger)pageViewControllerNumberOfPage {
+    return self.titleArray.count;
 }
+
+-(void)pageViewController:(ljwcodePageViewController *)pageViewcontroller didSelectedIndex:(NSInteger)index {
+    [pageViewcontroller reloadData];
+    homeTitleModel *titleModel = self.titleArray[index];
+    NSLog(@"切换到了%@",titleModel.name);
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

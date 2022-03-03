@@ -135,8 +135,7 @@
 }
 
 -(void)TT_PushToSearchVC{
-//    self.searchVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self.navigationController pushViewController:self.searchVC animated:YES];
+    [self presentViewController:self.searchVC animated:YES completion:nil];
 }
 
 #pragma mark ---- 响应事件
@@ -203,6 +202,16 @@
         _searchVC = [[TTSearchViewController alloc]init];
     }
     return _searchVC;
+}
+
+- (UIViewController *)getCurrentViewController{
+    UIResponder *next = [self nextResponder];
+    do {if ([next isKindOfClass:[UIViewController class]]) {
+        return (UIViewController *)next;
+    }
+        next = [next nextResponder];
+    } while (next !=nil);
+    return nil;
 }
 
 /*

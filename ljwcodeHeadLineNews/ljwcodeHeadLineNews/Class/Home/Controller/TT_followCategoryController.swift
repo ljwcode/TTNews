@@ -28,8 +28,7 @@ class TT_followCategoryController: TTBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.layer.borderWidth = 1
-        self.view.layer.borderColor = UIColor.yellow.cgColor
+        
         self.view .addSubview(followEmptyView)
         
     }

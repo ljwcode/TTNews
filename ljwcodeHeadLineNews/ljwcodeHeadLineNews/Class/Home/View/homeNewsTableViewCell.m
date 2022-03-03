@@ -11,19 +11,16 @@
 #import "TTFeedDislikeView.h"
 #import "TT_TimeIntervalConverString.h"
 
+/*
+ 无需展示图片
+ */
 @interface homeNewsTableViewCell()<UIGestureRecognizerDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *NewsTitleLabel;
+@property(nonatomic,strong)SSThemedLabel *newsTitleLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *NewsInfoLabel;
+@property(nonatomic,strong)SSThemedLabel *onTopLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *NewsDelBtn;
-
-@property (weak, nonatomic) IBOutlet UIImageView *NewsLeftImgView;
-
-@property (weak, nonatomic) IBOutlet UIImageView *NewsMiddleImgView;
-
-@property (weak, nonatomic) IBOutlet UIImageView *NewsRightImgView;
+@property(nonatomic,strong)SSThemedLabel *newsInfoLablel;
 
 @property(nonatomic,strong)NSArray *imageViews;
 
@@ -35,33 +32,49 @@
 
 @implementation homeNewsTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    _imageViews = @[_NewsLeftImgView,_NewsMiddleImgView,_NewsRightImgView];
-    // Initialization code
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
+        [self createUI];
+    }
+    return self;
+}
+
+-(void)createUI {
+        [self.contentView addSubview:self.onTopLabel];
+        [self.onTopLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(10);
+            make.bottom.mas_equalTo(-10);
+            make.width.mas_equalTo(20);
+            make.height.mas_equalTo(10);
+        }];
+        
+        [self.contentView addSubview:self.newsInfoLablel];
+        [self.newsInfoLablel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.onTopLabel.mas_right).offset(5);
+            make.bottom.mas_equalTo(self.onTopLabel);
+            make.height.mas_equalTo(self.onTopLabel);
+            make.width.mas_greaterThanOrEqualTo(100);
+            make.right.mas_lessThanOrEqualTo(kScreenWidth - 10 - 100 - 20 - 10);
+        }];
+    
+    
+    [self.contentView addSubview:self.newsTitleLabel];
+    
+    [self.newsTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.newsInfoLablel.mas_top).offset(-10);
+        make.left.mas_equalTo(10);
+        make.right.mas_equalTo(-10);
+        make.top.mas_equalTo(5);
+    }];
 }
 
 -(void)setSummaryModel:(homeNewsSummaryModel *)summaryModel{
     _summaryModel = summaryModel;
-    _NewsTitleLabel.text = _summaryModel.infoModel.title;
-    if(_summaryModel.infoModel.image_list.count == 3){
-        _NewsLeftImgView.hidden = NO;
-        _NewsMiddleImgView.hidden = NO;
-        _NewsRightImgView.hidden = NO;
-        
-        NSArray *imageArray = self.summaryModel.infoModel.image_list;
-        [imageArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            homeNewsImageModel *imageModel = (homeNewsImageModel *)obj;
-            UIImageView *imageView = _imageViews[idx];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:imageModel.url]];
-        }];
-    }else{
-        _NewsLeftImgView.hidden = YES;
-        _NewsMiddleImgView.hidden = YES;
-        _NewsRightImgView.hidden = YES;
-    }
+    [self.onTopLabel setHidden:NO];
+    _newsTitleLabel.text = _summaryModel.infoModel.title;
     NSString *publish_time = [NSString stringWithFormat:@"%@",[TT_TimeIntervalConverString TT_converTimeIntervalToString:_summaryModel.infoModel.publish_time]];
-    _NewsInfoLabel.text = [NSString stringWithFormat:@"%@   %d评论 %@",_summaryModel.infoModel.media_name,_summaryModel.infoModel.comment_count,publish_time];
+    _newsInfoLablel.text = [NSString stringWithFormat:@"%@   %@评论 %@",_summaryModel.infoModel.media_name,_summaryModel.infoModel.comment_count,publish_time];
+    
 }
 
 
@@ -79,15 +92,6 @@
         _dislikeView = [[TTFeedDislikeView alloc]init];
     }
     return _dislikeView;
-}
-
-- (IBAction)TT_NewsDelHandle:(id)sender {
-    _tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(TT_tapOtherLocationHandle:)];
-    [[self getCurrentWindow].rootViewController.view addGestureRecognizer:_tapGes];
-    _tapGes.delegate = self;
-    _dislikeView = [[TTFeedDislikeView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth * 0.8, kScreenWidth * 0.8)];
-    _dislikeView.center = [self getCurrentWindow].center;
-    [[self getCurrentWindow].rootViewController.view addSubview:self.dislikeView];
 }
 
 #pragma mark ------ UIGestureRecognizerDelegate
@@ -109,6 +113,33 @@
 -(void)TT_disMissView{
     [self.dislikeView removeFromSuperview];
     self.dislikeView = NULL;
+}
+
+#pragma mark ------- lazy load
+
+-(SSThemedLabel *)newsTitleLabel {
+    if(!_newsTitleLabel){
+        _newsTitleLabel = [[SSThemedLabel alloc]initWithFrame:CGRectZero fontColor:[UIColor blackColor] fontSize:18 align:NSTextAlignmentLeft];
+        _newsTitleLabel.numberOfLines = 0;
+        _newsTitleLabel.preferredMaxLayoutWidth = kScreenWidth - 20;
+        [self.newsTitleLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    }
+    return _newsTitleLabel;
+}
+
+-(SSThemedLabel *)onTopLabel {
+    if(!_onTopLabel){
+        _onTopLabel = [[SSThemedLabel alloc]initWithFrame:CGRectZero fontColor:[UIColor redColor] fontSize:8 align:NSTextAlignmentCenter];
+        _onTopLabel.text = @"置顶";
+    }
+    return _onTopLabel;
+}
+
+-(SSThemedLabel *)newsInfoLablel {
+    if(!_newsInfoLablel){
+        _newsInfoLablel = [[SSThemedLabel alloc]initWithFrame:CGRectZero fontColor:[UIColor grayColor] fontSize:10 align:NSTextAlignmentLeft];
+    }
+    return _newsInfoLablel;
 }
 
 @end

@@ -8,11 +8,11 @@
 
 #import "homeTableViewController.h"
 #import "homeNewsTableViewCell.h"
-#import "homejokeTableViewCell.h"
-#import "homeContentNewsTableViewCell.h"
+#import "homeNewsMiddleVideoViewCell.h"
+#import "homeNewsImgListTableViewCell.h"
 #import "homeNewsModel.h"
 #import "homeNewsCellViewModel.h"
-#import "homeJokeModel.h"
+#import "homeNewsMiddleCoverViewModel.h"
 #import "NewsDetailViewController.h"
 #import "TVVideoPlayerViewCell.h"
 #import "videoContentModel.h"
@@ -24,7 +24,6 @@
 #import "homeNewsDetailDBViewModel.h"
 #import "homeMicroVideoRequestViewModel.h"
 #import <AFNetworkReachabilityManager.h>
-#import <TTNews-Swift.h>
 
 @interface homeTableViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource,UIGestureRecognizerDelegate>
 
@@ -162,6 +161,7 @@
         tableView.emptyDataSetSource = self;
         tableView.emptyDataSetDelegate = self;
         tableView.estimatedRowHeight = UITableViewAutomaticDimension;
+        tableView.estimatedRowHeight = 80;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         [self.view addSubview:tableView];
@@ -171,18 +171,19 @@
         
         //设置UITableViewCell
         
-        UINib *newsTableViewCell = [UINib nibWithNibName:NSStringFromClass([homeNewsTableViewCell class]) bundle:nil];
-        [tableView registerNib:newsTableViewCell forCellReuseIdentifier:NSStringFromClass([homeNewsTableViewCell class])];
+        [tableView registerClass:[homeNewsTableViewCell class] forCellReuseIdentifier:NSStringFromClass([homeNewsTableViewCell class])];
         
-        UINib *jokeTableViewCell = [UINib nibWithNibName:NSStringFromClass([homejokeTableViewCell class]) bundle:nil];
-        [tableView registerNib:jokeTableViewCell forCellReuseIdentifier:NSStringFromClass([homejokeTableViewCell class])];
+        [tableView registerClass:[homeNewsMiddleVideoViewCell class] forCellReuseIdentifier:NSStringFromClass([homeNewsMiddleVideoViewCell class])];
         
-        UINib *contentNewsCell = [UINib nibWithNibName:NSStringFromClass([homeContentNewsTableViewCell class]) bundle:nil];
-        [tableView registerNib:contentNewsCell forCellReuseIdentifier:NSStringFromClass([homeContentNewsTableViewCell class])];
+        [tableView registerClass:[homeNewsImgListTableViewCell class] forCellReuseIdentifier:NSStringFromClass([homeNewsImgListTableViewCell class])];
         
         [tableView registerClass:[TVVideoPlayerViewCell class] forCellReuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
         
         [tableView registerClass:[TT_horizontalCardCell class] forCellReuseIdentifier:NSStringFromClass([TT_horizontalCardCell class])];
+        
+        [tableView registerClass:[TTRecTopNewsTableViewCell class] forCellReuseIdentifier:NSStringFromClass([TTRecTopNewsTableViewCell class])];
+        
+        [tableView registerClass:[TTHomeMicroToutiaoTableViewCell class] forCellReuseIdentifier:NSStringFromClass([TTHomeMicroToutiaoTableViewCell class])];
         
         _detailTableView = tableView;
     }
@@ -197,11 +198,7 @@
 }
 
 -(void)needRefreshTableViewData{
-    if([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable){
-        return;
-    }
-    [self.detailTableView setContentOffset:CGPointZero];
-//    [self.detailTableView.mj_header beginRefreshing];
+    [self TT_onLineRefreshData];
 }
 
 #pragma mark - DZNEmptyDataSetDelegate && DZNEmptyDataSetSource
@@ -256,25 +253,62 @@
     UITableViewCell *resultCell = nil;
     if([self.titleModel.category isEqualToString:@"video"]){
         TVVideoPlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
+        if(!cell){
+            cell = [[TVVideoPlayerViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([TVVideoPlayerViewCell class])];
+        }
         videoContentModel *model = self.datasArray[indexPath.row];
         cell.contentModel = model;
         resultCell = cell;
         
     }else{
-        _model = self.datasArray[indexPath.row];
-        if(_model.infoModel.image_list){
+        self.model = self.datasArray[indexPath.row];
+        if([self.model.infoModel.cell_flag isEqualToString:@"285474827"]){
+            if(self.model.infoModel.image_list){
+                homeNewsImgListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeNewsImgListTableViewCell class])];
+                if(!cell){
+                    cell = [[homeNewsImgListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([homeNewsImgListTableViewCell class])];
+                }
+                cell.newsSummaryModel = self.model;
+                resultCell = cell;
+            }else {
+                TTHomeNewsRightVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TTHomeNewsRightVideoTableViewCell class])];
+                if(!cell){
+                    cell = [[TTHomeNewsRightVideoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([TTHomeNewsRightVideoTableViewCell class])];
+                }
+                cell.newsVideoModel = self.model;
+                resultCell = cell;
+            }
+            
+        }else if([self.model.infoModel.cell_flag isEqualToString:@"285474825"]){
             homeNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeNewsTableViewCell class])];
             if(!cell){
                 cell = [[homeNewsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([homeNewsTableViewCell class])];
             }
-            cell.summaryModel = _model;
+            cell.summaryModel = self.model;
+            resultCell = cell;
+        }else if([self.model.infoModel.cell_flag isEqualToString:@"285474891"]){
+            homeNewsMiddleVideoViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeNewsMiddleVideoViewCell class])];
+            if(!cell){
+                cell = [[homeNewsMiddleVideoViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([homeNewsMiddleVideoViewCell class])];
+            }
+            cell.summaryModel = self.model;
+            resultCell = cell;
+        }else if([self.model.infoModel.cell_flag isEqualToString:@"274071561"]){
+            TTHomeMicroToutiaoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TTHomeMicroToutiaoTableViewCell class])];
+            if(!cell){
+                cell = [[TTHomeMicroToutiaoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([TTHomeMicroToutiaoTableViewCell class])];
+            }
+            cell.summaryModel = self.model;
             resultCell = cell;
         }else{
-            homeContentNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([homeContentNewsTableViewCell class])];
+            /*
+             else if([self.model.infoModel.cell_flag isEqualToString:@"352583689"])
+             */
+            TTRecTopNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TTRecTopNewsTableViewCell class])];
             if(!cell){
-                cell = [[homeContentNewsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([homeContentNewsTableViewCell class])];
+                cell = [[TTRecTopNewsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([TTRecTopNewsTableViewCell class])];
             }
-            cell.newsSummaryModel = _model;
+            cell.summaryModel = self.model;
             resultCell = cell;
         }
     }
@@ -296,9 +330,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.row == [self.datasArray count] - 1) {
-//        [self performSelector:@selector(updateData) withObject:nil afterDelay:1.0f];
-//    }
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
 }
 
 -(void)updateData{

@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TTBaseViewController : UIViewController<TTBaseViewControllerDelegate>
 
+- (UIViewController *)getCurrentViewController;
+
 
 @end
 

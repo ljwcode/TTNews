@@ -63,6 +63,46 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)strict;
 
++(NSString *)ab_group;
+
++(NSString *)caid2;
+
++(NSString *)language;
+
++(NSString *)image;
+
++(NSString *)list_count;
+
++(NSString *)count;
+
++(NSString *)tt_from;
+
++(NSString *)last_refresh_sub_entrance_interval;
+
++(NSString *)loc_time;
+
++(NSString *)refer;
+
++(NSString *)refresh_reason;
+
++(NSString *)concern_id;
+
++(NSString *)st_time;
+
++(NSString *)session_refresh_idx;
+
++(NSString *)LBS_status;
+
++(NSString *)rerank;
+
++(NSString *)detail;
+
++(NSString *)min_behot_time;
+
++(NSString *)loc_mode;
+
++(NSString *)cp;
+
 @end
 
 NS_ASSUME_NONNULL_END

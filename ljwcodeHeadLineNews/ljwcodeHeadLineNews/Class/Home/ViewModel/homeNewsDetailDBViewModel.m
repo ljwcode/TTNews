@@ -10,7 +10,7 @@
 #import "homeNewsDetailDBCacheModel.h"
 #import <Realm.h>
 #import "homeNewsModel.h"
-#import "homeJokeModel.h"
+#import "homeNewsMiddleCoverViewModel.h"
 #import "videoContentModel.h"
 #import <MJExtension.h>
 
@@ -36,7 +36,7 @@
     RLMRealm *realm = [RLMRealm realmWithURL:[NSURL URLWithString:filePath]];
     [realm beginWriteTransaction];
     if([category isEqualToString:@"essay_joke"]){
-        for(homeJokeModel *jokeModel in array){
+        for(homeNewsMiddleCoverViewModel *jokeModel in array){
             NSDictionary *dic = [jokeModel mj_keyValues];
             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dic requiringSecureCoding:YES error:nil];
             if(data){
@@ -78,7 +78,7 @@
     for(homeNewsDetailDBCacheModel *model in result){
         NSMutableDictionary *dic = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:model.data error:nil];
         if([category isEqualToString:@"essay_joke"]){
-            homeJokeModel *jokeModel = [[[homeJokeModel alloc]init]mj_setKeyValues:dic];
+            homeNewsMiddleCoverViewModel *jokeModel = [[[homeNewsMiddleCoverViewModel alloc]init]mj_setKeyValues:dic];
             [dataArray addObject:jokeModel];
         }else if([category isEqualToString:@"video"]){
             videoContentModel *videoModel = [[[videoContentModel alloc]init]mj_setKeyValues:dic];

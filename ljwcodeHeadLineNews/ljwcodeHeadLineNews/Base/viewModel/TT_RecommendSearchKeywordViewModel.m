@@ -50,7 +50,7 @@
                 request.category_name = [NSString stringWithFormat:@"__all__"];
                 request.business_id = @"10000";
                 request.from_group_id = @"0";
-                \
+                
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     NSDictionary *responseDic = (NSDictionary *)response;
                     NSArray *dataArray = [[responseDic objectForKey:@"data"][0] objectForKey:@"words"];
