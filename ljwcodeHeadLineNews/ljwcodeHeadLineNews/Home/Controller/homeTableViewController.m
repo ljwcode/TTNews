@@ -23,9 +23,8 @@
 #import "TTPlayerView.h"
 #import "homeNewsDetailDBViewModel.h"
 #import "homeMicroVideoRequestViewModel.h"
-#import <AFNetworkReachabilityManager.h>
 
-@interface homeTableViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource,UIGestureRecognizerDelegate>
+@interface homeTableViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource,UIGestureRecognizerDelegate,TTHomeNewsTableViewDelegate>
 
 @property(nonatomic,weak)UITableView *detailTableView;
 
@@ -55,31 +54,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
-    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        switch (status) {
-            case AFNetworkReachabilityStatusNotReachable:
-                [self TT_loadCacheData];
-                break;
-            case AFNetworkReachabilityStatusReachableViaWiFi:
-            case AFNetworkReachabilityStatusReachableViaWWAN:
-                [self TT_onLineRefreshData];
-            default:
-                break;
-        }
-    }];
-    [manager startMonitoring];
-    // Do any additional setup after loading the view.
+    
+    if([[NSUserDefaults standardUserDefaults]boolForKey:@"isNotInternet"]){
+        [self TT_loadCacheData];
+    }else {
+        [self TT_onLineRefreshData];
+    }
 }
 
 -(void)TT_loadCacheData{
     homeNewsDetailDBViewModel *dbViewModel = [[homeNewsDetailDBViewModel alloc]init];
     __block NSArray *dataArray = [NSArray array];
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
-    });
+    dataArray = [dbViewModel TT_quertNewsDetailData:self.titleModel.category];
     [self.datasArray addObjectsFromArray:dataArray];
     [self.detailTableView reloadData];
+    
 }
 
 
@@ -269,6 +258,7 @@
                     cell = [[homeNewsImgListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([homeNewsImgListTableViewCell class])];
                 }
                 cell.newsSummaryModel = self.model;
+                cell.delegate = self;
                 resultCell = cell;
             }else {
                 TTHomeNewsRightVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TTHomeNewsRightVideoTableViewCell class])];
@@ -299,6 +289,7 @@
                 cell = [[TTHomeMicroToutiaoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([TTHomeMicroToutiaoTableViewCell class])];
             }
             cell.summaryModel = self.model;
+            cell.delegate = self;
             resultCell = cell;
         }else{
             /*
@@ -337,18 +328,52 @@
     return UITableViewAutomaticDimension;
 }
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return  YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
+        [self TTDeleteNewsCellHandle];
+        [self.datasArray removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+    }
+}
+
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.row > 5){
+        return YES;
+    }
+    return NO;
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    NSString *str = [self.datasArray objectAtIndex:sourceIndexPath.row];
+    [self.datasArray removeObjectAtIndex:sourceIndexPath.row];
+    [self.datasArray insertObject:str atIndex:destinationIndexPath.row];
+}
+
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+    
+    [self.detailTableView setEditing:editing animated:animated];
+}
+
+#pragma mark ---- 上拉刷新更新数据
+
 -(void)updateData{
     @weakify(self);
-    self.detailTableView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+    self.detailTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         @strongify(self);
         [[self.newsCellViewModel.newsCellViewCommand execute:self.titleModel.category]subscribeNext:^(id  _Nullable x) {
             NSArray *datasArray = [self modelArrayWithCategory:self.titleModel.category fromModel:x];
             [self.datasArray addObjectsFromArray:datasArray];
+
             [self.detailTableView reloadData];
-            [self.detailTableView.mj_header endRefreshing];
+            [self.detailTableView.mj_footer endRefreshing];
         }];
+        
     }];
-    [self.detailTableView.mj_header beginRefreshing];
 }
 
 #pragma mark ----- UIGestureRecognizerDelegate
@@ -455,6 +480,10 @@
 #pragma mark ---- UIScrollview delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    float height = scrollView.contentSize.height > _detailTableView.frame.size.height ? _detailTableView.frame.size.height : scrollView.contentSize.height;
+    if((height - scrollView.contentSize.height + scrollView.contentOffset.y) / height > 0.2){
+        [self updateData];
+    }
     NSArray *cells = [self.detailTableView visibleCells];
     if (![cells containsObject:self.playingCell]) {
         
@@ -463,6 +492,16 @@
             _playerView = nil;
         }
     }
+}
+
+#pragma mark ------- TTHomeNewsTableViewDelegate
+
+- (void)TTDeleteNewsCellHandle {
+    NSLog(@"删除cell");
+}
+
+-(void)TTMicroToutiaoLikeHandle {
+    NSLog(@"like");
 }
 
 /*
@@ -474,5 +513,7 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+
 
 @end

@@ -70,13 +70,7 @@
                 request.category = input;
                 [request sendRequestWithSuccess:^(id  _Nonnull response) {
                     NSDictionary *responseDic = (NSDictionary *)response;
-                    if([input isEqualToString:@"essay_joke"]){
-                        homeNewsMiddleCoverViewModel *jokeModel = [[homeNewsMiddleCoverViewModel alloc]init];
-                        [jokeModel mj_setKeyValues:responseDic];
-                        [jokeModel.data_array makeObjectsPerformSelector:@selector(infoModel)];
-                        [subscriber sendNext:jokeModel];
-                        [subscriber sendCompleted];
-                    }else if([input isEqualToString:@"video"]){
+                    if([input isEqualToString:@"video"]){
                         NSArray *modelArray = responseDic[@"data"];
                         NSMutableArray *array = [NSMutableArray array];
                         for(int i = 0;i < modelArray.count;i++){

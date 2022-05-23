@@ -49,6 +49,7 @@
                 return;
             }
             NSLog(@"数据插入成功");
+            
         } @catch (NSException *exception) {
             isRollBack = YES;
             [db rollback];
@@ -74,6 +75,7 @@
             return YES;
         }
     }
+    NSLog(@"homeTitle数据表不存在");
     return NO;
 }
 

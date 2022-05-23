@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import libwebp
 
-class TTRecTopNewsTableViewCell : UITableViewCell {
+class TTRecTopNewsTableViewCell : TT_ClickHightLightTableViewCell {
     private var newsModel : homeNewsSummaryModel!
 
     private lazy var newsTitleLabel : SSThemedLabel = {

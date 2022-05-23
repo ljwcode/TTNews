@@ -53,7 +53,7 @@
     [BackBtn addTarget:self action:@selector(leftBackHandle:) forControlEvents:UIControlEventTouchUpInside];
     [self.headerView addSubview:BackBtn];
     [BackBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(hSpace);
+        make.left.mas_equalTo(5);
         make.centerY.mas_equalTo(self.headerView);
         make.width.height.mas_equalTo(30);
     }];
@@ -118,8 +118,8 @@
     } completed:^{
         NSURL *baseUrl = [NSURL URLWithString:@"file:///assets/"];
         [self.webView loadHTMLString:[self.ArticleContentViewModel TT_getHTMLString] baseURL:baseUrl];
+        [self TT_CommentFeedBack];
     }];
-    [self TT_CommentFeedBack];
 }
 
 -(void)TT_CommentFeedBack{

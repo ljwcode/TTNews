@@ -47,10 +47,10 @@
 @implementation TTBaseViewController
 
 - (void)viewDidLoad {
-    [self createNavSearchBarView];
     [super viewDidLoad];
+    
+    [self createNavSearchBarView];
     [self createSearchBar];
-    // Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -88,15 +88,15 @@
 
 -(FBLPromise *)getPlaceholderText{
     return [FBLPromise async:^(FBLPromiseFulfillBlock  _Nonnull fulfill, FBLPromiseRejectBlock  _Nonnull reject) {
-        if(self->pingHelper.isTimeOut || [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable){
+        if([[NSUserDefaults standardUserDefaults]boolForKey:@"isNotInternet"]){
             NSArray *dataArray = [self.SearchCacheViewModel queryDBTableWithVideoContent];
             NSMutableArray *keywordArray = [[NSMutableArray alloc]init];
-            for(TTArticleSearchInboxFourWordsModel *model in dataArray){
-                [keywordArray addObject:[[model mj_keyValues]objectForKey:@"word"]];
+            for(int i = 0;i < dataArray.count;i++){
+                [keywordArray addObject:dataArray[i]];
             }
             NSString *keyword = [NSString stringWithFormat:@"%@ | %@",keywordArray[0],keywordArray[1]];
             fulfill(keyword);
-        }else{
+        }else {
             [[self.keywordViewModel.searchWordCommand execute:@"title"]subscribeNext:^(id  _Nullable x) {
                 NSArray *dataArray = x;
                 NSMutableArray *keywordArray = [[NSMutableArray alloc]init];

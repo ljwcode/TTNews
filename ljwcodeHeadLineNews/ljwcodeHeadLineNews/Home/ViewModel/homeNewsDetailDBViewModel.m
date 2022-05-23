@@ -35,16 +35,7 @@
     
     RLMRealm *realm = [RLMRealm realmWithURL:[NSURL URLWithString:filePath]];
     [realm beginWriteTransaction];
-    if([category isEqualToString:@"essay_joke"]){
-        for(homeNewsMiddleCoverViewModel *jokeModel in array){
-            NSDictionary *dic = [jokeModel mj_keyValues];
-            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dic requiringSecureCoding:YES error:nil];
-            if(data){
-                NSString *ID = [[NSUUID UUID]UUIDString];
-                [homeNewsDetailDBCacheModel createOrUpdateInRealm:realm withValue:@{@"ID" : ID,@"data" : data}];
-            }
-        }
-    }else if([category isEqualToString:@"video"]){
+    if([category isEqualToString:@"video"]){
         for(videoContentModel *videoModel in array){
             NSDictionary *dic = [videoModel mj_keyValues];
             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dic requiringSecureCoding:YES error:nil];
@@ -77,10 +68,7 @@
     NSMutableArray *dataArray = [[NSMutableArray alloc]init];
     for(homeNewsDetailDBCacheModel *model in result){
         NSMutableDictionary *dic = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:model.data error:nil];
-        if([category isEqualToString:@"essay_joke"]){
-            homeNewsMiddleCoverViewModel *jokeModel = [[[homeNewsMiddleCoverViewModel alloc]init]mj_setKeyValues:dic];
-            [dataArray addObject:jokeModel];
-        }else if([category isEqualToString:@"video"]){
+        if([category isEqualToString:@"video"]){
             videoContentModel *videoModel = [[[videoContentModel alloc]init]mj_setKeyValues:dic];
             [dataArray addObject:videoModel];
         }else{

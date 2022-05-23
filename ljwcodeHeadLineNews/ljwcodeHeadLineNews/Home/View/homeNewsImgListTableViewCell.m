@@ -185,8 +185,8 @@
 #pragma mark -------- 事件响应
 
 -(void)deleteCellHandle:(UIButton *)sender {
-    if(self.delegate && [self.delegate respondsToSelector:@selector(deleteNewsCellHandle)]){
-        [self.delegate deleteNewsCellHandle];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TTDeleteNewsCellHandle)]){
+        [self.delegate TTDeleteNewsCellHandle];
     }
 }
 

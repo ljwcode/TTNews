@@ -9,3 +9,4 @@
 #import "homeNewsModel.h"
 #import <UIImageView+WebCache.h>
 #import "TT_TimeIntervalConverString.h"
+#import "TT_ClickHightLightTableViewCell.h"

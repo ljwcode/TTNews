@@ -7,7 +7,7 @@
 //
 
 #import "TTNavigationController.h"
-
+#import "homeTableViewController.h"
 @interface TTNavigationController ()<UIBarPositioningDelegate,UIGestureRecognizerDelegate>
 
 @property(nonatomic,strong)UIImage *defaultImage;
@@ -77,6 +77,11 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     BOOL open = self.viewControllers.count > 1;
     return open;
+}
+
+-(void)needRefreshTableViewData{
+    homeTableViewController *detailVC = [[homeTableViewController alloc]init];
+    [detailVC needRefreshTableViewData];
 }
 
 /*

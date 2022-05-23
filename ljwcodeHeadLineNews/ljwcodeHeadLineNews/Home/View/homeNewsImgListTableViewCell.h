@@ -12,15 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol homeNewsImgListTableViewCellDelegate <NSObject>
-
--(void)deleteNewsCellHandle;
-
-@end
-
 @interface homeNewsImgListTableViewCell : TT_ClickHightLightTableViewCell
-
-@property(nonatomic,weak)id<homeNewsImgListTableViewCellDelegate> delegate;
 
 @property(nonatomic,strong)homeNewsSummaryModel *newsSummaryModel;
 

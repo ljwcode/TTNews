@@ -10,7 +10,25 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol TTHomeNewsTableViewDelegate <NSObject>
+
+@optional
+
+-(void)TTDeleteNewsCellHandle;
+
+-(void)TTPlayNewsVideoHandle;
+
+-(void)TTMicroToutiaoShareHandle;
+
+-(void)TTMicroToutiaoCommentHandle;
+
+-(void)TTMicroToutiaoLikeHandle;
+
+@end
+
 @interface TT_ClickHightLightTableViewCell : UITableViewCell
+
+@property(nonatomic,assign)id<TTHomeNewsTableViewDelegate> delegate;
 
 @end
 

@@ -12,13 +12,14 @@
 #import "homeTableViewController.h"
 #import "homeTitleDBViewModel.h"
 #import "UIButton+extend.h"
-#import <AFNetworkReachabilityManager.h>
 #import <FBLPromises/FBLPromises.h>
 #import <FBLPromises/FBLPromise.h>
 #import <TTNews-Swift.h>
 #import "ljwcodePageViewController.h"
 
-@interface homeViewController ()<ljwcodePageViewControllerDelegate,ljwcodePageViewControllerDataSource>
+@interface homeViewController ()<ljwcodePageViewControllerDelegate,ljwcodePageViewControllerDataSource>{
+    NSString *saveControllerIdentifier;
+}
 
 @property(nonatomic,strong)NSMutableArray *titleArray;
 
@@ -34,9 +35,24 @@
 
 -(instancetype)init{
     if(self = [super init]){
-        [self TT_titleArray];
+        if([[NSUserDefaults standardUserDefaults]boolForKey:@"isNotInternet"]){
+            NSLog(@"无网络缓存");
+            [self TT_getDbCacheHomeTitle];
+        }else {
+            [self TT_titleArray];
+            NSLog(@"有网络");
+        }
     }
     return self;
+}
+
+-(void)TT_getDbCacheHomeTitle{
+    self.titleArray = [self.titleDb queryDataBase];
+    [self createPageMenu];
+    for(int i = 0;i < self.titleArray.count;i++){
+        homeTitleModel *model = self.titleArray[i];
+        NSLog(@"model = %@",model.name);
+    }
 }
 
 -(void)TT_titleArray{
@@ -52,11 +68,16 @@
             @strongify(self);
             self.titleArray = x;
             dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                [self.titleDb createTitleCacheDb];
-                for(int i = 0;i < self.titleArray.count;i++){
-                    homeTitleModel *model = self.titleArray[i];
-                    [self.titleDb InsertDataWithDB:model];
-                }
+                    for(int i = 0;i < self.titleArray.count;i++){
+                        homeTitleModel *model = self.titleArray[i];
+                        if(![[NSUserDefaults standardUserDefaults]objectForKey:@"isSaveHomeTitle"]){
+                            if(![self.titleDb DBTableISExist]){
+                                [self.titleDb createTitleCacheDb];
+                            }
+                            [self.titleDb InsertDataWithDB:model];
+                        }
+                    }
+                [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isSaveHomeTitle"];
             });
             [self createPageMenu];
             fulfill(self.titleArray);
@@ -66,6 +87,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setRestorationIdentifier:NSStringFromClass([self class])];
+    [self setRestorationClass:self.class];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -138,6 +161,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark ------ 试图状态恢复
+
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+}
+
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+}
+
 
 /*
  #pragma mark - Navigation

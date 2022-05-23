@@ -9,17 +9,9 @@
 import Foundation
 import UIKit
 
-@objc(TTHomeNewsRightVideoTableViewCellDelegate)
-protocol TTHomeMicroToutiaoTableViewCellDelegate : NSObjectProtocol{
-    func TTMicroToutiaoShareHandle() -> Void
-    func TTMicroToutiaoCommentHandle() -> Void
-    func TTMicroToutiaoLikeHandle() -> Void
-}
-
-class TTHomeMicroToutiaoTableViewCell : UITableViewCell {
+class TTHomeMicroToutiaoTableViewCell : TT_ClickHightLightTableViewCell {
     private var newsModel : homeNewsSummaryModel?
     var imgCoverList : [detail_cover_list]?
-    @objc weak var delegate : TTHomeMicroToutiaoTableViewCellDelegate?
     
     private lazy var userInfoView : UIView = {
         let view = UIView()
@@ -128,20 +120,20 @@ class TTHomeMicroToutiaoTableViewCell : UITableViewCell {
     }()
     
     @objc func TTMicroToutiaoShareHandle(sender:UIButton) {
-        if delegate != nil && ((delegate?.responds(to: #selector(TTMicroToutiaoShareHandle))) != nil) {
-            delegate?.TTMicroToutiaoShareHandle()
+        if self.delegate.responds(to: #selector(TTMicroToutiaoShareHandle(sender:))) {
+            self.delegate.ttMicroToutiaoShareHandle?()
         }
     }
     
     @objc func TTMicroToutiaoCommentHandle(sender:UIButton){
-        if delegate != nil && ((delegate?.responds(to: #selector(TTMicroToutiaoCommentHandle))) != nil) {
-            delegate?.TTMicroToutiaoCommentHandle()
+        if self.delegate.responds(to: #selector(TTMicroToutiaoCommentHandle(sender:))) {
+            self.delegate.ttMicroToutiaoCommentHandle?()
         }
     }
     
     @objc func TTMicroToutiaoLikeHandle(sender:UIButton) {
-        if delegate != nil && ((delegate?.responds(to: #selector(TTMicroToutiaoLikeHandle))) != nil) {
-            delegate?.TTMicroToutiaoLikeHandle()
+        if ((self.delegate.ttMicroToutiaoLikeHandle?()) != nil) {
+            self.delegate.ttMicroToutiaoLikeHandle?()
         }
     }
     

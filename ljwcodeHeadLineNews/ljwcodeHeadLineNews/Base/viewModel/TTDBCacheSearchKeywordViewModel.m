@@ -62,15 +62,9 @@
         [db beginTransaction];
         BOOL isRollBack = NO;
         @try {
-            for(TTArticleSearchInboxFourWordsModel *model in dataArray){
-                NSDictionary *dataDic = [model mj_keyValues];
-                NSError *Error = nil;
-                NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dataDic requiringSecureCoding:YES error:&Error];
-                if(!data && Error){
-                    NSLog(@"Error = %@",Error);
-                }
+            for(int i = 0;i < dataArray.count;i++){
                 NSString *sql = @"INSERT INTO TTSearchKeyword(keyword) VALUES (?)";
-                BOOL executeInsertDB = [db executeUpdate:sql,data];
+                BOOL executeInsertDB = [db executeUpdate:sql,dataArray[i]];
                 if(executeInsertDB){
                     NSLog(@"keyword数据插入成功");
                     NSString *sql = @"CREATE TRIGGER IF NOT EXISTS Trl AFTER INSERT ON TTSearchKeyword when (select count(*) from TTSearchKeyword)>4 BEGIN delete from TTSearchKeyword where id in (select id from TTSearchKeyword order by id limit 0,1);END;";
@@ -101,14 +95,8 @@
     }];
     NSMutableArray *array = [NSMutableArray array];
     while ([result next]) {
-        NSData *data = [result dataForColumn:@"keyword"];
-        NSError *Error;
-        NSDictionary *dic;
-        dic = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSDictionary class] fromData:data error:&Error];
-        if(dic){
-            TTArticleSearchInboxFourWordsModel *model = [[[TTArticleSearchInboxFourWordsModel alloc]init]mj_setKeyValues:dic];
-            [array addObject:model];
-        }
+        NSString *keyword = [result stringForColumn:@"keyword"];
+        [array addObject:keyword];
     }
     return array;
 }

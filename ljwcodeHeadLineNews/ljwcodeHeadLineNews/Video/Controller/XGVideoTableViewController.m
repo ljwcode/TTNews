@@ -17,7 +17,6 @@
 #import "videoDetailViewModel.h"
 #import "XGVideoDetailViewController.h"
 #import "TTHomeMoreShareVIew.h"
-#import <AFNetworkReachabilityManager.h>
 
 @interface XGVideoTableViewController ()<UITableViewDelegate,UITableViewDataSource,TVVideoPlayerCellDelegate,UIScrollViewDelegate>
 
@@ -49,21 +48,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
-    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        switch (status) {
-            case AFNetworkReachabilityStatusNotReachable:
-                [self TT_loadCacheData];
-                break;
-            case AFNetworkReachabilityStatusReachableViaWWAN:
-            case AFNetworkReachabilityStatusReachableViaWiFi:
-                [self TT_OnlineRefreshData];
-            default:
-                break;
-        }
-    }];
-    [manager startMonitoring];
 }
 
 -(void)TT_OnlineRefreshData{
@@ -102,6 +86,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    if([[NSUserDefaults standardUserDefaults]boolForKey:@"isNotInternet"]){
+        [self TT_loadCacheData];
+    }else {
+        [self TT_OnlineRefreshData];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

@@ -8,14 +8,8 @@
 
 import Foundation
 
-protocol TTHomeNewsRightVideoTableViewCellDelegate:NSObjectProtocol{
-    func delNewsCellHandle() ->Void
-    func playNewsVideoHandle() ->Void
-}
-
-class TTHomeNewsRightVideoTableViewCell : UITableViewCell {
+class TTHomeNewsRightVideoTableViewCell : TT_ClickHightLightTableViewCell {
     private var newsModel : homeNewsSummaryModel?;
-    weak var delegate : TTHomeNewsRightVideoTableViewCellDelegate?
     
     private lazy var newsTitleLabel : SSThemedLabel = {
         let label = SSThemedLabel.init(frame: .zero, fontColor: UIColor.black, fontSize: 18, align: .left)
@@ -70,14 +64,14 @@ class TTHomeNewsRightVideoTableViewCell : UITableViewCell {
     }()
     
     @objc func delNewsCellHandle() {
-        if (self.delegate != nil) && self.delegate?.delNewsCellHandle() != nil {
-            self.delegate? .delNewsCellHandle()
-        }
+//        if self.delegate.responds(to: #selector(ttDeleteNewsCellHandle())) {
+//            self.delegate.ttDeleteNewsCellHandle?()
+//        }
     }
-    
+
     @objc func playNewsVideoHandle() {
-        if(self.delegate != nil) && self.delegate?.playNewsVideoHandle() != nil {
-            self.delegate? .playNewsVideoHandle()
+        if self.delegate.ttPlayNewsVideoHandle?() != nil {
+            self.delegate.ttPlayNewsVideoHandle?()
         }
     }
     

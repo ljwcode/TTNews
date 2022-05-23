@@ -160,6 +160,7 @@
 		8209791A1BD3AFAC00CF9D0C /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979181BD3AFAC00CF9D0C /* MineViewController.m */; };
 		8209791F1BD3AFDB00CF9D0C /* XGVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8209791D1BD3AFDB00CF9D0C /* XGVideoViewController.m */; };
 		820979281BD3B28700CF9D0C /* TTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820979271BD3B28700CF9D0C /* TTTabBarController.m */; };
+		940652E828379FA000F0844E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 940652E628379FA000F0844E /* Reachability.m */; };
 		940914BA27116FFB00051BA6 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940914B927116FFB00051BA6 /* Array2D.swift */; };
 		941AD2CD27B2451500B61B86 /* TTKeywordSearchHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941AD2CC27B2451500B61B86 /* TTKeywordSearchHeaderCell.swift */; };
 		941AD2DE27B5039C00B61B86 /* ljwcodePageTitleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 941AD2D027B5039C00B61B86 /* ljwcodePageTitleCollectionViewCell.m */; };
@@ -173,7 +174,6 @@
 		9431F82925FB1172006929EC /* TTChangeFontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9431F82725FB1172006929EC /* TTChangeFontViewController.m */; };
 		9436715026C689DD0082A368 /* TThotListAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436714F26C689DD0082A368 /* TThotListAlertView.swift */; };
 		943B952B27BCF02500815715 /* TTHomeNewsRightVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943B952A27BCF02500815715 /* TTHomeNewsRightVideoTableViewCell.swift */; };
-		94669CAA27CCACFE0089881D /* microNews.json in Resources */ = {isa = PBXBuildFile; fileRef = 94669CA927CCACFE0089881D /* microNews.json */; };
 		9467B1BC2713E0B5007E0B61 /* SearchTracelessSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9467B1BB2713E0B5007E0B61 /* SearchTracelessSwitchView.swift */; };
 		947157F5269D963E00A6CE13 /* TT_questionWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 947157F4269D963E00A6CE13 /* TT_questionWebView.m */; };
 		947811F226DF247600CBAB9E /* TT_horizontalCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947811F126DF247600CBAB9E /* TT_horizontalCardCell.swift */; };
@@ -183,7 +183,6 @@
 		947E13C82701A0FE00260AA0 /* TTSearchLynxViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947E13C72701A0FE00260AA0 /* TTSearchLynxViewCell.swift */; };
 		9488556B26E0B0F900A67E02 /* homeMicroVideoRequestViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9488556A26E0B0F900A67E02 /* homeMicroVideoRequestViewModel.m */; };
 		948EE92826022AB80088EF4D /* TTPlayerEndMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948EE92726022AB80088EF4D /* TTPlayerEndMaskView.swift */; };
-		9492A19F26D8E5DA004DA489 /* news_hotspot.json in Resources */ = {isa = PBXBuildFile; fileRef = 9492A19E26D8E5DA004DA489 /* news_hotspot.json */; };
 		9492A1A126D8EB1B004DA489 /* homeNewshotSpotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9492A1A026D8EB1B004DA489 /* homeNewshotSpotModel.swift */; };
 		949766362700820400C18F9E /* searchWords in Resources */ = {isa = PBXBuildFile; fileRef = 949766352700820400C18F9E /* searchWords */; };
 		949E779424A39605000C446E /* homeNewsMiddleVideoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949E779224A39605000C446E /* homeNewsMiddleVideoViewCell.m */; };
@@ -192,7 +191,6 @@
 		94A0DE0826C284170043ACC0 /* TT_followCategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A0DE0726C284170043ACC0 /* TT_followCategoryController.swift */; };
 		94A4A6EA24A25331002A6CA3 /* TTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A4A6E924A25331002A6CA3 /* TTBaseViewController.m */; };
 		94AA373827BDEDA300A50A46 /* TTNewsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AA373727BDEDA200A50A46 /* TTNewsHeader.swift */; };
-		94AA373C27BE31C500A50A46 /* homeNews.json in Resources */ = {isa = PBXBuildFile; fileRef = 94AA373B27BE31C500A50A46 /* homeNews.json */; };
 		94AF78BE25F8C0370018A522 /* libicucore.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 94AF78BC25F8C0370018A522 /* libicucore.A.tbd */; };
 		94AF78BF25F8C0370018A522 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 94AF78BD25F8C0370018A522 /* libicucore.tbd */; };
 		94AF791725F8C3720018A522 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AF791525F8C3710018A522 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -233,10 +231,8 @@
 		94D4453226059CCA00FA8C2E /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4451826059CCA00FA8C2E /* MJRefreshComponent.m */; };
 		94D4453326059CCA00FA8C2E /* MJRefreshTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D4451B26059CCA00FA8C2E /* MJRefreshTrailer.m */; };
 		94DDC61526DCC46100DFF390 /* TT_hotSpotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DDC61426DCC46100DFF390 /* TT_hotSpotTableViewCell.swift */; };
-		94E00EC226DF929600B48F66 /* news.json in Resources */ = {isa = PBXBuildFile; fileRef = 94E00EC126DF929600B48F66 /* news.json */; };
 		94E5470E26FB077600D90E74 /* TTSearchEntranceBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E5470D26FB077600D90E74 /* TTSearchEntranceBarView.swift */; };
 		94ECDDD526DE1DC100CE9F21 /* TT_newsListVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94ECDDD426DE1DC100CE9F21 /* TT_newsListVideoCell.swift */; };
-		94ECDDD726DE3F5600CE9F21 /* xiaoshiping.json in Resources */ = {isa = PBXBuildFile; fileRef = 94ECDDD626DE3F5600CE9F21 /* xiaoshiping.json */; };
 		94FC9F1726C3D47300BD7506 /* TT_hotListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FC9F1626C3D47300BD7506 /* TT_hotListViewController.swift */; };
 		94FC9F1926C3D5AF00BD7506 /* TThotListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FC9F1826C3D5AF00BD7506 /* TThotListHeaderView.swift */; };
 		94FCC71227C48C8D00DA41D3 /* TTHomeMicroToutiaoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FCC71127C48C8D00DA41D3 /* TTHomeMicroToutiaoTableViewCell.swift */; };
@@ -537,6 +533,8 @@
 		8209791D1BD3AFDB00CF9D0C /* XGVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XGVideoViewController.m; sourceTree = "<group>"; };
 		820979261BD3B28700CF9D0C /* TTTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTabBarController.h; sourceTree = "<group>"; };
 		820979271BD3B28700CF9D0C /* TTTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTabBarController.m; sourceTree = "<group>"; };
+		940652E628379FA000F0844E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		940652E728379FA000F0844E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		940914B927116FFB00051BA6 /* Array2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
 		941AD2CC27B2451500B61B86 /* TTKeywordSearchHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTKeywordSearchHeaderCell.swift; sourceTree = "<group>"; };
 		941AD2D027B5039C00B61B86 /* ljwcodePageTitleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ljwcodePageTitleCollectionViewCell.m; sourceTree = "<group>"; };
@@ -559,7 +557,6 @@
 		9431F82825FB1172006929EC /* TTChangeFontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTChangeFontViewController.h; sourceTree = "<group>"; };
 		9436714F26C689DD0082A368 /* TThotListAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TThotListAlertView.swift; sourceTree = "<group>"; };
 		943B952A27BCF02500815715 /* TTHomeNewsRightVideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTHomeNewsRightVideoTableViewCell.swift; sourceTree = "<group>"; };
-		94669CA927CCACFE0089881D /* microNews.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = microNews.json; sourceTree = "<group>"; };
 		9467B1BB2713E0B5007E0B61 /* SearchTracelessSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTracelessSwitchView.swift; sourceTree = "<group>"; };
 		947157F3269D963E00A6CE13 /* TT_questionWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TT_questionWebView.h; sourceTree = "<group>"; };
 		947157F4269D963E00A6CE13 /* TT_questionWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TT_questionWebView.m; sourceTree = "<group>"; };
@@ -572,7 +569,6 @@
 		9488556A26E0B0F900A67E02 /* homeMicroVideoRequestViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = homeMicroVideoRequestViewModel.m; sourceTree = "<group>"; };
 		948EE92626022AB80088EF4D /* ljwcodeHeadLineNews-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ljwcodeHeadLineNews-Bridging-Header.h"; sourceTree = "<group>"; };
 		948EE92726022AB80088EF4D /* TTPlayerEndMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTPlayerEndMaskView.swift; sourceTree = "<group>"; };
-		9492A19E26D8E5DA004DA489 /* news_hotspot.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = news_hotspot.json; sourceTree = "<group>"; };
 		9492A1A026D8EB1B004DA489 /* homeNewshotSpotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeNewshotSpotModel.swift; sourceTree = "<group>"; };
 		949766352700820400C18F9E /* searchWords */ = {isa = PBXFileReference; lastKnownFileType = text; path = searchWords; sourceTree = "<group>"; };
 		949E779124A39605000C446E /* homeNewsMiddleVideoViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = homeNewsMiddleVideoViewCell.h; sourceTree = "<group>"; };
@@ -584,7 +580,6 @@
 		94A4A6E824A25331002A6CA3 /* TTBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTBaseViewController.h; sourceTree = "<group>"; };
 		94A4A6E924A25331002A6CA3 /* TTBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTBaseViewController.m; sourceTree = "<group>"; };
 		94AA373727BDEDA200A50A46 /* TTNewsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTNewsHeader.swift; sourceTree = "<group>"; };
-		94AA373B27BE31C500A50A46 /* homeNews.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = homeNews.json; sourceTree = "<group>"; };
 		94AF78BC25F8C0370018A522 /* libicucore.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.A.tbd; path = usr/lib/libicucore.A.tbd; sourceTree = SDKROOT; };
 		94AF78BD25F8C0370018A522 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		94AF791525F8C3710018A522 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
@@ -652,10 +647,8 @@
 		94D4451A26059CCA00FA8C2E /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
 		94D4451B26059CCA00FA8C2E /* MJRefreshTrailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshTrailer.m; sourceTree = "<group>"; };
 		94DDC61426DCC46100DFF390 /* TT_hotSpotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TT_hotSpotTableViewCell.swift; sourceTree = "<group>"; };
-		94E00EC126DF929600B48F66 /* news.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = news.json; sourceTree = "<group>"; };
 		94E5470D26FB077600D90E74 /* TTSearchEntranceBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSearchEntranceBarView.swift; sourceTree = "<group>"; };
 		94ECDDD426DE1DC100CE9F21 /* TT_newsListVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TT_newsListVideoCell.swift; sourceTree = "<group>"; };
-		94ECDDD626DE3F5600CE9F21 /* xiaoshiping.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = xiaoshiping.json; sourceTree = "<group>"; };
 		94FC9F1626C3D47300BD7506 /* TT_hotListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TT_hotListViewController.swift; sourceTree = "<group>"; };
 		94FC9F1826C3D5AF00BD7506 /* TThotListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TThotListHeaderView.swift; sourceTree = "<group>"; };
 		94FCC71127C48C8D00DA41D3 /* TTHomeMicroToutiaoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTHomeMicroToutiaoTableViewCell.swift; sourceTree = "<group>"; };
@@ -950,6 +943,8 @@
 		637C2D2D24A9D1120009274C /* TTNewsNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				940652E728379FA000F0844E /* Reachability.h */,
+				940652E628379FA000F0844E /* Reachability.m */,
 				637C2D2E24A9D1600009274C /* TTNetworkBaseModel.h */,
 				637C2D2F24A9D1600009274C /* TTNetworkBaseModel.m */,
 				637C2D3124A9D1930009274C /* TTNetworkURLManager.h */,
@@ -1137,9 +1132,6 @@
 				63C8039D25F0FEE400B1EB99 /* homeArticleContentViewModel.m */,
 				636CA5E925F797C400C4287F /* homeNewsDetailCommentViewModel.h */,
 				636CA5EA25F797C400C4287F /* homeNewsDetailCommentViewModel.m */,
-				9492A19E26D8E5DA004DA489 /* news_hotspot.json */,
-				94ECDDD626DE3F5600CE9F21 /* xiaoshiping.json */,
-				94E00EC126DF929600B48F66 /* news.json */,
 				9488556926E0B0F900A67E02 /* homeMicroVideoRequestViewModel.h */,
 				9488556A26E0B0F900A67E02 /* homeMicroVideoRequestViewModel.m */,
 			);
@@ -1321,8 +1313,6 @@
 		820978DA1BD3A37600CF9D0C = {
 			isa = PBXGroup;
 			children = (
-				94669CA927CCACFE0089881D /* microNews.json */,
-				94AA373B27BE31C500A50A46 /* homeNews.json */,
 				94B79EE726048C540042727A /* 项目截图 */,
 				63EB675425F634C3004BF64B /* assets */,
 				63F30EF52564CAEB000CE908 /* LaunchScreen.storyboard */,
@@ -1344,12 +1334,15 @@
 		820978E51BD3A37600CF9D0C /* ljwcodeHeadLineNews */ = {
 			isa = PBXGroup;
 			children = (
+				820979081BD3AB0600CF9D0C /* Home */,
+				820979091BD3AB0600CF9D0C /* screeningHall */,
+				8209790A1BD3AB0600CF9D0C /* mine */,
+				8209790C1BD3AB0600CF9D0C /* Video */,
 				941AD2CF27B5039C00B61B86 /* ljwcodePageViewController */,
 				63422BBA24A838720091FEE1 /* 3rd */,
 				6328F60B249DABDA00C767A8 /* ljwcodeTools */,
 				820979251BD3B1CC00CF9D0C /* TabBar */,
 				820979241BD3B1CC00CF9D0C /* Base */,
-				820978FD1BD3A94100CF9D0C /* Class */,
 				820978E91BD3A37700CF9D0C /* AppDelegate.h */,
 				820978EA1BD3A37700CF9D0C /* AppDelegate.m */,
 				637C2D2224A995F70009274C /* HeadLineNews.pch */,
@@ -1367,17 +1360,6 @@
 				820978F71BD3A37700CF9D0C /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		820978FD1BD3A94100CF9D0C /* Class */ = {
-			isa = PBXGroup;
-			children = (
-				820979081BD3AB0600CF9D0C /* Home */,
-				820979091BD3AB0600CF9D0C /* screeningHall */,
-				8209790A1BD3AB0600CF9D0C /* mine */,
-				8209790C1BD3AB0600CF9D0C /* Video */,
-			);
-			path = Class;
 			sourceTree = "<group>";
 		};
 		820979081BD3AB0600CF9D0C /* Home */ = {
@@ -1719,11 +1701,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 820978FA1BD3A37700CF9D0C /* Build configuration list for PBXNativeTarget "ljwcodeHeadLineNews" */;
 			buildPhases = (
-				1C5E7AA71FA3183FF9F3E28E /* [CP] Check Pods Manifest.lock */,
+				26943B0F73F7B09B7369D887 /* [CP] Check Pods Manifest.lock */,
 				820978DF1BD3A37600CF9D0C /* Sources */,
 				820978E01BD3A37600CF9D0C /* Frameworks */,
 				820978E11BD3A37600CF9D0C /* Resources */,
-				51B1AFBB7C3E2341CF1762F0 /* [CP] Embed Pods Frameworks */,
+				94784EED27EC144F00E6FA9B /* ShellScript */,
+				8CF1465BA2B6FF02AB04D476 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1773,33 +1756,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				949766362700820400C18F9E /* searchWords in Resources */,
-				94669CAA27CCACFE0089881D /* microNews.json in Resources */,
 				631BC91C25481E50001B82AB /* TTThemeDefault.plist in Resources */,
 				6390EEBF2589B3670081093E /* README.md in Resources */,
 				94B79EF526048CAA0042727A /* 7.png in Resources */,
 				631BC92225481E7D001B82AB /* TTThemeNight.plist in Resources */,
 				63A3131925C95C8E00AF1056 /* TT_UserCommentTableViewCell.xib in Resources */,
-				9492A19F26D8E5DA004DA489 /* news_hotspot.json in Resources */,
 				6328F615249E1BBF00C767A8 /* Assets.xcassets in Resources */,
 				63AFDD2525B839EB00AD13C9 /* TTFontSizeChangeModel.json in Resources */,
 				63A3130325C9060500AF1056 /* TTRecommandVideoTableViewCell.xib in Resources */,
 				63265C4B256F9FF100AACBC6 /* TTChannelMyHeaderView.xib in Resources */,
 				63265C4E256F9FFA00AACBC6 /* TTChannelRecommendHeaderView.xib in Resources */,
 				94B79EEF26048CAA0042727A /* 5.png in Resources */,
-				94E00EC226DF929600B48F66 /* news.json in Resources */,
 				6390EEBC2589B3670081093E /* LICENSE in Resources */,
 				634DA02D25A45C4200236458 /* Settings.bundle in Resources */,
 				637E3CA724C7E65200FA5447 /* AreaCode.plist in Resources */,
 				63F30EF62564CAEB000CE908 /* LaunchScreen.storyboard in Resources */,
 				63EB675525F634C3004BF64B /* assets in Resources */,
-				94AA373C27BE31C500A50A46 /* homeNews.json in Resources */,
 				94B79EF426048CAA0042727A /* 1.png in Resources */,
 				94B79EF126048CAA0042727A /* 2.png in Resources */,
 				94B79EF226048CAA0042727A /* 6.png in Resources */,
 				94B79EF026048CAA0042727A /* 4.png in Resources */,
 				94D4451F26059CCA00FA8C2E /* MJRefresh.bundle in Resources */,
 				94B79EF326048CAA0042727A /* 3.png in Resources */,
-				94ECDDD726DE3F5600CE9F21 /* xiaoshiping.json in Resources */,
 				631BC91F25481E66001B82AB /* TTThemeDefaultTag.plist in Resources */,
 				631BC92525481E8B001B82AB /* TTThemeNightTag.plist in Resources */,
 				63D2869225AFF73D00D87A10 /* TTTabBarModel.json in Resources */,
@@ -1809,7 +1787,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1C5E7AA71FA3183FF9F3E28E /* [CP] Check Pods Manifest.lock */ = {
+		26943B0F73F7B09B7369D887 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1831,7 +1809,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		51B1AFBB7C3E2341CF1762F0 /* [CP] Embed Pods Frameworks */ = {
+		8CF1465BA2B6FF02AB04D476 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1847,6 +1825,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ljwcodeHeadLineNews/Pods-ljwcodeHeadLineNews-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		94784EED27EC144F00E6FA9B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n#\n# Copyright 2016 Bugly, Tencent. All rights reserved.\n#\n# V1.4.0\n#\n# 2016.08.03\n#\n#\n#\n######################################################\n# 1. 脚本集成到Xcode工程的Target\n######################################################\n#\n# --- Copy the SCRIPT to the Run Script of Build Phases in the Xcode project ---\n#\n# #\nBUGLY_APP_ID=\"39a4a6e9d9\"\n# #\nBUGLY_APP_KEY=\"9a7161e6-70ed-4d98-9dac-6e993c3f1e8a\"\n# #\nBUNDLE_IDENTIFIER=\"com.ljwcode.gmail.ljwcodeHeadLineNews\"\n# #\nUPLOAD_DSYM_ONLY=1\n#\n# # 脚本默认配置的版本格式为CFBundleShortVersionString(CFBundleVersion),  如果你修改默认的版本格式, 请设置此变量, 如果不想修改, 请忽略此设置\n# CUSTOMIZED_APP_VERSION=\"\"\n#\n# # Debug模式编译是否上传，1＝上传 0＝不上传，默认不上传\n UPLOAD_DEBUG_SYMBOLS=1\n#\n# # 模拟器编译是否上传，1=上传 0=不上传，默认不上传\n UPLOAD_SIMULATOR_SYMBOLS=1\n#\n# #只有Archive操作时上传, 1=支持Archive上传 0=所有Release模式编译都上传\n# UPLOAD_ARCHIVE_ONLY=0\n#\n# #\n# source dSYMUpload.sh\n#\n# --- END OF SCRIPT ---\n#\n#\n#\n#\n#######################################################\n# 2. 脚本根据输入参数处理\n#######################################################\n#\n# #命令行下输入应用基本信息, .dSYM文件的父目录路径, 输出文件目录即可\n#\n# sh dSYMUpload.sh <bugly_app_id> <bugly_app_key> <app_bundle_identifier> <app_version> <dSYM_src_dir> <bSYMBOL_dest_dir>\n#\n# #\n#\n# #注意:\n# # 1. dSYMUpload.sh会调用buglySymboliOS.jar进行.dSYM解析，所以依赖Java运行时环境\n# # 2. dSYMUpload.sh和buglySymboliOS.jar的文件路径需一致\n#\n#\n\n#\n# --- CONTENT OF SCRIPT ---\n#\n\n# Bugly服务域名\nBUGLY_DSYM_UPLOAD_DOMAIN=\"api.bugly.qq.com\"\n\n# 注意jar工具的路径跟dSYMUpload.sh脚本路径一致, 请务必保证jar路径的正确性\nBUGLY_SYMBOL_JAR_PATH=\"dsymtool/buglySymboliOS.jar\"\n# 查找添加到系统目录的jar工具\nif [ ! -f \"${BUGLY_SYMBOL_JAR_PATH}\" ]; then\n    BUGLY_SYMBOL_JAR_PATH=\"$HOME/bin/buglySymboliOS.jar\"\nfi\n\n# 打印错误信息\nfunction exitWithMessage(){\n    echo \"--------------------------------\"\n    echo \"${1}\"\n    echo \"--------------------------------\"\n    exit ${2}\n}\n\n# 上传bSYMBOL文件\nfunction dSYMUpload() {\n    P_APP_ID=\"$1\"\n    P_APP_KEY=\"$2\"\n    P_APP_BUNDLE_ID=\"$3\"\n    P_APP_VERSION=\"$4\"\n    P_BSYMBOL_ZIP_FILE=\"$5\"\n\n    #\n    P_BSYMBOL_ZIP_FILE_NAME=${P_BSYMBOL_ZIP_FILE##*/}\n    P_BSYMBOL_ZIP_FILE_NAME=${P_BSYMBOL_ZIP_FILE_NAME//&/_}\n    P_BSYMBOL_ZIP_FILE_NAME=\"${P_BSYMBOL_ZIP_FILE_NAME// /_}\"\n\n    DSYM_UPLOAD_URL=\"https://${BUGLY_DSYM_UPLOAD_DOMAIN}/openapi/file/upload/symbol?app_id=${P_APP_ID}&app_key=${P_APP_KEY}\"\n    echo \"dSYM upload url: ${DSYM_UPLOAD_URL}\"\n\n    echo \"-----------------------------\"\n    STATUS=$(/usr/bin/curl -k \"${DSYM_UPLOAD_URL}\" --form \"api_version=1\" --form \"app_id=${P_APP_ID}\" --form \"app_key=${P_APP_KEY}\" --form \"symbolType=2\"  --form \"bundleId=${BUNDLE_IDENTIFIER}\" --form \"productVersion=${BUGLY_APP_VERSION}\" --form \"fileName=${P_BSYMBOL_ZIP_FILE_NAME}\" --form \"file=@${P_BSYMBOL_ZIP_FILE}\" --verbose)\n    echo \"-----------------------------\"\n\n    UPLOAD_RESULT=\"FAILTURE\"\n    echo \"Bugly server response: ${STATUS}\"\n    if [ ! \"${STATUS}\" ]; then\n        echo \"Error: Failed to upload the zip archive file.\"\n    elif [[ \"${STATUS}\" == *\"{\\\"reponseCode\\\":\\\"0\\\"}\"* ]]; then\n        echo \"Success to upload the dSYM for the app [${BUNDLE_IDENTIFIER} ${BUGLY_APP_VERSION}]\"\n        UPLOAD_RESULT=\"SUCCESS\"\n    else\n        echo \"Error: Failed to upload the zip archive file to Bugly.\"\n    fi\n\n    #Remove temp dSYM archive\n    #echo \"Remove temporary zip archive: ${DSYM_ZIP_FPATH}\"\n    #/bin/rm -f \"${DSYM_ZIP_FPATH}\"\n\n    if [ \"$?\" -ne 0 ]; then\n        exitWithMessage \"Error: Failed to remove temporary zip archive.\" 0\n    fi\n\n    echo \"--------------------------------\"\n    echo \"${UPLOAD_RESULT} - dSYM upload complete.\"\n\n    if [[ \"${UPLOAD_RESULT}\" == \"FAILTURE\" ]]; then\n        echo \"--------------------------------\"\n        echo \"Failed to upload the dSYM\"\n        echo \"Please check the script and try it again.\"\n    fi\n}\n\n# .dSYM解析为bSYMBOL文件\nfunction dSYMParse() {\n    DSYM_FILE=\"$1\"\n    DSYM_SYMBOL_FILE=\"$2\"\n\n    echo \"--------------------------------\"\n    echo \"Extract symbol info from .dSYM file. to ${DSYM_SYMBOL_FILE}\"\n    (/usr/bin/java -Xms512m -Xmx1024m -Dfile.encoding=UTF8 -jar \"${BUGLY_SYMBOL_JAR_PATH}\" -i \"${DSYM_FILE}\" -o \"${DSYM_SYMBOL_FILE}\" ) || exitWithMessage \"Error: Failed to extract symbols.\" 1\n    echo \"--------------------------------\"\n\n}\n\n# 执行\nfunction run() {\n\n    CONFIG_BUGLY_APP_ID=\"$1\"\n    CONFIG_BUGLY_APP_KEY=\"$2\"\n\n    CONFIG_BUGLY_APP_BUNDLE_IDENTIFIER=\"$3\"\n    CONFIG_BUGLY_APP_VERSION=\"$4\"\n    CONFIG_DSYM_SOURCE_DIR=\"$5\"\n    CONFIG_DSYM_DEST_DIR=\"$6\"\n    CONFIG_UPLOAD_DSYM_ONLY=\"$7\"\n\n    # 检查必须参数是否设置\n    if [ ! \"${CONFIG_BUGLY_APP_ID}\" ]; then\n        exitWithMessage \"Error: Bugly App ID not defined. Please set 'BUGLY_APP_ID' \" 0\n    fi\n\n    if [[ \"${CONFIG_BUGLY_APP_ID}\" == *\"App ID\"* ]]; then\n        exitWithMessage \"Error: Bugly App ID not defined.\" 0\n    fi\n\n    if [ ! \"${CONFIG_BUGLY_APP_KEY}\" ]; then\n        exitWithMessage \"Error: Bugly App Key not defined.\" 0\n    fi\n\n    if [ ! \"${CONFIG_BUGLY_APP_BUNDLE_IDENTIFIER}\" ]; then\n        exitWithMessage \"Error: Bundle Identifier not defined.\" 0\n    fi\n\n    if [ ! \"${CONFIG_BUGLY_APP_VERSION}\" ]; then\n        exitWithMessage \"Error: App Version not defined.\" 0\n    fi\n\n    if [ ! -e \"${CONFIG_DSYM_SOURCE_DIR}\" ]; then\n        exitWithMessage \"Error: Invalid dir ${CONFIG_DSYM_SOURCE_DIR}\" 0\n    fi\n\n    if [ ! \"${CONFIG_DSYM_DEST_DIR}\" ]; then\n        exitWithMessage \"Error: Invalid dir ${CONFIG_DSYM_DEST_DIR}\" 0\n    fi\n\n    if [ ! -e \"${CONFIG_DSYM_DEST_DIR}\" ]; then\n        mkdir ${CONFIG_DSYM_DEST_DIR}\n    fi\n\n    DSYM_FOLDER=\"${CONFIG_DSYM_SOURCE_DIR}\"\n    IFS=$'\\n'\n\n    echo \"Scaning dSYM FOLDER: ${DSYM_FOLDER} ...\"\n    RET=\"F\"\n    \n    #\n    for dsymFile in $(find \"$DSYM_FOLDER\" -name '*.dSYM'); do\n        RET=\"T\"\n        echo \"Found dSYM file: $dsymFile\"\n\n        DSYM_FILE_NAME=${dsymFile##*/}\n        DSYM_SYMBOL_ZIP_FILE_NAME=\"${DSYM_FILE_NAME}.zip\"\n        DSYM_SYMBOL_ZIP_FILE_NAME=\"${DSYM_SYMBOL_ZIP_FILE_NAME// /_}\"\n        DSYM_SYMBOL_ZIP_FILE=${CONFIG_DSYM_DEST_DIR}/${DSYM_SYMBOL_ZIP_FILE_NAME}\n\n        if [ $CONFIG_UPLOAD_DSYM_ONLY -eq 1 ]; then\n            if [ -e $DSYM_SYMBOL_ZIP_FILE ]; then\n                rm -f $DSYM_SYMBOL_ZIP_FILE\n            fi\n            # 如果只上传dSYM，直接压缩dSYM目录\n            zip -r -j $DSYM_SYMBOL_ZIP_FILE $dsymFile -x *.plist\n        else\n            # 使用符号表工具来生成Symbol文件\n            dSYMParse $dsymFile $DSYM_SYMBOL_ZIP_FILE\n        fi\n        \n        # 上传\n        dSYMUpload $CONFIG_BUGLY_APP_ID $CONFIG_BUGLY_APP_KEY $CONFIG_BUGLY_APP_BUNDLE_IDENTIFIER $CONFIG_BUGLY_APP_VERSION $DSYM_SYMBOL_ZIP_FILE\n    done\n\n    if [ $RET = \"F\" ]; then\n        exitWithMessage \"No .dSYM found in ${DSYM_FOLDER}\" 0\n    fi\n}\n\n# 在Xcode工程中执行\nfunction runInXcode(){\n    echo \"Uploading dSYM to Bugly in Xcode ...\"\n\n    echo \"Info.Plist : ${INFOPLIST_FILE}\"\n\n    BUNDLE_VERSION=$(/usr/libexec/PlistBuddy -c 'Print CFBundleVersion' \"${INFOPLIST_FILE}\")\n    BUNDLE_SHORT_VERSION=$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' \"${INFOPLIST_FILE}\")\n\n    # 组装Bugly默认识别的版本信息(格式为CFBundleShortVersionString(CFBundleVersion), 例如: 1.0(1))\n    if [ ! \"${CUSTOMIZED_APP_VERSION}\" ]; then\n        BUGLY_APP_VERSION=\"${BUNDLE_SHORT_VERSION}(${BUNDLE_VERSION})\"\n    else\n        BUGLY_APP_VERSION=\"${CUSTOMIZED_APP_VERSION}\"\n    fi\n\n    echo \"--------------------------------\"\n    echo \"Prepare application information.\"\n    echo \"--------------------------------\"\n\n    echo \"Product Name: ${PRODUCT_NAME}\"\n    echo \"Bundle Identifier: ${BUNDLE_IDENTIFIER}\"\n    echo \"Version: ${BUNDLE_SHORT_VERSION}\"\n    echo \"Build: ${BUNDLE_VERSION}\"\n\n    echo \"Bugly App ID: ${BUGLY_APP_ID}\"\n    echo \"Bugly App key: ${BUGLY_APP_KEY}\"\n    echo \"Bugly App Version: ${BUGLY_APP_VERSION}\"\n\n    echo \"--------------------------------\"\n    echo \"Check the arguments ...\"\n\n    ##检查模拟器编译是否允许上传符号\n    if [ \"$EFFECTIVE_PLATFORM_NAME\" == \"-iphonesimulator\" ]; then\n    if [ $UPLOAD_SIMULATOR_SYMBOLS -eq 0 ]; then\n        exitWithMessage \"Warning: Build for simulator and skipping to upload. \\nYou can modify 'UPLOAD_SIMULATOR_SYMBOLS' to 1 in the script.\" 0\n    fi\n    fi\n\n    ##检查是否是Release模式编译\n    if [ \"${CONFIGURATION=}\" == \"Debug\" ]; then\n    if [ $UPLOAD_DEBUG_SYMBOLS -eq 0 ]; then\n        exitWithMessage \"Warning: Build for debug mode and skipping to upload. \\nYou can modify 'UPLOAD_DEBUG_SYMBOLS' to 1 in the script.\" 0\n    fi\n    fi\n\n    ##检查是否Archive操作\n    if [ $UPLOAD_ARCHIVE_ONLY -eq 1 ]; then\n    if [[ \"$TARGET_BUILD_DIR\" == *\"/Archive\"* ]]; then\n        echo \"Archive the package\"\n    else\n        exitWithMessage \"Warning: Build for NOT Archive mode and skipping to upload. \\nYou can modify 'UPLOAD_ARCHIVE_ONLY' to 0 in the script.\" 0\n    fi\n    fi\n\n    #\n    run ${BUGLY_APP_ID} ${BUGLY_APP_KEY} ${BUNDLE_IDENTIFIER} ${BUGLY_APP_VERSION} ${DWARF_DSYM_FOLDER_PATH} ${BUILD_DIR}/BuglySymbolTemp ${UPLOAD_DSYM_ONLY}\n}\n\n# 根据Xcode的环境变量判断是否处于Xcode环境\nINFO_PLIST_FILE=\"${INFOPLIST_FILE}\"\n\nBuildInXcode=\"F\"\nif [ -f \"${INFO_PLIST_FILE}\" ]; then\n    BuildInXcode=\"T\"\nfi\n\nif [ $BuildInXcode = \"T\" ]; then\n    runInXcode\nelse\n    echo \"\\nUsage: dSYMUpload.sh <bugly_app_id> <bugly_app_key> <app_bundle_identifier> <app_version> <dSYM_src_dir> <bSYMBOL_dest_dir> [upload_dsym_only]\\n\"\n    # 你可以在此处直接设置BuglyAppID和BuglyAppKey，排除不常变参数的输入\n    BUGLY_APP_ID=\"$1\"\n    BUGLY_APP_KEY=\"$2\"\n    BUNDLE_IDENTIFIER=\"$3\"\n    BUGLY_APP_VERSION=\"$4\"\n    DWARF_DSYM_FOLDER_PATH=\"$5\"\n    SYMBOL_OUTPUT_PATH=\"$6\"\n    UPLOAD_DSYM_ONLY=$7\n    run ${BUGLY_APP_ID} ${BUGLY_APP_KEY} ${BUNDLE_IDENTIFIER} ${BUGLY_APP_VERSION} ${DWARF_DSYM_FOLDER_PATH} ${SYMBOL_OUTPUT_PATH} ${UPLOAD_DSYM_ONLY}\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2054,6 +2049,7 @@
 				8209791A1BD3AFAC00CF9D0C /* MineViewController.m in Sources */,
 				94D4446926058EE600FA8C2E /* FFSimplePingHelper.m in Sources */,
 				63DB0D1B2501F19200B9FA0A /* videoRealURLRequestModel.m in Sources */,
+				940652E828379FA000F0844E /* Reachability.m in Sources */,
 				6325352125C7E7BD005007A0 /* TTVideoDetailView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2175,11 +2171,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 479DV2RK3V;
+				DEVELOPMENT_TEAM = 7YHAL7YR6X;
+				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2203,7 +2200,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ljwcode.gmail.ljwcodeHeadLineNews;
 				PRODUCT_NAME = TTNews;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "com.*_dis";
 				SWIFT_OBJC_BRIDGING_HEADER = "ljwcodeHeadLineNews/ljwcodeTools/ljwcodeHeadLineNews-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2219,10 +2216,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2.0;
-				DEVELOPMENT_TEAM = 479DV2RK3V;
+				DEVELOPMENT_TEAM = 7YHAL7YR6X;
+				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2246,7 +2244,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ljwcode.gmail.ljwcodeHeadLineNews;
 				PRODUCT_NAME = TTNews;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "com.*_dis";
 				SWIFT_OBJC_BRIDGING_HEADER = "ljwcodeHeadLineNews/ljwcodeTools/ljwcodeHeadLineNews-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

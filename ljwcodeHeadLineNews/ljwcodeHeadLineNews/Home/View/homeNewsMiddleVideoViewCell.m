@@ -205,14 +205,14 @@
 #pragma mark ----- 事件响应
 
 -(void)playVideoHandle:(UIButton *)sender {
-    if(self.delegate && [self.delegate respondsToSelector:@selector(playVideoHandle)]){
-        [self.delegate playVideoHandle];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TTPlayNewsVideoHandle)]){
+        [self.delegate TTPlayNewsVideoHandle];
     }
 }
 
 -(void)deleteNewsCellHandle:(UIButton *)sender {
-    if(self.delegate && [self.delegate respondsToSelector:@selector(deleteNewsCellHandle)]){
-        [self.delegate deleteNewsCellHandle];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(TTDeleteNewsCellHandle)]){
+        [self.delegate TTDeleteNewsCellHandle];
     }
 }
 

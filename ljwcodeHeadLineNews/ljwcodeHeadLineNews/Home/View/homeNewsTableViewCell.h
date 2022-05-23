@@ -12,13 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol homeNewsTableViewCellDelegate<NSObject>
-
-@end
-
 @interface homeNewsTableViewCell : TT_ClickHightLightTableViewCell
-
-@property(nonatomic,weak)id<homeNewsTableViewCellDelegate> delegate;
 
 @property(nonatomic,strong)homeNewsSummaryModel *summaryModel;
 
